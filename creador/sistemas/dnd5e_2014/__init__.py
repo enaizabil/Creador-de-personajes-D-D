@@ -46,7 +46,12 @@ class Sistema5e2014(SistemaReglas):
         return sorted(opciones, key=lambda o: clave_alfabetica(o.nombre))
 
     def efecto_activo(self, efecto: dict, personaje: Personaje) -> bool:
-        return efecto.get("nivel_minimo", 1) <= max(1, personaje.nivel_total)
+        if efecto.get("nivel_minimo", 1) > max(1, personaje.nivel_total):
+            return False
+        if "nivel_clase_minimo" in efecto:
+            nivel_clase = next((e.nivel for e in personaje.clases if e.clase == efecto.get("clase")), 0)
+            return nivel_clase >= efecto["nivel_clase_minimo"]
+        return True
 
     def expandir_efecto(self, efecto: dict, catalogo: Catalogo, personaje: Personaje) -> list[dict] | None:
         if efecto["tipo"] in ("dote", "opcion"):

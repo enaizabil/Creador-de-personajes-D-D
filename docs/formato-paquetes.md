@@ -210,6 +210,12 @@ Cualquier efecto (también una elección) admite `nivel_minimo`: solo se aplica 
 {"tipo": "conjuro", "id": "reprension_infernal", "caracteristica": "car", "nivel_minimo": 3}
 ```
 
+`nivel_clase_minimo` (junto con `clase`) hace lo mismo con el **nivel de una clase**: sirve para lo que se elige una vez y crece después, como los conjuros de círculo del druida de la Tierra (terreno elegido a nivel 2; conjuros a niveles 3 y 5):
+
+```json
+{"tipo": "conjuro", "id": "silenciar", "clase": "druida", "siempre_preparado": true, "nivel_clase_minimo": 3}
+```
+
 ### 5.1 Rasgos con valores calculados
 
 `resumen` es la línea corta de la ficha y puede llevar `{expresiones}`; `usos` es un número o una expresión; `recarga` es `corto` o `largo`; `escala` es una tabla `{"nivel": valor}` (se toma el último umbral alcanzado) que se usa como `{escala}`.

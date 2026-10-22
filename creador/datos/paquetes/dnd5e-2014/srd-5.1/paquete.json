@@ -1,0 +1,26 @@
+{
+  "id": "srd-5.1",
+  "nombre": "SRD 5.1 (Documento de referencia del sistema)",
+  "sistema": "dnd5e-2014",
+  "version": "0.1.0",
+  "tipo": "oficial",
+  "licencia": "CC-BY-4.0",
+  "descripcion": "Contenido del SRD 5.1 oficial en español. Ver ATRIBUCION.md.",
+  "archivos": [
+    "idiomas.json",
+    "objetos.json",
+    "conjuros_0.json",
+    "conjuros_1.json",
+    "conjuros_2.json",
+    "conjuros_3.json",
+    "razas.json",
+    "trasfondos.json",
+    "dotes.json",
+    "clases_barbaro_guerrero.json",
+    "clases_bardo_picaro.json",
+    "clases_clerigo_paladin.json",
+    "clases_druida_explorador.json",
+    "clases_hechicero_brujo.json",
+    "clases_mago_monje.json"
+  ]
+}

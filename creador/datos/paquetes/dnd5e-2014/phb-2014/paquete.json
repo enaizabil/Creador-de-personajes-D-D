@@ -1,0 +1,29 @@
+{
+  "id": "phb-2014",
+  "nombre": "Manual del Jugador (2014)",
+  "sistema": "dnd5e-2014",
+  "version": "0.1.0",
+  "tipo": "oficial",
+  "licencia": "Uso privado. Contenido protegido por derechos de autor; redactado con palabras propias.",
+  "descripcion": "Opciones del Manual del Jugador que no están en el SRD.",
+  "depende_de": [
+    "srd-5.1"
+  ],
+  "archivos": [
+    "idiomas.json",
+    "objetos.json",
+    "conjuros_0.json",
+    "conjuros_1.json",
+    "conjuros_2.json",
+    "conjuros_3.json",
+    "razas.json",
+    "trasfondos.json",
+    "dotes.json",
+    "clases_barbaro_guerrero.json",
+    "clases_bardo_picaro.json",
+    "clases_clerigo_paladin.json",
+    "clases_druida_explorador.json",
+    "clases_hechicero_brujo.json",
+    "clases_mago_monje.json"
+  ]
+}

@@ -140,9 +140,12 @@ def _validar_efecto(tipo: str, efecto: dict) -> list[str]:
     condicion = efecto.get("condicion")
     condiciones = [condicion] if isinstance(condicion, str) else (condicion or [])
     errores.extend(f"condición desconocida «{c}»" for c in condiciones if c not in CONDICIONES)
-    nivel_minimo = efecto.get("nivel_minimo")
-    if nivel_minimo is not None and (not isinstance(nivel_minimo, int) or not 1 <= nivel_minimo <= 20):
-        errores.append("«nivel_minimo» debe ser un entero entre 1 y 20")
+    for campo in ("nivel_minimo", "nivel_clase_minimo"):
+        valor = efecto.get(campo)
+        if valor is not None and (not isinstance(valor, int) or not 1 <= valor <= 20):
+            errores.append(f"«{campo}» debe ser un entero entre 1 y 20")
+    if "nivel_clase_minimo" in efecto and not efecto.get("clase"):
+        errores.append("«nivel_clase_minimo» necesita «clase»")
 
     if tipo == "caracteristica":
         car = efecto.get("car")

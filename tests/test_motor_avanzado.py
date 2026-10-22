@@ -109,3 +109,11 @@ def test_requisitos_de_multiclase(sistema, catalogo):
     texto = "\n".join(sistema.calcular(personaje, catalogo).avisos)
     assert "Multiclase: Monje requiere DES 13 y SAB 13" in texto
     assert "Multiclase: Guerrero" not in texto
+
+
+def test_nivel_de_clase_minimo(sistema, catalogo):
+    efecto = {"tipo": "conjuro", "id": "luz", "clase": "mago", "nivel_clase_minimo": 3}
+    mago_2 = nuevo_personaje(clases=[EntradaClase("guerrero", 5), EntradaClase("mago", 2)])
+    assert not sistema.efecto_activo(efecto, mago_2)  # nivel 7 de personaje, pero mago 2
+    mago_2.clases[1].nivel = 3
+    assert sistema.efecto_activo(efecto, mago_2)
