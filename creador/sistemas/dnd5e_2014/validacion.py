@@ -32,7 +32,11 @@ if TYPE_CHECKING:
 
 CATEGORIAS = (
     "razas", "subrazas", "clases", "subclases", "trasfondos", "dotes", "opciones", "conjuros", "objetos", "idiomas",
+    "preguntas", "recomendaciones",
 )
+# Lo que el cuestionario puede recomendar o pesar directamente («clases:guerrero»).
+CATEGORIAS_RECOMENDABLES = ("razas", "subrazas", "clases", "subclases", "trasfondos")
+EJES_ALINEAMIENTO = ("orden", "moral")
 
 # Variables disponibles en los textos con {expresiones} y en «usos».
 VARIABLES_EXPRESION = {
@@ -84,6 +88,8 @@ CAMPOS_ENTRADA: dict[str, dict[str, type]] = {
     "conjuros": {"nombre": str, "nivel": int, "escuela": str, "listas": list},
     "objetos": {"nombre": str, "categoria": str},
     "idiomas": {"nombre": str},
+    "preguntas": {"nombre": str, "texto": str, "respuestas": list},
+    "recomendaciones": {"nombre": str},
 }
 NOMBRE_TIPO = {str: "texto", int: "número entero", list: "lista", dict: "objeto"}
 
@@ -268,6 +274,11 @@ def validar_entrada(categoria: str, entrada: dict) -> list[str]:
             errores.append("«conjuros_adicionales» debe ser una lista de ids")
     elif categoria == "dotes" and "prerrequisito" in entrada:
         errores.extend(_validar_requisito(entrada["prerrequisito"], "prerrequisito"))
+    elif categoria == "preguntas":
+        errores.extend(_validar_pregunta(entrada))
+    elif categoria == "recomendaciones":
+        errores.extend(f"«{c}» debe ser una lista de ids" for c in ("conjuros", "opciones", "dotes")
+                       if not isinstance(entrada.get(c, []), list) or not all(isinstance(i, str) for i in entrada.get(c, [])))
     elif categoria == "trasfondos":
         if "equipo" in entrada:
             errores.extend(_validar_equipo(entrada["equipo"], "equipo"))
@@ -365,6 +376,47 @@ def _validar_personalidad(personalidad) -> list[str]:
     ideales = personalidad.get("ideales")
     if not isinstance(ideales, list) or not ideales or not all(isinstance(i, dict) and "texto" in i for i in ideales):
         errores.append("personalidad.ideales: debe ser una lista de {\"texto\", \"alineamiento\"}")
+    return errores
+
+
+def _referencia_valida(referencia) -> bool:
+    """«clases:guerrero»: categoría recomendable e id."""
+    if not isinstance(referencia, str) or ":" not in referencia:
+        return False
+    categoria, id_ = referencia.split(":", 1)
+    return categoria in CATEGORIAS_RECOMENDABLES and bool(id_)
+
+
+def _validar_pregunta(pregunta: dict) -> list[str]:
+    errores: list[str] = []
+    requiere = pregunta.get("requiere", [])
+    if not isinstance(requiere, list) or not all(_referencia_valida(r) for r in requiere):
+        errores.append("«requiere» debe ser una lista como [\"clases:paladin\"]")
+    respuestas = pregunta["respuestas"]
+    if len(respuestas) < 2:
+        errores.append("una pregunta necesita al menos dos respuestas")
+    vistas: set[str] = set()
+    for n, respuesta in enumerate(respuestas):
+        ruta = f"respuestas[{n}]"
+        if not isinstance(respuesta, dict) or not isinstance(respuesta.get("id"), str) \
+                or not isinstance(respuesta.get("texto"), str):
+            errores.append(f"{ruta}: necesita «id» y «texto»")
+            continue
+        if respuesta["id"] in vistas:
+            errores.append(f"{ruta}: id repetido «{respuesta['id']}»")
+        vistas.add(respuesta["id"])
+        if "perfil" in respuesta:
+            errores.extend(f"{ruta}: {e}" for e in _validar_perfil(respuesta["perfil"]))
+        pesos = respuesta.get("pesos", {})
+        if not isinstance(pesos, dict) or not all(_referencia_valida(r) and isinstance(v, int) and -5 <= v <= 5
+                                                  for r, v in pesos.items()):
+            errores.append(f"{ruta}: «pesos» debe ser {{\"clases:guerrero\": n}} con n de -5 a 5")
+        eje = respuesta.get("eje", {})
+        if not isinstance(eje, dict) or not all(k in EJES_ALINEAMIENTO and isinstance(v, int) and -3 <= v <= 3
+                                                for k, v in eje.items()):
+            errores.append(f"{ruta}: «eje» debe ser {{\"orden\": n, \"moral\": n}} con n de -3 a 3")
+        if not any(c in respuesta for c in ("perfil", "pesos", "eje")):
+            errores.append(f"{ruta}: no puntúa nada (falta «perfil», «pesos» o «eje»)")
     return errores
 
 

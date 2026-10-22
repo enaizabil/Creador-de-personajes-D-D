@@ -1,0 +1,13 @@
+{
+  "id": "cuestionario-basico",
+  "nombre": "Cuestionario de situaciones",
+  "sistema": "dnd5e-2014",
+  "version": "0.1.0",
+  "tipo": "propio",
+  "licencia": "Contenido propio del programa.",
+  "descripcion": "Preguntas de la vida cotidiana para el modo sencillo y recomendaciones de conjuros y opciones para que el personaje salga jugable.",
+  "archivos": [
+    "preguntas.json",
+    "recomendaciones.json"
+  ]
+}

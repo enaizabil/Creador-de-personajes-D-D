@@ -65,3 +65,7 @@ class SistemaReglas(ABC):
     def crear_asistente(self, personaje: Personaje, catalogo: Catalogo, **opciones) -> Any:
         """Asistente paso a paso del modo normal (cada edición define sus pasos)."""
         raise NotImplementedError(f"El sistema «{self.id}» no tiene asistente de creación")
+
+    def crear_cuestionario(self, personaje: Personaje, catalogo: Catalogo) -> Any:
+        """Cuestionario del modo sencillo: preguntas de situaciones que deciden el personaje."""
+        raise NotImplementedError(f"El sistema «{self.id}» no tiene cuestionario")

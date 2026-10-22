@@ -1,0 +1,108 @@
+{
+  "recomendaciones": [
+    {
+      "id": "general",
+      "nombre": "Cualquier clase",
+      "descripcion": "Dotes sencillas y útiles para quien empieza.",
+      "dotes": ["alerta", "duro", "resistente", "afortunado", "observador"]
+    },
+    {
+      "id": "bardo",
+      "nombre": "Bardo",
+      "conjuros": ["burla_danina", "mano_de_mago", "luz", "mensaje", "prestidigitacion", "ilusion_menor",
+                   "palabra_de_curacion", "susurros_discordantes", "dormir", "hechizar_persona", "heroismo", "curar_heridas",
+                   "fuego_feerico", "detectar_magia",
+                   "inmovilizar_persona", "invisibilidad", "sugestion", "calmar_emociones", "restablecimiento_menor", "hacer_anicos",
+                   "patron_hipnotico", "disipar_magia", "terror", "recado"]
+    },
+    {
+      "id": "brujo",
+      "nombre": "Brujo",
+      "conjuros": ["descarga_sobrenatural", "prestidigitacion", "mano_de_mago", "guardia_de_cuchillas",
+                   "maleficio", "armadura_de_agathys", "reprension_infernal", "hechizar_persona", "retirada_expeditiva",
+                   "paso_brumoso", "inmovilizar_persona", "invisibilidad", "oscuridad", "sugestion",
+                   "contrahechizo", "hambre_de_hadar", "terror", "volar", "disipar_magia"],
+      "opciones": ["descarga_agonica", "armadura_de_sombras", "vista_del_diablo", "mascara_de_los_mil_rostros",
+                   "vigor_infernal", "pacto_de_la_cadena"]
+    },
+    {
+      "id": "clerigo",
+      "nombre": "Clérigo",
+      "conjuros": ["llama_sagrada", "guia", "taumaturgia", "luz", "piedad_con_los_moribundos", "resistencia",
+                   "curar_heridas", "palabra_de_curacion", "bendicion", "saeta_guia", "escudo_de_fe", "santuario",
+                   "orden_imperiosa", "detectar_magia", "perdicion",
+                   "arma_espiritual", "auxilio", "restablecimiento_menor", "inmovilizar_persona", "plegaria_de_curacion", "silencio",
+                   "espiritus_guardianes", "revivir", "disipar_magia", "palabra_de_curacion_en_masa", "senal_de_esperanza"]
+    },
+    {
+      "id": "druida",
+      "nombre": "Druida",
+      "conjuros": ["shillelagh", "crear_llama", "guia", "latigo_de_espinas", "saber_druidico", "resistencia",
+                   "buenas_bayas", "curar_heridas", "enmaranar", "palabra_de_curacion", "fuego_feerico", "ola_atronadora",
+                   "hablar_con_los_animales", "detectar_magia",
+                   "rayo_de_luna", "piel_robliza", "pasar_sin_rastro", "esfera_de_llamas", "crecimiento_espinoso",
+                   "restablecimiento_menor",
+                   "llamar_al_relampago", "conjurar_animales", "crecimiento_vegetal", "disipar_magia"]
+    },
+    {
+      "id": "explorador",
+      "nombre": "Explorador",
+      "conjuros": ["marca_del_cazador", "curar_heridas", "buenas_bayas", "golpe_apresador", "hablar_con_los_animales", "alarma",
+                   "zancada_prodigiosa",
+                   "pasar_sin_rastro", "piel_robliza", "cordon_de_flechas", "silencio", "restablecimiento_menor",
+                   "conjurar_andanada", "flecha_relampagueante", "conjurar_animales", "indetectable"],
+      "opciones": ["tiro_con_arco", "defensa", "azote_de_colosos"]
+    },
+    {
+      "id": "guerrero",
+      "nombre": "Guerrero (Caballero Arcano)",
+      "conjuros": ["impacto_certero", "guardia_de_cuchillas", "rayo_de_escarcha", "luz", "mano_de_mago",
+                   "escudo", "proyectil_magico", "ola_atronadora", "manos_ardientes", "alarma", "armadura_de_mago",
+                   "proteccion_contra_el_bien_y_el_mal",
+                   "paso_brumoso", "rayo_abrasador", "contorno_borroso", "hacer_anicos"],
+      "opciones": ["defensa", "duelo", "ataque_de_precision", "ataque_de_derribo", "ataque_provocador", "parada",
+                   "ataque_de_maniobra"]
+    },
+    {
+      "id": "hechicero",
+      "nombre": "Hechicero",
+      "conjuros": ["descarga_de_fuego", "rayo_de_escarcha", "mano_de_mago", "luz", "prestidigitacion", "mensaje",
+                   "proyectil_magico", "escudo", "armadura_de_mago", "dormir", "manos_ardientes", "rociada_de_color",
+                   "ola_atronadora",
+                   "paso_brumoso", "rayo_abrasador", "inmovilizar_persona", "imagen_multiple", "invisibilidad",
+                   "bola_de_fuego", "acelerar", "contrahechizo", "volar"],
+      "opciones": ["conjuro_gemelo", "conjuro_sutil", "conjuro_acelerado", "conjuro_cuidadoso"]
+    },
+    {
+      "id": "mago",
+      "nombre": "Mago",
+      "conjuros": ["descarga_de_fuego", "mano_de_mago", "luz", "rayo_de_escarcha", "prestidigitacion", "mensaje",
+                   "proyectil_magico", "escudo", "armadura_de_mago", "dormir", "detectar_magia", "encontrar_familiar",
+                   "manos_ardientes", "caida_de_pluma", "identificar", "grasa", "alarma", "ola_atronadora",
+                   "paso_brumoso", "inmovilizar_persona", "telarana", "invisibilidad", "rayo_abrasador", "imagen_multiple",
+                   "bola_de_fuego", "contrahechizo", "acelerar", "volar", "disipar_magia"]
+    },
+    {
+      "id": "monje",
+      "nombre": "Monje",
+      "opciones": ["colmillos_de_la_serpiente_de_fuego", "puno_de_los_cuatro_truenos", "latigo_de_agua"]
+    },
+    {
+      "id": "paladin",
+      "nombre": "Paladín",
+      "conjuros": ["bendicion", "curar_heridas", "escudo_de_fe", "castigo_atronador", "favor_divino", "heroismo",
+                   "orden_imperiosa", "detectar_el_bien_y_el_mal",
+                   "auxilio", "hallar_corcel", "restablecimiento_menor", "arma_magica",
+                   "revivir", "aura_de_vitalidad", "manto_del_cruzado", "disipar_magia", "levantar_maldicion"],
+      "opciones": ["defensa", "duelo"]
+    },
+    {
+      "id": "picaro",
+      "nombre": "Pícaro (Embaucador Arcano)",
+      "conjuros": ["luz", "ilusion_menor", "prestidigitacion", "mensaje",
+                   "dormir", "hechizar_persona", "imagen_silenciosa", "disfrazarse", "risa_horrible", "rociada_de_color",
+                   "texto_ilusorio", "escudo", "proyectil_magico",
+                   "invisibilidad", "imagen_multiple", "sugestion", "inmovilizar_persona", "fuerza_fantasmal"]
+    }
+  ]
+}

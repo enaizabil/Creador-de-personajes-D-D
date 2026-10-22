@@ -33,7 +33,7 @@ class InfoPaquete:
     ruta: Path
     archivos: tuple[str, ...]
     depende_de: tuple[str, ...] = ()
-    tipo: str = "homebrew"  # oficial | homebrew
+    tipo: str = "homebrew"  # oficial | propio (contenido del programa) | homebrew
     licencia: str = ""
     descripcion: str = ""
 

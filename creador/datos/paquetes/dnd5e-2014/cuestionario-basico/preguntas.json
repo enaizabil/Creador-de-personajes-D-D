@@ -1,0 +1,228 @@
+{
+  "preguntas": [
+    {
+      "id": "experiencia",
+      "nombre": "Antes de empezar",
+      "texto": "¿Has jugado antes a rol?",
+      "respuestas": [
+        {"id": "nunca", "texto": "Nunca. Es mi primera partida.",
+         "pesos": {"clases:guerrero": 3, "clases:barbaro": 3, "clases:picaro": 2, "clases:paladin": 1, "clases:clerigo": 1,
+                   "clases:mago": -2, "clases:druida": -2, "clases:brujo": -2, "clases:hechicero": -1, "clases:bardo": -1,
+                   "clases:monje": -1, "clases:explorador": -1}},
+        {"id": "alguna_vez", "texto": "Alguna vez, pero prefiero no complicarme.",
+         "pesos": {"clases:guerrero": 1, "clases:barbaro": 1, "clases:picaro": 1, "clases:clerigo": 1}},
+        {"id": "mucho", "texto": "Sí, y quiero un personaje con muchas cosas que hacer.",
+         "pesos": {"clases:mago": 2, "clases:druida": 2, "clases:brujo": 2, "clases:bardo": 1, "clases:hechicero": 1,
+                   "clases:monje": 1}}
+      ]
+    },
+    {
+      "id": "lapiz",
+      "nombre": "El lápiz",
+      "texto": "En clase, el de al lado te pide un lápiz. ¿Qué haces?",
+      "respuestas": [
+        {"id": "clavar", "texto": "Se lo clavo en la mano. Haberlo traído de casa.",
+         "perfil": {"combate": 2, "astucia": 1}, "eje": {"moral": -2, "orden": -1}},
+        {"id": "prestar", "texto": "Se lo presto y sigo a lo mío.",
+         "perfil": {"proteccion": 1, "curacion": 1}, "eje": {"moral": 1}},
+        {"id": "todo", "texto": "Le doy el lápiz, la goma y el sacapuntas, y le explico lo que no ha entendido.",
+         "perfil": {"saber": 2, "curacion": 1}, "eje": {"moral": 1, "orden": 1}},
+        {"id": "alquilar", "texto": "Se lo alquilo: un caramelo por hora.",
+         "perfil": {"astucia": 2, "carisma": 1}, "eje": {"moral": -1}}
+      ]
+    },
+    {
+      "id": "apagon",
+      "nombre": "Apagón",
+      "texto": "Se va la luz en casa en plena noche.",
+      "respuestas": [
+        {"id": "a_oscuras", "texto": "Me muevo a oscuras sin tropezar; me sé cada rincón de memoria.",
+         "perfil": {"sigilo": 2, "agilidad": 1}},
+        {"id": "vela", "texto": "Enciendo una vela y aprovecho para leer.", "perfil": {"saber": 2}},
+        {"id": "estrellas", "texto": "Salgo a mirar las estrellas, que sin farolas se ven mejor.",
+         "perfil": {"naturaleza": 2, "fe": 1}},
+        {"id": "sombras", "texto": "Hago sombras chinescas con una linterna para entretener a todos.",
+         "perfil": {"carisma": 2, "arcano": 1}}
+      ]
+    },
+    {
+      "id": "perro",
+      "nombre": "El perro",
+      "texto": "Un perro callejero empieza a seguirte por la calle.",
+      "respuestas": [
+        {"id": "adoptar", "texto": "Me lo llevo a casa. Ya es de la familia.",
+         "perfil": {"naturaleza": 2, "curacion": 1}, "eje": {"moral": 1}},
+        {"id": "veterinario", "texto": "Le miro las patas por si está herido y lo llevo al veterinario.",
+         "perfil": {"curacion": 2, "naturaleza": 1}, "eje": {"moral": 1}},
+        {"id": "hablar", "texto": "Le hablo como si me entendiera… y juraría que me entiende.",
+         "perfil": {"arcano": 2, "naturaleza": 1}},
+        {"id": "mirada", "texto": "Me paro y le aguanto la mirada hasta que se aburre.",
+         "perfil": {"aguante": 2, "combate": 1}}
+      ]
+    },
+    {
+      "id": "pelea_bar",
+      "nombre": "Pelea en el bar",
+      "texto": "Estás en un bar y estalla una pelea. Alguien rompe una silla.",
+      "respuestas": [
+        {"id": "unirse", "texto": "Cojo una pata de la silla y me uno a la fiesta.",
+         "perfil": {"combate": 3}, "eje": {"orden": -1}},
+        {"id": "proteger", "texto": "Me pongo delante de los que no pintan nada en la pelea.",
+         "perfil": {"proteccion": 3}, "eje": {"moral": 1}},
+        {"id": "copas", "texto": "Aprovecho el lío para terminarme las copas de los demás.",
+         "perfil": {"astucia": 2, "sigilo": 1}, "eje": {"orden": -1}},
+        {"id": "gritar", "texto": "Me subo a la barra y grito hasta que todos se callan.",
+         "perfil": {"carisma": 2, "aguante": 1}, "eje": {"orden": 1}}
+      ]
+    },
+    {
+      "id": "cartera",
+      "nombre": "La cartera",
+      "texto": "Encuentras en el suelo una cartera con 50 euros.",
+      "respuestas": [
+        {"id": "policia", "texto": "La llevo a la policía tal cual.",
+         "perfil": {"proteccion": 1, "fe": 1}, "eje": {"orden": 2, "moral": 1}},
+        {"id": "investigar", "texto": "Investigo el DNI y las tarjetas hasta dar con su dueño.",
+         "perfil": {"saber": 1, "astucia": 1}, "eje": {"moral": 1}},
+        {"id": "quedarse", "texto": "Me quedo el dinero y dejo la cartera en un buzón.",
+         "perfil": {"astucia": 2, "sigilo": 1}, "eje": {"moral": -1, "orden": -1}},
+        {"id": "destino", "texto": "Me la guardo: si ha llegado a mí, por algo será.",
+         "perfil": {"fe": 1, "arcano": 1}, "eje": {"orden": -1}}
+      ]
+    },
+    {
+      "id": "excursion",
+      "nombre": "Excursión",
+      "texto": "Tus amigos organizan una excursión al monte.",
+      "respuestas": [
+        {"id": "guia", "texto": "Voy delante marcando el camino; sé qué setas se pueden comer.", "perfil": {"naturaleza": 3}},
+        {"id": "mochilas", "texto": "Cargo con las mochilas de todos.", "perfil": {"aguante": 2, "proteccion": 1}},
+        {"id": "botiquin", "texto": "Llevo el botiquín y las tiritas, por si acaso.", "perfil": {"curacion": 2, "proteccion": 1}},
+        {"id": "casa", "texto": "Me quedo en casa. Para eso están los libros de viajes.", "perfil": {"saber": 2}}
+      ]
+    },
+    {
+      "id": "examen",
+      "nombre": "Examen sorpresa",
+      "texto": "Examen sorpresa y no has estudiado nada.",
+      "respuestas": [
+        {"id": "copiar", "texto": "Me copio del de al lado sin que se note.",
+         "perfil": {"sigilo": 2, "astucia": 1}, "eje": {"orden": -1}},
+        {"id": "convencer", "texto": "Convenzo al profesor para que lo deje para la semana que viene.", "perfil": {"carisma": 3}},
+        {"id": "pelear", "texto": "Lo hago con lo que sé y defiendo cada respuesta con uñas y dientes.",
+         "perfil": {"aguante": 2, "combate": 1}},
+        {"id": "rezar", "texto": "Rezo. Y mucho.", "perfil": {"fe": 2}},
+        {"id": "sabelotodo", "texto": "No pasa nada: yo siempre me lo sé todo.", "perfil": {"saber": 3}}
+      ]
+    },
+    {
+      "id": "adivina",
+      "nombre": "La adivina",
+      "texto": "En una feria, una adivina se ofrece a leerte la mano.",
+      "respuestas": [
+        {"id": "aceptar", "texto": "Acepto encantado; con esas cosas no se juega.", "perfil": {"arcano": 2, "fe": 1}},
+        {"id": "al_reves", "texto": "Le leo yo la mano a ella y le saco la propina.", "perfil": {"astucia": 2, "carisma": 1}},
+        {"id": "truco", "texto": "Le pregunto cómo funciona el truco hasta que se harta de mí.", "perfil": {"saber": 2, "astucia": 1}},
+        {"id": "tiro", "texto": "Paso. Prefiero la caseta de tiro al blanco.", "perfil": {"agilidad": 2, "combate": 1}}
+      ]
+    },
+    {
+      "id": "caida",
+      "nombre": "Alguien se cae",
+      "texto": "Alguien se cae de bruces en mitad de la calle.",
+      "respuestas": [
+        {"id": "auxilios", "texto": "Corro a atenderle; algo de primeros auxilios sé.", "perfil": {"curacion": 3}, "eje": {"moral": 1}},
+        {"id": "acompanar", "texto": "Le ayudo a levantarse y le acompaño a casa.",
+         "perfil": {"proteccion": 2, "curacion": 1}, "eje": {"moral": 1}},
+        {"id": "sospechar", "texto": "Miro qué le ha hecho tropezar. Esto me huele raro.",
+         "perfil": {"astucia": 1, "saber": 1, "sigilo": 1}},
+        {"id": "reir", "texto": "Me río. Luego le ayudo, claro.", "perfil": {"carisma": 1, "astucia": 1}, "eje": {"moral": -1}}
+      ]
+    },
+    {
+      "id": "cena",
+      "nombre": "Cena de Navidad",
+      "texto": "Te toca organizar la cena de Navidad de la familia.",
+      "respuestas": [
+        {"id": "brindis", "texto": "Preparo un brindis que hace llorar hasta al abuelo.", "perfil": {"carisma": 3}},
+        {"id": "paz", "texto": "Me encargo de que nadie acabe discutiendo de política.",
+         "perfil": {"proteccion": 2, "carisma": 1}, "eje": {"orden": 1}},
+        {"id": "cocinar", "texto": "Cocino para veinte sin despeinarme.", "perfil": {"aguante": 2, "curacion": 1}},
+        {"id": "turrones", "texto": "Escondo los turrones buenos para mí.", "perfil": {"sigilo": 2, "astucia": 1}, "eje": {"moral": -1}}
+      ]
+    },
+    {
+      "id": "perdido",
+      "nombre": "Perdido",
+      "texto": "Te pierdes en una ciudad que no conoces.",
+      "respuestas": [
+        {"id": "sol", "texto": "Me oriento por el sol y por cómo van las calles.", "perfil": {"naturaleza": 2, "saber": 1}},
+        {"id": "preguntar", "texto": "Pregunto a la gente; siempre acabo haciendo amigos.", "perfil": {"carisma": 2}},
+        {"id": "tejado", "texto": "Me subo a un tejado para ver mejor.", "perfil": {"agilidad": 3}, "eje": {"orden": -1}},
+        {"id": "andar", "texto": "Sigo andando sin parar. Ya llegaré a algún sitio.", "perfil": {"aguante": 2}}
+      ]
+    },
+    {
+      "id": "jefe",
+      "nombre": "El error",
+      "texto": "Tu jefe culpa a un compañero de un error que cometiste tú.",
+      "respuestas": [
+        {"id": "confesar", "texto": "Lo confieso. No es justo que pague otro.",
+         "perfil": {"fe": 1, "proteccion": 1}, "eje": {"orden": 1, "moral": 2}},
+        {"id": "compensar", "texto": "Me callo, pero luego se lo compenso en secreto.", "perfil": {"sigilo": 1, "curacion": 1}},
+        {"id": "dar_la_vuelta", "texto": "Le doy la vuelta a la historia y al final la culpa es del jefe.",
+         "perfil": {"astucia": 3}, "eje": {"orden": -1, "moral": -1}},
+        {"id": "plantarse", "texto": "Me planto ante el jefe: injusticias, las justas.",
+         "perfil": {"combate": 1, "proteccion": 1, "carisma": 1}, "eje": {"orden": -1, "moral": 1}}
+      ]
+    },
+    {
+      "id": "lluvia",
+      "nombre": "Chaparrón",
+      "texto": "Llueve a cántaros y no llevas paraguas.",
+      "respuestas": [
+        {"id": "bailar", "texto": "Bailo bajo la lluvia.", "perfil": {"carisma": 1, "agilidad": 1, "naturaleza": 1}},
+        {"id": "piedra", "texto": "Me da igual mojarme. Soy de piedra.", "perfil": {"aguante": 3}},
+        {"id": "portal", "texto": "Me cuelo en el portal más cercano sin que nadie me vea.", "perfil": {"sigilo": 2}},
+        {"id": "nubes", "texto": "Le pido a las nubes que paren… y a veces paran.", "perfil": {"arcano": 3}}
+      ]
+    },
+    {
+      "id": "libro",
+      "nombre": "El libro antiguo",
+      "texto": "Te regalan un libro muy antiguo escrito en un idioma desconocido.",
+      "respuestas": [
+        {"id": "descifrar", "texto": "Me paso la noche descifrándolo.", "perfil": {"saber": 2, "arcano": 1}},
+        {"id": "vender", "texto": "Se lo vendo a un coleccionista por un buen pellizco.", "perfil": {"astucia": 1, "carisma": 1}},
+        {"id": "calzar", "texto": "Lo uso para calzar la mesa.", "perfil": {"combate": 1, "aguante": 1}},
+        {"id": "habla", "texto": "Lo abro y noto que el libro… me habla.", "perfil": {"arcano": 3}}
+      ]
+    },
+    {
+      "id": "abusones",
+      "nombre": "Abusones",
+      "texto": "Ves a unos chavales metiéndose con otro más pequeño.",
+      "respuestas": [
+        {"id": "en_medio", "texto": "Me meto en medio. Conmigo no se atreven.", "perfil": {"proteccion": 3}, "eje": {"moral": 2}},
+        {"id": "escarmiento", "texto": "Les doy un escarmiento que no olvidarán.",
+         "perfil": {"combate": 2}, "eje": {"moral": 1, "orden": -1}},
+        {"id": "calma", "texto": "Les hablo con calma hasta que se marchan avergonzados.",
+         "perfil": {"carisma": 2, "fe": 1}, "eje": {"moral": 1, "orden": 1}},
+        {"id": "piedrecitas", "texto": "Les lanzo piedrecitas desde un sitio donde no me vean.",
+         "perfil": {"agilidad": 2, "sigilo": 1}, "eje": {"orden": -1}}
+      ]
+    },
+    {
+      "id": "templo",
+      "nombre": "El templo",
+      "texto": "Pasas por delante de un templo antiquísimo.",
+      "respuestas": [
+        {"id": "vela", "texto": "Entro a encender una vela.", "perfil": {"fe": 3}},
+        {"id": "historia", "texto": "Entro a ver el arte y la historia que guarda.", "perfil": {"saber": 2}},
+        {"id": "campanario", "texto": "Subo al campanario a ver las vistas.", "perfil": {"agilidad": 1, "naturaleza": 1}},
+        {"id": "cripta", "texto": "Me pregunto qué tesoros habrá en la cripta…",
+         "perfil": {"astucia": 2, "sigilo": 1}, "eje": {"moral": -1}}
+      ]
+    }
+  ]
+}

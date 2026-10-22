@@ -56,7 +56,7 @@ class PantallaInicio(ctk.CTkFrame):
         paquetes = sorted((i for i in self.disponibles.values() if i.sistema == self.sistema_id),
                           key=lambda i: (len(i.depende_de), i.nombre))
         for info in paquetes:
-            variable = ctk.BooleanVar(value=info.tipo == "oficial")
+            variable = ctk.BooleanVar(value=info.tipo in ("oficial", "propio"))
             self.casillas[info.id] = variable
             fila = ctk.CTkFrame(self.lista, fg_color="transparent")
             fila.pack(fill="x", pady=4, padx=4)
@@ -66,7 +66,7 @@ class PantallaInicio(ctk.CTkFrame):
             if info.depende_de:
                 necesita = ", ".join(self.disponibles[d].nombre for d in info.depende_de if d in self.disponibles)
                 detalle += f"  (necesita: {necesita})"
-            etiqueta = "Oficial" if info.tipo == "oficial" else "Homebrew"
+            etiqueta = {"oficial": "Oficial", "propio": "Del programa"}.get(info.tipo, "Homebrew")
             texto_ajustado(fila, f"{etiqueta} · {detalle}", 700, text_color="gray").pack(anchor="w", padx=32)
 
     def _dependencias(self, id_: str) -> None:
