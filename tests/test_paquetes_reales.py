@@ -105,3 +105,11 @@ def test_contraste_con_el_srd_oficial(entorno_real):
     problemas = (verificar_srd.verificar_conjuros(datos) + verificar_srd.verificar_armas(datos)
                  + verificar_srd.verificar_armaduras(datos))
     assert problemas == []
+
+
+def test_todo_el_contenido_elegible_tiene_perfil(entorno_real):
+    """El cuestionario del modo sencillo necesita un perfil en cada raza, clase, subclase y trasfondo."""
+    _, catalogo, _ = entorno_real
+    sin_perfil = [f"{c}/{e['id']}" for c in ("razas", "clases", "subclases", "trasfondos")
+                  for e in catalogo.listar(c) if not e.get("perfil")]
+    assert sin_perfil == []

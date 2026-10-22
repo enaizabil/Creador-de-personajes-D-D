@@ -50,6 +50,25 @@ PASIVAS = ("percepcion", "perspicacia", "investigacion")
 
 RECARGAS = {"corto": "descanso corto o largo", "largo": "descanso largo"}
 
+# Rasgos de perfil para el cuestionario del modo sencillo. Razas, subrazas, clases,
+# subclases y trasfondos declaran un "perfil" {rasgo: 0-3}; las respuestas suman a
+# estos rasgos y se recomienda lo cargado que mejor encaja.
+RASGOS_PERFIL = {
+    "combate": "Pelear cuerpo a cuerpo, la fuerza física",
+    "agilidad": "Rapidez, puntería, reflejos",
+    "aguante": "Resistir golpes, cansancio y penurias",
+    "proteccion": "Defender a otros, ponerse delante",
+    "sigilo": "Pasar desapercibido, esconderse",
+    "astucia": "Engaños, trucos, picardía",
+    "carisma": "Hablar, convencer, liderar, actuar",
+    "saber": "Estudiar, investigar, recordar",
+    "naturaleza": "Vida salvaje, animales, viajes por tierras agrestes",
+    "fe": "Devoción, dioses, juramentos",
+    "arcano": "Magia estudiada o innata, lo sobrenatural",
+    "curacion": "Cuidar, sanar, ayudar",
+}
+VALOR_MAXIMO_PERFIL = 3
+
 TAMANOS = {
     "diminuto": "Diminuto",
     "pequeno": "Pequeño",

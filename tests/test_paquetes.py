@@ -170,3 +170,15 @@ def test_filtro_anidado(entorno):
     marciales = {e["id"] for e in catalogo.listar("objetos", {"arma": {"categoria": "marcial"}})}
     assert {"espada_larga", "arco_largo", "espada_corta"} <= marciales
     assert "daga" not in marciales and "escudo" not in marciales
+
+
+def test_validacion_del_perfil(tmp_path):
+    crear_paquete(tmp_path, "p", {"razas": [
+        {**RAZA, "id": "a", "perfil": {"sigilo": 2, "combate": 0}},
+        {**RAZA, "id": "b", "perfil": {"cocina": 1, "magia": 2, "sigilo": 4, "fe": True}},
+    ]})
+    _, errores = cargar(tmp_path, "p")
+    texto = "\n".join(errores)
+    assert "razas/a" not in texto
+    assert "rasgo desconocido «cocina»" in texto and "rasgo desconocido «magia»" in texto
+    assert "«sigilo» debe ser un entero de 0 a 3" in texto and "«fe» debe ser un entero" in texto

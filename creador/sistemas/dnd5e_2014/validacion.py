@@ -20,8 +20,10 @@ from .constantes import (
     HABILIDADES,
     NIVEL_INICIO_PROGRESION,
     PASIVAS,
+    RASGOS_PERFIL,
     RECARGAS,
     TAMANOS,
+    VALOR_MAXIMO_PERFIL,
 )
 
 if TYPE_CHECKING:
@@ -244,6 +246,8 @@ def validar_entrada(categoria: str, entrada: dict) -> list[str]:
 
     for ruta, efectos in listas_de_efectos(entrada):
         errores.extend(validar_efectos(efectos, ruta))
+    if "perfil" in entrada:
+        errores.extend(_validar_perfil(entrada["perfil"]))
     if "niveles" in entrada:
         errores.extend(_validar_niveles(entrada["niveles"]))
 
@@ -270,6 +274,15 @@ def validar_entrada(categoria: str, entrada: dict) -> list[str]:
             errores.append(f"escuela desconocida «{entrada['escuela']}»")
     elif categoria == "objetos":
         errores.extend(_validar_objeto(entrada))
+    return errores
+
+
+def _validar_perfil(perfil) -> list[str]:
+    if not isinstance(perfil, dict):
+        return ["«perfil» debe ser un objeto {rasgo: valor}"]
+    errores = [f"perfil: rasgo desconocido «{r}» (válidos: {', '.join(RASGOS_PERFIL)})" for r in perfil if r not in RASGOS_PERFIL]
+    errores += [f"perfil: «{r}» debe ser un entero de 0 a {VALOR_MAXIMO_PERFIL}" for r, v in perfil.items()
+                if r in RASGOS_PERFIL and (not isinstance(v, int) or isinstance(v, bool) or not 0 <= v <= VALOR_MAXIMO_PERFIL)]
     return errores
 
 

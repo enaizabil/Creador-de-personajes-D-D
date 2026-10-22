@@ -127,6 +127,16 @@ Opciones de clase reutilizables: estilos de combate, invocaciones, metamagia, ma
  "aplicar": [{"tipo": "opcion", "id": "$opcion"}]}
 ```
 
+### 4.0 Perfil para el modo sencillo
+
+Razas, clases, subclases y trasfondos llevan un `perfil` con los rasgos que más los definen (de 0 a 3; lo que no aparece vale 0). Las subrazas pueden llevar el suyo, que se suma al de la raza. El cuestionario puntúa estos rasgos con las respuestas y recomienda, entre lo **cargado**, lo que mejor encaja: un homebrew entra en el cuestionario solo con declarar su perfil.
+
+```json
+"perfil": {"sigilo": 3, "astucia": 2, "agilidad": 2}
+```
+
+Rasgos: `combate`, `agilidad`, `aguante`, `proteccion`, `sigilo`, `astucia`, `carisma`, `saber`, `naturaleza`, `fe`, `arcano`, `curacion`. Usa 2-4 rasgos por entrada; reserva el 3 para lo que define a la opción.
+
 ### 4.1 Requisitos (dotes y multiclase)
 
 | Clave | Significado |

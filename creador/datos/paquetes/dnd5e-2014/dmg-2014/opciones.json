@@ -70,7 +70,14 @@
           "categoria": "idioma",
           "id": "celestial"
         }
-      ]
+      ],
+      "perfil": {
+        "fe": 2,
+        "curacion": 2,
+        "carisma": 2,
+        "proteccion": 1,
+        "arcano": 1
+      }
     }
   ],
   "subrazas": [
@@ -123,7 +130,13 @@
           "usos": 1,
           "recarga": "corto"
         }
-      ]
+      ],
+      "perfil": {
+        "arcano": 2,
+        "agilidad": 1,
+        "saber": 1,
+        "naturaleza": 1
+      }
     }
   ],
   "subclases": [
@@ -219,6 +232,11 @@
             "siempre_preparado": true
           }
         ]
+      },
+      "perfil": {
+        "fe": 2,
+        "arcano": 2,
+        "combate": 1
       }
     },
     {
@@ -267,6 +285,12 @@
             "siempre_preparado": true
           }
         ]
+      },
+      "perfil": {
+        "combate": 3,
+        "fe": 1,
+        "carisma": 1,
+        "astucia": 1
       }
     }
   ]
