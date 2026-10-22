@@ -1,1 +1,912 @@
-{}
+{
+  "conjuros": [
+    {
+      "id": "alarma",
+      "nombre": "Alarma",
+      "nivel": 1,
+      "escuela": "abjuracion",
+      "listas": [
+        "explorador",
+        "mago"
+      ],
+      "tiempo": "1 minuto",
+      "alcance": "30 pies",
+      "componentes": "V, S, M (una campana diminuta y un hilo de plata fina)",
+      "duracion": "8 horas",
+      "ritual": true,
+      "concentracion": false,
+      "resumen": "Una puerta, ventana o zona de hasta un cubo de 20 pies queda vigilada: alarma mental (te avisa si estás a 1 milla o menos y te despierta) o sonora (campanilla audible a 60 pies) cuando una criatura Diminuta o mayor la toca o entra; eliges qué criaturas no la activan.",
+      "fuente": "SRD 5.1 p. 121"
+    },
+    {
+      "id": "armadura_de_mago",
+      "nombre": "Armadura de mago",
+      "nivel": 1,
+      "escuela": "abjuracion",
+      "listas": [
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "V, S, M (un trozo de piel curtida)",
+      "duracion": "8 horas",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Una criatura voluntaria que no lleve armadura pasa a tener CA 13 + su modificador por Destreza; termina si se pone una armadura.",
+      "fuente": "SRD 5.1 p. 126"
+    },
+    {
+      "id": "bendicion",
+      "nombre": "Bendición",
+      "nivel": 1,
+      "escuela": "encantamiento",
+      "listas": [
+        "clerigo",
+        "paladin"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "30 pies",
+      "componentes": "V, S, M (unas gotas de agua bendita)",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Hasta tres criaturas suman 1d4 a sus tiradas de ataque y de salvación. +1 criatura por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 128"
+    },
+    {
+      "id": "buenas_bayas",
+      "nombre": "Buenas bayas",
+      "nivel": 1,
+      "escuela": "transmutacion",
+      "listas": [
+        "druida",
+        "explorador"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "V, S, M (una rama de muérdago)",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Hasta 10 bayas mágicas: comer una (acción) cura 1 PG y alimenta durante 1 día. Pierden su potencia a las 24 horas.",
+      "fuente": "SRD 5.1 p. 129"
+    },
+    {
+      "id": "caida_de_pluma",
+      "nombre": "Caída de pluma",
+      "nivel": 1,
+      "escuela": "transmutacion",
+      "listas": [
+        "bardo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 reacción, que llevas a cabo cuando tú o una criatura a 60 pies o menos de ti caiga",
+      "alcance": "60 pies",
+      "componentes": "V, M (una pluma pequeña o un poco de plumón)",
+      "duracion": "1 minuto",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Hasta cinco criaturas que estén cayendo descienden a 60 pies por asalto y, si llegan al suelo durante el conjuro, no reciben daño por caída.",
+      "fuente": "SRD 5.1 p. 130"
+    },
+    {
+      "id": "crear_o_destruir_agua",
+      "nombre": "Crear o destruir agua",
+      "nivel": 1,
+      "escuela": "transmutacion",
+      "listas": [
+        "clerigo",
+        "druida"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "30 pies",
+      "componentes": "V, S, M (una gota de agua para crear agua o unos granos de arena para destruirla)",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Crea o destruye hasta 40 litros (10 galones) de agua en un recipiente abierto, o lluvia que apaga llamas / niebla destruida en un cubo de 30 pies. +40 litros o +5 pies de cubo por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 144"
+    },
+    {
+      "id": "curar_heridas",
+      "nombre": "Curar heridas",
+      "nivel": 1,
+      "escuela": "evocacion",
+      "listas": [
+        "bardo",
+        "clerigo",
+        "druida",
+        "explorador",
+        "paladin"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Una criatura que tocas recupera 1d8 + tu modificador por aptitud mágica PG (no afecta a autómatas ni muertos vivientes). +1d8 por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 145"
+    },
+    {
+      "id": "detectar_el_bien_y_el_mal",
+      "nombre": "Detectar el bien y el mal",
+      "nivel": 1,
+      "escuela": "adivinacion",
+      "listas": [
+        "clerigo",
+        "paladin"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 10 minutos",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Sabes si hay aberraciones, celestiales, elementales, feéricos, infernales o muertos vivientes a 30 pies o menos y dónde están, y si hay lugares u objetos consagrados o profanados.",
+      "fuente": "SRD 5.1 p. 148"
+    },
+    {
+      "id": "detectar_magia",
+      "nombre": "Detectar magia",
+      "nivel": 1,
+      "escuela": "adivinacion",
+      "listas": [
+        "bardo",
+        "clerigo",
+        "druida",
+        "explorador",
+        "hechicero",
+        "mago",
+        "paladin"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 10 minutos",
+      "ritual": true,
+      "concentracion": true,
+      "resumen": "Percibes la magia a 30 pies o menos; con tu acción ves el aura de las criaturas u objetos visibles afectados por magia y su escuela.",
+      "fuente": "SRD 5.1 p. 149"
+    },
+    {
+      "id": "detectar_venenos_y_enfermedades",
+      "nombre": "Detectar venenos y enfermedades",
+      "nivel": 1,
+      "escuela": "adivinacion",
+      "listas": [
+        "clerigo",
+        "druida",
+        "explorador",
+        "paladin"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal",
+      "componentes": "V, S, M (una hoja de tejo)",
+      "duracion": "Concentración, hasta 10 minutos",
+      "ritual": true,
+      "concentracion": true,
+      "resumen": "Percibes y localizas venenos, criaturas venenosas y enfermedades a 30 pies o menos e identificas de qué tipo son.",
+      "fuente": "SRD 5.1 p. 150"
+    },
+    {
+      "id": "disco_flotante",
+      "nombre": "Disco flotante",
+      "nivel": 1,
+      "escuela": "conjuracion",
+      "listas": [
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "30 pies",
+      "componentes": "V, S, M (una gota de mercurio)",
+      "duracion": "1 hora",
+      "ritual": true,
+      "concentracion": false,
+      "resumen": "Disco de fuerza de 3 pies de diámetro, a 3 pies del suelo, que soporta hasta 250 kg (500 libras) y te sigue a 20 pies de distancia; termina si te alejas más de 100 pies.",
+      "fuente": "SRD 5.1 p. 150"
+    },
+    {
+      "id": "disfrazarse",
+      "nombre": "Disfrazarse",
+      "nivel": 1,
+      "escuela": "ilusion",
+      "listas": [
+        "bardo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal",
+      "componentes": "V, S",
+      "duracion": "1 hora",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Cambias tu aspecto (con ropa y equipo), hasta 1 pie más alto o más bajo; se descubre por contacto físico o con una prueba de Inteligencia (Investigación) contra tu CD de salvación de conjuros.",
+      "fuente": "SRD 5.1 p. 150"
+    },
+    {
+      "id": "dormir",
+      "nombre": "Dormir",
+      "nivel": 1,
+      "escuela": "encantamiento",
+      "listas": [
+        "bardo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "90 pies",
+      "componentes": "V, S, M (una pizca de arena fina, pétalos de rosa o un grillo)",
+      "duracion": "1 minuto",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Tira 5d8: las criaturas a 20 pies o menos de un punto caen inconscientes, de menos a más PG actuales, hasta agotar el total; no afecta a muertos vivientes ni a inmunes a hechizado. +2d8 por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 152"
+    },
+    {
+      "id": "encantar_animal",
+      "nombre": "Encantar animal",
+      "nivel": 1,
+      "escuela": "encantamiento",
+      "listas": [
+        "bardo",
+        "druida",
+        "explorador"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "30 pies",
+      "componentes": "V, S, M (unas migajas de comida)",
+      "duracion": "24 horas",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Una bestia con Inteligencia 3 o menos que te vea y te oiga: salvación de Sabiduría o queda hechizada por ti; termina si tú o tus compañeros la dañáis. +1 bestia por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 153"
+    },
+    {
+      "id": "encontrar_familiar",
+      "nombre": "Encontrar familiar",
+      "nivel": 1,
+      "escuela": "conjuracion",
+      "listas": [
+        "mago"
+      ],
+      "tiempo": "1 hora",
+      "alcance": "10 pies",
+      "componentes": "V, S, M (10 po de carbón, incienso y hierbas que se deben consumir en el fuego de un brasero de latón)",
+      "duracion": "Instantáneo",
+      "ritual": true,
+      "concentracion": false,
+      "resumen": "Obtienes un familiar (celestial, feérico o infernal con forma de búho, gato, rata u otro animal de una lista) que no puede atacar; telepatía a 100 pies, puedes usar sus sentidos y lanzar a través de él conjuros de toque.",
+      "fuente": "SRD 5.1 p. 153"
+    },
+    {
+      "id": "enmaranar",
+      "nombre": "Enmarañar",
+      "nivel": 1,
+      "escuela": "conjuracion",
+      "listas": [
+        "druida"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "90 pies",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Cuadrado de 20 pies de terreno difícil; las criaturas que estén en él: salvación de Fuerza o apresadas (con una acción, prueba de Fuerza contra tu CD para liberarse).",
+      "fuente": "SRD 5.1 p. 154"
+    },
+    {
+      "id": "entender_idiomas",
+      "nombre": "Entender idiomas",
+      "nivel": 1,
+      "escuela": "adivinacion",
+      "listas": [
+        "bardo",
+        "brujo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal",
+      "componentes": "V, S, M (una pizca de hollín y sal)",
+      "duracion": "1 hora",
+      "ritual": true,
+      "concentracion": false,
+      "resumen": "Entiendes el significado literal de cualquier idioma que oigas y lees cualquier texto que toques (1 minuto por página); no descifra códigos ni glifos.",
+      "fuente": "SRD 5.1 p. 155"
+    },
+    {
+      "id": "escudo",
+      "nombre": "Escudo",
+      "nivel": 1,
+      "escuela": "abjuracion",
+      "listas": [
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 reacción, que llevas a cabo cuando te impacta un ataque o eres el objetivo del conjuro proyectil mágico",
+      "alcance": "Personal",
+      "componentes": "V, S",
+      "duracion": "1 asalto",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Reacción al recibir un impacto o ser objetivo de proyectil mágico: +5 a la CA hasta el principio de tu siguiente turno (también contra ese ataque) y ningún daño de proyectil mágico.",
+      "fuente": "SRD 5.1 p. 155"
+    },
+    {
+      "id": "escudo_de_fe",
+      "nombre": "Escudo de fe",
+      "nivel": 1,
+      "escuela": "abjuracion",
+      "listas": [
+        "clerigo",
+        "paladin"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "60 pies",
+      "componentes": "V, S, M (un pequeño pergamino que contenga un fragmento de texto sagrado)",
+      "duracion": "Concentración, hasta 10 minutos",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Una criatura a tu elección dentro del alcance obtiene +2 a la CA.",
+      "fuente": "SRD 5.1 p. 155"
+    },
+    {
+      "id": "falsa_vida",
+      "nombre": "Falsa vida",
+      "nivel": 1,
+      "escuela": "nigromancia",
+      "listas": [
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal",
+      "componentes": "V, S, M (una pequeña cantidad de alcohol o bebidas espirituosas)",
+      "duracion": "1 hora",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Obtienes 1d4 + 4 PG temporales. +5 PG temporales por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 159"
+    },
+    {
+      "id": "favor_divino",
+      "nombre": "Favor divino",
+      "nivel": 1,
+      "escuela": "evocacion",
+      "listas": [
+        "paladin"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "Personal",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Tus ataques con arma infligen 1d4 de daño radiante adicional al impactar.",
+      "fuente": "SRD 5.1 p. 159"
+    },
+    {
+      "id": "fuego_feerico",
+      "nombre": "Fuego feérico",
+      "nivel": 1,
+      "escuela": "evocacion",
+      "listas": [
+        "bardo",
+        "druida"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Cubo de 20 pies: los objetos y las criaturas que fallen una salvación de Destreza quedan perfilados de luz; los ataques contra ellos tienen ventaja y no se benefician de ser invisibles.",
+      "fuente": "SRD 5.1 p. 160"
+    },
+    {
+      "id": "grasa",
+      "nombre": "Grasa",
+      "nivel": 1,
+      "escuela": "conjuracion",
+      "listas": [
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V, S, M (un poco de piel de cerdo o de mantequilla)",
+      "duracion": "1 minuto",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Cuadrado de 10 pies de terreno difícil; salvación de Destreza o derribado al aparecer la grasa, al entrar en ella o al empezar el turno en ella.",
+      "fuente": "SRD 5.1 p. 162"
+    },
+    {
+      "id": "hablar_con_los_animales",
+      "nombre": "Hablar con los animales",
+      "nivel": 1,
+      "escuela": "adivinacion",
+      "listas": [
+        "bardo",
+        "druida",
+        "explorador"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal",
+      "componentes": "V, S",
+      "duracion": "10 minutos",
+      "ritual": true,
+      "concentracion": false,
+      "resumen": "Entiendes a las bestias y puedes comunicarte verbalmente con ellas.",
+      "fuente": "SRD 5.1 p. 164"
+    },
+    {
+      "id": "hechizar_persona",
+      "nombre": "Hechizar persona",
+      "nivel": 1,
+      "escuela": "encantamiento",
+      "listas": [
+        "bardo",
+        "brujo",
+        "druida",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "30 pies",
+      "componentes": "V, S",
+      "duracion": "1 hora",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Un humanoide: salvación de Sabiduría (con ventaja si lucháis contra él) o queda hechizado y te considera un conocido amistoso; al acabar sabe que lo hechizaste. +1 objetivo por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 165"
+    },
+    {
+      "id": "heroismo",
+      "nombre": "Heroísmo",
+      "nivel": 1,
+      "escuela": "encantamiento",
+      "listas": [
+        "bardo",
+        "paladin"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Una criatura voluntaria es inmune a estar asustada y gana PG temporales iguales a tu modificador por aptitud mágica al principio de cada uno de sus turnos. +1 criatura por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 165"
+    },
+    {
+      "id": "identificar",
+      "nombre": "Identificar",
+      "nivel": 1,
+      "escuela": "adivinacion",
+      "listas": [
+        "bardo",
+        "mago"
+      ],
+      "tiempo": "1 minuto",
+      "alcance": "Toque",
+      "componentes": "V, S, M (una perla que valga al menos 100 po y una pluma de búho)",
+      "duracion": "Instantáneo",
+      "ritual": true,
+      "concentracion": false,
+      "resumen": "Averiguas las propiedades de un objeto mágico (uso, sintonización, cargas, conjuros que lo afectan) o qué conjuros afectan a una criatura.",
+      "fuente": "SRD 5.1 p. 165"
+    },
+    {
+      "id": "imagen_silenciosa",
+      "nombre": "Imagen silenciosa",
+      "nivel": 1,
+      "escuela": "ilusion",
+      "listas": [
+        "bardo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V, S, M (un poco de vellón)",
+      "duracion": "Concentración, hasta 10 minutos",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Imagen solo visual de hasta un cubo de 15 pies que puedes mover con tu acción; se descubre por contacto o con una prueba de Inteligencia (Investigación) contra tu CD.",
+      "fuente": "SRD 5.1 p. 167"
+    },
+    {
+      "id": "infligir_heridas",
+      "nombre": "Infligir heridas",
+      "nivel": 1,
+      "escuela": "nigromancia",
+      "listas": [
+        "clerigo"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Ataque de conjuro cuerpo a cuerpo: 3d10 de daño necrótico. +1d10 por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 168"
+    },
+    {
+      "id": "manos_ardientes",
+      "nombre": "Manos ardientes",
+      "nivel": 1,
+      "escuela": "evocacion",
+      "listas": [
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal (cono de 15 pies)",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Cono de 15 pies: salvación de Destreza, 3d6 de daño de fuego (mitad si la supera). +1d6 por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 174"
+    },
+    {
+      "id": "marca_del_cazador",
+      "nombre": "Marca del cazador",
+      "nivel": 1,
+      "escuela": "adivinacion",
+      "listas": [
+        "explorador"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "90 pies",
+      "componentes": "V",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Marcas a una criatura: +1d6 de daño cuando la impactas con un ataque con arma y ventaja en las pruebas de Sabiduría (Percepción o Supervivencia) para encontrarla; si cae a 0 PG, puedes marcar a otra con una acción adicional. Con espacio de nivel 3-4 dura hasta 8 horas; de nivel 5 o más, hasta 24 horas.",
+      "fuente": "SRD 5.1 p. 174"
+    },
+    {
+      "id": "nube_de_oscurecimiento",
+      "nombre": "Nube de oscurecimiento",
+      "nivel": 1,
+      "escuela": "conjuracion",
+      "listas": [
+        "druida",
+        "explorador",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "120 pies",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Esfera de niebla de 20 pies de radio que rodea esquinas; la zona está muy oscura. +20 pies de radio por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 180"
+    },
+    {
+      "id": "ola_atronadora",
+      "nombre": "Ola atronadora",
+      "nivel": 1,
+      "escuela": "evocacion",
+      "listas": [
+        "bardo",
+        "druida",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal (cubo de 15 pies)",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Cubo de 15 pies desde ti: salvación de Constitución, 2d8 de daño de trueno y empujado 10 pies (mitad y sin empujón si la supera); se oye a 300 pies. +1d8 por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 181"
+    },
+    {
+      "id": "orden_imperiosa",
+      "nombre": "Orden imperiosa",
+      "nivel": 1,
+      "escuela": "encantamiento",
+      "listas": [
+        "clerigo",
+        "paladin"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V",
+      "duracion": "1 asalto",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Orden de una palabra (acércate, detente, huye, póstrate, suelta…): salvación de Sabiduría o la obedece en su siguiente turno; no afecta a muertos vivientes. +1 criatura por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 181"
+    },
+    {
+      "id": "palabra_de_curacion",
+      "nombre": "Palabra de curación",
+      "nivel": 1,
+      "escuela": "evocacion",
+      "listas": [
+        "bardo",
+        "clerigo",
+        "druida"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "60 pies",
+      "componentes": "V",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Una criatura que ves recupera 1d4 + tu modificador por aptitud mágica PG (no afecta a autómatas ni muertos vivientes). +1d4 por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 181"
+    },
+    {
+      "id": "perdicion",
+      "nombre": "Perdición",
+      "nivel": 1,
+      "escuela": "encantamiento",
+      "listas": [
+        "bardo",
+        "clerigo"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "30 pies",
+      "componentes": "V, S, M (una gota de sangre)",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Hasta tres criaturas: salvación de Carisma o restan 1d4 a sus tiradas de ataque y de salvación. +1 criatura por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 184"
+    },
+    {
+      "id": "proteccion_contra_el_bien_y_el_mal",
+      "nombre": "Protección contra el bien y el mal",
+      "nivel": 1,
+      "escuela": "abjuracion",
+      "listas": [
+        "brujo",
+        "clerigo",
+        "mago",
+        "paladin"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "V, S, M (agua bendita o plata y hierro en polvo que se consumen como parte del conjuro)",
+      "duracion": "Concentración, hasta 10 minutos",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Una criatura voluntaria: las aberraciones, celestiales, elementales, feéricos, infernales y muertos vivientes tienen desventaja al atacarla y no pueden asustarla, hechizarla ni poseerla.",
+      "fuente": "SRD 5.1 p. 188"
+    },
+    {
+      "id": "proyectil_magico",
+      "nombre": "Proyectil mágico",
+      "nivel": 1,
+      "escuela": "evocacion",
+      "listas": [
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "120 pies",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Tres dardos que impactan sin fallar: 1d4 + 1 de daño de fuerza cada uno. +1 dardo por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 189"
+    },
+    {
+      "id": "purificar_comida_y_bebida",
+      "nombre": "Purificar comida y bebida",
+      "nivel": 1,
+      "escuela": "transmutacion",
+      "listas": [
+        "clerigo",
+        "druida",
+        "paladin"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "10 pies",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": true,
+      "concentracion": false,
+      "resumen": "Libra de veneno y enfermedades la comida y bebida no mágica en una esfera de 5 pies de radio.",
+      "fuente": "SRD 5.1 p. 189"
+    },
+    {
+      "id": "reprension_infernal",
+      "nombre": "Reprensión infernal",
+      "nivel": 1,
+      "escuela": "evocacion",
+      "listas": [
+        "brujo"
+      ],
+      "tiempo": "1 reacción, que llevas a cabo en respuesta a que te dañe una criatura a 60 pies o menos de ti que puedas ver",
+      "alcance": "60 pies",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Reacción cuando te daña una criatura que ves a 60 pies o menos: salvación de Destreza, 2d10 de daño de fuego (mitad si la supera). +1d10 por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 193"
+    },
+    {
+      "id": "retirada_expeditiva",
+      "nombre": "Retirada expeditiva",
+      "nivel": 1,
+      "escuela": "transmutacion",
+      "listas": [
+        "brujo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "Personal",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 10 minutos",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Al lanzarlo y como acción adicional en cada uno de tus turnos, puedes realizar la acción de correr.",
+      "fuente": "SRD 5.1 p. 194"
+    },
+    {
+      "id": "risa_horrible",
+      "nombre": "Risa horrible",
+      "nivel": 1,
+      "escuela": "encantamiento",
+      "listas": [
+        "bardo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "30 pies",
+      "componentes": "V, S, M (tartas diminutas y una pluma que agitas en el aire)",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Una criatura con Inteligencia 5 o más: salvación de Sabiduría o cae derribada e incapacitada de risa; repite la salvación al final de cada uno de sus turnos y al recibir daño (con ventaja).",
+      "fuente": "SRD 5.1 p. 194"
+    },
+    {
+      "id": "rociada_de_color",
+      "nombre": "Rociada de color",
+      "nivel": 1,
+      "escuela": "ilusion",
+      "listas": [
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal (cono de 15 pies)",
+      "componentes": "V, S, M (una pizca de arena o polvo pintado de rojo, amarillo y azul)",
+      "duracion": "1 asalto",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Tira 6d10: las criaturas en un cono de 15 pies quedan cegadas durante 1 asalto, de menos a más PG actuales, hasta agotar el total. +2d10 por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 195"
+    },
+    {
+      "id": "saeta_guia",
+      "nombre": "Saeta guía",
+      "nivel": 1,
+      "escuela": "evocacion",
+      "listas": [
+        "clerigo"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "120 pies",
+      "componentes": "V, S",
+      "duracion": "1 asalto",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Ataque de conjuro a distancia: 4d6 de daño radiante y el siguiente ataque contra el objetivo antes del final de tu siguiente turno tiene ventaja. +1d6 por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 196"
+    },
+    {
+      "id": "salto",
+      "nombre": "Salto",
+      "nivel": 1,
+      "escuela": "transmutacion",
+      "listas": [
+        "druida",
+        "explorador",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "V, S, M (la pata trasera de un saltamontes)",
+      "duracion": "1 minuto",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "La distancia de salto de la criatura que tocas se triplica.",
+      "fuente": "SRD 5.1 p. 196"
+    },
+    {
+      "id": "santuario",
+      "nombre": "Santuario",
+      "nivel": 1,
+      "escuela": "abjuracion",
+      "listas": [
+        "clerigo"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "30 pies",
+      "componentes": "V, S, M (un espejo de plata pequeño)",
+      "duracion": "1 minuto",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Quien ataque o lance un conjuro hostil contra la criatura protegida debe superar una salvación de Sabiduría o elegir otro objetivo; no protege de áreas y termina si la criatura protegida ataca o lanza un conjuro que afecte a un enemigo.",
+      "fuente": "SRD 5.1 p. 197"
+    },
+    {
+      "id": "sirviente_invisible",
+      "nombre": "Sirviente invisible",
+      "nivel": 1,
+      "escuela": "conjuracion",
+      "listas": [
+        "bardo",
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V, S, M (un trozo de cuerda y un pedazo de madera)",
+      "duracion": "1 hora",
+      "ritual": true,
+      "concentracion": false,
+      "resumen": "Fuerza invisible (CA 10, 1 PG, Fuerza 2, no ataca) que hace tareas sencillas; con una acción adicional le ordenas moverse 15 pies e interactuar con un objeto.",
+      "fuente": "SRD 5.1 p. 199"
+    },
+    {
+      "id": "texto_ilusorio",
+      "nombre": "Texto ilusorio",
+      "nivel": 1,
+      "escuela": "ilusion",
+      "listas": [
+        "bardo",
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 minuto",
+      "alcance": "Toque",
+      "componentes": "V, S, M (tinta con base de plomo que valga al menos 10 po y que se consume como parte del conjuro)",
+      "duracion": "10 días",
+      "ritual": true,
+      "concentracion": false,
+      "resumen": "Un texto que escribes solo es legible para ti y quien designes; para los demás es ininteligible o parece otro mensaje. La visión verdadera lo revela.",
+      "fuente": "SRD 5.1 p. 204"
+    },
+    {
+      "id": "zancada_prodigiosa",
+      "nombre": "Zancada prodigiosa",
+      "nivel": 1,
+      "escuela": "transmutacion",
+      "listas": [
+        "bardo",
+        "druida",
+        "explorador",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "V, S, M (una pizca de tierra)",
+      "duracion": "1 hora",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "La velocidad de la criatura que tocas aumenta en 10 pies. +1 criatura por cada nivel de espacio por encima de 1.",
+      "fuente": "SRD 5.1 p. 208"
+    }
+  ]
+}

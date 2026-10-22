@@ -143,7 +143,7 @@ Lista de **bloques**; cada bloque es una lista de **alternativas** (si solo hay 
 
 ```json
 "equipo_inicial": [
-  [[{"id": "cota_de_mallas"}], [{"id": "armadura_de_cuero"}, {"id": "arco_largo"}, {"id": "flecha", "cantidad": 20}]],
+  [[{"id": "cota_de_malla"}], [{"id": "armadura_de_cuero"}, {"id": "arco_largo"}, {"id": "flecha", "cantidad": 20}]],
   [[{"desde": "armas", "filtro": {"arma": {"categoria": "marcial"}}}, {"id": "escudo"}]]
 ]
 ```
@@ -161,7 +161,7 @@ Lista de **bloques**; cada bloque es una lista de **alternativas** (si solo hay 
  "arma": {"categoria": "marcial", "tipo": "cuerpo_a_cuerpo", "dano": "1d8", "tipo_dano": "cortante",
           "propiedades": ["versatil"], "dano_versatil": "1d10"}}
 
-{"id": "cota_de_mallas", "nombre": "Cota de mallas", "categoria": "armadura",
+{"id": "cota_de_malla", "nombre": "Cota de mallas", "categoria": "armadura",
  "armadura": {"tipo": "pesada", "ca": 16, "fuerza_minima": 13, "desventaja_sigilo": true}}
 
 {"id": "escudo", "nombre": "Escudo", "categoria": "escudo", "escudo": {"bonificador": 2}}

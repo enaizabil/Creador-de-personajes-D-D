@@ -580,10 +580,10 @@ def _ataques(objetos: list[tuple[ObjetoInventario, dict | None]], mods: dict[str
         vistos.add(entrada["id"])
         arma = entrada["arma"]
         propiedades = arma.get("propiedades", [])
-        if arma["tipo"] == "distancia":
-            car = "des"
-        elif "sutil" in propiedades or _admite_destreza(entrada, efectos_des):
+        if "sutil" in propiedades or _admite_destreza(entrada, efectos_des):
             car = "des" if mods["des"] > mods["fue"] else "fue"
+        elif arma["tipo"] == "distancia":
+            car = "des"
         else:
             car = "fue"
         competente = bool({entrada["id"], GRUPO_ARMA[arma["categoria"]]} & competentes)
@@ -622,6 +622,9 @@ def _ataques_desarmados(aplicables: list[EfectoAplicado], catalogo: Catalogo, mo
 
 
 def _formula_dano(dado: str, mod: int) -> str:
+    """«1d8» + 3 -> «1d8+3». Un arma sin daño (la red) se queda en «—»."""
+    if not dado or dado == "—":
+        return "—"
     return f"{dado}{mod:+d}" if mod else dado
 
 

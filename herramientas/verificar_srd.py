@@ -20,6 +20,8 @@ sys.path.insert(0, str(RAIZ))
 from creador.nucleo.texto import clave_alfabetica  # noqa: E402
 
 TEXTO = (RAIZ / "fuentes" / "SRD_5.1_ES_pypdf.txt").read_text(encoding="utf-8").splitlines()
+# Segunda extracción (pdftotext): cada una corta mal algunas columnas, así que las listas de clase se leen de las dos.
+TEXTO_ALTERNATIVO = (RAIZ / "fuentes" / "SRD_5.1_ES.txt").read_text(encoding="utf-8").splitlines()
 PAQUETE = RAIZ / "creador" / "datos" / "paquetes" / "dnd5e-2014" / "srd-5.1"
 NIVEL_MAXIMO_CONJURO = 3
 
@@ -65,11 +67,11 @@ def conjuros_del_srd() -> dict[str, dict]:
     return conjuros
 
 
-def listas_del_srd(conocidos: dict[str, dict]) -> dict[str, set[str]]:
+def listas_del_srd(conocidos: dict[str, dict], texto_srd: list[str] = TEXTO) -> dict[str, set[str]]:
     """Nombre normalizado -> clases, leyendo las secciones «Conjuros de <clase>» hasta la primera descripción."""
-    inicio = next(i for i, linea in enumerate(TEXTO) if linea.strip() == "Conjuros de bardo")
+    inicio = next(i for i, linea in enumerate(texto_srd) if linea.strip() == "Conjuros de bardo")
     clase, listas, ultimo = None, {}, None
-    for linea in TEXTO[inicio:]:
+    for linea in texto_srd[inicio:]:
         texto = linea.strip()
         if PATRON_CABECERA.match(texto):
             # Empiezan las descripciones: la línea anterior era el nombre del primer conjuro, no parte de la lista.
@@ -92,6 +94,7 @@ def listas_del_srd(conocidos: dict[str, dict]) -> dict[str, set[str]]:
 def verificar_conjuros(datos: dict) -> list[str]:
     srd = conjuros_del_srd()
     listas = listas_del_srd(srd)
+    alternativas = listas_del_srd(srd, TEXTO_ALTERNATIVO)
     nuestros = {norma(c["nombre"]): c for c in datos.get("conjuros", [])}
     problemas = []
     for clave, ref in sorted(srd.items()):
@@ -106,9 +109,12 @@ def verificar_conjuros(datos: dict) -> list[str]:
                 problemas.append(f"{ref['nombre']}: {campo} {propio.get(campo)!r}, en el SRD {ref[campo]!r}")
         if bool(propio.get("ritual")) != ref["ritual"]:
             problemas.append(f"{ref['nombre']}: ritual {propio.get('ritual')!r}, en el SRD {ref['ritual']!r}")
-        esperadas = listas.get(clave, set())
-        if set(propio.get("listas", [])) != esperadas:
-            problemas.append(f"{ref['nombre']}: listas {sorted(propio.get('listas', []))}, en el SRD {sorted(esperadas)}")
+        # Seguro: en las dos extracciones. Posible: en alguna. Los datos tienen que quedar entre ambos.
+        seguras = listas.get(clave, set()) & alternativas.get(clave, set())
+        posibles = listas.get(clave, set()) | alternativas.get(clave, set())
+        propias = set(propio.get("listas", []))
+        if not seguras <= propias <= posibles:
+            problemas.append(f"{ref['nombre']}: listas {sorted(propias)}, en el SRD entre {sorted(seguras)} y {sorted(posibles)}")
     for clave, propio in sorted(nuestros.items()):
         if clave not in srd:
             problemas.append(f"«{propio['nombre']}» está en srd-5.1 pero no es un conjuro del SRD "
@@ -200,7 +206,9 @@ def verificar_armaduras(datos: dict) -> list[str]:
             problemas.append(f"(no se pudo leer la fila del SRD: {fila})")
             continue
         nombre, base = m["nombre"], int(m["ca"].lstrip("+"))
-        propia = nuestras.get(norma(nombre))
+        # La tabla usa nombres cortos («Cuero»); el texto del SRD también usa los largos («armadura de cuero»).
+        candidatos = (nombre, f"Armadura {nombre}", f"Armadura de {nombre}")
+        propia = next((nuestras[norma(c)] for c in candidatos if norma(c) in nuestras), None)
         if propia is None:
             problemas.append(f"Falta «{nombre}»")
             continue

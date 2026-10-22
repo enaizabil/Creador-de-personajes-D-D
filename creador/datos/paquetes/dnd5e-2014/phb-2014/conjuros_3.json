@@ -1,1 +1,143 @@
-{}
+{
+  "conjuros": [
+    {
+      "id": "arma_elemental",
+      "nombre": "Arma elemental",
+      "nivel": 3,
+      "escuela": "transmutacion",
+      "listas": [
+        "paladin"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Un arma no mágica que tocas pasa a ser mágica: +1 a las tiradas de ataque y +1d4 de daño de ácido, frío, fuego, relámpago o trueno (el que elijas) al impactar. A niveles superiores: +2 y 2d4 con espacio de nivel 5 o 6; +3 y 3d4 con espacio de nivel 7 o superior.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "aura_de_vitalidad",
+      "nombre": "Aura de vitalidad",
+      "nivel": 3,
+      "escuela": "evocacion",
+      "listas": [
+        "paladin"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal (radio de 30 pies)",
+      "componentes": "V",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Un aura curativa de 30 pies de radio se mueve contigo; mientras dure, con una acción adicional haces que una criatura dentro de ella (tú incluido) recupere 2d6 PG.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "castigo_cegador",
+      "nombre": "Castigo cegador",
+      "nivel": 3,
+      "escuela": "evocacion",
+      "listas": [
+        "paladin"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "Personal",
+      "componentes": "V",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "La siguiente vez que impactes con un ataque con arma cuerpo a cuerpo, el golpe inflige 3d8 de daño radiante adicional y el objetivo hace una salvación de Constitución o queda cegado; repite la salvación al final de cada uno de sus turnos.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "conjurar_andanada",
+      "nombre": "Conjurar andanada",
+      "nivel": 3,
+      "escuela": "conjuracion",
+      "listas": [
+        "explorador"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal (cono de 60 pies)",
+      "componentes": "V, S, M (una pieza de munición o un arma arrojadiza)",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Lanzas al aire un arma arrojadiza o una pieza de munición no mágica que se multiplica en un cono de 60 pies: salvación de Destreza, 3d8 de daño del mismo tipo que el arma o la munición (mitad si la supera).",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "fingir_muerte",
+      "nombre": "Fingir muerte",
+      "nivel": 3,
+      "escuela": "nigromancia",
+      "listas": [
+        "bardo",
+        "clerigo",
+        "druida",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "V, S, M (una pizca de tierra de cementerio)",
+      "duracion": "1 hora",
+      "ritual": true,
+      "concentracion": false,
+      "resumen": "Una criatura voluntaria cae en un trance que la hace parecer muerta ante cualquier examen o conjuro: queda cegada e incapacitada, con velocidad 0 y resistencia a todo el daño salvo el psíquico, y las enfermedades y venenos no le hacen efecto mientras dure. Puedes terminarlo tocándola con una acción.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "flecha_relampagueante",
+      "nombre": "Flecha relampagueante",
+      "nivel": 3,
+      "escuela": "transmutacion",
+      "listas": [
+        "explorador"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "Personal",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Tu siguiente ataque con arma a distancia se convierte en un rayo: 4d8 de daño de relámpago si impacta (mitad si falla) en lugar del daño del arma, y cada criatura a 10 pies o menos del objetivo hace una salvación de Destreza, 2d8 de daño de relámpago (mitad si la supera). A niveles superiores: +1d8 a ambos daños por cada nivel de espacio por encima de 3.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "hambre_de_hadar",
+      "nombre": "Hambre de Hadar",
+      "nivel": 3,
+      "escuela": "conjuracion",
+      "listas": [
+        "brujo"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "150 pies",
+      "componentes": "V, S, M (un tentáculo de pulpo encurtido)",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Esfera de 20 pies de radio de oscuridad gélida (ninguna luz la ilumina, quien está dentro queda cegado y es terreno difícil): quien empiece su turno en ella sufre 2d6 de daño de frío, y quien lo acabe en ella hace una salvación de Destreza o sufre 2d6 de daño de ácido.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "manto_del_cruzado",
+      "nombre": "Manto del cruzado",
+      "nivel": 3,
+      "escuela": "evocacion",
+      "listas": [
+        "paladin"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal",
+      "componentes": "V",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Un aura de 30 pies de radio se mueve contigo: cada criatura no hostil dentro de ella (tú incluido) inflige 1d4 de daño radiante adicional cuando impacta con un ataque con arma.",
+      "fuente": "PHB 2014"
+    }
+  ]
+}

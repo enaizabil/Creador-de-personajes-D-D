@@ -1,1 +1,229 @@
-{}
+{
+  "conjuros": [
+    {
+      "id": "armadura_de_agathys",
+      "nombre": "Armadura de Agathys",
+      "nivel": 1,
+      "escuela": "abjuracion",
+      "listas": [
+        "brujo"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal",
+      "componentes": "V, S, M (una copa de agua)",
+      "duracion": "1 hora",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Ganas 5 PG temporales; mientras te queden, quien te impacte con un ataque cuerpo a cuerpo sufre 5 de daño de frío. +5 PG temporales y +5 de daño por cada nivel de espacio por encima de 1.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "brazos_de_hadar",
+      "nombre": "Brazos de Hadar",
+      "nivel": 1,
+      "escuela": "conjuracion",
+      "listas": [
+        "brujo"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal (radio de 10 pies)",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Cada criatura a 10 pies o menos de ti: salvación de Fuerza, 2d6 de daño necrótico y no puede usar reacciones hasta su siguiente turno (si la supera, solo mitad del daño). +1d6 por cada nivel de espacio por encima de 1.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "castigo_abrasador",
+      "nombre": "Castigo abrasador",
+      "nivel": 1,
+      "escuela": "evocacion",
+      "listas": [
+        "paladin"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "Personal",
+      "componentes": "V",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Tu siguiente impacto con un ataque con arma cuerpo a cuerpo: +1d6 de daño de fuego y el objetivo arde; al principio de cada uno de sus turnos, salvación de Constitución o 1d6 de daño de fuego (si la supera, o si alguien apaga las llamas con una acción, el conjuro termina). +1d6 al daño inicial por cada nivel de espacio por encima de 1.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "castigo_atronador",
+      "nombre": "Castigo atronador",
+      "nivel": 1,
+      "escuela": "evocacion",
+      "listas": [
+        "paladin"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "Personal",
+      "componentes": "V",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Tu primer impacto con un ataque con arma cuerpo a cuerpo: +2d6 de daño de trueno (se oye a 300 pies) y, si es una criatura, salvación de Fuerza o es empujada 10 pies y queda derribada.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "castigo_furioso",
+      "nombre": "Castigo furioso",
+      "nivel": 1,
+      "escuela": "evocacion",
+      "listas": [
+        "paladin"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "Personal",
+      "componentes": "V",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Tu siguiente impacto con un ataque con arma cuerpo a cuerpo: +1d6 de daño psíquico y, si es una criatura, salvación de Sabiduría o queda asustada de ti; puede usar su acción para hacer una prueba de Sabiduría contra tu CD y acabar el conjuro.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "duelo_forzado",
+      "nombre": "Duelo forzado",
+      "nivel": 1,
+      "escuela": "encantamiento",
+      "listas": [
+        "paladin"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "30 pies",
+      "componentes": "V",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Una criatura: salvación de Sabiduría o tiene desventaja al atacar a otros que no seas tú y debe superar otra salvación de Sabiduría para alejarse a más de 30 pies de ti. Termina si atacas o lanzas conjuros a otro enemigo, si un aliado la daña o si acabas tu turno a más de 30 pies de ella.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "golpe_apresador",
+      "nombre": "Golpe apresador",
+      "nivel": 1,
+      "escuela": "conjuracion",
+      "listas": [
+        "explorador"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "Personal",
+      "componentes": "V",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Tu siguiente impacto con un ataque con arma: salvación de Fuerza (ventaja si es Grande o mayor) o queda apresado por zarzas y sufre 1d6 de daño perforante al principio de cada uno de sus turnos; se libera con una acción y una prueba de Fuerza contra tu CD. +1d6 por cada nivel de espacio por encima de 1.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "maleficio",
+      "nombre": "Maleficio",
+      "nivel": 1,
+      "escuela": "encantamiento",
+      "listas": [
+        "brujo"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "90 pies",
+      "componentes": "V, S, M (el ojo petrificado de un tritón)",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Maldices a una criatura: +1d6 de daño necrótico cada vez que la impactas con un ataque y desventaja en las pruebas de la característica que elijas; si cae a 0 PG, puedes pasar la maldición a otra con una acción adicional. Con espacio de nivel 3-4 dura hasta 8 horas; de nivel 5 o más, hasta 24 horas.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "orbe_cromatico",
+      "nombre": "Orbe cromático",
+      "nivel": 1,
+      "escuela": "evocacion",
+      "listas": [
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "90 pies",
+      "componentes": "V, S, M (un diamante que valga al menos 50 po)",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Ataque de conjuro a distancia: 3d8 de daño del tipo que elijas (ácido, frío, fuego, relámpago, trueno o veneno). +1d8 por cada nivel de espacio por encima de 1.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "rayo_de_hechiceria",
+      "nombre": "Rayo de hechicería",
+      "nivel": 1,
+      "escuela": "evocacion",
+      "listas": [
+        "brujo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "30 pies",
+      "componentes": "V, S, M (una ramita de un árbol alcanzado por un rayo)",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Ataque de conjuro a distancia: 1d12 de daño de relámpago; en tus turnos siguientes puedes usar tu acción para infligirle 1d12 automáticamente. Termina si usas tu acción en otra cosa o si el objetivo sale del alcance o tiene cobertura total. +1d12 al daño inicial por cada nivel de espacio por encima de 1.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "rayo_nauseabundo",
+      "nombre": "Rayo nauseabundo",
+      "nivel": 1,
+      "escuela": "nigromancia",
+      "listas": [
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Ataque de conjuro a distancia: 2d8 de daño de veneno y salvación de Constitución o queda envenenado hasta el final de tu siguiente turno. +1d8 por cada nivel de espacio por encima de 1.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "susurros_discordantes",
+      "nombre": "Susurros discordantes",
+      "nivel": 1,
+      "escuela": "encantamiento",
+      "listas": [
+        "bardo"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Una criatura a tu elección (solo ella oye el susurro): salvación de Sabiduría o 3d6 de daño psíquico y usa su reacción para alejarse de ti todo lo que pueda (si la supera, mitad del daño y no huye; si está ensordecida, la supera). +1d6 por cada nivel de espacio por encima de 1.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "tormenta_de_espinas",
+      "nombre": "Tormenta de espinas",
+      "nivel": 1,
+      "escuela": "conjuracion",
+      "listas": [
+        "explorador"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "Personal",
+      "componentes": "V",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Tu siguiente impacto con un ataque con arma a distancia: el objetivo y cada criatura a 5 pies de él hacen una salvación de Destreza, 1d10 de daño perforante (mitad si la superan). +1d10 por cada nivel de espacio por encima de 1 (máximo 6d10).",
+      "fuente": "PHB 2014"
+    }
+  ]
+}

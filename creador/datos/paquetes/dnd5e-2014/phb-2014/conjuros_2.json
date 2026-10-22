@@ -1,1 +1,98 @@
-{}
+{
+  "conjuros": [
+    {
+      "id": "cordon_de_flechas",
+      "nombre": "Cordón de flechas",
+      "nivel": 2,
+      "escuela": "transmutacion",
+      "listas": [
+        "explorador"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "5 pies",
+      "componentes": "V, S, M (cuatro o más flechas o virotes)",
+      "duracion": "8 horas",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Clavas en el suelo cuatro flechas o virotes no mágicos. Cuando una criatura que no hayas excluido llega por primera vez en un turno a 30 pies o menos de ellos, o acaba allí su turno, uno sale disparado: salvación de Destreza o 1d6 de daño perforante, y esa pieza se destruye. Termina cuando no queda munición. A niveles superiores: dos piezas más por cada nivel de espacio por encima de 2.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "corona_de_la_locura",
+      "nombre": "Corona de la locura",
+      "nivel": 2,
+      "escuela": "encantamiento",
+      "listas": [
+        "bardo",
+        "brujo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "120 pies",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Un humanoide: salvación de Sabiduría o queda hechizado por ti y, antes de moverse en cada uno de sus turnos, gasta su acción en un ataque cuerpo a cuerpo contra la criatura que tú elijas mentalmente. Debes usar tu acción en cada uno de tus turnos para mantenerlo; repite la salvación al final de cada uno de sus turnos.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "fuerza_fantasmal",
+      "nombre": "Fuerza fantasmal",
+      "nivel": 2,
+      "escuela": "ilusion",
+      "listas": [
+        "bardo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V, S, M (un poco de vellón)",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Una criatura: salvación de Inteligencia o cree real una ilusión que solo ella percibe (objeto, criatura u otro fenómeno de hasta un cubo de 10 pies); en cada uno de tus turnos puede causarle 1d6 de daño psíquico si está dentro o a 5 pies. Con su acción, prueba de Inteligencia (Investigación) contra tu CD de salvación de conjuros para descubrir el engaño.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "nube_de_dagas",
+      "nombre": "Nube de dagas",
+      "nivel": 2,
+      "escuela": "conjuracion",
+      "listas": [
+        "bardo",
+        "brujo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V, S, M (una esquirla de cristal)",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Cubo de 5 pies de dagas giratorias: 4d4 de daño cortante a la criatura que entre en él por primera vez en un turno o empiece allí su turno. A niveles superiores: +2d4 por cada nivel de espacio por encima de 2.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "sentidos_de_bestia",
+      "nombre": "Sentidos de bestia",
+      "nivel": 2,
+      "escuela": "adivinacion",
+      "listas": [
+        "druida",
+        "explorador"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "S",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": true,
+      "concentracion": true,
+      "resumen": "Tocas a una bestia voluntaria; con una acción ves y oyes a través de sus sentidos (incluidos los especiales) hasta que uses otra acción para volver a los tuyos. Mientras tanto, estás cegado y ensordecido respecto a tu entorno.",
+      "fuente": "PHB 2014"
+    }
+  ]
+}

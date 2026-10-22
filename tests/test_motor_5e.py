@@ -208,3 +208,16 @@ def test_referencias_incoherentes_generan_avisos(sistema, catalogo):
 def test_personaje_vacio_no_falla(sistema, catalogo):
     ficha = sistema.calcular(nuevo_personaje(), catalogo)
     assert ficha.nivel == 0 and ficha.pg_maximos == 0 and ficha.ca == 11
+
+
+def test_arma_sin_dano_y_arma_a_distancia_sutil():
+    mods = {"fue": 3, "des": 1}
+    red = {"id": "red", "nombre": "Red", "categoria": "arma",
+           "arma": {"categoria": "marcial", "tipo": "distancia", "dano": "—", "tipo_dano": "—", "propiedades": ["especial"]}}
+    dardo = {"id": "dardo", "nombre": "Dardo", "categoria": "arma",
+             "arma": {"categoria": "sencilla", "tipo": "distancia", "dano": "1d4", "tipo_dano": "perforante",
+                      "propiedades": ["arrojadiza", "sutil"]}}
+    objetos = [(ObjetoInventario("red"), red), (ObjetoInventario("dardo"), dardo)]
+    ataques = {a.nombre: a for a in motor._ataques(objetos, mods, 2, {"armas_sencillas", "armas_marciales"}, [], [])}
+    assert ataques["Red"].dano == "—"
+    assert (ataques["Dardo"].bonificador, ataques["Dardo"].dano) == (5, "1d4+3")  # sutil: usa FUE si es mejor
