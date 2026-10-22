@@ -53,6 +53,8 @@ class EleccionPendiente:
 @dataclass
 class Resolucion:
     aplicados: list[EfectoAplicado] = field(default_factory=list)
+    # Todas las elecciones alcanzables (hechas o no); «pendientes» son las que aún faltan.
+    elecciones: list[EleccionPendiente] = field(default_factory=list)
     pendientes: list[EleccionPendiente] = field(default_factory=list)
     errores: list[str] = field(default_factory=list)
     claves_visitadas: set[str] = field(default_factory=set)
@@ -155,12 +157,12 @@ class ResolutorEfectos:
             else:
                 seleccion.append(valor)
 
+        eleccion = EleccionPendiente(clave, nombre, elegir, opciones, list(seleccion), repetible, etiqueta)
+        self.resolucion.elecciones.append(eleccion)
         if len(seleccion) < elegir:
             if not opciones:
                 errores.append(f"{etiqueta} – {nombre}: la elección no tiene opciones disponibles")
-            self.resolucion.pendientes.append(
-                EleccionPendiente(clave, nombre, elegir, opciones, list(seleccion), repetible, etiqueta)
-            )
+            self.resolucion.pendientes.append(eleccion)
 
         repeticiones: dict[str, int] = {}
         for valor in seleccion:

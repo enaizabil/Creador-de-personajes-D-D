@@ -26,7 +26,7 @@ from .constantes import (
     TAMANOS,
     TIPOS_DANO,
 )
-from .ficha import Ataque, Ficha, Lanzador, Rasgo, Tirada, ValorCaracteristica
+from .ficha import Ataque, Ficha, Lanzador, PlanConjuros, Rasgo, Tirada, ValorCaracteristica
 
 if TYPE_CHECKING:
     from ...nucleo.paquetes import Catalogo
@@ -485,31 +485,85 @@ def _tirada_pg(personaje: Personaje, entrada: EntradaClase, indice: int, nivel: 
     return valor
 
 
+def _configuracion_lanzador(entrada: EntradaClase, catalogo: Catalogo) -> tuple[dict, dict | None, dict] | None:
+    """(clase, subclase, lanzamiento) si esa entrada de clase ya lanza conjuros a su nivel."""
+    clase = catalogo.obtener("clases", entrada.clase)
+    if clase is None or not 1 <= entrada.nivel <= NIVEL_MAXIMO:
+        return None
+    subclase = catalogo.obtener("subclases", entrada.subclase) if entrada.subclase else None
+    config = clase.get("lanzamiento") or (subclase or {}).get("lanzamiento")
+    if not config or entrada.nivel < config.get("desde_nivel", NIVEL_INICIO_PROGRESION[config["progresion"]]):
+        return None
+    return clase, subclase, config
+
+
+def _nivel_maximo_conjuro(config: dict, nivel: int) -> int:
+    if config["progresion"] == "pacto":
+        return MAGIA_DE_PACTO[nivel][1]
+    return len(ESPACIOS_LANZADOR_COMPLETO[math.ceil(nivel / PROGRESIONES_LANZAMIENTO[config["progresion"]])])
+
+
+def _limites(config: dict, nivel: int, mod: int) -> tuple[int | None, int | None]:
+    """(trucos, conjuros) que puede conocer o preparar la clase a ese nivel; None si no hay límite."""
+    trucos = config["trucos_conocidos"][nivel - 1] if "trucos_conocidos" in config else None
+    if "conjuros_conocidos" in config:
+        conjuros = config["conjuros_conocidos"][nivel - 1]
+    elif config.get("preparados") == "nivel":
+        conjuros = max(1, mod + nivel)
+    elif config.get("preparados") == "mitad_nivel":
+        conjuros = max(1, mod + nivel // 2)
+    else:
+        conjuros = None
+    return trucos, conjuros
+
+
+def _listas_validas(clase: dict, subclase: dict | None, config: dict) -> tuple[set[str], set[str]]:
+    """(listas de conjuros de la clase, ids adicionales de la subclase)."""
+    listas = {clase["id"], *config.get("listas", [])} | ({subclase["id"]} if subclase else set())
+    return listas, set((subclase or {}).get("conjuros_adicionales", []))
+
+
+def planes_de_conjuros(personaje: Personaje, catalogo: Catalogo, mods: dict[str, int]) -> list[PlanConjuros]:
+    """Para cada clase que ya lanza conjuros: límites y conjuros elegibles hasta su nivel máximo."""
+    planes = []
+    for entrada in personaje.clases:
+        configuracion = _configuracion_lanzador(entrada, catalogo)
+        if configuracion is None:
+            continue
+        clase, subclase, config = configuracion
+        nivel_maximo = _nivel_maximo_conjuro(config, entrada.nivel)
+        trucos, conjuros = _limites(config, entrada.nivel, mods[config["caracteristica"]])
+        listas, adicionales = _listas_validas(clase, subclase, config)
+        disponibles: dict[int, list[tuple[str, str]]] = {}
+        for conjuro in catalogo.listar("conjuros"):
+            if conjuro["nivel"] <= nivel_maximo and (listas & set(conjuro["listas"]) or conjuro["id"] in adicionales):
+                disponibles.setdefault(conjuro["nivel"], []).append((conjuro["id"], conjuro["nombre"]))
+        for opciones in disponibles.values():
+            opciones.sort(key=lambda o: clave_alfabetica(o[1]))
+        planes.append(PlanConjuros(clase["id"], clase["nombre"], config["caracteristica"], nivel_maximo,
+                                   "conocidos" if "conjuros_conocidos" in config else "preparados",
+                                   trucos, conjuros, dict(sorted(disponibles.items()))))
+    return planes
+
+
 def _magia(personaje: Personaje, catalogo: Catalogo, mods: dict[str, int], competencia: int,
            avisos: list[str]) -> tuple[dict[int, int], dict[str, int] | None, list[Lanzador]]:
     lanzadores: list[Lanzador] = []
     niveles_espacios: list[tuple[int, dict]] = []  # (nivel de clase, configuración) sin magia de pacto
     pacto = None
     for entrada in personaje.clases:
-        clase = catalogo.obtener("clases", entrada.clase)
-        if clase is None or not 1 <= entrada.nivel <= NIVEL_MAXIMO:
-            continue
-        subclase = catalogo.obtener("subclases", entrada.subclase) if entrada.subclase else None
-        config = clase.get("lanzamiento") or (subclase or {}).get("lanzamiento")
-        if not config:
-            continue
-        progresion = config["progresion"]
-        if entrada.nivel < config.get("desde_nivel", NIVEL_INICIO_PROGRESION[progresion]):
-            if personaje.conjuros.get(clase["id"]):
+        configuracion = _configuracion_lanzador(entrada, catalogo)
+        if configuracion is None:
+            clase = catalogo.obtener("clases", entrada.clase)
+            if clase and personaje.conjuros.get(clase["id"]):
                 avisos.append(f"{clase['nombre']} aún no lanza conjuros a nivel {entrada.nivel}")
             continue
-        if progresion == "pacto":
+        clase, subclase, config = configuracion
+        nivel_maximo = _nivel_maximo_conjuro(config, entrada.nivel)
+        if config["progresion"] == "pacto":
             espacios, nivel_espacio = MAGIA_DE_PACTO[entrada.nivel]
             pacto = {"espacios": espacios, "nivel": nivel_espacio}
-            nivel_maximo = nivel_espacio
         else:
-            nivel_unico = math.ceil(entrada.nivel / PROGRESIONES_LANZAMIENTO[progresion])
-            nivel_maximo = len(ESPACIOS_LANZADOR_COMPLETO[nivel_unico])
             niveles_espacios.append((entrada.nivel, config))
         car = config["caracteristica"]
         lanzador = Lanzador(clase["id"], clase["nombre"], car, 8 + competencia + mods[car], competencia + mods[car],
@@ -536,8 +590,7 @@ def _nivel_multiclase(nivel: int, config: dict) -> int:
 
 def _conjuros_elegidos(lanzador: Lanzador, entrada: EntradaClase, clase: dict, subclase: dict | None, config: dict,
                        personaje: Personaje, catalogo: Catalogo, mod: int, avisos: list[str]) -> None:
-    listas = {clase["id"], *config.get("listas", [])} | ({subclase["id"]} if subclase else set())
-    adicionales = set((subclase or {}).get("conjuros_adicionales", []))
+    listas, adicionales = _listas_validas(clase, subclase, config)
     trucos = conjuros = 0
     vistos: set[str] = set()
     for id_ in personaje.conjuros.get(clase["id"], []):
@@ -564,17 +617,9 @@ def _conjuros_elegidos(lanzador: Lanzador, entrada: EntradaClase, clase: dict, s
     for nombres in lanzador.conjuros.values():
         nombres.sort()
 
-    limite_trucos = config["trucos_conocidos"][entrada.nivel - 1] if "trucos_conocidos" in config else None
+    limite_trucos, limite = _limites(config, entrada.nivel, mod)
     if limite_trucos is not None and trucos > limite_trucos:
         avisos.append(f"{clase['nombre']}: {trucos} trucos elegidos, máximo {limite_trucos}")
-    if "conjuros_conocidos" in config:
-        limite = config["conjuros_conocidos"][entrada.nivel - 1]
-    elif config.get("preparados") == "nivel":
-        limite = max(1, mod + entrada.nivel)
-    elif config.get("preparados") == "mitad_nivel":
-        limite = max(1, mod + entrada.nivel // 2)
-    else:
-        limite = None
     if limite is not None and conjuros > limite:
         avisos.append(f"{clase['nombre']}: {conjuros} conjuros elegidos, máximo {limite}")
 

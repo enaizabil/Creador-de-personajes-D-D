@@ -55,6 +55,20 @@ class Lanzador:
 
 
 @dataclass
+class PlanConjuros:
+    """Qué conjuros puede elegir una clase lanzadora y cuántos (lo usa el asistente)."""
+    clase_id: str
+    clase: str
+    caracteristica: str
+    nivel_maximo: int
+    modo: str  # conocidos | preparados
+    limite_trucos: int | None
+    limite_conjuros: int | None
+    # nivel de conjuro -> [(id, nombre)], solo hasta nivel_maximo
+    disponibles: dict[int, list[tuple[str, str]]] = field(default_factory=dict)
+
+
+@dataclass
 class Ficha:
     nombre: str
     jugador: str

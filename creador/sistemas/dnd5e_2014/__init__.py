@@ -10,6 +10,7 @@ from .constantes import CARACTERISTICAS, HABILIDADES
 
 if TYPE_CHECKING:
     from ...nucleo.efectos import Resolucion
+    from .asistente import Asistente5e
     from ...nucleo.paquetes import Catalogo
     from ...nucleo.personaje import Personaje
     from .ficha import Ficha
@@ -103,3 +104,8 @@ class Sistema5e2014(SistemaReglas):
 
     def calcular(self, personaje: Personaje, catalogo: Catalogo) -> Ficha:
         return motor.calcular(self, personaje, catalogo)
+
+    def crear_asistente(self, personaje: Personaje, catalogo: Catalogo, **opciones) -> Asistente5e:
+        from .asistente import Asistente5e
+
+        return Asistente5e(self, catalogo, personaje, **opciones)

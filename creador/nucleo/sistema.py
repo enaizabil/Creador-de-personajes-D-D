@@ -61,3 +61,7 @@ class SistemaReglas(ABC):
     @abstractmethod
     def calcular(self, personaje: Personaje, catalogo: Catalogo) -> Any:
         """Ficha con todos los valores derivados."""
+
+    def crear_asistente(self, personaje: Personaje, catalogo: Catalogo, **opciones) -> Any:
+        """Asistente paso a paso del modo normal (cada edición define sus pasos)."""
+        raise NotImplementedError(f"El sistema «{self.id}» no tiene asistente de creación")
