@@ -8,5 +8,3 @@ build/
 dist/
 *.egg-info/
 
-# Textos de libros con derechos de autor: solo en local, nunca en git
-fuentes/privado/

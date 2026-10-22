@@ -31,5 +31,5 @@ Todo lo que el motor sabe calcular va como efecto, no solo como texto: competenc
 ## Fuentes oficiales disponibles
 
 - `fuentes/SRD_5.1_ES.txt` y `fuentes/SRD_5.1_ES_pypdf.txt`: SRD 5.1 en español (CC BY 4.0), en el repositorio.
-- `fuentes/privado/Guia_del_DM_2014_ES.txt`: Guía del DM 2014 en español (OCR, con erratas de reconocimiento). **No se sube a git** (`.gitignore`): es un libro con derechos de autor. Confirma que los libros españoles de 2014 miden en **pies**.
+- `fuentes/privado/Guia_del_DM_2014_ES.txt`: Guía del DM 2014 en español (OCR, con erratas de reconocimiento). Libro con derechos de autor: solo puede estar en este repositorio **privado** (el hook `pre-push` bloquea cualquier otro destino). Confirma que los libros españoles de 2014 miden en **pies**.
 - Manual del Jugador 2014: pendiente. Hasta tenerlo, lo que solo está en el PHB se escribe de memoria y sus dudas van a [dudas-contenido.md](dudas-contenido.md).
