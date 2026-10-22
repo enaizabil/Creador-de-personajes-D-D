@@ -253,3 +253,19 @@ def test_nivel_limitado_a_los_datos(asistente):
     assert a.personaje.clases[0].nivel == 5
     a.personaje.clases[0].nivel = 7  # p. ej. un JSON editado a mano
     assert any("solo llegan a nivel 5" in x for x in a.ficha().avisos)
+
+
+def test_la_pericia_no_se_bloquea_por_ser_competente(asistente):
+    a = asistente
+    a.elegir_raza("humano")
+    a.elegir_subraza("humano_estandar")
+    a.elegir_clase("picaro")
+    a.elegir_trasfondo("criminal")  # da Engaño y Sigilo
+    habilidades = next(e for e in a.elecciones("clase") if e.clave == "clase:picaro:inicial/habilidades")
+    assert {"engano", "sigilo"} <= a.conocidas(habilidades)
+    a.elegir(habilidades.clave, ["acrobacias", "percepcion", "investigacion", "persuasion"])
+    pericia = next(e for e in a.elecciones("clase") if e.clave == "clase:picaro:1/pericia")
+    assert a.conocidas(pericia) == set()
+    a.elegir(pericia.clave, ["sigilo", "engano"])
+    a.establecer_nivel(5)  # a nivel 6 llegaría otra pericia; aquí basta con ver que no se repite
+    assert a.conocidas(next(e for e in a.elecciones("clase") if e.clave == pericia.clave)) == set()

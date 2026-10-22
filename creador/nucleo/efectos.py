@@ -44,10 +44,16 @@ class EleccionPendiente:
     seleccion: list[str]
     repetible: bool
     etiqueta: str
+    # Lo que concede cada opción: «aplicar» con $opcion, o los «efectos» propios de la opción.
+    aplicar: list = field(default_factory=list)
+    efectos_por_opcion: dict[str, list] = field(default_factory=dict)
 
     @property
     def faltan(self) -> int:
         return self.elegir - len(self.seleccion)
+
+    def efectos_de(self, opcion: str) -> list:
+        return sustituir_opcion(self.efectos_por_opcion.get(opcion, self.aplicar), opcion)
 
 
 @dataclass
@@ -157,7 +163,8 @@ class ResolutorEfectos:
             else:
                 seleccion.append(valor)
 
-        eleccion = EleccionPendiente(clave, nombre, elegir, opciones, list(seleccion), repetible, etiqueta)
+        eleccion = EleccionPendiente(clave, nombre, elegir, opciones, list(seleccion), repetible, etiqueta,
+                                     efecto.get("aplicar", []), efectos_por_opcion)
         self.resolucion.elecciones.append(eleccion)
         if len(seleccion) < elegir:
             if not opciones:

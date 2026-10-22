@@ -514,6 +514,11 @@ def configuracion_lanzamiento(personaje: Personaje, catalogo: Catalogo, clase_id
     return configuracion[2] if configuracion else None
 
 
+def nivel_maximo_conjuro(config: dict, nivel: int) -> int:
+    """Nivel de conjuro más alto que tiene esa configuración de lanzamiento a ese nivel de clase."""
+    return _nivel_maximo_conjuro(config, nivel)
+
+
 def _nivel_maximo_conjuro(config: dict, nivel: int) -> int:
     if config["progresion"] == "pacto":
         return MAGIA_DE_PACTO[nivel][1]
