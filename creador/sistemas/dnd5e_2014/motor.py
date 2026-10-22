@@ -593,7 +593,7 @@ def _ataques(objetos: list[tuple[ObjetoInventario, dict | None]], mods: dict[str
         if arma.get("dano_versatil"):
             notas.append(f"A dos manos: {_formula_dano(arma['dano_versatil'], mods[car])}")
         if arma.get("alcance"):
-            notas.append(f"Alcance {arma['alcance']}")
+            notas.append(f"Alcance {arma['alcance']} pies")
         if not competente:
             notas.append("Sin competencia")
         dano = _formula_dano(arma["dano"], mods[car])
