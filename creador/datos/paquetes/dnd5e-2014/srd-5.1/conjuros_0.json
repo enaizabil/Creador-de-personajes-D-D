@@ -1,1 +1,446 @@
-{}
+{
+  "conjuros": [
+    {
+      "id": "agarre_electrizante",
+      "nombre": "Agarre electrizante",
+      "nivel": 0,
+      "escuela": "evocacion",
+      "listas": [
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Ataque de conjuro cuerpo a cuerpo (con ventaja si el objetivo lleva armadura de metal): 1d8 de daño de relámpago y no puede llevar a cabo reacciones hasta el principio de su siguiente turno. Daño 2d8 a nivel 5, 3d8 a nivel 11 y 4d8 a nivel 17.",
+      "fuente": "SRD 5.1 p. 120"
+    },
+    {
+      "id": "burla_danina",
+      "nombre": "Burla dañina",
+      "nivel": 0,
+      "escuela": "encantamiento",
+      "listas": [
+        "bardo"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Una criatura que te oiga: salvación de Sabiduría o 1d4 de daño psíquico y desventaja en su siguiente tirada de ataque antes del final de su siguiente turno. Daño 2d4 a nivel 5, 3d4 a nivel 11 y 4d4 a nivel 17.",
+      "fuente": "SRD 5.1 p. 130"
+    },
+    {
+      "id": "crear_llama",
+      "nombre": "Crear llama",
+      "nivel": 0,
+      "escuela": "conjuracion",
+      "listas": [
+        "druida"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal",
+      "componentes": "V, S",
+      "duracion": "10 minutos",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Llama en la mano (luz brillante en 10 pies y tenue 10 pies más). Al lanzarlo o como acción, puedes arrojarla a una criatura a 30 pies o menos: ataque de conjuro a distancia, 1d8 de daño de fuego (y el conjuro termina). Daño 2d8 a nivel 5, 3d8 a nivel 11 y 4d8 a nivel 17.",
+      "fuente": "SRD 5.1 p. 143"
+    },
+    {
+      "id": "descarga_de_fuego",
+      "nombre": "Descarga de fuego",
+      "nivel": 0,
+      "escuela": "evocacion",
+      "listas": [
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "120 pies",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Ataque de conjuro a distancia contra una criatura u objeto: 1d10 de daño de fuego; los objetos inflamables que nadie lleve ni vista arden. Daño 2d10 a nivel 5, 3d10 a nivel 11 y 4d10 a nivel 17.",
+      "fuente": "SRD 5.1 p. 146"
+    },
+    {
+      "id": "descarga_sobrenatural",
+      "nombre": "Descarga sobrenatural",
+      "nivel": 0,
+      "escuela": "evocacion",
+      "listas": [
+        "brujo"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "120 pies",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Ataque de conjuro a distancia: 1d10 de daño de fuerza. Más rayos con el nivel: 2 a nivel 5, 3 a nivel 11 y 4 a nivel 17 (una tirada de ataque por rayo, al mismo objetivo o a varios).",
+      "fuente": "SRD 5.1 p. 146"
+    },
+    {
+      "id": "guia",
+      "nombre": "Guía",
+      "nivel": 0,
+      "escuela": "adivinacion",
+      "listas": [
+        "clerigo",
+        "druida"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Una criatura voluntaria suma 1d4 a una prueba de característica a su elección (antes o después de tirar); después el conjuro termina.",
+      "fuente": "SRD 5.1 p. 163"
+    },
+    {
+      "id": "ilusion_menor",
+      "nombre": "Ilusión menor",
+      "nivel": 0,
+      "escuela": "ilusion",
+      "listas": [
+        "bardo",
+        "brujo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "30 pies",
+      "componentes": "S, M (un poco de vellón)",
+      "duracion": "1 minuto",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Crea un sonido o la imagen de un objeto (cubo de 5 pies como máximo, sin sonido, luz ni olor). Una criatura que use su acción para examinarla la descubre con una prueba de Inteligencia (Investigación) contra tu CD de salvación de conjuros.",
+      "fuente": "SRD 5.1 p. 165"
+    },
+    {
+      "id": "impacto_certero",
+      "nombre": "Impacto certero",
+      "nivel": 0,
+      "escuela": "adivinacion",
+      "listas": [
+        "bardo",
+        "brujo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "30 pies",
+      "componentes": "S",
+      "duracion": "Concentración, hasta 1 asalto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "En tu siguiente turno tienes ventaja en tu primera tirada de ataque contra el objetivo.",
+      "fuente": "SRD 5.1 p. 167"
+    },
+    {
+      "id": "llama_sagrada",
+      "nombre": "Llama sagrada",
+      "nivel": 0,
+      "escuela": "evocacion",
+      "listas": [
+        "clerigo"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Una criatura que veas: salvación de Destreza (sin beneficio de cobertura) o 1d8 de daño radiante. Daño 2d8 a nivel 5, 3d8 a nivel 11 y 4d8 a nivel 17.",
+      "fuente": "SRD 5.1 p. 171"
+    },
+    {
+      "id": "luces_danzantes",
+      "nombre": "Luces danzantes",
+      "nivel": 0,
+      "escuela": "evocacion",
+      "listas": [
+        "bardo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "120 pies",
+      "componentes": "V, S, M (una pizca de fósforo, un pedazo de olmo montano o un gusano luminiscente)",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Hasta cuatro luces flotantes (luz tenue en 10 pies de radio cada una) o una figura humanoide Mediana; con una acción adicional las mueves hasta 60 pies (a 20 pies o menos unas de otras).",
+      "fuente": "SRD 5.1 p. 172"
+    },
+    {
+      "id": "luz",
+      "nombre": "Luz",
+      "nivel": 0,
+      "escuela": "evocacion",
+      "listas": [
+        "bardo",
+        "clerigo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "V, M (una luciérnaga o musgo fosforescente)",
+      "duracion": "1 hora",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Un objeto tocado (10 pies como máximo) emite luz brillante en 20 pies y tenue 20 pies más. Si lo lleva una criatura hostil, salvación de Destreza para evitarlo.",
+      "fuente": "SRD 5.1 p. 172"
+    },
+    {
+      "id": "mano_de_mago",
+      "nombre": "Mano de mago",
+      "nivel": 0,
+      "escuela": "conjuracion",
+      "listas": [
+        "bardo",
+        "brujo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "30 pies",
+      "componentes": "V, S",
+      "duracion": "1 minuto",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Mano espectral: con tu acción manipula un objeto, abre puertas o recipientes sin llave, saca o guarda objetos o vierte un vial, y se mueve hasta 30 pies. No ataca, no activa objetos mágicos ni carga más de 10 libras; desaparece a más de 30 pies de ti.",
+      "fuente": "SRD 5.1 p. 174"
+    },
+    {
+      "id": "mensaje",
+      "nombre": "Mensaje",
+      "nivel": 0,
+      "escuela": "transmutacion",
+      "listas": [
+        "bardo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "120 pies",
+      "componentes": "V, S, M (un alambre de cobre corto)",
+      "duracion": "1 asalto",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Susurras un mensaje a una criatura dentro del alcance; solo ella lo oye y puede responder con un susurro que solo oyes tú. Atraviesa objetos si conoces al objetivo, pero lo bloquean el silencio mágico, 1 pie de piedra, 1 pulgada de metal común, una lámina de plomo o 3 pies de madera.",
+      "fuente": "SRD 5.1 p. 175"
+    },
+    {
+      "id": "piedad_con_los_moribundos",
+      "nombre": "Piedad con los moribundos",
+      "nivel": 0,
+      "escuela": "nigromancia",
+      "listas": [
+        "clerigo"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Una criatura viva con 0 puntos de golpe pasa a estar estable. No afecta a autómatas ni a muertos vivientes.",
+      "fuente": "SRD 5.1 p. 184"
+    },
+    {
+      "id": "prestidigitacion",
+      "nombre": "Prestidigitación",
+      "nivel": 0,
+      "escuela": "transmutacion",
+      "listas": [
+        "bardo",
+        "brujo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "10 pies",
+      "componentes": "V, S",
+      "duracion": "Hasta 1 hora",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Trucos menores: efecto sensorial inofensivo, encender o apagar una vela o antorcha, limpiar o ensuciar, enfriar, calentar o dar sabor, marcas o símbolos durante 1 hora, o un abalorio o imagen que cabe en la mano. Hasta tres efectos no instantáneos a la vez.",
+      "fuente": "SRD 5.1 p. 187"
+    },
+    {
+      "id": "rayo_de_escarcha",
+      "nombre": "Rayo de escarcha",
+      "nivel": 0,
+      "escuela": "evocacion",
+      "listas": [
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Ataque de conjuro a distancia: 1d8 de daño de frío y su velocidad se reduce en 10 pies hasta el principio de tu siguiente turno. Daño 2d8 a nivel 5, 3d8 a nivel 11 y 4d8 a nivel 17.",
+      "fuente": "SRD 5.1 p. 190"
+    },
+    {
+      "id": "reparar",
+      "nombre": "Reparar",
+      "nivel": 0,
+      "escuela": "transmutacion",
+      "listas": [
+        "bardo",
+        "clerigo",
+        "druida",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 minuto",
+      "alcance": "Toque",
+      "componentes": "V, S, M (dos imanes naturales)",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Repara sin dejar rastro una rotura o desgarrón de 1 pie como máximo en un objeto que toques. Arregla la parte física de un objeto mágico o autómata, pero no su magia.",
+      "fuente": "SRD 5.1 p. 193"
+    },
+    {
+      "id": "resistencia",
+      "nombre": "Resistencia",
+      "nivel": 0,
+      "escuela": "abjuracion",
+      "listas": [
+        "clerigo",
+        "druida"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "V, S, M (una capa en miniatura)",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Una criatura voluntaria suma 1d4 a una tirada de salvación a su elección (antes o después de tirar); después el conjuro termina.",
+      "fuente": "SRD 5.1 p. 193"
+    },
+    {
+      "id": "rociada_venenosa",
+      "nombre": "Rociada venenosa",
+      "nivel": 0,
+      "escuela": "conjuracion",
+      "listas": [
+        "brujo",
+        "druida",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "10 pies",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Una criatura que veas: salvación de Constitución o 1d12 de daño de veneno. Daño 2d12 a nivel 5, 3d12 a nivel 11 y 4d12 a nivel 17.",
+      "fuente": "SRD 5.1 p. 195"
+    },
+    {
+      "id": "saber_druidico",
+      "nombre": "Saber druídico",
+      "nivel": 0,
+      "escuela": "transmutacion",
+      "listas": [
+        "druida"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "30 pies",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Un efecto natural menor: predecir el tiempo de las próximas 24 horas, hacer florecer una flor o brotar una semilla u hoja, un efecto sensorial inofensivo (cubo de 5 pies) o encender o apagar una vela, antorcha u hoguera pequeña.",
+      "fuente": "SRD 5.1 p. 196"
+    },
+    {
+      "id": "salpicadura_acida",
+      "nombre": "Salpicadura ácida",
+      "nivel": 0,
+      "escuela": "conjuracion",
+      "listas": [
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Una criatura, o dos a 5 pies o menos la una de la otra: salvación de Destreza o 1d6 de daño de ácido. Daño 2d6 a nivel 5, 3d6 a nivel 11 y 4d6 a nivel 17.",
+      "fuente": "SRD 5.1 p. 196"
+    },
+    {
+      "id": "shillelagh",
+      "nombre": "Shillelagh",
+      "nivel": 0,
+      "escuela": "transmutacion",
+      "listas": [
+        "druida"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "Toque",
+      "componentes": "V, S, M (muérdago, una hoja de trébol y un garrote o un bastón)",
+      "duracion": "1 minuto",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Tu garrote o bastón usa tu aptitud mágica en lugar de la Fuerza para las tiradas de ataque y daño, su dado de daño pasa a 1d8 y es mágico. Termina si lo sueltas o lo vuelves a lanzar.",
+      "fuente": "SRD 5.1 p. 198"
+    },
+    {
+      "id": "taumaturgia",
+      "nombre": "Taumaturgia",
+      "nivel": 0,
+      "escuela": "transmutacion",
+      "listas": [
+        "clerigo"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "30 pies",
+      "componentes": "V",
+      "duracion": "Hasta 1 minuto",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Pequeño prodigio: voz tres veces más fuerte, llamas que cambian, temblor inofensivo, un sonido instantáneo, abrir o cerrar de golpe una puerta o ventana sin llave, o cambiar el aspecto de tus ojos. Hasta tres efectos de 1 minuto a la vez.",
+      "fuente": "SRD 5.1 p. 200"
+    },
+    {
+      "id": "toque_helado",
+      "nombre": "Toque helado",
+      "nivel": 0,
+      "escuela": "nigromancia",
+      "listas": [
+        "brujo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "120 pies",
+      "componentes": "V, S",
+      "duracion": "1 asalto",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Ataque de conjuro a distancia: 1d8 de daño necrótico y no puede recuperar puntos de golpe hasta el principio de tu siguiente turno; si es un muerto viviente, además tiene desventaja en las tiradas de ataque contra ti hasta el final de tu siguiente turno. Daño 2d8 a nivel 5, 3d8 a nivel 11 y 4d8 a nivel 17.",
+      "fuente": "SRD 5.1 p. 204"
+    }
+  ]
+}

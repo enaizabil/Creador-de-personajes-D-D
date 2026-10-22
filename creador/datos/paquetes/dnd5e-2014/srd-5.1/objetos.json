@@ -1,1 +1,2311 @@
-{}
+{
+  "objetos": [
+    {
+      "id": "baston",
+      "nombre": "Bastón",
+      "categoria": "arma",
+      "coste": "2 pp",
+      "peso": "2 kg",
+      "arma": {
+        "categoria": "sencilla",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d6",
+        "tipo_dano": "contundente",
+        "propiedades": [
+          "versatil"
+        ],
+        "dano_versatil": "1d8"
+      }
+    },
+    {
+      "id": "daga",
+      "nombre": "Daga",
+      "categoria": "arma",
+      "coste": "2 po",
+      "peso": "0,5 kg",
+      "arma": {
+        "categoria": "sencilla",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d4",
+        "tipo_dano": "perforante",
+        "propiedades": [
+          "arrojadiza",
+          "ligera",
+          "sutil"
+        ],
+        "alcance": "20/60"
+      }
+    },
+    {
+      "id": "garrote",
+      "nombre": "Garrote",
+      "categoria": "arma",
+      "coste": "1 pp",
+      "peso": "1 kg",
+      "arma": {
+        "categoria": "sencilla",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d4",
+        "tipo_dano": "contundente",
+        "propiedades": [
+          "ligera"
+        ]
+      }
+    },
+    {
+      "id": "garrote_grande",
+      "nombre": "Garrote grande",
+      "categoria": "arma",
+      "coste": "2 pp",
+      "peso": "5 kg",
+      "arma": {
+        "categoria": "sencilla",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d8",
+        "tipo_dano": "contundente",
+        "propiedades": [
+          "a_dos_manos"
+        ]
+      }
+    },
+    {
+      "id": "hacha_de_mano",
+      "nombre": "Hacha de mano",
+      "categoria": "arma",
+      "coste": "5 po",
+      "peso": "1 kg",
+      "arma": {
+        "categoria": "sencilla",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d6",
+        "tipo_dano": "cortante",
+        "propiedades": [
+          "arrojadiza",
+          "ligera"
+        ],
+        "alcance": "20/60"
+      }
+    },
+    {
+      "id": "hoz",
+      "nombre": "Hoz",
+      "categoria": "arma",
+      "coste": "1 po",
+      "peso": "1 kg",
+      "arma": {
+        "categoria": "sencilla",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d4",
+        "tipo_dano": "cortante",
+        "propiedades": [
+          "ligera"
+        ]
+      }
+    },
+    {
+      "id": "jabalina",
+      "nombre": "Jabalina",
+      "categoria": "arma",
+      "coste": "5 pp",
+      "peso": "1 kg",
+      "arma": {
+        "categoria": "sencilla",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d6",
+        "tipo_dano": "perforante",
+        "propiedades": [
+          "arrojadiza"
+        ],
+        "alcance": "30/120"
+      }
+    },
+    {
+      "id": "lanza",
+      "nombre": "Lanza",
+      "categoria": "arma",
+      "coste": "1 po",
+      "peso": "1,5 kg",
+      "arma": {
+        "categoria": "sencilla",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d6",
+        "tipo_dano": "perforante",
+        "propiedades": [
+          "arrojadiza",
+          "versatil"
+        ],
+        "dano_versatil": "1d8",
+        "alcance": "20/60"
+      }
+    },
+    {
+      "id": "martillo_ligero",
+      "nombre": "Martillo ligero",
+      "categoria": "arma",
+      "coste": "2 po",
+      "peso": "1 kg",
+      "arma": {
+        "categoria": "sencilla",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d4",
+        "tipo_dano": "contundente",
+        "propiedades": [
+          "arrojadiza",
+          "ligera"
+        ],
+        "alcance": "20/60"
+      }
+    },
+    {
+      "id": "maza",
+      "nombre": "Maza",
+      "categoria": "arma",
+      "coste": "5 po",
+      "peso": "2 kg",
+      "arma": {
+        "categoria": "sencilla",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d6",
+        "tipo_dano": "contundente",
+        "propiedades": []
+      }
+    },
+    {
+      "id": "arco_corto",
+      "nombre": "Arco corto",
+      "categoria": "arma",
+      "coste": "25 po",
+      "peso": "1 kg",
+      "arma": {
+        "categoria": "sencilla",
+        "tipo": "distancia",
+        "dano": "1d6",
+        "tipo_dano": "perforante",
+        "propiedades": [
+          "a_dos_manos",
+          "municion"
+        ],
+        "alcance": "80/320",
+        "tipo_municion": "flecha"
+      }
+    },
+    {
+      "id": "ballesta_ligera",
+      "nombre": "Ballesta ligera",
+      "categoria": "arma",
+      "coste": "25 po",
+      "peso": "2,5 kg",
+      "arma": {
+        "categoria": "sencilla",
+        "tipo": "distancia",
+        "dano": "1d8",
+        "tipo_dano": "perforante",
+        "propiedades": [
+          "a_dos_manos",
+          "municion",
+          "recarga"
+        ],
+        "alcance": "80/320",
+        "tipo_municion": "virote"
+      }
+    },
+    {
+      "id": "dardo",
+      "nombre": "Dardo",
+      "categoria": "arma",
+      "coste": "5 pc",
+      "peso": "125 g",
+      "arma": {
+        "categoria": "sencilla",
+        "tipo": "distancia",
+        "dano": "1d4",
+        "tipo_dano": "perforante",
+        "propiedades": [
+          "arrojadiza",
+          "sutil"
+        ],
+        "alcance": "20/60"
+      }
+    },
+    {
+      "id": "honda",
+      "nombre": "Honda",
+      "categoria": "arma",
+      "coste": "1 pp",
+      "peso": "—",
+      "arma": {
+        "categoria": "sencilla",
+        "tipo": "distancia",
+        "dano": "1d4",
+        "tipo_dano": "contundente",
+        "propiedades": [
+          "municion"
+        ],
+        "alcance": "30/120",
+        "tipo_municion": "bala_de_honda"
+      },
+      "descripcion": "Usa balas de honda."
+    },
+    {
+      "id": "alabarda",
+      "nombre": "Alabarda",
+      "categoria": "arma",
+      "coste": "20 po",
+      "peso": "3 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d10",
+        "tipo_dano": "cortante",
+        "propiedades": [
+          "a_dos_manos",
+          "gran_alcance",
+          "pesada"
+        ]
+      }
+    },
+    {
+      "id": "cimitarra",
+      "nombre": "Cimitarra",
+      "categoria": "arma",
+      "coste": "25 po",
+      "peso": "1,5 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d6",
+        "tipo_dano": "cortante",
+        "propiedades": [
+          "ligera",
+          "sutil"
+        ]
+      }
+    },
+    {
+      "id": "espada_corta",
+      "nombre": "Espada corta",
+      "categoria": "arma",
+      "coste": "10 po",
+      "peso": "1 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d6",
+        "tipo_dano": "perforante",
+        "propiedades": [
+          "ligera",
+          "sutil"
+        ]
+      }
+    },
+    {
+      "id": "espada_larga",
+      "nombre": "Espada larga",
+      "categoria": "arma",
+      "coste": "15 po",
+      "peso": "1,5 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d8",
+        "tipo_dano": "cortante",
+        "propiedades": [
+          "versatil"
+        ],
+        "dano_versatil": "1d10"
+      }
+    },
+    {
+      "id": "espadon",
+      "nombre": "Espadón",
+      "categoria": "arma",
+      "coste": "50 po",
+      "peso": "3 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "2d6",
+        "tipo_dano": "cortante",
+        "propiedades": [
+          "a_dos_manos",
+          "pesada"
+        ]
+      }
+    },
+    {
+      "id": "estoque",
+      "nombre": "Estoque",
+      "categoria": "arma",
+      "coste": "25 po",
+      "peso": "1 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d8",
+        "tipo_dano": "perforante",
+        "propiedades": [
+          "sutil"
+        ]
+      }
+    },
+    {
+      "id": "guja",
+      "nombre": "Guja",
+      "categoria": "arma",
+      "coste": "20 po",
+      "peso": "3 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d10",
+        "tipo_dano": "cortante",
+        "propiedades": [
+          "a_dos_manos",
+          "gran_alcance",
+          "pesada"
+        ]
+      }
+    },
+    {
+      "id": "hacha_a_dos_manos",
+      "nombre": "Hacha a dos manos",
+      "categoria": "arma",
+      "coste": "30 po",
+      "peso": "3,5 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d12",
+        "tipo_dano": "cortante",
+        "propiedades": [
+          "a_dos_manos",
+          "pesada"
+        ]
+      }
+    },
+    {
+      "id": "hacha_de_guerra",
+      "nombre": "Hacha de guerra",
+      "categoria": "arma",
+      "coste": "10 po",
+      "peso": "2 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d8",
+        "tipo_dano": "cortante",
+        "propiedades": [
+          "versatil"
+        ],
+        "dano_versatil": "1d10"
+      }
+    },
+    {
+      "id": "lanza_de_caballeria",
+      "nombre": "Lanza de caballería",
+      "categoria": "arma",
+      "coste": "10 po",
+      "peso": "3 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d12",
+        "tipo_dano": "perforante",
+        "propiedades": [
+          "especial",
+          "gran_alcance"
+        ]
+      },
+      "descripcion": "Desventaja al atacar a un objetivo a 5 pies o menos. Si no vas montado, necesitas las dos manos para empuñarla."
+    },
+    {
+      "id": "latigo",
+      "nombre": "Látigo",
+      "categoria": "arma",
+      "coste": "2 po",
+      "peso": "1,5 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d4",
+        "tipo_dano": "cortante",
+        "propiedades": [
+          "gran_alcance",
+          "sutil"
+        ]
+      }
+    },
+    {
+      "id": "lucero_del_alba",
+      "nombre": "Lucero del alba",
+      "categoria": "arma",
+      "coste": "15 po",
+      "peso": "2 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d8",
+        "tipo_dano": "perforante",
+        "propiedades": []
+      }
+    },
+    {
+      "id": "mangual",
+      "nombre": "Mangual",
+      "categoria": "arma",
+      "coste": "10 po",
+      "peso": "1 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d8",
+        "tipo_dano": "contundente",
+        "propiedades": []
+      }
+    },
+    {
+      "id": "martillo_de_guerra",
+      "nombre": "Martillo de guerra",
+      "categoria": "arma",
+      "coste": "15 po",
+      "peso": "1 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d8",
+        "tipo_dano": "contundente",
+        "propiedades": [
+          "versatil"
+        ],
+        "dano_versatil": "1d10"
+      }
+    },
+    {
+      "id": "maza_a_dos_manos",
+      "nombre": "Maza a dos manos",
+      "categoria": "arma",
+      "coste": "10 po",
+      "peso": "5 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "2d6",
+        "tipo_dano": "contundente",
+        "propiedades": [
+          "a_dos_manos",
+          "pesada"
+        ]
+      }
+    },
+    {
+      "id": "pica",
+      "nombre": "Pica",
+      "categoria": "arma",
+      "coste": "5 po",
+      "peso": "9 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d10",
+        "tipo_dano": "perforante",
+        "propiedades": [
+          "a_dos_manos",
+          "gran_alcance",
+          "pesada"
+        ]
+      }
+    },
+    {
+      "id": "pico_de_guerra",
+      "nombre": "Pico de guerra",
+      "categoria": "arma",
+      "coste": "5 po",
+      "peso": "1 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d8",
+        "tipo_dano": "perforante",
+        "propiedades": []
+      }
+    },
+    {
+      "id": "tridente",
+      "nombre": "Tridente",
+      "categoria": "arma",
+      "coste": "5 po",
+      "peso": "2 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "cuerpo_a_cuerpo",
+        "dano": "1d6",
+        "tipo_dano": "perforante",
+        "propiedades": [
+          "arrojadiza",
+          "versatil"
+        ],
+        "dano_versatil": "1d8",
+        "alcance": "20/60"
+      }
+    },
+    {
+      "id": "arco_largo",
+      "nombre": "Arco largo",
+      "categoria": "arma",
+      "coste": "50 po",
+      "peso": "1 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "distancia",
+        "dano": "1d8",
+        "tipo_dano": "perforante",
+        "propiedades": [
+          "a_dos_manos",
+          "municion",
+          "pesada"
+        ],
+        "alcance": "150/600",
+        "tipo_municion": "flecha"
+      }
+    },
+    {
+      "id": "ballesta_de_mano",
+      "nombre": "Ballesta de mano",
+      "categoria": "arma",
+      "coste": "75 po",
+      "peso": "1,5 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "distancia",
+        "dano": "1d6",
+        "tipo_dano": "perforante",
+        "propiedades": [
+          "ligera",
+          "municion",
+          "recarga"
+        ],
+        "alcance": "30/120",
+        "tipo_municion": "virote"
+      }
+    },
+    {
+      "id": "ballesta_pesada",
+      "nombre": "Ballesta pesada",
+      "categoria": "arma",
+      "coste": "50 po",
+      "peso": "9 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "distancia",
+        "dano": "1d10",
+        "tipo_dano": "perforante",
+        "propiedades": [
+          "a_dos_manos",
+          "municion",
+          "pesada",
+          "recarga"
+        ],
+        "alcance": "100/400",
+        "tipo_municion": "virote"
+      }
+    },
+    {
+      "id": "cerbatana",
+      "nombre": "Cerbatana",
+      "categoria": "arma",
+      "coste": "10 po",
+      "peso": "0,5 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "distancia",
+        "dano": "1",
+        "tipo_dano": "perforante",
+        "propiedades": [
+          "municion",
+          "recarga"
+        ],
+        "alcance": "25/100",
+        "tipo_municion": "dardo_de_cerbatana"
+      },
+      "descripcion": "Causa 1 de daño perforante (más el modificador)."
+    },
+    {
+      "id": "red",
+      "nombre": "Red",
+      "categoria": "arma",
+      "coste": "1 po",
+      "peso": "1,5 kg",
+      "arma": {
+        "categoria": "marcial",
+        "tipo": "distancia",
+        "dano": "—",
+        "tipo_dano": "—",
+        "propiedades": [
+          "arrojadiza",
+          "especial"
+        ],
+        "alcance": "5/15"
+      },
+      "descripcion": "No causa daño. Una criatura Grande o menor impactada queda apresada hasta que se libere: acción y prueba de Fuerza CD 10 (también para liberar a otra a su alcance), o 5 de daño cortante a la red (CA 10), que la destruye. No afecta a criaturas sin forma ni de tamaño Enorme o mayor. Con una red solo puedes hacer un ataque por acción, acción adicional o reacción."
+    },
+    {
+      "id": "armadura_acolchada",
+      "nombre": "Armadura acolchada",
+      "categoria": "armadura",
+      "coste": "5 po",
+      "peso": "4 kg",
+      "armadura": {
+        "tipo": "ligera",
+        "ca": 11,
+        "desventaja_sigilo": true
+      }
+    },
+    {
+      "id": "armadura_de_cuero",
+      "nombre": "Armadura de cuero",
+      "categoria": "armadura",
+      "coste": "10 po",
+      "peso": "5 kg",
+      "armadura": {
+        "tipo": "ligera",
+        "ca": 11
+      }
+    },
+    {
+      "id": "armadura_de_cuero_tachonado",
+      "nombre": "Armadura de cuero tachonado",
+      "categoria": "armadura",
+      "coste": "45 po",
+      "peso": "6,5 kg",
+      "armadura": {
+        "tipo": "ligera",
+        "ca": 12
+      }
+    },
+    {
+      "id": "armadura_de_pieles",
+      "nombre": "Armadura de pieles",
+      "categoria": "armadura",
+      "coste": "10 po",
+      "peso": "6 kg",
+      "armadura": {
+        "tipo": "media",
+        "ca": 12
+      }
+    },
+    {
+      "id": "camisa_de_malla",
+      "nombre": "Camisa de malla",
+      "categoria": "armadura",
+      "coste": "50 po",
+      "peso": "10 kg",
+      "armadura": {
+        "tipo": "media",
+        "ca": 13
+      }
+    },
+    {
+      "id": "cota_de_escamas",
+      "nombre": "Cota de escamas",
+      "categoria": "armadura",
+      "coste": "50 po",
+      "peso": "22,5 kg",
+      "armadura": {
+        "tipo": "media",
+        "ca": 14,
+        "desventaja_sigilo": true
+      }
+    },
+    {
+      "id": "coraza",
+      "nombre": "Coraza",
+      "categoria": "armadura",
+      "coste": "400 po",
+      "peso": "10 kg",
+      "armadura": {
+        "tipo": "media",
+        "ca": 14
+      }
+    },
+    {
+      "id": "media_armadura",
+      "nombre": "Media armadura",
+      "categoria": "armadura",
+      "coste": "750 po",
+      "peso": "20 kg",
+      "armadura": {
+        "tipo": "media",
+        "ca": 15,
+        "desventaja_sigilo": true
+      }
+    },
+    {
+      "id": "cota_guarnecida",
+      "nombre": "Cota guarnecida",
+      "categoria": "armadura",
+      "coste": "30 po",
+      "peso": "20 kg",
+      "armadura": {
+        "tipo": "pesada",
+        "ca": 14,
+        "desventaja_sigilo": true
+      }
+    },
+    {
+      "id": "cota_de_malla",
+      "nombre": "Cota de malla",
+      "categoria": "armadura",
+      "coste": "75 po",
+      "peso": "27,5 kg",
+      "armadura": {
+        "tipo": "pesada",
+        "ca": 16,
+        "fuerza_minima": 13,
+        "desventaja_sigilo": true
+      }
+    },
+    {
+      "id": "armadura_de_bandas",
+      "nombre": "Armadura de bandas",
+      "categoria": "armadura",
+      "coste": "200 po",
+      "peso": "30 kg",
+      "armadura": {
+        "tipo": "pesada",
+        "ca": 17,
+        "fuerza_minima": 15,
+        "desventaja_sigilo": true
+      }
+    },
+    {
+      "id": "armadura_de_placas",
+      "nombre": "Armadura de placas",
+      "categoria": "armadura",
+      "coste": "1500 po",
+      "peso": "32,5 kg",
+      "armadura": {
+        "tipo": "pesada",
+        "ca": 18,
+        "fuerza_minima": 15,
+        "desventaja_sigilo": true
+      }
+    },
+    {
+      "id": "escudo",
+      "nombre": "Escudo",
+      "categoria": "escudo",
+      "coste": "10 po",
+      "peso": "3 kg",
+      "escudo": {
+        "bonificador": 2
+      }
+    },
+    {
+      "id": "bala_de_honda",
+      "nombre": "Bala de honda",
+      "categoria": "municion",
+      "coste": "4 pc",
+      "peso": "0,75 kg",
+      "lote": 20,
+      "armas": [
+        "honda"
+      ],
+      "descripcion": "El precio y el peso son por 20 unidades."
+    },
+    {
+      "id": "dardo_de_cerbatana",
+      "nombre": "Dardo de cerbatana",
+      "categoria": "municion",
+      "coste": "1 po",
+      "peso": "0,5 kg",
+      "lote": 50,
+      "armas": [
+        "cerbatana"
+      ],
+      "descripcion": "El precio y el peso son por 50 unidades."
+    },
+    {
+      "id": "flecha",
+      "nombre": "Flecha",
+      "categoria": "municion",
+      "coste": "1 po",
+      "peso": "0,5 kg",
+      "lote": 20,
+      "armas": [
+        "arco_corto",
+        "arco_largo"
+      ],
+      "descripcion": "El precio y el peso son por 20 unidades."
+    },
+    {
+      "id": "virote",
+      "nombre": "Virote de ballesta",
+      "categoria": "municion",
+      "coste": "1 po",
+      "peso": "0,75 kg",
+      "lote": 20,
+      "armas": [
+        "ballesta_ligera",
+        "ballesta_de_mano",
+        "ballesta_pesada"
+      ],
+      "descripcion": "El precio y el peso son por 20 unidades."
+    },
+    {
+      "id": "canalizador_arcano_baston",
+      "nombre": "Canalizador arcano (bastón)",
+      "categoria": "foco",
+      "subcategoria": "arcano",
+      "coste": "5 po",
+      "peso": "2 kg",
+      "descripcion": "Canalizador mágico para brujos, hechiceros y magos."
+    },
+    {
+      "id": "canalizador_arcano_cristal",
+      "nombre": "Canalizador arcano (cristal)",
+      "categoria": "foco",
+      "subcategoria": "arcano",
+      "coste": "10 po",
+      "peso": "0,5 kg",
+      "descripcion": "Canalizador mágico para brujos, hechiceros y magos."
+    },
+    {
+      "id": "canalizador_arcano_orbe",
+      "nombre": "Canalizador arcano (orbe)",
+      "categoria": "foco",
+      "subcategoria": "arcano",
+      "coste": "20 po",
+      "peso": "1,5 kg",
+      "descripcion": "Canalizador mágico para brujos, hechiceros y magos."
+    },
+    {
+      "id": "canalizador_arcano_vara",
+      "nombre": "Canalizador arcano (vara)",
+      "categoria": "foco",
+      "subcategoria": "arcano",
+      "coste": "10 po",
+      "peso": "1 kg",
+      "descripcion": "Canalizador mágico para brujos, hechiceros y magos."
+    },
+    {
+      "id": "canalizador_arcano_varita",
+      "nombre": "Canalizador arcano (varita)",
+      "categoria": "foco",
+      "subcategoria": "arcano",
+      "coste": "10 po",
+      "peso": "0,5 kg",
+      "descripcion": "Canalizador mágico para brujos, hechiceros y magos."
+    },
+    {
+      "id": "canalizador_druidico_baston_de_madera",
+      "nombre": "Canalizador druídico (bastón de madera)",
+      "categoria": "foco",
+      "subcategoria": "druidico",
+      "coste": "5 po",
+      "peso": "2 kg",
+      "descripcion": "Canalizador mágico para druidas."
+    },
+    {
+      "id": "canalizador_druidico_rama_de_muerdago",
+      "nombre": "Canalizador druídico (rama de muérdago)",
+      "categoria": "foco",
+      "subcategoria": "druidico",
+      "coste": "1 po",
+      "peso": "—",
+      "descripcion": "Canalizador mágico para druidas."
+    },
+    {
+      "id": "canalizador_druidico_totem",
+      "nombre": "Canalizador druídico (tótem)",
+      "categoria": "foco",
+      "subcategoria": "druidico",
+      "coste": "1 po",
+      "peso": "—",
+      "descripcion": "Canalizador mágico para druidas."
+    },
+    {
+      "id": "canalizador_druidico_varita_de_tejo",
+      "nombre": "Canalizador druídico (varita de tejo)",
+      "categoria": "foco",
+      "subcategoria": "druidico",
+      "coste": "10 po",
+      "peso": "0,5 kg",
+      "descripcion": "Canalizador mágico para druidas."
+    },
+    {
+      "id": "simbolo_sagrado_amuleto",
+      "nombre": "Símbolo sagrado (amuleto)",
+      "categoria": "foco",
+      "subcategoria": "sagrado",
+      "coste": "5 po",
+      "peso": "0,5 kg",
+      "descripcion": "Canalizador mágico para clérigos y paladines: hay que sostenerlo en la mano, llevarlo a la vista o embrazar un escudo que lo lleve grabado."
+    },
+    {
+      "id": "simbolo_sagrado_emblema",
+      "nombre": "Símbolo sagrado (emblema)",
+      "categoria": "foco",
+      "subcategoria": "sagrado",
+      "coste": "5 po",
+      "peso": "—",
+      "descripcion": "Canalizador mágico para clérigos y paladines: hay que sostenerlo en la mano, llevarlo a la vista o embrazar un escudo que lo lleve grabado."
+    },
+    {
+      "id": "simbolo_sagrado_relicario",
+      "nombre": "Símbolo sagrado (relicario)",
+      "categoria": "foco",
+      "subcategoria": "sagrado",
+      "coste": "5 po",
+      "peso": "1 kg",
+      "descripcion": "Canalizador mágico para clérigos y paladines: hay que sostenerlo en la mano, llevarlo a la vista o embrazar un escudo que lo lleve grabado."
+    },
+    {
+      "id": "abaco",
+      "nombre": "Ábaco",
+      "categoria": "equipo",
+      "coste": "2 po",
+      "peso": "1 kg"
+    },
+    {
+      "id": "abrojos",
+      "nombre": "Abrojos (bolsa de 20)",
+      "categoria": "equipo",
+      "coste": "1 po",
+      "peso": "1 kg",
+      "descripcion": "Como acción, cubres un cuadrado de 5 pies de lado. Quien entre en la zona debe superar una salvación de Destreza CD 15 o se detiene ese turno y sufre 1 de daño perforante; hasta recuperar al menos 1 PG, su velocidad caminando se reduce en 10 pies. Moverse por la zona a la mitad de velocidad evita la salvación."
+    },
+    {
+      "id": "aceite",
+      "nombre": "Aceite (frasco)",
+      "categoria": "equipo",
+      "coste": "1 pp",
+      "peso": "0,5 kg",
+      "descripcion": "Como acción, lo esparces sobre una criatura a 5 pies o lo lanzas hasta 20 pies (ataque a distancia como arma improvisada). Si el objetivo sufre daño de fuego antes de 1 minuto, recibe 5 de daño de fuego adicional. Derramado en el suelo cubre un cuadrado de 5 pies; si se prende, arde 2 asaltos y causa 5 de daño de fuego a quien entre o acabe su turno en él (una vez por turno). Una lámpara o linterna arde 6 horas con un frasco."
+    },
+    {
+      "id": "acido",
+      "nombre": "Ácido (vial)",
+      "categoria": "equipo",
+      "coste": "25 po",
+      "peso": "0,5 kg",
+      "descripcion": "Como acción, lo esparces sobre una criatura a 5 pies o lo lanzas hasta 20 pies (ataque a distancia como arma improvisada). Si impacta, causa 2d6 de daño de ácido."
+    },
+    {
+      "id": "agua_bendita",
+      "nombre": "Agua bendita (frasco)",
+      "categoria": "equipo",
+      "coste": "25 po",
+      "peso": "0,5 kg",
+      "descripcion": "Como acción, la esparces sobre una criatura a 5 pies o la lanzas hasta 20 pies (ataque a distancia como arma improvisada). Si impacta a un infernal o a un muerto viviente, le causa 2d6 de daño radiante."
+    },
+    {
+      "id": "aljaba",
+      "nombre": "Aljaba",
+      "categoria": "equipo",
+      "coste": "1 po",
+      "peso": "0,5 kg",
+      "descripcion": "Contiene hasta 20 flechas."
+    },
+    {
+      "id": "anillo_de_sellar",
+      "nombre": "Anillo de sellar",
+      "categoria": "equipo",
+      "coste": "5 po",
+      "peso": "—"
+    },
+    {
+      "id": "antitoxina",
+      "nombre": "Antitoxina (vial)",
+      "categoria": "equipo",
+      "coste": "50 po",
+      "peso": "—",
+      "descripcion": "Quien la bebe tiene ventaja en las salvaciones contra veneno durante 1 hora. No afecta a muertos vivientes ni a autómatas."
+    },
+    {
+      "id": "antorcha",
+      "nombre": "Antorcha",
+      "categoria": "equipo",
+      "coste": "1 pc",
+      "peso": "0,5 kg",
+      "descripcion": "Arde 1 hora: luz brillante en un radio de 20 pies y luz tenue otros 20 pies. Un ataque cuerpo a cuerpo con ella encendida causa 1 de daño de fuego."
+    },
+    {
+      "id": "ariete_portatil",
+      "nombre": "Ariete portátil",
+      "categoria": "equipo",
+      "coste": "4 po",
+      "peso": "17,5 kg",
+      "descripcion": "+4 a la prueba de Fuerza para derribar puertas; con la ayuda de otro personaje, ventaja en la prueba."
+    },
+    {
+      "id": "balanza_de_mercader",
+      "nombre": "Balanza de mercader",
+      "categoria": "equipo",
+      "coste": "5 po",
+      "peso": "1,5 kg",
+      "descripcion": "Pesa con exactitud objetos pequeños, como metales preciosos o mercancías."
+    },
+    {
+      "id": "barril",
+      "nombre": "Barril",
+      "categoria": "equipo",
+      "coste": "2 po",
+      "peso": "35 kg",
+      "descripcion": "Capacidad: 160 l de líquido o 0,12 m³ de sólido."
+    },
+    {
+      "id": "bolas_de_metal",
+      "nombre": "Bolas de metal (bolsa de 1000)",
+      "categoria": "equipo",
+      "coste": "1 po",
+      "peso": "1 kg",
+      "descripcion": "Como acción, cubren un cuadrado de 10 pies de lado. Quien se mueva por la zona debe superar una salvación de Destreza CD 10 o cae derribado. Moverse a la mitad de velocidad evita la salvación."
+    },
+    {
+      "id": "bolsa",
+      "nombre": "Bolsa",
+      "categoria": "equipo",
+      "coste": "5 pp",
+      "peso": "0,5 kg",
+      "descripcion": "Capacidad: 0,006 m³ o 3 kg de equipo (por ejemplo, 20 balas de honda o 50 dardos de cerbatana)."
+    },
+    {
+      "id": "botella_de_cristal",
+      "nombre": "Botella de cristal",
+      "categoria": "equipo",
+      "coste": "2 po",
+      "peso": "1 kg",
+      "descripcion": "Capacidad: 0,75 l de líquido."
+    },
+    {
+      "id": "cadena",
+      "nombre": "Cadena (3 m)",
+      "categoria": "equipo",
+      "coste": "5 po",
+      "peso": "5 kg",
+      "descripcion": "Tiene 10 PG; romperla requiere una prueba de Fuerza CD 20."
+    },
+    {
+      "id": "campana",
+      "nombre": "Campana",
+      "categoria": "equipo",
+      "coste": "1 po",
+      "peso": "—"
+    },
+    {
+      "id": "cana_de_pescar",
+      "nombre": "Caña de pescar",
+      "categoria": "equipo",
+      "coste": "1 po",
+      "peso": "2 kg",
+      "descripcion": "Incluye sedal, corchos, anzuelos, plomos, cebos y una sacadera."
+    },
+    {
+      "id": "cantimplora",
+      "nombre": "Cantimplora",
+      "categoria": "equipo",
+      "coste": "2 pp",
+      "peso": "2,5 kg (llena)",
+      "descripcion": "Capacidad: 2 l de líquido."
+    },
+    {
+      "id": "catalejo",
+      "nombre": "Catalejo",
+      "categoria": "equipo",
+      "coste": "1000 po",
+      "peso": "0,5 kg",
+      "descripcion": "Los objetos se ven al doble de su tamaño."
+    },
+    {
+      "id": "cerradura",
+      "nombre": "Cerradura",
+      "categoria": "equipo",
+      "coste": "10 po",
+      "peso": "0,5 kg",
+      "descripcion": "Incluye llave. Sin ella, quien sea competente con herramientas de ladrón puede forzarla con una prueba de Destreza CD 15."
+    },
+    {
+      "id": "cesta",
+      "nombre": "Cesta",
+      "categoria": "equipo",
+      "coste": "4 pp",
+      "peso": "1 kg",
+      "descripcion": "Capacidad: 0,06 m³ o 20 kg de equipo."
+    },
+    {
+      "id": "cofre",
+      "nombre": "Cofre",
+      "categoria": "equipo",
+      "coste": "5 po",
+      "peso": "12,5 kg",
+      "descripcion": "Capacidad: 0,3 m³ o 150 kg de equipo."
+    },
+    {
+      "id": "cubo",
+      "nombre": "Cubo",
+      "categoria": "equipo",
+      "coste": "5 pc",
+      "peso": "1 kg",
+      "descripcion": "Capacidad: 12 l de líquido o 0,015 m³ de sólido."
+    },
+    {
+      "id": "cuerda_de_canamo",
+      "nombre": "Cuerda de cáñamo (15 m)",
+      "categoria": "equipo",
+      "coste": "1 po",
+      "peso": "5 kg",
+      "descripcion": "Tiene 2 PG; romperla requiere una prueba de Fuerza CD 17."
+    },
+    {
+      "id": "cuerda_de_seda",
+      "nombre": "Cuerda de seda (15 m)",
+      "categoria": "equipo",
+      "coste": "10 po",
+      "peso": "2,5 kg",
+      "descripcion": "Tiene 2 PG; romperla requiere una prueba de Fuerza CD 17."
+    },
+    {
+      "id": "escalera",
+      "nombre": "Escalera (3 m)",
+      "categoria": "equipo",
+      "coste": "1 pp",
+      "peso": "12,5 kg"
+    },
+    {
+      "id": "espejito_de_acero",
+      "nombre": "Espejito de acero",
+      "categoria": "equipo",
+      "coste": "5 po",
+      "peso": "250 g"
+    },
+    {
+      "id": "esposas",
+      "nombre": "Esposas",
+      "categoria": "equipo",
+      "coste": "2 po",
+      "peso": "3 kg",
+      "descripcion": "Sujetan a una criatura Pequeña o Mediana. Escapar requiere una prueba de Destreza CD 20 y romperlas, una de Fuerza CD 20. Incluyen llave; sin ella, se pueden forzar con herramientas de ladrón y una prueba de Destreza CD 15. Tienen 15 PG."
+    },
+    {
+      "id": "estuche_para_mapa_o_pergamino",
+      "nombre": "Estuche para mapa o pergamino",
+      "categoria": "equipo",
+      "coste": "1 po",
+      "peso": "0,5 kg",
+      "descripcion": "Contiene hasta 10 hojas de papel o 5 de pergamino enrolladas."
+    },
+    {
+      "id": "estuche_para_virotes",
+      "nombre": "Estuche para virotes de ballesta",
+      "categoria": "equipo",
+      "coste": "1 po",
+      "peso": "0,5 kg",
+      "descripcion": "Contiene hasta 20 virotes de ballesta."
+    },
+    {
+      "id": "frasco_o_jarra",
+      "nombre": "Frasco o jarra",
+      "categoria": "equipo",
+      "coste": "2 pc",
+      "peso": "0,5 kg",
+      "descripcion": "Capacidad: 0,5 l de líquido."
+    },
+    {
+      "id": "fuego_de_alquimista",
+      "nombre": "Fuego de alquimista (frasco)",
+      "categoria": "equipo",
+      "coste": "50 po",
+      "peso": "0,5 kg",
+      "descripcion": "Como acción, lo lanzas hasta 20 pies (ataque a distancia como arma improvisada). Si impacta, el objetivo sufre 1d4 de daño de fuego al principio de cada uno de sus turnos, hasta que una criatura use su acción y supere una prueba de Destreza CD 10 para apagar las llamas."
+    },
+    {
+      "id": "garfio_de_escalada",
+      "nombre": "Garfio de escalada",
+      "categoria": "equipo",
+      "coste": "2 po",
+      "peso": "2 kg"
+    },
+    {
+      "id": "jabon",
+      "nombre": "Jabón",
+      "categoria": "equipo",
+      "coste": "2 pc",
+      "peso": "—"
+    },
+    {
+      "id": "jarro_o_cantaro",
+      "nombre": "Jarro o cántaro",
+      "categoria": "equipo",
+      "coste": "2 pc",
+      "peso": "2 kg",
+      "descripcion": "Capacidad: 4 l de líquido."
+    },
+    {
+      "id": "lacre",
+      "nombre": "Lacre",
+      "categoria": "equipo",
+      "coste": "5 pp",
+      "peso": "—"
+    },
+    {
+      "id": "lampara",
+      "nombre": "Lámpara",
+      "categoria": "equipo",
+      "coste": "5 pp",
+      "peso": "0,5 kg",
+      "descripcion": "Luz brillante en un radio de 15 pies y luz tenue otros 30 pies. Arde 6 horas con un frasco de aceite."
+    },
+    {
+      "id": "libro",
+      "nombre": "Libro",
+      "categoria": "equipo",
+      "coste": "25 po",
+      "peso": "2,5 kg"
+    },
+    {
+      "id": "libro_de_conjuros",
+      "nombre": "Libro de conjuros",
+      "categoria": "equipo",
+      "coste": "50 po",
+      "peso": "1,5 kg",
+      "descripcion": "Tomo encuadernado en cuero con 100 páginas de vitela en blanco para escribir conjuros."
+    },
+    {
+      "id": "linterna_de_ojo_de_buey",
+      "nombre": "Linterna de ojo de buey",
+      "categoria": "equipo",
+      "coste": "10 po",
+      "peso": "1 kg",
+      "descripcion": "Luz brillante en un cono de 60 pies y luz tenue otros 60 pies. Arde 6 horas con un frasco de aceite."
+    },
+    {
+      "id": "linterna_sorda",
+      "nombre": "Linterna sorda",
+      "categoria": "equipo",
+      "coste": "5 po",
+      "peso": "1 kg",
+      "descripcion": "Luz brillante en un radio de 30 pies y luz tenue otros 30 pies. Arde 6 horas con un frasco de aceite. Como acción, puedes taparla para que solo dé luz tenue en un radio de 5 pies."
+    },
+    {
+      "id": "lupa",
+      "nombre": "Lupa",
+      "categoria": "equipo",
+      "coste": "100 po",
+      "peso": "—",
+      "descripcion": "Ventaja en las pruebas para tasar o examinar objetos pequeños o muy detallados. Con luz solar, yesca y unos 5 minutos, sirve para encender fuego."
+    },
+    {
+      "id": "manta",
+      "nombre": "Manta",
+      "categoria": "equipo",
+      "coste": "5 pp",
+      "peso": "1,5 kg"
+    },
+    {
+      "id": "martillo",
+      "nombre": "Martillo",
+      "categoria": "equipo",
+      "coste": "1 po",
+      "peso": "1,5 kg"
+    },
+    {
+      "id": "mazo",
+      "nombre": "Mazo",
+      "categoria": "equipo",
+      "coste": "2 po",
+      "peso": "5 kg"
+    },
+    {
+      "id": "mochila",
+      "nombre": "Mochila",
+      "categoria": "equipo",
+      "coste": "2 po",
+      "peso": "2,5 kg",
+      "descripcion": "Capacidad: 0,03 m³ o 15 kg de equipo. Se pueden atar objetos por fuera, como un petate o una cuerda."
+    },
+    {
+      "id": "olla_de_hierro",
+      "nombre": "Olla de hierro",
+      "categoria": "equipo",
+      "coste": "2 po",
+      "peso": "5 kg",
+      "descripcion": "Capacidad: 4 l de líquido."
+    },
+    {
+      "id": "pala",
+      "nombre": "Pala",
+      "categoria": "equipo",
+      "coste": "2 po",
+      "peso": "2,5 kg"
+    },
+    {
+      "id": "palanqueta",
+      "nombre": "Palanqueta",
+      "categoria": "equipo",
+      "coste": "2 po",
+      "peso": "2,5 kg",
+      "descripcion": "Ventaja en las pruebas de Fuerza en las que sirva hacer palanca."
+    },
+    {
+      "id": "papel",
+      "nombre": "Papel (una hoja)",
+      "categoria": "equipo",
+      "coste": "2 pp",
+      "peso": "—"
+    },
+    {
+      "id": "perfume",
+      "nombre": "Perfume (un vial)",
+      "categoria": "equipo",
+      "coste": "5 po",
+      "peso": "—"
+    },
+    {
+      "id": "pergamino",
+      "nombre": "Pergamino (una hoja)",
+      "categoria": "equipo",
+      "coste": "1 pp",
+      "peso": "—"
+    },
+    {
+      "id": "petate",
+      "nombre": "Petate",
+      "categoria": "equipo",
+      "coste": "1 po",
+      "peso": "3,5 kg"
+    },
+    {
+      "id": "pico_de_minero",
+      "nombre": "Pico de minero",
+      "categoria": "equipo",
+      "coste": "2 po",
+      "peso": "5 kg"
+    },
+    {
+      "id": "piedra_de_afilar",
+      "nombre": "Piedra de afilar",
+      "categoria": "equipo",
+      "coste": "1 pc",
+      "peso": "0,5 kg"
+    },
+    {
+      "id": "pinchos_de_hierro",
+      "nombre": "Pinchos de hierro (10)",
+      "categoria": "equipo",
+      "coste": "1 po",
+      "peso": "2,5 kg"
+    },
+    {
+      "id": "piton",
+      "nombre": "Pitón",
+      "categoria": "equipo",
+      "coste": "5 pc",
+      "peso": "125 g"
+    },
+    {
+      "id": "pluma",
+      "nombre": "Pluma (para escribir)",
+      "categoria": "equipo",
+      "coste": "2 pc",
+      "peso": "—"
+    },
+    {
+      "id": "pocion_de_curacion",
+      "nombre": "Poción de curación",
+      "categoria": "equipo",
+      "coste": "50 po",
+      "peso": "250 g",
+      "descripcion": "Quien la bebe recupera 2d4 + 2 PG. Beberla o dársela a otro requiere una acción."
+    },
+    {
+      "id": "polipasto",
+      "nombre": "Polipasto",
+      "categoria": "equipo",
+      "coste": "1 po",
+      "peso": "2,5 kg",
+      "descripcion": "Permite alzar cuatro veces el peso que levantarías normalmente."
+    },
+    {
+      "id": "raciones",
+      "nombre": "Raciones (1 día)",
+      "categoria": "equipo",
+      "coste": "5 pp",
+      "peso": "1 kg",
+      "descripcion": "Comida seca para viajes largos: cecina, fruta deshidratada, galletas y nueces."
+    },
+    {
+      "id": "reloj_de_arena",
+      "nombre": "Reloj de arena",
+      "categoria": "equipo",
+      "coste": "25 po",
+      "peso": "0,5 kg"
+    },
+    {
+      "id": "ropas_comunes",
+      "nombre": "Ropas comunes",
+      "categoria": "equipo",
+      "coste": "5 pp",
+      "peso": "1,5 kg"
+    },
+    {
+      "id": "ropas_de_calidad",
+      "nombre": "Ropas de calidad",
+      "categoria": "equipo",
+      "coste": "15 po",
+      "peso": "3 kg"
+    },
+    {
+      "id": "ropas_de_viaje",
+      "nombre": "Ropas de viaje",
+      "categoria": "equipo",
+      "coste": "2 po",
+      "peso": "2 kg"
+    },
+    {
+      "id": "disfraz",
+      "nombre": "Ropas, disfraz",
+      "categoria": "equipo",
+      "coste": "5 po",
+      "peso": "2 kg"
+    },
+    {
+      "id": "saco",
+      "nombre": "Saco",
+      "categoria": "equipo",
+      "coste": "1 pc",
+      "peso": "250 g",
+      "descripcion": "Capacidad: 0,03 m³ o 15 kg de equipo."
+    },
+    {
+      "id": "saquito_de_componentes",
+      "nombre": "Saquito de componentes",
+      "categoria": "equipo",
+      "coste": "25 po",
+      "peso": "1 kg",
+      "descripcion": "Contiene los componentes materiales necesarios para lanzar conjuros, salvo los que tienen un coste indicado en el conjuro."
+    },
+    {
+      "id": "silbato_de_supervivencia",
+      "nombre": "Silbato de supervivencia",
+      "categoria": "equipo",
+      "coste": "5 pc",
+      "peso": "—"
+    },
+    {
+      "id": "tienda",
+      "nombre": "Tienda para dos personas",
+      "categoria": "equipo",
+      "coste": "2 po",
+      "peso": "10 kg"
+    },
+    {
+      "id": "tinta",
+      "nombre": "Tinta (frasco de 30 ml)",
+      "categoria": "equipo",
+      "coste": "10 po",
+      "peso": "—"
+    },
+    {
+      "id": "tiza",
+      "nombre": "Tiza (1 trozo)",
+      "categoria": "equipo",
+      "coste": "1 pc",
+      "peso": "—"
+    },
+    {
+      "id": "trampa_para_cazar",
+      "nombre": "Trampa para cazar",
+      "categoria": "equipo",
+      "coste": "5 po",
+      "peso": "12,5 kg",
+      "descripcion": "Se arma con una acción. Quien pise la placa debe superar una salvación de Destreza CD 13 o sufre 1d4 de daño perforante y deja de moverse; queda sujeto por la cadena (normalmente, 3 pies). Liberarse a uno mismo o a otro requiere una acción y una prueba de Fuerza CD 13; cada fallo causa 1 de daño perforante al atrapado."
+    },
+    {
+      "id": "tunica",
+      "nombre": "Túnica",
+      "categoria": "equipo",
+      "coste": "1 po",
+      "peso": "2 kg"
+    },
+    {
+      "id": "utensilios_de_cocina",
+      "nombre": "Utensilios de cocina",
+      "categoria": "equipo",
+      "coste": "2 pp",
+      "peso": "0,5 kg",
+      "descripcion": "Caja de hojalata con copa y cubiertos; sus dos mitades sirven de sartén y de plato."
+    },
+    {
+      "id": "utiles_de_escalada",
+      "nombre": "Útiles de escalada",
+      "categoria": "equipo",
+      "coste": "25 po",
+      "peso": "6 kg",
+      "descripcion": "Como acción, te anclas: no puedes caer más de 25 pies desde el anclaje ni subir más de 25 pies sin desanclarte."
+    },
+    {
+      "id": "utiles_de_sanador",
+      "nombre": "Útiles de sanador",
+      "categoria": "equipo",
+      "coste": "5 po",
+      "peso": "1,5 kg",
+      "descripcion": "10 usos. Como acción, gastas un uso para estabilizar a una criatura con 0 PG sin hacer una prueba de Sabiduría (Medicina)."
+    },
+    {
+      "id": "vara",
+      "nombre": "Vara (3 m)",
+      "categoria": "equipo",
+      "coste": "5 pc",
+      "peso": "3,5 kg"
+    },
+    {
+      "id": "vela",
+      "nombre": "Vela",
+      "categoria": "equipo",
+      "coste": "1 pc",
+      "peso": "—",
+      "descripcion": "Luz brillante en un radio de 5 pies y luz tenue otros 5 pies durante 1 hora."
+    },
+    {
+      "id": "veneno_basico",
+      "nombre": "Veneno básico (vial)",
+      "categoria": "equipo",
+      "coste": "100 po",
+      "peso": "—",
+      "descripcion": "Como acción, impregnas un arma cortante o perforante o hasta tres piezas de munición. Durante 1 minuto, quien sea impactado debe superar una salvación de Constitución CD 10 o sufre 1d4 de daño de veneno."
+    },
+    {
+      "id": "vial",
+      "nombre": "Vial",
+      "categoria": "equipo",
+      "coste": "1 po",
+      "peso": "—",
+      "descripcion": "Capacidad: 120 ml de líquido."
+    },
+    {
+      "id": "yesquero",
+      "nombre": "Yesquero",
+      "categoria": "equipo",
+      "coste": "5 pp",
+      "peso": "0,5 kg",
+      "descripcion": "Pedernal, chispero y yesca. Encender una antorcha u otra cosa muy inflamable requiere una acción; cualquier otro fuego, 1 minuto."
+    },
+    {
+      "id": "caja_para_limosnas",
+      "nombre": "Caja para limosnas",
+      "categoria": "equipo",
+      "descripcion": "Incluida en el Paquete de sacerdote. El SRD no le da precio ni peso."
+    },
+    {
+      "id": "incensario",
+      "nombre": "Incensario",
+      "categoria": "equipo",
+      "descripcion": "Incluido en el Paquete de sacerdote. El SRD no le da precio ni peso."
+    },
+    {
+      "id": "incienso",
+      "nombre": "Barra de incienso",
+      "categoria": "equipo",
+      "descripcion": "Incluida en el Paquete de sacerdote y en el equipo del Acólito. El SRD no le da precio ni peso."
+    },
+    {
+      "id": "vestiduras",
+      "nombre": "Vestiduras",
+      "categoria": "equipo",
+      "descripcion": "Incluidas en el Paquete de sacerdote y en el equipo del Acólito. El SRD no le da precio ni peso."
+    },
+    {
+      "id": "devocionario",
+      "nombre": "Devocionario",
+      "categoria": "equipo",
+      "descripcion": "Incluido en el equipo del Acólito. El SRD no le da precio ni peso."
+    },
+    {
+      "id": "rueda_de_oraciones",
+      "nombre": "Rueda de oraciones",
+      "categoria": "equipo",
+      "descripcion": "Incluida en el equipo del Acólito. El SRD no le da precio ni peso."
+    },
+    {
+      "id": "bolsita_de_arena",
+      "nombre": "Bolsita con arena",
+      "categoria": "equipo",
+      "descripcion": "Incluida en el Paquete de erudito. El SRD no le da precio ni peso."
+    },
+    {
+      "id": "cuchillo_pequeno",
+      "nombre": "Cuchillo pequeño",
+      "categoria": "equipo",
+      "descripcion": "Incluido en el Paquete de erudito. El SRD no le da precio ni peso."
+    },
+    {
+      "id": "cordel",
+      "nombre": "Cordel (3 m)",
+      "categoria": "equipo",
+      "descripcion": "Incluido en el Paquete de ladrón. El SRD no le da precio ni peso."
+    },
+    {
+      "id": "herramientas_de_albanil",
+      "nombre": "Herramientas de albañil",
+      "categoria": "herramienta",
+      "subcategoria": "artesano",
+      "coste": "10 po",
+      "peso": "4 kg",
+      "descripcion": "Herramientas de artesano: con competencia, sumas tu bonificador por competencia a las pruebas que hagas con ellas en tareas de su oficio."
+    },
+    {
+      "id": "herramientas_de_alfarero",
+      "nombre": "Herramientas de alfarero",
+      "categoria": "herramienta",
+      "subcategoria": "artesano",
+      "coste": "10 po",
+      "peso": "1,5 kg",
+      "descripcion": "Herramientas de artesano: con competencia, sumas tu bonificador por competencia a las pruebas que hagas con ellas en tareas de su oficio."
+    },
+    {
+      "id": "herramientas_de_carpintero",
+      "nombre": "Herramientas de carpintero",
+      "categoria": "herramienta",
+      "subcategoria": "artesano",
+      "coste": "8 po",
+      "peso": "3 kg",
+      "descripcion": "Herramientas de artesano: con competencia, sumas tu bonificador por competencia a las pruebas que hagas con ellas en tareas de su oficio."
+    },
+    {
+      "id": "herramientas_de_cartografo",
+      "nombre": "Herramientas de cartógrafo",
+      "categoria": "herramienta",
+      "subcategoria": "artesano",
+      "coste": "15 po",
+      "peso": "3 kg",
+      "descripcion": "Herramientas de artesano: con competencia, sumas tu bonificador por competencia a las pruebas que hagas con ellas en tareas de su oficio."
+    },
+    {
+      "id": "herramientas_de_curtidor",
+      "nombre": "Herramientas de curtidor",
+      "categoria": "herramienta",
+      "subcategoria": "artesano",
+      "coste": "5 po",
+      "peso": "2,5 kg",
+      "descripcion": "Herramientas de artesano: con competencia, sumas tu bonificador por competencia a las pruebas que hagas con ellas en tareas de su oficio."
+    },
+    {
+      "id": "herramientas_de_ebanista",
+      "nombre": "Herramientas de ebanista",
+      "categoria": "herramienta",
+      "subcategoria": "artesano",
+      "coste": "1 po",
+      "peso": "2,5 kg",
+      "descripcion": "Herramientas de artesano: con competencia, sumas tu bonificador por competencia a las pruebas que hagas con ellas en tareas de su oficio."
+    },
+    {
+      "id": "herramientas_de_herrero",
+      "nombre": "Herramientas de herrero",
+      "categoria": "herramienta",
+      "subcategoria": "artesano",
+      "coste": "20 po",
+      "peso": "4 kg",
+      "descripcion": "Herramientas de artesano: con competencia, sumas tu bonificador por competencia a las pruebas que hagas con ellas en tareas de su oficio."
+    },
+    {
+      "id": "herramientas_de_joyero",
+      "nombre": "Herramientas de joyero",
+      "categoria": "herramienta",
+      "subcategoria": "artesano",
+      "coste": "25 po",
+      "peso": "1 kg",
+      "descripcion": "Herramientas de artesano: con competencia, sumas tu bonificador por competencia a las pruebas que hagas con ellas en tareas de su oficio."
+    },
+    {
+      "id": "herramientas_de_manitas",
+      "nombre": "Herramientas de manitas",
+      "categoria": "herramienta",
+      "subcategoria": "artesano",
+      "coste": "50 po",
+      "peso": "5 kg",
+      "descripcion": "Herramientas de artesano: con competencia, sumas tu bonificador por competencia a las pruebas que hagas con ellas en tareas de su oficio."
+    },
+    {
+      "id": "herramientas_de_soplador_de_vidrio",
+      "nombre": "Herramientas de soplador de vidrio",
+      "categoria": "herramienta",
+      "subcategoria": "artesano",
+      "coste": "30 po",
+      "peso": "2,5 kg",
+      "descripcion": "Herramientas de artesano: con competencia, sumas tu bonificador por competencia a las pruebas que hagas con ellas en tareas de su oficio."
+    },
+    {
+      "id": "herramientas_de_tejedor",
+      "nombre": "Herramientas de tejedor",
+      "categoria": "herramienta",
+      "subcategoria": "artesano",
+      "coste": "1 po",
+      "peso": "2,5 kg",
+      "descripcion": "Herramientas de artesano: con competencia, sumas tu bonificador por competencia a las pruebas que hagas con ellas en tareas de su oficio."
+    },
+    {
+      "id": "herramientas_de_zapatero",
+      "nombre": "Herramientas de zapatero",
+      "categoria": "herramienta",
+      "subcategoria": "artesano",
+      "coste": "5 po",
+      "peso": "2,5 kg",
+      "descripcion": "Herramientas de artesano: con competencia, sumas tu bonificador por competencia a las pruebas que hagas con ellas en tareas de su oficio."
+    },
+    {
+      "id": "suministros_de_alquimista",
+      "nombre": "Suministros de alquimista",
+      "categoria": "herramienta",
+      "subcategoria": "artesano",
+      "coste": "50 po",
+      "peso": "4 kg",
+      "descripcion": "Herramientas de artesano: con competencia, sumas tu bonificador por competencia a las pruebas que hagas con ellas en tareas de su oficio."
+    },
+    {
+      "id": "suministros_de_caligrafo",
+      "nombre": "Suministros de calígrafo",
+      "categoria": "herramienta",
+      "subcategoria": "artesano",
+      "coste": "10 po",
+      "peso": "2,5 kg",
+      "descripcion": "Herramientas de artesano: con competencia, sumas tu bonificador por competencia a las pruebas que hagas con ellas en tareas de su oficio."
+    },
+    {
+      "id": "suministros_de_cervecero",
+      "nombre": "Suministros de cervecero",
+      "categoria": "herramienta",
+      "subcategoria": "artesano",
+      "coste": "20 po",
+      "peso": "4,5 kg",
+      "descripcion": "Herramientas de artesano: con competencia, sumas tu bonificador por competencia a las pruebas que hagas con ellas en tareas de su oficio."
+    },
+    {
+      "id": "suministros_de_pintor",
+      "nombre": "Suministros de pintor",
+      "categoria": "herramienta",
+      "subcategoria": "artesano",
+      "coste": "10 po",
+      "peso": "2,5 kg",
+      "descripcion": "Herramientas de artesano: con competencia, sumas tu bonificador por competencia a las pruebas que hagas con ellas en tareas de su oficio."
+    },
+    {
+      "id": "utiles_de_cocinero",
+      "nombre": "Útiles de cocinero",
+      "categoria": "herramienta",
+      "subcategoria": "artesano",
+      "coste": "1 po",
+      "peso": "4 kg",
+      "descripcion": "Herramientas de artesano: con competencia, sumas tu bonificador por competencia a las pruebas que hagas con ellas en tareas de su oficio."
+    },
+    {
+      "id": "herramientas_de_ladron",
+      "nombre": "Herramientas de ladrón",
+      "categoria": "herramienta",
+      "subcategoria": "kit",
+      "coste": "25 po",
+      "peso": "0,5 kg",
+      "descripcion": "Lima, ganzúas, espejito con mango metálico, tijeras de punta estrecha y tenazas. Con competencia, sumas tu bonificador por competencia a las pruebas para desarmar trampas o forzar cerraduras."
+    },
+    {
+      "id": "herramientas_de_navegante",
+      "nombre": "Herramientas de navegante",
+      "categoria": "herramienta",
+      "subcategoria": "kit",
+      "coste": "25 po",
+      "peso": "1 kg",
+      "descripcion": "Instrumentos para orientarse en el mar. Con competencia, puedes trazar la ruta de un barco, leer cartas náuticas y sumar tu bonificador por competencia a las pruebas para no perderte en el mar."
+    },
+    {
+      "id": "utiles_de_envenenador",
+      "nombre": "Útiles de envenenador",
+      "categoria": "herramienta",
+      "subcategoria": "kit",
+      "coste": "50 po",
+      "peso": "1 kg",
+      "descripcion": "Viales, productos químicos y equipo para crear venenos. Con competencia, sumas tu bonificador por competencia a las pruebas para fabricar o usar venenos."
+    },
+    {
+      "id": "utiles_de_herborista",
+      "nombre": "Útiles de herborista",
+      "categoria": "herramienta",
+      "subcategoria": "kit",
+      "coste": "5 po",
+      "peso": "1,5 kg",
+      "descripcion": "Cizallas, mortero, bolsas y viales para preparar remedios. Con competencia, sumas tu bonificador por competencia a las pruebas para identificar o aplicar hierbas; hace falta competencia para elaborar antitoxinas y pociones de curación."
+    },
+    {
+      "id": "utiles_para_disfrazarse",
+      "nombre": "Útiles para disfrazarse",
+      "categoria": "herramienta",
+      "subcategoria": "kit",
+      "coste": "25 po",
+      "peso": "1,5 kg",
+      "descripcion": "Maquillaje, tinte para el pelo y pequeños accesorios. Con competencia, sumas tu bonificador por competencia a las pruebas para crear un disfraz."
+    },
+    {
+      "id": "utiles_para_falsificar",
+      "nombre": "Útiles para falsificar",
+      "categoria": "herramienta",
+      "subcategoria": "kit",
+      "coste": "15 po",
+      "peso": "2,5 kg",
+      "descripcion": "Papeles, pergaminos, plumas, tintas, sellos, lacres y láminas de oro y plata. Con competencia, sumas tu bonificador por competencia a las pruebas para falsificar un documento."
+    },
+    {
+      "id": "chirimia",
+      "nombre": "Chirimía",
+      "categoria": "herramienta",
+      "subcategoria": "instrumento",
+      "coste": "2 po",
+      "peso": "0,5 kg",
+      "descripcion": "Con competencia, sumas tu bonificador por competencia a las pruebas para tocar música con él. Los bardos pueden usarlo como canalizador mágico."
+    },
+    {
+      "id": "cuerno",
+      "nombre": "Cuerno",
+      "categoria": "herramienta",
+      "subcategoria": "instrumento",
+      "coste": "3 po",
+      "peso": "1 kg",
+      "descripcion": "Con competencia, sumas tu bonificador por competencia a las pruebas para tocar música con él. Los bardos pueden usarlo como canalizador mágico."
+    },
+    {
+      "id": "dulcemele",
+      "nombre": "Dulcémele",
+      "categoria": "herramienta",
+      "subcategoria": "instrumento",
+      "coste": "25 po",
+      "peso": "5 kg",
+      "descripcion": "Con competencia, sumas tu bonificador por competencia a las pruebas para tocar música con él. Los bardos pueden usarlo como canalizador mágico."
+    },
+    {
+      "id": "flauta",
+      "nombre": "Flauta",
+      "categoria": "herramienta",
+      "subcategoria": "instrumento",
+      "coste": "2 po",
+      "peso": "0,5 kg",
+      "descripcion": "Con competencia, sumas tu bonificador por competencia a las pruebas para tocar música con él. Los bardos pueden usarlo como canalizador mágico."
+    },
+    {
+      "id": "flauta_de_pan",
+      "nombre": "Flauta de pan",
+      "categoria": "herramienta",
+      "subcategoria": "instrumento",
+      "coste": "12 po",
+      "peso": "1 kg",
+      "descripcion": "Con competencia, sumas tu bonificador por competencia a las pruebas para tocar música con él. Los bardos pueden usarlo como canalizador mágico."
+    },
+    {
+      "id": "gaita",
+      "nombre": "Gaita",
+      "categoria": "herramienta",
+      "subcategoria": "instrumento",
+      "coste": "30 po",
+      "peso": "3 kg",
+      "descripcion": "Con competencia, sumas tu bonificador por competencia a las pruebas para tocar música con él. Los bardos pueden usarlo como canalizador mágico."
+    },
+    {
+      "id": "laud",
+      "nombre": "Laúd",
+      "categoria": "herramienta",
+      "subcategoria": "instrumento",
+      "coste": "35 po",
+      "peso": "1 kg",
+      "descripcion": "Con competencia, sumas tu bonificador por competencia a las pruebas para tocar música con él. Los bardos pueden usarlo como canalizador mágico."
+    },
+    {
+      "id": "lira",
+      "nombre": "Lira",
+      "categoria": "herramienta",
+      "subcategoria": "instrumento",
+      "coste": "30 po",
+      "peso": "1 kg",
+      "descripcion": "Con competencia, sumas tu bonificador por competencia a las pruebas para tocar música con él. Los bardos pueden usarlo como canalizador mágico."
+    },
+    {
+      "id": "tambor",
+      "nombre": "Tambor",
+      "categoria": "herramienta",
+      "subcategoria": "instrumento",
+      "coste": "6 po",
+      "peso": "1,5 kg",
+      "descripcion": "Con competencia, sumas tu bonificador por competencia a las pruebas para tocar música con él. Los bardos pueden usarlo como canalizador mágico."
+    },
+    {
+      "id": "viola",
+      "nombre": "Viola",
+      "categoria": "herramienta",
+      "subcategoria": "instrumento",
+      "coste": "30 po",
+      "peso": "0,5 kg",
+      "descripcion": "Con competencia, sumas tu bonificador por competencia a las pruebas para tocar música con él. Los bardos pueden usarlo como canalizador mágico."
+    },
+    {
+      "id": "dados",
+      "nombre": "Dados",
+      "categoria": "herramienta",
+      "subcategoria": "juego",
+      "coste": "1 pp",
+      "peso": "—",
+      "descripcion": "Con competencia, sumas tu bonificador por competencia a las pruebas para jugar."
+    },
+    {
+      "id": "naipes",
+      "nombre": "Naipes",
+      "categoria": "herramienta",
+      "subcategoria": "juego",
+      "coste": "5 pp",
+      "peso": "—",
+      "descripcion": "Con competencia, sumas tu bonificador por competencia a las pruebas para jugar."
+    },
+    {
+      "id": "vehiculos_terrestres",
+      "nombre": "Vehículos terrestres",
+      "categoria": "herramienta",
+      "subcategoria": "vehiculo",
+      "descripcion": "Competencia con vehículos: sumas tu bonificador por competencia a las pruebas para manejarlos. El precio de cada vehículo está en «Monturas y vehículos»."
+    },
+    {
+      "id": "vehiculos_acuaticos",
+      "nombre": "Vehículos acuáticos",
+      "categoria": "herramienta",
+      "subcategoria": "vehiculo",
+      "descripcion": "Competencia con vehículos: sumas tu bonificador por competencia a las pruebas para manejarlos. El precio de cada vehículo está en «Monturas y vehículos»."
+    },
+    {
+      "id": "paquete_de_artista",
+      "nombre": "Paquete de artista",
+      "categoria": "equipo",
+      "subcategoria": "paquete",
+      "coste": "40 po",
+      "contenido": [
+        {
+          "id": "mochila",
+          "cantidad": 1
+        },
+        {
+          "id": "petate",
+          "cantidad": 1
+        },
+        {
+          "id": "disfraz",
+          "cantidad": 2
+        },
+        {
+          "id": "vela",
+          "cantidad": 5
+        },
+        {
+          "id": "raciones",
+          "cantidad": 5
+        },
+        {
+          "id": "cantimplora",
+          "cantidad": 1
+        },
+        {
+          "id": "utiles_para_disfrazarse",
+          "cantidad": 1
+        }
+      ],
+      "descripcion": "Mochila, petate, 2 disfraces, 5 velas, raciones para 5 días, cantimplora y útiles para disfrazarse."
+    },
+    {
+      "id": "paquete_de_diplomatico",
+      "nombre": "Paquete de diplomático",
+      "categoria": "equipo",
+      "subcategoria": "paquete",
+      "coste": "39 po",
+      "contenido": [
+        {
+          "id": "cofre",
+          "cantidad": 1
+        },
+        {
+          "id": "estuche_para_mapa_o_pergamino",
+          "cantidad": 2
+        },
+        {
+          "id": "ropas_de_calidad",
+          "cantidad": 1
+        },
+        {
+          "id": "tinta",
+          "cantidad": 1
+        },
+        {
+          "id": "pluma",
+          "cantidad": 1
+        },
+        {
+          "id": "lampara",
+          "cantidad": 1
+        },
+        {
+          "id": "aceite",
+          "cantidad": 2
+        },
+        {
+          "id": "papel",
+          "cantidad": 5
+        },
+        {
+          "id": "perfume",
+          "cantidad": 1
+        },
+        {
+          "id": "lacre",
+          "cantidad": 1
+        },
+        {
+          "id": "jabon",
+          "cantidad": 1
+        }
+      ],
+      "descripcion": "Cofre, 2 estuches para mapas o pergaminos, ropas de calidad, tinta, pluma, lámpara, 2 frascos de aceite, 5 hojas de papel, un vial de perfume, lacre y jabón."
+    },
+    {
+      "id": "paquete_de_erudito",
+      "nombre": "Paquete de erudito",
+      "categoria": "equipo",
+      "subcategoria": "paquete",
+      "coste": "40 po",
+      "contenido": [
+        {
+          "id": "mochila",
+          "cantidad": 1
+        },
+        {
+          "id": "libro",
+          "cantidad": 1
+        },
+        {
+          "id": "tinta",
+          "cantidad": 1
+        },
+        {
+          "id": "pluma",
+          "cantidad": 1
+        },
+        {
+          "id": "pergamino",
+          "cantidad": 10
+        },
+        {
+          "id": "bolsita_de_arena",
+          "cantidad": 1
+        },
+        {
+          "id": "cuchillo_pequeno",
+          "cantidad": 1
+        }
+      ],
+      "descripcion": "Mochila, un libro de algún saber concreto, tinta, pluma, 10 hojas de pergamino, una bolsita con arena y un cuchillo pequeño."
+    },
+    {
+      "id": "paquete_de_explorador",
+      "nombre": "Paquete de explorador",
+      "categoria": "equipo",
+      "subcategoria": "paquete",
+      "coste": "10 po",
+      "contenido": [
+        {
+          "id": "mochila",
+          "cantidad": 1
+        },
+        {
+          "id": "petate",
+          "cantidad": 1
+        },
+        {
+          "id": "utensilios_de_cocina",
+          "cantidad": 1
+        },
+        {
+          "id": "yesquero",
+          "cantidad": 1
+        },
+        {
+          "id": "antorcha",
+          "cantidad": 10
+        },
+        {
+          "id": "raciones",
+          "cantidad": 10
+        },
+        {
+          "id": "cantimplora",
+          "cantidad": 1
+        },
+        {
+          "id": "cuerda_de_canamo",
+          "cantidad": 1
+        }
+      ],
+      "descripcion": "Mochila, petate, utensilios de cocina, yesquero, 10 antorchas, raciones para 10 días, cantimplora y una cuerda de cáñamo de 15 m atada a un lado."
+    },
+    {
+      "id": "paquete_de_explorador_de_mazmorras",
+      "nombre": "Paquete de explorador de mazmorras",
+      "categoria": "equipo",
+      "subcategoria": "paquete",
+      "coste": "12 po",
+      "contenido": [
+        {
+          "id": "mochila",
+          "cantidad": 1
+        },
+        {
+          "id": "palanqueta",
+          "cantidad": 1
+        },
+        {
+          "id": "martillo",
+          "cantidad": 1
+        },
+        {
+          "id": "piton",
+          "cantidad": 10
+        },
+        {
+          "id": "antorcha",
+          "cantidad": 10
+        },
+        {
+          "id": "yesquero",
+          "cantidad": 1
+        },
+        {
+          "id": "raciones",
+          "cantidad": 10
+        },
+        {
+          "id": "cantimplora",
+          "cantidad": 1
+        },
+        {
+          "id": "cuerda_de_canamo",
+          "cantidad": 1
+        }
+      ],
+      "descripcion": "Mochila, palanqueta, martillo, 10 pitones, 10 antorchas, yesquero, raciones para 10 días, cantimplora y una cuerda de cáñamo de 15 m atada a un lado."
+    },
+    {
+      "id": "paquete_de_ladron",
+      "nombre": "Paquete de ladrón",
+      "categoria": "equipo",
+      "subcategoria": "paquete",
+      "coste": "16 po",
+      "contenido": [
+        {
+          "id": "mochila",
+          "cantidad": 1
+        },
+        {
+          "id": "bolas_de_metal",
+          "cantidad": 1
+        },
+        {
+          "id": "cordel",
+          "cantidad": 1
+        },
+        {
+          "id": "campana",
+          "cantidad": 1
+        },
+        {
+          "id": "vela",
+          "cantidad": 5
+        },
+        {
+          "id": "palanqueta",
+          "cantidad": 1
+        },
+        {
+          "id": "martillo",
+          "cantidad": 1
+        },
+        {
+          "id": "piton",
+          "cantidad": 10
+        },
+        {
+          "id": "linterna_sorda",
+          "cantidad": 1
+        },
+        {
+          "id": "aceite",
+          "cantidad": 2
+        },
+        {
+          "id": "raciones",
+          "cantidad": 5
+        },
+        {
+          "id": "yesquero",
+          "cantidad": 1
+        },
+        {
+          "id": "cantimplora",
+          "cantidad": 1
+        },
+        {
+          "id": "cuerda_de_canamo",
+          "cantidad": 1
+        }
+      ],
+      "descripcion": "Mochila, bolsa con 1000 bolas de metal, 3 m de cordel, campana, 5 velas, palanqueta, martillo, 10 pitones, linterna sorda, 2 frascos de aceite, raciones para 5 días, yesquero, cantimplora y una cuerda de cáñamo de 15 m atada a un lado."
+    },
+    {
+      "id": "paquete_de_sacerdote",
+      "nombre": "Paquete de sacerdote",
+      "categoria": "equipo",
+      "subcategoria": "paquete",
+      "coste": "19 po",
+      "contenido": [
+        {
+          "id": "mochila",
+          "cantidad": 1
+        },
+        {
+          "id": "manta",
+          "cantidad": 1
+        },
+        {
+          "id": "vela",
+          "cantidad": 10
+        },
+        {
+          "id": "yesquero",
+          "cantidad": 1
+        },
+        {
+          "id": "caja_para_limosnas",
+          "cantidad": 1
+        },
+        {
+          "id": "incienso",
+          "cantidad": 2
+        },
+        {
+          "id": "incensario",
+          "cantidad": 1
+        },
+        {
+          "id": "vestiduras",
+          "cantidad": 1
+        },
+        {
+          "id": "raciones",
+          "cantidad": 2
+        },
+        {
+          "id": "cantimplora",
+          "cantidad": 1
+        }
+      ],
+      "descripcion": "Mochila, manta, 10 velas, yesquero, caja para limosnas, 2 barras de incienso, incensario, vestiduras, raciones para 2 días y cantimplora."
+    }
+  ]
+}

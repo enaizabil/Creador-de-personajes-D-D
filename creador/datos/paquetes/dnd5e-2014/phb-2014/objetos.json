@@ -1,1 +1,22 @@
-{}
+{
+  "objetos": [
+    {
+      "id": "ajedrez_de_dragones",
+      "nombre": "Ajedrez de dragones",
+      "categoria": "herramienta",
+      "subcategoria": "juego",
+      "coste": "1 po",
+      "peso": "250 g",
+      "descripcion": "Juego de tablero de estrategia. Con competencia, sumas tu bonificador por competencia a las pruebas para jugar."
+    },
+    {
+      "id": "apuesta_de_los_tres_dragones",
+      "nombre": "Apuesta de los Tres Dragones",
+      "categoria": "herramienta",
+      "subcategoria": "juego",
+      "coste": "1 po",
+      "peso": "—",
+      "descripcion": "Juego de cartas de apuestas. Con competencia, sumas tu bonificador por competencia a las pruebas para jugar."
+    }
+  ]
+}

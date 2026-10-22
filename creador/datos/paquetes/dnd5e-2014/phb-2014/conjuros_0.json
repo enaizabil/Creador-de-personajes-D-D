@@ -1,1 +1,44 @@
-{}
+{
+  "conjuros": [
+    {
+      "id": "amistad",
+      "nombre": "Amistad",
+      "nivel": 0,
+      "escuela": "encantamiento",
+      "listas": [
+        "bardo",
+        "brujo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal",
+      "componentes": "S, M (un poco de maquillaje que te aplicas en la cara al lanzarlo)",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Ventaja en las pruebas de Carisma dirigidas a una criatura a tu elección que no te sea hostil. Al acabar, la criatura se da cuenta de que la has manipulado con magia y se vuelve hostil contigo.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "guardia_de_cuchillas",
+      "nombre": "Guardia de cuchillas",
+      "nivel": 0,
+      "escuela": "abjuracion",
+      "listas": [
+        "bardo",
+        "brujo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal",
+      "componentes": "V, S",
+      "duracion": "1 asalto",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Hasta el final de tu siguiente turno tienes resistencia al daño contundente, cortante y perforante de los ataques con armas.",
+      "fuente": "PHB 2014"
+    }
+  ]
+}

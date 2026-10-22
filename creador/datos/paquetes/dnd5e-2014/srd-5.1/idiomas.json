@@ -1,1 +1,136 @@
-{}
+{
+  "idiomas": [
+    {
+      "id": "comun",
+      "nombre": "Común",
+      "tipo": "estandar",
+      "escritura": "Común",
+      "hablantes": "Humanos"
+    },
+    {
+      "id": "elfico",
+      "nombre": "Elfo",
+      "tipo": "estandar",
+      "escritura": "Elfo",
+      "hablantes": "Elfos"
+    },
+    {
+      "id": "enano",
+      "nombre": "Enano",
+      "tipo": "estandar",
+      "escritura": "Enano",
+      "hablantes": "Enanos"
+    },
+    {
+      "id": "gigante",
+      "nombre": "Gigante",
+      "tipo": "estandar",
+      "escritura": "Enano",
+      "hablantes": "Ogros, gigantes"
+    },
+    {
+      "id": "gnomo",
+      "nombre": "Gnomo",
+      "tipo": "estandar",
+      "escritura": "Enano",
+      "hablantes": "Gnomos"
+    },
+    {
+      "id": "goblin",
+      "nombre": "Goblin",
+      "tipo": "estandar",
+      "escritura": "Enano",
+      "hablantes": "Trasgos"
+    },
+    {
+      "id": "mediano",
+      "nombre": "Mediano",
+      "tipo": "estandar",
+      "escritura": "Común",
+      "hablantes": "Medianos"
+    },
+    {
+      "id": "orco",
+      "nombre": "Orco",
+      "tipo": "estandar",
+      "escritura": "Enano",
+      "hablantes": "Orcos"
+    },
+    {
+      "id": "abisal",
+      "nombre": "Abisal",
+      "tipo": "exotico",
+      "escritura": "Infernal",
+      "hablantes": "Demonios"
+    },
+    {
+      "id": "celestial",
+      "nombre": "Celestial",
+      "tipo": "exotico",
+      "escritura": "Celestial",
+      "hablantes": "Celestiales"
+    },
+    {
+      "id": "draconico",
+      "nombre": "Dracónico",
+      "tipo": "exotico",
+      "escritura": "Dracónico",
+      "hablantes": "Dragones, dracónidos"
+    },
+    {
+      "id": "habla_profunda",
+      "nombre": "Habla de las profundidades",
+      "tipo": "exotico",
+      "escritura": "—",
+      "hablantes": "Aboleths, mantos",
+      "descripcion": "No tiene escritura."
+    },
+    {
+      "id": "infernal",
+      "nombre": "Infernal",
+      "tipo": "exotico",
+      "escritura": "Infernal",
+      "hablantes": "Diablos"
+    },
+    {
+      "id": "infracomun",
+      "nombre": "Infracomún",
+      "tipo": "exotico",
+      "escritura": "Elfo",
+      "hablantes": "Mercaderes del inframundo"
+    },
+    {
+      "id": "primordial",
+      "nombre": "Primordial",
+      "tipo": "exotico",
+      "escritura": "Enano",
+      "hablantes": "Elementales",
+      "dialectos": [
+        "Acuano",
+        "Aurano",
+        "Ígneo",
+        "Terrano"
+      ],
+      "descripcion": "Familia de idiomas con un dialecto por cada Plano Elemental; quienes hablan dialectos distintos se entienden entre sí."
+    },
+    {
+      "id": "silvano",
+      "nombre": "Silvano",
+      "tipo": "exotico",
+      "escritura": "Elfo",
+      "hablantes": "Criaturas feéricas"
+    },
+    {
+      "id": "druidico",
+      "nombre": "Druídico",
+      "tipo": "secreto",
+      "descripcion": "Idioma secreto de los druidas. Sirve para dejar mensajes ocultos: quien conoce el idioma los detecta de inmediato; los demás necesitan superar una prueba de Sabiduría (Percepción) CD 15 para notar el mensaje y no pueden descifrarlo sin magia."
+    },
+    {
+      "id": "jerga_de_ladrones",
+      "nombre": "Jerga de ladrones",
+      "tipo": "secreto",
+      "descripcion": "Mezcla de dialecto, argot y código secreto de los pícaros para ocultar mensajes en una conversación normal; transmitir una idea así lleva cuatro veces más tiempo. También incluye signos y símbolos para mensajes breves."
+    }
+  ]
+}
