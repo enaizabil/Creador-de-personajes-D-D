@@ -150,6 +150,7 @@
           "por_nivel": 2
         }
       },
+      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -302,6 +303,7 @@
           ]
         ]
       ],
+      "niveles_completos": 5,
       "niveles": {
         "1": [
           {

@@ -228,6 +228,7 @@
         ],
         "preparados": "nivel"
       },
+      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -492,6 +493,7 @@
           11
         ]
       },
+      "niveles_completos": 5,
       "niveles": {
         "1": [
           {

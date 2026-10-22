@@ -186,6 +186,7 @@
         ],
         "preparados": "nivel"
       },
+      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -420,6 +421,7 @@
         "progresion": "medio",
         "preparados": "mitad_nivel"
       },
+      "niveles_completos": 5,
       "niveles": {
         "1": [
           {

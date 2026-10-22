@@ -158,9 +158,15 @@ class Asistente5e:
             return self.personaje.clases[0].nivel
         return self.extra.get("nivel_inicial", 1)
 
+    def nivel_maximo(self) -> int:
+        """Hasta qué nivel hay datos completos: los de la clase elegida o, sin clase, los de la más completa."""
+        clases = ([self.catalogo.obtener("clases", self.personaje.clases[0].clase)] if self.personaje.clases
+                  else self.catalogo.listar("clases"))
+        return max((c.get("niveles_completos", NIVEL_MAXIMO) for c in clases if c), default=NIVEL_MAXIMO)
+
     def establecer_nivel(self, nivel: int) -> None:
-        if not 1 <= nivel <= NIVEL_MAXIMO:
-            raise ValueError(f"El nivel va de 1 a {NIVEL_MAXIMO}")
+        if not 1 <= nivel <= self.nivel_maximo():
+            raise ValueError(f"El nivel va de 1 a {self.nivel_maximo()} (hasta donde llegan los datos)")
         self.extra["nivel_inicial"] = nivel
         if self.personaje.clases:
             entrada = self.personaje.clases[0]
@@ -206,8 +212,13 @@ class Asistente5e:
         return self._opciones("subclases", {"clase": clase.get("id")})
 
     def elegir_clase(self, id_: str) -> None:
-        self.personaje.clases = [EntradaClase(id_, self.nivel)]
+        """Cambia la clase; si sus datos no llegan al nivel elegido, baja el nivel hasta donde llegan."""
+        clase = self.catalogo.obtener("clases", id_) or {}
+        nivel = min(self.nivel, clase.get("niveles_completos", NIVEL_MAXIMO))
+        self.extra["nivel_inicial"] = nivel
+        self.personaje.clases = [EntradaClase(id_, nivel)]
         self.personaje.conjuros = {}
+        self.personaje.preparados = {}
         self._limpiar()
 
     def elegir_subclase(self, id_: str | None) -> None:

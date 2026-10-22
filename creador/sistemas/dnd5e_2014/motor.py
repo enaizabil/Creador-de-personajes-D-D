@@ -156,6 +156,7 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
                        bool(lanzadores or conjuros_innatos), avisos)
     _avisos_repeticiones(aplicables, catalogo, avisos)
     _avisos_reglas_opcionales(personaje, catalogo, avisos)
+    _avisos_niveles_sin_datos(personaje, catalogo, avisos)
     raza = catalogo.obtener("razas", personaje.raza) if personaje.raza else None
     subraza = catalogo.obtener("subrazas", personaje.subraza) if personaje.subraza else None
     trasfondo = catalogo.obtener("trasfondos", personaje.trasfondo) if personaje.trasfondo else None
@@ -282,6 +283,15 @@ def _avisos_repeticiones(aplicables: list[EfectoAplicado], catalogo: Catalogo, a
             entrada = catalogo.obtener(categoria, id_) or {}
             if not entrada.get("repetible"):
                 avisos.append(f"{texto} {entrada.get('nombre', id_)} está elegida más de una vez")
+
+
+def _avisos_niveles_sin_datos(personaje: Personaje, catalogo: Catalogo, avisos: list[str]) -> None:
+    """Clases a un nivel por encima de los que tienen completos sus datos («niveles_completos»)."""
+    for entrada in personaje.clases:
+        clase = catalogo.obtener("clases", entrada.clase)
+        if clase and entrada.nivel > clase.get("niveles_completos", NIVEL_MAXIMO):
+            avisos.append(f"Los datos de {clase['nombre']} solo llegan a nivel {clase['niveles_completos']}: "
+                          f"faltan los rasgos de los niveles {clase['niveles_completos'] + 1}–{entrada.nivel}")
 
 
 def _avisos_reglas_opcionales(personaje: Personaje, catalogo: Catalogo, avisos: list[str]) -> None:

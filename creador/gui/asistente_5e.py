@@ -145,12 +145,14 @@ class VistaAsistente5e(ctk.CTkFrame):
         fila = ctk.CTkFrame(caja, fg_color="transparent")
         fila.pack(anchor="w", padx=12, pady=12)
         ctk.CTkLabel(fila, text="Nivel inicial:", font=fuente(14, True)).pack(side="left", padx=(0, 10))
-        menu = ctk.CTkOptionMenu(fila, values=[str(n) for n in range(1, 21)], width=80,
+        maximo = self.a.nivel_maximo()
+        menu = ctk.CTkOptionMenu(fila, values=[str(n) for n in range(1, maximo + 1)], width=80,
                                  command=lambda v: (self.a.establecer_nivel(int(v)), self._redibujar()))
         menu.set(str(self.a.nivel))
         menu.pack(side="left")
-        ctk.CTkLabel(fila, text="(los datos de clase llegan, por ahora, hasta nivel 5)",
-                     text_color="gray").pack(side="left", padx=10)
+        if maximo < 20:
+            ctk.CTkLabel(fila, text=f"(los datos de clase llegan, por ahora, hasta nivel {maximo})",
+                         text_color="gray").pack(side="left", padx=10)
 
         interruptores = [("dotes", "Dotes (regla opcional del Manual del Jugador)", True),
                          ("multiclase", "Multiclase (regla opcional del Manual del Jugador)", True),

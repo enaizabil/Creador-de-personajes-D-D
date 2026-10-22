@@ -306,6 +306,9 @@ def _validar_clase(clase: dict) -> list[str]:
     nivel_subclase = clase.get("nivel_subclase", 1)
     if not isinstance(nivel_subclase, int) or not 1 <= nivel_subclase <= 20:
         errores.append("«nivel_subclase» debe estar entre 1 y 20")
+    completos = clase.get("niveles_completos", 20)
+    if not isinstance(completos, int) or not 1 <= completos <= 20:
+        errores.append("«niveles_completos» debe estar entre 1 y 20")
     if "lanzamiento" in clase:
         errores.extend(_validar_lanzamiento(clase["lanzamiento"]))
     if "requisitos_multiclase" in clase:

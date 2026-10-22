@@ -241,3 +241,15 @@ def test_opciones_que_ya_se_tienen_por_otra_via(asistente):
     a.elegir_conjuros("mago", ["mano_de_mago"])
     truco = next(e for e in a.elecciones("raza") if e.clave == "subraza:alto_elfo/truco")
     assert a.conocidas(truco) == {"mano_de_mago"}
+
+
+def test_nivel_limitado_a_los_datos(asistente):
+    a = asistente
+    assert a.nivel_maximo() == 5
+    with pytest.raises(ValueError):
+        a.establecer_nivel(6)
+    a.establecer_nivel(5)
+    a.elegir_clase("guerrero")
+    assert a.personaje.clases[0].nivel == 5
+    a.personaje.clases[0].nivel = 7  # p. ej. un JSON editado a mano
+    assert any("solo llegan a nivel 5" in x for x in a.ficha().avisos)

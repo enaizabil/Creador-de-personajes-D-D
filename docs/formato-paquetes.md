@@ -80,6 +80,7 @@ Ejemplo: un paquete que añade el conjuro *Luz* a la lista del paladín sin rede
 | `competencias` | Efectos que recibe la **clase inicial** (armaduras, armas, elección de habilidades…). |
 | `competencias_multiclase` | Efectos al entrar en la clase por multiclase. |
 | `nivel_subclase` | Nivel en que se elige la subclase. |
+| `niveles_completos` | Hasta qué nivel están los datos de la clase (por defecto 20). El asistente no deja empezar por encima y la ficha avisa si se supera. |
 | `niveles` | `{"1": [efectos], "2": [...], ...}` hasta 20. |
 | `lanzamiento` | Ver abajo. |
 | `requisitos_multiclase` | Requisito (ver §4.1). Guerrero: `{"alguna_caracteristica": {"fue": 13, "des": 13}}`. |
