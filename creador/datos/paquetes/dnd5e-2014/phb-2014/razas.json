@@ -271,6 +271,9 @@
             }
           ]
         }
+      ],
+      "requiere_reglas": [
+        "dotes"
       ]
     }
   ]

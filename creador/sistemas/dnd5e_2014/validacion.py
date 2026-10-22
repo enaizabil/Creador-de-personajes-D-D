@@ -22,6 +22,7 @@ from .constantes import (
     PASIVAS,
     RASGOS_PERFIL,
     RECARGAS,
+    REGLAS_OPCIONALES,
     TAMANOS,
     VALOR_MAXIMO_PERFIL,
 )
@@ -202,8 +203,10 @@ def _validar_rasgo(efecto: dict) -> list[str]:
             errores.extend(comprobar(usos, VARIABLES_EXPRESION, es_expresion=True))
         elif not isinstance(usos, int):
             errores.append("«usos» debe ser un número o una expresión")
-    if efecto.get("recarga") not in (None, *RECARGAS):
-        errores.append(f"«recarga» debe ser una de {', '.join(RECARGAS)}")
+    recarga = efecto.get("recarga")
+    recargas = recarga.values() if isinstance(recarga, dict) else [recarga]
+    if any(r not in (None, *RECARGAS) for r in recargas):
+        errores.append(f"«recarga» debe ser una de {', '.join(RECARGAS)} (o una tabla {{\"nivel\": recarga}})")
     return errores
 
 
@@ -248,6 +251,9 @@ def validar_entrada(categoria: str, entrada: dict) -> list[str]:
         errores.extend(validar_efectos(efectos, ruta))
     if "perfil" in entrada:
         errores.extend(_validar_perfil(entrada["perfil"]))
+    requeridas = entrada.get("requiere_reglas", [])
+    if not isinstance(requeridas, list) or any(r not in REGLAS_OPCIONALES for r in requeridas):
+        errores.append(f"«requiere_reglas» debe ser una lista con: {', '.join(REGLAS_OPCIONALES)}")
     if "niveles" in entrada:
         errores.extend(_validar_niveles(entrada["niveles"]))
 

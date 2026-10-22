@@ -24,6 +24,7 @@ from .constantes import (
     PROGRESIONES_LANZAMIENTO,
     PUNTUACION_MAXIMA,
     TAMANOS,
+    TIPOS_DANO,
 )
 from .ficha import Ataque, Ficha, Lanzador, Rasgo, Tirada, ValorCaracteristica
 
@@ -153,6 +154,8 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
     contexto = {"nivel": nivel, "competencia": competencia, **{f"mod_{c}": m for c, m in mods.items()}}
     _avisos_requisitos(personaje, catalogo, aplicables, puntuaciones, competencias,
                        bool(lanzadores or conjuros_innatos), avisos)
+    _avisos_repeticiones(aplicables, catalogo, avisos)
+    _avisos_reglas_opcionales(personaje, catalogo, avisos)
     raza = catalogo.obtener("razas", personaje.raza) if personaje.raza else None
     subraza = catalogo.obtener("subrazas", personaje.subraza) if personaje.subraza else None
     trasfondo = catalogo.obtener("trasfondos", personaje.trasfondo) if personaje.trasfondo else None
@@ -188,7 +191,7 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
                 + _ataques_desarmados(aplicables, catalogo, mods, competencia, niveles_clase, contexto, avisos),
         rasgos=_rasgos(aplicables, catalogo, niveles_clase, contexto, avisos),
         sentidos=_sentidos(de_tipo("sentido")),
-        resistencias=sorted({e["dano"] for e in de_tipo("resistencia")}),
+        resistencias=sorted({TIPOS_DANO.get(e["dano"], e["dano"]) for e in de_tipo("resistencia")}),
         inmunidades=sorted({e["id"] for e in de_tipo("inmunidad")}),
         espacios_conjuro=espacios,
         magia_pacto=pacto,
@@ -247,8 +250,49 @@ def _rasgos(aplicables: list[EfectoAplicado], catalogo: Catalogo, niveles_clase:
             avisos.append(f"{efecto['nombre']}: {exc}")
             resumen, usos = efecto.get("resumen", ""), None
         rasgos.append(Rasgo(efecto["nombre"], efecto.get("descripcion", ""), aplicado.etiqueta,
-                            resumen, usos, efecto.get("recarga", "")))
+                            resumen, usos, _por_nivel(efecto.get("recarga", ""), variables["nivel_clase"])))
     return rasgos
+
+
+def _por_nivel(valor, nivel: int):
+    """Un valor fijo o una tabla {"nivel": valor} de la que se toma el último umbral alcanzado."""
+    if not isinstance(valor, dict):
+        return valor
+    resultado = ""
+    for umbral, dato in sorted((int(n), v) for n, v in valor.items()):
+        if umbral <= nivel:
+            resultado = dato
+    return resultado
+
+
+def _avisos_repeticiones(aplicables: list[EfectoAplicado], catalogo: Catalogo, avisos: list[str]) -> None:
+    """Competencias que llegan dos veces cuando una es elegida, y dotes tomadas dos veces."""
+    origenes: dict[tuple[str, str], list[EfectoAplicado]] = defaultdict(list)
+    for aplicado in aplicables:
+        if aplicado.tipo == "competencia":
+            origenes[(aplicado.efecto["categoria"], aplicado.efecto["id"])].append(aplicado)
+    for (categoria, id_), lista in origenes.items():
+        elegidas = [a for a in lista if "=" in a.origen]
+        if len(lista) > 1 and elegidas:
+            nombre = _nombre_competencia(categoria, id_, catalogo)
+            avisos.append(f"Competencia repetida con {nombre}: en «{elegidas[-1].etiqueta}» elige otra opción")
+    dotes = [a.efecto["dote"] for a in aplicables if a.tipo == "rasgo" and a.efecto.get("dote")]
+    for id_ in sorted({d for d in dotes if dotes.count(d) > 1}):
+        dote = catalogo.obtener("dotes", id_) or {}
+        if not dote.get("repetible"):
+            avisos.append(f"La dote {dote.get('nombre', id_)} está elegida más de una vez")
+
+
+def _avisos_reglas_opcionales(personaje: Personaje, catalogo: Catalogo, avisos: list[str]) -> None:
+    """Entradas que exigen una regla opcional («requiere_reglas») desactivada en el personaje."""
+    usadas = [("razas", personaje.raza), ("subrazas", personaje.subraza), ("trasfondos", personaje.trasfondo)]
+    for entrada in personaje.clases:
+        usadas += [("clases", entrada.clase), ("subclases", entrada.subclase)]
+    for categoria, id_ in usadas:
+        entrada = catalogo.obtener(categoria, id_) if id_ else None
+        for regla in (entrada or {}).get("requiere_reglas", []):
+            if not personaje.reglas_opcionales.get(regla, True):
+                avisos.append(f"{entrada['nombre']} requiere la regla opcional «{regla}», que está desactivada")
 
 
 def _texto_requisito(requisito: dict) -> str:
@@ -597,7 +641,8 @@ def _ataques(objetos: list[tuple[ObjetoInventario, dict | None]], mods: dict[str
         if not competente:
             notas.append("Sin competencia")
         dano = _formula_dano(arma["dano"], mods[car])
-        ataques.append(Ataque(entrada["nombre"], bono, dano, arma["tipo_dano"], "; ".join(notas)))
+        ataques.append(Ataque(entrada["nombre"], bono, dano, TIPOS_DANO.get(arma["tipo_dano"], arma["tipo_dano"]),
+                              "; ".join(notas)))
     return ataques
 
 
@@ -636,19 +681,23 @@ def _sentidos(efectos: list[dict]) -> dict[str, int]:
     return sentidos
 
 
-def _nombres_competencias(competencias: dict[str, set[str]], catalogo: Catalogo) -> dict[str, list[str]]:
-    def nombre(id_: str, categoria: str) -> str:
-        if id_ in GRUPOS_COMPETENCIA:
-            return GRUPOS_COMPETENCIA[id_]
-        entrada = catalogo.obtener(categoria, id_)
-        return entrada["nombre"] if entrada else id_
+def _nombre_competencia(categoria: str, id_: str, catalogo: Catalogo) -> str:
+    if categoria == "habilidad" and id_ in HABILIDADES:
+        return HABILIDADES[id_][0]
+    if categoria == "salvacion" and id_ in CARACTERISTICAS:
+        return f"salvaciones de {CARACTERISTICAS[id_]}"
+    if id_ in GRUPOS_COMPETENCIA:
+        return GRUPOS_COMPETENCIA[id_]
+    entrada = catalogo.obtener("idiomas" if categoria == "idioma" else "objetos", id_)
+    return entrada["nombre"] if entrada else id_
 
-    return {
-        "armaduras": sorted((nombre(i, "objetos") for i in competencias["armadura"]), key=clave_alfabetica),
-        "armas": sorted((nombre(i, "objetos") for i in competencias["arma"]), key=clave_alfabetica),
-        "herramientas": sorted((nombre(i, "objetos") for i in competencias["herramienta"]), key=clave_alfabetica),
-        "idiomas": sorted((nombre(i, "idiomas") for i in competencias["idioma"]), key=clave_alfabetica),
-    }
+
+def _nombres_competencias(competencias: dict[str, set[str]], catalogo: Catalogo) -> dict[str, list[str]]:
+    def nombres(categoria: str) -> list[str]:
+        return sorted((_nombre_competencia(categoria, i, catalogo) for i in competencias[categoria]), key=clave_alfabetica)
+
+    return {"armaduras": nombres("armadura"), "armas": nombres("arma"),
+            "herramientas": nombres("herramienta"), "idiomas": nombres("idioma")}
 
 
 def _describir_objeto(item: ObjetoInventario, entrada: dict | None) -> str:

@@ -89,6 +89,16 @@ ESCUELAS_MAGIA = {
     "transmutacion": "Transmutación",
 }
 
+# Tipos de daño: id -> nombre del SRD 5.1 en español (en minúscula, como en «daño de fuego»).
+TIPOS_DANO = {
+    "acido": "ácido", "contundente": "contundente", "cortante": "cortante", "perforante": "perforante",
+    "frio": "frío", "fuego": "fuego", "fuerza": "fuerza", "necrotico": "necrótico", "psiquico": "psíquico",
+    "radiante": "radiante", "relampago": "relámpago", "trueno": "trueno", "veneno": "veneno",
+}
+
+# Reglas opcionales del PHB que una entrada puede exigir («requiere_reglas»).
+REGLAS_OPCIONALES = {"dotes": "dotes", "multiclase": "multiclase"}
+
 CATEGORIAS_OBJETO = ("arma", "armadura", "escudo", "herramienta", "municion", "foco", "equipo", "montura", "vehiculo")
 
 # Condiciones que pueden restringir un efecto (campo «condicion»).

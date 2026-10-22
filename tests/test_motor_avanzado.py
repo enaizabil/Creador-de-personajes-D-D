@@ -117,3 +117,36 @@ def test_nivel_de_clase_minimo(sistema, catalogo):
     assert not sistema.efecto_activo(efecto, mago_2)  # nivel 7 de personaje, pero mago 2
     mago_2.clases[1].nivel = 3
     assert sistema.efecto_activo(efecto, mago_2)
+
+
+def test_aviso_de_competencia_repetida(sistema, catalogo):
+    personaje = nuevo_personaje(raza="elfo", clases=[EntradaClase("guerrero")], elecciones={
+        "clase:guerrero:inicial/habilidades": ["percepcion", "atletismo"]})
+    avisos = sistema.calcular(personaje, catalogo).avisos
+    assert any("Competencia repetida con Percepción" in a for a in avisos)
+
+
+def test_aviso_de_dote_repetida(sistema, catalogo):
+    elecciones = {}
+    for nivel in (4, 8):
+        clave = f"clase:guerrero:{nivel}/mejora"
+        elecciones |= {clave: ["dote"], f"{clave}=dote/dote": ["alerta"]}
+    personaje = nuevo_personaje(clases=[EntradaClase("guerrero", 8)], elecciones=elecciones)
+    ficha = sistema.calcular(personaje, catalogo)
+    assert "La dote Alerta está elegida más de una vez" in ficha.avisos
+    assert ficha.iniciativa == 1 + 10  # las dos se aplican; el aviso pide corregirlo
+
+
+def test_regla_opcional_requerida(sistema, catalogo):
+    personaje = nuevo_personaje(raza="elfo", subraza="elfo_con_dotes")
+    assert not any("requiere la regla" in a for a in sistema.calcular(personaje, catalogo).avisos)
+    personaje.reglas_opcionales["dotes"] = False
+    assert "Elfo de prueba con dotes requiere la regla opcional «dotes», que está desactivada" in \
+        sistema.calcular(personaje, catalogo).avisos
+
+
+def test_recarga_que_cambia_con_el_nivel(sistema, catalogo):
+    def recarga(nivel):
+        ficha = sistema.calcular(nuevo_personaje(clases=[EntradaClase("bardo", nivel)]), catalogo)
+        return next(r.recarga for r in ficha.rasgos if r.nombre == "Inspiración de prueba")
+    assert (recarga(4), recarga(5)) == ("largo", "corto")

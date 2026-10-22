@@ -113,3 +113,167 @@ Reglas de la Guía que afectan a la ficha y **aún no están en el motor** (no l
 - Características nuevas: Honor y Cordura.
 - Puntos de conjuro en lugar de espacios.
 - Los conjuros del PHB que no aparecen en la Guía (25 de 28) siguen sin confirmar; solo se confirman «Amistad», «Rayo nauseabundo» y «Corona de la locura».
+
+# Segunda tanda (razas, trasfondos, dotes y clases)
+
+## Razas
+
+30 entradas.
+
+- **Traducción oficial de las subrazas y rasgos del PHB (sin verificar)** (`nombres_phb_razas`): Los nombres de las subrazas son los más probables del Manual del Jugador en español: Enano de las montañas, Elfo de los bosques, Elfo oscuro (drow), Mediano fornido, Gnomo de los bosques y Humano variante. Los de los rasgos también: Máscara de la Naturaleza, Sensibilidad a la Luz Solar, Magia Drow, Resistencia de los Fornidos, Ilusionista Nato y Hablar con Bestias Pequeñas. No he podido comprobar ninguno contra el libro. Hay alternativas posibles, como «Máscara de lo Salvaje» o «Sensibilidad a la Luz del Sol». Si se corrige un nombre, el id se mantiene.
+- **Dragón de latón: «oropel» en el SRD ES** (`draconido_oropel`): La tabla de Linaje Dracónico del SRD ES llama «Oropel» al dragón de latón (brass). He mantenido el id fijado, draconido_laton, pero el nombre es «Dracónido (oropel)» para seguir el SRD. Si se prefiere «latón», basta cambiar el nombre.
+- **Nombre de la subraza humano_estandar** (`nombre_humano_estandar`): El SRD no tiene subraza para el humano. He llamado «Humano» a humano_estandar para que en la ficha aparezca «Humano», no «Humano estándar». En el selector se verán «Humano» y «Humano variante». Si se prefiere «Humano (estándar)», solo hay que cambiar el nombre.
+- **¿Debe el humano variante llevar permiso_dm?** (`humano_variante_permiso`): El PHB presenta el humano variante como opción para campañas con dotes que el DM puede permitir. Por la definición de la guía encajaría con "permiso_dm": true, pero no lo he puesto: el encargo no lo pedía y la interfaz aún no usa ese campo. Su descripción lo menciona. Queda por decidir si se marca o si basta con depender de la regla opcional «dotes».
+- **Forma de los ids de subraza** (`ids_subrazas`): He usado ids que siguen el nombre completo: enano_de_las_colinas, alto_elfo, mediano_piesligeros, gnomo_de_las_rocas, enano_de_las_montanas, elfo_de_los_bosques, elfo_oscuro, mediano_fornido y gnomo_de_los_bosques. El ejemplo de docs/formato-paquetes.md y el paquete de prueba usan enano_colinas y elfo_alto. Ahora mismo ningún archivo real hace referencia a ids de subraza. El eladrín de dmg-2014 apunta a la raza elfo y ya valida.
+- **Tiefling o tiflin** (`tiefling_nombre`): El SRD ES dice «Tiefling» y el id fijado es tiefling, así que el nombre es «Tiefling». En la documentación, el ejemplo y el paquete de prueba usan «tiflin», que probablemente es la forma de una traducción anterior del PHB (sin verificar). No toca ningún dato real.
+- **Idiomas que se pueden elegir como idioma adicional** (`idioma_extra_secretos`): La elección del idioma adicional del humano, el alto elfo y el semielfo excluye druídico y jerga de ladrones: el filtro es tipo estándar o exótico, igual que el del Acólito. El texto dice «de tu elección», pero esos idiomas son secretos de clase. Es una interpretación.
+- **Perfiles del cuestionario** (`perfiles_razas`): Los perfiles son criterio mío. Algunos ejemplos: enano de las colinas {aguante 1, fe 1}, pensando en el clérigo enano clásico; humano {carisma 2, combate 1, saber 1, astucia 1}, sin ningún 3 por ser versátil. Al sumar raza y subraza, alguna puntuación llega a 4 (aguante del enano de las colinas). El validador lo permite porque cada entrada por separado no pasa de 3.
+
+**Limitaciones del motor señaladas:**
+
+- Las ventajas y desventajas condicionales solo están en el texto del rasgo: Resistencia Enana y Resistencia de los Fornidos (salvaciones contra veneno), Linaje Feérico, Valiente, Astucia Gnoma y Sensibilidad a la Luz Solar.
+- Afinidad con la Piedra y Saber del Artífice son una pericia en Historia solo en ciertas pruebas, y no hay efecto para eso. El rasgo muestra el total calculado: +{mod_int+2*competencia}.
+- Afortunado, Aguante Incansable (con usos 1 y recarga larga), Ataques Salvajes, Agilidad de Mediano, Sigiloso por Naturaleza, Máscara de la Naturaleza, Trance, Manitas y Hablar con Bestias Pequeñas son solo texto.
+- El efecto «conjuro» no tiene usos, recarga ni nivel de lanzamiento. Reprensión infernal como conjuro de nivel 2, fuego feérico y oscuridad «1 vez por descanso largo» van en rasgos aparte con usos, recarga y nivel_minimo; su CD (8 + competencia + mod_car) está en el resumen, porque conjuros_innatos no la muestra.
+- El filtro de opciones no admite negación. La elección del idioma adicional ofrece también los idiomas que ya se conocen (Común, Elfo…); si se elige uno repetido, se pierde sin aviso.
+- El humano variante ofrece la elección de dote aunque personaje.reglas_opcionales['dotes'] sea False: el motor solo comprueba esa regla en la Mejora de característica.
+- El Ataque de Aliento no aparece como «ataque» de la ficha, porque es un área con salvación. Va como rasgo con el daño y la CD calculados.
+- Tamaño Pequeño (mediano, gnomo): el motor no aplica la desventaja con armas pesadas.
+- ficha.resistencias muestra ids sin tildes (relampago, frio, acido); los nombres tendrá que ponerlos la interfaz.
+
+## Trasfondos
+
+30 entradas.
+
+- **Nombre oficial del trasfondo Sage** (`nombre_sabio_erudito`): He puesto el nombre «Erudito» manteniendo el id sabio. La Guía del DM 2014 en español (fuentes/privado, cap. 9, «Crear un trasfondo») dice: «muy similar al erudito» y «el rasgo Investigador del erudito (como se muestra en el Player's Handbook)». Es la misma línea editorial que el PHB español, así que «Erudito» parece la traducción de 2014; «Sabio» es la de 2024. Sin verificar contra el PHB. Si se confirma «Sabio», solo hay que cambiar el «nombre».
+- **Nombres de los rasgos de trasfondo del PHB (sin verificar)** (`rasgos_trasfondo_nombres`): «Investigador» está confirmado por la Guía del DM española. Bastante probables: Identidad falsa, Contacto criminal, Hospitalidad rústica, Descubrimiento, Posición privilegiada, Rango militar, Secretos de la ciudad y Mala reputación. Dudosos, con la alternativa posible: «A petición del público» (By Popular Demand; ¿Por aclamación popular?), «Miembro del gremio» (Guild Membership; ¿Pertenencia al gremio?), «Trotamundos» (Wanderer; ¿Errante/Viajero?), «Pasaje en barco» (Ship's Passage; ¿Pasaje marítimo?) y «Séquito» (Retainers; ¿Sirvientes/Criados?). Las búsquedas web no dieron ninguna fuente española fiable.
+- **Nombres de trasfondos y variantes** (`nombres_trasfondos_variantes`): He usado Charlatán, Artista, Héroe del pueblo, Artesano gremial, Ermitaño, Forastero y Huérfano, y las variantes Espía, Gladiador, Mercader gremial, Caballero y Pirata. Son los más extendidos, pero no los he podido comprobar en el PHB español. Una fuente web sugería «Embaucador» para Charlatan, sin respaldo. Los nombres de las tablas (especialidades, rutinas, orígenes, negocios del gremio) son traducción propia.
+- **Nombre del rasgo del Acólito** (`refugio_del_fiel`): He usado «Refugio del Fiel», que es el nombre del SRD 5.1 español (la regla pide los nombres del SRD). Es probable que el PHB español de 2014 dijera «Refugio de los fieles».
+- **Filtro de idiomas de los trasfondos** (`idiomas_secretos_excluidos`): Las elecciones de idiomas usan el filtro {"tipo": ["estandar", "exotico"]}, que deja fuera druídico y jerga de ladrones (rasgos de clase). El PHB permite exóticos y, con permiso del DM, también secretos; si se quiere eso, basta con quitar el filtro. Un idioma de homebrew sin «tipo» tampoco saldría en la lista.
+- **Objetos creados en phb-2014/trasfondos.json** (`objetos_nuevos_en_trasfondos`): Los 17 objetos propios de los trasfondos los he puesto en la categoría «objetos» de mi propio archivo, porque el agente de equipo dejó dicho que no los había creado. Si alguien añade luego los mismos ids en objetos.json, habrá un error de id duplicado y habrá que quitar uno. Ids: botella_con_liquido_de_colores, dados_trucados, naipes_marcados, anillo_de_un_duque_imaginario, ropas_oscuras_con_capucha, prenda_de_un_admirador, carta_de_presentacion_del_gremio, estuche_con_notas, pergamino_de_linaje, trofeo_de_caza, carta_de_un_colega_fallecido, amuleto_de_la_suerte, insignia_de_rango, trofeo_de_un_enemigo_caido, mapa_de_la_ciudad_natal, raton_mascota y recuerdo_de_tus_padres. No tienen coste ni peso, porque el PHB no se los da.
+- **Equipo modelado con objetos genéricos** (`equipo_aproximado`): La cabilla del marinero es «garrote», como dice el PHB (belaying pin = club). La «manta de invierno» del ermitaño es «manta», los «dados de hueso» del soldado son «dados» y el traje del artista es «disfraz» («Ropas, disfraz»). El ermitaño recibe 5 po sin bolsa, como en el PHB.
+- **Formato de «tablas» y «variantes»** (`formato_tablas_variantes`): «tablas» es un objeto {clave: [textos]}, con claves sin tildes (engano_favorito, especialidad, rutinas, suceso_decisivo, negocio_del_gremio, vida_de_retiro, origen). «variantes» es una lista de {id, nombre, descripcion}, más un «rasgo» {nombre, resumen, descripcion} cuando la variante cambia el rasgo (caballero y pirata). El validador no comprueba ninguno de los dos campos. Noble, marinero y huérfano no tienen tabla propia en el PHB, así que no llevan «tablas».
+
+**Limitaciones del motor señaladas:**
+
+- Variantes no elegibles: el motor no puede cambiar el rasgo de un trasfondo por el de su variante (Séquito del caballero, Mala reputación del pirata) ni las competencias del mercader gremial (herramientas de navegante o un idioma). Las variantes van solo como texto en «variantes»; la ficha muestra siempre el rasgo estándar.
+- Competencia repetida: la regla de que, si recibes la misma competencia de dos fuentes, eliges otra del mismo tipo no está modelada. La elección de idiomas tampoco excluye los que el personaje ya conoce.
+- Equipo y competencia no están ligados: las herramientas de artesano o el instrumento que se eligen en «equipo» no tienen por qué coincidir con los que se eligen como competencia.
+- El motor no usa «equipo», «monedas», «tablas», «variantes» ni «personalidad» del trasfondo: solo valida los ids del equipo. Llevar el equipo y el dinero al inventario, tirar en las tablas o elegir rasgos de personalidad le toca a la interfaz.
+- Los rasgos de trasfondo son puramente narrativos (alojamiento gratis, contactos, viajar al doble de rápido por la ciudad, encontrar comida para 6 personas, etc.): van como efecto «rasgo» con resumen, sin ningún cálculo.
+
+## Dotes
+
+42 entradas.
+
+- **Traducción oficial de las dotes del PHB 2014** (`nombres_dotes_sin_verificar`): Sin el PHB ES 2014 no he podido confirmar los nombres. He usado como referencia la traducción oficial de 2024 (aidedd.org/feat/es) cuando la dote existe en las dos ediciones. Sin verificar, con alternativas: Atacante a la Carga (¿«Cargador»?), Combatiente con Dos Armas, Explorador de Mazmorras (no existe en 2024), Resistente (Durable; ¿«Robusto»?), Adepto Elemental (en 2024 «Versado en un elemento»; creo que en 2014 era «Adepto elemental»), Maestro en Armas Pesadas (¿«Maestro en armas grandes»?), Muy Acorazado (¿«Fuertemente acorazado»?), Ligeramente Acorazado, Moderadamente Acorazado, Lingüista (no existe en 2024), Azote de Magos (¿«Asesino de magos» o «Matamagos»?), Tirador de Primera, Matón de Taberna y Lanzador en Combate (¿«Lanzador de guerra»?). Francotirador de Conjuros es el nombre que daba el encargo; en 2024 es «Lanzador preciso». Bastante seguros, porque coinciden con 2024 y con el uso habitual: Acechador, Actor, Adepto Marcial, Afortunado, Alerta, Atacante Salvaje, Atleta, Centinela, Combatiente Montado, Duelista Defensivo, Duro, Experto en Ballestas, Habilidoso, Iniciado en la Magia, Lanzador Ritual, Líder Inspirador, Maestro de Armas, Maestro en Armaduras Medias, Maestro en Armaduras Pesadas, Maestro en Armas de Asta, Maestro en Escudos, Mente Aguda, Móvil, Observador, Resiliente y Sanador. Si se corrige un nombre, el id se mantiene.
+- **Mayúsculas de los nombres** (`mayusculas_dotes`): Pongo mayúscula en las palabras principales («Maestro en Armaduras Medias», «Atacante a la Carga»), siguiendo los ejemplos del encargo («Iniciado en la Magia», «Francotirador de Conjuros», «Adepto Marcial») y el estilo de los rasgos del SRD. La traducción de 2024 y el paquete de prueba escriben solo la inicial en mayúscula («Iniciado en la magia»). Si se prefiere así, basta con cambiar «nombre».
+- **Truco Látigo de espinas (Thorn Whip) ausente en conjuros_0** (`latigo_de_espinas_falta`): Thorn Whip es un truco de druida del PHB 2014 (p. 282, con tirada de ataque), pero no está en srd-5.1 ni en phb-2014/conjuros_0.json: el agente de trucos escribió 26 y el PHB tiene 27. El filtro de Francotirador de Conjuros ya incluye el id latigo_de_espinas, así que funcionará en cuanto se añada con ese id. Si se usa otro, hay que cambiarlo en TRUCOS_DE_ATAQUE (/tmp/claude-0/dotes/generar.py) o en el JSON. Por ahora un druida solo puede elegir Crear llama. El nombre «Látigo de espinas» está sin verificar.
+- **Francotirador de Conjuros: bardo y clérigo** (`francotirador_sin_bardo_clerigo`): La dote permite las listas de bardo, brujo, clérigo, druida, hechicero y mago. En el PHB 2014 ni el bardo ni el clérigo tienen trucos con tirada de ataque: Burla dañina y Llama sagrada piden salvación. Para no ofrecer elecciones vacías, la elección de clase solo da brujo, druida, hechicero y mago; la descripción menciona las seis listas. Si otro paquete añade trucos de ataque a esas listas, hay que ampliar las opciones y la lista de ids.
+- **Adepto Marcial depende de las maniobras** (`maniobras_otro_agente`): La elección usa {"desde": "opciones", "filtro": {"grupo": "maniobra"}}. Hoy no hay ninguna opción con ese grupo, porque las clases aún están vacías, y la ficha avisa de que la elección no tiene opciones. Quien escriba las maniobras debería redactar sus resúmenes sin dar por hecho el d8 ni la escala del Maestro de Batalla: con Adepto Marcial el dado es d6 y la CD es 8 + competencia + FUE o DES, que ya muestra el rasgo de la dote.
+- **Maestro en Armas de Asta y la lanza** (`armas_de_asta_lanza`): He incluido la lanza tanto en el ataque adicional con el otro extremo como en el ataque de oportunidad, y el mismo modificador que el ataque principal. Así lo dice la fe de erratas del PHB (2018) y D&D Beyond. Si la edición española impresa es anterior a esa errata, su texto solo nombraría guja, alabarda y bastón (y pica en el segundo punto).
+- **Habilidoso: lista fija de herramientas** (`habilidoso_lista_estatica`): Para permitir cualquier combinación sin repetir en una sola elección, las 57 opciones (18 habilidades y 39 herramientas de srd-5.1 y phb-2014) se generan con el script como objetos con efectos. Las herramientas que añadan después otros paquetes no saldrán hasta volver a ejecutar /tmp/claude-0/dotes/generar.py.
+- **Lingüista sin idiomas secretos** (`linguista_idiomas_secretos`): La elección filtra por «tipo» estandar o exotico, así que deja fuera el druídico y la jerga de ladrones, que no se aprenden por la vía normal. Es una interpretación razonada; el texto de la dote dice solo «tres idiomas a tu elección».
+- **Errores de dmg-2014** (`dmg_errores_ajenos`): «validar srd-5.1 phb-2014 dmg-2014» da 3 errores: la raza elfo y las clases clerigo y paladin no existen todavía, porque los archivos de clases y razas siguen vacíos. No afectan a las dotes; ninguna referencia mía depende de entradas ajenas, salvo las maniobras ya mencionadas.
+
+**Limitaciones del motor señaladas:**
+
+- Combatiente con Dos Armas: el +1 a la CA con un arma cuerpo a cuerpo en cada mano no se puede modelar, porque no hay ninguna condición de empuñar dos armas. Queda solo en el texto.
+- Maestro en Armaduras Medias: está modelado el máximo de DES 3. La ficha sigue marcando desventaja en Sigilo con armaduras medias que la imponen, porque el motor no permite anular «desventaja_sigilo».
+- Maestro en Armaduras Pesadas: la reducción de 3 al daño contundente, cortante y perforante de armas no mágicas no es una resistencia y no existe un efecto de reducción de daño. Queda solo en el texto.
+- Explorador de Mazmorras: la resistencia al daño de trampas no corresponde a un tipo de daño, así que no puede ir como efecto «resistencia». Las ventajas también quedan en el texto.
+- Matón de Taberna: no hay id ni grupo de competencia para armas improvisadas, así que esa competencia queda en el texto. El ataque sin armas de 1d4 sí está modelado. Un monje con esta dote verá dos líneas de ataque sin armas.
+- Lanzador Ritual: no existe un indicador de «solo como ritual». Los dos conjuros salen como conjuros innatos con su característica, el libro de rituales no se añade al equipo y no se modela copiar más rituales.
+- Iniciado en la Magia: el «1 vez por descanso largo» del conjuro de nivel 1 aparece como usos 1 y recarga larga en el rasgo de la dote, sin relación directa con el conjuro.
+- Adepto Marcial: el dado de superioridad d6 no se suma a los dados del Maestro de Batalla. Es un rasgo aparte con usos 1 y recarga corta.
+- Francotirador de Conjuros: los conjuros no tienen un campo que diga si exigen tirada de ataque. Se filtra con una lista explícita de ids, y el alcance doble y la cobertura quedan en el texto.
+- Lingüista: la CD de los cifrados usa la puntuación de INT, que no es una variable de expresión. El resumen dice «tu puntuación de INT + {competencia}».
+- El motor no impide tomar la misma dote en dos Mejoras de Característica. Solo Adepto Elemental se puede repetir, y con un tipo de daño distinto cada vez, cosa que tampoco se comprueba.
+- Los prerrequisitos se comprueban con las puntuaciones y competencias finales, incluidas las que dan dotes posteriores, y solo generan avisos.
+- Alerta (no te sorprenden), Afortunado, Duelista Defensivo, Centinela, Tirador de Primera, Maestro en Armas Pesadas (−5/+10), Maestro en Escudos, Sanador, Líder Inspirador, Resistente y las demás ventajas situacionales, reacciones y acciones adicionales solo están en el resumen y la descripción, con números calculados cuando se puede.
+
+## Bárbaro+guerrero
+
+31 entradas.
+
+- **Nombres de rasgos del SRD distintos de los del encargo** (`nombres_srd_vs_encargo`): El encargo decía «Sentido del Peligro» y «Ataque Extra», pero el SRD 5.1 en español (pp. 8-9 y 35) dice «Sentir el Peligro» y «Ataque Adicional», en las dos clases. He usado los nombres del SRD, como manda la guía de contenido.
+- **Oro inicial: no está en el SRD y el del bárbaro no es 5d4x10** (`oro_inicial_phb`): La tabla de riqueza inicial por clase solo está en el PHB; he buscado «5d4», «riqueza inicial» y «oro inicial» en el SRD ES sin resultado. Por eso el oro_inicial va en phb-2014 con «modifica»: true. Con solo srd-5.1 cargado, las clases no tienen oro inicial. Los valores son los del PHB 2014: bárbaro 2d4x10 (no 5d4x10, que era el ejemplo del encargo) y guerrero 5d4x10. Si se prefiere tener todo en srd-5.1, basta con mover el campo, pero ya no sería «solo SRD». Conviene que los demás agentes de clases sigan el mismo criterio.
+- **Traducción de la Senda del Guerrero Totémico (sin verificar)** (`nombres_phb_barbaro`): Sin el PHB ES 2014 no he podido confirmar estos nombres: «Senda del Guerrero Totémico» (Path of the Totem Warrior), «Buscador Espiritual» (Spirit Seeker), «Espíritu Tótem» (Totem Spirit) y los animales Oso, Águila y Lobo. Las alternativas posibles son «Buscador de Espíritus» y «Espíritu Totémico». Los ids no cambian aunque se corrijan los nombres.
+- **Traducción del Maestro de Batalla y del Caballero Arcano (sin verificar)** (`nombres_phb_guerrero`): «Maestro de Batalla» y «Caballero Arcano» venían en el encargo. Sin verificar: «Superioridad en Combate» (Combat Superiority), «Estudiante de la Guerra» (Student of War; ¿«Estudioso de la Guerra»?) y «Vínculo con un Arma» (Weapon Bond; ¿«Vínculo con el Arma»?).
+- **Nombres de las 16 maniobras (sin verificar)** (`nombres_maniobras`): Traducciones propias, sin confirmar con el PHB ES 2014:
+- Ataque Amenazador (Menacing Attack)
+- Ataque con Estocada (Lunging Attack)
+- Ataque con Finta (Feinting Attack)
+- Ataque de Barrido (Sweeping Attack)
+- Ataque de Derribo (Trip Attack)
+- Ataque de Empuje (Pushing Attack)
+- Ataque de Maniobra (Maneuvering Attack)
+- Ataque de Precisión (Precision Attack)
+- Ataque Desarmante (Disarming Attack)
+- Ataque Provocador (Goading Attack)
+- Contraataque (Riposte; ¿«Réplica»?)
+- Golpe del Comandante (Commander's Strike)
+- Golpe Distractor (Distracting Strike; ¿«Golpe de Distracción»?)
+- Juego de Pies Evasivo (Evasive Footwork)
+- Parada (Parry)
+- Reagrupar (Rally; ¿«Arenga»?)
+Los ids no cambian aunque cambien los nombres.
+- **Nombres de opciones con prefijo** (`prefijos_opciones`): He seguido la convención del paquete de prueba: los estilos se llaman «Estilo de Combate: Defensa», etc., y las maniobras «Maniobra: Parada», etc. Ese nombre sale en la lista de la elección y como rasgo en la ficha. Los ids no llevan prefijo: defensa, tiro_con_arco, duelo, combate_con_armas_a_dos_manos, combate_con_dos_armas, proteccion, parada, contraataque… Los agentes del paladín y del explorador deben filtrar por {"grupo": "estilo_combate", "clases": "paladin"} o "explorador"; está comprobado que dan los 4 estilos correctos.
+- **Sin rasgo «Senda Primordial» ni «Arquetipo Marcial»** (`sin_rasgo_eleccion_subclase`): No he añadido un rasgo para el momento de elegir la subclase a nivel 3: la subclase se elige con EntradaClase.subclase (nivel_subclase 3) y su nombre ya aparece en «clase_y_nivel». Si los demás agentes ponen ese rasgo en sus clases, habría que añadirlo aquí por coherencia.
+- **Rasgos solo hasta nivel 5** (`alcance_niveles`): Según el encargo, solo hay rasgos hasta nivel 5 y la única mejora de característica es la de nivel 4. Faltan las mejoras de los niveles 8, 12, 16 y 19 del bárbaro y de los 6, 8, 12, 14, 16 y 19 del guerrero, además de los rasgos de nivel 6 en adelante. Lo que escala más allá de nivel 5 dentro de rasgos que ya existen sí está completo: furias y daño por furia, Ataque Adicional, Acción Súbita, dados de superioridad y tablas de lanzamiento del Caballero Arcano.
+- **Errores de dmg-2014 que no son míos** (`dmg_clerigo_paladin`): «validar srd-5.1 phb-2014 dmg-2014» da 2 errores: las subclases dominio_de_la_muerte y rompejuramentos apuntan a las clases clerigo y paladin, que aún no existen porque clases_clerigo_paladin.json sigue vacío ({}). Por lo mismo falla test_paquetes_sin_errores. Desaparecerán cuando el agente de clérigo y paladín escriba su archivo.
+
+**Limitaciones del motor señaladas:**
+
+- Furia: no hay ninguna condición «en furia», así que el daño extra, la resistencia a daño contundente, cortante y perforante y la ventaja en FUE solo están en el resumen del rasgo; no se aplican como efectos.
+- Furia a nivel 20: «usos» solo admite un número entero, así que no puede decir «ilimitadas». Desde nivel 17 la ficha muestra 6 usos; lo de nivel 20 solo está en la descripción.
+- Espíritu Tótem (Oso, Águila y Lobo): todo depende de estar en furia, así que va solo como rasgo de texto. La resistencia a todo salvo el daño psíquico no se puede modelar como efecto.
+- Ataque Temerario, Sentir el Peligro, Frenesí (incluido el nivel de cansancio) y Acción Súbita: ventajas y acciones que el motor no calcula; van como rasgos con usos y recarga cuando los tienen.
+- Estilos Duelo, Combate con Armas a Dos Manos, Combate con Dos Armas y Protección: el motor no tiene bonificador de daño por cómo se empuña el arma ni repeticiones de dados, así que van solo en texto. Defensa (bonificador_ca con con_armadura) y Tiro con Arco (bonificador_ataque a distancia) sí se aplican.
+- Tiro con Arco: el +2 solo afecta a armas de tipo «distancia». Las armas arrojadizas cuerpo a cuerpo lanzadas (jabalina, daga, hacha de mano) no lo reciben en la ficha.
+- Crítico Mejorado: el motor no tiene rango de crítico en los ataques; solo es texto.
+- Ataque Adicional: el número de ataques solo aparece en el resumen. Que no se sume entre clases en un multiclase solo queda en la descripción.
+- Maestro de Batalla: los dados de superioridad son los usos del rasgo (4/5/6, recarga corta) y el tamaño del dado va con escala. Las maniobras que se aprenden a niveles 7, 10 y 15 y el cambio de maniobras no están modelados (fuera del alcance 1-5).
+- Caballero Arcano: el motor no comprueba la restricción de escuela (abjuración o evocación salvo uno de los tres conjuros iniciales y los de niveles 8, 14 y 20) y acepta cualquier conjuro de mago; la regla va en el texto. Los trucos sí pueden ser de cualquier escuela.
+- Buscador Espiritual: los conjuros sentidos_de_bestia y hablar_con_los_animales salen como innatos; que solo se puedan lanzar como ritual va solo en el texto.
+- Vínculo con un Arma: solo texto.
+- Defensa sin Armadura en un multiclase con monje: el motor usa la mejor ca_alternativa. Es razonable, aunque las reglas dicen que el rasgo no se obtiene dos veces.
+
+## Bardo+pícaro
+
+9 entradas.
+
+- **Nombre del rasgo de nivel 2 del bardo** (`bardo_aprendiz_de_mucho_vs_polivalente`): El encargo lo llama «Polivalente», pero el SRD 5.1 oficial en español dice «Aprendiz de Mucho» (tabla «El bardo» y título de la sección, p. 11-12). La guía manda usar el nombre exacto del SRD para el contenido del SRD, así que he puesto «Aprendiz de Mucho». «Polivalente» podría ser la traducción del Manual del Jugador de 2014 (sin verificar). Si se prefiere ese nombre, solo hay que cambiar el «nombre» del rasgo, sin tocar ids.
+- **Tabla de trucos del Embaucador Arcano** (`embaucador_trucos_mano_de_mago`): El PHB da 3 trucos conocidos (4 a nivel 10), y uno de ellos es obligatoriamente mano de mago. El motor solo usa trucos_conocidos como límite de los trucos que elige el jugador, y mano de mago se concede aparte como siempre preparado. Por eso la tabla dice 2 (3 a nivel 10): así el total sale 3 y 4, como en el libro. Si el jugador mete también mano_de_mago entre sus conjuros elegidos, el motor avisa de que sobra un truco, y eso es correcto. Si se prefiere copiar la tabla del libro tal cual (3/4), habría que quitar el efecto siempre_preparado y dejar que el jugador elija mano de mago a mano.
+- **Traducción oficial de rasgos solo del PHB** (`phb_nombres_rasgos_sin_verificar`): «Colegio del Valor» y «Embaucador Arcano» están confirmados en la Guía del DM en español. Los nombres de algunos rasgos no los he podido confirmar y son los más probables (sin verificar): «Inspiración en Combate» (Combat Inspiration); «Competencias Adicionales» para Valor y Asesino (Bonus Proficiencies; es el mismo nombre que usa el SRD para el Colegio del Conocimiento); «Asesinar» (Assassinate); y sobre todo «Juego de Manos con Mano de Mago» (Mage Hand Legerdemain), del que tengo menos certeza. También podría ser algo como «Prestidigitación con mano de mago».
+- **Páginas del PHB** (`fuente_paginas_phb`): Las subclases del PHB llevan "fuente": "PHB 2014" sin número de página, igual que las del bárbaro y el guerrero, porque no tengo el PHB en español para confirmar la paginación.
+
+**Limitaciones del motor señaladas:**
+
+- Inspiración Bárdica pasa de recargarse con descanso largo a recargarse también con descanso corto a nivel 5 (Fuente de Inspiración), pero el motor no puede cambiar la «recarga» de un rasgo según el nivel ni quitar un rasgo a partir de un nivel: no existe nivel_clase_maximo ni recarga con escala. Lo he modelado con rasgos por nivel. Inspiración Bárdica (nivel 1) lleva recarga «largo» y su resumen avisa del cambio a nivel 5. Fuente de Inspiración (nivel 5) es un rasgo aparte que lo explica. A nivel 5 o más la ficha sigue mostrando «recarga: largo» en Inspiración Bárdica. Una solución sería permitir «recarga» como escala ({"1": "largo", "5": "corto"}) o un campo nivel_clase_maximo.
+- Pericia (del bardo y del pícaro) debería ofrecer solo las competencias que ya tiene el personaje, pero el filtro de elecciones no puede depender de ellas. Ofrece todas las habilidades (y las herramientas de ladrón en el pícaro), y el motor avisa «Pericia en … sin tener competencia» si se elige mal.
+- Embaucador Arcano: la restricción de escuela (los conjuros de nivel 1 o más deben ser de encantamiento o ilusión, salvo 1 de los 3 iniciales y los de los niveles 8, 14 y 20) no se puede comprobar. Va solo en el texto del rasgo.
+- Embaucador Arcano: mano de mago se concede con un efecto conjuro con clase picaro y siempre_preparado. No hay forma de declarar un truco conocido obligatorio que cuente dentro de la tabla de trucos (ver dudas).
+- Balconero: «trepar no te cuesta movimiento adicional» no es exactamente una velocidad trepando y el efecto velocidad no admite expresiones (igual a caminar). Queda en el texto. El salto extra se muestra calculado ({mod_des} pies).
+- Inspiración en Combate, Palabras Cortantes, Asesinar, Acción Astuta, Esquiva Asombrosa, Ataque Furtivo, Manos Rápidas y Jerga de Ladrones son reglas situacionales. Van como rasgos con resumen calculado (escalas de dados, CD y ataque), sin más efecto mecánico posible.
+
+## Clérigo+paladín
+
+12 entradas.
+
+- **Nombres de las subclases del PHB (sin verificar)** (`nombres_phb_subclases`): No tengo el PHB 2014 en español para confirmar estos nombres: Dominio del Conocimiento, Dominio de la Luz, Dominio de la Naturaleza, Dominio de la Tempestad, Dominio de la Guerra, Juramento de los Antiguos y Juramento de Venganza. Trickery va como «Dominio de la Superchería», como pedía la tarea (id dominio_de_la_supercheria); otra traducción posible es «Dominio del Engaño», que choca con la habilidad Engaño.
+- **Nombres de los rasgos del PHB (sin verificar)** (`nombres_phb_rasgos`): Están traducidos de memoria, con las mayúsculas del SRD: Bendiciones del Conocimiento; Conocimiento de las Eras; Truco Adicional; Destello Protector; Resplandor del Alba (Radiance of the Dawn); Acólito de la Naturaleza; Hechizar Animales y Plantas; Competencias Adicionales; Ira de la Tormenta; Ira Destructiva; Bendición del Embaucador; Invocar Duplicidad; Sacerdote de Guerra; Golpe Guiado; Ira de la Naturaleza; Expulsar a los Infieles; Abjurar Enemigo; Voto de Enemistad. Todos van precedidos de «Canalizar Divinidad: » cuando corresponde. Hay que revisarlos cuando esté el PHB.
+- **La tarea usa nombres que difieren del SRD en español** (`nombres_srd_vs_tarea`): Usé los nombres del SRD en español: «Sentidos Divinos» (la tarea decía Sentido Divino), «Ataque Adicional» (decía Ataque Extra) y «Juramento de Entrega», con id juramento_de_entrega (decía Devoción). Si se prefiere otro id para el juramento, hay que decidirlo antes de que algo lo referencie; hoy no lo referencia nada.
+- **CD de Ira de la Tormenta** (`cd_ira_tormenta`): El PHB no indica la CD de la salvación de DES. Usé la CD de conjuros de clérigo ({8+competencia+mod_sab}), que es lo que recuerdo de la Sage Advice; no lo he podido comprobar.
+- **Truco de druida del Acólito de la Naturaleza** (`truco_acolito_naturaleza`): Lo modelé como conjuro siempre preparado del clérigo (se lanza con SAB), igual que el Segador del Dominio de la Muerte de dmg-2014. Recuerdo que la Sage Advice dice que cuenta como conjuro de clérigo, pero no lo he podido comprobar.
+- **Páginas del PHB** (`fuente_phb_paginas`): Las subclases del PHB llevan «fuente»: «PHB 2014» sin página, igual que las del agente bárbaro/guerrero, porque no puedo confirmar la paginación española. Las del SRD sí llevan página, comprobada en el PDF: clérigo p. 21, Vida p. 23, paladín p. 48, Entrega p. 51.
+
+**Limitaciones del motor señaladas:**
+
+- Equipo inicial del clérigo: el SRD pone el martillo de guerra y la cota de malla con «(si eres competente)». El formato de equipo no admite esa condición, así que esas alternativas se ofrecen siempre.
+- Salud Divina: la inmunidad a enfermedades usa el efecto «inmunidad» con id «enfermedades». La enfermedad no es una condición ni un tipo de daño, así que el id es libre y la ficha lo muestra tal cual.
+- Canalizar Divinidad en multiclase clérigo/paladín: cada clase muestra su propio rasgo con usos. Por las reglas, los usos no se suman, y el motor no tiene reserva compartida. Las opciones de cada dominio o juramento salen como rasgos sin usos; los usos se cuentan en el rasgo general «Canalizar Divinidad».
+- Truco Adicional (luz, Dominio de la Luz): el motor no puede comprobar «si no lo conocías ya». Si el jugador también elige luz como truco, aparece dos veces y no hay aviso.
+- Efectos situacionales o activables que quedan solo en el texto del rasgo: Discípulo de la Vida, Preservar Vida, Castigo Divino, Arma Sagrada (bonificador temporal), Destello Protector, Ira de la Tormenta, Ira Destructiva, Sacerdote de Guerra (ataque extra), Golpe Guiado (+10), Voto de Enemistad, Abjurar Enemigo, Ataque Adicional (número de ataques) y la competencia temporal de Conocimiento de las Eras.
+- Imponer las Manos: la reserva aparece solo en el resumen ({nivel_clase*5}); el motor no lleva la cuenta de una reserva de puntos gastables.
+- Elecciones de idiomas (Bendiciones del Conocimiento): el motor ofrece también idiomas que el personaje ya conoce y no avisa si se repiten.

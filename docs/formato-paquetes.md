@@ -44,6 +44,8 @@ Cada archivo es un objeto `{"categoria": [entradas]}`. Un archivo puede mezclar 
 
 Categorías: `razas`, `subrazas`, `clases`, `subclases`, `trasfondos`, `dotes`, `opciones`, `conjuros`, `objetos`, `idiomas`.
 
+Cualquier entrada puede llevar `"requiere_reglas": ["dotes"]` (o `"multiclase"`) si solo existe con esa regla opcional del PHB, como el humano variante: si el personaje la tiene desactivada, el motor avisa.
+
 Cualquier entrada puede llevar `"permiso_dm": true` si el libro la presenta como opción que el DM debe autorizar (p. ej. el Rompejuramentos).
 
 Toda entrada necesita `id` (texto, sin espacios, en minúsculas y sin tildes: `enano_colinas`) y `nombre`. Puede llevar `descripcion` y `fuente` (p. ej. `"PHB p. 20"`).
@@ -230,7 +232,7 @@ Cualquier efecto (también una elección) admite `nivel_minimo`: solo se aplica 
 
 ### 5.1 Rasgos con valores calculados
 
-`resumen` es la línea corta de la ficha y puede llevar `{expresiones}`; `usos` es un número o una expresión; `recarga` es `corto` o `largo`; `escala` es una tabla `{"nivel": valor}` (se toma el último umbral alcanzado) que se usa como `{escala}`.
+`resumen` es la línea corta de la ficha y puede llevar `{expresiones}`; `usos` es un número o una expresión; `recarga` es `corto` o `largo`, o una tabla por nivel (`{"1": "largo", "5": "corto"}`, como la Inspiración Bárdica con Fuente de Inspiración); `escala` es una tabla `{"nivel": valor}` (se toma el último umbral alcanzado) que se usa como `{escala}`.
 
 ```json
 {"tipo": "rasgo", "nombre": "Ataque Furtivo", "resumen": "+{escala} de daño una vez por turno",

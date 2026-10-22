@@ -290,7 +290,10 @@
             "resumen": "acción adicional: una criatura que no seas tú, que te oiga y esté a 60 pies o menos, gana un dado {escala} para sumarlo a una prueba de característica, tirada de ataque o salvación en los próximos 10 minutos; se recupera con descanso largo (desde nivel 5 de bardo, también corto: Fuente de Inspiración)",
             "descripcion": "Como acción adicional, eliges a una criatura que no seas tú, que pueda oírte y esté a 60 pies o menos, y le das un dado de Inspiración Bárdica. Una vez en los 10 minutos siguientes, puede tirarlo y sumarlo a una prueba de característica, tirada de ataque o tirada de salvación, incluso después de ver el d20 pero antes de saber si tiene éxito. Nadie puede tener más de un dado de Inspiración Bárdica a la vez. Usos: tu modificador por Carisma (mínimo 1); los recuperas tras un descanso largo. El dado es d6, d8 a nivel 5, d10 a nivel 10 y d12 a nivel 15.",
             "usos": "max(1,mod_car)",
-            "recarga": "largo",
+            "recarga": {
+              "1": "largo",
+              "5": "corto"
+            },
             "escala": {
               "1": "1d6",
               "5": "1d8",
