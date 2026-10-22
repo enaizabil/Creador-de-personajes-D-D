@@ -39,6 +39,23 @@
       "concentracion": false,
       "resumen": "Hasta el final de tu siguiente turno tienes resistencia al daño contundente, cortante y perforante de los ataques con armas.",
       "fuente": "PHB 2014"
+    },
+    {
+      "id": "latigo_de_espinas",
+      "nombre": "Látigo de espinas",
+      "nivel": 0,
+      "escuela": "transmutacion",
+      "listas": [
+        "druida"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "30 pies",
+      "componentes": "V, S, M (un tallo de planta con espinas)",
+      "duracion": "Instantánea",
+      "ritual": false,
+      "concentracion": false,
+      "fuente": "PHB 2014",
+      "resumen": "Ataque de conjuro cuerpo a cuerpo con un látigo de espinas: 1d6 perforante y, si el objetivo es Grande o menor, lo acercas hasta 10 pies hacia ti. El daño sube a 2d6 (nivel 5), 3d6 (11) y 4d6 (17)."
     }
   ]
 }

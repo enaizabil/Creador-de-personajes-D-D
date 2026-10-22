@@ -1,4 +1,16 @@
 {
+  "clases": [
+    {
+      "id": "monje",
+      "modifica": true,
+      "oro_inicial": "5d4"
+    },
+    {
+      "id": "mago",
+      "modifica": true,
+      "oro_inicial": "4d4x10"
+    }
+  ],
   "subclases": [
     {
       "id": "escuela_de_abjuracion",

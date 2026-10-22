@@ -119,7 +119,6 @@
           ]
         ]
       ],
-      "oro_inicial": "5d4x10",
       "lanzamiento": {
         "caracteristica": "int",
         "progresion": "completo",
@@ -299,7 +298,6 @@
           ]
         ]
       ],
-      "oro_inicial": "5d4x10",
       "niveles": {
         "1": [
           {

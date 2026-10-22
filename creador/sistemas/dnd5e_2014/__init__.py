@@ -62,6 +62,8 @@ class Sistema5e2014(SistemaReglas):
             rasgo = {"tipo": "rasgo", "nombre": entrada["nombre"], **{c: entrada[c] for c in _CAMPOS_RASGO if c in entrada}}
             if efecto["tipo"] == "dote":
                 rasgo.update(nombre=f"Dote: {entrada['nombre']}", dote=entrada["id"])
+            else:
+                rasgo["opcion"] = entrada["id"]
             return [rasgo, *entrada.get("efectos", [])]
         if efecto["tipo"] == "mejora_caracteristica":
             return [self._eleccion_mejora(personaje)]

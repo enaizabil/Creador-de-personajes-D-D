@@ -1,4 +1,16 @@
 {
+  "clases": [
+    {
+      "id": "paladin",
+      "modifica": true,
+      "oro_inicial": "5d4x10"
+    },
+    {
+      "id": "clerigo",
+      "modifica": true,
+      "oro_inicial": "5d4x10"
+    }
+  ],
   "subclases": [
     {
       "id": "dominio_del_conocimiento",

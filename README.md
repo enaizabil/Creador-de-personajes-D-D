@@ -2,14 +2,14 @@
 
 Programa portable para crear personajes de rol, con dos modos (normal y sencillo) y contenido ampliable por paquetes. Primer sistema: **D&D 5ª edición (2014)**.
 
-> **Estado: fase 1 de 6 (arquitectura base).** Están hechos el núcleo, el motor de reglas de 5e y el formato de paquetes. Todavía no hay interfaz gráfica ni datos de juego.
+> **Estado: fases 1 y 2 de 6.** Núcleo, motor de reglas de 5e y datos de 5e 2014 (SRD + Manual del Jugador + Guía del DM) hasta nivel 5. Todavía no hay interfaz gráfica.
 
 ## Hoja de ruta
 
 | Fase | Contenido | Estado |
 |---|---|---|
 | 1 | Núcleo: paquetes, personaje, motor de efectos y elecciones, reglas derivadas de 5e (niveles 1–20) | ✅ |
-| 2 | Datos 5e 2014: SRD 5.1 + PHB (razas, clases, trasfondos, dotes, equipo, conjuros) por fases de nivel | ⏳ |
+| 2 | Datos 5e 2014: SRD 5.1 + PHB + Guía del DM (razas, clases, trasfondos, dotes, equipo, conjuros 0-3) hasta nivel 5 | ✅ (niveles 6-20 pendientes; dudas en `docs/dudas-contenido.md`) |
 | 3 | Modo normal: asistente por pasos con selector de sistema y paquetes | ⏳ |
 | 4 | Modo sencillo: cuestionario de situaciones → raza, clase, trasfondo, características y habilidades | ⏳ |
 | 5 | Salidas: JSON, réplica de la ficha oficial, rellenado del PDF oficial y guía para Nivel20 | ⏳ |

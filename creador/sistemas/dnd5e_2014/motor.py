@@ -276,11 +276,12 @@ def _avisos_repeticiones(aplicables: list[EfectoAplicado], catalogo: Catalogo, a
         if len(lista) > 1 and elegidas:
             nombre = _nombre_competencia(categoria, id_, catalogo)
             avisos.append(f"Competencia repetida con {nombre}: en «{elegidas[-1].etiqueta}» elige otra opción")
-    dotes = [a.efecto["dote"] for a in aplicables if a.tipo == "rasgo" and a.efecto.get("dote")]
-    for id_ in sorted({d for d in dotes if dotes.count(d) > 1}):
-        dote = catalogo.obtener("dotes", id_) or {}
-        if not dote.get("repetible"):
-            avisos.append(f"La dote {dote.get('nombre', id_)} está elegida más de una vez")
+    for campo, categoria, texto in (("dote", "dotes", "La dote"), ("opcion", "opciones", "La opción")):
+        elegidas = [a.efecto[campo] for a in aplicables if a.tipo == "rasgo" and a.efecto.get(campo)]
+        for id_ in sorted({e for e in elegidas if elegidas.count(e) > 1}):
+            entrada = catalogo.obtener(categoria, id_) or {}
+            if not entrada.get("repetible"):
+                avisos.append(f"{texto} {entrada.get('nombre', id_)} está elegida más de una vez")
 
 
 def _avisos_reglas_opcionales(personaje: Personaje, catalogo: Catalogo, avisos: list[str]) -> None:

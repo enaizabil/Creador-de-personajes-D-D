@@ -277,3 +277,77 @@ Los ids no cambian aunque cambien los nombres.
 - Efectos situacionales o activables que quedan solo en el texto del rasgo: Discípulo de la Vida, Preservar Vida, Castigo Divino, Arma Sagrada (bonificador temporal), Destello Protector, Ira de la Tormenta, Ira Destructiva, Sacerdote de Guerra (ataque extra), Golpe Guiado (+10), Voto de Enemistad, Abjurar Enemigo, Ataque Adicional (número de ataques) y la competencia temporal de Conocimiento de las Eras.
 - Imponer las Manos: la reserva aparece solo en el resumen ({nivel_clase*5}); el motor no lleva la cuenta de una reserva de puntos gastables.
 - Elecciones de idiomas (Bendiciones del Conocimiento): el motor ofrece también idiomas que el personaje ya conoce y no avisa si se repiten.
+
+## Druida+explorador
+
+41 entradas (35 en srd-5.1, 6 en phb-2014).
+
+- **Nombres del SRD frente al encargo**: el SRD ES dice «Percepción Primigenia», «Ataque Adicional» y «El Cazador y la Presa»; se usan esos.
+- **Oro inicial**: no está en el SRD; va en phb-2014 con «modifica» (druida 2d4x10, explorador 5d4x10).
+- **Nombres del PHB sin verificar**: Círculo de la Luna, Forma Salvaje de Combate, Formas del Círculo, Señor de las Bestias, Compañero del Explorador.
+- **Infraoscuridad o Underdark**: la Guía del DM ES usa «Underdark (Infraoscuridad en español)»; se usa «Infraoscuridad». El terreno Infraoscuridad (Explorador Nato y Círculo de la Tierra) solo está en el PHB y sus conjuros van de memoria.
+- **Idioma del enemigo predilecto**: bestias y cienos no dan idioma; el resto elige entre estándar y exóticos.
+- **Rasgo «Armaduras y escudos no metálicos»**: nombre propio para mostrar la restricción del druida.
+- **Errata del Compañero del Explorador (2018)**: no incluida (no se sabe si la edición española la recoge).
+- **Grupos de opciones nuevos**: terreno_del_circulo y presa_del_cazador.
+
+**Limitaciones del motor señaladas:**
+
+- Forma Salvaje no sustituye la ficha por la de la bestia.
+- No se comprueba que el druida no lleve armadura de metal.
+- Ventajas de Enemigo Predilecto y la competencia doble de Explorador Nato solo en texto.
+- Conjuros de círculo de niveles 7 y 9 solo en la descripción (los conjuros de nivel 4-5 no existen aún).
+- Sin efecto propio: la bestia compañera, el +1d8 de Azote de Colosos, Ataque Adicional y las elecciones de niveles 6, 10 y 14.
+
+## Hechicero+brujo
+
+52 entradas (47 en srd-5.1: 2 clases, 2 subclases, 8 metamagias, 32 invocaciones y 3 pactos; 5 en phb-2014).
+
+- **Oro inicial** (`oro_inicial`): el SRD no trae la tabla de riqueza inicial; va en phb-2014 con «modifica» (3d4x10 hechicero, 4d4x10 brujo). Clérigo y paladín lo pusieron en srd-5.1: hay que unificar.
+- **Nombres del SRD frente al encargo**: el SRD ES dice «Magia del Pacto», «Beneficio del Pacto» y «Pacto del Grimorio». El PHB ES podría decir «Don del pacto» y «Pacto del tomo» (sin verificar).
+- **Linaje Dracónico**: el SRD ES llama «Resistencia Dracónica» a Draconic Resilience.
+- **Traducciones sin verificar**: «Magia Salvaje», «Oleada de Magia Salvaje», «Mareas del Caos» (¿«Mareas de caos»?), «El Archihada», «Presencia Feérica», «El Primigenio», «Mente Despierta».
+- **Conjuros de nivel 4-5 de los patrones**: aún no existen; solo en texto. Ids sugeridos para cuando existan: escudo_de_fuego, muro_de_fuego, consagrar, golpe_flamigero, dominar_bestia, invisibilidad_mejorada, dominar_persona, apariencia, tentaculos_negros, telequinesis.
+- **Invocaciones con conjuros que faltan** (nivel ≥ 4): Cadenas de Carceri, Esbirros del Caos, Escultor de la Carne, Palabra Aterradora, Susurros Embrujados, Visiones de Reinos Remotos; solo texto.
+- **Armadura de Sombras**: se modela `ca_alternativa` 13 + DES dando por lanzada la armadura de mago (a voluntad).
+- **Opciones solo del PHB**: ninguna; las metamagias, invocaciones y pactos del PHB 2014 están en el SRD 5.1.
+- **Errata del SRD ES**: el texto de trucos del hechicero dice «trucos de druida».
+- **Vista del Diablo**: sentido propio de 120 pies (ve también en oscuridad mágica).
+
+**Limitaciones del motor señaladas:**
+
+- Los prerrequisitos de las invocaciones no se comprueban (se ofrecen las 32 desde nivel 2); los conjuros que dan llevan `nivel_clase_minimo`.
+- La invocación de nivel 5 puede repetir una ya elegida a nivel 2 sin aviso.
+- Los conjuros de invocaciones y pactos salen como siempre preparados, sin distinguir a voluntad, 1 vez por descanso o ritual.
+- Puntos de hechicería, Lanzamiento Flexible y Metamagia solo en texto; el arma del Pacto del Filo no se calcula como ataque.
+- La tabla d100 de Oleada de Magia Salvaje no se incluye (texto protegido del PHB).
+
+## Mago+monje
+
+21 entradas (4 en srd-5.1, 17 en phb-2014).
+
+- **Nombre del rasgo de nivel 5** (`ataque_adicional_nombre`): el SRD ES (p. 46) dice «Ataque Adicional», no «Ataque Extra»; igual que bárbaro y paladín.
+- **Traducción del PHB 2014 del mago, sin verificar** (`nombres_phb_mago`): Custodia Arcana, Presagio, Conjuración Menor, Mirada Hipnótica, Ilusión Menor Mejorada, Alquimia Menor, Cosecha Siniestra (¿«Cosecha Macabra»?). Escuelas y «Experto en X» siguen el patrón del SRD.
+- **Traducción del PHB 2014 del monje, sin verificar** (`nombres_phb_monje`): Camino de la Sombra, Artes Sombrías (¿«Artes de las Sombras»?), Camino de los Cuatro Elementos, Discípulo de los Elementos y las 8 disciplinas (sobre todo Sintonía Elemental, Acometida de los Espíritus del Vendaval, Moldear el Río Fluyente, Golpe de Ceniza Arrolladora).
+- **Látigo de Agua** (`latigo_de_agua_accion_adicional`): acción adicional según la fe de erratas (de memoria).
+- **Característica de los conjuros del monje** (`caracteristica_conjuros_monje`): SAB (el PHB no la fija; criterio de Sage Advice).
+- **Tope de ki de las disciplinas** (`limite_ki_disciplinas`): no se aplica a Puño del Aire Inquebrantable ni a Látigo de Agua; queda abierto.
+- **Recuperación Arcana** (`recuperacion_arcana_dia`): «una vez al día» modelado como 1 uso con recarga larga.
+- **Campo `nivel_monje`** en las disciplinas: lo usa el filtro de la elección; para niveles 6, 11 y 17 habrá que añadir disciplinas y filtrar con una lista.
+- **Conjuración Menor** (`conjuracion_menor_dano`): «desaparece si recibe o inflige daño», de memoria.
+
+**Limitaciones del motor señaladas:**
+
+- El dado de artes marciales no sustituye al daño de las armas de monje (una daga sigue en 1d4); solo escala el ataque sin armas.
+- No se comprueba «empuñar solo armas de monje»; con armadura o escudo no aparece el ataque sin armas normal (1 + FUE).
+- El efecto `velocidad` no admite escala: Movimiento sin Armadura suma +10 fijos (el resumen sí escala).
+- Costes de ki, acciones adicionales y conjuros de disciplina con ki solo en texto; los conjuros de la Sombra y de las disciplinas salen como innatos con SAB.
+- El libro de conjuros del mago no se modela (preparados, rituales).
+- No se lleva la cuenta de Custodia Arcana, Presagio ni Recuperación Arcana.
+- Ilusión Menor Mejorada: no se modela la alternativa si ya conoces ilusión menor.
+
+## Correcciones hechas al integrar
+
+- **Oro inicial**: la tabla de riqueza por clase no está en el SRD ni en la Guía del DM, así que todo el oro inicial va en `phb-2014`. Corregidos dos valores: mago 4d4 × 10 po (no 5d4 × 10) y monje **5d4 po** (sin × 10).
+- **Látigo de espinas**: faltaba (truco del PHB para el druida). Añadido en `phb-2014`; nombre sin verificar.
+- **Opciones de clase repetidas** (p. ej. la misma invocación a nivel 2 y 5): ahora el motor avisa.

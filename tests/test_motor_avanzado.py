@@ -150,3 +150,16 @@ def test_recarga_que_cambia_con_el_nivel(sistema, catalogo):
         ficha = sistema.calcular(nuevo_personaje(clases=[EntradaClase("bardo", nivel)]), catalogo)
         return next(r.recarga for r in ficha.rasgos if r.nombre == "Inspiración de prueba")
     assert (recarga(4), recarga(5)) == ("largo", "corto")
+
+
+def test_aviso_de_opcion_de_clase_repetida(sistema, catalogo):
+    from creador.nucleo.efectos import EfectoAplicado
+    from creador.sistemas.dnd5e_2014 import motor
+
+    rasgo = {"tipo": "rasgo", "nombre": "Estilo de Combate: Defensa", "opcion": "defensa"}
+    avisos = []
+    motor._avisos_repeticiones([EfectoAplicado(rasgo, "clase:guerrero:1/estilo=defensa", "Guerrero 1")], catalogo, avisos)
+    assert avisos == []
+    dos_veces = [EfectoAplicado(rasgo, f"clase:{c}:2/estilo=defensa", c) for c in ("guerrero", "paladin")]
+    motor._avisos_repeticiones(dos_veces, catalogo, avisos)
+    assert avisos == ["La opción Estilo de Combate: Defensa está elegida más de una vez"]
