@@ -1,1 +1,154 @@
-{}
+{
+  "trasfondos": [
+    {
+      "id": "acolito",
+      "nombre": "Acólito",
+      "fuente": "SRD 5.1 p. 61",
+      "descripcion": "Has dedicado tu vida al servicio de un templo consagrado a un dios o a un panteón concretos. Intermedias entre el reino de lo sagrado y el mundo mortal, y realizas rituales religiosos y ofreces sacrificios para que los fieles puedan ser partícipes de la presencia divina.",
+      "perfil": {
+        "fe": 3,
+        "saber": 1,
+        "curacion": 1
+      },
+      "efectos": [
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "perspicacia"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "religion"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "idiomas",
+          "nombre": "Idiomas",
+          "elegir": 2,
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Refugio del Fiel",
+          "resumen": "Sanación y cuidados gratis en templos de tu fe; sus fieles te mantienen con un nivel de vida modesto",
+          "descripcion": "Como acólito, mereces el respeto de quienes profesan tu fe y puedes celebrar las ceremonias religiosas de tu dios. Tus compañeros y tú recibís sanación y cuidados sin coste en templos, santuarios u otros lugares consagrados a tu fe, aunque debéis aportar los componentes materiales de los conjuros. Quienes comparten tu religión te mantienen (solo a ti) con un nivel de vida modesto. Si tienes lazos con un templo concreto, allí tienes tu residencia y puedes pedir ayuda a sus sacerdotes, siempre que el favor no sea peligroso y sigas en buena relación con ellos."
+        }
+      ],
+      "equipo": [
+        [
+          [
+            {
+              "desde": "objetos",
+              "filtro": {
+                "categoria": "foco",
+                "subcategoria": "sagrado"
+              }
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "devocionario"
+            }
+          ],
+          [
+            {
+              "id": "rueda_de_oraciones"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "incienso",
+              "cantidad": 5
+            },
+            {
+              "id": "vestiduras"
+            },
+            {
+              "id": "ropas_comunes"
+            },
+            {
+              "id": "bolsa"
+            }
+          ]
+        ]
+      ],
+      "monedas": {
+        "po": 15
+      },
+      "personalidad": {
+        "rasgos": [
+          "Idolatro a cierto héroe de mi fe, por lo que siempre pongo sus hazañas como ejemplo.",
+          "Soy capaz de lograr la concordia entre los enemigos más acérrimos, empatizando con ellos en mi búsqueda constante de la paz.",
+          "Veo presagios en cada suceso o acción. Los dioses intentan hablarnos, tan solo debemos escuchar.",
+          "Nada puede apagar mi actitud optimista.",
+          "Cito textos sagrados y proverbios, a veces erróneamente, en prácticamente cada situación.",
+          "Soy tolerante (o intolerante) a otras fes y respeto (o condeno) su adoración a otros dioses.",
+          "He disfrutado la comida, bebida y lujos de la alta sociedad típicos de la élite de mi templo. La vida sin comodidades me irrita.",
+          "Llevo tanto tiempo en el templo que tengo muy poca experiencia práctica tratando con quienes no pertenecen a él."
+        ],
+        "ideales": [
+          {
+            "texto": "Tradición. Las tradiciones ancestrales de adoración y sacrificio deben preservarse y respetarse.",
+            "alineamiento": "legal"
+          },
+          {
+            "texto": "Caridad. Siempre trato de ayudar a quienes lo necesitan, sin importar lo que pueda costarme.",
+            "alineamiento": "bueno"
+          },
+          {
+            "texto": "Cambio. Debemos impulsar los cambios que los dioses intentan traer al mundo incesantemente.",
+            "alineamiento": "caotico"
+          },
+          {
+            "texto": "Poder. Confío en que algún día alcanzaré la cima de la jerarquía religiosa de mi fe.",
+            "alineamiento": "legal"
+          },
+          {
+            "texto": "Fe. Confío en que mi dios guiará mis actos. Tengo fe en que, si me esfuerzo, las cosas me irán bien.",
+            "alineamiento": "legal"
+          },
+          {
+            "texto": "Aspiración. Intento mostrarme digno del favor de mi dios al actuar según sus enseñanzas.",
+            "alineamiento": "cualquiera"
+          }
+        ],
+        "vinculos": [
+          "Moriría por recuperar una antigua reliquia de mi fe, que se extravió hace mucho.",
+          "Algún día me vengaré de la corrupta jerarquía del templo, que me tildó de hereje.",
+          "Le debo la vida al sacerdote que me acogió cuando murieron mis padres.",
+          "Todo lo que hago es por la gente humilde.",
+          "Haría lo que fuera por proteger el templo en el que serví.",
+          "Pienso proteger un texto sagrado que mis enemigos consideran herético y quieren destruir."
+        ],
+        "defectos": [
+          "Soy exigente con los demás, pero todavía más conmigo mismo.",
+          "Confío demasiado en los miembros poderosos de la jerarquía de mi templo.",
+          "A veces mi piedad me lleva a confiar ciegamente en quienes profesan mi misma fe.",
+          "Soy de pensamiento inflexible.",
+          "Sospecho de los desconocidos y espero lo peor de ellos.",
+          "En cuanto elijo un objetivo, me obsesiono tanto con él que ignoro los demás aspectos de mi vida."
+        ]
+      }
+    }
+  ]
+}

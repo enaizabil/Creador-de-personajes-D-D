@@ -1,1 +1,277 @@
-{}
+{
+  "subrazas": [
+    {
+      "id": "enano_de_las_montanas",
+      "nombre": "Enano de las montañas",
+      "raza": "enano",
+      "fuente": "PHB 2014",
+      "descripcion": "Enanos fuertes y curtidos de las fortalezas de montaña, acostumbrados a una vida dura y a combatir con armadura.",
+      "perfil": {
+        "combate": 1,
+        "proteccion": 1
+      },
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "fue",
+          "valor": 2
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_medias"
+        }
+      ]
+    },
+    {
+      "id": "elfo_de_los_bosques",
+      "nombre": "Elfo de los bosques",
+      "raza": "elfo",
+      "fuente": "PHB 2014",
+      "descripcion": "Elfos sigilosos e intuitivos de los bosques profundos, rápidos al moverse y expertos en pasar desapercibidos en plena naturaleza.",
+      "perfil": {
+        "naturaleza": 2,
+        "sigilo": 2
+      },
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "sab",
+          "valor": 1
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "espada_corta"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "espada_larga"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "arco_corto"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "arco_largo"
+        },
+        {
+          "tipo": "velocidad",
+          "modo": "caminar",
+          "valor": 35
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Máscara de la Naturaleza",
+          "resumen": "Puedes intentar esconderte aunque solo te oculten ligeramente la vegetación, la lluvia intensa, la nieve, la niebla u otro fenómeno natural."
+        }
+      ]
+    },
+    {
+      "id": "elfo_oscuro",
+      "nombre": "Elfo oscuro (drow)",
+      "raza": "elfo",
+      "fuente": "PHB 2014",
+      "descripcion": "Elfos de la Infraoscuridad: ven mucho más lejos en la oscuridad y tienen magia innata, pero la luz del sol los ciega y entorpece.",
+      "perfil": {
+        "sigilo": 2,
+        "arcano": 1,
+        "astucia": 1
+      },
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "car",
+          "valor": 1
+        },
+        {
+          "tipo": "sentido",
+          "id": "vision_en_la_oscuridad",
+          "nombre": "Visión en la Oscuridad",
+          "alcance": 120
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Sensibilidad a la Luz Solar",
+          "resumen": "Bajo luz solar directa (tú, tu objetivo o lo que intentas ver): desventaja en los ataques y en las pruebas de Sabiduría (Percepción) que dependan de la vista."
+        },
+        {
+          "tipo": "conjuro",
+          "id": "luces_danzantes",
+          "caracteristica": "car"
+        },
+        {
+          "tipo": "conjuro",
+          "id": "fuego_feerico",
+          "caracteristica": "car",
+          "nivel_minimo": 3
+        },
+        {
+          "tipo": "conjuro",
+          "id": "oscuridad",
+          "caracteristica": "car",
+          "nivel_minimo": 5
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Magia Drow",
+          "resumen": "Truco luces danzantes; desde nivel 3, fuego feérico, y desde nivel 5, oscuridad, una vez cada uno por descanso largo. Aptitud mágica: Carisma (CD {8+competencia+mod_car})."
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Magia Drow: fuego feérico",
+          "resumen": "Lanzas fuego feérico sin gastar espacio de conjuro (salvación de Destreza CD {8+competencia+mod_car}).",
+          "usos": 1,
+          "recarga": "largo",
+          "nivel_minimo": 3
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Magia Drow: oscuridad",
+          "resumen": "Lanzas oscuridad sin gastar espacio de conjuro.",
+          "usos": 1,
+          "recarga": "largo",
+          "nivel_minimo": 5
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "estoque"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "espada_corta"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "ballesta_de_mano"
+        }
+      ]
+    },
+    {
+      "id": "mediano_fornido",
+      "nombre": "Mediano fornido",
+      "raza": "mediano",
+      "fuente": "PHB 2014",
+      "descripcion": "Medianos más recios que sus parientes, con cierta resistencia a los venenos que se atribuye a sangre enana.",
+      "perfil": {
+        "aguante": 2
+      },
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "con",
+          "valor": 1
+        },
+        {
+          "tipo": "resistencia",
+          "dano": "veneno"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Resistencia de los Fornidos",
+          "resumen": "Ventaja en las salvaciones contra veneno; resistencia al daño de veneno."
+        }
+      ]
+    },
+    {
+      "id": "gnomo_de_los_bosques",
+      "nombre": "Gnomo de los bosques",
+      "raza": "gnomo",
+      "fuente": "PHB 2014",
+      "descripcion": "Gnomos esquivos de los bosques, con un don natural para las ilusiones y trato con los animales pequeños.",
+      "perfil": {
+        "naturaleza": 2,
+        "astucia": 1,
+        "sigilo": 1
+      },
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "des",
+          "valor": 1
+        },
+        {
+          "tipo": "conjuro",
+          "id": "ilusion_menor",
+          "caracteristica": "int"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Ilusionista Nato",
+          "resumen": "Conoces el truco ilusión menor; tu aptitud mágica para él es la Inteligencia."
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Hablar con Bestias Pequeñas",
+          "resumen": "Con sonidos y gestos puedes hacer entender ideas sencillas a las bestias de tamaño Pequeño o menor."
+        }
+      ]
+    },
+    {
+      "id": "humano_variante",
+      "nombre": "Humano variante",
+      "raza": "humano",
+      "fuente": "PHB 2014",
+      "descripcion": "Variante opcional del humano para campañas con dotes (requiere el visto bueno del DM): en lugar de +1 a todo, +1 a dos características distintas, una habilidad y una dote.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "caracteristicas",
+          "nombre": "Mejora de Característica (+1 a dos distintas)",
+          "elegir": 2,
+          "opciones": {
+            "desde": "caracteristicas"
+          },
+          "aplicar": [
+            {
+              "tipo": "caracteristica",
+              "car": "$opcion",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "tipo": "eleccion",
+          "id": "habilidad",
+          "nombre": "Habilidades",
+          "opciones": {
+            "desde": "habilidades"
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "habilidad",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "eleccion",
+          "id": "dote",
+          "nombre": "Dote",
+          "opciones": {
+            "desde": "dotes"
+          },
+          "aplicar": [
+            {
+              "tipo": "dote",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

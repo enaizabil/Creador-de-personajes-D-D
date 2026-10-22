@@ -1,1 +1,649 @@
-{}
+{
+  "clases": [
+    {
+      "id": "clerigo",
+      "nombre": "Clérigo",
+      "fuente": "SRD 5.1 p. 21",
+      "descripcion": "Intermediario entre los mortales y los dioses: canaliza el poder de su deidad para sanar, proteger y castigar, y su dominio divino marca sus conjuros y poderes.",
+      "perfil": {
+        "fe": 3,
+        "curacion": 2,
+        "proteccion": 1
+      },
+      "dado_golpe": 8,
+      "salvaciones": [
+        "sab",
+        "car"
+      ],
+      "nivel_subclase": 1,
+      "competencias": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_medias"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "escudos"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_sencillas"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "habilidades",
+          "nombre": "Habilidades de clérigo",
+          "elegir": 2,
+          "fuente": "habilidades",
+          "opciones": [
+            "historia",
+            "medicina",
+            "perspicacia",
+            "persuasion",
+            "religion"
+          ],
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "habilidad",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "competencias_multiclase": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_medias"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "escudos"
+        }
+      ],
+      "requisitos_multiclase": {
+        "caracteristicas": {
+          "sab": 13
+        }
+      },
+      "equipo_inicial": [
+        [
+          [
+            {
+              "id": "maza"
+            }
+          ],
+          [
+            {
+              "id": "martillo_de_guerra"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "cota_de_escamas"
+            }
+          ],
+          [
+            {
+              "id": "armadura_de_cuero"
+            }
+          ],
+          [
+            {
+              "id": "cota_de_malla"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "ballesta_ligera"
+            },
+            {
+              "id": "virote",
+              "cantidad": 20
+            }
+          ],
+          [
+            {
+              "desde": "armas",
+              "filtro": {
+                "arma": {
+                  "categoria": "sencilla"
+                }
+              }
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "paquete_de_sacerdote"
+            }
+          ],
+          [
+            {
+              "id": "paquete_de_explorador"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "escudo"
+            },
+            {
+              "desde": "objetos",
+              "filtro": {
+                "categoria": "foco",
+                "subcategoria": "sagrado"
+              }
+            }
+          ]
+        ]
+      ],
+      "oro_inicial": "5d4x10",
+      "lanzamiento": {
+        "caracteristica": "sab",
+        "progresion": "completo",
+        "trucos_conocidos": [
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "preparados": "nivel"
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Lanzamiento de Conjuros",
+            "resumen": "SAB; CD {8+competencia+mod_sab}, ataque +{competencia+mod_sab}; conjuros preparados: {max(1,mod_sab+nivel_clase)}, se cambian tras cada descanso largo (los de dominio no cuentan); rituales si están preparados; canalizador: símbolo sagrado",
+            "descripcion": "Conoces trucos de clérigo según tu nivel y, tras cada descanso largo, preparas tantos conjuros de la lista del clérigo como tu nivel de clérigo + tu modificador por Sabiduría (mínimo uno), de niveles para los que tengas espacios. La Sabiduría es tu aptitud mágica; puedes lanzar como ritual los conjuros preparados que lo permitan y usar un símbolo sagrado como canalizador mágico."
+          }
+        ],
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad",
+            "resumen": "usos: {escala} por descanso corto o largo; CD {8+competencia+mod_sab}; efectos: Expulsar Muertos Vivientes y los de tu dominio",
+            "descripcion": "Canalizas energía divina de tu deidad para crear uno de tus efectos de Canalizar Divinidad: Expulsar Muertos Vivientes y los que te conceda tu dominio. Recuperas los usos tras un descanso corto o largo; a partir del nivel 6 tienes dos usos y a partir del 18, tres. La CD de las salvaciones es la de tus conjuros de clérigo.",
+            "usos": "escala",
+            "recarga": "corto",
+            "escala": {
+              "2": 1,
+              "6": 2,
+              "18": 3
+            }
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Expulsar Muertos Vivientes",
+            "resumen": "acción: cada muerto viviente que pueda verte u oírte a 30 pies o menos hace una salvación de SAB CD {8+competencia+mod_sab}; si falla, queda expulsado 1 minuto o hasta que reciba daño",
+            "descripcion": "Muestras tu símbolo sagrado y rezas una plegaria que condena a los muertos vivientes. Una criatura expulsada debe alejarse de ti todo lo que pueda, no puede acercarse voluntariamente a 30 pies o menos de ti ni llevar a cabo reacciones, y como acción solo puede correr o intentar escapar de un efecto que le impida moverse (o esquivar, si no tiene adónde ir)."
+          }
+        ],
+        "4": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "5": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Destruir Muertos Vivientes",
+            "resumen": "los muertos vivientes de VD {escala} o inferior que fallen la salvación contra Expulsar Muertos Vivientes quedan destruidos al instante",
+            "descripcion": "Cuando un muerto viviente falla la tirada de salvación contra tu Expulsar Muertos Vivientes, se destruye de inmediato si su valor de desafío no supera el umbral de tu nivel de clérigo: VD 1/2 a nivel 5, 1 a nivel 8, 2 a nivel 11, 3 a nivel 14 y 4 a nivel 17.",
+            "escala": {
+              "5": "1/2",
+              "8": "1",
+              "11": "2",
+              "14": "3",
+              "17": "4"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "paladin",
+      "nombre": "Paladín",
+      "fuente": "SRD 5.1 p. 48",
+      "descripcion": "Guerrero sagrado ligado por un juramento a la causa de la justicia: une el dominio de las armas con la magia divina para curar, proteger y castigar el mal.",
+      "perfil": {
+        "proteccion": 3,
+        "fe": 3,
+        "combate": 2,
+        "curacion": 1
+      },
+      "dado_golpe": 10,
+      "salvaciones": [
+        "sab",
+        "car"
+      ],
+      "nivel_subclase": 3,
+      "competencias": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_medias"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_pesadas"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "escudos"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_sencillas"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_marciales"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "habilidades",
+          "nombre": "Habilidades de paladín",
+          "elegir": 2,
+          "fuente": "habilidades",
+          "opciones": [
+            "atletismo",
+            "intimidacion",
+            "medicina",
+            "perspicacia",
+            "persuasion",
+            "religion"
+          ],
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "habilidad",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "competencias_multiclase": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_medias"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "escudos"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_sencillas"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_marciales"
+        }
+      ],
+      "requisitos_multiclase": {
+        "caracteristicas": {
+          "fue": 13,
+          "car": 13
+        }
+      },
+      "equipo_inicial": [
+        [
+          [
+            {
+              "desde": "armas",
+              "filtro": {
+                "arma": {
+                  "categoria": "marcial"
+                }
+              }
+            },
+            {
+              "id": "escudo"
+            }
+          ],
+          [
+            {
+              "desde": "armas",
+              "filtro": {
+                "arma": {
+                  "categoria": "marcial"
+                }
+              },
+              "cantidad": 2
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "jabalina",
+              "cantidad": 5
+            }
+          ],
+          [
+            {
+              "desde": "armas",
+              "filtro": {
+                "arma": {
+                  "categoria": "sencilla",
+                  "tipo": "cuerpo_a_cuerpo"
+                }
+              }
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "paquete_de_sacerdote"
+            }
+          ],
+          [
+            {
+              "id": "paquete_de_explorador"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "cota_de_malla"
+            },
+            {
+              "desde": "objetos",
+              "filtro": {
+                "categoria": "foco",
+                "subcategoria": "sagrado"
+              }
+            }
+          ]
+        ]
+      ],
+      "oro_inicial": "5d4x10",
+      "lanzamiento": {
+        "caracteristica": "car",
+        "progresion": "medio",
+        "preparados": "mitad_nivel"
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Sentidos Divinos",
+            "resumen": "acción: hasta el final de tu siguiente turno sabes dónde hay celestiales, infernales y muertos vivientes a 60 pies o menos que no estén tras cobertura completa, y lugares u objetos consagrados o profanados",
+            "descripcion": "Expandes tu percepción para detectar el bien y el mal poderosos: conoces la ubicación y el tipo (celestial, infernal o muerto viviente), pero no la identidad, de esas criaturas a 60 pies o menos que no estén tras cobertura completa, y detectas en el mismo radio los lugares y objetos consagrados o profanados. Tienes 1 + tu modificador por Carisma usos por descanso largo.",
+            "usos": "1+mod_car",
+            "recarga": "largo"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Imponer las Manos",
+            "resumen": "acción, al tocar: reserva de {nivel_clase*5} PG para curar; gastar 5 PG de la reserva cura una enfermedad o neutraliza un veneno; no afecta a muertos vivientes ni autómatas",
+            "descripcion": "Tienes una reserva de poder curativo igual a cinco veces tu nivel de paladín que se rellena tras un descanso largo. Como acción tocas a una criatura y le haces recuperar puntos de golpe de la reserva, o gastas 5 puntos para curarle una enfermedad o neutralizarle un veneno (puedes tratar varios en un solo uso, pagando cada uno por separado).",
+            "recarga": "largo"
+          }
+        ],
+        "2": [
+          {
+            "tipo": "eleccion",
+            "id": "estilo_combate",
+            "nombre": "Estilo de Combate",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "estilo_combate",
+                "clases": "paladin"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Lanzamiento de Conjuros",
+            "resumen": "CAR; CD {8+competencia+mod_car}, ataque +{competencia+mod_car}; conjuros preparados: {max(1,mod_car+nivel_clase//2)}, se cambian tras cada descanso largo (los de juramento no cuentan); canalizador: símbolo sagrado",
+            "descripcion": "Desde el nivel 2 lanzas conjuros divinos como un clérigo. Tras cada descanso largo preparas tantos conjuros de la lista del paladín como tu modificador por Carisma + la mitad de tu nivel de paladín redondeada hacia abajo (mínimo uno), de niveles para los que tengas espacios. El Carisma es tu aptitud mágica y puedes usar un símbolo sagrado como canalizador mágico."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Castigo Divino",
+            "resumen": "al impactar con un ataque con arma cuerpo a cuerpo, gastas un espacio de conjuro: +2d8 de daño radiante con uno de nivel 1 y +1d8 por cada nivel por encima (máx. 5d8); +1d8 contra muertos vivientes e infernales",
+            "descripcion": "Cuando impactas a una criatura con un ataque con arma cuerpo a cuerpo, puedes gastar un espacio de conjuro para infligirle daño radiante además del daño del arma: 2d8 con un espacio de nivel 1, más 1d8 por cada nivel del espacio por encima del 1, hasta un máximo de 5d8. El daño aumenta en 1d8 si el objetivo es un muerto viviente o un infernal."
+          }
+        ],
+        "3": [
+          {
+            "tipo": "inmunidad",
+            "id": "enfermedades"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Salud Divina",
+            "resumen": "inmune a las enfermedades",
+            "descripcion": "La magia divina que fluye a través de ti te hace inmune a las enfermedades."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad",
+            "resumen": "usos: 1 por descanso corto o largo; CD {8+competencia+mod_car}; las opciones te las da tu juramento",
+            "descripcion": "Tu juramento te permite canalizar energía divina para alimentar las opciones de Canalizar Divinidad que te concede. Al usarlo eliges una de ellas y no puedes volver a hacerlo hasta terminar un descanso corto o largo. La CD de las salvaciones es la de tus conjuros de paladín.",
+            "usos": 1,
+            "recarga": "corto"
+          }
+        ],
+        "4": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "5": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Ataque Adicional",
+            "resumen": "2 ataques al usar la acción de Atacar",
+            "descripcion": "Cuando realizas la acción de Atacar durante tu turno, puedes hacer dos ataques en lugar de uno."
+          }
+        ]
+      }
+    }
+  ],
+  "subclases": [
+    {
+      "id": "dominio_de_la_vida",
+      "nombre": "Dominio de la Vida",
+      "clase": "clerigo",
+      "fuente": "SRD 5.1 p. 23",
+      "descripcion": "Dominio de la energía positiva que sustenta a todos los seres vivos: sus clérigos curan a enfermos y heridos, cuidan de los necesitados y combaten a la muerte y a los muertos vivientes.",
+      "perfil": {
+        "curacion": 3,
+        "fe": 2,
+        "proteccion": 2
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "competencia",
+            "categoria": "armadura",
+            "id": "armaduras_pesadas"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Competencia Adicional",
+            "resumen": "competencia con armaduras pesadas",
+            "descripcion": "Al escoger este dominio a nivel 1 ganas competencia con armaduras pesadas."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Discípulo de la Vida",
+            "resumen": "tus conjuros de nivel 1 o superior que curan dan 2 + el nivel del conjuro PG adicionales",
+            "descripcion": "Cuando uses un conjuro de nivel 1 o superior para que una criatura recupere puntos de golpe, esta recupera además una cantidad igual a 2 + el nivel del conjuro."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "bendicion",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "curar_heridas",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Preservar Vida",
+            "resumen": "acción: repartes {5*nivel_clase} PG entre las criaturas que elijas a 30 pies o menos, sin subirlas por encima de la mitad de sus PG máximos; no afecta a muertos vivientes ni autómatas",
+            "descripcion": "Muestras tu símbolo sagrado y liberas energía curativa: divides entre cualquier cantidad de criaturas a 30 pies o menos un total de puntos de golpe igual a cinco veces tu nivel de clérigo. Este rasgo no puede dejar a una criatura por encima de la mitad de sus puntos de golpe máximos y no funciona con muertos vivientes ni autómatas."
+          }
+        ],
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "arma_espiritual",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "restablecimiento_menor",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "revivir",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "senal_de_esperanza",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "juramento_de_entrega",
+      "nombre": "Juramento de Entrega",
+      "clase": "paladin",
+      "fuente": "SRD 5.1 p. 51",
+      "descripcion": "Une al paladín con la justicia, la virtud y el orden: el ideal del caballero de brillante armadura que actúa con honor. Principios: honestidad, valor, compasión, honor y deber.",
+      "perfil": {
+        "fe": 3,
+        "proteccion": 2,
+        "combate": 2,
+        "carisma": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "proteccion_contra_el_bien_y_el_mal",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "santuario",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Arma Sagrada",
+            "resumen": "acción: durante 1 minuto sumas +{max(1,mod_car)} a las tiradas de ataque con el arma que sostienes, que emite luz brillante en 20 pies (y tenue 20 más) y cuenta como mágica",
+            "descripcion": "Imbuyes de energía positiva un arma que sostengas. Durante 1 minuto sumas tu modificador por Carisma (mínimo +1) a las tiradas de ataque con ella, emite luz brillante en un radio de 20 pies y tenue 20 pies más allá y, si no era mágica, pasa a serlo. Termina si dejas de sostener o llevar el arma o si caes inconsciente, y puedes ponerle fin en tu turno como parte de otra acción."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Expulsar lo Impío",
+            "resumen": "acción: cada infernal o muerto viviente que pueda verte u oírte a 30 pies o menos hace una salvación de SAB CD {8+competencia+mod_car}; si falla, queda expulsado 1 minuto o hasta que reciba daño",
+            "descripcion": "Muestras tu símbolo sagrado y rezas una plegaria que condena a infernales y muertos vivientes. Una criatura expulsada debe alejarse de ti todo lo que pueda, no puede acercarse voluntariamente a 30 pies o menos de ti ni llevar a cabo reacciones, y como acción solo puede correr o intentar escapar de un efecto que le impida moverse (o esquivar, si no tiene adónde ir)."
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "restablecimiento_menor",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "zona_de_la_verdad",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ]
+      }
+    }
+  ]
+}

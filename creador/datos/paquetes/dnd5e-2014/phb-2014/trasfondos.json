@@ -1,1 +1,1910 @@
-{}
+{
+  "objetos": [
+    {
+      "id": "botella_con_liquido_de_colores",
+      "nombre": "Botella tapada con líquido de colores",
+      "categoria": "equipo",
+      "descripcion": "Herramienta de timo del charlatán: suele venderse como elixir o remedio milagroso.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "dados_trucados",
+      "nombre": "Dados trucados",
+      "categoria": "equipo",
+      "descripcion": "Herramienta de timo del charlatán: dados lastrados para que salga lo que conviene.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "naipes_marcados",
+      "nombre": "Naipes marcados",
+      "categoria": "equipo",
+      "descripcion": "Herramienta de timo del charlatán: una baraja con señales que solo reconoce quien la marcó.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "anillo_de_un_duque_imaginario",
+      "nombre": "Anillo de sellar de un duque imaginario",
+      "categoria": "equipo",
+      "descripcion": "Herramienta de timo del charlatán: el sello de un noble que no existe.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "ropas_oscuras_con_capucha",
+      "nombre": "Ropas comunes oscuras con capucha",
+      "categoria": "equipo",
+      "descripcion": "Muda de ropas comunes de colores oscuros, con capucha.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "prenda_de_un_admirador",
+      "nombre": "Prenda de un admirador",
+      "categoria": "equipo",
+      "descripcion": "Un recuerdo de alguien que te admira: una carta de amor, un mechón de pelo o una baratija.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "carta_de_presentacion_del_gremio",
+      "nombre": "Carta de presentación del gremio",
+      "categoria": "equipo",
+      "descripcion": "Documento de tu gremio que te presenta como miembro de pleno derecho.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "estuche_con_notas",
+      "nombre": "Estuche para pergaminos lleno de notas",
+      "categoria": "equipo",
+      "descripcion": "Un estuche repleto de apuntes de tus estudios o de tus oraciones durante el retiro.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "pergamino_de_linaje",
+      "nombre": "Pergamino de linaje",
+      "categoria": "equipo",
+      "descripcion": "Pergamino que acredita tu ascendencia noble.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "trofeo_de_caza",
+      "nombre": "Trofeo de caza",
+      "categoria": "equipo",
+      "descripcion": "Un recuerdo (colmillo, piel, garra…) de un animal que mataste.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "carta_de_un_colega_fallecido",
+      "nombre": "Carta de un colega fallecido",
+      "categoria": "equipo",
+      "descripcion": "Carta de un colega ya muerto que plantea una pregunta que aún no has sabido responder.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "amuleto_de_la_suerte",
+      "nombre": "Amuleto de la suerte",
+      "categoria": "equipo",
+      "descripcion": "Una pata de conejo, una piedrecita agujereada o una baratija similar.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "insignia_de_rango",
+      "nombre": "Insignia de rango",
+      "categoria": "equipo",
+      "descripcion": "Distintivo del rango que alcanzaste en el ejército.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "trofeo_de_un_enemigo_caido",
+      "nombre": "Trofeo de un enemigo caído",
+      "categoria": "equipo",
+      "descripcion": "Algo que le quitaste a un enemigo abatido: una daga, una hoja rota o un trozo de estandarte.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "mapa_de_la_ciudad_natal",
+      "nombre": "Mapa de tu ciudad natal",
+      "categoria": "equipo",
+      "descripcion": "Un plano de la ciudad en la que creciste.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "raton_mascota",
+      "nombre": "Ratón mascota",
+      "categoria": "equipo",
+      "descripcion": "Un ratón domesticado que te acompaña.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "recuerdo_de_tus_padres",
+      "nombre": "Recuerdo de tus padres",
+      "categoria": "equipo",
+      "descripcion": "Un objeto pequeño que conservas para recordar a tus padres.",
+      "fuente": "PHB 2014"
+    }
+  ],
+  "trasfondos": [
+    {
+      "id": "charlatan",
+      "nombre": "Charlatán",
+      "fuente": "PHB 2014",
+      "descripcion": "Sabes leer a la gente: adivinas qué quiere oír cada cual y se lo das a cambio de su dinero. Has vivido de timos, apuestas amañadas y mentiras bien contadas.",
+      "perfil": {
+        "astucia": 3,
+        "carisma": 2,
+        "sigilo": 1
+      },
+      "efectos": [
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "engano"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "juego_de_manos"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "utiles_para_disfrazarse"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "utiles_para_falsificar"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Identidad falsa",
+          "resumen": "Tienes una segunda identidad con papeles, conocidos y disfraces; falsificas documentos si has visto un modelo",
+          "descripcion": "Te has fabricado otra personalidad completa, con su documentación, sus conocidos y sus disfraces, que puedes adoptar cuando te conviene. Además, sabes falsificar documentos (papeles oficiales, cartas personales…) siempre que hayas visto antes un ejemplar de ese tipo o la letra que imitas."
+        }
+      ],
+      "equipo": [
+        [
+          [
+            {
+              "id": "ropas_de_calidad"
+            },
+            {
+              "id": "utiles_para_disfrazarse"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "botella_con_liquido_de_colores",
+              "cantidad": 10
+            }
+          ],
+          [
+            {
+              "id": "dados_trucados"
+            }
+          ],
+          [
+            {
+              "id": "naipes_marcados"
+            }
+          ],
+          [
+            {
+              "id": "anillo_de_un_duque_imaginario"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "bolsa"
+            }
+          ]
+        ]
+      ],
+      "monedas": {
+        "po": 15
+      },
+      "tablas": {
+        "engano_favorito": [
+          "Hacer trampas en los juegos de azar.",
+          "Recortar monedas o falsificar documentos.",
+          "Meterse en la vida de alguien para aprovechar sus debilidades y quedarse con su fortuna.",
+          "Cambiar de identidad tan a menudo como de ropa.",
+          "Timos callejeros de juego de manos.",
+          "Vender cachivaches sin valor como si fueran una ganga."
+        ]
+      },
+      "personalidad": {
+        "rasgos": [
+          "Mi corazón cambia de dueño cada poco tiempo; siempre hay alguien a quien estoy cortejando.",
+          "Para cualquier ocasión tengo una broma, y cuanto menos oportuna, más ganas me dan de soltarla.",
+          "Mi truco favorito para salirme con la mía es regalar los oídos a la gente.",
+          "Apostar me va en la sangre: si el premio es bueno, el riesgo me parece irresistible.",
+          "Miento casi por sistema, aunque decir la verdad no me costara nada.",
+          "Donde otros sacan la espada, yo saco la ironía y el insulto.",
+          "Llevo colgados símbolos de varios dioses y rezo al que mejor me venga en cada momento.",
+          "Todo lo que brilla un poco acaba, sin saber cómo, en mi bolsillo."
+        ],
+        "ideales": [
+          {
+            "texto": "Independencia. Soy un espíritu libre; nadie me dice qué hacer.",
+            "alineamiento": "caotico"
+          },
+          {
+            "texto": "Equidad. Jamás desplumo a quien no puede permitirse perder unas monedas.",
+            "alineamiento": "legal"
+          },
+          {
+            "texto": "Caridad. Lo que saco de mis engaños termina en manos de quien de verdad lo necesita.",
+            "alineamiento": "bueno"
+          },
+          {
+            "texto": "Creatividad. Un buen timador no repite nunca la misma jugada.",
+            "alineamiento": "caotico"
+          },
+          {
+            "texto": "Amistad. El dinero va y viene; los amigos de verdad se quedan.",
+            "alineamiento": "bueno"
+          },
+          {
+            "texto": "Aspiración. Tengo decidido llegar a ser alguien.",
+            "alineamiento": "cualquiera"
+          }
+        ],
+        "vinculos": [
+          "Engañé a quien no debía y ahora vigilo que nunca vuelva a cruzarse conmigo ni con los míos.",
+          "Todo lo que sé me lo enseñó un mentor despreciable que seguramente se pudre en alguna mazmorra.",
+          "Tengo un hijo o una hija que no sabe quién soy; intento dejarle un mundo mejor.",
+          "Mi familia era noble; algún día recuperaré las tierras y el título que nos quitaron.",
+          "Un poderoso mató a alguien a quien yo quería, y pronto se lo haré pagar.",
+          "Arruiné a alguien que no lo merecía. Busco compensarlo, aunque quizá no me lo perdone nunca."
+        ],
+        "defectos": [
+          "Una cara bonita me hace olvidar toda prudencia.",
+          "Las deudas me persiguen: me gasto en caprichos lo que gano con trampas antes de haberlo cobrado.",
+          "Estoy convencido de que nadie podría tomarme el pelo como yo se lo tomo a los demás.",
+          "La avaricia me ciega: si hay dinero en juego, me arriesgo sin pensar.",
+          "Timar a alguien más poderoso que yo es una tentación que no sé resistir.",
+          "Me cuesta reconocerlo, pero si la cosa se pone fea, salvo mi pellejo y dejo atrás a quien sea."
+        ]
+      }
+    },
+    {
+      "id": "criminal",
+      "nombre": "Criminal",
+      "fuente": "PHB 2014",
+      "descripcion": "Has vivido fuera de la ley y conoces bien los bajos fondos. Aún tienes contactos entre ladrones, contrabandistas y gente de peor calaña.",
+      "perfil": {
+        "sigilo": 3,
+        "astucia": 2,
+        "agilidad": 1
+      },
+      "efectos": [
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "engano"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "sigilo"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "juego",
+          "nombre": "Tipo de juego",
+          "opciones": {
+            "desde": "herramientas",
+            "filtro": {
+              "subcategoria": "juego"
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "herramienta",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "herramientas_de_ladron"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Contacto criminal",
+          "resumen": "Un contacto fiable te enlaza con una red de delincuentes; sabes cómo cruzar mensajes con él",
+          "descripcion": "Tienes un contacto de confianza que hace de enlace con una red de criminales. Sabes cómo hacerle llegar mensajes y recibir los suyos aunque estéis lejos, porque conoces a los mensajeros del lugar, a los caravaneros corruptos y a los marineros de dudosa reputación que pueden llevarlos."
+        }
+      ],
+      "equipo": [
+        [
+          [
+            {
+              "id": "palanqueta"
+            },
+            {
+              "id": "ropas_oscuras_con_capucha"
+            },
+            {
+              "id": "bolsa"
+            }
+          ]
+        ]
+      ],
+      "monedas": {
+        "po": 15
+      },
+      "tablas": {
+        "especialidad": [
+          "Chantajista",
+          "Ladrón de casas",
+          "Matón",
+          "Perista",
+          "Salteador de caminos",
+          "Asesino a sueldo",
+          "Carterista",
+          "Contrabandista"
+        ]
+      },
+      "variantes": [
+        {
+          "id": "espia",
+          "nombre": "Espía",
+          "descripcion": "Tus habilidades son las de cualquier ladrón o contrabandista, pero las aprendiste y practicaste como agente de espionaje: quizá al servicio oficial de la corona, quizá vendiendo al mejor postor los secretos que descubrías. Las competencias, el equipo y el rasgo no cambian."
+        }
+      ],
+      "personalidad": {
+        "rasgos": [
+          "Antes de empezar cualquier cosa ya sé qué haré si sale mal.",
+          "Pase lo que pase, mantengo la calma: ni grito ni dejo que las emociones me controlen.",
+          "Al entrar en un sitio nuevo, lo primero que hago es localizar todo lo valioso, o dónde podría estar escondido.",
+          "Un amigo nuevo siempre me sale más a cuenta que un enemigo nuevo.",
+          "Concedo mi confianza con cuentagotas: quien parece más honrado suele tener más que ocultar.",
+          "Los riesgos no me quitan el sueño. No me cuentes cuántas posibilidades tenemos.",
+          "Nada me motiva tanto como que me digan que algo no está a mi alcance.",
+          "Me basta la menor ofensa para estallar."
+        ],
+        "ideales": [
+          {
+            "texto": "Honor. A los del oficio no se les roba.",
+            "alineamiento": "legal"
+          },
+          {
+            "texto": "Libertad. Las cadenas están para romperlas, y a quienes las forjan, también.",
+            "alineamiento": "caotico"
+          },
+          {
+            "texto": "Caridad. Le quito a los ricos para poder dárselo a quien pasa necesidad.",
+            "alineamiento": "bueno"
+          },
+          {
+            "texto": "Codicia. Mi meta es la riqueza, y el camino para llegar me da igual.",
+            "alineamiento": "malvado"
+          },
+          {
+            "texto": "Los míos. Debo lealtad a mis amigos, no a ninguna causa; el resto del mundo me trae sin cuidado.",
+            "alineamiento": "neutral"
+          },
+          {
+            "texto": "Redención. Hasta el peor de nosotros guarda una chispa de bondad.",
+            "alineamiento": "bueno"
+          }
+        ],
+        "vinculos": [
+          "Un antiguo benefactor fue muy generoso conmigo, y trabajo para devolverle lo que le debo.",
+          "Lo que gano por las malas sirve para sacar adelante a mi familia.",
+          "Me quitaron algo muy importante y pienso recuperarlo de la misma forma: robándolo.",
+          "Mi meta es que me recuerden como el mejor ladrón de la historia.",
+          "Cargo en la conciencia con un crimen horrible y busco la manera de expiarlo.",
+          "Alguien a quien quería murió por un error mío; no permitiré que vuelva a pasar."
+        ],
+        "defectos": [
+          "En cuanto veo algo de valor, no puedo pensar en otra cosa que en cómo llevármelo.",
+          "Si tengo que escoger entre el dinero y mis amigos, el dinero suele ganar.",
+          "Los planes se me olvidan, y cuando no se me olvidan, me los salto.",
+          "Se me nota cuando miento: tengo un tic que me traiciona.",
+          "Cuando las cosas se ponen feas, soy el primero en salir corriendo.",
+          "Un inocente está en prisión por algo que hice yo, y no me remuerde la conciencia."
+        ]
+      }
+    },
+    {
+      "id": "artista",
+      "nombre": "Artista",
+      "fuente": "PHB 2014",
+      "descripcion": "Te creces ante el público. Sabes entretener, emocionar y arrancar aplausos, ya sea con la música, la danza, la poesía o las acrobacias.",
+      "perfil": {
+        "carisma": 3,
+        "agilidad": 2
+      },
+      "efectos": [
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "acrobacias"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "interpretacion"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "utiles_para_disfrazarse"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "instrumento",
+          "nombre": "Instrumento musical",
+          "opciones": {
+            "desde": "herramientas",
+            "filtro": {
+              "subcategoria": "instrumento"
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "herramienta",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "A petición del público",
+          "resumen": "Siempre encuentras dónde actuar; si actúas cada noche, alojamiento y comida gratis (modestos o confortables)",
+          "descripcion": "Siempre encuentras un sitio donde actuar: una posada, una taberna, un circo, un teatro o hasta la corte de un noble. Mientras actúes allí cada noche, te dan alojamiento y comida gratis de nivel modesto o confortable, según el local. Además, tus actuaciones te dan cierta fama: los desconocidos que te reconocen en un lugar donde has actuado suelen tratarte con simpatía."
+        }
+      ],
+      "equipo": [
+        [
+          [
+            {
+              "desde": "herramientas",
+              "filtro": {
+                "subcategoria": "instrumento"
+              }
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "prenda_de_un_admirador"
+            },
+            {
+              "id": "disfraz"
+            },
+            {
+              "id": "bolsa"
+            }
+          ]
+        ]
+      ],
+      "monedas": {
+        "po": 15
+      },
+      "tablas": {
+        "rutinas": [
+          "Actor",
+          "Bailarín",
+          "Tragafuegos",
+          "Bufón",
+          "Malabarista",
+          "Músico",
+          "Poeta",
+          "Cantante",
+          "Cuentacuentos",
+          "Acróbata"
+        ]
+      },
+      "variantes": [
+        {
+          "id": "gladiador",
+          "nombre": "Gladiador",
+          "descripcion": "Has convertido el combate en un espectáculo para el público; esa es tu rutina, aunque también puedes tener algo de acróbata o de actor. Con tu rasgo encuentras dónde actuar en cualquier lugar que ofrezca peleas como entretenimiento, como una arena o un foso clandestino. Puedes cambiar el instrumento musical del equipo por un arma barata pero poco común, como un tridente o una red."
+        }
+      ],
+      "personalidad": {
+        "rasgos": [
+          "Sea cual sea la situación, conozco una historia que viene al pelo.",
+          "Cada vez que llego a un sitio nuevo, me empapo de sus rumores y reparto chismes.",
+          "Soy un romántico incurable y sigo buscando a esa persona especial.",
+          "Sé quitarle hierro a cualquier tensión, así que nadie sigue enfadado conmigo (ni cerca de mí) mucho rato.",
+          "Un insulto ingenioso me encanta, aunque vaya dirigido a mí.",
+          "Si no soy el centro de atención, me amargo.",
+          "Lo que no es perfecto no me sirve.",
+          "Mi humor y mis opiniones cambian tan deprisa como la tonalidad de una canción."
+        ],
+        "ideales": [
+          {
+            "texto": "Belleza. Cada actuación mía deja el mundo un poco mejor de lo que lo encontré.",
+            "alineamiento": "bueno"
+          },
+          {
+            "texto": "Tradición. Los cantares y leyendas de antaño nos dicen quiénes somos; no pueden caer en el olvido.",
+            "alineamiento": "legal"
+          },
+          {
+            "texto": "Creatividad. El mundo pide ideas nuevas y gestos atrevidos.",
+            "alineamiento": "caotico"
+          },
+          {
+            "texto": "Codicia. Solo me mueven el dinero y la fama.",
+            "alineamiento": "malvado"
+          },
+          {
+            "texto": "Público. Me basta con ver sonreír a la gente mientras actúo.",
+            "alineamiento": "neutral"
+          },
+          {
+            "texto": "Sinceridad. El arte debe salir de dentro y mostrar cómo somos en realidad.",
+            "alineamiento": "cualquiera"
+          }
+        ],
+        "vinculos": [
+          "Nada tengo tan querido como mi instrumento, que me recuerda a alguien a quien amo.",
+          "Me robaron mi preciado instrumento, y algún día lo recuperaré.",
+          "Mi nombre estará en boca de todos, cueste lo que cueste.",
+          "Venero a un héroe de las leyendas y mido mis hazañas con las suyas.",
+          "Demostraré que soy mejor que mi odiado rival, cueste lo que cueste.",
+          "Lo daría todo por mis antiguos compañeros de compañía."
+        ],
+        "defectos": [
+          "La fama y el renombre me importan más que cualquier escrúpulo.",
+          "Pierdo la cabeza en cuanto veo una cara bonita.",
+          "Un escándalo me impide volver a casa, y esa clase de líos parece seguirme a todas partes.",
+          "Una vez ridiculicé a un noble que aún quiere mi cabeza; seguramente volveré a cometer el mismo error.",
+          "No sé disimular lo que siento, y mi lengua afilada me mete en problemas.",
+          "Por mucho que lo intente, mis amigos no pueden fiarse de mí."
+        ]
+      }
+    },
+    {
+      "id": "heroe_del_pueblo",
+      "nombre": "Héroe del pueblo",
+      "fuente": "PHB 2014",
+      "descripcion": "Saliste de la gente corriente, pero algo te marcó para un destino mayor. Los tuyos ya te ven como su campeón frente a tiranos y monstruos.",
+      "perfil": {
+        "proteccion": 2,
+        "naturaleza": 2,
+        "aguante": 1
+      },
+      "efectos": [
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "trato_con_animales"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "supervivencia"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "artesano",
+          "nombre": "Herramientas de artesano",
+          "opciones": {
+            "desde": "herramientas",
+            "filtro": {
+              "subcategoria": "artesano"
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "herramienta",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "vehiculos_terrestres"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Hospitalidad rústica",
+          "resumen": "La gente sencilla te da cobijo, descanso y escondite, y te oculta de la ley (sin arriesgar la vida)",
+          "descripcion": "Como vienes del pueblo llano, te mezclas con él sin esfuerzo. Entre la gente corriente encuentras dónde esconderte, descansar o recuperarte, salvo que te hayas mostrado como un peligro para ellos. Te protegerán de la ley o de quien te busque, aunque no llegarán a arriesgar la vida por ti."
+        }
+      ],
+      "equipo": [
+        [
+          [
+            {
+              "desde": "herramientas",
+              "filtro": {
+                "subcategoria": "artesano"
+              }
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "pala"
+            },
+            {
+              "id": "olla_de_hierro"
+            },
+            {
+              "id": "ropas_comunes"
+            },
+            {
+              "id": "bolsa"
+            }
+          ]
+        ]
+      ],
+      "monedas": {
+        "po": 10
+      },
+      "tablas": {
+        "suceso_decisivo": [
+          "Planté cara a los esbirros de un tirano.",
+          "Salvé a la gente durante una catástrofe natural.",
+          "Me enfrenté sin ayuda a un monstruo terrible.",
+          "Robé a un mercader corrupto para ayudar a los pobres.",
+          "Dirigí una milicia que rechazó a un ejército invasor.",
+          "Me colé en el castillo de un tirano y saqué armas para el pueblo.",
+          "Enseñé a los campesinos a usar sus aperos como armas contra los soldados de un tirano.",
+          "Un señor retiró un decreto impopular después de que yo encabezara una protesta simbólica.",
+          "Un celestial, un feérico o una criatura parecida me bendijo o me reveló mi origen secreto.",
+          "Me alistaron en el ejército de un señor, llegué a mandar tropas y me honraron por mi valor."
+        ]
+      },
+      "personalidad": {
+        "rasgos": [
+          "Para valorar a alguien me fijo en sus hechos; las palabras se las lleva el viento.",
+          "Quien esté en apuros puede contar con mi ayuda.",
+          "Si me propongo algo, lo termino, por muchos obstáculos que aparezcan.",
+          "Tengo muy arraigado el juego limpio y siempre busco el arreglo más justo para todos en una disputa.",
+          "Confío en lo que sé hacer e intento que los demás confíen también en sí mismos.",
+          "Pensar se lo dejo a otros; lo mío es actuar.",
+          "Uso palabras rimbombantes para parecer más listo, aunque casi nunca las empleo bien.",
+          "Me aburro enseguida. ¿Cuándo empieza de una vez mi destino?"
+        ],
+        "ideales": [
+          {
+            "texto": "Respeto. Todo el mundo merece un trato digno y respetuoso.",
+            "alineamiento": "bueno"
+          },
+          {
+            "texto": "Justicia. La ley es igual para todos: nadie está por encima de ella ni merece privilegios.",
+            "alineamiento": "legal"
+          },
+          {
+            "texto": "Libertad. No se puede consentir que los tiranos aplasten al pueblo.",
+            "alineamiento": "caotico"
+          },
+          {
+            "texto": "Fuerza. Si llego a ser fuerte, tomaré lo que quiera, que es lo que me corresponde.",
+            "alineamiento": "malvado"
+          },
+          {
+            "texto": "Sinceridad. No gano nada fingiendo ser quien no soy.",
+            "alineamiento": "neutral"
+          },
+          {
+            "texto": "Destino. Nada ni nadie va a desviarme de mi gran propósito.",
+            "alineamiento": "cualquiera"
+          }
+        ],
+        "vinculos": [
+          "Tengo una familia, pero no sé dónde está. Confío en reencontrarla algún día.",
+          "He trabajado la tierra, la quiero y la defenderé.",
+          "Un noble orgulloso me dio una paliza brutal; desde entonces me la cobro con todo abusón que encuentro.",
+          "Mis herramientas son el recuerdo de mi vida anterior; las llevo para no olvidar de dónde vengo.",
+          "Defiendo a quienes no pueden defenderse solos.",
+          "Ojalá mi amor de la infancia hubiera venido conmigo a perseguir mi destino."
+        ],
+        "defectos": [
+          "El tirano que gobierna mi tierra no descansará hasta verme muerto.",
+          "Creo tanto en mi destino que no veo mis defectos ni la posibilidad de fracasar.",
+          "Quienes me conocieron de joven saben mi secreto vergonzoso, y por eso no puedo volver.",
+          "Los vicios de la ciudad me tientan demasiado, sobre todo los licores fuertes.",
+          "En el fondo pienso que todo iría mejor si fuera yo el tirano que manda en estas tierras.",
+          "Ni siquiera de mis aliados termino de fiarme."
+        ]
+      }
+    },
+    {
+      "id": "artesano_gremial",
+      "nombre": "Artesano gremial",
+      "fuente": "PHB 2014",
+      "descripcion": "Aprendiste un oficio en el seno de un gremio y eres un miembro respetado de él. Dominas tu artesanía y conoces el mundo del comercio y de los contratos.",
+      "perfil": {
+        "carisma": 2,
+        "saber": 2,
+        "astucia": 1
+      },
+      "efectos": [
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "perspicacia"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "persuasion"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "artesano",
+          "nombre": "Herramientas de artesano",
+          "opciones": {
+            "desde": "herramientas",
+            "filtro": {
+              "subcategoria": "artesano"
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "herramienta",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "eleccion",
+          "id": "idiomas",
+          "nombre": "Idioma",
+          "elegir": 1,
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Miembro del gremio",
+          "resumen": "El gremio te da techo y comida si hace falta, te defiende si eres inocente y te abre puertas; cuota de 5 po al mes",
+          "descripcion": "Como miembro respetado de un gremio, tus compañeros de oficio te dan alojamiento y comida si lo necesitas y te pagan el funeral si llega el caso. En muchas ciudades, la sede del gremio es un buen lugar para encontrar clientes, aliados o ayudantes. Si te acusan de un delito, el gremio te respalda cuando hay buenos motivos para creer en tu inocencia o el delito está justificado, y te puede dar acceso a personajes políticos poderosos (quizá a cambio de donativos). Pagas una cuota de 5 po al mes; si te retrasas, debes ponerte al día para seguir en buena relación."
+        }
+      ],
+      "equipo": [
+        [
+          [
+            {
+              "desde": "herramientas",
+              "filtro": {
+                "subcategoria": "artesano"
+              }
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "carta_de_presentacion_del_gremio"
+            },
+            {
+              "id": "ropas_de_viaje"
+            },
+            {
+              "id": "bolsa"
+            }
+          ]
+        ]
+      ],
+      "monedas": {
+        "po": 15
+      },
+      "tablas": {
+        "negocio_del_gremio": [
+          "Alquimistas y boticarios",
+          "Armeros, cerrajeros y orfebres",
+          "Cerveceros, destiladores y vinateros",
+          "Calígrafos, escribas y copistas",
+          "Carpinteros, techadores y yeseros",
+          "Cartógrafos, agrimensores y dibujantes de cartas",
+          "Zapateros y remendones",
+          "Cocineros y panaderos",
+          "Sopladores de vidrio y vidrieros",
+          "Joyeros y talladores de gemas",
+          "Marroquineros, desolladores y curtidores",
+          "Albañiles y canteros",
+          "Pintores, iluminadores y rotulistas",
+          "Alfareros y tejeros",
+          "Carpinteros de ribera y veleros",
+          "Herreros y forjadores",
+          "Hojalateros, peltreros y fundidores",
+          "Carreteros y ruederos",
+          "Tejedores y tintoreros",
+          "Tallistas, toneleros y fabricantes de arcos"
+        ]
+      },
+      "variantes": [
+        {
+          "id": "mercader_gremial",
+          "nombre": "Mercader gremial",
+          "descripcion": "Tu gremio es de comerciantes, caravaneros o tenderos: no fabricas nada, sino que compras y vendes el trabajo de otros o las materias primas que necesitan. En lugar de la competencia con herramientas de artesano puedes tener competencia con herramientas de navegante o un idioma más, y en lugar de las herramientas de artesano puedes empezar con una mula y un carro."
+        }
+      ],
+      "personalidad": {
+        "rasgos": [
+          "Si algo merece la pena, merece hacerse bien. No lo puedo evitar: soy perfeccionista.",
+          "Miro por encima del hombro a quien no sabe apreciar el buen arte.",
+          "Necesito saber cómo funcionan las cosas y qué mueve a las personas.",
+          "Siempre tengo a mano un refrán o una sentencia ingeniosa.",
+          "Trato con desdén a quien no trabaja tan duro ni juega tan limpio como yo.",
+          "Puedo pasarme horas hablando de mi oficio.",
+          "Me cuesta soltar el dinero y regateo sin descanso hasta conseguir el mejor trato.",
+          "Mi trabajo es famoso y quiero que todos lo valoren; me sorprende que alguien no haya oído hablar de mí."
+        ],
+        "ideales": [
+          {
+            "texto": "Comunidad. Toda persona civilizada debe reforzar los lazos de su comunidad y la seguridad de la civilización.",
+            "alineamiento": "legal"
+          },
+          {
+            "texto": "Generosidad. Si tengo talento, es para ponerlo al servicio del mundo.",
+            "alineamiento": "bueno"
+          },
+          {
+            "texto": "Libertad. Cada cual debe poder ganarse la vida como elija.",
+            "alineamiento": "caotico"
+          },
+          {
+            "texto": "Codicia. Lo único que me importa es el dinero.",
+            "alineamiento": "malvado"
+          },
+          {
+            "texto": "Los míos. Me debo a las personas que quiero, no a los ideales.",
+            "alineamiento": "neutral"
+          },
+          {
+            "texto": "Aspiración. Trabajo sin descanso para ser el mejor en mi oficio.",
+            "alineamiento": "cualquiera"
+          }
+        ],
+        "vinculos": [
+          "No hay lugar en el mundo más importante para mí que el taller donde aprendí el oficio.",
+          "Hice una gran obra para alguien que luego resultó no merecerla; sigo buscando a quien sí la merezca.",
+          "Tengo una gran deuda con mi gremio, que me convirtió en quien soy.",
+          "Busco riquezas para ganarme el amor de alguien.",
+          "Algún día volveré a mi gremio y demostraré que soy el mejor artesano de todos.",
+          "Me vengaré de las fuerzas malignas que destruyeron mi negocio y mi sustento."
+        ],
+        "defectos": [
+          "Haría cualquier cosa por hacerme con algo raro o de valor incalculable.",
+          "Enseguida sospecho que alguien intenta engañarme.",
+          "Nadie puede enterarse de que una vez robé dinero de las arcas del gremio.",
+          "Lo que tengo nunca me basta.",
+          "Por un título de nobleza estaría dispuesto incluso a matar.",
+          "Envidio a muerte a quien supera mi trabajo, y veo rivales por todas partes."
+        ]
+      }
+    },
+    {
+      "id": "ermitano",
+      "nombre": "Ermitaño",
+      "fuente": "PHB 2014",
+      "descripcion": "Pasaste mucho tiempo apartado del mundo, en una choza, un monasterio o en plena naturaleza. En ese retiro encontraste silencio, respuestas y quizá algo que nadie más conoce.",
+      "perfil": {
+        "saber": 2,
+        "fe": 1,
+        "naturaleza": 1,
+        "curacion": 1
+      },
+      "efectos": [
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "medicina"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "religion"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "utiles_de_herborista"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "idiomas",
+          "nombre": "Idioma",
+          "elegir": 1,
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Descubrimiento",
+          "resumen": "En tu retiro hiciste un descubrimiento único y poderoso; acuerda con el DM cuál es",
+          "descripcion": "La soledad de tu retiro te llevó a un hallazgo único: una gran verdad sobre el cosmos, los dioses, los seres de otros planos o las fuerzas de la naturaleza; un lugar que nadie ha visto; un hecho olvidado o una reliquia capaz de reescribir la historia; o algo que perjudicaría a quienes te desterraron, y por eso vuelves. Decide con el DM en qué consiste y qué peso tiene en la campaña."
+        }
+      ],
+      "equipo": [
+        [
+          [
+            {
+              "id": "estuche_con_notas"
+            },
+            {
+              "id": "manta"
+            },
+            {
+              "id": "ropas_comunes"
+            },
+            {
+              "id": "utiles_de_herborista"
+            }
+          ]
+        ]
+      ],
+      "monedas": {
+        "po": 5
+      },
+      "tablas": {
+        "vida_de_retiro": [
+          "Buscaba la iluminación espiritual.",
+          "Vivía en comunidad según las reglas de una orden religiosa.",
+          "Me desterraron por un crimen que no cometí.",
+          "Me aparté de la sociedad después de algo que cambió mi vida.",
+          "Necesitaba un lugar tranquilo para dedicarme a mi arte, mis escritos, mi música o mi manifiesto.",
+          "Necesitaba estar en comunión con la naturaleza, lejos de la civilización.",
+          "Era el guardián de unas ruinas o de una reliquia antiguas.",
+          "Peregrinaba en busca de una persona, un lugar o una reliquia de valor espiritual."
+        ]
+      },
+      "personalidad": {
+        "rasgos": [
+          "He pasado tanto tiempo solo que apenas hablo; me apaño con gestos y algún gruñido.",
+          "Ni el peor desastre altera mi serenidad.",
+          "El guía de mi comunidad tenía una frase sabia para cada tema, y me encanta repetirlas.",
+          "Siento una compasión enorme por todo el que sufre.",
+          "Las normas de cortesía y lo que se espera de mí en sociedad me resultan un misterio.",
+          "Todo lo que me ocurre lo relaciono con un gran plan cósmico.",
+          "A menudo me sumerjo tanto en mis pensamientos que dejo de ver lo que pasa a mi alrededor.",
+          "Estoy elaborando una gran teoría filosófica y me encanta explicársela a cualquiera."
+        ],
+        "ideales": [
+          {
+            "texto": "Bien común. Mis dones son para compartirlos con todos, no para mi provecho.",
+            "alineamiento": "bueno"
+          },
+          {
+            "texto": "Lógica. Las emociones no deben nublar el razonamiento ni nuestra idea de lo que es justo y verdadero.",
+            "alineamiento": "legal"
+          },
+          {
+            "texto": "Libre pensamiento. Preguntar y sentir curiosidad es lo que hace avanzar el mundo.",
+            "alineamiento": "caotico"
+          },
+          {
+            "texto": "Poder. La soledad y la contemplación abren el camino a un poder místico o mágico.",
+            "alineamiento": "malvado"
+          },
+          {
+            "texto": "Vive y deja vivir. Meterse en los asuntos ajenos solo trae problemas.",
+            "alineamiento": "neutral"
+          },
+          {
+            "texto": "Autoconocimiento. Quien se conoce a sí mismo ya no tiene nada más que aprender.",
+            "alineamiento": "cualquiera"
+          }
+        ],
+        "vinculos": [
+          "Nada me importa más que mis hermanos de retiro, de orden o de comunidad.",
+          "Me aislé para esconderme de quienes quizá aún me persiguen; algún día tendré que enfrentarme a ellos.",
+          "Todavía busco la iluminación que perseguía en mi retiro, y sigue escapándoseme.",
+          "Me retiré del mundo porque amaba a alguien a quien no podía tener.",
+          "Si mi descubrimiento saliera a la luz, podría arruinar el mundo.",
+          "Mi aislamiento me permitió comprender un gran mal que solo yo puedo destruir."
+        ],
+        "defectos": [
+          "Ahora que he vuelto al mundo, disfruto de sus placeres un poco más de la cuenta.",
+          "Albergo pensamientos oscuros y sanguinarios que ni el aislamiento ni la meditación lograron apagar.",
+          "En mis creencias y mi filosofía no admito dudas ni matices.",
+          "Por ganar una discusión soy capaz de sacrificar amistades y armonía.",
+          "Arriesgaría demasiado por desenterrar un saber perdido.",
+          "Los secretos son para guardarlos; no suelto ni uno."
+        ]
+      }
+    },
+    {
+      "id": "noble",
+      "nombre": "Noble",
+      "fuente": "PHB 2014",
+      "descripcion": "Naciste en una familia de rango, con riqueza, poder y privilegios. Sabes moverte en la alta sociedad y llevas el peso del apellido allá donde vas.",
+      "perfil": {
+        "carisma": 3,
+        "saber": 1
+      },
+      "efectos": [
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "historia"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "persuasion"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "juego",
+          "nombre": "Tipo de juego",
+          "opciones": {
+            "desde": "herramientas",
+            "filtro": {
+              "subcategoria": "juego"
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "herramienta",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "eleccion",
+          "id": "idiomas",
+          "nombre": "Idioma",
+          "elegir": 1,
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Posición privilegiada",
+          "resumen": "Bien recibido en la alta sociedad; la gente llana evita disgustarte; consigues audiencia con nobles locales",
+          "descripcion": "Por tu cuna, la gente tiende a pensar bien de ti. Eres bienvenido en la alta sociedad y se da por hecho que tienes derecho a estar donde estás. La gente corriente se esfuerza por complacerte y no contrariarte, y los demás nobles te tratan como a uno de los suyos. Si lo necesitas, puedes conseguir una audiencia con un noble local."
+        }
+      ],
+      "equipo": [
+        [
+          [
+            {
+              "id": "ropas_de_calidad"
+            },
+            {
+              "id": "anillo_de_sellar"
+            },
+            {
+              "id": "pergamino_de_linaje"
+            },
+            {
+              "id": "bolsa"
+            }
+          ]
+        ]
+      ],
+      "monedas": {
+        "po": 25
+      },
+      "variantes": [
+        {
+          "id": "caballero",
+          "nombre": "Caballero",
+          "descripcion": "El título de caballero suele ser el escalón más bajo de la nobleza, pero puede llevar más arriba. Si eres caballero, cambias Posición privilegiada por el rasgo Séquito; uno de tus tres sirvientes es un noble que hace de escudero a cambio de tu instrucción, y los otros pueden ser un mozo de cuadra y un criado que te cuida (y te ayuda a ponerte) la armadura. Entre tu equipo puede haber un estandarte o una prenda de la dama o el señor a quien has entregado tu devoción caballeresca.",
+          "rasgo": {
+            "nombre": "Séquito",
+            "resumen": "Tres sirvientes leales a tu familia; hacen tareas cotidianas pero no luchan",
+            "descripcion": "Te sirven tres personas leales a tu familia: asistentes o mensajeros, y quizá un mayordomo. Son plebeyos que te ayudan en tareas cotidianas, pero no combaten por ti, no te siguen a lugares claramente peligrosos (como mazmorras) y te abandonan si los pones en peligro o los maltratas a menudo."
+          }
+        }
+      ],
+      "personalidad": {
+        "rasgos": [
+          "Mis halagos son tan elegantes que cualquiera con quien hablo se siente la persona más importante del mundo.",
+          "El pueblo me aprecia por mi bondad y mi generosidad.",
+          "Basta ver mi porte para saber que estoy muy por encima de la plebe.",
+          "Cuido mi aspecto al detalle y sigo siempre la última moda.",
+          "No me gusta mancharme las manos, y antes muerto que alojarme en un sitio indigno de mí.",
+          "Aunque soy de noble cuna, no me creo superior a nadie: la sangre de todos es igual.",
+          "Quien pierde mi favor, lo pierde para siempre.",
+          "Si me haces daño, te hundiré, arruinaré tu nombre y sembraré de sal tus campos."
+        ],
+        "ideales": [
+          {
+            "texto": "Respeto. Mi rango exige respeto, pero toda persona, sea cual sea su posición, merece dignidad.",
+            "alineamiento": "bueno"
+          },
+          {
+            "texto": "Responsabilidad. Debo acatar la autoridad de quienes están por encima de mí, igual que los de abajo deben acatar la mía.",
+            "alineamiento": "legal"
+          },
+          {
+            "texto": "Independencia. Tengo que demostrar que me valgo sin los mimos de mi familia.",
+            "alineamiento": "caotico"
+          },
+          {
+            "texto": "Poder. Cuanto más poder tenga, menos podrán decirme qué hacer.",
+            "alineamiento": "malvado"
+          },
+          {
+            "texto": "Familia. La sangre tira más que cualquier otra cosa.",
+            "alineamiento": "cualquiera"
+          },
+          {
+            "texto": "Nobleza obliga. Mi deber es proteger y cuidar a quienes dependen de mí.",
+            "alineamiento": "bueno"
+          }
+        ],
+        "vinculos": [
+          "Afrontaré cualquier reto con tal de ganarme la aprobación de mi familia.",
+          "Hay que mantener a toda costa la alianza de mi casa con otra familia noble.",
+          "Mi familia está por delante de todo lo demás.",
+          "Estoy enamorado de la heredera o el heredero de una familia que la mía detesta.",
+          "Nada hará flaquear mi fidelidad a mi rey o mi reina.",
+          "El pueblo llano tiene que verme como uno de sus héroes."
+        ],
+        "defectos": [
+          "En secreto, creo que todos están por debajo de mí.",
+          "Guardo un secreto tan escandaloso que podría hundir a mi familia para siempre.",
+          "Oigo insultos y amenazas veladas en todo lo que me dicen, y me enfado enseguida.",
+          "Mi apetito por los placeres de la carne no tiene fin.",
+          "Que nadie lo dude: soy el centro del universo.",
+          "Con mis palabras y mis actos suelo avergonzar a mi familia."
+        ]
+      }
+    },
+    {
+      "id": "forastero",
+      "nombre": "Forastero",
+      "fuente": "PHB 2014",
+      "descripcion": "Te criaste lejos de la civilización, en bosques, estepas o montañas. Conoces las tierras salvajes y sus peligros mejor que las costumbres de las ciudades.",
+      "perfil": {
+        "naturaleza": 3,
+        "aguante": 2,
+        "combate": 1
+      },
+      "efectos": [
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "atletismo"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "supervivencia"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "instrumento",
+          "nombre": "Instrumento musical",
+          "opciones": {
+            "desde": "herramientas",
+            "filtro": {
+              "subcategoria": "instrumento"
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "herramienta",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "eleccion",
+          "id": "idiomas",
+          "nombre": "Idioma",
+          "elegir": 1,
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Trotamundos",
+          "resumen": "Memoria excelente para mapas y terrenos; cada día hallas comida y agua para ti y hasta 5 personas más",
+          "descripcion": "Tienes una memoria excelente para los mapas y la geografía, y siempre recuerdas cómo son el terreno, los asentamientos y otros elementos de tu alrededor. Además, cada día puedes encontrar comida y agua potable para ti y hasta otras cinco personas, siempre que la zona ofrezca bayas, caza menor, agua o recursos parecidos."
+        }
+      ],
+      "equipo": [
+        [
+          [
+            {
+              "id": "baston"
+            },
+            {
+              "id": "trampa_para_cazar"
+            },
+            {
+              "id": "trofeo_de_caza"
+            },
+            {
+              "id": "ropas_de_viaje"
+            },
+            {
+              "id": "bolsa"
+            }
+          ]
+        ]
+      ],
+      "monedas": {
+        "po": 10
+      },
+      "tablas": {
+        "origen": [
+          "Guardabosques",
+          "Trampero",
+          "Colono",
+          "Guía",
+          "Exiliado o proscrito",
+          "Cazarrecompensas",
+          "Peregrino",
+          "Nómada de una tribu",
+          "Cazador-recolector",
+          "Saqueador de una tribu"
+        ]
+      },
+      "personalidad": {
+        "rasgos": [
+          "Las ganas de recorrer mundo me sacaron de casa y todavía me empujan.",
+          "Cuido de mis amigos como si fueran una camada de cachorros recién nacidos.",
+          "Una vez corrí sin parar veinticinco millas para avisar a mi clan de que se acercaba una horda de orcos. Lo volvería a hacer.",
+          "Para cada situación saco una lección de lo que he visto en la naturaleza.",
+          "No me impresionan los ricos ni los refinados: ni el oro ni los modales te salvan de un oso lechuza hambriento.",
+          "Siempre ando cogiendo cosas, toqueteándolas sin darme cuenta y, a veces, rompiéndolas.",
+          "Estoy mucho más a gusto entre animales que entre personas.",
+          "Lo creas o no, me criaron los lobos."
+        ],
+        "ideales": [
+          {
+            "texto": "Cambio. La vida cambia sin cesar, como las estaciones, y hay que cambiar con ella.",
+            "alineamiento": "caotico"
+          },
+          {
+            "texto": "Bien común. Cada miembro de la tribu debe procurar la mayor felicidad para todos.",
+            "alineamiento": "bueno"
+          },
+          {
+            "texto": "Honor. Si me deshonro, deshonro a todo mi clan.",
+            "alineamiento": "legal"
+          },
+          {
+            "texto": "Fuerza. El más fuerte ha nacido para mandar.",
+            "alineamiento": "malvado"
+          },
+          {
+            "texto": "Naturaleza. El mundo natural vale más que todo lo que ha construido la civilización.",
+            "alineamiento": "neutral"
+          },
+          {
+            "texto": "Gloria. Debo ganar gloria en combate, para mí y para mi clan.",
+            "alineamiento": "cualquiera"
+          }
+        ],
+        "vinculos": [
+          "Mi familia, mi clan o mi tribu es lo más importante de mi vida, aunque estén lejos.",
+          "Quien daña la naturaleza virgen de mi tierra me daña a mí.",
+          "Haré caer una ira terrible sobre los malhechores que arrasaron mi tierra natal.",
+          "Soy el último de mi tribu, y me toca a mí que sus nombres se conviertan en leyenda.",
+          "Me atormentan visiones de una catástrofe que se avecina, y haré lo que sea por impedirla.",
+          "Mi deber es tener hijos que mantengan viva a mi tribu."
+        ],
+        "defectos": [
+          "Me gustan demasiado la cerveza, el vino y cualquier otra cosa que emborrache.",
+          "Quien vive la vida a fondo no tiene tiempo para la prudencia.",
+          "No olvido ningún insulto y guardo un rencor callado a todo el que me ha hecho daño.",
+          "Me cuesta confiar en gente de otras razas, tribus o sociedades.",
+          "Casi cualquier problema lo resuelvo con violencia.",
+          "No esperes que salve a quien no sabe salvarse solo: en la naturaleza, los fuertes prosperan y los débiles mueren."
+        ]
+      }
+    },
+    {
+      "id": "sabio",
+      "nombre": "Erudito",
+      "fuente": "PHB 2014",
+      "descripcion": "Has dedicado años a estudiar en bibliotecas, universidades o junto a otros sabios. Lo que más te mueve es el conocimiento y la búsqueda de respuestas.",
+      "perfil": {
+        "saber": 3,
+        "arcano": 1
+      },
+      "efectos": [
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "conocimiento_arcano"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "historia"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "idiomas",
+          "nombre": "Idiomas",
+          "elegir": 2,
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Investigador",
+          "resumen": "Si no conoces un dato, sueles saber dónde o a quién preguntar para averiguarlo",
+          "descripcion": "Cuando intentas recordar o aprender algo que no sabes, a menudo sabes dónde o de quién puedes obtenerlo: normalmente una biblioteca, un scriptorium, una universidad o un sabio u otra persona o criatura instruida. El DM puede decidir que ese saber está oculto en un lugar casi inaccesible o que no se puede encontrar."
+        }
+      ],
+      "equipo": [
+        [
+          [
+            {
+              "id": "tinta"
+            },
+            {
+              "id": "pluma"
+            },
+            {
+              "id": "cuchillo_pequeno"
+            },
+            {
+              "id": "carta_de_un_colega_fallecido"
+            },
+            {
+              "id": "ropas_comunes"
+            },
+            {
+              "id": "bolsa"
+            }
+          ]
+        ]
+      ],
+      "monedas": {
+        "po": 10
+      },
+      "tablas": {
+        "especialidad": [
+          "Alquimista",
+          "Astrónomo",
+          "Académico desacreditado",
+          "Bibliotecario",
+          "Profesor",
+          "Investigador",
+          "Aprendiz de mago",
+          "Escriba"
+        ]
+      },
+      "personalidad": {
+        "rasgos": [
+          "Hablo con palabras largas y rebuscadas para dar impresión de gran erudición.",
+          "He leído todos los libros de las mayores bibliotecas del mundo… o eso me gusta presumir.",
+          "Estoy acostumbrado a ayudar a quienes no son tan listos como yo, y les explico cualquier cosa con paciencia infinita.",
+          "Un buen enigma me hace más feliz que cualquier otra cosa.",
+          "Antes de formarme una opinión, escucho a todas las partes de una discusión.",
+          "Hablo… muy… despacio… a los… tontos… que, comparados… conmigo… son… casi… todos.",
+          "En sociedad soy torpe hasta lo indecible.",
+          "Estoy seguro de que todo el mundo intenta robarme mis secretos."
+        ],
+        "ideales": [
+          {
+            "texto": "Conocimiento. El saber es el camino hacia el poder y la superación.",
+            "alineamiento": "neutral"
+          },
+          {
+            "texto": "Belleza. Lo bello nos lleva más allá de sí mismo, hacia la verdad.",
+            "alineamiento": "bueno"
+          },
+          {
+            "texto": "Lógica. Las emociones no deben nublar el razonamiento.",
+            "alineamiento": "legal"
+          },
+          {
+            "texto": "Sin límites. Nada debe poner trabas a las infinitas posibilidades de la existencia.",
+            "alineamiento": "caotico"
+          },
+          {
+            "texto": "Poder. El conocimiento es el camino hacia el poder y el dominio.",
+            "alineamiento": "malvado"
+          },
+          {
+            "texto": "Superación. Toda una vida de estudio sirve para hacerse mejor persona.",
+            "alineamiento": "cualquiera"
+          }
+        ],
+        "vinculos": [
+          "Tengo alumnos a mi cargo y los protegeré.",
+          "Tengo un texto antiguo que guarda secretos terribles y no debe caer en malas manos.",
+          "Trabajo para conservar una biblioteca, una universidad, un scriptorium o un monasterio.",
+          "La obra de mi vida es una serie de tomos sobre un campo concreto del saber.",
+          "Llevo toda la vida buscando la respuesta a una pregunta concreta.",
+          "Vendí mi alma a cambio de conocimiento. Espero recuperarla con grandes hazañas."
+        ],
+        "defectos": [
+          "La promesa de un dato nuevo me distrae de cualquier cosa.",
+          "Casi todo el mundo grita y huye al ver un demonio; yo me paro a tomar notas sobre su anatomía.",
+          "Desvelar un misterio antiguo bien vale el precio de una civilización.",
+          "Paso por alto las soluciones obvias y prefiero las complicadas.",
+          "Hablo sin pensar, y siempre acabo ofendiendo a alguien.",
+          "Soy incapaz de guardar un secreto, aunque me vaya la vida (o la de otro) en ello."
+        ]
+      }
+    },
+    {
+      "id": "marinero",
+      "nombre": "Marinero",
+      "fuente": "PHB 2014",
+      "descripcion": "Has pasado años a bordo de un barco, entre tormentas, maniobras y puertos lejanos. Conoces el mar, a la gente de mar y sus costumbres.",
+      "perfil": {
+        "aguante": 2,
+        "combate": 2,
+        "agilidad": 1
+      },
+      "efectos": [
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "atletismo"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "percepcion"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "herramientas_de_navegante"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "vehiculos_acuaticos"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Pasaje en barco",
+          "resumen": "Consigues pasaje gratis en barco para ti y tus compañeros, a cambio de ayudar a la tripulación",
+          "descripcion": "Cuando lo necesitas, consigues pasaje gratis en un barco de vela para ti y tus compañeros: el barco en el que serviste u otro con el que tienes buena relación. Como es un favor, no puedes exigir horarios ni rutas; el DM decide cuánto tardáis en llegar. A cambio, se espera que ayudéis a la tripulación durante la travesía."
+        }
+      ],
+      "equipo": [
+        [
+          [
+            {
+              "id": "garrote"
+            },
+            {
+              "id": "cuerda_de_seda"
+            },
+            {
+              "id": "amuleto_de_la_suerte"
+            },
+            {
+              "id": "ropas_comunes"
+            },
+            {
+              "id": "bolsa"
+            }
+          ]
+        ]
+      ],
+      "monedas": {
+        "po": 10
+      },
+      "variantes": [
+        {
+          "id": "pirata",
+          "nombre": "Pirata",
+          "descripcion": "Pasaste tu juventud a las órdenes de un temible pirata que te enseñó a sobrevivir entre tiburones y salvajes. Has saqueado en alta mar y mandado a más de uno al fondo, y tienes mala fama en muchos puertos. Puedes cambiar Pasaje en barco por el rasgo Mala reputación.",
+          "rasgo": {
+            "nombre": "Mala reputación",
+            "resumen": "La gente te teme: en poblaciones civilizadas te libras de delitos menores",
+            "descripcion": "Allá donde vas, tu fama da miedo. En un asentamiento civilizado puedes cometer delitos menores, como irte de la taberna sin pagar o echar abajo la puerta de una tienda, porque casi nadie se atreverá a denunciarte a las autoridades."
+          }
+        }
+      ],
+      "personalidad": {
+        "rasgos": [
+          "Mis amigos saben que pueden contar conmigo pase lo que pase.",
+          "Trabajo duro para luego divertirme a lo grande cuando acaba la faena.",
+          "Me encanta atracar en puertos nuevos y hacer amigos con una jarra de cerveza delante.",
+          "Adorno la verdad si con eso la historia queda mejor.",
+          "Para mí, una pelea de taberna es una buena forma de conocer una ciudad nueva.",
+          "Si me proponen una apuesta amistosa, siempre digo que sí.",
+          "Hablo peor que un carretero (o que un nido de otyugh).",
+          "Me gusta el trabajo bien hecho, sobre todo si consigo que lo haga otro."
+        ],
+        "ideales": [
+          {
+            "texto": "Respeto. Lo que mantiene unido un barco es el respeto mutuo entre capitán y tripulación.",
+            "alineamiento": "bueno"
+          },
+          {
+            "texto": "Equidad. Si todos trabajamos, todos nos repartimos el botín.",
+            "alineamiento": "legal"
+          },
+          {
+            "texto": "Libertad. El mar es libertad: ir adonde quiera y hacer lo que quiera.",
+            "alineamiento": "caotico"
+          },
+          {
+            "texto": "Dominio. Soy un depredador, y los demás barcos del mar son mis presas.",
+            "alineamiento": "malvado"
+          },
+          {
+            "texto": "Tripulación. Me debo a mis compañeros de a bordo, no a los ideales.",
+            "alineamiento": "neutral"
+          },
+          {
+            "texto": "Aspiración. Algún día tendré mi propio barco y trazaré mi propio rumbo.",
+            "alineamiento": "cualquiera"
+          }
+        ],
+        "vinculos": [
+          "Primero va mi capitán; todo lo demás, después.",
+          "Lo que importa es el barco: capitanes y tripulantes van y vienen.",
+          "Mi primer barco ocupa en mi corazón un lugar que ningún otro ocupará.",
+          "En un puerto me espera un amor cuyos ojos casi me apartan del mar.",
+          "Me estafaron mi parte del botín y quiero cobrar lo que es mío.",
+          "Unos piratas despiadados mataron a mi capitán y a mis compañeros, saquearon el barco y me dejaron por muerto. Me vengaré."
+        ],
+        "defectos": [
+          "Obedezco aunque piense que la orden es un error.",
+          "Diré lo que sea para librarme de trabajar más de la cuenta.",
+          "Si alguien pone en duda mi valor, no me echo atrás por peligrosa que sea la situación.",
+          "Una copa lleva a otra, y a otra…; no sé parar.",
+          "No puedo evitar quedarme con las monedas sueltas y las baratijas que encuentro.",
+          "Algún día me perderá el orgullo."
+        ]
+      }
+    },
+    {
+      "id": "soldado",
+      "nombre": "Soldado",
+      "fuente": "PHB 2014",
+      "descripcion": "La guerra ha sido tu vida desde que tienes memoria. Te entrenaste, serviste en un ejército o una compañía y conoces la disciplina, el combate y sus cicatrices.",
+      "perfil": {
+        "combate": 3,
+        "aguante": 2,
+        "proteccion": 1
+      },
+      "efectos": [
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "atletismo"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "intimidacion"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "juego",
+          "nombre": "Tipo de juego",
+          "opciones": {
+            "desde": "herramientas",
+            "filtro": {
+              "subcategoria": "juego"
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "herramienta",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "vehiculos_terrestres"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Rango militar",
+          "resumen": "Los soldados de tu antigua organización respetan tu rango; requisas equipo sencillo y entras en campamentos aliados",
+          "descripcion": "Conservas el rango de tu carrera militar. Los soldados leales a tu antigua organización reconocen tu autoridad, y los de menor rango te obedecen. Puedes usar tu rango para influir en otros soldados y requisar temporalmente equipo sencillo o caballos, y sueles tener acceso a los campamentos y fortalezas amigos donde se reconoce tu rango."
+        }
+      ],
+      "equipo": [
+        [
+          [
+            {
+              "id": "insignia_de_rango"
+            },
+            {
+              "id": "trofeo_de_un_enemigo_caido"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "dados"
+            }
+          ],
+          [
+            {
+              "id": "naipes"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "ropas_comunes"
+            },
+            {
+              "id": "bolsa"
+            }
+          ]
+        ]
+      ],
+      "monedas": {
+        "po": 10
+      },
+      "tablas": {
+        "especialidad": [
+          "Oficial",
+          "Explorador",
+          "Infantería",
+          "Caballería",
+          "Sanador",
+          "Intendente",
+          "Abanderado",
+          "Personal de apoyo (cocinero, herrero o similar)"
+        ]
+      },
+      "personalidad": {
+        "rasgos": [
+          "Trato a todo el mundo con cortesía y respeto.",
+          "Me persiguen los recuerdos de la guerra; no logro quitarme de la cabeza las escenas de violencia.",
+          "He perdido a demasiados amigos y me cuesta hacer otros nuevos.",
+          "Tengo historias de mi vida militar, para animar o para escarmentar, que vienen a cuento en casi cualquier combate.",
+          "Puedo sostenerle la mirada a un sabueso infernal sin pestañear.",
+          "Me gusta sentirme fuerte y disfruto rompiendo cosas.",
+          "Mi sentido del humor es bastante basto.",
+          "Afronto los problemas de cara: la solución más sencilla y directa es la mejor."
+        ],
+        "ideales": [
+          {
+            "texto": "Bien común. Nuestro destino es dar la vida para defender a los demás.",
+            "alineamiento": "bueno"
+          },
+          {
+            "texto": "Responsabilidad. Hago lo que debo y obedezco a la autoridad legítima.",
+            "alineamiento": "legal"
+          },
+          {
+            "texto": "Independencia. Obedecer órdenes a ciegas es una forma de aceptar la tiranía.",
+            "alineamiento": "caotico"
+          },
+          {
+            "texto": "Fuerza. En la vida, como en la guerra, gana el más fuerte.",
+            "alineamiento": "malvado"
+          },
+          {
+            "texto": "Vive y deja vivir. Ningún ideal merece que se mate o se vaya a la guerra por él.",
+            "alineamiento": "neutral"
+          },
+          {
+            "texto": "Patria. Lo único que importa es mi ciudad, mi nación o mi pueblo.",
+            "alineamiento": "cualquiera"
+          }
+        ],
+        "vinculos": [
+          "Todavía daría la vida por quienes sirvieron conmigo.",
+          "Alguien me salvó la vida en el campo de batalla; desde entonces nunca dejo atrás a un compañero.",
+          "Sin honor, mi vida no vale nada.",
+          "Nunca olvidaré la derrota aplastante que sufrió mi compañía ni a los enemigos que nos la infligieron.",
+          "Quienes luchan a mi lado son los únicos por quienes merece la pena morir.",
+          "Mi espada está al servicio de quienes no pueden defenderse."
+        ],
+        "defectos": [
+          "El enemigo monstruoso al que nos enfrentamos en batalla aún me hace temblar de miedo.",
+          "Respeto poco a quien no ha demostrado su valía como guerrero.",
+          "Cometí en batalla un error terrible que costó muchas vidas, y haría cualquier cosa por mantenerlo en secreto.",
+          "Odio a mis enemigos con una ceguera que no atiende a razones.",
+          "La ley es la ley, aunque haga sufrir a la gente.",
+          "Antes me como la armadura que admitir que me he equivocado."
+        ]
+      }
+    },
+    {
+      "id": "huerfano",
+      "nombre": "Huérfano",
+      "fuente": "PHB 2014",
+      "descripcion": "Creciste solo en las calles, pobre y sin familia. Aprendiste a sobrevivir a fuerza de astucia, agilidad y algún que otro hurto.",
+      "perfil": {
+        "sigilo": 3,
+        "agilidad": 2,
+        "astucia": 1
+      },
+      "efectos": [
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "juego_de_manos"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "sigilo"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "utiles_para_disfrazarse"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "herramientas_de_ladron"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Secretos de la ciudad",
+          "resumen": "Fuera de combate, tú y quienes guíes cruzáis la ciudad al doble de vuestra velocidad",
+          "descripcion": "Conoces los ritmos y recovecos secretos de las ciudades y encuentras pasos entre sus calles que otros no verían. Cuando no estás en combate, tú (y los compañeros a los que guíes) podéis viajar entre dos puntos cualesquiera de una ciudad el doble de rápido de lo que os permitiría vuestra velocidad."
+        }
+      ],
+      "equipo": [
+        [
+          [
+            {
+              "id": "cuchillo_pequeno"
+            },
+            {
+              "id": "mapa_de_la_ciudad_natal"
+            },
+            {
+              "id": "raton_mascota"
+            },
+            {
+              "id": "recuerdo_de_tus_padres"
+            },
+            {
+              "id": "ropas_comunes"
+            },
+            {
+              "id": "bolsa"
+            }
+          ]
+        ]
+      ],
+      "monedas": {
+        "po": 10
+      },
+      "personalidad": {
+        "rasgos": [
+          "Me guardo en los bolsillos restos de comida y baratijas.",
+          "Lo pregunto todo, una y otra vez.",
+          "Me gusta meterme en huecos estrechos donde nadie más pueda alcanzarme.",
+          "Duermo con la espalda contra una pared o un árbol, abrazado a un hatillo con todo lo que tengo.",
+          "Como como un cerdo y no tengo modales.",
+          "Si alguien es amable conmigo, doy por hecho que esconde malas intenciones.",
+          "Bañarme no es lo mío.",
+          "Digo sin rodeos lo que los demás insinúan o callan."
+        ],
+        "ideales": [
+          {
+            "texto": "Respeto. Ricos o pobres, todos merecen respeto.",
+            "alineamiento": "bueno"
+          },
+          {
+            "texto": "Comunidad. Tenemos que cuidarnos unos a otros, porque nadie más lo hará.",
+            "alineamiento": "legal"
+          },
+          {
+            "texto": "Cambio. Los de abajo suben y los poderosos caen: así funciona el mundo.",
+            "alineamiento": "caotico"
+          },
+          {
+            "texto": "Venganza. Los ricos tienen que aprender cómo se vive y se muere en el arroyo.",
+            "alineamiento": "malvado"
+          },
+          {
+            "texto": "Los míos. Ayudo a quien me ayuda; así seguimos vivos.",
+            "alineamiento": "neutral"
+          },
+          {
+            "texto": "Aspiración. Demostraré que merezco una vida mejor.",
+            "alineamiento": "cualquiera"
+          }
+        ],
+        "vinculos": [
+          "Mi pueblo o mi ciudad es mi hogar, y lucharé por defenderlo.",
+          "Mantengo un orfanato para que otros no pasen por lo que pasé yo.",
+          "Si sigo vivo es gracias a otro huérfano que me enseñó a sobrevivir en la calle.",
+          "Tengo una deuda impagable con la persona que se apiadó de mí.",
+          "Salí de la miseria robando a alguien importante, y me buscan por ello.",
+          "Nadie debería sufrir las penurias que he sufrido yo."
+        ],
+        "defectos": [
+          "Si son más que yo, me largo antes de que empiece la pelea.",
+          "Una moneda de oro me parece una fortuna, y haría casi cualquier cosa por conseguir más.",
+          "Nunca me fiaré del todo de nadie más que de mí.",
+          "Prefiero matar a alguien mientras duerme antes que pelear limpio.",
+          "Coger algo que necesito más que su dueño no es robar.",
+          "Si alguien no sabe valerse por sí mismo, que no se queje de lo que le pase."
+        ]
+      }
+    }
+  ]
+}

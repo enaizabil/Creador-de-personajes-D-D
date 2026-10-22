@@ -1,1 +1,671 @@
-{}
+{
+  "subclases": [
+    {
+      "id": "dominio_del_conocimiento",
+      "nombre": "Dominio del Conocimiento",
+      "clase": "clerigo",
+      "fuente": "PHB 2014",
+      "descripcion": "Dominio de los dioses del saber y la comprensión. Sus clérigos reúnen, custodian y comparten el conocimiento, y lo emplean tanto para guiar a otros como para desvelar secretos.",
+      "perfil": {
+        "saber": 3,
+        "fe": 2,
+        "arcano": 1
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "eleccion",
+            "id": "idiomas",
+            "nombre": "Bendiciones del Conocimiento: idiomas",
+            "elegir": 2,
+            "opciones": {
+              "desde": "idiomas"
+            },
+            "aplicar": [
+              {
+                "tipo": "competencia",
+                "categoria": "idioma",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "eleccion",
+            "id": "habilidades",
+            "nombre": "Bendiciones del Conocimiento: habilidades",
+            "elegir": 2,
+            "fuente": "habilidades",
+            "opciones": [
+              "conocimiento_arcano",
+              "historia",
+              "naturaleza",
+              "religion"
+            ],
+            "aplicar": [
+              {
+                "tipo": "competencia",
+                "categoria": "habilidad",
+                "id": "$opcion"
+              },
+              {
+                "tipo": "pericia",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Bendiciones del Conocimiento",
+            "resumen": "2 idiomas a tu elección; competencia y bonificador por competencia doble en 2 habilidades entre Conocimiento Arcano, Historia, Naturaleza y Religión",
+            "descripcion": "Aprendes dos idiomas que elijas. Además, escoges dos habilidades entre Conocimiento Arcano, Historia, Naturaleza y Religión: eres competente en ellas y en sus pruebas sumas el doble de tu bonificador por competencia."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "orden_imperiosa",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "identificar",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Conocimiento de las Eras",
+            "resumen": "acción: eliges una habilidad o una herramienta y eres competente con ella durante 10 minutos",
+            "descripcion": "Gastas un uso de Canalizar Divinidad para beber de una fuente divina de saber: como acción eliges una habilidad o una herramienta y eres competente con ella durante los 10 minutos siguientes."
+          }
+        ],
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "augurio",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "sugestion",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "indetectable",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "hablar_con_los_muertos",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "dominio_de_la_luz",
+      "nombre": "Dominio de la Luz",
+      "clase": "clerigo",
+      "fuente": "PHB 2014",
+      "descripcion": "Dominio de los dioses del sol, el fuego, la luz y la verdad. Sus clérigos llevan una llama sagrada que disipa las sombras, desenmascara los engaños y abrasa a los enemigos.",
+      "perfil": {
+        "arcano": 3,
+        "fe": 2,
+        "proteccion": 1
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "conjuro",
+            "id": "luz",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Truco Adicional",
+            "resumen": "conoces el truco luz",
+            "descripcion": "Al escoger este dominio aprendes el truco luz, salvo que ya lo conocieras."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Destello Protector",
+            "resumen": "reacción: cuando te ataque una criatura que veas a 30 pies o menos, le impones desventaja en la tirada (no sirve contra quien no pueda quedar cegado)",
+            "descripcion": "Cuando una criatura que puedas ver a 30 pies o menos te ataca, puedes usar tu reacción para hacer brillar ante ella una luz divina que le da desventaja en esa tirada de ataque, antes de saber si impacta. Las criaturas que no pueden quedar cegadas son inmunes. Tienes tantos usos como tu modificador por Sabiduría (mínimo uno) por descanso largo.",
+            "usos": "max(1,mod_sab)",
+            "recarga": "largo"
+          },
+          {
+            "tipo": "conjuro",
+            "id": "manos_ardientes",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "fuego_feerico",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Resplandor del Alba",
+            "resumen": "acción: disipas la oscuridad mágica a 30 pies o menos y cada criatura hostil a 30 pies o menos hace una salvación de CON CD {8+competencia+mod_sab}: 2d10+{nivel_clase} de daño radiante si falla, la mitad si la supera",
+            "descripcion": "Alzas tu símbolo sagrado y liberas la luz del sol: se disipa toda oscuridad mágica a 30 pies o menos de ti y las criaturas hostiles en ese radio sufren 2d10 + tu nivel de clérigo de daño radiante, o la mitad si superan una salvación de Constitución. No afecta a quien tenga cobertura completa respecto a ti."
+          }
+        ],
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "esfera_de_llamas",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "rayo_abrasador",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "luz_del_dia",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "bola_de_fuego",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "dominio_de_la_naturaleza",
+      "nombre": "Dominio de la Naturaleza",
+      "clase": "clerigo",
+      "fuente": "PHB 2014",
+      "descripcion": "Dominio de los dioses de la naturaleza y de lo salvaje. Sus clérigos protegen bosques, bestias y tierras indómitas, y se hacen entender por animales y plantas.",
+      "perfil": {
+        "naturaleza": 3,
+        "fe": 2,
+        "proteccion": 1
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "eleccion",
+            "id": "truco_druida",
+            "nombre": "Acólito de la Naturaleza: truco de druida",
+            "opciones": {
+              "desde": "conjuros",
+              "filtro": {
+                "listas": "druida",
+                "nivel": 0
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "conjuro",
+                "id": "$opcion",
+                "clase": "clerigo",
+                "siempre_preparado": true
+              }
+            ]
+          },
+          {
+            "tipo": "eleccion",
+            "id": "habilidad",
+            "nombre": "Acólito de la Naturaleza: habilidad",
+            "fuente": "habilidades",
+            "opciones": [
+              "naturaleza",
+              "supervivencia",
+              "trato_con_animales"
+            ],
+            "aplicar": [
+              {
+                "tipo": "competencia",
+                "categoria": "habilidad",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Acólito de la Naturaleza",
+            "resumen": "un truco de druida a tu elección (con SAB) y competencia en Naturaleza, Supervivencia o Trato con Animales",
+            "descripcion": "Aprendes un truco de la lista del druida que elijas, que lanzas con Sabiduría, y ganas competencia en una habilidad a elegir entre Naturaleza, Supervivencia y Trato con Animales."
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "armadura",
+            "id": "armaduras_pesadas"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Competencia Adicional",
+            "resumen": "competencia con armaduras pesadas",
+            "descripcion": "Al escoger este dominio a nivel 1 pasas a ser competente con las armaduras pesadas."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "encantar_animal",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "hablar_con_los_animales",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Hechizar Animales y Plantas",
+            "resumen": "acción: cada bestia o criatura vegetal que pueda verte a 30 pies o menos hace una salvación de SAB CD {8+competencia+mod_sab}; si falla, queda hechizada 1 minuto o hasta que reciba daño y es amistosa contigo y con quienes designes",
+            "descripcion": "Muestras tu símbolo sagrado e invocas a tu dios. Las bestias y criaturas vegetales que puedan verte a 30 pies o menos deben superar una salvación de Sabiduría o quedan hechizadas por ti durante 1 minuto o hasta que sufran daño; mientras tanto se muestran amistosas contigo y con las criaturas que tú indiques."
+          }
+        ],
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "piel_robliza",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "crecimiento_espinoso",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "crecimiento_vegetal",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "muro_de_viento",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "dominio_de_la_tempestad",
+      "nombre": "Dominio de la Tempestad",
+      "clase": "clerigo",
+      "fuente": "PHB 2014",
+      "descripcion": "Dominio de los dioses del cielo, del mar y de las tormentas. Sus clérigos visten armadura pesada y castigan a sus enemigos con el rayo y el trueno.",
+      "perfil": {
+        "arcano": 3,
+        "combate": 2,
+        "fe": 2
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "competencia",
+            "categoria": "arma",
+            "id": "armas_marciales"
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "armadura",
+            "id": "armaduras_pesadas"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Competencias Adicionales",
+            "resumen": "competencia con armas marciales y armaduras pesadas",
+            "descripcion": "Al escoger este dominio a nivel 1 pasas a ser competente con las armas marciales y las armaduras pesadas."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Ira de la Tormenta",
+            "resumen": "reacción: cuando una criatura que veas a 5 pies o menos te impacte con un ataque, hace una salvación de DES CD {8+competencia+mod_sab}: 2d8 de daño de relámpago o de trueno (a tu elección) si falla, la mitad si la supera",
+            "descripcion": "Cuando una criatura que puedas ver a 5 pies o menos te impacta con un ataque, puedes usar tu reacción para descargar sobre ella la furia de la tormenta: sufre 2d8 de daño de relámpago o de trueno, a tu elección, o la mitad si supera una salvación de Destreza. Tienes tantos usos como tu modificador por Sabiduría (mínimo uno) por descanso largo.",
+            "usos": "max(1,mod_sab)",
+            "recarga": "largo"
+          },
+          {
+            "tipo": "conjuro",
+            "id": "nube_de_oscurecimiento",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "ola_atronadora",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Ira Destructiva",
+            "resumen": "al tirar daño de relámpago o de trueno, puedes usar Canalizar Divinidad para infligir el máximo en lugar de tirar",
+            "descripcion": "Cuando tiras daño de relámpago o de trueno, puedes gastar un uso de Canalizar Divinidad para no tirar los dados y causar directamente el daño máximo posible."
+          }
+        ],
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "rafaga_de_viento",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "hacer_anicos",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "llamar_al_relampago",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "tormenta_de_aguanieve",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "dominio_de_la_supercheria",
+      "nombre": "Dominio de la Superchería",
+      "clase": "clerigo",
+      "fuente": "PHB 2014",
+      "descripcion": "Dominio de los dioses de las travesuras, los engaños y la rebeldía frente al orden establecido. Sus clérigos prefieren la astucia, las ilusiones y los disfraces a la fuerza.",
+      "perfil": {
+        "astucia": 3,
+        "sigilo": 2,
+        "fe": 2
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Bendición del Embaucador",
+            "resumen": "acción: tocas a una criatura voluntaria que no seas tú; tiene ventaja en las pruebas de DES (Sigilo) durante 1 hora o hasta que vuelvas a usar este rasgo",
+            "descripcion": "Con tu acción tocas a otra criatura voluntaria y le concedes ventaja en las pruebas de Destreza (Sigilo). La bendición dura 1 hora o hasta que vuelvas a usar este rasgo."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "hechizar_persona",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "disfrazarse",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Invocar Duplicidad",
+            "resumen": "acción: creas una ilusión perfecta de ti en un espacio libre a 30 pies o menos durante 1 minuto (concentración); acción adicional: la mueves hasta 30 pies (nunca a más de 120 pies de ti); puedes lanzar conjuros desde su espacio; ventaja en los ataques contra una criatura si tú y la ilusión estáis a 5 pies o menos de ella",
+            "descripcion": "Creas un doble ilusorio idéntico a ti en un espacio libre que veas a 30 pies o menos. Dura 1 minuto mientras mantengas la concentración, como con un conjuro, y como acción adicional puedes moverlo hasta 30 pies sin que se aleje más de 120 pies de ti. Mientras dure, lanzas conjuros como si estuvieras en su lugar (aunque con tus propios sentidos) y tienes ventaja en los ataques contra una criatura que pueda ver la ilusión si ambos estáis a 5 pies o menos de ella."
+          }
+        ],
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "imagen_multiple",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "pasar_sin_rastro",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "desplazamiento",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "disipar_magia",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "dominio_de_la_guerra",
+      "nombre": "Dominio de la Guerra",
+      "clase": "clerigo",
+      "fuente": "PHB 2014",
+      "descripcion": "Dominio de los dioses de la batalla, el valor y la conquista. Sus clérigos luchan en primera línea con armas marciales y armadura pesada, y animan a otros a combatir.",
+      "perfil": {
+        "combate": 3,
+        "fe": 2,
+        "proteccion": 1
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "competencia",
+            "categoria": "arma",
+            "id": "armas_marciales"
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "armadura",
+            "id": "armaduras_pesadas"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Competencias Adicionales",
+            "resumen": "competencia con armas marciales y armaduras pesadas",
+            "descripcion": "Al escoger este dominio a nivel 1 pasas a ser competente con las armas marciales y las armaduras pesadas."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Sacerdote de Guerra",
+            "resumen": "cuando usas la acción de Atacar, puedes hacer un ataque con arma como acción adicional",
+            "descripcion": "Tu dios te inspira en plena batalla: cuando realizas la acción de Atacar, puedes hacer un ataque con arma como acción adicional. Tienes tantos usos como tu modificador por Sabiduría (mínimo uno) por descanso largo.",
+            "usos": "max(1,mod_sab)",
+            "recarga": "largo"
+          },
+          {
+            "tipo": "conjuro",
+            "id": "favor_divino",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "escudo_de_fe",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Golpe Guiado",
+            "resumen": "+10 a una tirada de ataque tuya; lo decides tras ver el dado y antes de saber si impacta",
+            "descripcion": "Cuando haces una tirada de ataque, puedes gastar un uso de Canalizar Divinidad para sumarle +10. Lo decides después de ver el resultado del dado, pero antes de que el DM diga si el ataque impacta o falla."
+          }
+        ],
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "arma_magica",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "arma_espiritual",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "manto_del_cruzado",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "espiritus_guardianes",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "juramento_de_los_antiguos",
+      "nombre": "Juramento de los Antiguos",
+      "clase": "paladin",
+      "fuente": "PHB 2014",
+      "descripcion": "Juramento tan antiguo como los elfos: sus paladines defienden la luz, la vida, la alegría y la belleza del mundo frente a la oscuridad, y suelen sentirse cerca de la naturaleza y de los feéricos.",
+      "perfil": {
+        "naturaleza": 3,
+        "proteccion": 2,
+        "fe": 2
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "golpe_apresador",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "hablar_con_los_animales",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Ira de la Naturaleza",
+            "resumen": "acción: unas enredaderas espectrales intentan atrapar a una criatura que veas a 10 pies o menos: salvación de FUE o DES (la que ella elija) CD {8+competencia+mod_car} o queda apresada; repite la salvación al final de cada uno de sus turnos",
+            "descripcion": "Invocas fuerzas primigenias: brotan enredaderas espectrales que intentan sujetar a una criatura visible a 10 pies o menos. Si falla una salvación de Fuerza o de Destreza (la que ella prefiera) queda apresada; al final de cada uno de sus turnos repite la salvación y, si la supera, se libera y las enredaderas desaparecen."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Expulsar a los Infieles",
+            "resumen": "acción: cada feérico o infernal que pueda oírte a 30 pies o menos hace una salvación de SAB CD {8+competencia+mod_car}; si falla, queda expulsado 1 minuto o hasta que reciba daño y se revela su verdadera forma",
+            "descripcion": "Muestras tu símbolo sagrado y pronuncias palabras antiguas que hieren los oídos de feéricos e infernales. Los que fallan la salvación quedan expulsados (huyen de ti, no se acercan a 30 pies o menos ni usan reacciones, y solo pueden correr, intentar escapar o esquivar) y, si ocultaban su verdadera forma con una ilusión, un cambio de forma u otro efecto, esta queda al descubierto mientras dure la expulsión."
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "rayo_de_luna",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "paso_brumoso",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "juramento_de_venganza",
+      "nombre": "Juramento de Venganza",
+      "clase": "paladin",
+      "fuente": "PHB 2014",
+      "descripcion": "Promesa solemne de castigar a quienes han cometido graves maldades. Estos paladines anteponen la justicia implacable a su propia pureza y persiguen a sus presas sin descanso.",
+      "perfil": {
+        "combate": 3,
+        "fe": 2,
+        "agilidad": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "perdicion",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "marca_del_cazador",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Abjurar Enemigo",
+            "resumen": "acción: una criatura que veas a 60 pies o menos hace una salvación de SAB CD {8+competencia+mod_car} (con desventaja si es infernal o muerto viviente; no afecta a quien no pueda quedar asustado); si falla, queda asustada y con velocidad 0 durante 1 minuto o hasta que reciba daño; si la supera, su velocidad se reduce a la mitad durante ese tiempo",
+            "descripcion": "Muestras tu símbolo sagrado y pronuncias una condena contra una criatura que veas a 60 pies o menos. Si falla la salvación de Sabiduría queda asustada y con velocidad 0, sin poder beneficiarse de bonificadores a la velocidad, durante 1 minuto o hasta que sufra daño; si la supera, su velocidad se reduce a la mitad durante el mismo tiempo. Infernales y muertos vivientes tiran con desventaja, y las criaturas inmunes a quedar asustadas no se ven afectadas."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Voto de Enemistad",
+            "resumen": "acción adicional: elige una criatura que veas a 10 pies o menos; tienes ventaja en las tiradas de ataque contra ella durante 1 minuto o hasta que caiga a 0 PG o quede inconsciente",
+            "descripcion": "Pronuncias un voto de enemistad contra una criatura que puedas ver a 10 pies o menos. Durante 1 minuto, o hasta que quede a 0 puntos de golpe o inconsciente, tienes ventaja en las tiradas de ataque contra ella."
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "inmovilizar_persona",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "paso_brumoso",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ]
+      }
+    }
+  ]
+}

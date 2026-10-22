@@ -1,1 +1,1934 @@
-{}
+{
+  "dotes": [
+    {
+      "id": "acechador",
+      "nombre": "Acechador",
+      "prerrequisito": {
+        "caracteristicas": {
+          "des": 13
+        }
+      },
+      "resumen": "te escondes con solo estar en zona ligeramente oscura; fallar un ataque a distancia estando escondido no te delata; la luz tenue no te da desventaja en Percepción",
+      "descripcion": "Te mueves entre las sombras como pez en el agua: puedes intentar esconderte de una criatura aunque solo te cubra una zona ligeramente oscura. Si estás escondido y fallas un ataque a distancia, no revelas dónde estás, y la luz tenue no perjudica tus pruebas de Sabiduría (Percepción) que dependen de la vista.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "actor",
+      "nombre": "Actor",
+      "resumen": "ventaja en Engaño e Interpretación al hacerte pasar por otro; imitas voces y sonidos (Perspicacia contra tu Engaño para descubrirlo)",
+      "descripcion": "+1 a Carisma. Cuando finges ser otra persona tienes ventaja en las pruebas de Carisma (Engaño) e Interpretación. Puedes imitar la voz de alguien o los sonidos de una criatura si los has escuchado al menos 1 minuto; quien te oiga descubre el engaño si su Sabiduría (Perspicacia) supera tu Carisma (Engaño).",
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "car",
+          "valor": 1
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "adepto_elemental",
+      "nombre": "Adepto Elemental",
+      "prerrequisito": {
+        "lanzador": true
+      },
+      "resumen": "tus conjuros ignoran la resistencia al tipo elegido y cada 1 en sus dados de ese daño cuenta como 2",
+      "descripcion": "Elige ácido, frío, fuego, relámpago o trueno. Los conjuros que lances no tienen en cuenta la resistencia a ese tipo de daño y, al tirar su daño de ese tipo, cualquier 1 en un dado se trata como un 2. Puedes tomar esta dote varias veces, con un tipo de daño distinto cada vez.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "elemento",
+          "nombre": "Tipo de daño",
+          "opciones": [
+            {
+              "id": "acido",
+              "nombre": "Ácido",
+              "efectos": [
+                {
+                  "tipo": "rasgo",
+                  "nombre": "Adepto Elemental: Ácido",
+                  "resumen": "tus conjuros ignoran la resistencia al daño de ácido; los 1 en sus dados de ese daño cuentan como 2"
+                }
+              ]
+            },
+            {
+              "id": "frio",
+              "nombre": "Frío",
+              "efectos": [
+                {
+                  "tipo": "rasgo",
+                  "nombre": "Adepto Elemental: Frío",
+                  "resumen": "tus conjuros ignoran la resistencia al daño de frío; los 1 en sus dados de ese daño cuentan como 2"
+                }
+              ]
+            },
+            {
+              "id": "fuego",
+              "nombre": "Fuego",
+              "efectos": [
+                {
+                  "tipo": "rasgo",
+                  "nombre": "Adepto Elemental: Fuego",
+                  "resumen": "tus conjuros ignoran la resistencia al daño de fuego; los 1 en sus dados de ese daño cuentan como 2"
+                }
+              ]
+            },
+            {
+              "id": "relampago",
+              "nombre": "Relámpago",
+              "efectos": [
+                {
+                  "tipo": "rasgo",
+                  "nombre": "Adepto Elemental: Relámpago",
+                  "resumen": "tus conjuros ignoran la resistencia al daño de relámpago; los 1 en sus dados de ese daño cuentan como 2"
+                }
+              ]
+            },
+            {
+              "id": "trueno",
+              "nombre": "Trueno",
+              "efectos": [
+                {
+                  "tipo": "rasgo",
+                  "nombre": "Adepto Elemental: Trueno",
+                  "resumen": "tus conjuros ignoran la resistencia al daño de trueno; los 1 en sus dados de ese daño cuentan como 2"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "adepto_marcial",
+      "nombre": "Adepto Marcial",
+      "resumen": "2 maniobras y 1 dado de superioridad d6 (se recupera con descanso corto o largo); CD de maniobras {8+competencia+max(mod_fue, mod_des)}",
+      "usos": 1,
+      "recarga": "corto",
+      "descripcion": "Aprendes dos maniobras de las que puede elegir el arquetipo Maestro de Batalla del guerrero. Ganas un dado de superioridad d6, que se suma a los que tengas por otras vías y se gasta al usar una maniobra; la CD de sus salvaciones es 8 + tu bonificador por competencia + tu modificador de Fuerza o Destreza (a tu elección).",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "maniobras",
+          "nombre": "Maniobras",
+          "elegir": 2,
+          "opciones": {
+            "desde": "opciones",
+            "filtro": {
+              "grupo": "maniobra"
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "opcion",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "afortunado",
+      "nombre": "Afortunado",
+      "resumen": "3 puntos de suerte: tira un d20 extra en tu ataque, prueba o salvación (o en un ataque contra ti) y elige qué dado vale",
+      "usos": 3,
+      "recarga": "largo",
+      "descripcion": "Tienes 3 puntos de suerte que recuperas al terminar un descanso largo. Puedes gastar uno, incluso tras ver tu tirada pero antes de conocer el resultado, para tirar otro d20 en una tirada de ataque, prueba de característica o tirada de salvación tuya y quedarte con el que prefieras; también cuando te atacan, para decidir si vale la tirada del atacante o la tuya.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "alerta",
+      "nombre": "Alerta",
+      "resumen": "+5 a la iniciativa; no te sorprenden mientras estés consciente; nadie gana ventaja contra ti por estar oculto a tu vista",
+      "descripcion": "Siempre estás atento al peligro: sumas 5 a la iniciativa, no puedes ser sorprendido mientras estés consciente y las criaturas que no ves no obtienen ventaja en sus ataques contra ti por ese motivo.",
+      "efectos": [
+        {
+          "tipo": "iniciativa",
+          "valor": 5
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "atacante_a_la_carga",
+      "nombre": "Atacante a la Carga",
+      "resumen": "tras la acción de Correr, acción adicional: un ataque cuerpo a cuerpo (+5 al daño) o un empujón (10 pies) si antes avanzaste 10 pies en línea recta",
+      "descripcion": "Cuando usas tu acción para Correr, puedes usar una acción adicional para hacer un ataque con arma cuerpo a cuerpo o empujar a una criatura. Si justo antes te has movido al menos 10 pies en línea recta, el ataque que impacte hace 5 de daño más, o el empujón que tenga éxito aleja al objetivo hasta 10 pies.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "atacante_salvaje",
+      "nombre": "Atacante Salvaje",
+      "resumen": "1 vez por turno: repite los dados de daño de un ataque con arma cuerpo a cuerpo y quédate con el mejor total",
+      "descripcion": "Una vez por turno, al tirar el daño de un ataque con arma cuerpo a cuerpo, puedes volver a tirar los dados de daño del arma y usar el total que prefieras.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "atleta",
+      "nombre": "Atleta",
+      "resumen": "levantarte cuesta solo 5 pies; trepar no gasta movimiento extra; saltos con carrera tras moverte solo 5 pies",
+      "descripcion": "+1 a Fuerza o Destreza. Ponerte en pie estando derribado solo te cuesta 5 pies de movimiento, trepar no te cuesta movimiento adicional y te basta con moverte 5 pies a pie para hacer un salto de longitud o de altura con carrerilla.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "caracteristica",
+          "nombre": "Característica (+1)",
+          "fuente": "caracteristicas",
+          "opciones": [
+            "fue",
+            "des"
+          ],
+          "aplicar": [
+            {
+              "tipo": "caracteristica",
+              "car": "$opcion",
+              "valor": 1
+            }
+          ]
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "azote_de_magos",
+      "nombre": "Azote de Magos",
+      "resumen": "reacción: ataque cuerpo a cuerpo a quien lance un conjuro a 5 pies; desventaja en su concentración cuando lo dañas; ventaja en salvaciones contra conjuros lanzados a 5 pies",
+      "descripcion": "Estás entrenado para luchar contra lanzadores de conjuros. Si una criatura a 5 pies de ti lanza un conjuro, puedes usar tu reacción para atacarla con un arma cuerpo a cuerpo; las criaturas a las que dañas tienen desventaja en la salvación para mantener la concentración, y tú tienes ventaja en las salvaciones contra conjuros lanzados por criaturas a 5 pies de ti.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "centinela",
+      "nombre": "Centinela",
+      "resumen": "tu ataque de oportunidad deja su velocidad en 0; Destrabarse no evita tus ataques de oportunidad; reacción: ataca a quien, a 5 pies, ataque a otro",
+      "descripcion": "Si impactas con un ataque de oportunidad, la velocidad de la criatura pasa a 0 el resto del turno. Las criaturas te provocan ataques de oportunidad aunque usen la acción de Destrabarse, y cuando una criatura a 5 pies de ti ataca a otro objetivo (que no tenga esta dote), puedes usar tu reacción para hacerle un ataque con arma cuerpo a cuerpo.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "combatiente_con_dos_armas",
+      "nombre": "Combatiente con Dos Armas",
+      "resumen": "+1 a la CA con un arma cuerpo a cuerpo en cada mano; combates con dos armas aunque no sean ligeras; desenvainas o guardas dos a la vez",
+      "descripcion": "Mientras empuñas un arma cuerpo a cuerpo distinta en cada mano tienes +1 a la CA. Puedes combatir con dos armas aunque las armas cuerpo a cuerpo de una mano que lleves no sean ligeras, y sacar o guardar dos armas de una mano en el momento en que normalmente solo podrías hacerlo con una.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "combatiente_montado",
+      "nombre": "Combatiente Montado",
+      "resumen": "montado: ventaja cuerpo a cuerpo contra criaturas a pie más pequeñas que tu montura; puedes recibir tú los ataques dirigidos a ella; tu montura evita el daño con salvaciones de DES",
+      "descripcion": "Mientras vas montado y no estás incapacitado, tienes ventaja en los ataques cuerpo a cuerpo contra criaturas que no vayan montadas y sean más pequeñas que tu montura, y puedes hacer que un ataque contra tu montura te tenga a ti como objetivo. Si tu montura hace una salvación de Destreza para recibir solo la mitad del daño, no recibe ninguno si la supera y solo la mitad si la falla.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "duelista_defensivo",
+      "nombre": "Duelista Defensivo",
+      "prerrequisito": {
+        "caracteristicas": {
+          "des": 13
+        }
+      },
+      "resumen": "reacción, empuñando un arma sutil con competencia: +{competencia} a la CA contra un ataque cuerpo a cuerpo que te impacte",
+      "descripcion": "Cuando empuñas un arma sutil con la que tienes competencia y una criatura te impacta con un ataque cuerpo a cuerpo, puedes usar tu reacción para sumar tu bonificador por competencia a tu CA contra ese ataque, lo que puede convertirlo en un fallo.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "duro",
+      "nombre": "Duro",
+      "resumen": "+{2*nivel} PG máximos (2 por nivel)",
+      "descripcion": "Tus puntos de golpe máximos aumentan en el doble de tu nivel al obtener esta dote, y en 2 más cada vez que subas de nivel.",
+      "efectos": [
+        {
+          "tipo": "pg_maximos",
+          "por_nivel": 2
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "experto_en_ballestas",
+      "nombre": "Experto en Ballestas",
+      "resumen": "ignoras la propiedad recarga de las ballestas; sin desventaja a distancia con enemigos a 5 pies; acción adicional: disparo con ballesta de mano tras atacar con un arma de una mano",
+      "descripcion": "Ignoras la propiedad recarga de las ballestas con las que tienes competencia, y tener una criatura hostil a 5 pies no te impone desventaja en los ataques a distancia. Cuando usas la acción de Atacar con un arma de una mano, puedes atacar con una ballesta de mano que empuñes como acción adicional.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "explorador_de_mazmorras",
+      "nombre": "Explorador de Mazmorras",
+      "resumen": "ventaja para detectar puertas secretas y en salvaciones contra trampas; resistencia al daño de trampas; buscas trampas a paso normal",
+      "descripcion": "Tienes ventaja en las pruebas de Sabiduría (Percepción) e Inteligencia (Investigación) para descubrir puertas secretas y en las salvaciones para evitar o resistir trampas, y resistencia al daño que causan. Además, puedes buscar trampas viajando a paso normal, no solo a paso lento.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "francotirador_de_conjuros",
+      "nombre": "Francotirador de Conjuros",
+      "prerrequisito": {
+        "lanzador": true
+      },
+      "resumen": "conjuros con tirada de ataque: alcance doble e ignoran la cobertura media y tres cuartos; aprendes 1 truco de ataque",
+      "descripcion": "Los conjuros que exigen tirada de ataque duplican su alcance y tus ataques de conjuro a distancia no tienen en cuenta la cobertura media ni la de tres cuartos. Aprendes un truco que requiera tirada de ataque de la lista de bardo, brujo, clérigo, druida, hechicero o mago, y lo lanzas con la característica de esa clase.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "clase",
+          "nombre": "Lista del truco",
+          "opciones": [
+            {
+              "id": "brujo",
+              "nombre": "Brujo",
+              "efectos": [
+                {
+                  "tipo": "eleccion",
+                  "id": "truco",
+                  "nombre": "Truco de ataque",
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 0,
+                      "id": [
+                        "agarre_electrizante",
+                        "crear_llama",
+                        "descarga_de_fuego",
+                        "descarga_sobrenatural",
+                        "latigo_de_espinas",
+                        "rayo_de_escarcha",
+                        "toque_helado"
+                      ]
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "car"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "druida",
+              "nombre": "Druida",
+              "efectos": [
+                {
+                  "tipo": "eleccion",
+                  "id": "truco",
+                  "nombre": "Truco de ataque",
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 0,
+                      "id": [
+                        "agarre_electrizante",
+                        "crear_llama",
+                        "descarga_de_fuego",
+                        "descarga_sobrenatural",
+                        "latigo_de_espinas",
+                        "rayo_de_escarcha",
+                        "toque_helado"
+                      ]
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "sab"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "hechicero",
+              "nombre": "Hechicero",
+              "efectos": [
+                {
+                  "tipo": "eleccion",
+                  "id": "truco",
+                  "nombre": "Truco de ataque",
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 0,
+                      "id": [
+                        "agarre_electrizante",
+                        "crear_llama",
+                        "descarga_de_fuego",
+                        "descarga_sobrenatural",
+                        "latigo_de_espinas",
+                        "rayo_de_escarcha",
+                        "toque_helado"
+                      ]
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "car"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "mago",
+              "nombre": "Mago",
+              "efectos": [
+                {
+                  "tipo": "eleccion",
+                  "id": "truco",
+                  "nombre": "Truco de ataque",
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 0,
+                      "id": [
+                        "agarre_electrizante",
+                        "crear_llama",
+                        "descarga_de_fuego",
+                        "descarga_sobrenatural",
+                        "latigo_de_espinas",
+                        "rayo_de_escarcha",
+                        "toque_helado"
+                      ]
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "int"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "habilidoso",
+      "nombre": "Habilidoso",
+      "resumen": "competencia en 3 habilidades o herramientas a tu elección",
+      "descripcion": "Ganas competencia con tres habilidades o herramientas, en la combinación que prefieras.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "competencias",
+          "nombre": "Habilidades o herramientas",
+          "elegir": 3,
+          "opciones": [
+            {
+              "id": "acrobacias",
+              "nombre": "Acrobacias",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "habilidad",
+                  "id": "acrobacias"
+                }
+              ]
+            },
+            {
+              "id": "atletismo",
+              "nombre": "Atletismo",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "habilidad",
+                  "id": "atletismo"
+                }
+              ]
+            },
+            {
+              "id": "conocimiento_arcano",
+              "nombre": "Conocimiento Arcano",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "habilidad",
+                  "id": "conocimiento_arcano"
+                }
+              ]
+            },
+            {
+              "id": "engano",
+              "nombre": "Engaño",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "habilidad",
+                  "id": "engano"
+                }
+              ]
+            },
+            {
+              "id": "historia",
+              "nombre": "Historia",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "habilidad",
+                  "id": "historia"
+                }
+              ]
+            },
+            {
+              "id": "interpretacion",
+              "nombre": "Interpretación",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "habilidad",
+                  "id": "interpretacion"
+                }
+              ]
+            },
+            {
+              "id": "intimidacion",
+              "nombre": "Intimidación",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "habilidad",
+                  "id": "intimidacion"
+                }
+              ]
+            },
+            {
+              "id": "investigacion",
+              "nombre": "Investigación",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "habilidad",
+                  "id": "investigacion"
+                }
+              ]
+            },
+            {
+              "id": "juego_de_manos",
+              "nombre": "Juego de Manos",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "habilidad",
+                  "id": "juego_de_manos"
+                }
+              ]
+            },
+            {
+              "id": "medicina",
+              "nombre": "Medicina",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "habilidad",
+                  "id": "medicina"
+                }
+              ]
+            },
+            {
+              "id": "naturaleza",
+              "nombre": "Naturaleza",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "habilidad",
+                  "id": "naturaleza"
+                }
+              ]
+            },
+            {
+              "id": "percepcion",
+              "nombre": "Percepción",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "habilidad",
+                  "id": "percepcion"
+                }
+              ]
+            },
+            {
+              "id": "perspicacia",
+              "nombre": "Perspicacia",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "habilidad",
+                  "id": "perspicacia"
+                }
+              ]
+            },
+            {
+              "id": "persuasion",
+              "nombre": "Persuasión",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "habilidad",
+                  "id": "persuasion"
+                }
+              ]
+            },
+            {
+              "id": "religion",
+              "nombre": "Religión",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "habilidad",
+                  "id": "religion"
+                }
+              ]
+            },
+            {
+              "id": "sigilo",
+              "nombre": "Sigilo",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "habilidad",
+                  "id": "sigilo"
+                }
+              ]
+            },
+            {
+              "id": "supervivencia",
+              "nombre": "Supervivencia",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "habilidad",
+                  "id": "supervivencia"
+                }
+              ]
+            },
+            {
+              "id": "trato_con_animales",
+              "nombre": "Trato con Animales",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "habilidad",
+                  "id": "trato_con_animales"
+                }
+              ]
+            },
+            {
+              "id": "herramientas_de_albanil",
+              "nombre": "Herramientas de albañil",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "herramientas_de_albanil"
+                }
+              ]
+            },
+            {
+              "id": "herramientas_de_alfarero",
+              "nombre": "Herramientas de alfarero",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "herramientas_de_alfarero"
+                }
+              ]
+            },
+            {
+              "id": "herramientas_de_carpintero",
+              "nombre": "Herramientas de carpintero",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "herramientas_de_carpintero"
+                }
+              ]
+            },
+            {
+              "id": "herramientas_de_cartografo",
+              "nombre": "Herramientas de cartógrafo",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "herramientas_de_cartografo"
+                }
+              ]
+            },
+            {
+              "id": "herramientas_de_curtidor",
+              "nombre": "Herramientas de curtidor",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "herramientas_de_curtidor"
+                }
+              ]
+            },
+            {
+              "id": "herramientas_de_ebanista",
+              "nombre": "Herramientas de ebanista",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "herramientas_de_ebanista"
+                }
+              ]
+            },
+            {
+              "id": "herramientas_de_herrero",
+              "nombre": "Herramientas de herrero",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "herramientas_de_herrero"
+                }
+              ]
+            },
+            {
+              "id": "herramientas_de_joyero",
+              "nombre": "Herramientas de joyero",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "herramientas_de_joyero"
+                }
+              ]
+            },
+            {
+              "id": "herramientas_de_manitas",
+              "nombre": "Herramientas de manitas",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "herramientas_de_manitas"
+                }
+              ]
+            },
+            {
+              "id": "herramientas_de_soplador_de_vidrio",
+              "nombre": "Herramientas de soplador de vidrio",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "herramientas_de_soplador_de_vidrio"
+                }
+              ]
+            },
+            {
+              "id": "herramientas_de_tejedor",
+              "nombre": "Herramientas de tejedor",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "herramientas_de_tejedor"
+                }
+              ]
+            },
+            {
+              "id": "herramientas_de_zapatero",
+              "nombre": "Herramientas de zapatero",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "herramientas_de_zapatero"
+                }
+              ]
+            },
+            {
+              "id": "suministros_de_alquimista",
+              "nombre": "Suministros de alquimista",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "suministros_de_alquimista"
+                }
+              ]
+            },
+            {
+              "id": "suministros_de_caligrafo",
+              "nombre": "Suministros de calígrafo",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "suministros_de_caligrafo"
+                }
+              ]
+            },
+            {
+              "id": "suministros_de_cervecero",
+              "nombre": "Suministros de cervecero",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "suministros_de_cervecero"
+                }
+              ]
+            },
+            {
+              "id": "suministros_de_pintor",
+              "nombre": "Suministros de pintor",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "suministros_de_pintor"
+                }
+              ]
+            },
+            {
+              "id": "utiles_de_cocinero",
+              "nombre": "Útiles de cocinero",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "utiles_de_cocinero"
+                }
+              ]
+            },
+            {
+              "id": "herramientas_de_ladron",
+              "nombre": "Herramientas de ladrón",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "herramientas_de_ladron"
+                }
+              ]
+            },
+            {
+              "id": "herramientas_de_navegante",
+              "nombre": "Herramientas de navegante",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "herramientas_de_navegante"
+                }
+              ]
+            },
+            {
+              "id": "utiles_de_envenenador",
+              "nombre": "Útiles de envenenador",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "utiles_de_envenenador"
+                }
+              ]
+            },
+            {
+              "id": "utiles_de_herborista",
+              "nombre": "Útiles de herborista",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "utiles_de_herborista"
+                }
+              ]
+            },
+            {
+              "id": "utiles_para_disfrazarse",
+              "nombre": "Útiles para disfrazarse",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "utiles_para_disfrazarse"
+                }
+              ]
+            },
+            {
+              "id": "utiles_para_falsificar",
+              "nombre": "Útiles para falsificar",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "utiles_para_falsificar"
+                }
+              ]
+            },
+            {
+              "id": "chirimia",
+              "nombre": "Chirimía",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "chirimia"
+                }
+              ]
+            },
+            {
+              "id": "cuerno",
+              "nombre": "Cuerno",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "cuerno"
+                }
+              ]
+            },
+            {
+              "id": "dulcemele",
+              "nombre": "Dulcémele",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "dulcemele"
+                }
+              ]
+            },
+            {
+              "id": "flauta",
+              "nombre": "Flauta",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "flauta"
+                }
+              ]
+            },
+            {
+              "id": "flauta_de_pan",
+              "nombre": "Flauta de pan",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "flauta_de_pan"
+                }
+              ]
+            },
+            {
+              "id": "gaita",
+              "nombre": "Gaita",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "gaita"
+                }
+              ]
+            },
+            {
+              "id": "laud",
+              "nombre": "Laúd",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "laud"
+                }
+              ]
+            },
+            {
+              "id": "lira",
+              "nombre": "Lira",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "lira"
+                }
+              ]
+            },
+            {
+              "id": "tambor",
+              "nombre": "Tambor",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "tambor"
+                }
+              ]
+            },
+            {
+              "id": "viola",
+              "nombre": "Viola",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "viola"
+                }
+              ]
+            },
+            {
+              "id": "ajedrez_de_dragones",
+              "nombre": "Ajedrez de dragones",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "ajedrez_de_dragones"
+                }
+              ]
+            },
+            {
+              "id": "apuesta_de_los_tres_dragones",
+              "nombre": "Apuesta de los Tres Dragones",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "apuesta_de_los_tres_dragones"
+                }
+              ]
+            },
+            {
+              "id": "dados",
+              "nombre": "Dados",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "dados"
+                }
+              ]
+            },
+            {
+              "id": "naipes",
+              "nombre": "Naipes",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "naipes"
+                }
+              ]
+            },
+            {
+              "id": "vehiculos_acuaticos",
+              "nombre": "Vehículos acuáticos",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "vehiculos_acuaticos"
+                }
+              ]
+            },
+            {
+              "id": "vehiculos_terrestres",
+              "nombre": "Vehículos terrestres",
+              "efectos": [
+                {
+                  "tipo": "competencia",
+                  "categoria": "herramienta",
+                  "id": "vehiculos_terrestres"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "iniciado_en_la_magia",
+      "nombre": "Iniciado en la Magia",
+      "resumen": "2 trucos y 1 conjuro de nivel 1 de la clase elegida; el conjuro, 1 vez por descanso largo a su nivel mínimo",
+      "usos": 1,
+      "recarga": "largo",
+      "descripcion": "Elige bardo, brujo, clérigo, druida, hechicero o mago: aprendes dos trucos y un conjuro de nivel 1 de su lista, que usan la característica de lanzamiento de esa clase. Lanzas el conjuro a su nivel más bajo y no puedes volver a lanzarlo así hasta terminar un descanso largo.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "clase",
+          "nombre": "Clase de la magia",
+          "opciones": [
+            {
+              "id": "bardo",
+              "nombre": "Bardo",
+              "efectos": [
+                {
+                  "tipo": "eleccion",
+                  "id": "trucos",
+                  "nombre": "Trucos",
+                  "elegir": 2,
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 0
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "car"
+                    }
+                  ]
+                },
+                {
+                  "tipo": "eleccion",
+                  "id": "conjuro",
+                  "nombre": "Conjuro de nivel 1",
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 1
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "car"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "brujo",
+              "nombre": "Brujo",
+              "efectos": [
+                {
+                  "tipo": "eleccion",
+                  "id": "trucos",
+                  "nombre": "Trucos",
+                  "elegir": 2,
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 0
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "car"
+                    }
+                  ]
+                },
+                {
+                  "tipo": "eleccion",
+                  "id": "conjuro",
+                  "nombre": "Conjuro de nivel 1",
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 1
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "car"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "clerigo",
+              "nombre": "Clérigo",
+              "efectos": [
+                {
+                  "tipo": "eleccion",
+                  "id": "trucos",
+                  "nombre": "Trucos",
+                  "elegir": 2,
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 0
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "sab"
+                    }
+                  ]
+                },
+                {
+                  "tipo": "eleccion",
+                  "id": "conjuro",
+                  "nombre": "Conjuro de nivel 1",
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 1
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "sab"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "druida",
+              "nombre": "Druida",
+              "efectos": [
+                {
+                  "tipo": "eleccion",
+                  "id": "trucos",
+                  "nombre": "Trucos",
+                  "elegir": 2,
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 0
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "sab"
+                    }
+                  ]
+                },
+                {
+                  "tipo": "eleccion",
+                  "id": "conjuro",
+                  "nombre": "Conjuro de nivel 1",
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 1
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "sab"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "hechicero",
+              "nombre": "Hechicero",
+              "efectos": [
+                {
+                  "tipo": "eleccion",
+                  "id": "trucos",
+                  "nombre": "Trucos",
+                  "elegir": 2,
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 0
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "car"
+                    }
+                  ]
+                },
+                {
+                  "tipo": "eleccion",
+                  "id": "conjuro",
+                  "nombre": "Conjuro de nivel 1",
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 1
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "car"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "mago",
+              "nombre": "Mago",
+              "efectos": [
+                {
+                  "tipo": "eleccion",
+                  "id": "trucos",
+                  "nombre": "Trucos",
+                  "elegir": 2,
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 0
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "int"
+                    }
+                  ]
+                },
+                {
+                  "tipo": "eleccion",
+                  "id": "conjuro",
+                  "nombre": "Conjuro de nivel 1",
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 1
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "int"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "lanzador_en_combate",
+      "nombre": "Lanzador en Combate",
+      "prerrequisito": {
+        "lanzador": true
+      },
+      "resumen": "ventaja en salvaciones de concentración al recibir daño; componentes somáticos con armas o escudo en las manos; reacción: conjuro en lugar de ataque de oportunidad",
+      "descripcion": "Tienes ventaja en las salvaciones de Constitución para mantener la concentración al recibir daño y puedes realizar los componentes somáticos aunque lleves armas o escudo en las manos. Cuando una criatura hostil te provoca un ataque de oportunidad, puedes usar tu reacción para lanzarle un conjuro de 1 acción que solo la tenga a ella como objetivo.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "lanzador_ritual",
+      "nombre": "Lanzador Ritual",
+      "prerrequisito": {
+        "alguna_caracteristica": {
+          "int": 13,
+          "sab": 13
+        }
+      },
+      "resumen": "libro de rituales con 2 conjuros rituales de nivel 1; solo los lanzas como ritual; puedes copiar más (hasta nivel {(nivel+1)//2})",
+      "descripcion": "Elige bardo, brujo, clérigo, druida, hechicero o mago: tienes un libro de rituales con dos conjuros de nivel 1 de su lista que tengan la etiqueta ritual, y los lanzas solo como rituales con la característica de esa clase. Puedes copiar otros conjuros rituales de esa lista que encuentres escritos, de nivel no superior a la mitad de tu nivel (redondeando hacia arriba), gastando 2 horas y 50 po por nivel del conjuro.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "clase",
+          "nombre": "Clase de los rituales",
+          "opciones": [
+            {
+              "id": "bardo",
+              "nombre": "Bardo",
+              "efectos": [
+                {
+                  "tipo": "eleccion",
+                  "id": "rituales",
+                  "nombre": "Conjuros rituales",
+                  "elegir": 2,
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 1,
+                      "ritual": true
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "car"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "brujo",
+              "nombre": "Brujo",
+              "efectos": [
+                {
+                  "tipo": "eleccion",
+                  "id": "rituales",
+                  "nombre": "Conjuros rituales",
+                  "elegir": 2,
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 1,
+                      "ritual": true
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "car"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "clerigo",
+              "nombre": "Clérigo",
+              "efectos": [
+                {
+                  "tipo": "eleccion",
+                  "id": "rituales",
+                  "nombre": "Conjuros rituales",
+                  "elegir": 2,
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 1,
+                      "ritual": true
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "sab"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "druida",
+              "nombre": "Druida",
+              "efectos": [
+                {
+                  "tipo": "eleccion",
+                  "id": "rituales",
+                  "nombre": "Conjuros rituales",
+                  "elegir": 2,
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 1,
+                      "ritual": true
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "sab"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "hechicero",
+              "nombre": "Hechicero",
+              "efectos": [
+                {
+                  "tipo": "eleccion",
+                  "id": "rituales",
+                  "nombre": "Conjuros rituales",
+                  "elegir": 2,
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 1,
+                      "ritual": true
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "car"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "mago",
+              "nombre": "Mago",
+              "efectos": [
+                {
+                  "tipo": "eleccion",
+                  "id": "rituales",
+                  "nombre": "Conjuros rituales",
+                  "elegir": 2,
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "listas": "$opcion",
+                      "nivel": 1,
+                      "ritual": true
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "int"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "lider_inspirador",
+      "nombre": "Líder Inspirador",
+      "prerrequisito": {
+        "caracteristicas": {
+          "car": 13
+        }
+      },
+      "resumen": "10 minutos de arenga: hasta 6 criaturas a 30 pies ganan {nivel+mod_car} PG temporales (cada una, 1 vez por descanso)",
+      "descripcion": "Puedes pasar 10 minutos dando ánimos a tus compañeros. Hasta seis criaturas amistosas (tú incluido) que estén a 30 pies o menos, te vean u oigan y te entiendan ganan puntos de golpe temporales iguales a tu nivel + tu modificador por Carisma; ninguna puede volver a recibirlos así hasta terminar un descanso corto o largo.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "ligeramente_acorazado",
+      "nombre": "Ligeramente Acorazado",
+      "resumen": "competencia con armaduras ligeras",
+      "descripcion": "+1 a Fuerza o Destreza. Te has entrenado para llevar armadura ligera y ganas competencia con ella.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "caracteristica",
+          "nombre": "Característica (+1)",
+          "fuente": "caracteristicas",
+          "opciones": [
+            "fue",
+            "des"
+          ],
+          "aplicar": [
+            {
+              "tipo": "caracteristica",
+              "car": "$opcion",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "linguista",
+      "nombre": "Lingüista",
+      "resumen": "3 idiomas más; tus textos cifrados solo se descifran si los enseñas, con magia o con una prueba de INT contra CD (tu puntuación de INT + {competencia})",
+      "descripcion": "+1 a Inteligencia. Aprendes tres idiomas a tu elección y sabes crear cifrados escritos: nadie los descifra salvo que tú le enseñes, use magia o supere una prueba de Inteligencia con CD igual a tu puntuación de Inteligencia + tu bonificador por competencia.",
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "int",
+          "valor": 1
+        },
+        {
+          "tipo": "eleccion",
+          "id": "idiomas",
+          "nombre": "Idiomas",
+          "elegir": 3,
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "maestro_de_armas",
+      "nombre": "Maestro de Armas",
+      "resumen": "competencia con 4 armas a tu elección",
+      "descripcion": "+1 a Fuerza o Destreza. Has practicado con muchas armas y ganas competencia con cuatro armas a tu elección.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "caracteristica",
+          "nombre": "Característica (+1)",
+          "fuente": "caracteristicas",
+          "opciones": [
+            "fue",
+            "des"
+          ],
+          "aplicar": [
+            {
+              "tipo": "caracteristica",
+              "car": "$opcion",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "tipo": "eleccion",
+          "id": "armas",
+          "nombre": "Armas",
+          "elegir": 4,
+          "opciones": {
+            "desde": "armas"
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "arma",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "maestro_en_armaduras_medias",
+      "nombre": "Maestro en Armaduras Medias",
+      "prerrequisito": {
+        "competencia": "armaduras_medias"
+      },
+      "resumen": "con armadura media: sin desventaja en Sigilo y hasta +3 de DES a la CA (DES 16 o más)",
+      "descripcion": "La armadura media no te impone desventaja en las pruebas de Destreza (Sigilo), y con ella puedes sumar hasta 3 (en lugar de 2) a la CA si tu Destreza es 16 o más.",
+      "efectos": [
+        {
+          "tipo": "max_des_armadura_media",
+          "valor": 3
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "maestro_en_armaduras_pesadas",
+      "nombre": "Maestro en Armaduras Pesadas",
+      "prerrequisito": {
+        "competencia": "armaduras_pesadas"
+      },
+      "resumen": "con armadura pesada, el daño contundente, cortante y perforante de armas no mágicas se reduce en 3",
+      "descripcion": "+1 a Fuerza. Mientras llevas armadura pesada, el daño contundente, cortante y perforante que recibes de armas no mágicas se reduce en 3.",
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "fue",
+          "valor": 1
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "maestro_en_armas_de_asta",
+      "nombre": "Maestro en Armas de Asta",
+      "resumen": "con guja, alabarda, bastón o lanza: acción adicional, ataque con el otro extremo (1d4 contundente); con esas armas o pica, ataque de oportunidad a quien entre en tu alcance",
+      "descripcion": "Cuando usas la acción de Atacar solo con una guja, alabarda, bastón o lanza, puedes hacer como acción adicional un ataque cuerpo a cuerpo con el otro extremo (d4 de daño contundente, con el mismo modificador que el ataque principal). Mientras empuñes una de esas armas o una pica, las criaturas que entren en tu alcance te provocan un ataque de oportunidad.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "maestro_en_armas_pesadas",
+      "nombre": "Maestro en Armas Pesadas",
+      "resumen": "tras un crítico o dejar a 0 PG a alguien cuerpo a cuerpo, ataque como acción adicional; con arma pesada: −5 al ataque a cambio de +10 al daño",
+      "descripcion": "En tu turno, cuando consigues un crítico con un arma cuerpo a cuerpo o reduces a 0 puntos de golpe a una criatura con ella, puedes hacer un ataque con arma cuerpo a cuerpo como acción adicional. Antes de atacar con un arma pesada con la que tengas competencia, puedes aceptar −5 a la tirada de ataque para sumar 10 al daño si impactas.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "maestro_en_escudos",
+      "nombre": "Maestro en Escudos",
+      "resumen": "tras Atacar, empujas con el escudo como acción adicional; sumas su CA a salvaciones de DES contra efectos dirigidos solo a ti; reacción: sin daño si superas una salvación de DES de mitad de daño",
+      "descripcion": "Si usas la acción de Atacar, puedes intentar empujar con el escudo a una criatura a 5 pies como acción adicional. Si no estás incapacitado, sumas el bonificador a la CA del escudo a las salvaciones de Destreza contra conjuros o efectos dañinos que solo te tengan a ti como objetivo, y cuando un efecto te permite una salvación de Destreza para recibir la mitad del daño, puedes usar tu reacción para no recibir ninguno si la superas.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "maton_de_taberna",
+      "nombre": "Matón de Taberna",
+      "resumen": "competencia con armas improvisadas; ataque sin armas de 1d4; al impactar con ellas en tu turno, agarrar como acción adicional",
+      "descripcion": "+1 a Fuerza o Constitución. Tienes competencia con armas improvisadas y tu ataque sin armas hace 1d4 de daño. Si en tu turno impactas a una criatura con un ataque sin armas o un arma improvisada, puedes intentar agarrarla como acción adicional.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "caracteristica",
+          "nombre": "Característica (+1)",
+          "fuente": "caracteristicas",
+          "opciones": [
+            "fue",
+            "con"
+          ],
+          "aplicar": [
+            {
+              "tipo": "caracteristica",
+              "car": "$opcion",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "tipo": "ataque_desarmado",
+          "nombre": "Ataque sin armas (Matón de Taberna)",
+          "dano": "1d4",
+          "caracteristicas": [
+            "fue"
+          ]
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "mente_aguda",
+      "nombre": "Mente Aguda",
+      "resumen": "siempre sabes dónde está el norte y cuántas horas faltan para el amanecer o el ocaso; recuerdas con exactitud lo visto u oído en el último mes",
+      "descripcion": "+1 a Inteligencia. Siempre sabes hacia dónde está el norte y cuántas horas quedan hasta el próximo amanecer u ocaso, y recuerdas con precisión cualquier cosa que hayas visto u oído durante el último mes.",
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "int",
+          "valor": 1
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "moderadamente_acorazado",
+      "nombre": "Moderadamente Acorazado",
+      "prerrequisito": {
+        "competencia": "armaduras_ligeras"
+      },
+      "resumen": "competencia con armaduras medias y escudos",
+      "descripcion": "+1 a Fuerza o Destreza. Te has entrenado con armaduras medias y escudos, y ganas competencia con ellos.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "caracteristica",
+          "nombre": "Característica (+1)",
+          "fuente": "caracteristicas",
+          "opciones": [
+            "fue",
+            "des"
+          ],
+          "aplicar": [
+            {
+              "tipo": "caracteristica",
+              "car": "$opcion",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_medias"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "escudos"
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "movil",
+      "nombre": "Móvil",
+      "resumen": "+10 pies de velocidad; al Correr ignoras el terreno difícil; quien atacas cuerpo a cuerpo no te hace ataques de oportunidad ese turno",
+      "descripcion": "Tu velocidad aumenta en 10 pies. Cuando usas la acción de Correr, el terreno difícil no te cuesta movimiento extra ese turno, y si haces un ataque cuerpo a cuerpo contra una criatura, impactes o no, esa criatura no puede hacerte ataques de oportunidad durante el resto del turno.",
+      "efectos": [
+        {
+          "tipo": "velocidad",
+          "modo": "caminar",
+          "bonificador": 10
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "muy_acorazado",
+      "nombre": "Muy Acorazado",
+      "prerrequisito": {
+        "competencia": "armaduras_medias"
+      },
+      "resumen": "competencia con armaduras pesadas",
+      "descripcion": "+1 a Fuerza. Te has entrenado para llevar armadura pesada y ganas competencia con ella.",
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "fue",
+          "valor": 1
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_pesadas"
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "observador",
+      "nombre": "Observador",
+      "resumen": "+5 a Percepción e Investigación pasivas; lees los labios en idiomas que entiendes",
+      "descripcion": "+1 a Inteligencia o Sabiduría. Si ves la boca de una criatura que habla un idioma que entiendes, sabes lo que dice leyéndole los labios. Sumas 5 a tu Sabiduría (Percepción) pasiva y a tu Inteligencia (Investigación) pasiva.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "caracteristica",
+          "nombre": "Característica (+1)",
+          "fuente": "caracteristicas",
+          "opciones": [
+            "int",
+            "sab"
+          ],
+          "aplicar": [
+            {
+              "tipo": "caracteristica",
+              "car": "$opcion",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "tipo": "pasiva",
+          "habilidad": "percepcion",
+          "valor": 5
+        },
+        {
+          "tipo": "pasiva",
+          "habilidad": "investigacion",
+          "valor": 5
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "resiliente",
+      "nombre": "Resiliente",
+      "resumen": "+1 a una característica y competencia en sus tiradas de salvación",
+      "descripcion": "Elige una característica: su puntuación aumenta en 1 y ganas competencia en las tiradas de salvación que la usan.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "caracteristica",
+          "nombre": "Característica",
+          "opciones": {
+            "desde": "caracteristicas"
+          },
+          "aplicar": [
+            {
+              "tipo": "caracteristica",
+              "car": "$opcion",
+              "valor": 1
+            },
+            {
+              "tipo": "competencia",
+              "categoria": "salvacion",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "resistente",
+      "nombre": "Resistente",
+      "resumen": "al tirar dados de golpe para curarte, cada dado te da al menos {max(2, 2*mod_con)} PG",
+      "descripcion": "+1 a Constitución. Cuando tiras un dado de golpe para recuperar puntos de golpe, recuperas como mínimo el doble de tu modificador por Constitución (mínimo 2) con esa tirada.",
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "con",
+          "valor": 1
+        }
+      ],
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "sanador",
+      "nombre": "Sanador",
+      "resumen": "útiles de sanador: al estabilizar, el objetivo recupera 1 PG; acción y 1 uso: cura 1d4+4 + sus dados de golpe máximos (1 vez por descanso por criatura)",
+      "descripcion": "Cuando usas unos útiles de sanador para estabilizar a una criatura moribunda, esta recupera además 1 punto de golpe. Con una acción y un uso de los útiles, puedes curar a una criatura 1d4 + 4 puntos de golpe más tantos como su número máximo de dados de golpe; no puede volver a beneficiarse de esto hasta terminar un descanso corto o largo.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "tirador_de_primera",
+      "nombre": "Tirador de Primera",
+      "resumen": "sin desventaja a largo alcance; ignoras la cobertura media y tres cuartos; con arma a distancia: −5 al ataque a cambio de +10 al daño",
+      "descripcion": "Atacar a largo alcance no te impone desventaja en los ataques con armas a distancia, y estos no tienen en cuenta la cobertura media ni la de tres cuartos. Antes de atacar con un arma a distancia con la que tengas competencia, puedes aceptar −5 a la tirada de ataque para sumar 10 al daño si impactas.",
+      "fuente": "PHB 2014"
+    }
+  ]
+}

@@ -1,1 +1,16 @@
-{}
+{
+  "dotes": [
+    {
+      "id": "apresador",
+      "nombre": "Apresador",
+      "prerrequisito": {
+        "caracteristicas": {
+          "fue": 13
+        }
+      },
+      "resumen": "ventaja al atacar a quien agarras; acción: otra prueba de agarrar para dejaros apresados a los dos",
+      "descripcion": "Tienes ventaja en las tiradas de ataque contra una criatura a la que estés agarrando. Puedes emplear tu acción para inmovilizar a una criatura a la que tengas agarrada: haz otra prueba de agarrar y, si la superas, la criatura y tú estaréis apresados hasta que el agarre termine.",
+      "fuente": "SRD 5.1 p. 78"
+    }
+  ]
+}

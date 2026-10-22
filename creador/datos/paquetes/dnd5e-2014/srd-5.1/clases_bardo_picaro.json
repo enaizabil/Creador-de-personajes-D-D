@@ -1,1 +1,802 @@
-{}
+{
+  "clases": [
+    {
+      "id": "bardo",
+      "nombre": "Bardo",
+      "fuente": "SRD 5.1 p. 11",
+      "descripcion": "Artista y erudito que da forma a la magia con su música y sus palabras: inspira a sus aliados, sabe un poco de todo y lanza conjuros con Carisma.",
+      "perfil": {
+        "carisma": 3,
+        "arcano": 2,
+        "astucia": 1,
+        "saber": 1
+      },
+      "dado_golpe": 8,
+      "salvaciones": [
+        "des",
+        "car"
+      ],
+      "nivel_subclase": 3,
+      "competencias": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_sencillas"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "ballesta_de_mano"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "espada_corta"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "espada_larga"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "estoque"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "instrumentos",
+          "nombre": "Instrumentos musicales de bardo",
+          "elegir": 3,
+          "opciones": {
+            "desde": "herramientas",
+            "filtro": {
+              "subcategoria": "instrumento"
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "herramienta",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "eleccion",
+          "id": "habilidades",
+          "nombre": "Habilidades de bardo",
+          "elegir": 3,
+          "fuente": "habilidades",
+          "opciones": [
+            "acrobacias",
+            "atletismo",
+            "conocimiento_arcano",
+            "engano",
+            "historia",
+            "interpretacion",
+            "intimidacion",
+            "investigacion",
+            "juego_de_manos",
+            "medicina",
+            "naturaleza",
+            "percepcion",
+            "perspicacia",
+            "persuasion",
+            "religion",
+            "sigilo",
+            "supervivencia",
+            "trato_con_animales"
+          ],
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "habilidad",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "competencias_multiclase": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "habilidad",
+          "nombre": "Habilidad de bardo (multiclase)",
+          "elegir": 1,
+          "fuente": "habilidades",
+          "opciones": [
+            "acrobacias",
+            "atletismo",
+            "conocimiento_arcano",
+            "engano",
+            "historia",
+            "interpretacion",
+            "intimidacion",
+            "investigacion",
+            "juego_de_manos",
+            "medicina",
+            "naturaleza",
+            "percepcion",
+            "perspicacia",
+            "persuasion",
+            "religion",
+            "sigilo",
+            "supervivencia",
+            "trato_con_animales"
+          ],
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "habilidad",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "eleccion",
+          "id": "instrumento",
+          "nombre": "Instrumento musical de bardo (multiclase)",
+          "elegir": 1,
+          "opciones": {
+            "desde": "herramientas",
+            "filtro": {
+              "subcategoria": "instrumento"
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "herramienta",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "requisitos_multiclase": {
+        "caracteristicas": {
+          "car": 13
+        }
+      },
+      "equipo_inicial": [
+        [
+          [
+            {
+              "id": "estoque"
+            }
+          ],
+          [
+            {
+              "id": "espada_larga"
+            }
+          ],
+          [
+            {
+              "desde": "armas",
+              "filtro": {
+                "arma": {
+                  "categoria": "sencilla"
+                }
+              }
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "paquete_de_diplomatico"
+            }
+          ],
+          [
+            {
+              "id": "paquete_de_artista"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "laud"
+            }
+          ],
+          [
+            {
+              "desde": "herramientas",
+              "filtro": {
+                "subcategoria": "instrumento"
+              }
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "armadura_de_cuero"
+            },
+            {
+              "id": "daga"
+            }
+          ]
+        ]
+      ],
+      "lanzamiento": {
+        "caracteristica": "car",
+        "progresion": "completo",
+        "trucos_conocidos": [
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "conjuros_conocidos": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          14,
+          15,
+          15,
+          16,
+          18,
+          19,
+          19,
+          20,
+          22,
+          22,
+          22
+        ]
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Lanzamiento de Conjuros",
+            "resumen": "conjuros de bardo con CAR: CD {8+competencia+mod_car}, ataque de conjuro +{competencia+mod_car}; rituales de los conjuros que conoces; canalizador: instrumento musical",
+            "descripcion": "Conoces trucos y conjuros de la lista del bardo (columnas «Trucos conocidos» y «Conjuros conocidos» de la tabla «El bardo») y los lanzas con Carisma. Al subir de nivel en esta clase puedes cambiar uno de tus conjuros de bardo por otro de la lista para el que tengas espacios. Puedes lanzar como ritual los conjuros que conozcas con la etiqueta «ritual» y usar un instrumento musical como canalizador mágico."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Inspiración Bárdica",
+            "resumen": "acción adicional: una criatura que no seas tú, que te oiga y esté a 60 pies o menos, gana un dado {escala} para sumarlo a una prueba de característica, tirada de ataque o salvación en los próximos 10 minutos; se recupera con descanso largo (desde nivel 5 de bardo, también corto: Fuente de Inspiración)",
+            "descripcion": "Como acción adicional, eliges a una criatura que no seas tú, que pueda oírte y esté a 60 pies o menos, y le das un dado de Inspiración Bárdica. Una vez en los 10 minutos siguientes, puede tirarlo y sumarlo a una prueba de característica, tirada de ataque o tirada de salvación, incluso después de ver el d20 pero antes de saber si tiene éxito. Nadie puede tener más de un dado de Inspiración Bárdica a la vez. Usos: tu modificador por Carisma (mínimo 1); los recuperas tras un descanso largo. El dado es d6, d8 a nivel 5, d10 a nivel 10 y d12 a nivel 15.",
+            "usos": "max(1,mod_car)",
+            "recarga": "largo",
+            "escala": {
+              "1": "1d6",
+              "5": "1d8",
+              "10": "1d10",
+              "15": "1d12"
+            }
+          }
+        ],
+        "2": [
+          {
+            "tipo": "medio_competencia",
+            "caracteristicas": "todas"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Aprendiz de Mucho",
+            "resumen": "+{competencia//2} a las pruebas de característica (iniciativa incluida) que no sumen ya tu bonificador por competencia",
+            "descripcion": "Puedes sumar la mitad de tu bonificador por competencia, redondeando hacia abajo, a cualquier prueba de característica que hagas y que no incluya ya tu bonificador por competencia."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Canción de Descanso",
+            "resumen": "durante un descanso corto, cada criatura amistosa que te oiga y gaste Dados de Golpe recupera {escala} PG adicionales",
+            "descripcion": "Si tú o cualquier criatura amistosa que escuche tu interpretación gastáis Dados de Golpe para recuperar puntos de golpe al final de un descanso corto, cada una recupera 1d6 puntos de golpe adicionales (1d8 a nivel 9, 1d10 a nivel 13 y 1d12 a nivel 17).",
+            "escala": {
+              "2": "1d6",
+              "9": "1d8",
+              "13": "1d10",
+              "17": "1d12"
+            }
+          }
+        ],
+        "3": [
+          {
+            "tipo": "eleccion",
+            "id": "pericia",
+            "nombre": "Pericia de bardo (2 habilidades con competencia)",
+            "elegir": 2,
+            "opciones": {
+              "desde": "habilidades"
+            },
+            "aplicar": [
+              {
+                "tipo": "pericia",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Pericia",
+            "resumen": "bonificador por competencia doble en dos habilidades en las que seas competente",
+            "descripcion": "Escoge dos habilidades en las que tengas competencia: tu bonificador por competencia se duplica en las pruebas de característica que hagas con ellas. A nivel 10 eliges otras dos."
+          }
+        ],
+        "4": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "5": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Fuente de Inspiración",
+            "resumen": "recuperas todos los usos de Inspiración Bárdica tras un descanso corto o largo",
+            "descripcion": "A partir del nivel 5, recuperas todos los usos gastados de Inspiración Bárdica cuando terminas un descanso corto o largo."
+          }
+        ]
+      }
+    },
+    {
+      "id": "picaro",
+      "nombre": "Pícaro",
+      "fuente": "SRD 5.1 p. 53",
+      "descripcion": "Especialista en sigilo y en todo tipo de habilidades que aprovecha cualquier descuido del enemigo para asestar ataques furtivos precisos y mortíferos.",
+      "perfil": {
+        "sigilo": 3,
+        "astucia": 3,
+        "agilidad": 2
+      },
+      "dado_golpe": 8,
+      "salvaciones": [
+        "des",
+        "int"
+      ],
+      "nivel_subclase": 3,
+      "competencias": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_sencillas"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "ballesta_de_mano"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "espada_corta"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "espada_larga"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "estoque"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "herramientas_de_ladron"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "habilidades",
+          "nombre": "Habilidades de pícaro",
+          "elegir": 4,
+          "fuente": "habilidades",
+          "opciones": [
+            "acrobacias",
+            "atletismo",
+            "engano",
+            "interpretacion",
+            "intimidacion",
+            "investigacion",
+            "juego_de_manos",
+            "percepcion",
+            "perspicacia",
+            "persuasion",
+            "sigilo"
+          ],
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "habilidad",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "competencias_multiclase": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "habilidad",
+          "nombre": "Habilidad de pícaro (multiclase)",
+          "elegir": 1,
+          "fuente": "habilidades",
+          "opciones": [
+            "acrobacias",
+            "atletismo",
+            "engano",
+            "interpretacion",
+            "intimidacion",
+            "investigacion",
+            "juego_de_manos",
+            "percepcion",
+            "perspicacia",
+            "persuasion",
+            "sigilo"
+          ],
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "habilidad",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "herramientas_de_ladron"
+        }
+      ],
+      "requisitos_multiclase": {
+        "caracteristicas": {
+          "des": 13
+        }
+      },
+      "equipo_inicial": [
+        [
+          [
+            {
+              "id": "estoque"
+            }
+          ],
+          [
+            {
+              "id": "espada_corta"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "arco_corto"
+            },
+            {
+              "id": "aljaba"
+            },
+            {
+              "id": "flecha",
+              "cantidad": 20
+            }
+          ],
+          [
+            {
+              "id": "espada_corta"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "paquete_de_ladron"
+            }
+          ],
+          [
+            {
+              "id": "paquete_de_explorador_de_mazmorras"
+            }
+          ],
+          [
+            {
+              "id": "paquete_de_explorador"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "armadura_de_cuero"
+            },
+            {
+              "id": "daga",
+              "cantidad": 2
+            },
+            {
+              "id": "herramientas_de_ladron"
+            }
+          ]
+        ]
+      ],
+      "niveles": {
+        "1": [
+          {
+            "tipo": "eleccion",
+            "id": "pericia",
+            "nombre": "Pericia de pícaro (2 habilidades con competencia, o 1 y herramientas de ladrón)",
+            "elegir": 2,
+            "opciones": [
+              {
+                "id": "acrobacias",
+                "nombre": "Acrobacias"
+              },
+              {
+                "id": "atletismo",
+                "nombre": "Atletismo"
+              },
+              {
+                "id": "conocimiento_arcano",
+                "nombre": "Conocimiento Arcano"
+              },
+              {
+                "id": "engano",
+                "nombre": "Engaño"
+              },
+              {
+                "id": "historia",
+                "nombre": "Historia"
+              },
+              {
+                "id": "interpretacion",
+                "nombre": "Interpretación"
+              },
+              {
+                "id": "intimidacion",
+                "nombre": "Intimidación"
+              },
+              {
+                "id": "investigacion",
+                "nombre": "Investigación"
+              },
+              {
+                "id": "juego_de_manos",
+                "nombre": "Juego de Manos"
+              },
+              {
+                "id": "medicina",
+                "nombre": "Medicina"
+              },
+              {
+                "id": "naturaleza",
+                "nombre": "Naturaleza"
+              },
+              {
+                "id": "percepcion",
+                "nombre": "Percepción"
+              },
+              {
+                "id": "perspicacia",
+                "nombre": "Perspicacia"
+              },
+              {
+                "id": "persuasion",
+                "nombre": "Persuasión"
+              },
+              {
+                "id": "religion",
+                "nombre": "Religión"
+              },
+              {
+                "id": "sigilo",
+                "nombre": "Sigilo"
+              },
+              {
+                "id": "supervivencia",
+                "nombre": "Supervivencia"
+              },
+              {
+                "id": "trato_con_animales",
+                "nombre": "Trato con Animales"
+              },
+              {
+                "id": "herramientas_de_ladron",
+                "nombre": "Herramientas de ladrón"
+              }
+            ],
+            "aplicar": [
+              {
+                "tipo": "pericia",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Pericia",
+            "resumen": "bonificador por competencia doble en dos habilidades con competencia (o una y las herramientas de ladrón)",
+            "descripcion": "Escoge dos de tus competencias en habilidades, o una y tu competencia con las herramientas de ladrón: tu bonificador por competencia se duplica en las pruebas de característica que hagas con ellas. A nivel 6 eliges otras dos."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Ataque Furtivo",
+            "resumen": "una vez por turno, +{escala} de daño al impactar con un arma sutil o a distancia si tienes ventaja, o si otro enemigo del objetivo no incapacitado está a 5 pies o menos de él y no tienes desventaja",
+            "descripcion": "Una vez por turno, puedes infligir daño adicional a una criatura a la que impactes con un ataque hecho con un arma sutil o a distancia si tienes ventaja en la tirada. No necesitas la ventaja si otro enemigo del objetivo está a 5 pies o menos de él, no está incapacitado y tú no tienes desventaja en la tirada. El daño adicional crece con tu nivel de pícaro (columna «Ataque Furtivo» de la tabla «El pícaro»).",
+            "escala": {
+              "1": "1d6",
+              "3": "2d6",
+              "5": "3d6",
+              "7": "4d6",
+              "9": "5d6",
+              "11": "6d6",
+              "13": "7d6",
+              "15": "8d6",
+              "17": "9d6",
+              "19": "10d6"
+            }
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "idioma",
+            "id": "jerga_de_ladrones"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Jerga de Ladrones",
+            "resumen": "mezcla de dialecto, argot y código para esconder mensajes en una conversación normal (tarda el cuádruple); entiendes señales y símbolos secretos de los ladrones",
+            "descripcion": "Conoces la jerga de ladrones, con la que puedes esconder mensajes en lo que parece una conversación corriente; solo quien conozca la jerga los entiende, y transmitir así una idea lleva cuatro veces más tiempo. También entiendes un conjunto de señales y símbolos secretos para dejar mensajes cortos y sencillos (peligro, territorio de un gremio, botín cerca, lugareños confiados o pisos francos)."
+          }
+        ],
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Acción Astuta",
+            "resumen": "acción adicional en cada uno de tus turnos: Correr, Destrabarse o Esconderse",
+            "descripcion": "Puedes realizar una acción adicional en cada uno de tus turnos durante un combate, pero solo para las acciones de Correr, Destrabarse o Esconderse."
+          }
+        ],
+        "4": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "5": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Esquiva Asombrosa",
+            "resumen": "reacción: cuando un atacante que puedas ver te impacte con un ataque, reduces su daño a la mitad",
+            "descripcion": "Cuando un atacante que puedas ver te impacte con un ataque, puedes usar tu reacción para reducir a la mitad el daño que te causa dicho ataque."
+          }
+        ]
+      }
+    }
+  ],
+  "subclases": [
+    {
+      "id": "colegio_del_conocimiento",
+      "nombre": "Colegio del Conocimiento",
+      "clase": "bardo",
+      "fuente": "SRD 5.1 p. 13",
+      "descripcion": "Bardos que reúnen saberes de todas partes, desde tratados eruditos hasta cuentos de campesinos, y que deben lealtad a la belleza y a la verdad más que a reyes o dioses.",
+      "perfil": {
+        "saber": 3,
+        "carisma": 2,
+        "arcano": 2
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "eleccion",
+            "id": "competencias_adicionales",
+            "nombre": "Competencias Adicionales (3 habilidades)",
+            "elegir": 3,
+            "fuente": "habilidades",
+            "opciones": [
+              "acrobacias",
+              "atletismo",
+              "conocimiento_arcano",
+              "engano",
+              "historia",
+              "interpretacion",
+              "intimidacion",
+              "investigacion",
+              "juego_de_manos",
+              "medicina",
+              "naturaleza",
+              "percepcion",
+              "perspicacia",
+              "persuasion",
+              "religion",
+              "sigilo",
+              "supervivencia",
+              "trato_con_animales"
+            ],
+            "aplicar": [
+              {
+                "tipo": "competencia",
+                "categoria": "habilidad",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Competencias Adicionales",
+            "resumen": "competencia en tres habilidades a tu elección",
+            "descripcion": "Al unirte al Colegio del Conocimiento ganas competencia en tres habilidades cualesquiera a tu elección."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Palabras Cortantes",
+            "resumen": "reacción y un uso de Inspiración Bárdica: restas {escala} a la tirada de ataque, prueba de característica o tirada de daño de una criatura que veas a 60 pies o menos (no afecta a quien no te oiga o sea inmune a hechizado)",
+            "descripcion": "Cuando una criatura que puedas ver a 60 pies o menos haga una tirada de ataque, una prueba de característica o una tirada de daño, puedes usar tu reacción y gastar un uso de Inspiración Bárdica para tirar el dado y restar el resultado a su tirada. Puedes decidirlo después de que la criatura tire, pero antes de que se sepa si tiene éxito o de que inflija el daño. No afecta a las criaturas que no puedan oírte ni a las inmunes al estado hechizado.",
+            "escala": {
+              "1": "1d6",
+              "5": "1d8",
+              "10": "1d10",
+              "15": "1d12"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ladron",
+      "nombre": "Ladrón",
+      "clase": "picaro",
+      "fuente": "SRD 5.1 p. 54",
+      "descripcion": "Pícaros que perfeccionan el arte del latrocinio: rateros, bandidos y carteristas, pero también buscadores de tesoros y exploradores de ruinas antiguas.",
+      "perfil": {
+        "sigilo": 3,
+        "agilidad": 2,
+        "astucia": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Manos Rápidas",
+            "resumen": "con la acción adicional de Acción Astuta: prueba de DES (Juego de Manos), usar herramientas de ladrón para desarmar una trampa o abrir una cerradura, o la acción de Usar un Objeto",
+            "descripcion": "Puedes usar la acción adicional que te concede Acción Astuta para hacer una prueba de Destreza (Juego de Manos), usar tus herramientas de ladrón para desarmar una trampa o forzar una cerradura, o realizar la acción de Usar un Objeto."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Balconero",
+            "resumen": "trepar no te cuesta movimiento adicional; al saltar con carrerilla, la distancia aumenta en {mod_des} pies",
+            "descripcion": "Trepar ya no te cuesta movimiento adicional. Además, cuando saltas con carrerilla, la distancia que cubres aumenta en tantos pies como tu modificador por Destreza."
+          }
+        ]
+      }
+    }
+  ]
+}

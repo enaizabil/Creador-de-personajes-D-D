@@ -1,1 +1,587 @@
-{}
+{
+  "clases": [
+    {
+      "id": "barbaro",
+      "nombre": "Bárbaro",
+      "fuente": "SRD 5.1 p. 8",
+      "descripcion": "Combatiente feroz que se deja llevar por una furia primordial: aguanta el castigo, golpea con toda su fuerza y confía en sus instintos para evitar el peligro.",
+      "perfil": {
+        "combate": 3,
+        "aguante": 3,
+        "naturaleza": 1
+      },
+      "dado_golpe": 12,
+      "salvaciones": [
+        "fue",
+        "con"
+      ],
+      "nivel_subclase": 3,
+      "competencias": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_medias"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "escudos"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_sencillas"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_marciales"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "habilidades",
+          "nombre": "Habilidades de bárbaro",
+          "elegir": 2,
+          "fuente": "habilidades",
+          "opciones": [
+            "atletismo",
+            "intimidacion",
+            "naturaleza",
+            "percepcion",
+            "supervivencia",
+            "trato_con_animales"
+          ],
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "habilidad",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "competencias_multiclase": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "escudos"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_sencillas"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_marciales"
+        }
+      ],
+      "requisitos_multiclase": {
+        "caracteristicas": {
+          "fue": 13
+        }
+      },
+      "equipo_inicial": [
+        [
+          [
+            {
+              "id": "hacha_a_dos_manos"
+            }
+          ],
+          [
+            {
+              "desde": "armas",
+              "filtro": {
+                "arma": {
+                  "categoria": "marcial",
+                  "tipo": "cuerpo_a_cuerpo"
+                }
+              }
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "hacha_de_mano",
+              "cantidad": 2
+            }
+          ],
+          [
+            {
+              "desde": "armas",
+              "filtro": {
+                "arma": {
+                  "categoria": "sencilla"
+                }
+              }
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "paquete_de_explorador"
+            },
+            {
+              "id": "jabalina",
+              "cantidad": 4
+            }
+          ]
+        ]
+      ],
+      "niveles": {
+        "1": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Furia",
+            "resumen": "acción adicional, 1 minuto, sin armadura pesada: +{escala} al daño de ataques con arma cuerpo a cuerpo con FUE; resistencia a daño contundente, cortante y perforante; ventaja en pruebas y salvaciones de FUE; no puedes lanzar conjuros ni concentrarte",
+            "descripcion": "En tu turno, como acción adicional, te enfureces durante 1 minuto. Mientras no lleves armadura pesada, tienes ventaja en las pruebas y tiradas de salvación de Fuerza, sumas el daño por furia a los ataques con arma cuerpo a cuerpo que usen Fuerza y tienes resistencia al daño contundente, cortante y perforante; no puedes lanzar conjuros ni concentrarte en ellos. La furia termina antes si quedas inconsciente o si acabas tu turno sin haber atacado a una criatura hostil ni recibido daño desde tu turno anterior, y puedes terminarla como acción adicional. Usos: 2 (3 a nivel 3, 4 a nivel 6, 5 a nivel 12, 6 a nivel 17, ilimitados a nivel 20) por descanso largo.",
+            "usos": "2+min(1,nivel_clase//3)+min(1,nivel_clase//6)+min(1,nivel_clase//12)+min(1,nivel_clase//17)",
+            "recarga": "largo",
+            "escala": {
+              "1": 2,
+              "9": 3,
+              "16": 4
+            }
+          },
+          {
+            "tipo": "ca_alternativa",
+            "base": 10,
+            "suma": [
+              "des",
+              "con"
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Defensa sin Armadura",
+            "resumen": "sin armadura, CA {10+mod_des+mod_con} (el escudo se suma)",
+            "descripcion": "Mientras no lleves armadura, tu Clase de Armadura es 10 + tu modificador por Destreza + tu modificador por Constitución. Obtienes este beneficio aunque lleves un escudo."
+          }
+        ],
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Ataque Temerario",
+            "resumen": "al hacer tu primer ataque del turno: ventaja en ataques con arma cuerpo a cuerpo con FUE este turno; los ataques contra ti tienen ventaja hasta tu siguiente turno",
+            "descripcion": "Cuando vayas a realizar el primer ataque de tu turno, puedes atacar temerariamente: tendrás ventaja en las tiradas de ataque con armas cuerpo a cuerpo que usen Fuerza durante este turno, pero las tiradas de ataque contra ti tendrán ventaja hasta el final de tu siguiente turno."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Sentir el Peligro",
+            "resumen": "ventaja en salvaciones de DES contra efectos que puedas ver (no si estás cegado, ensordecido o incapacitado)",
+            "descripcion": "Tienes ventaja en las tiradas de salvación de Destreza para evitar efectos que puedas ver, como trampas o conjuros. No obtienes este beneficio si estás cegado, ensordecido o incapacitado."
+          }
+        ],
+        "4": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "5": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Ataque Adicional",
+            "resumen": "2 ataques al usar la acción de Atacar",
+            "descripcion": "Cuando realizas la acción de Atacar durante tu turno, puedes hacer dos ataques en lugar de uno."
+          },
+          {
+            "tipo": "velocidad",
+            "modo": "caminar",
+            "bonificador": 10,
+            "condicion": "sin_armadura_pesada"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Movimiento Rápido",
+            "resumen": "+10 pies de velocidad sin armadura pesada",
+            "descripcion": "Tu velocidad aumenta en 10 pies mientras no lleves armadura pesada."
+          }
+        ]
+      }
+    },
+    {
+      "id": "guerrero",
+      "nombre": "Guerrero",
+      "fuente": "SRD 5.1 p. 34",
+      "descripcion": "Experto en armas y armaduras de todo tipo, entrenado en un estilo de combate concreto y capaz de sobreponerse al cansancio y al dolor en mitad de la batalla.",
+      "perfil": {
+        "combate": 3,
+        "aguante": 2,
+        "proteccion": 2,
+        "agilidad": 1
+      },
+      "dado_golpe": 10,
+      "salvaciones": [
+        "fue",
+        "con"
+      ],
+      "nivel_subclase": 3,
+      "competencias": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_medias"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_pesadas"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "escudos"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_sencillas"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_marciales"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "habilidades",
+          "nombre": "Habilidades de guerrero",
+          "elegir": 2,
+          "fuente": "habilidades",
+          "opciones": [
+            "acrobacias",
+            "atletismo",
+            "historia",
+            "intimidacion",
+            "percepcion",
+            "perspicacia",
+            "supervivencia",
+            "trato_con_animales"
+          ],
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "habilidad",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "competencias_multiclase": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_medias"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "escudos"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_sencillas"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_marciales"
+        }
+      ],
+      "requisitos_multiclase": {
+        "alguna_caracteristica": {
+          "fue": 13,
+          "des": 13
+        }
+      },
+      "equipo_inicial": [
+        [
+          [
+            {
+              "id": "cota_de_malla"
+            }
+          ],
+          [
+            {
+              "id": "armadura_de_cuero"
+            },
+            {
+              "id": "arco_largo"
+            },
+            {
+              "id": "flecha",
+              "cantidad": 20
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "desde": "armas",
+              "filtro": {
+                "arma": {
+                  "categoria": "marcial"
+                }
+              }
+            },
+            {
+              "id": "escudo"
+            }
+          ],
+          [
+            {
+              "desde": "armas",
+              "filtro": {
+                "arma": {
+                  "categoria": "marcial"
+                }
+              },
+              "cantidad": 2
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "ballesta_ligera"
+            },
+            {
+              "id": "virote",
+              "cantidad": 20
+            }
+          ],
+          [
+            {
+              "id": "hacha_de_mano",
+              "cantidad": 2
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "paquete_de_explorador_de_mazmorras"
+            }
+          ],
+          [
+            {
+              "id": "paquete_de_explorador"
+            }
+          ]
+        ]
+      ],
+      "niveles": {
+        "1": [
+          {
+            "tipo": "eleccion",
+            "id": "estilo_combate",
+            "nombre": "Estilo de Combate",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "estilo_combate",
+                "clases": "guerrero"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Tomar Aliento",
+            "resumen": "acción adicional: recuperas 1d10+{nivel_clase} PG",
+            "descripcion": "En tu turno, como acción adicional, recuperas tantos puntos de golpe como 1d10 + tu nivel de guerrero. Después debes terminar un descanso corto o largo para volver a usarlo.",
+            "usos": 1,
+            "recarga": "corto"
+          }
+        ],
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Acción Súbita",
+            "resumen": "una acción más en tu turno, además de tu acción y tu acción adicional",
+            "descripcion": "Durante tu turno puedes llevar a cabo una acción más, además de tu acción y tu acción adicional habituales. Se recupera con un descanso corto o largo. A partir del nivel 17 tienes dos usos entre descansos, pero solo uno por turno.",
+            "usos": "1+min(1,nivel_clase//17)",
+            "recarga": "corto"
+          }
+        ],
+        "4": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "5": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Ataque Adicional",
+            "resumen": "{escala} ataques al usar la acción de Atacar",
+            "descripcion": "Cuando realizas la acción de Atacar durante tu turno, puedes hacer dos ataques en lugar de uno. Son tres a nivel 11 de guerrero y cuatro a nivel 20.",
+            "escala": {
+              "5": 2,
+              "11": 3,
+              "20": 4
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "subclases": [
+    {
+      "id": "senda_del_berserker",
+      "nombre": "Senda del Berserker",
+      "clase": "barbaro",
+      "fuente": "SRD 5.1 p. 10",
+      "descripcion": "Para estos bárbaros la furia es el medio para alcanzar un fin: la violencia. Se abandonan al caos del combate sin reparar en su propia seguridad.",
+      "perfil": {
+        "combate": 3,
+        "aguante": 2
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Frenesí",
+            "resumen": "al enfurecerte puedes entrar en frenesí: 1 ataque con arma cuerpo a cuerpo como acción adicional en cada turno posterior; al acabar la furia, 1 nivel de cansancio",
+            "descripcion": "Cuando te enfureces puedes abandonarte al frenesí. Mientras dure la furia, puedes hacer un único ataque con arma cuerpo a cuerpo como acción adicional en cada uno de tus turnos posteriores. Cuando la furia termina, sufres un nivel de cansancio."
+          }
+        ]
+      }
+    },
+    {
+      "id": "campeon",
+      "nombre": "Campeón",
+      "clase": "guerrero",
+      "fuente": "SRD 5.1 p. 35",
+      "descripcion": "Arquetipo centrado en el poderío físico en bruto: entrenamiento riguroso y una forma física excelente para asestar golpes devastadores.",
+      "perfil": {
+        "combate": 3,
+        "aguante": 2,
+        "agilidad": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Crítico Mejorado",
+            "resumen": "tus ataques con arma hacen crítico con 19 o 20",
+            "descripcion": "Tus ataques con arma causan un crítico con un resultado de 19 o 20 en la tirada."
+          }
+        ]
+      }
+    }
+  ],
+  "opciones": [
+    {
+      "id": "combate_con_armas_a_dos_manos",
+      "nombre": "Estilo de Combate: Combate con Armas a Dos Manos",
+      "grupo": "estilo_combate",
+      "clases": [
+        "guerrero",
+        "paladin"
+      ],
+      "fuente": "SRD 5.1 p. 34",
+      "resumen": "repites los 1 y 2 en los dados de daño con armas cuerpo a cuerpo a dos manos o versátiles empuñadas con las dos manos",
+      "descripcion": "Si sacas un 1 o un 2 en un dado de daño de un ataque con un arma cuerpo a cuerpo que empuñes con las dos manos, puedes volver a tirar ese dado y debes quedarte con el nuevo resultado. El arma debe tener la propiedad «a dos manos» o «versátil»."
+    },
+    {
+      "id": "combate_con_dos_armas",
+      "nombre": "Estilo de Combate: Combate con Dos Armas",
+      "grupo": "estilo_combate",
+      "clases": [
+        "guerrero",
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 34",
+      "resumen": "sumas tu modificador de característica al daño del ataque con la segunda arma",
+      "descripcion": "Cuando combates con dos armas, puedes sumar tu modificador por característica al daño del segundo ataque."
+    },
+    {
+      "id": "defensa",
+      "nombre": "Estilo de Combate: Defensa",
+      "grupo": "estilo_combate",
+      "clases": [
+        "guerrero",
+        "paladin",
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 34",
+      "resumen": "+1 a la CA mientras llevas armadura",
+      "descripcion": "Recibes un bonificador de +1 a la CA cuando llevas puesta cualquier armadura.",
+      "efectos": [
+        {
+          "tipo": "bonificador_ca",
+          "valor": 1,
+          "condicion": "con_armadura"
+        }
+      ]
+    },
+    {
+      "id": "duelo",
+      "nombre": "Estilo de Combate: Duelo",
+      "grupo": "estilo_combate",
+      "clases": [
+        "guerrero",
+        "paladin",
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 34",
+      "resumen": "+2 al daño con un arma cuerpo a cuerpo empuñada a una mano (y ninguna otra arma)",
+      "descripcion": "Cuando empuñas una única arma cuerpo a cuerpo con una mano, recibes un bonificador de +2 a las tiradas de daño con esa arma."
+    },
+    {
+      "id": "proteccion",
+      "nombre": "Estilo de Combate: Protección",
+      "grupo": "estilo_combate",
+      "clases": [
+        "guerrero",
+        "paladin"
+      ],
+      "fuente": "SRD 5.1 p. 34",
+      "resumen": "reacción, con escudo: impones desventaja a un ataque contra otra criatura a 5 pies o menos de ti",
+      "descripcion": "Cuando una criatura que puedas ver ataca a un objetivo que no seas tú y que esté a 5 pies o menos de ti, puedes usar tu reacción para dar desventaja a la tirada de ataque. Debes estar embrazando un escudo."
+    },
+    {
+      "id": "tiro_con_arco",
+      "nombre": "Estilo de Combate: Tiro con Arco",
+      "grupo": "estilo_combate",
+      "clases": [
+        "guerrero",
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 35",
+      "resumen": "+2 a las tiradas de ataque con armas a distancia",
+      "descripcion": "Recibes un bonificador de +2 a las tiradas de ataque con armas a distancia.",
+      "efectos": [
+        {
+          "tipo": "bonificador_ataque",
+          "valor": 2,
+          "tipo_arma": "distancia"
+        }
+      ]
+    }
+  ]
+}

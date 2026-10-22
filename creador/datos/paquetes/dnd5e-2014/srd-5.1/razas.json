@@ -1,1 +1,1039 @@
-{}
+{
+  "razas": [
+    {
+      "id": "enano",
+      "nombre": "Enano",
+      "fuente": "SRD 5.1 p. 3",
+      "tamano": "mediano",
+      "velocidad": 25,
+      "descripcion": "Pueblo robusto y tenaz de las montañas y el subsuelo: resiste el veneno, ve en la oscuridad y domina las armas y herramientas tradicionales de su raza. Su velocidad no se reduce por llevar armadura pesada.",
+      "perfil": {
+        "aguante": 3,
+        "combate": 2,
+        "proteccion": 1
+      },
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "con",
+          "valor": 2
+        },
+        {
+          "tipo": "ignora_penalizacion_armadura"
+        },
+        {
+          "tipo": "sentido",
+          "id": "vision_en_la_oscuridad",
+          "nombre": "Visión en la Oscuridad",
+          "alcance": 60
+        },
+        {
+          "tipo": "resistencia",
+          "dano": "veneno"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Resistencia Enana",
+          "resumen": "Ventaja en las salvaciones contra veneno; resistencia al daño de veneno.",
+          "descripcion": "Tienes ventaja en las tiradas de salvación contra veneno y posees resistencia al daño de veneno."
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "hacha_de_guerra"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "hacha_de_mano"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "martillo_de_guerra"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "martillo_ligero"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "herramienta",
+          "nombre": "Competencia con Herramientas",
+          "fuente": "herramientas",
+          "opciones": [
+            "herramientas_de_albanil",
+            "herramientas_de_herrero",
+            "suministros_de_cervecero"
+          ],
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "herramienta",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Afinidad con la Piedra",
+          "resumen": "Historia sobre el origen de un trabajo en piedra: cuentas como competente y con el doble de bonificador por competencia (+{mod_int+2*competencia}).",
+          "descripcion": "Cuando hagas una prueba de Inteligencia (Historia) relacionada con el origen de un trabajo en piedra, se te considera competente en Historia y sumas el doble de tu bonificador por competencia, en lugar del bonificador normal."
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "comun"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "enano"
+        }
+      ]
+    },
+    {
+      "id": "elfo",
+      "nombre": "Elfo",
+      "fuente": "SRD 5.1 p. 2",
+      "tamano": "mediano",
+      "velocidad": 30,
+      "descripcion": "Pueblo esbelto y longevo de herencia feérica: ágil, de sentidos agudos y resistente a los encantamientos. No duerme, sino que medita en trance.",
+      "perfil": {
+        "agilidad": 3,
+        "arcano": 1,
+        "naturaleza": 1,
+        "sigilo": 1
+      },
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "des",
+          "valor": 2
+        },
+        {
+          "tipo": "sentido",
+          "id": "vision_en_la_oscuridad",
+          "nombre": "Visión en la Oscuridad",
+          "alcance": 60
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "percepcion"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Linaje Feérico",
+          "resumen": "Ventaja en las salvaciones para evitar que te hechicen; la magia no puede dormirte.",
+          "descripcion": "Tienes ventaja en las tiradas de salvación para evitar que te hechicen y la magia no puede dormirte."
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Trance",
+          "resumen": "No duermes: 4 horas de trance te dan el mismo descanso que 8 horas de sueño.",
+          "descripcion": "Los elfos no necesitan dormir. Meditan profundamente, en un estado semiconsciente, durante 4 horas al día, y así obtienen los mismos beneficios que un humano tras 8 horas de sueño."
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "comun"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "elfico"
+        }
+      ]
+    },
+    {
+      "id": "mediano",
+      "nombre": "Mediano",
+      "fuente": "SRD 5.1 p. 4",
+      "tamano": "pequeno",
+      "velocidad": 25,
+      "descripcion": "Gente menuda, afable y sorprendentemente valiente, con una suerte proverbial y una gran soltura para escurrirse entre criaturas más grandes.",
+      "perfil": {
+        "agilidad": 3,
+        "sigilo": 2,
+        "astucia": 1
+      },
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "des",
+          "valor": 2
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Afortunado",
+          "resumen": "Si sacas un 1 en el d20 de un ataque, prueba de característica o salvación, repites la tirada y usas el nuevo resultado.",
+          "descripcion": "Cuando saques un 1 en el d20 al hacer una tirada de ataque, prueba de característica o tirada de salvación, puedes volver a tirar el dado, pero tendrás que utilizar el resultado nuevo."
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Valiente",
+          "resumen": "Ventaja en las salvaciones para evitar que te asusten.",
+          "descripcion": "Tienes ventaja en las tiradas de salvación para evitar que te asusten."
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Agilidad de Mediano",
+          "resumen": "Puedes atravesar el espacio de criaturas al menos un tamaño mayores que tú.",
+          "descripcion": "Puedes moverte a través del espacio ocupado por una criatura cuyo tamaño sea, al menos, una categoría superior al tuyo."
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "comun"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "mediano"
+        }
+      ]
+    },
+    {
+      "id": "humano",
+      "nombre": "Humano",
+      "fuente": "SRD 5.1 p. 4",
+      "tamano": "mediano",
+      "velocidad": 30,
+      "descripcion": "La raza más joven, ambiciosa y diversa: los humanos se adaptan a cualquier entorno y destacan en cualquier oficio.",
+      "perfil": {
+        "carisma": 2,
+        "combate": 1,
+        "saber": 1,
+        "astucia": 1
+      },
+      "efectos": [
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "comun"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "idioma",
+          "nombre": "Idioma adicional",
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "draconido",
+      "nombre": "Dracónido",
+      "fuente": "SRD 5.1 p. 4",
+      "tamano": "mediano",
+      "velocidad": 30,
+      "descripcion": "Humanoides orgullosos con sangre de dragón: fuertes, imponentes y capaces de exhalar la energía de su linaje. Elige el linaje dracónico como subraza.",
+      "perfil": {
+        "combate": 3,
+        "carisma": 2,
+        "aguante": 1
+      },
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "fue",
+          "valor": 2
+        },
+        {
+          "tipo": "caracteristica",
+          "car": "car",
+          "valor": 1
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "comun"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "draconico"
+        }
+      ]
+    },
+    {
+      "id": "gnomo",
+      "nombre": "Gnomo",
+      "fuente": "SRD 5.1 p. 5",
+      "tamano": "pequeno",
+      "velocidad": 25,
+      "descripcion": "Gente pequeña, curiosa e inventiva, de mente despierta y muy difícil de engañar con la magia.",
+      "perfil": {
+        "saber": 3,
+        "arcano": 2,
+        "astucia": 1
+      },
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "int",
+          "valor": 2
+        },
+        {
+          "tipo": "sentido",
+          "id": "vision_en_la_oscuridad",
+          "nombre": "Visión en la Oscuridad",
+          "alcance": 60
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Astucia Gnoma",
+          "resumen": "Ventaja en las salvaciones de Inteligencia, Sabiduría y Carisma contra magia.",
+          "descripcion": "Tienes ventaja en todas las tiradas de salvación de Inteligencia, Sabiduría y Carisma contra magia."
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "comun"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "gnomo"
+        }
+      ]
+    },
+    {
+      "id": "semielfo",
+      "nombre": "Semielfo",
+      "fuente": "SRD 5.1 p. 6",
+      "tamano": "mediano",
+      "velocidad": 30,
+      "descripcion": "Herederos de dos mundos, con el encanto y la versatilidad de los humanos y parte de la herencia feérica de los elfos.",
+      "perfil": {
+        "carisma": 3,
+        "agilidad": 1,
+        "astucia": 1,
+        "saber": 1
+      },
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "car",
+          "valor": 2
+        },
+        {
+          "tipo": "eleccion",
+          "id": "caracteristicas",
+          "nombre": "Mejora de Característica (+1 a otras dos)",
+          "elegir": 2,
+          "fuente": "caracteristicas",
+          "opciones": [
+            "fue",
+            "des",
+            "con",
+            "int",
+            "sab"
+          ],
+          "aplicar": [
+            {
+              "tipo": "caracteristica",
+              "car": "$opcion",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "tipo": "sentido",
+          "id": "vision_en_la_oscuridad",
+          "nombre": "Visión en la Oscuridad",
+          "alcance": 60
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Linaje Feérico",
+          "resumen": "Ventaja en las salvaciones para evitar que te hechicen; la magia no puede dormirte.",
+          "descripcion": "Tienes ventaja en las tiradas de salvación para evitar que te hechicen y la magia no puede dormirte."
+        },
+        {
+          "tipo": "eleccion",
+          "id": "habilidades",
+          "nombre": "Versátil con Habilidades",
+          "elegir": 2,
+          "opciones": {
+            "desde": "habilidades"
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "habilidad",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "comun"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "elfico"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "idioma",
+          "nombre": "Idioma adicional",
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "semiorco",
+      "nombre": "Semiorco",
+      "fuente": "SRD 5.1 p. 6",
+      "tamano": "mediano",
+      "velocidad": 30,
+      "descripcion": "Fuertes, intimidantes y difíciles de abatir, los semiorcos llevan en la sangre la ferocidad de sus antepasados orcos.",
+      "perfil": {
+        "combate": 3,
+        "aguante": 2,
+        "carisma": 1
+      },
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "fue",
+          "valor": 2
+        },
+        {
+          "tipo": "caracteristica",
+          "car": "con",
+          "valor": 1
+        },
+        {
+          "tipo": "sentido",
+          "id": "vision_en_la_oscuridad",
+          "nombre": "Visión en la Oscuridad",
+          "alcance": 60
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "intimidacion"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Aguante Incansable",
+          "resumen": "Si caes a 0 PG sin morir en el acto, puedes quedarte a 1 PG.",
+          "descripcion": "Cuando tus puntos de golpe se reducen a 0 pero no mueres inmediatamente, puedes recuperar 1 punto de golpe. No puedes volver a usarlo hasta que finalices un descanso largo.",
+          "usos": 1,
+          "recarga": "largo"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Ataques Salvajes",
+          "resumen": "Crítico con un ataque con arma cuerpo a cuerpo: tira un dado de daño del arma más y súmalo.",
+          "descripcion": "Cuando causes un crítico con un ataque con arma cuerpo a cuerpo, puedes tirar uno de los dados de daño del arma una vez más y sumar el resultado al daño adicional del crítico."
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "comun"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "orco"
+        }
+      ]
+    },
+    {
+      "id": "tiefling",
+      "nombre": "Tiefling",
+      "fuente": "SRD 5.1 p. 7",
+      "tamano": "mediano",
+      "velocidad": 30,
+      "descripcion": "Marcados por una ascendencia infernal, los tieflings resisten el fuego y despiertan una pequeña magia innata a medida que ganan experiencia.",
+      "perfil": {
+        "carisma": 3,
+        "arcano": 2,
+        "astucia": 1
+      },
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "int",
+          "valor": 1
+        },
+        {
+          "tipo": "caracteristica",
+          "car": "car",
+          "valor": 2
+        },
+        {
+          "tipo": "sentido",
+          "id": "vision_en_la_oscuridad",
+          "nombre": "Visión en la Oscuridad",
+          "alcance": 60
+        },
+        {
+          "tipo": "resistencia",
+          "dano": "fuego"
+        },
+        {
+          "tipo": "conjuro",
+          "id": "taumaturgia",
+          "caracteristica": "car"
+        },
+        {
+          "tipo": "conjuro",
+          "id": "reprension_infernal",
+          "caracteristica": "car",
+          "nivel_minimo": 3
+        },
+        {
+          "tipo": "conjuro",
+          "id": "oscuridad",
+          "caracteristica": "car",
+          "nivel_minimo": 5
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Linaje Infernal",
+          "resumen": "Truco taumaturgia; desde nivel 3, reprensión infernal, y desde nivel 5, oscuridad, una vez cada uno por descanso largo. Aptitud mágica: Carisma (CD {8+competencia+mod_car}).",
+          "descripcion": "Conoces el truco taumaturgia. A nivel 3 puedes lanzar reprensión infernal como conjuro de nivel 2 una vez con este rasgo, y a nivel 5 puedes lanzar oscuridad una vez; recuperas cada uso tras un descanso largo. El Carisma es tu aptitud mágica para estos conjuros."
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Linaje Infernal: reprensión infernal",
+          "resumen": "Reprensión infernal como conjuro de nivel 2 (3d10 de fuego; salvación de Destreza CD {8+competencia+mod_car}, mitad si la supera).",
+          "usos": 1,
+          "recarga": "largo",
+          "nivel_minimo": 3
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Linaje Infernal: oscuridad",
+          "resumen": "Lanzas oscuridad sin gastar espacio de conjuro.",
+          "usos": 1,
+          "recarga": "largo",
+          "nivel_minimo": 5
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "comun"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "infernal"
+        }
+      ]
+    }
+  ],
+  "subrazas": [
+    {
+      "id": "enano_de_las_colinas",
+      "nombre": "Enano de las colinas",
+      "raza": "enano",
+      "fuente": "SRD 5.1 p. 4",
+      "descripcion": "Enanos de sentidos agudos, profunda intuición y una resistencia extraordinaria.",
+      "perfil": {
+        "aguante": 1,
+        "fe": 1
+      },
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "sab",
+          "valor": 1
+        },
+        {
+          "tipo": "pg_maximos",
+          "por_nivel": 1
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Aguante Enano",
+          "resumen": "+{nivel} PG máximos (1 por nivel; ya sumados).",
+          "descripcion": "Tus puntos de golpe máximos se incrementan en 1 y aumentan en 1 más cada vez que subes un nivel."
+        }
+      ]
+    },
+    {
+      "id": "alto_elfo",
+      "nombre": "Alto elfo",
+      "raza": "elfo",
+      "fuente": "SRD 5.1 p. 3",
+      "descripcion": "Elfos de mente aguda que dominan, como mínimo, los rudimentos de la magia.",
+      "perfil": {
+        "arcano": 2,
+        "saber": 2
+      },
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "int",
+          "valor": 1
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "espada_corta"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "espada_larga"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "arco_corto"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "arco_largo"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "truco",
+          "nombre": "Truco (lista de mago)",
+          "opciones": {
+            "desde": "conjuros",
+            "filtro": {
+              "listas": "mago",
+              "nivel": 0
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "conjuro",
+              "id": "$opcion",
+              "caracteristica": "int"
+            }
+          ]
+        },
+        {
+          "tipo": "eleccion",
+          "id": "idioma",
+          "nombre": "Idioma Adicional",
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mediano_piesligeros",
+      "nombre": "Mediano piesligeros",
+      "raza": "mediano",
+      "fuente": "SRD 5.1 p. 4",
+      "descripcion": "Medianos afables y viajeros que se esconden con facilidad, incluso tras otras personas.",
+      "perfil": {
+        "sigilo": 1,
+        "carisma": 1
+      },
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "car",
+          "valor": 1
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Sigiloso por Naturaleza",
+          "resumen": "Puedes intentar esconderte tras una criatura al menos un tamaño mayor que tú.",
+          "descripcion": "Puedes intentar esconderte incluso tras una criatura cuyo tamaño sea, al menos, una categoría superior al tuyo."
+        }
+      ]
+    },
+    {
+      "id": "humano_estandar",
+      "nombre": "Humano",
+      "raza": "humano",
+      "fuente": "SRD 5.1 p. 4",
+      "descripcion": "Rasgos normales del humano: todas las puntuaciones de característica aumentan en 1.",
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "fue",
+          "valor": 1
+        },
+        {
+          "tipo": "caracteristica",
+          "car": "des",
+          "valor": 1
+        },
+        {
+          "tipo": "caracteristica",
+          "car": "con",
+          "valor": 1
+        },
+        {
+          "tipo": "caracteristica",
+          "car": "int",
+          "valor": 1
+        },
+        {
+          "tipo": "caracteristica",
+          "car": "sab",
+          "valor": 1
+        },
+        {
+          "tipo": "caracteristica",
+          "car": "car",
+          "valor": 1
+        }
+      ]
+    },
+    {
+      "id": "draconido_azul",
+      "nombre": "Dracónido (azul)",
+      "raza": "draconido",
+      "fuente": "SRD 5.1 p. 5",
+      "descripcion": "Linaje Dracónico de dragón azul: resistencia al daño de relámpago y Ataque de Aliento en línea de 5 por 30 pies (salvación de Destreza).",
+      "efectos": [
+        {
+          "tipo": "resistencia",
+          "dano": "relampago"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Ataque de Aliento",
+          "resumen": "Acción: línea de 5 por 30 pies, {escala} de relámpago; salvación de Destreza CD {8+mod_con+competencia}, mitad de daño si la supera.",
+          "descripcion": "Usas tu acción para exhalar energía destructora. Cada criatura en la zona hace una tirada de salvación (CD 8 + tu modificador por Constitución + tu bonificador por competencia): sufre el daño completo si la falla o la mitad si la supera. El daño es 2d6 y aumenta a 3d6 a nivel 6, a 4d6 a nivel 11 y a 5d6 a nivel 16. Tras usarlo, no puedes volver a hacerlo hasta que termines un descanso corto o largo.",
+          "usos": 1,
+          "recarga": "corto",
+          "escala": {
+            "1": "2d6",
+            "6": "3d6",
+            "11": "4d6",
+            "16": "5d6"
+          }
+        }
+      ]
+    },
+    {
+      "id": "draconido_blanco",
+      "nombre": "Dracónido (blanco)",
+      "raza": "draconido",
+      "fuente": "SRD 5.1 p. 5",
+      "descripcion": "Linaje Dracónico de dragón blanco: resistencia al daño de frío y Ataque de Aliento en cono de 15 pies (salvación de Constitución).",
+      "efectos": [
+        {
+          "tipo": "resistencia",
+          "dano": "frio"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Ataque de Aliento",
+          "resumen": "Acción: cono de 15 pies, {escala} de frío; salvación de Constitución CD {8+mod_con+competencia}, mitad de daño si la supera.",
+          "descripcion": "Usas tu acción para exhalar energía destructora. Cada criatura en la zona hace una tirada de salvación (CD 8 + tu modificador por Constitución + tu bonificador por competencia): sufre el daño completo si la falla o la mitad si la supera. El daño es 2d6 y aumenta a 3d6 a nivel 6, a 4d6 a nivel 11 y a 5d6 a nivel 16. Tras usarlo, no puedes volver a hacerlo hasta que termines un descanso corto o largo.",
+          "usos": 1,
+          "recarga": "corto",
+          "escala": {
+            "1": "2d6",
+            "6": "3d6",
+            "11": "4d6",
+            "16": "5d6"
+          }
+        }
+      ]
+    },
+    {
+      "id": "draconido_bronce",
+      "nombre": "Dracónido (bronce)",
+      "raza": "draconido",
+      "fuente": "SRD 5.1 p. 5",
+      "descripcion": "Linaje Dracónico de dragón de bronce: resistencia al daño de relámpago y Ataque de Aliento en línea de 5 por 30 pies (salvación de Destreza).",
+      "efectos": [
+        {
+          "tipo": "resistencia",
+          "dano": "relampago"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Ataque de Aliento",
+          "resumen": "Acción: línea de 5 por 30 pies, {escala} de relámpago; salvación de Destreza CD {8+mod_con+competencia}, mitad de daño si la supera.",
+          "descripcion": "Usas tu acción para exhalar energía destructora. Cada criatura en la zona hace una tirada de salvación (CD 8 + tu modificador por Constitución + tu bonificador por competencia): sufre el daño completo si la falla o la mitad si la supera. El daño es 2d6 y aumenta a 3d6 a nivel 6, a 4d6 a nivel 11 y a 5d6 a nivel 16. Tras usarlo, no puedes volver a hacerlo hasta que termines un descanso corto o largo.",
+          "usos": 1,
+          "recarga": "corto",
+          "escala": {
+            "1": "2d6",
+            "6": "3d6",
+            "11": "4d6",
+            "16": "5d6"
+          }
+        }
+      ]
+    },
+    {
+      "id": "draconido_cobre",
+      "nombre": "Dracónido (cobre)",
+      "raza": "draconido",
+      "fuente": "SRD 5.1 p. 5",
+      "descripcion": "Linaje Dracónico de dragón de cobre: resistencia al daño de ácido y Ataque de Aliento en línea de 5 por 30 pies (salvación de Destreza).",
+      "efectos": [
+        {
+          "tipo": "resistencia",
+          "dano": "acido"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Ataque de Aliento",
+          "resumen": "Acción: línea de 5 por 30 pies, {escala} de ácido; salvación de Destreza CD {8+mod_con+competencia}, mitad de daño si la supera.",
+          "descripcion": "Usas tu acción para exhalar energía destructora. Cada criatura en la zona hace una tirada de salvación (CD 8 + tu modificador por Constitución + tu bonificador por competencia): sufre el daño completo si la falla o la mitad si la supera. El daño es 2d6 y aumenta a 3d6 a nivel 6, a 4d6 a nivel 11 y a 5d6 a nivel 16. Tras usarlo, no puedes volver a hacerlo hasta que termines un descanso corto o largo.",
+          "usos": 1,
+          "recarga": "corto",
+          "escala": {
+            "1": "2d6",
+            "6": "3d6",
+            "11": "4d6",
+            "16": "5d6"
+          }
+        }
+      ]
+    },
+    {
+      "id": "draconido_laton",
+      "nombre": "Dracónido (oropel)",
+      "raza": "draconido",
+      "fuente": "SRD 5.1 p. 5",
+      "descripcion": "Linaje Dracónico de dragón de oropel: resistencia al daño de fuego y Ataque de Aliento en línea de 5 por 30 pies (salvación de Destreza).",
+      "efectos": [
+        {
+          "tipo": "resistencia",
+          "dano": "fuego"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Ataque de Aliento",
+          "resumen": "Acción: línea de 5 por 30 pies, {escala} de fuego; salvación de Destreza CD {8+mod_con+competencia}, mitad de daño si la supera.",
+          "descripcion": "Usas tu acción para exhalar energía destructora. Cada criatura en la zona hace una tirada de salvación (CD 8 + tu modificador por Constitución + tu bonificador por competencia): sufre el daño completo si la falla o la mitad si la supera. El daño es 2d6 y aumenta a 3d6 a nivel 6, a 4d6 a nivel 11 y a 5d6 a nivel 16. Tras usarlo, no puedes volver a hacerlo hasta que termines un descanso corto o largo.",
+          "usos": 1,
+          "recarga": "corto",
+          "escala": {
+            "1": "2d6",
+            "6": "3d6",
+            "11": "4d6",
+            "16": "5d6"
+          }
+        }
+      ]
+    },
+    {
+      "id": "draconido_negro",
+      "nombre": "Dracónido (negro)",
+      "raza": "draconido",
+      "fuente": "SRD 5.1 p. 5",
+      "descripcion": "Linaje Dracónico de dragón negro: resistencia al daño de ácido y Ataque de Aliento en línea de 5 por 30 pies (salvación de Destreza).",
+      "efectos": [
+        {
+          "tipo": "resistencia",
+          "dano": "acido"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Ataque de Aliento",
+          "resumen": "Acción: línea de 5 por 30 pies, {escala} de ácido; salvación de Destreza CD {8+mod_con+competencia}, mitad de daño si la supera.",
+          "descripcion": "Usas tu acción para exhalar energía destructora. Cada criatura en la zona hace una tirada de salvación (CD 8 + tu modificador por Constitución + tu bonificador por competencia): sufre el daño completo si la falla o la mitad si la supera. El daño es 2d6 y aumenta a 3d6 a nivel 6, a 4d6 a nivel 11 y a 5d6 a nivel 16. Tras usarlo, no puedes volver a hacerlo hasta que termines un descanso corto o largo.",
+          "usos": 1,
+          "recarga": "corto",
+          "escala": {
+            "1": "2d6",
+            "6": "3d6",
+            "11": "4d6",
+            "16": "5d6"
+          }
+        }
+      ]
+    },
+    {
+      "id": "draconido_oro",
+      "nombre": "Dracónido (oro)",
+      "raza": "draconido",
+      "fuente": "SRD 5.1 p. 5",
+      "descripcion": "Linaje Dracónico de dragón de oro: resistencia al daño de fuego y Ataque de Aliento en cono de 15 pies (salvación de Destreza).",
+      "efectos": [
+        {
+          "tipo": "resistencia",
+          "dano": "fuego"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Ataque de Aliento",
+          "resumen": "Acción: cono de 15 pies, {escala} de fuego; salvación de Destreza CD {8+mod_con+competencia}, mitad de daño si la supera.",
+          "descripcion": "Usas tu acción para exhalar energía destructora. Cada criatura en la zona hace una tirada de salvación (CD 8 + tu modificador por Constitución + tu bonificador por competencia): sufre el daño completo si la falla o la mitad si la supera. El daño es 2d6 y aumenta a 3d6 a nivel 6, a 4d6 a nivel 11 y a 5d6 a nivel 16. Tras usarlo, no puedes volver a hacerlo hasta que termines un descanso corto o largo.",
+          "usos": 1,
+          "recarga": "corto",
+          "escala": {
+            "1": "2d6",
+            "6": "3d6",
+            "11": "4d6",
+            "16": "5d6"
+          }
+        }
+      ]
+    },
+    {
+      "id": "draconido_plata",
+      "nombre": "Dracónido (plata)",
+      "raza": "draconido",
+      "fuente": "SRD 5.1 p. 5",
+      "descripcion": "Linaje Dracónico de dragón de plata: resistencia al daño de frío y Ataque de Aliento en cono de 15 pies (salvación de Constitución).",
+      "efectos": [
+        {
+          "tipo": "resistencia",
+          "dano": "frio"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Ataque de Aliento",
+          "resumen": "Acción: cono de 15 pies, {escala} de frío; salvación de Constitución CD {8+mod_con+competencia}, mitad de daño si la supera.",
+          "descripcion": "Usas tu acción para exhalar energía destructora. Cada criatura en la zona hace una tirada de salvación (CD 8 + tu modificador por Constitución + tu bonificador por competencia): sufre el daño completo si la falla o la mitad si la supera. El daño es 2d6 y aumenta a 3d6 a nivel 6, a 4d6 a nivel 11 y a 5d6 a nivel 16. Tras usarlo, no puedes volver a hacerlo hasta que termines un descanso corto o largo.",
+          "usos": 1,
+          "recarga": "corto",
+          "escala": {
+            "1": "2d6",
+            "6": "3d6",
+            "11": "4d6",
+            "16": "5d6"
+          }
+        }
+      ]
+    },
+    {
+      "id": "draconido_rojo",
+      "nombre": "Dracónido (rojo)",
+      "raza": "draconido",
+      "fuente": "SRD 5.1 p. 5",
+      "descripcion": "Linaje Dracónico de dragón rojo: resistencia al daño de fuego y Ataque de Aliento en cono de 15 pies (salvación de Destreza).",
+      "efectos": [
+        {
+          "tipo": "resistencia",
+          "dano": "fuego"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Ataque de Aliento",
+          "resumen": "Acción: cono de 15 pies, {escala} de fuego; salvación de Destreza CD {8+mod_con+competencia}, mitad de daño si la supera.",
+          "descripcion": "Usas tu acción para exhalar energía destructora. Cada criatura en la zona hace una tirada de salvación (CD 8 + tu modificador por Constitución + tu bonificador por competencia): sufre el daño completo si la falla o la mitad si la supera. El daño es 2d6 y aumenta a 3d6 a nivel 6, a 4d6 a nivel 11 y a 5d6 a nivel 16. Tras usarlo, no puedes volver a hacerlo hasta que termines un descanso corto o largo.",
+          "usos": 1,
+          "recarga": "corto",
+          "escala": {
+            "1": "2d6",
+            "6": "3d6",
+            "11": "4d6",
+            "16": "5d6"
+          }
+        }
+      ]
+    },
+    {
+      "id": "draconido_verde",
+      "nombre": "Dracónido (verde)",
+      "raza": "draconido",
+      "fuente": "SRD 5.1 p. 5",
+      "descripcion": "Linaje Dracónico de dragón verde: resistencia al daño de veneno y Ataque de Aliento en cono de 15 pies (salvación de Constitución).",
+      "efectos": [
+        {
+          "tipo": "resistencia",
+          "dano": "veneno"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Ataque de Aliento",
+          "resumen": "Acción: cono de 15 pies, {escala} de veneno; salvación de Constitución CD {8+mod_con+competencia}, mitad de daño si la supera.",
+          "descripcion": "Usas tu acción para exhalar energía destructora. Cada criatura en la zona hace una tirada de salvación (CD 8 + tu modificador por Constitución + tu bonificador por competencia): sufre el daño completo si la falla o la mitad si la supera. El daño es 2d6 y aumenta a 3d6 a nivel 6, a 4d6 a nivel 11 y a 5d6 a nivel 16. Tras usarlo, no puedes volver a hacerlo hasta que termines un descanso corto o largo.",
+          "usos": 1,
+          "recarga": "corto",
+          "escala": {
+            "1": "2d6",
+            "6": "3d6",
+            "11": "4d6",
+            "16": "5d6"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gnomo_de_las_rocas",
+      "nombre": "Gnomo de las rocas",
+      "raza": "gnomo",
+      "fuente": "SRD 5.1 p. 5",
+      "descripcion": "Gnomos de ingenio natural, más resistentes que otros gnomos y aficionados a construir artilugios.",
+      "perfil": {
+        "saber": 1,
+        "aguante": 1
+      },
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "con",
+          "valor": 1
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Saber del Artífice",
+          "resumen": "Historia sobre objetos mágicos, alquímicos o tecnológicos: doble bonificador por competencia (+{mod_int+2*competencia}).",
+          "descripcion": "Cuando hagas una prueba de Inteligencia (Historia) relacionada con objetos mágicos, alquímicos o tecnológicos, sumas dos veces tu bonificador por competencia, en lugar del que apliques normalmente."
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "herramientas_de_manitas"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Manitas",
+          "resumen": "Con herramientas de manitas, 1 hora y 10 po de materiales construyes un dispositivo Diminuto (CA 5, 1 pg): caja de música, encendedor o juguete mecánico; hasta 3 a la vez.",
+          "descripcion": "El dispositivo deja de funcionar a las 24 horas (salvo que dediques 1 hora a repararlo) o si usas una acción para desmantelarlo, y entonces recuperas los materiales. Caja de música: reproduce una canción a volumen moderado. Encendedor: produce una llama diminuta para encender una vela, antorcha u hoguera (usarlo requiere tu acción). Juguete mecánico: un animal, monstruo o persona que se mueve 5 pies en una dirección aleatoria en cada uno de tus turnos y hace los ruidos de lo que representa."
+        }
+      ]
+    }
+  ]
+}

@@ -1,1 +1,419 @@
-{}
+{
+  "clases": [
+    {
+      "id": "barbaro",
+      "modifica": true,
+      "oro_inicial": "2d4x10"
+    },
+    {
+      "id": "guerrero",
+      "modifica": true,
+      "oro_inicial": "5d4x10"
+    }
+  ],
+  "subclases": [
+    {
+      "id": "senda_del_guerrero_totemico",
+      "nombre": "Senda del Guerrero Totémico",
+      "clase": "barbaro",
+      "fuente": "PHB 2014",
+      "descripcion": "Bárbaros que buscan la comunión con el mundo natural y toman un animal como guía espiritual; ese espíritu les presta parte de su poder cuando se enfurecen.",
+      "perfil": {
+        "naturaleza": 3,
+        "aguante": 2,
+        "combate": 2
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Buscador Espiritual",
+            "resumen": "lanzas sentidos de bestia y hablar con los animales, solo como rituales",
+            "descripcion": "Tu senda te acerca a la naturaleza y a sus bestias: puedes lanzar los conjuros sentidos de bestia y hablar con los animales, pero únicamente como rituales."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "sentidos_de_bestia"
+          },
+          {
+            "tipo": "conjuro",
+            "id": "hablar_con_los_animales"
+          },
+          {
+            "tipo": "eleccion",
+            "id": "totem",
+            "nombre": "Espíritu Tótem",
+            "opciones": [
+              {
+                "id": "oso",
+                "nombre": "Oso",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Espíritu Tótem: Oso",
+                    "resumen": "en furia, resistencia a todo el daño salvo el psíquico",
+                    "descripcion": "Mientras estás enfurecido, tienes resistencia a todos los tipos de daño excepto el psíquico. Necesitas un objeto tótem, como un amuleto o un adorno, hecho con pelo o plumas, garras, dientes o huesos de tu animal; si quieres, también adquieres algún rasgo físico menor que lo recuerde."
+                  }
+                ]
+              },
+              {
+                "id": "aguila",
+                "nombre": "Águila",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Espíritu Tótem: Águila",
+                    "resumen": "en furia y sin armadura pesada: desventaja en los ataques de oportunidad contra ti y Correr como acción adicional",
+                    "descripcion": "Mientras estás enfurecido y no llevas armadura pesada, las demás criaturas tienen desventaja en las tiradas de ataque de oportunidad contra ti, y en tu turno puedes usar la acción de Correr como acción adicional. Necesitas un objeto tótem, como un amuleto o un adorno, hecho con pelo o plumas, garras, dientes o huesos de tu animal; si quieres, también adquieres algún rasgo físico menor que lo recuerde."
+                  }
+                ]
+              },
+              {
+                "id": "lobo",
+                "nombre": "Lobo",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Espíritu Tótem: Lobo",
+                    "resumen": "en furia, tus aliados tienen ventaja en ataques cuerpo a cuerpo contra enemigos a 5 pies o menos de ti",
+                    "descripcion": "Mientras estás enfurecido, tus amigos tienen ventaja en las tiradas de ataque cuerpo a cuerpo contra cualquier criatura hostil hacia ti que esté a 5 pies o menos de ti. Necesitas un objeto tótem, como un amuleto o un adorno, hecho con pelo o plumas, garras, dientes o huesos de tu animal; si quieres, también adquieres algún rasgo físico menor que lo recuerde."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "maestro_de_batalla",
+      "nombre": "Maestro de Batalla",
+      "clase": "guerrero",
+      "fuente": "PHB 2014",
+      "descripcion": "Guerreros que estudian el combate como una disciplina: dominan maniobras tácticas que alimentan con dados de superioridad y conocen bien los oficios ligados a la guerra.",
+      "perfil": {
+        "combate": 3,
+        "astucia": 2,
+        "saber": 1,
+        "carisma": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Superioridad en Combate",
+            "resumen": "{4+min(1,nivel_clase//7)+min(1,nivel_clase//15)} dados de superioridad ({escala}), 1 por maniobra; CD de las maniobras {8+competencia+max(mod_fue,mod_des)}",
+            "descripcion": "Conoces tres maniobras (aprendes dos más a niveles 7, 10 y 15, y cada vez puedes cambiar una que ya conocieras). Tienes cuatro dados de superioridad, que son d8 (cinco a nivel 7 y seis a nivel 15; pasan a d10 a nivel 10 y a d12 a nivel 18): gastas uno en cada maniobra y los recuperas todos al terminar un descanso corto o largo. Si una maniobra pide una salvación, la CD es 8 + tu bonificador por competencia + tu modificador de Fuerza o de Destreza, a tu elección.",
+            "usos": "4+min(1,nivel_clase//7)+min(1,nivel_clase//15)",
+            "recarga": "corto",
+            "escala": {
+              "3": "d8",
+              "10": "d10",
+              "18": "d12"
+            }
+          },
+          {
+            "tipo": "eleccion",
+            "id": "maniobras",
+            "nombre": "Maniobras",
+            "elegir": 3,
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "maniobra",
+                "clases": "guerrero"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Estudiante de la Guerra",
+            "resumen": "competencia con un tipo de herramientas de artesano",
+            "descripcion": "Ganas competencia con un tipo de herramientas de artesano que elijas."
+          },
+          {
+            "tipo": "eleccion",
+            "id": "herramienta",
+            "nombre": "Estudiante de la Guerra: herramientas de artesano",
+            "opciones": {
+              "desde": "herramientas",
+              "filtro": {
+                "subcategoria": "artesano"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "competencia",
+                "categoria": "herramienta",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "caballero_arcano",
+      "nombre": "Caballero Arcano",
+      "clase": "guerrero",
+      "fuente": "PHB 2014",
+      "descripcion": "Guerreros que suman a su técnica marcial el estudio de la magia arcana, sobre todo de la abjuración, que protege, y la evocación, que daña.",
+      "perfil": {
+        "arcano": 3,
+        "combate": 2,
+        "saber": 1
+      },
+      "lanzamiento": {
+        "caracteristica": "int",
+        "progresion": "tercio",
+        "trucos_conocidos": [
+          0,
+          0,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "conjuros_conocidos": [
+          0,
+          0,
+          3,
+          4,
+          4,
+          4,
+          5,
+          6,
+          6,
+          7,
+          8,
+          8,
+          9,
+          10,
+          10,
+          11,
+          11,
+          11,
+          12,
+          13
+        ],
+        "listas": [
+          "mago"
+        ]
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Lanzamiento de Conjuros",
+            "resumen": "conjuros de mago con INT, casi todos de abjuración o evocación; CD {8+competencia+mod_int}, ataque +{competencia+mod_int}",
+            "descripcion": "Aprendes trucos y conjuros de la lista del mago y los lanzas con Inteligencia. Empiezas con 2 trucos (3 a nivel 10) y 3 conjuros de nivel 1. Tus conjuros de nivel 1 o superior deben ser de abjuración o de evocación, salvo uno de los tres iniciales y los que aprendas a niveles 8, 14 y 20, que pueden ser de cualquier escuela. Al subir de nivel puedes cambiar uno de tus conjuros por otro de la lista del mago para el que tengas espacios, con la misma restricción de escuela salvo que sustituyas uno de los de escuela libre."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Vínculo con un Arma",
+            "resumen": "ritual de 1 hora: no pueden desarmarte del arma vinculada y la llamas a tu mano como acción adicional (hasta 2 armas)",
+            "descripcion": "Con un ritual de 1 hora, que puede hacerse durante un descanso corto, te vinculas a un arma que tengas a tu alcance. Salvo que estés incapacitado, nadie puede desarmarte de ella y, si está en tu mismo plano de existencia, puedes llamarla como acción adicional para que se teletransporte al instante a tu mano. Puedes tener hasta dos armas vinculadas, pero solo llamas a una cada vez; vincular una tercera rompe el vínculo con una de las otras dos."
+          }
+        ]
+      }
+    }
+  ],
+  "opciones": [
+    {
+      "id": "ataque_amenazador",
+      "nombre": "Maniobra: Ataque Amenazador",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "al impactar: sumas el dado de superioridad al daño; salvación de SAB CD {8+competencia+max(mod_fue,mod_des)} o queda asustado hasta el final de tu siguiente turno",
+      "descripcion": "Cuando impactas a una criatura con un ataque con arma, puedes gastar un dado de superioridad para intentar asustarla: sumas el dado al daño y el objetivo debe superar una salvación de Sabiduría o quedará asustado de ti hasta el final de tu siguiente turno."
+    },
+    {
+      "id": "ataque_con_estocada",
+      "nombre": "Maniobra: Ataque con Estocada",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "en tu turno, +5 pies de alcance en un ataque con arma cuerpo a cuerpo; si impacta, sumas el dado de superioridad al daño",
+      "descripcion": "Al hacer un ataque con arma cuerpo a cuerpo en tu turno, puedes gastar un dado de superioridad para que ese ataque tenga 5 pies más de alcance. Si impactas, sumas el dado a la tirada de daño."
+    },
+    {
+      "id": "ataque_con_finta",
+      "nombre": "Maniobra: Ataque con Finta",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "acción adicional: finta contra una criatura a 5 pies o menos; ventaja en tu siguiente ataque contra ella este turno y, si impacta, sumas el dado de superioridad al daño",
+      "descripcion": "En tu turno puedes gastar un dado de superioridad y usar una acción adicional para amagar contra una criatura a 5 pies o menos de ti. Tienes ventaja en tu siguiente tirada de ataque contra ella en este turno y, si impactas, sumas el dado a la tirada de daño."
+    },
+    {
+      "id": "ataque_de_barrido",
+      "nombre": "Maniobra: Ataque de Barrido",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "al impactar cuerpo a cuerpo: otra criatura a 5 pies del objetivo y a tu alcance recibe el dado como daño si tu tirada la habría impactado",
+      "descripcion": "Cuando impactas a una criatura con un ataque con arma cuerpo a cuerpo, puedes gastar un dado de superioridad para alcanzar a otra criatura que esté a 5 pies o menos del objetivo y a tu alcance. Si la tirada de ataque original habría impactado a esa segunda criatura, esta recibe tanto daño como el resultado del dado, del mismo tipo que el del ataque."
+    },
+    {
+      "id": "ataque_de_derribo",
+      "nombre": "Maniobra: Ataque de Derribo",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "al impactar: sumas el dado de superioridad al daño; si es Grande o menor, salvación de FUE CD {8+competencia+max(mod_fue,mod_des)} o queda derribado",
+      "descripcion": "Cuando impactas a una criatura con un ataque con arma, puedes gastar un dado de superioridad para intentar tirarla al suelo: sumas el dado al daño y, si el objetivo es de tamaño Grande o menor, debe superar una salvación de Fuerza o quedará derribado."
+    },
+    {
+      "id": "ataque_de_empuje",
+      "nombre": "Maniobra: Ataque de Empuje",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "al impactar: sumas el dado de superioridad al daño; si es Grande o menor, salvación de FUE CD {8+competencia+max(mod_fue,mod_des)} o lo empujas hasta 15 pies",
+      "descripcion": "Cuando impactas a una criatura con un ataque con arma, puedes gastar un dado de superioridad para intentar apartarla: sumas el dado al daño y, si el objetivo es de tamaño Grande o menor, debe superar una salvación de Fuerza o lo empujas hasta 15 pies lejos de ti."
+    },
+    {
+      "id": "ataque_de_maniobra",
+      "nombre": "Maniobra: Ataque de Maniobra",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "al impactar: sumas el dado de superioridad al daño; un aliado que te vea u oiga puede usar su reacción para moverse la mitad de su velocidad sin provocar ataques de oportunidad del objetivo",
+      "descripcion": "Cuando impactas a una criatura con un ataque con arma, puedes gastar un dado de superioridad para colocar a un compañero en mejor posición: sumas el dado al daño y eliges a una criatura amistosa que pueda verte u oírte, que puede usar su reacción para moverse hasta la mitad de su velocidad sin provocar ataques de oportunidad del objetivo."
+    },
+    {
+      "id": "ataque_de_precision",
+      "nombre": "Maniobra: Ataque de Precisión",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "sumas el dado de superioridad a una tirada de ataque con arma (antes o después de tirar)",
+      "descripcion": "Al hacer una tirada de ataque con arma contra una criatura, puedes gastar un dado de superioridad y sumarlo a la tirada. Puedes decidirlo antes o después de tirar, pero antes de que se apliquen los efectos del ataque."
+    },
+    {
+      "id": "ataque_desarmante",
+      "nombre": "Maniobra: Ataque Desarmante",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "al impactar: sumas el dado de superioridad al daño; salvación de FUE CD {8+competencia+max(mod_fue,mod_des)} o suelta un objeto que sostenga, a tu elección",
+      "descripcion": "Cuando impactas a una criatura con un ataque con arma, puedes gastar un dado de superioridad para intentar desarmarla: sumas el dado al daño y el objetivo debe superar una salvación de Fuerza o soltará un objeto que esté sosteniendo, a tu elección, que cae a sus pies."
+    },
+    {
+      "id": "ataque_provocador",
+      "nombre": "Maniobra: Ataque Provocador",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "al impactar: sumas el dado de superioridad al daño; salvación de SAB CD {8+competencia+max(mod_fue,mod_des)} o tiene desventaja en ataques contra otros objetivos hasta el final de tu siguiente turno",
+      "descripcion": "Cuando impactas a una criatura con un ataque con arma, puedes gastar un dado de superioridad para obligarla a centrarse en ti: sumas el dado al daño y el objetivo debe superar una salvación de Sabiduría o tendrá desventaja en las tiradas de ataque contra cualquier objetivo que no seas tú hasta el final de tu siguiente turno."
+    },
+    {
+      "id": "contraataque",
+      "nombre": "Maniobra: Contraataque",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "reacción cuando fallan un ataque cuerpo a cuerpo contra ti: le haces un ataque con arma cuerpo a cuerpo y, si impacta, sumas el dado de superioridad al daño",
+      "descripcion": "Cuando una criatura falla un ataque cuerpo a cuerpo contra ti, puedes usar tu reacción y gastar un dado de superioridad para hacerle un ataque con arma cuerpo a cuerpo. Si impactas, sumas el dado a la tirada de daño."
+    },
+    {
+      "id": "golpe_del_comandante",
+      "nombre": "Maniobra: Golpe del Comandante",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "renuncias a un ataque de tu acción de Atacar y usas una acción adicional: un aliado ataca con su reacción y suma el dado de superioridad al daño",
+      "descripcion": "Cuando realizas la acción de Atacar, puedes renunciar a uno de tus ataques y usar una acción adicional para que un compañero que pueda verte u oírte ataque. Gastas un dado de superioridad y esa criatura puede usar al instante su reacción para hacer un ataque con arma, sumando el dado a la tirada de daño."
+    },
+    {
+      "id": "golpe_distractor",
+      "nombre": "Maniobra: Golpe Distractor",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "al impactar: sumas el dado de superioridad al daño; el siguiente ataque contra el objetivo de otra criatura antes de tu siguiente turno tiene ventaja",
+      "descripcion": "Cuando impactas a una criatura con un ataque con arma, puedes gastar un dado de superioridad para distraerla: sumas el dado al daño y la siguiente tirada de ataque contra ese objetivo hecha por alguien que no seas tú tiene ventaja si se hace antes del comienzo de tu siguiente turno."
+    },
+    {
+      "id": "juego_de_pies_evasivo",
+      "nombre": "Maniobra: Juego de Pies Evasivo",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "al moverte: sumas el dado de superioridad a tu CA hasta que dejes de moverte",
+      "descripcion": "Cuando te mueves, puedes gastar un dado de superioridad, tirarlo y sumar el resultado a tu CA hasta que dejes de moverte."
+    },
+    {
+      "id": "parada",
+      "nombre": "Maniobra: Parada",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "reacción cuando te dañan con un ataque cuerpo a cuerpo: reduces el daño en el dado de superioridad + tu modificador de DES ({mod_des})",
+      "descripcion": "Cuando otra criatura te causa daño con un ataque cuerpo a cuerpo, puedes usar tu reacción y gastar un dado de superioridad para reducir el daño en el resultado del dado + tu modificador de Destreza."
+    },
+    {
+      "id": "reagrupar",
+      "nombre": "Maniobra: Reagrupar",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "acción adicional: un aliado que te vea u oiga gana PG temporales iguales al dado de superioridad + tu modificador de CAR ({mod_car})",
+      "descripcion": "En tu turno puedes usar una acción adicional y gastar un dado de superioridad para dar ánimos a un compañero que pueda verte u oírte: gana tantos puntos de golpe temporales como el resultado del dado + tu modificador de Carisma."
+    }
+  ]
+}

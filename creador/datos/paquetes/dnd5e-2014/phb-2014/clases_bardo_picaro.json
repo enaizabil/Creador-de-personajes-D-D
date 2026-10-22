@@ -1,1 +1,188 @@
-{}
+{
+  "clases": [
+    {
+      "id": "bardo",
+      "modifica": true,
+      "oro_inicial": "5d4x10"
+    },
+    {
+      "id": "picaro",
+      "modifica": true,
+      "oro_inicial": "4d4x10"
+    }
+  ],
+  "subclases": [
+    {
+      "id": "colegio_del_valor",
+      "nombre": "Colegio del Valor",
+      "clase": "bardo",
+      "fuente": "PHB 2014",
+      "descripcion": "Bardos que recorren el mundo para presenciar y cantar las gestas de los héroes, y que acompañan a sus aliados en primera línea para avivar su coraje.",
+      "perfil": {
+        "combate": 3,
+        "carisma": 2,
+        "proteccion": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "competencia",
+            "categoria": "armadura",
+            "id": "armaduras_medias"
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "armadura",
+            "id": "escudos"
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "arma",
+            "id": "armas_marciales"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Competencias Adicionales",
+            "resumen": "competencia con armaduras medias, escudos y armas marciales",
+            "descripcion": "Al unirte al Colegio del Valor aprendes a usar armaduras medias, escudos y armas marciales."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Inspiración en Combate",
+            "resumen": "quien tenga tu dado de Inspiración Bárdica ({escala}) puede sumarlo al daño de un ataque con arma que acabe de hacer, o usar su reacción para sumarlo a su CA contra un ataque",
+            "descripcion": "Una criatura que tenga uno de tus dados de Inspiración Bárdica también puede gastarlo de dos maneras nuevas: sumarlo a la tirada de daño de un ataque con arma que acabe de hacer, o, cuando alguien la ataque, usar su reacción para sumarlo a su CA contra ese ataque, después de ver la tirada pero antes de saber si impacta.",
+            "escala": {
+              "1": "1d6",
+              "5": "1d8",
+              "10": "1d10",
+              "15": "1d12"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "asesino",
+      "nombre": "Asesino",
+      "clase": "picaro",
+      "fuente": "PHB 2014",
+      "descripcion": "Pícaros entrenados en el oficio de matar: dominan los disfraces, los venenos y las emboscadas para acabar con su objetivo antes de que pueda reaccionar.",
+      "perfil": {
+        "sigilo": 3,
+        "combate": 2,
+        "astucia": 2
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "competencia",
+            "categoria": "herramienta",
+            "id": "utiles_para_disfrazarse"
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "herramienta",
+            "id": "utiles_de_envenenador"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Competencias Adicionales",
+            "resumen": "competencia con útiles para disfrazarse y útiles de envenenador",
+            "descripcion": "Al escoger este arquetipo aprendes a usar los útiles para disfrazarse y los útiles de envenenador."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Asesinar",
+            "resumen": "ventaja en tiradas de ataque contra criaturas que aún no hayan actuado en el combate; tus impactos contra criaturas sorprendidas son críticos",
+            "descripcion": "Eres letal cuando pillas al enemigo desprevenido: tienes ventaja en las tiradas de ataque contra cualquier criatura que todavía no haya tenido su turno en el combate, y cualquier impacto que consigas contra una criatura sorprendida es un crítico."
+          }
+        ]
+      }
+    },
+    {
+      "id": "embaucador_arcano",
+      "nombre": "Embaucador Arcano",
+      "clase": "picaro",
+      "fuente": "PHB 2014",
+      "descripcion": "Pícaros que añaden a su destreza un poco de magia arcana, sobre todo encantamientos e ilusiones, para confundir a sus víctimas y robar con más facilidad.",
+      "perfil": {
+        "arcano": 3,
+        "astucia": 2,
+        "sigilo": 2
+      },
+      "lanzamiento": {
+        "caracteristica": "int",
+        "progresion": "tercio",
+        "trucos_conocidos": [
+          0,
+          0,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "conjuros_conocidos": [
+          0,
+          0,
+          3,
+          4,
+          4,
+          4,
+          5,
+          6,
+          6,
+          7,
+          8,
+          8,
+          9,
+          10,
+          10,
+          11,
+          11,
+          11,
+          12,
+          13
+        ],
+        "listas": [
+          "mago"
+        ]
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "mano_de_mago",
+            "clase": "picaro",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Lanzamiento de Conjuros",
+            "resumen": "conjuros de mago con INT, casi todos de encantamiento o ilusión; CD {8+competencia+mod_int}, ataque de conjuro +{competencia+mod_int}",
+            "descripcion": "Aprendes el truco mano de mago y otros dos trucos de la lista del mago (uno más a nivel 10), y conjuros de mago de nivel 1 o superior según tu tabla: empiezas con tres. Los lanzas con Inteligencia. Tus conjuros de nivel 1 o superior tienen que ser de encantamiento o de ilusión, salvo uno de los tres iniciales y los que aprendes a niveles 8, 14 y 20, que pueden ser de cualquier escuela. Al subir de nivel en esta clase puedes cambiar uno de tus conjuros por otro de mago para el que tengas espacios, respetando la misma restricción de escuela salvo que sustituyas uno de los de escuela libre."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Juego de Manos con Mano de Mago",
+            "resumen": "tu mano de mago puede ser invisible, guardar o sacar objetos de un contenedor que lleve otra criatura y usar herramientas de ladrón a distancia; la controlas con la acción adicional de Acción Astuta; para que no te vean, DES (Juego de Manos) contra SAB (Percepción)",
+            "descripcion": "Cuando lanzas mano de mago, puedes volver invisible la mano espectral y usarla para tareas nuevas: meter un objeto que sostenga en un contenedor que lleve otra criatura, sacar un objeto de un contenedor así, o usar herramientas de ladrón a distancia para abrir cerraduras y desarmar trampas. Puedes hacer una de estas tareas sin que una criatura se dé cuenta si superas una prueba de Destreza (Juego de Manos) enfrentada a su Sabiduría (Percepción). Además, puedes controlar la mano con la acción adicional de Acción Astuta."
+          }
+        ]
+      }
+    }
+  ]
+}
