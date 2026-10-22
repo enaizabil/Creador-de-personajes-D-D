@@ -65,7 +65,7 @@ ESCUELAS_MAGIA = {
     "conjuracion": "Conjuración",
     "encantamiento": "Encantamiento",
     "evocacion": "Evocación",
-    "ilusion": "Ilusión",
+    "ilusion": "Ilusionismo",
     "nigromancia": "Nigromancia",
     "transmutacion": "Transmutación",
 }
