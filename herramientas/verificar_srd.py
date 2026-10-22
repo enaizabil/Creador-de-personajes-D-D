@@ -28,7 +28,8 @@ ESCUELAS = {"abjuración": "abjuracion", "adivinación": "adivinacion", "conjura
             "nigromancia": "nigromancia", "transmutación": "transmutacion"}
 CLASES = {"bardo": "bardo", "brujo": "brujo", "clérigo": "clerigo", "druida": "druida", "explorador": "explorador",
           "hechicero": "hechicero", "mago": "mago", "paladín": "paladin"}
-RUIDO = re.compile(r"^(=== Página|Prohibida la reventa|o fotocopiar|Documento de referencia|Nivel \d|Trucos \(nivel 0\)|Listas de conjuros)")
+RUIDO = re.compile(r"^(=== Página|Prohibida la reventa|o fotocopiar|Documento de referencia|Nivel \d"
+                   r"|Trucos \(nivel 0\)|Listas de conjuros)")
 
 
 def norma(texto: str) -> str:
@@ -110,7 +111,8 @@ def verificar_conjuros(datos: dict) -> list[str]:
             problemas.append(f"{ref['nombre']}: listas {sorted(propio.get('listas', []))}, en el SRD {sorted(esperadas)}")
     for clave, propio in sorted(nuestros.items()):
         if clave not in srd:
-            problemas.append(f"«{propio['nombre']}» está en srd-5.1 pero no es un conjuro del SRD (¿nombre distinto o es del PHB?)")
+            problemas.append(f"«{propio['nombre']}» está en srd-5.1 pero no es un conjuro del SRD "
+                             "(¿nombre distinto o es del PHB?)")
     return problemas
 
 
@@ -149,7 +151,8 @@ def verificar_armas(datos: dict) -> list[str]:
               "Armas a distancia sencillas": ("sencilla", "distancia"),
               "Armas cuerpo a cuerpo marciales": ("marcial", "cuerpo_a_cuerpo"),
               "Armas a distancia marciales": ("marcial", "distancia")}
-    fila_re = re.compile(r"^(?P<nombre>.+?) (?P<precio>\d+ p[cpeo]) (?P<dano>\d+d\d+ \w+|\d+ \w+|—) (?P<peso>[\d,]+ k?g|—) +(?P<props>.*)$")
+    fila_re = re.compile(r"^(?P<nombre>.+?) (?P<precio>\d+ p[cpeo]) (?P<dano>\d+d\d+ \w+|\d+ \w+|—)"
+                         r" (?P<peso>[\d,]+ k?g|—) +(?P<props>.*)$")
     nuestras = {norma(o["nombre"]): o for o in datos.get("objetos", []) if o.get("categoria") == "arma"}
     problemas, vistas = [], 0
     for fila, (categoria, tipo) in _filas("Nombre Precio Daño Peso Propiedades", grupos):
