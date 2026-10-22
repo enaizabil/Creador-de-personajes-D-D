@@ -1,0 +1,15 @@
+{
+  "id": "dmg-2014",
+  "nombre": "Guía del Dungeon Master (2014)",
+  "sistema": "dnd5e-2014",
+  "version": "0.1.0",
+  "tipo": "oficial",
+  "licencia": "Uso privado. Contenido protegido por derechos de autor; redactado con palabras propias.",
+  "descripcion": "Opciones de personaje de la Guía del DM: aasimar, eladrín, Dominio de la Muerte y Rompejuramentos. Requieren permiso del DM.",
+  "depende_de": [
+    "phb-2014"
+  ],
+  "archivos": [
+    "opciones.json"
+  ]
+}

@@ -99,3 +99,17 @@ Lo que los agentes no pudieron confirmar con una fuente oficial. El SRD 5.1 en e
 - Los conjuros son solo datos de catálogo: el motor no calcula daño, curación ni CD por conjuro. La mejora «A niveles superiores» va solo en el texto del «resumen», porque no hay un campo para ella.
 - Crecimiento vegetal tiene dos tiempos de lanzamiento con efectos distintos («1 acción u 8 horas»). Lo he puesto como texto en «tiempo» y explicado en el resumen.
 - Los campos «ritual» y «concentracion» son informativos: el motor no los usa (no hay lanzamiento como ritual ni control de concentración).
+
+## Guía del DM (2014)
+
+Opciones de personaje escritas desde el texto oficial (paquete `dmg-2014`): aasimar, eladrín, Dominio de la Muerte y Rompejuramentos, hasta nivel 5. Los nombres de conjuros que citan coinciden con los de nuestros datos.
+
+Reglas de la Guía que afectan a la ficha y **aún no están en el motor** (no las usa la campaña; se pueden añadir como reglas opcionales):
+
+- Equipo inicial al empezar por encima de nivel 1 (tabla «Equipo inicial», p. 38): a niveles 1-4, equipo normal; a niveles 5-10, 500 po + 1d10 × 25 po y equipo normal (más un objeto mágico infrecuente en campañas con mucha magia). Se usará en el asistente de creación (paso 3).
+- Dados de competencia en lugar del bonificador por competencia.
+- Competencia en trasfondo (sin competencias en habilidades ni herramientas).
+- Puntos de héroe (5 + mitad del nivel).
+- Características nuevas: Honor y Cordura.
+- Puntos de conjuro en lugar de espacios.
+- Los conjuros del PHB que no aparecen en la Guía (25 de 28) siguen sin confirmar; solo se confirman «Amistad», «Rayo nauseabundo» y «Corona de la locura».

@@ -1,0 +1,273 @@
+{
+  "razas": [
+    {
+      "id": "aasimar",
+      "nombre": "Aasimar",
+      "tamano": "mediano",
+      "velocidad": 30,
+      "permiso_dm": true,
+      "fuente": "Guía del DM 2014, p. 286",
+      "descripcion": "Descendientes de seres celestiales, con aspecto de humanos espléndidos. Opción de la Guía del DM: solo con permiso explícito del DM.",
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "sab",
+          "valor": 1
+        },
+        {
+          "tipo": "caracteristica",
+          "car": "car",
+          "valor": 2
+        },
+        {
+          "tipo": "sentido",
+          "id": "vision_en_la_oscuridad",
+          "nombre": "Visión en la oscuridad",
+          "alcance": 60
+        },
+        {
+          "tipo": "resistencia",
+          "dano": "necrotico"
+        },
+        {
+          "tipo": "resistencia",
+          "dano": "radiante"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Resistencia Celestial",
+          "resumen": "Resistencia al daño necrótico y radiante."
+        },
+        {
+          "tipo": "conjuro",
+          "id": "luz",
+          "caracteristica": "car"
+        },
+        {
+          "tipo": "conjuro",
+          "id": "restablecimiento_menor",
+          "caracteristica": "car",
+          "nivel_minimo": 3
+        },
+        {
+          "tipo": "conjuro",
+          "id": "luz_del_dia",
+          "caracteristica": "car",
+          "nivel_minimo": 5
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Linaje Celestial",
+          "resumen": "Truco luz. Desde nivel 3, restablecimiento menor y desde nivel 5, luz del día (a nivel 3), cada uno 1 vez por descanso largo. Aptitud mágica: Carisma."
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "comun"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "celestial"
+        }
+      ]
+    }
+  ],
+  "subrazas": [
+    {
+      "id": "eladrin",
+      "nombre": "Eladrín",
+      "raza": "elfo",
+      "permiso_dm": true,
+      "fuente": "Guía del DM 2014, p. 286",
+      "descripcion": "Elfos mágicos ligados al Feywild, capaces de cruzar fugazmente entre planos. Opción de la Guía del DM: solo con permiso explícito del DM.",
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "int",
+          "valor": 1
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "espada_corta"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "espada_larga"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "arco_corto"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "arco_largo"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Entrenamiento con Armas Élficas",
+          "resumen": "Competencia con espadas cortas, espadas largas, arcos cortos y arcos largos."
+        },
+        {
+          "tipo": "conjuro",
+          "id": "paso_brumoso"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Paso Feérico",
+          "resumen": "Lanza paso brumoso con este rasgo.",
+          "usos": 1,
+          "recarga": "corto"
+        }
+      ]
+    }
+  ],
+  "subclases": [
+    {
+      "id": "dominio_de_la_muerte",
+      "nombre": "Dominio de la Muerte",
+      "clase": "clerigo",
+      "permiso_dm": true,
+      "fuente": "Guía del DM 2014, p. 96",
+      "descripcion": "Dominio de las fuerzas que ponen fin a la vida y de la energía que alza a los muertos vivientes. Opción de la Guía del DM: solo con permiso explícito del DM.",
+      "niveles": {
+        "1": [
+          {
+            "tipo": "competencia",
+            "categoria": "arma",
+            "id": "armas_marciales"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Competencia Adicional",
+            "resumen": "Competencia con armas marciales."
+          },
+          {
+            "tipo": "eleccion",
+            "id": "segador",
+            "nombre": "Segador: truco de nigromancia",
+            "opciones": {
+              "desde": "conjuros",
+              "filtro": {
+                "nivel": 0,
+                "escuela": "nigromancia"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "conjuro",
+                "id": "$opcion",
+                "clase": "clerigo",
+                "siempre_preparado": true
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Segador",
+            "resumen": "Tus trucos de nigromancia de un solo objetivo pueden afectar a dos criaturas a 5 pies o menos una de otra."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "falsa_vida",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "rayo_nauseabundo",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Toque de la Muerte",
+            "resumen": "Al impactar con un ataque cuerpo a cuerpo, +{5+2*nivel_clase} de daño necrótico."
+          }
+        ],
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "rayo_debilitador",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "sordera_ceguera",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "animar_a_los_muertos",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "toque_vampirico",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "rompejuramentos",
+      "nombre": "Rompejuramentos",
+      "clase": "paladin",
+      "permiso_dm": true,
+      "fuente": "Guía del DM 2014, p. 97",
+      "descripcion": "Paladín malvado que rompió sus votos; sustituye los rasgos de su Juramento Sagrado (desde nivel 3). Opción de la Guía del DM: solo con permiso explícito del DM.",
+      "niveles": {
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "infligir_heridas",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "reprension_infernal",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Controlar Muertos Vivientes",
+            "resumen": "Acción: un muerto viviente a 30 pies o menos te obedece 24 horas si falla una salvación de SAB CD {8+competencia+mod_car}; inmunes los de VD igual o superior a tu nivel de paladín."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Aspecto Aterrador",
+            "resumen": "Acción: las criaturas que elijas a 30 pies o menos que te vean quedan asustadas 1 minuto si fallan una salvación de SAB CD {8+competencia+mod_car}; repiten si acaban el turno a 30 pies o más."
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "corona_de_la_locura",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "oscuridad",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ]
+      }
+    }
+  ]
+}

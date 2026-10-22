@@ -14,7 +14,7 @@ from creador.nucleo.personaje import EntradaClase, Personaje
 from creador.nucleo.rutas import directorio_datos_integrados
 
 RAIZ = Path(__file__).resolve().parents[1]
-PAQUETES = ["srd-5.1", "phb-2014"]
+PAQUETES = ["srd-5.1", "phb-2014", "dmg-2014"]
 BASE = {"fue": 15, "des": 14, "con": 13, "int": 12, "sab": 10, "car": 8}
 # Avisos que indican datos rotos (no simples decisiones pendientes del jugador).
 AVISOS_GRAVES = ("no existe", "desconocid", "no es una opción válida", "variable", "expresión", "operación",

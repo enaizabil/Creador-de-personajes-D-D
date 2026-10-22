@@ -8,6 +8,7 @@ Normas para escribir los paquetes `srd-5.1`, `phb-2014` y cualquier ampliación.
 |---|---|---|
 | `srd-5.1` | Todo lo que está en el SRD 5.1: 9 razas con su subraza, las 12 clases con una subclase cada una, Acólito, Apresador, equipo, conjuros e idiomas del SRD. | CC BY 4.0: se puede copiar el texto, con atribución. |
 | `phb-2014` | Lo del Manual del Jugador que **no** está en el SRD: resto de subrazas, humano variante, subclases, trasfondos, dotes, conjuros y opciones. Depende de `srd-5.1`. | Protegido: **solo con palabras propias**, nunca copiado. |
+| `dmg-2014` | Opciones de personaje de la Guía del DM: aasimar, eladrín, Dominio de la Muerte y Rompejuramentos. Llevan `"permiso_dm": true`: la interfaz solo las ofrecerá si el DM las activa. Depende de `phb-2014`. | Protegido: **solo con palabras propias**. |
 
 Cuando el PHB amplía algo del SRD (p. ej. añade un conjuro a una lista de clase), se hace con `"modifica": true` desde `phb-2014`.
 
@@ -26,3 +27,9 @@ Cuando el PHB amplía algo del SRD (p. ej. añade un conjuro a una lista de clas
 ## Mecánica antes que texto
 
 Todo lo que el motor sabe calcular va como efecto, no solo como texto: competencias, características, velocidad, sentidos, resistencias, CA alternativa, PG extra, conjuros raciales y de dominio, pericias, estilos de combate, ataques sin armas… El texto del rasgo complementa; no sustituye.
+
+## Fuentes oficiales disponibles
+
+- `fuentes/SRD_5.1_ES.txt` y `fuentes/SRD_5.1_ES_pypdf.txt`: SRD 5.1 en español (CC BY 4.0), en el repositorio.
+- `fuentes/privado/Guia_del_DM_2014_ES.txt`: Guía del DM 2014 en español (OCR, con erratas de reconocimiento). **No se sube a git** (`.gitignore`): es un libro con derechos de autor. Confirma que los libros españoles de 2014 miden en **pies**.
+- Manual del Jugador 2014: pendiente. Hasta tenerlo, lo que solo está en el PHB se escribe de memoria y sus dudas van a [dudas-contenido.md](dudas-contenido.md).

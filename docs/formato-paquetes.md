@@ -44,6 +44,8 @@ Cada archivo es un objeto `{"categoria": [entradas]}`. Un archivo puede mezclar 
 
 Categorías: `razas`, `subrazas`, `clases`, `subclases`, `trasfondos`, `dotes`, `opciones`, `conjuros`, `objetos`, `idiomas`.
 
+Cualquier entrada puede llevar `"permiso_dm": true` si el libro la presenta como opción que el DM debe autorizar (p. ej. el Rompejuramentos).
+
 Toda entrada necesita `id` (texto, sin espacios, en minúsculas y sin tildes: `enano_colinas`) y `nombre`. Puede llevar `descripcion` y `fuente` (p. ej. `"PHB p. 20"`).
 
 ### Añadir, reemplazar o modificar
