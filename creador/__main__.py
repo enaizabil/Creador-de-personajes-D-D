@@ -1,5 +1,6 @@
-"""Línea de órdenes provisional (la interfaz gráfica llega en una fase posterior).
+"""Punto de entrada: sin argumentos abre la interfaz gráfica.
 
+    python -m creador            (o: python -m creador gui)
     python -m creador paquetes
     python -m creador validar srd-5.1 phb-2014
     python -m creador ficha personaje.json
@@ -62,10 +63,22 @@ def _orden_ficha(archivo: str) -> int:
     return 0
 
 
+def _orden_gui() -> int:
+    try:
+        from .gui import ejecutar
+        ejecutar()
+    except ImportError as exc:
+        print(f"No se puede abrir la interfaz gráfica: {exc}\n"
+              "Necesita Tkinter y CustomTkinter (pip install customtkinter).", file=sys.stderr)
+        return 1
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="creador", description="Creador de personajes de rol")
     parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     ordenes = parser.add_subparsers(dest="orden")
+    ordenes.add_parser("gui", help="abre la interfaz gráfica (también sin argumentos)")
     ordenes.add_parser("paquetes", help="lista los paquetes de contenido instalados")
     validar = ordenes.add_parser("validar", help="carga paquetes y muestra sus errores (todos si no se indica ninguno)")
     validar.add_argument("paquetes", nargs="*")
@@ -74,6 +87,8 @@ def main(argv: list[str] | None = None) -> int:
     ficha.add_argument("archivo")
     args = parser.parse_args(argv)
 
+    if args.orden in (None, "gui"):
+        return _orden_gui()
     if args.orden == "paquetes":
         return _orden_paquetes()
     if args.orden == "validar":

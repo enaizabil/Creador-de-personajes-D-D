@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Creador de personajes de rol portable y ampliable mediante paquetes de contenido."
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = ["customtkinter>=5.2"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]

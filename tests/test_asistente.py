@@ -6,7 +6,7 @@ import pytest
 from creador.entorno import abrir_catalogo
 from creador.nucleo.personaje import Personaje
 from creador.nucleo.rutas import directorio_datos_integrados
-from creador.sistemas.dnd5e_2014.asistente import tirar_dados
+from creador.sistemas.dnd5e_2014.asistente import describir_eleccion, tirar_dados
 
 PAQUETES = ["srd-5.1", "phb-2014", "dmg-2014"]
 
@@ -166,3 +166,23 @@ def test_tirar_dados():
     assert all(525 <= tirar_dados("500 + 1d10x25", rng) <= 750 for _ in range(50))
     with pytest.raises(ValueError):
         tirar_dados("dos dados", rng)
+
+
+def test_equipo_pendiente_hasta_tener_clase_y_trasfondo(asistente):
+    assert asistente.faltan("equipo") == ["Elige antes una clase", "Elige antes un trasfondo"]
+    asistente.elegir_clase("guerrero")
+    asistente.elegir_trasfondo("soldado")
+    assert not any(f.startswith("Elige antes") for f in asistente.faltan("equipo"))
+
+
+def test_nombre_de_las_lineas_de_equipo_a_elegir(asistente):
+    assert describir_eleccion({"desde": "armas", "filtro": {"arma": {"categoria": "marcial", "tipo": "cuerpo_a_cuerpo"}}}) \
+        == "Arma marcial cuerpo a cuerpo a elegir"
+    assert describir_eleccion({"desde": "armas", "filtro": {"arma": {"categoria": "sencilla"}}}) == "Arma sencilla a elegir"
+    assert describir_eleccion({"desde": "objetos", "filtro": {"categoria": "foco", "subcategoria": "druidico"}}) \
+        == "Canalizador druídico a elegir"
+    assert describir_eleccion({"desde": "herramientas", "filtro": {"subcategoria": "instrumento"}}) \
+        == "Instrumento musical a elegir"
+    asistente.elegir_clase("mago")
+    nombres = [linea.nombre for b in asistente.bloques_equipo() for alt in b.alternativas for linea in alt]
+    assert "Canalizador arcano a elegir" in nombres and "a elegir" not in nombres

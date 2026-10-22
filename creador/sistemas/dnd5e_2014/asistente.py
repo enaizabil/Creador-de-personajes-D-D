@@ -39,6 +39,9 @@ CAMPOS_DETALLES = ("nombre", "jugador", "alineamiento", "rasgos_personalidad", "
                    "edad", "altura", "peso", "ojos", "piel", "pelo", "apariencia", "historia")
 # Guía del DM 2014, tabla «Equipo inicial» (p. 38), campaña estándar: oro extra por nivel inicial.
 ORO_EXTRA_POR_NIVEL = ((5, 10, "500 + 1d10x25"), (11, 16, "5000 + 1d10x250"), (17, 20, "20000 + 1d10x250"))
+# Nombres de las líneas de equipo «a elegir» (si el dato no trae su propio «nombre»).
+NOMBRES_FOCO = {"arcano": "Canalizador arcano", "druidico": "Canalizador druídico", "sagrado": "Símbolo sagrado"}
+NOMBRES_HERRAMIENTA = {"instrumento": "Instrumento musical", "artesano": "Herramientas de artesano"}
 # Elecciones que se muestran en cada paso, según el origen de su clave.
 PREFIJOS_PASO = {"raza": ("raza:", "subraza:"), "clase": ("clase:", "subclase:"), "trasfondo": ("trasfondo:",)}
 
@@ -102,6 +105,22 @@ def tirar_dados(expresion: str, rng: random.Random) -> int:
         tirada = sum(rng.randint(1, int(m.group(2))) for _ in range(int(m.group(1))))
         total += tirada * int(m.group(3) or 1)
     return total
+
+
+def describir_eleccion(linea: dict) -> str:
+    """«Arma marcial cuerpo a cuerpo a elegir», «Canalizador arcano a elegir»…"""
+    filtro = linea.get("filtro") or {}
+    if linea["desde"] == "armas":
+        arma = filtro.get("arma", {})
+        tipo = {"cuerpo_a_cuerpo": "cuerpo a cuerpo", "distancia": "a distancia"}.get(arma.get("tipo", ""), "")
+        texto = " ".join(p for p in ("Arma", arma.get("categoria", ""), tipo) if p)
+    elif filtro.get("categoria") == "foco":
+        texto = NOMBRES_FOCO.get(filtro.get("subcategoria"), "Canalizador")
+    elif filtro.get("subcategoria") in NOMBRES_HERRAMIENTA:
+        texto = NOMBRES_HERRAMIENTA[filtro["subcategoria"]]
+    else:
+        texto = {"armas": "Arma", "herramientas": "Herramienta"}.get(linea["desde"], "Objeto")
+    return f"{texto} a elegir"
 
 
 class Asistente5e:
@@ -329,7 +348,7 @@ class Asistente5e:
             objeto = self.catalogo.obtener("objetos", linea["id"]) or {}
             return LineaEquipo(linea["id"], objeto.get("nombre", linea["id"]), cantidad)
         opciones = [(o.id, o.nombre) for o in self.sistema.opciones_desde(linea["desde"], linea.get("filtro"), self.catalogo)]
-        return LineaEquipo(None, "a elegir", cantidad, opciones)
+        return LineaEquipo(None, linea.get("nombre") or describir_eleccion(linea), cantidad, opciones)
 
     def elegir_alternativa(self, origen: str, indice: int, alternativa: int) -> None:
         self._seleccion_equipo()[origen][str(indice)] = alternativa
@@ -457,6 +476,10 @@ class Asistente5e:
         elif paso == "trasfondo" and not personaje.trasfondo:
             faltan.insert(0, "Elige un trasfondo")
         elif paso == "equipo":
+            if not personaje.clases:
+                faltan.append("Elige antes una clase")
+            if not personaje.trasfondo:
+                faltan.append("Elige antes un trasfondo")
             faltan += self.equipo_pendiente()
         elif paso == "conjuros":
             for plan in self.planes_conjuros():
