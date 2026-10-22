@@ -52,6 +52,8 @@ class Lanzador:
     conjuros: dict[int, list[str]] = field(default_factory=dict)
     # dominio, juramento, círculo…: no cuentan para el límite de preparados
     siempre_preparados: dict[int, list[str]] = field(default_factory=dict)
+    # Clases con libro (mago): todo el libro; «conjuros» tiene entonces los trucos y los preparados.
+    libro: dict[int, list[str]] = field(default_factory=dict)
 
 
 @dataclass
@@ -61,11 +63,12 @@ class PlanConjuros:
     clase: str
     caracteristica: str
     nivel_maximo: int
-    modo: str  # conocidos | preparados
+    modo: str  # conocidos | preparados | libro (se eligen los del libro y, de ellos, los preparados)
     limite_trucos: int | None
-    limite_conjuros: int | None
+    limite_conjuros: int | None  # en modo libro, los preparados
     # nivel de conjuro -> [(id, nombre)], solo hasta nivel_maximo
     disponibles: dict[int, list[tuple[str, str]]] = field(default_factory=dict)
+    limite_libro: int | None = None
 
 
 @dataclass

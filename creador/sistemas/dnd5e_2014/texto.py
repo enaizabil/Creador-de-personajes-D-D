@@ -57,10 +57,13 @@ def resumen_ficha(ficha: Ficha) -> str:
             lineas.append(f"{lanzador.clase} ({CARACTERISTICAS[lanzador.caracteristica]}): CD {lanzador.cd}, "
                           f"ataque {_signo(lanzador.ataque)}")
             for nivel in sorted({*lanzador.conjuros, *lanzador.siempre_preparados}):
-                titulo = "Trucos" if nivel == 0 else f"Nivel {nivel}"
+                titulo = "Trucos" if nivel == 0 else f"Nivel {nivel}" + (" (preparados)" if lanzador.libro else "")
                 siempre = [f"{n} (siempre)" for n in lanzador.siempre_preparados.get(nivel, [])]
                 nombres = lanzador.conjuros.get(nivel, []) + siempre
                 lineas.append(f"  {titulo}: {', '.join(nombres)}")
+            if lanzador.libro:
+                lineas.append("  Libro de conjuros: " + "; ".join(
+                    f"nivel {nivel}: {', '.join(nombres)}" for nivel, nombres in sorted(lanzador.libro.items())))
         if ficha.espacios_conjuro:
             lineas.append("Espacios: " + ", ".join(f"nivel {n}: {e}" for n, e in ficha.espacios_conjuro.items()))
         if ficha.magia_pacto:

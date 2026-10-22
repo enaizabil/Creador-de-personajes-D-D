@@ -25,6 +25,7 @@ class VistaAsistente5e(ctk.CTkFrame):
         self.nombres_paquetes = {p.id: p.nombre for p in asistente.catalogo.paquetes}
         self.paso_actual = "inicio"
         self.archivo: str | None = None
+        self.marco_avisos: ctk.CTkFrame | None = None
         self.grid_columnconfigure(1, weight=1)
         self.grid_rowconfigure(1, weight=1)
 
@@ -60,6 +61,7 @@ class VistaAsistente5e(ctk.CTkFrame):
         if paso == "equipo" or self.paso_actual == "equipo":
             self.a.aplicar_equipo()
         self.paso_actual = paso
+        self.marco_avisos = None
         for hijo in self.contenido.winfo_children():
             hijo.destroy()
         getattr(self, f"_paso_{paso}")(self.contenido)
@@ -69,6 +71,7 @@ class VistaAsistente5e(ctk.CTkFrame):
         self.mostrar(self.paso_actual)
 
     def _refrescar(self) -> None:
+        self._pintar_avisos()
         for hijo in self.lateral.winfo_children():
             hijo.destroy()
         ctk.CTkLabel(self.lateral, text="Creación", font=fuente(16, True)).pack(anchor="w", padx=16, pady=(18, 10))
@@ -106,7 +109,17 @@ class VistaAsistente5e(ctk.CTkFrame):
         self._redibujar()
 
     def _faltan(self, master, paso: str) -> None:
-        ListaAvisos(master, self.a.faltan(paso)).pack(fill="x", padx=10, pady=(14, 6))
+        """Recuadro de lo que falta; _refrescar lo repinta tras cada cambio que no redibuja el paso."""
+        self.marco_avisos = ctk.CTkFrame(master, fg_color="transparent")
+        self.marco_avisos.pack(fill="x", padx=10, pady=(14, 6))
+        self._pintar_avisos()
+
+    def _pintar_avisos(self) -> None:
+        if self.marco_avisos is None or not self.marco_avisos.winfo_exists():
+            return
+        for hijo in self.marco_avisos.winfo_children():
+            hijo.destroy()
+        ListaAvisos(self.marco_avisos, self.a.faltan(self.paso_actual)).pack(fill="x")
 
     def _volver(self) -> None:
         if messagebox.askyesno("Volver al inicio", "¿Volver al inicio? Lo que no hayas guardado se perderá."):
@@ -347,8 +360,13 @@ class VistaAsistente5e(ctk.CTkFrame):
             contador.pack(anchor="w", padx=10, pady=4)
             elegidos = set(self.a.personaje.conjuros.get(plan.clase_id, []))
             casillas: dict[str, tuple[ctk.BooleanVar, ctk.CTkCheckBox, int]] = {}
+            libro = plan.modo == "libro"
+            # En modo libro las casillas eligen el libro y los preparados se eligen de él, más abajo.
+            limite_otros = plan.limite_libro if libro else plan.limite_conjuros
+            marco_preparados = ctk.CTkFrame(master, fg_color="transparent") if libro else None
 
-            def actualizar(plan=plan, casillas=casillas, contador=contador):
+            def actualizar(plan=plan, casillas=casillas, contador=contador, limite_otros=limite_otros,
+                           marco_preparados=marco_preparados):
                 ids = [i for i, (v, _, _) in casillas.items() if v.get()]
                 self.a.elegir_conjuros(plan.clase_id, ids)
                 trucos = sum(1 for i in ids if casillas[i][2] == 0)
@@ -356,14 +374,17 @@ class VistaAsistente5e(ctk.CTkFrame):
                 texto = []
                 if plan.limite_trucos is not None:
                     texto.append(f"Trucos {trucos}/{plan.limite_trucos}")
-                if plan.limite_conjuros is not None:
-                    palabra = "Conocidos" if plan.modo == "conocidos" else "Preparados"
-                    texto.append(f"{palabra} {otros}/{plan.limite_conjuros}")
+                if limite_otros is not None:
+                    palabra = {"conocidos": "Conocidos", "preparados": "Preparados", "libro": "Libro"}[plan.modo]
+                    texto.append(f"{palabra} {otros}/{limite_otros}")
                 contador.configure(text="  ·  ".join(texto))
                 for _id, (variable, casilla, nivel) in casillas.items():
-                    limite = plan.limite_trucos if nivel == 0 else plan.limite_conjuros
+                    limite = plan.limite_trucos if nivel == 0 else limite_otros
                     lleno = limite is not None and (trucos if nivel == 0 else otros) >= limite
                     casilla.configure(state="disabled" if lleno and not variable.get() else "normal")
+                if marco_preparados is not None:
+                    self._preparados_del_libro(marco_preparados, plan, [(i, casillas[i][1].cget("text"))
+                                                                        for i in ids if casillas[i][2] > 0])
                 self._refrescar()
 
             for nivel, opciones in plan.disponibles.items():
@@ -376,8 +397,41 @@ class VistaAsistente5e(ctk.CTkFrame):
                     casilla = ctk.CTkCheckBox(rejilla, text=nombre, variable=variable, width=240, command=actualizar)
                     casilla.grid(row=i // 3, column=i % 3, sticky="w", padx=4, pady=2)
                     casillas[id_] = (variable, casilla, nivel)
+            if marco_preparados is not None:
+                marco_preparados.pack(fill="x", padx=10, pady=(12, 0))
             actualizar()
         self._faltan(master, "conjuros")
+
+    def _preparados_del_libro(self, marco, plan, libro: list[tuple[str, str]]) -> None:
+        """Casillas de preparados (modo libro), rehechas cada vez que cambia el libro."""
+        for hijo in marco.winfo_children():
+            hijo.destroy()
+        preparados = set(self.a.personaje.preparados.get(plan.clase_id, []))
+        contador = ctk.CTkLabel(marco, text="", font=fuente(14, True), anchor="w")
+        contador.pack(anchor="w")
+        texto_ajustado(marco, "Los que puedes lanzar hoy; se cambian tras un descanso largo.", 760,
+                       text_color="gray").pack(anchor="w")
+        if not libro:
+            ctk.CTkLabel(marco, text="Primero elige conjuros para el libro.", anchor="w").pack(anchor="w", pady=4)
+        rejilla = ctk.CTkFrame(marco, fg_color="transparent")
+        rejilla.pack(anchor="w", padx=6)
+        casillas: dict[str, tuple[ctk.BooleanVar, ctk.CTkCheckBox]] = {}
+
+        def actualizar():
+            ids = [i for i, (v, _) in casillas.items() if v.get()]
+            self.a.elegir_preparados(plan.clase_id, ids)
+            contador.configure(text=f"Preparados {len(ids)}/{plan.limite_conjuros}")
+            lleno = len(ids) >= (plan.limite_conjuros or 0)
+            for variable, casilla in casillas.values():
+                casilla.configure(state="disabled" if lleno and not variable.get() else "normal")
+            self._refrescar()
+
+        for i, (id_, nombre) in enumerate(libro):
+            variable = ctk.BooleanVar(value=id_ in preparados)
+            casilla = ctk.CTkCheckBox(rejilla, text=nombre, variable=variable, width=240, command=actualizar)
+            casilla.grid(row=i // 3, column=i % 3, sticky="w", padx=4, pady=2)
+            casillas[id_] = (variable, casilla)
+        actualizar()
 
     def _paso_detalles(self, master) -> None:
         self._cabecera_paso(master, "detalles")

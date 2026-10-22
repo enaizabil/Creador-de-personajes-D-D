@@ -9,7 +9,7 @@ import json
 from dataclasses import asdict, dataclass, field, fields
 from pathlib import Path
 
-VERSION_FORMATO = 1
+VERSION_FORMATO = 2  # 2: campo «preparados»
 
 
 @dataclass
@@ -45,8 +45,10 @@ class Personaje:
     elecciones: dict[str, list[str]] = field(default_factory=dict)
     equipo: list[ObjetoInventario] = field(default_factory=list)
     monedas: dict[str, int] = field(default_factory=dict)
-    # Conjuros conocidos o preparados, por id de clase.
+    # Conjuros conocidos o preparados, por id de clase. Con libro (mago): trucos y conjuros del libro.
     conjuros: dict[str, list[str]] = field(default_factory=dict)
+    # Solo para clases con libro: los preparados, que deben estar en «conjuros».
+    preparados: dict[str, list[str]] = field(default_factory=dict)
     reglas_opcionales: dict[str, bool] = field(default_factory=dict)
     experiencia: int = 0
     detalles: dict[str, str] = field(default_factory=dict)

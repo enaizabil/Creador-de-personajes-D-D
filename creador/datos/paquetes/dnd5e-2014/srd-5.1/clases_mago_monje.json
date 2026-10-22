@@ -144,7 +144,11 @@
           5,
           5
         ],
-        "preparados": "nivel"
+        "preparados": "nivel",
+        "libro": {
+          "inicial": 6,
+          "por_nivel": 2
+        }
       },
       "niveles": {
         "1": [

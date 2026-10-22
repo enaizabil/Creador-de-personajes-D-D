@@ -95,6 +95,7 @@ Ejemplo: un paquete que añade el conjuro *Luz* a la lista del paladín sin rede
   "trucos_conocidos": [3,3,3,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5],
   "conjuros_conocidos": [ ... 20 valores ... ],
   "preparados": "nivel",
+  "libro": {"inicial": 6, "por_nivel": 2},
   "listas": ["mago"],
   "desde_nivel": 1,
   "redondeo_multiclase": "abajo"
@@ -103,6 +104,7 @@ Ejemplo: un paquete que añade el conjuro *Luz* a la lista del paladín sin rede
 
 - `progresion`: `completo` (mago, clérigo…), `medio` (paladín, explorador), `tercio` (Caballero Arcano, Embaucador Arcano) o `pacto` (brujo).
 - Usa `conjuros_conocidos` (tabla de 20 valores) **o** `preparados`: `nivel` → mod + nivel, o `mitad_nivel` → mod + nivel/2.
+- `libro` (mago): los conjuros se eligen para el libro (`inicial` a nivel 1 y `por_nivel` más en cada nivel, siempre de niveles con espacios en ese momento) y los preparados salen del libro. El personaje guarda el libro en `conjuros` y los preparados en `preparados`.
 - `listas`: listas de conjuros adicionales a la de la propia clase.
 - `desde_nivel` y `redondeo_multiclase` solo hacen falta si difieren del estándar.
 

@@ -439,7 +439,15 @@ class Asistente5e:
         return motor.planes_de_conjuros(self.personaje, self.catalogo, mods)
 
     def elegir_conjuros(self, clase_id: str, ids: list[str]) -> None:
+        """Trucos y conjuros conocidos o preparados; en modo libro, los trucos y los conjuros del libro."""
         self.personaje.conjuros[clase_id] = list(dict.fromkeys(ids))
+        if clase_id in self.personaje.preparados:
+            self.elegir_preparados(clase_id, self.personaje.preparados[clase_id])
+
+    def elegir_preparados(self, clase_id: str, ids: list[str]) -> None:
+        """Modo libro: los preparados, siempre de entre los del libro."""
+        libro = set(self.personaje.conjuros.get(clase_id, []))
+        self.personaje.preparados[clase_id] = [i for i in dict.fromkeys(ids) if i in libro]
 
     # ── detalles ───────────────────────────────────────────────────────────
 
@@ -488,7 +496,18 @@ class Asistente5e:
                 conjuros = sum(1 for c in elegidos if c and c["nivel"] > 0)
                 if plan.limite_trucos and trucos < plan.limite_trucos:
                     faltan.append(f"{plan.clase}: elige {plan.limite_trucos - trucos} truco(s) más")
-                if plan.limite_conjuros and conjuros < plan.limite_conjuros:
+                if plan.modo == "libro":
+                    if conjuros < plan.limite_libro:
+                        faltan.append(f"{plan.clase}: añade {plan.limite_libro - conjuros} conjuro(s) más al libro")
+                    config = motor.configuracion_lanzamiento(personaje, self.catalogo, plan.clase_id)
+                    nivel = next(e.nivel for e in personaje.clases if e.clase == plan.clase_id)
+                    faltan += motor.avisos_libro(config, nivel, [c["nivel"] for c in elegidos if c and c["nivel"] > 0],
+                                                 plan.clase)
+                    preparados = len(personaje.preparados.get(plan.clase_id, []))
+                    objetivo = min(plan.limite_conjuros or 0, conjuros)
+                    if preparados < objetivo:
+                        faltan.append(f"{plan.clase}: prepara {objetivo - preparados} conjuro(s) más del libro")
+                elif plan.limite_conjuros and conjuros < plan.limite_conjuros:
                     faltan.append(f"{plan.clase}: elige {plan.limite_conjuros - conjuros} conjuro(s) más")
         elif paso == "detalles" and not personaje.nombre.strip():
             faltan.append("Ponle nombre al personaje")

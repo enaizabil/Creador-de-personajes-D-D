@@ -378,6 +378,12 @@ def _validar_lanzamiento(config) -> list[str]:
             errores.append(f"lanzamiento: «{tabla}» debe ser una lista de 20 valores (niveles 1–20)")
     if config.get("preparados") not in (None, "nivel", "mitad_nivel"):
         errores.append("lanzamiento: «preparados» debe ser \"nivel\" o \"mitad_nivel\"")
+    if "libro" in config:
+        libro = config["libro"]
+        if not isinstance(libro, dict) or not all(isinstance(libro.get(c), int) for c in ("inicial", "por_nivel")):
+            errores.append("lanzamiento: «libro» debe ser {\"inicial\": n, \"por_nivel\": n}")
+        elif not config.get("preparados"):
+            errores.append("lanzamiento: «libro» necesita «preparados»")
     return errores
 
 

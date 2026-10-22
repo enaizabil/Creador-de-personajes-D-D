@@ -342,7 +342,7 @@ Los ids no cambian aunque cambien los nombres.
 - No se comprueba «empuñar solo armas de monje»; con armadura o escudo no aparece el ataque sin armas normal (1 + FUE).
 - El efecto `velocidad` no admite escala: Movimiento sin Armadura suma +10 fijos (el resumen sí escala).
 - Costes de ki, acciones adicionales y conjuros de disciplina con ki solo en texto; los conjuros de la Sombra y de las disciplinas salen como innatos con SAB.
-- El libro de conjuros del mago no se modela (preparados, rituales).
+- El libro de conjuros del mago se modela (6 + 2 por nivel, con la restricción de niveles; los preparados salen del libro). Siguen sin modelarse los rituales lanzados desde el libro ni copiar conjuros encontrados (50 po y 2 h por nivel).
 - No se lleva la cuenta de Custodia Arcana, Presagio ni Recuperación Arcana.
 - Ilusión Menor Mejorada: no se modela la alternativa si ya conoces ilusión menor.
 

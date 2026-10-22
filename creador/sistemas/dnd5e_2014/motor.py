@@ -497,6 +497,13 @@ def _configuracion_lanzador(entrada: EntradaClase, catalogo: Catalogo) -> tuple[
     return clase, subclase, config
 
 
+def configuracion_lanzamiento(personaje: Personaje, catalogo: Catalogo, clase_id: str) -> dict | None:
+    """El bloque «lanzamiento» que usa esa clase del personaje (de la clase o de su subclase)."""
+    entrada = next((e for e in personaje.clases if e.clase == clase_id), None)
+    configuracion = _configuracion_lanzador(entrada, catalogo) if entrada else None
+    return configuracion[2] if configuracion else None
+
+
 def _nivel_maximo_conjuro(config: dict, nivel: int) -> int:
     if config["progresion"] == "pacto":
         return MAGIA_DE_PACTO[nivel][1]
@@ -515,6 +522,32 @@ def _limites(config: dict, nivel: int, mod: int) -> tuple[int | None, int | None
     else:
         conjuros = None
     return trucos, conjuros
+
+
+def limite_libro(config: dict, nivel: int) -> int | None:
+    """Conjuros que caben en el libro al llegar a ese nivel (mago: 6 a nivel 1 y 2 más por nivel)."""
+    libro = config.get("libro")
+    return libro["inicial"] + libro["por_nivel"] * (nivel - 1) if libro else None
+
+
+def avisos_libro(config: dict, nivel: int, niveles: list[int], clase: str) -> list[str]:
+    """Comprueba que los conjuros del libro (sus niveles) se pudieron copiar al subir de nivel.
+
+    Cada conjuro ganado a un nivel de clase k es de un nivel para el que hay espacios a nivel k. Como las
+    capacidades están anidadas, basta con que, para cada nivel de conjuro L, los conjuros de nivel ≥ L
+    no superen los ganados en niveles de clase que ya llegaban a L.
+    """
+    libro = config["libro"]
+    ganados = [(libro["inicial"], _nivel_maximo_conjuro(config, 1))]
+    ganados += [(libro["por_nivel"], _nivel_maximo_conjuro(config, k)) for k in range(2, nivel + 1)]
+    avisos = []
+    for minimo in range(2, max(niveles, default=0) + 1):
+        tienes = sum(1 for n in niveles if n >= minimo)
+        caben = sum(cantidad for cantidad, maximo in ganados if maximo >= minimo)
+        if tienes > caben:
+            avisos.append(f"{clase}: el libro tiene {tienes} conjuros de nivel {minimo} o más; "
+                          f"a nivel {nivel} solo pueden ser {caben}")
+    return avisos
 
 
 def _listas_validas(clase: dict, subclase: dict | None, config: dict) -> tuple[set[str], set[str]]:
@@ -540,9 +573,10 @@ def planes_de_conjuros(personaje: Personaje, catalogo: Catalogo, mods: dict[str,
                 disponibles.setdefault(conjuro["nivel"], []).append((conjuro["id"], conjuro["nombre"]))
         for opciones in disponibles.values():
             opciones.sort(key=lambda o: clave_alfabetica(o[1]))
-        planes.append(PlanConjuros(clase["id"], clase["nombre"], config["caracteristica"], nivel_maximo,
-                                   "conocidos" if "conjuros_conocidos" in config else "preparados",
-                                   trucos, conjuros, dict(sorted(disponibles.items()))))
+        modo = "libro" if config.get("libro") else "conocidos" if "conjuros_conocidos" in config else "preparados"
+        planes.append(PlanConjuros(clase["id"], clase["nombre"], config["caracteristica"], nivel_maximo, modo,
+                                   trucos, conjuros, dict(sorted(disponibles.items())),
+                                   limite_libro(config, entrada.nivel)))
     return planes
 
 
@@ -593,6 +627,7 @@ def _conjuros_elegidos(lanzador: Lanzador, entrada: EntradaClase, clase: dict, s
     listas, adicionales = _listas_validas(clase, subclase, config)
     trucos = conjuros = 0
     vistos: set[str] = set()
+    niveles_libro: list[int] = []
     for id_ in personaje.conjuros.get(clase["id"], []):
         if id_ in vistos:
             avisos.append(f"{clase['nombre']}: el conjuro «{id_}» está repetido")
@@ -609,19 +644,37 @@ def _conjuros_elegidos(lanzador: Lanzador, entrada: EntradaClase, clase: dict, s
                 f"{conjuro['nombre']} es de nivel {conjuro['nivel']}; {clase['nombre']} {entrada.nivel} "
                 f"solo llega a nivel {lanzador.nivel_maximo}"
             )
-        lanzador.conjuros.setdefault(conjuro["nivel"], []).append(conjuro["nombre"])
+        destino = lanzador.libro if config.get("libro") and conjuro["nivel"] > 0 else lanzador.conjuros
+        destino.setdefault(conjuro["nivel"], []).append(conjuro["nombre"])
         if conjuro["nivel"] == 0:
             trucos += 1
         else:
             conjuros += 1
-    for nombres in lanzador.conjuros.values():
-        nombres.sort()
+            niveles_libro.append(conjuro["nivel"])
 
     limite_trucos, limite = _limites(config, entrada.nivel, mod)
+    if config.get("libro"):
+        maximo_libro = limite_libro(config, entrada.nivel)
+        if conjuros > maximo_libro:
+            avisos.append(f"{clase['nombre']}: {conjuros} conjuros en el libro, máximo {maximo_libro}")
+        avisos.extend(avisos_libro(config, entrada.nivel, niveles_libro, clase["nombre"]))
+        conjuros = 0
+        for id_ in dict.fromkeys(personaje.preparados.get(clase["id"], [])):
+            conjuro = catalogo.obtener("conjuros", id_)
+            if conjuro is None or id_ not in vistos or conjuro["nivel"] == 0:
+                avisos.append(f"{clase['nombre']}: «{conjuro['nombre'] if conjuro else id_}» está preparado "
+                              "pero no está en el libro")
+                continue
+            lanzador.conjuros.setdefault(conjuro["nivel"], []).append(conjuro["nombre"])
+            conjuros += 1
+    for nombres in (*lanzador.conjuros.values(), *lanzador.libro.values()):
+        nombres.sort()
+
     if limite_trucos is not None and trucos > limite_trucos:
         avisos.append(f"{clase['nombre']}: {trucos} trucos elegidos, máximo {limite_trucos}")
     if limite is not None and conjuros > limite:
-        avisos.append(f"{clase['nombre']}: {conjuros} conjuros elegidos, máximo {limite}")
+        palabra = "preparados" if config.get("libro") else "elegidos"
+        avisos.append(f"{clase['nombre']}: {conjuros} conjuros {palabra}, máximo {limite}")
 
 
 def _repartir_conjuros_de_efectos(efectos: list[dict], lanzadores: list[Lanzador], catalogo: Catalogo,
