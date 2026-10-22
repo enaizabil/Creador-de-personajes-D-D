@@ -112,6 +112,8 @@ class ResolutorEfectos:
             if not isinstance(efecto, dict) or "tipo" not in efecto:
                 self.resolucion.errores.append(f"{etiqueta}: efecto sin «tipo»: {efecto!r}")
                 continue
+            if not self.sistema.efecto_activo(efecto, self.personaje):
+                continue
             if efecto["tipo"] == "eleccion":
                 self._resolver_eleccion(efecto, origen, etiqueta, profundidad)
                 continue

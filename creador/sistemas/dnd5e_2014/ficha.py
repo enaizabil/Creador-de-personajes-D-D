@@ -35,10 +35,14 @@ class Rasgo:
     nombre: str
     descripcion: str
     origen: str
+    resumen: str = ""  # línea corta para la ficha, con los valores ya calculados
+    usos: int | None = None
+    recarga: str = ""  # corto | largo
 
 
 @dataclass
 class Lanzador:
+    clase_id: str
     clase: str
     caracteristica: str
     cd: int
@@ -46,6 +50,8 @@ class Lanzador:
     nivel_maximo: int
     # nivel de conjuro (0 = truco) -> nombres
     conjuros: dict[int, list[str]] = field(default_factory=dict)
+    # dominio, juramento, círculo…: no cuentan para el límite de preparados
+    siempre_preparados: dict[int, list[str]] = field(default_factory=dict)
 
 
 @dataclass
@@ -62,6 +68,7 @@ class Ficha:
     salvaciones: dict[str, Tirada]
     habilidades: dict[str, Tirada]
     percepcion_pasiva: int
+    pasivas: dict[str, int]  # percepcion, perspicacia, investigacion
     ca: int
     iniciativa: int
     velocidades: dict[str, int]  # en pies

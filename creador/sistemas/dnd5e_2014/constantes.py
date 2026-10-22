@@ -9,11 +9,11 @@ CARACTERISTICAS = {
     "car": "Carisma",
 }
 
-# id: (nombre, característica)
+# id: (nombre, característica). Nombres según el SRD 5.1 oficial en español.
 HABILIDADES = {
     "acrobacias": ("Acrobacias", "des"),
-    "arcanos": ("Arcanos", "int"),
     "atletismo": ("Atletismo", "fue"),
+    "conocimiento_arcano": ("Conocimiento Arcano", "int"),
     "engano": ("Engaño", "car"),
     "historia": ("Historia", "int"),
     "interpretacion": ("Interpretación", "car"),
@@ -44,6 +44,11 @@ GRUPO_ARMADURA = {"ligera": "armaduras_ligeras", "media": "armaduras_medias", "p
 GRUPO_ARMA = {"sencilla": "armas_sencillas", "marcial": "armas_marciales"}
 
 CATEGORIAS_COMPETENCIA = ("habilidad", "salvacion", "arma", "armadura", "herramienta", "idioma")
+
+# Habilidades con valor pasivo en la ficha (10 + bonificador).
+PASIVAS = ("percepcion", "perspicacia", "investigacion")
+
+RECARGAS = {"corto": "descanso corto o largo", "largo": "descanso largo"}
 
 TAMANOS = {
     "diminuto": "Diminuto",

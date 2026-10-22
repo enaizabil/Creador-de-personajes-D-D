@@ -6,7 +6,8 @@ from collections import defaultdict
 from collections.abc import Iterator
 from typing import TYPE_CHECKING
 
-from ...nucleo.efectos import Resolucion, ResolutorEfectos
+from ...nucleo.efectos import EfectoAplicado, Resolucion, ResolutorEfectos
+from ...nucleo.expresiones import ErrorExpresion, evaluar, rellenar
 from ...nucleo.texto import clave_alfabetica
 from .caracteristicas import bonificador_competencia, modificador, validar_base
 from .constantes import (
@@ -19,6 +20,7 @@ from .constantes import (
     MAGIA_DE_PACTO,
     NIVEL_INICIO_PROGRESION,
     NIVEL_MAXIMO,
+    PASIVAS,
     PROGRESIONES_LANZAMIENTO,
     PUNTUACION_MAXIMA,
     TAMANOS,
@@ -139,10 +141,18 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
         avisos.append(f"Pericia en «{id_}» sin tener competencia: no tiene efecto")
     if armadura and armadura["armadura"].get("desventaja_sigilo"):
         habilidades["sigilo"].notas = f"Desventaja ({armadura['nombre']})"
+    pasivas = {h: 10 + habilidades[h].valor for h in PASIVAS}
+    for efecto in de_tipo("pasiva"):
+        pasivas[efecto["habilidad"]] += efecto["valor"]
 
     _avisos_competencia_armadura(armadura, escudo, competencias["armadura"], avisos)
     pg_maximos, dados_golpe = _puntos_golpe(personaje, catalogo, mods["con"], de_tipo("pg_maximos"), avisos)
     espacios, pacto, lanzadores = _magia(personaje, catalogo, mods, competencia, avisos)
+    conjuros_innatos = _repartir_conjuros_de_efectos(de_tipo("conjuro"), lanzadores, catalogo, avisos)
+    niveles_clase = _niveles_por_clase(personaje, catalogo)
+    contexto = {"nivel": nivel, "competencia": competencia, **{f"mod_{c}": m for c, m in mods.items()}}
+    _avisos_requisitos(personaje, catalogo, aplicables, puntuaciones, competencias,
+                       bool(lanzadores or conjuros_innatos), avisos)
     raza = catalogo.obtener("razas", personaje.raza) if personaje.raza else None
     subraza = catalogo.obtener("subrazas", personaje.subraza) if personaje.subraza else None
     trasfondo = catalogo.obtener("trasfondos", personaje.trasfondo) if personaje.trasfondo else None
@@ -162,8 +172,10 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
         bonificador_competencia=competencia,
         salvaciones=salvaciones,
         habilidades=habilidades,
-        percepcion_pasiva=10 + habilidades["percepcion"].valor,
-        ca=_clase_armadura(mods, armadura, escudo, de_tipo("ca_alternativa"), de_tipo("bonificador_ca")),
+        percepcion_pasiva=pasivas["percepcion"],
+        pasivas=pasivas,
+        ca=_clase_armadura(mods, armadura, escudo, de_tipo("ca_alternativa"), de_tipo("bonificador_ca"),
+                           de_tipo("max_des_armadura_media")),
         iniciativa=mods["des"] + medio.get("des", 0) + sum(e["valor"] for e in de_tipo("iniciativa")),
         velocidades=_velocidades(raza, de_tipo("velocidad"), puntuaciones["fue"], armadura,
                                  bool(de_tipo("ignora_penalizacion_armadura"))),
@@ -171,23 +183,112 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
         dados_golpe=dados_golpe,
         tamano=TAMANOS.get((raza or {}).get("tamano", ""), ""),
         competencias=_nombres_competencias(competencias, catalogo),
-        ataques=_ataques(objetos, mods, competencia, competencias["arma"], de_tipo("bonificador_ataque")),
-        rasgos=[
-            Rasgo(a.efecto["nombre"], a.efecto.get("descripcion", ""), a.etiqueta)
-            for a in aplicables if a.tipo == "rasgo"
-        ],
+        ataques=_ataques(objetos, mods, competencia, competencias["arma"], de_tipo("bonificador_ataque"),
+                         de_tipo("ataque_des"))
+                + _ataques_desarmados(aplicables, catalogo, mods, competencia, niveles_clase, contexto, avisos),
+        rasgos=_rasgos(aplicables, catalogo, niveles_clase, contexto, avisos),
         sentidos=_sentidos(de_tipo("sentido")),
         resistencias=sorted({e["dano"] for e in de_tipo("resistencia")}),
         inmunidades=sorted({e["id"] for e in de_tipo("inmunidad")}),
         espacios_conjuro=espacios,
         magia_pacto=pacto,
         lanzadores=lanzadores,
-        conjuros_innatos=_conjuros_innatos(de_tipo("conjuro"), catalogo, avisos),
+        conjuros_innatos=conjuros_innatos,
         equipo=[_describir_objeto(item, entrada) for item, entrada in objetos],
         monedas=dict(personaje.monedas),
         detalles=dict(personaje.detalles),
         avisos=avisos,
     )
+
+
+def _niveles_por_clase(personaje: Personaje, catalogo: Catalogo) -> dict[str, int]:
+    return {e.clase: e.nivel for e in personaje.clases if catalogo.obtener("clases", e.clase)}
+
+
+def _clase_de_origen(efecto: dict, origen: str, catalogo: Catalogo) -> str | None:
+    """Clase a la que pertenece un efecto: la indicada en «clase» o la de su origen."""
+    if efecto.get("clase"):
+        return efecto["clase"]
+    tipo, _, resto = origen.split("/")[0].split(">")[0].partition(":")
+    id_ = resto.split(":")[0]
+    if tipo == "clase":
+        return id_
+    if tipo == "subclase":
+        subclase = catalogo.obtener("subclases", id_)
+        return subclase["clase"] if subclase else None
+    return None
+
+
+def _contexto_efecto(efecto: dict, origen: str, catalogo: Catalogo, niveles_clase: dict[str, int],
+                     contexto: dict) -> dict:
+    """Variables para las {expresiones}: nivel de la clase del efecto y el valor de su «escala»."""
+    clase = _clase_de_origen(efecto, origen, catalogo)
+    nivel_clase = niveles_clase.get(clase, contexto["nivel"]) if clase else contexto["nivel"]
+    escala = ""
+    for umbral, valor in sorted(((int(n), v) for n, v in efecto.get("escala", {}).items())):
+        if umbral <= nivel_clase:
+            escala = valor
+    return {**contexto, "nivel_clase": nivel_clase, "escala": escala}
+
+
+def _rasgos(aplicables: list[EfectoAplicado], catalogo: Catalogo, niveles_clase: dict[str, int],
+            contexto: dict, avisos: list[str]) -> list[Rasgo]:
+    rasgos = []
+    for aplicado in aplicables:
+        if aplicado.tipo != "rasgo":
+            continue
+        efecto = aplicado.efecto
+        variables = _contexto_efecto(efecto, aplicado.origen, catalogo, niveles_clase, contexto)
+        try:
+            resumen = rellenar(efecto.get("resumen", ""), variables)
+            usos = efecto.get("usos")
+            usos = max(0, int(evaluar(usos, variables))) if isinstance(usos, str) else usos
+        except (ErrorExpresion, TypeError, ValueError) as exc:
+            avisos.append(f"{efecto['nombre']}: {exc}")
+            resumen, usos = efecto.get("resumen", ""), None
+        rasgos.append(Rasgo(efecto["nombre"], efecto.get("descripcion", ""), aplicado.etiqueta,
+                            resumen, usos, efecto.get("recarga", "")))
+    return rasgos
+
+
+def _texto_requisito(requisito: dict) -> str:
+    partes = [" y ".join(f"{c.upper()} {v}" for c, v in requisito.get("caracteristicas", {}).items()),
+              " o ".join(f"{c.upper()} {v}" for c, v in requisito.get("alguna_caracteristica", {}).items())]
+    if requisito.get("competencia"):
+        partes.append(f"competencia con {GRUPOS_COMPETENCIA.get(requisito['competencia'], requisito['competencia'])}")
+    if requisito.get("lanzador"):
+        partes.append("poder lanzar al menos un conjuro")
+    return "; ".join(p for p in partes if p) or requisito.get("texto", "")
+
+
+def _cumple_requisito(requisito: dict, puntuaciones: dict[str, int], competencias: dict[str, set[str]],
+                      lanzador: bool) -> bool:
+    if any(puntuaciones[c] < v for c, v in requisito.get("caracteristicas", {}).items()):
+        return False
+    alguna = requisito.get("alguna_caracteristica", {})
+    if alguna and not any(puntuaciones[c] >= v for c, v in alguna.items()):
+        return False
+    if requisito.get("competencia") and not any(requisito["competencia"] in ids for ids in competencias.values()):
+        return False
+    return not (requisito.get("lanzador") and not lanzador)
+
+
+def _avisos_requisitos(personaje: Personaje, catalogo: Catalogo, aplicables: list[EfectoAplicado],
+                       puntuaciones: dict[str, int], competencias: dict[str, set[str]], lanzador: bool,
+                       avisos: list[str]) -> None:
+    """Prerrequisitos de dotes y de multiclase, comprobados con las puntuaciones finales (aproximación)."""
+    for aplicado in aplicables:
+        dote = catalogo.obtener("dotes", aplicado.efecto.get("dote", "")) if aplicado.tipo == "rasgo" else None
+        requisito = (dote or {}).get("prerrequisito")
+        if requisito and not _cumple_requisito(requisito, puntuaciones, competencias, lanzador):
+            avisos.append(f"Dote {dote['nombre']}: no cumple el prerrequisito ({_texto_requisito(requisito)})")
+    if len(personaje.clases) < 2:
+        return
+    for entrada in personaje.clases:
+        clase = catalogo.obtener("clases", entrada.clase)
+        requisito = (clase or {}).get("requisitos_multiclase")
+        if requisito and not _cumple_requisito(requisito, puntuaciones, competencias, lanzador):
+            avisos.append(f"Multiclase: {clase['nombre']} requiere {_texto_requisito(requisito)}")
 
 
 def _cumple_condicion(condicion, armadura: dict | None, escudo: dict | None) -> bool:
@@ -263,13 +364,14 @@ def _avisos_competencia_armadura(armadura: dict | None, escudo: dict | None, com
 
 
 def _clase_armadura(mods: dict[str, int], armadura: dict | None, escudo: dict | None,
-                    alternativas: list[dict], bonificadores: list[dict]) -> int:
+                    alternativas: list[dict], bonificadores: list[dict], max_des_media: list[dict]) -> int:
     if armadura:
         datos = armadura["armadura"]
         if datos["tipo"] == "ligera":
             ca = datos["ca"] + mods["des"]
         elif datos["tipo"] == "media":
-            ca = datos["ca"] + min(mods["des"], datos.get("max_des", 2))
+            maximo = max([datos.get("max_des", 2), *(e["valor"] for e in max_des_media)])
+            ca = datos["ca"] + min(mods["des"], maximo)
         else:
             ca = datos["ca"]
     else:
@@ -365,7 +467,8 @@ def _magia(personaje: Personaje, catalogo: Catalogo, mods: dict[str, int], compe
             nivel_maximo = len(ESPACIOS_LANZADOR_COMPLETO[nivel_unico])
             niveles_espacios.append((entrada.nivel, config))
         car = config["caracteristica"]
-        lanzador = Lanzador(clase["nombre"], car, 8 + competencia + mods[car], competencia + mods[car], nivel_maximo)
+        lanzador = Lanzador(clase["id"], clase["nombre"], car, 8 + competencia + mods[car], competencia + mods[car],
+                            nivel_maximo)
         _conjuros_elegidos(lanzador, entrada, clase, subclase, config, personaje, catalogo, mods[car], avisos)
         lanzadores.append(lanzador)
 
@@ -389,6 +492,7 @@ def _nivel_multiclase(nivel: int, config: dict) -> int:
 def _conjuros_elegidos(lanzador: Lanzador, entrada: EntradaClase, clase: dict, subclase: dict | None, config: dict,
                        personaje: Personaje, catalogo: Catalogo, mod: int, avisos: list[str]) -> None:
     listas = {clase["id"], *config.get("listas", [])} | ({subclase["id"]} if subclase else set())
+    adicionales = set((subclase or {}).get("conjuros_adicionales", []))
     trucos = conjuros = 0
     vistos: set[str] = set()
     for id_ in personaje.conjuros.get(clase["id"], []):
@@ -400,7 +504,7 @@ def _conjuros_elegidos(lanzador: Lanzador, entrada: EntradaClase, clase: dict, s
         if conjuro is None:
             avisos.append(f"Conjuro desconocido «{id_}»")
             continue
-        if not listas & set(conjuro["listas"]):
+        if not listas & set(conjuro["listas"]) and id_ not in adicionales:
             avisos.append(f"{conjuro['nombre']} no está en la lista de conjuros de {clase['nombre']}")
         if conjuro["nivel"] > lanzador.nivel_maximo:
             avisos.append(
@@ -430,20 +534,45 @@ def _conjuros_elegidos(lanzador: Lanzador, entrada: EntradaClase, clase: dict, s
         avisos.append(f"{clase['nombre']}: {conjuros} conjuros elegidos, máximo {limite}")
 
 
-def _conjuros_innatos(efectos: list[dict], catalogo: Catalogo, avisos: list[str]) -> list[str]:
-    nombres = []
+def _repartir_conjuros_de_efectos(efectos: list[dict], lanzadores: list[Lanzador], catalogo: Catalogo,
+                                  avisos: list[str]) -> list[str]:
+    """Los conjuros con «clase» van a ese lanzador como siempre preparados; el resto son innatos."""
+    por_clase = {lanzador.clase_id: lanzador for lanzador in lanzadores}
+    innatos = []
     for efecto in efectos:
         conjuro = catalogo.obtener("conjuros", efecto["id"])
         if conjuro is None:
             avisos.append(f"Conjuro desconocido «{efecto['id']}»")
             continue
+        lanzador = por_clase.get(efecto.get("clase", ""))
+        if lanzador is not None:
+            nombres = lanzador.siempre_preparados.setdefault(conjuro["nivel"], [])
+            if conjuro["nombre"] not in nombres:
+                nombres.append(conjuro["nombre"])
+            continue
         car = efecto.get("caracteristica")
-        nombres.append(f"{conjuro['nombre']} ({CARACTERISTICAS[car]})" if car in CARACTERISTICAS else conjuro["nombre"])
-    return nombres
+        innatos.append(f"{conjuro['nombre']} ({CARACTERISTICAS[car]})" if car in CARACTERISTICAS else conjuro["nombre"])
+    for lanzador in lanzadores:
+        for nombres in lanzador.siempre_preparados.values():
+            nombres.sort(key=clave_alfabetica)
+    return innatos
+
+
+def _admite_destreza(entrada: dict, efectos_des: list[dict]) -> bool:
+    """Si algún efecto (p. ej. Artes Marciales) permite usar DES con esta arma."""
+    arma = entrada["arma"]
+    for efecto in efectos_des:
+        if not {entrada["id"], GRUPO_ARMA[arma["categoria"]]} & set(efecto["armas"]):
+            continue
+        if set(arma.get("propiedades", [])) & set(efecto.get("excluir_propiedades", [])):
+            continue
+        if efecto.get("tipo_arma") in (None, arma["tipo"]):
+            return True
+    return False
 
 
 def _ataques(objetos: list[tuple[ObjetoInventario, dict | None]], mods: dict[str, int], competencia: int,
-             competentes: set[str], bonificadores: list[dict]) -> list[Ataque]:
+             competentes: set[str], bonificadores: list[dict], efectos_des: list[dict]) -> list[Ataque]:
     ataques, vistos = [], set()
     for _, entrada in objetos:
         if not entrada or entrada["categoria"] != "arma" or entrada["id"] in vistos:
@@ -453,7 +582,7 @@ def _ataques(objetos: list[tuple[ObjetoInventario, dict | None]], mods: dict[str
         propiedades = arma.get("propiedades", [])
         if arma["tipo"] == "distancia":
             car = "des"
-        elif "sutil" in propiedades:
+        elif "sutil" in propiedades or _admite_destreza(entrada, efectos_des):
             car = "des" if mods["des"] > mods["fue"] else "fue"
         else:
             car = "fue"
@@ -469,6 +598,26 @@ def _ataques(objetos: list[tuple[ObjetoInventario, dict | None]], mods: dict[str
             notas.append("Sin competencia")
         dano = _formula_dano(arma["dano"], mods[car])
         ataques.append(Ataque(entrada["nombre"], bono, dano, arma["tipo_dano"], "; ".join(notas)))
+    return ataques
+
+
+def _ataques_desarmados(aplicables: list[EfectoAplicado], catalogo: Catalogo, mods: dict[str, int], competencia: int,
+                        niveles_clase: dict[str, int], contexto: dict, avisos: list[str]) -> list[Ataque]:
+    """Ataque sin armas mejorado (Artes Marciales del monje y similares). Siempre hay competencia."""
+    ataques = []
+    for aplicado in aplicables:
+        if aplicado.tipo != "ataque_desarmado":
+            continue
+        efecto = aplicado.efecto
+        variables = _contexto_efecto(efecto, aplicado.origen, catalogo, niveles_clase, contexto)
+        try:
+            dado = rellenar(efecto["dano"], variables)
+        except ErrorExpresion as exc:
+            avisos.append(f"Ataque sin armas: {exc}")
+            continue
+        car = max(efecto.get("caracteristicas", ["fue"]), key=lambda c: mods[c])
+        ataques.append(Ataque(efecto.get("nombre", "Ataque sin armas"), mods[car] + competencia,
+                              _formula_dano(dado, mods[car]), efecto.get("tipo_dano", "contundente")))
     return ataques
 
 

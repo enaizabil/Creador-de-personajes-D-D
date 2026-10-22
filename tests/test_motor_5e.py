@@ -173,14 +173,14 @@ def test_limites_y_repeticiones_de_conjuros(sistema, catalogo):
 def test_medio_competencia(sistema, catalogo):
     bardo = nuevo_personaje(clases=[EntradaClase("bardo", 2)])
     ficha = sistema.calcular(bardo, catalogo)
-    assert ficha.habilidades["arcanos"].valor == 0  # INT -1 + 1
+    assert ficha.habilidades["conocimiento_arcano"].valor == 0  # INT -1 + 1
     assert ficha.iniciativa == 2  # DES 1 + 1
 
     campeon = nuevo_personaje(clases=[EntradaClase("guerrero", 7, subclase="campeon")], elecciones={
         "clase:guerrero:inicial/habilidades": ["historia", "intimidacion"]})
     ficha = sistema.calcular(campeon, catalogo)
     assert ficha.habilidades["atletismo"].valor == 4  # FUE 2 + mitad de 3 redondeando arriba
-    assert ficha.habilidades["arcanos"].valor == -1
+    assert ficha.habilidades["conocimiento_arcano"].valor == -1
     assert ficha.clase_y_nivel == "Guerrero 7 (Campeón)"
 
 

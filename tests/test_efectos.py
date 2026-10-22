@@ -23,11 +23,11 @@ def test_elecciones_pendientes_con_sus_opciones(sistema, catalogo):
 
 def test_seleccion_invalida_repetida_o_sobrante(sistema, catalogo):
     personaje = nuevo_personaje(clases=[EntradaClase("guerrero")], elecciones={
-        "clase:guerrero:inicial/habilidades": ["arcanos", "atletismo", "atletismo", "historia", "percepcion"],
+        "clase:guerrero:inicial/habilidades": ["conocimiento_arcano", "atletismo", "atletismo", "historia", "percepcion"],
     })
     resolucion = sistema.resolver(personaje, catalogo)
     texto = "\n".join(resolucion.errores)
-    assert "«arcanos» no es una opción válida" in texto
+    assert "«conocimiento_arcano» no es una opción válida" in texto
     assert "«atletismo» está repetido" in texto
     assert "sobran selecciones" in texto
     competencias = {a.efecto["id"] for a in resolucion.de_tipo("competencia") if a.efecto["categoria"] == "habilidad"}

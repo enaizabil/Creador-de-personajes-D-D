@@ -42,7 +42,7 @@ Convención: `paquetes/<sistema>/<id-paquete>/paquete.json`.
 
 Cada archivo es un objeto `{"categoria": [entradas]}`. Un archivo puede mezclar categorías.
 
-Categorías: `razas`, `subrazas`, `clases`, `subclases`, `trasfondos`, `dotes`, `conjuros`, `objetos`, `idiomas`.
+Categorías: `razas`, `subrazas`, `clases`, `subclases`, `trasfondos`, `dotes`, `opciones`, `conjuros`, `objetos`, `idiomas`.
 
 Toda entrada necesita `id` (texto, sin espacios, en minúsculas y sin tildes: `enano_colinas`) y `nombre`. Puede llevar `descripcion` y `fuente` (p. ej. `"PHB p. 20"`).
 
@@ -78,6 +78,9 @@ Ejemplo: un paquete que añade el conjuro *Luz* a la lista del paladín sin rede
 | `nivel_subclase` | Nivel en que se elige la subclase. |
 | `niveles` | `{"1": [efectos], "2": [...], ...}` hasta 20. |
 | `lanzamiento` | Ver abajo. |
+| `requisitos_multiclase` | Requisito (ver §4.1). Guerrero: `{"alguna_caracteristica": {"fue": 13, "des": 13}}`. |
+| `equipo_inicial` | Equipo con alternativas (ver §4.2). |
+| `oro_inicial` | Alternativa en oro, como texto: `"5d4x10"`. |
 
 **`lanzamiento`** (también en subclases, p. ej. Caballero Arcano):
 
@@ -100,13 +103,52 @@ Ejemplo: un paquete que añade el conjuro *Luz* a la lista del paladín sin rede
 - `desde_nivel` y `redondeo_multiclase` solo hacen falta si difieren del estándar.
 
 ### subclases
-`clase` (id) · `niveles` · `lanzamiento` opcional.
+`clase` (id) · `niveles` · `lanzamiento` opcional · `conjuros_adicionales`: ids de conjuros que pasan a estar en la lista de la clase (lista ampliada del patrón del brujo). Los conjuros de dominio, juramento o círculo se dan con efectos `conjuro` con `clase` y `siempre_preparado` en el nivel que toque.
 
 ### trasfondos
-`efectos` (competencias, idiomas…). Las tablas de personalidad irán en `personalidad` (se definirá con el modo sencillo).
+`efectos` (competencias, idiomas, el rasgo del trasfondo…) · `equipo` (mismo formato que `equipo_inicial`) · `monedas` (`{"po": 15}`) · `personalidad`:
+
+```json
+{"rasgos": ["…", "…"], "ideales": [{"texto": "Caridad. …", "alineamiento": "bueno"}],
+ "vinculos": ["…"], "defectos": ["…"]}
+```
 
 ### dotes
-`efectos` · `prerrequisito` (texto, de momento informativo).
+`efectos` · `prerrequisito` (requisito, §4.1) · `resumen`, `usos`, `recarga` (como en los rasgos). La dote aparece en la ficha como «Dote: Nombre».
+
+### opciones
+Opciones de clase reutilizables: estilos de combate, invocaciones, metamagia, maniobras, enemigos predilectos… `grupo` (obligatorio, p. ej. `estilo_combate`) · `clases` (lista de clases que pueden elegirla) · `efectos` · `prerrequisito` · `resumen`, `usos`, `recarga`, `escala`. Se conceden con una elección:
+
+```json
+{"tipo": "eleccion", "id": "estilo", "nombre": "Estilo de Combate",
+ "opciones": {"desde": "opciones", "filtro": {"grupo": "estilo_combate", "clases": "paladin"}},
+ "aplicar": [{"tipo": "opcion", "id": "$opcion"}]}
+```
+
+### 4.1 Requisitos (dotes y multiclase)
+
+| Clave | Significado |
+|---|---|
+| `caracteristicas` | Todas: `{"des": 13, "sab": 13}` |
+| `alguna_caracteristica` | Al menos una: `{"fue": 13, "des": 13}` |
+| `competencia` | Id de competencia: `"armaduras_medias"` |
+| `lanzador` | `true`: poder lanzar al menos un conjuro |
+| `texto` | Requisito que no se puede comprobar automáticamente |
+
+Se comprueban con las puntuaciones finales y generan avisos, no bloquean.
+
+### 4.2 Equipo con alternativas
+
+Lista de **bloques**; cada bloque es una lista de **alternativas** (si solo hay una, es fijo); cada alternativa es una lista de **líneas**. Una línea es `{"id": "objeto", "cantidad": 2}` o `{"desde": "armas", "filtro": {...}, "cantidad": 1}` («cualquier arma marcial»).
+
+```json
+"equipo_inicial": [
+  [[{"id": "cota_de_mallas"}], [{"id": "armadura_de_cuero"}, {"id": "arco_largo"}, {"id": "flecha", "cantidad": 20}]],
+  [[{"desde": "armas", "filtro": {"arma": {"categoria": "marcial"}}}, {"id": "escudo"}]]
+]
+```
+
+(`desde`: `objetos`, `armas` o `herramientas`.)
 
 ### conjuros
 `nivel` (0 = truco, hasta 9) · `escuela` (`abjuracion`, `adivinacion`, `conjuracion`, `encantamiento`, `evocacion`, `ilusion`, `nigromancia`, `transmutacion`) · `listas` (ids de clase o subclase). Opcionales: `tiempo`, `alcance`, `componentes`, `duracion`, `ritual`, `concentracion`, `descripcion`.
@@ -151,11 +193,35 @@ Una lista de objetos con `tipo`. Cualquier efecto admite `condicion` (`sin_armad
 | `bonificador_ca` | `valor` | Estilo Defensa (`"condicion": "con_armadura"`). |
 | `bonificador_ataque` | `valor`, `tipo_arma` (opcional) | Estilo Tiro con arco. |
 | `iniciativa` | `valor` | Dote Alerta. |
-| `rasgo` | `nombre`, `descripcion` | Rasgo descriptivo que aparece en la ficha. |
-| `conjuro` | `id`, `caracteristica` | Conjuro racial o innato. |
+| `pasiva` | `habilidad` (`percepcion`, `perspicacia`, `investigacion`), `valor` | Dote Observador (+5). |
+| `max_des_armadura_media` | `valor` | Maestro en armaduras medias (3). |
+| `ataque_des` | `armas` (ids o grupos), `excluir_propiedades`, `tipo_arma` | Armas de monje: pueden usar DES. |
+| `ataque_desarmado` | `dano` (admite `{escala}`), `escala`, `caracteristicas`, `nombre` | Artes Marciales. |
+| `rasgo` | `nombre`, `descripcion`, `resumen`, `usos`, `recarga`, `escala`, `clase` | Rasgo que aparece en la ficha (ver §5.1). |
+| `conjuro` | `id`, `caracteristica`; o `clase` + `siempre_preparado` | Conjuro racial o innato; o de dominio/juramento (siempre preparado). |
 | `dote` | `id` | Concede una dote (aplica sus efectos). |
+| `opcion` | `id` | Concede una opción de clase. |
 | `mejora_caracteristica` | — | Mejora de característica: +2/+1+1 o una dote (si las dotes están activadas). |
 | `eleccion` | ver abajo | Cualquier decisión del jugador. |
+
+Cualquier efecto (también una elección) admite `nivel_minimo`: solo se aplica desde ese **nivel de personaje**. Para rasgos de clase no hace falta: ya van en `niveles`. Ejemplo, la magia del tiflin:
+
+```json
+{"tipo": "conjuro", "id": "reprension_infernal", "caracteristica": "car", "nivel_minimo": 3}
+```
+
+### 5.1 Rasgos con valores calculados
+
+`resumen` es la línea corta de la ficha y puede llevar `{expresiones}`; `usos` es un número o una expresión; `recarga` es `corto` o `largo`; `escala` es una tabla `{"nivel": valor}` (se toma el último umbral alcanzado) que se usa como `{escala}`.
+
+```json
+{"tipo": "rasgo", "nombre": "Ataque Furtivo", "resumen": "+{escala} de daño una vez por turno",
+ "escala": {"1": "1d6", "3": "2d6", "5": "3d6"}}
+{"tipo": "rasgo", "nombre": "Imponer las Manos", "resumen": "Reserva de {nivel_clase*5} PG", "recarga": "largo"}
+{"tipo": "rasgo", "nombre": "Sentido Divino", "usos": "1+mod_car", "recarga": "largo"}
+```
+
+Variables: `nivel` (de personaje), `nivel_clase` (de la clase del rasgo; en rasgos raciales, el de personaje), `competencia`, `mod_fue`…`mod_car` y `escala`. Operaciones: `+ - * //`, `max`, `min` y `abs`. `clase` fuerza la clase de referencia.
 
 ## 6. Elecciones
 
@@ -175,7 +241,9 @@ Una lista de objetos con `tipo`. Cualquier efecto admite `condicion` (`sin_armad
 | `fuente` | Con una lista de ids, de dónde salen los nombres y se valida que existan. |
 | `aplicar` | Efectos para cada opción elegida; `$opcion` se sustituye por el id elegido. |
 
-**Fuentes** (`desde`): `caracteristicas`, `habilidades`, `herramientas`, `armas`, o cualquier categoría (`idiomas`, `dotes`, `conjuros`…). El `filtro` compara campos; si el campo es una lista, basta con que contenga el valor: `{"desde": "conjuros", "filtro": {"listas": "mago", "nivel": 0}}`.
+**Fuentes** (`desde`): `caracteristicas`, `habilidades`, `herramientas`, `armas`, o cualquier categoría (`idiomas`, `dotes`, `opciones`, `conjuros`…).
+
+**Ids de habilidad:** `acrobacias`, `atletismo`, `conocimiento_arcano`, `engano`, `historia`, `interpretacion`, `intimidacion`, `investigacion`, `juego_de_manos`, `medicina`, `naturaleza`, `percepcion`, `perspicacia`, `persuasion`, `religion`, `sigilo`, `supervivencia`, `trato_con_animales`. Características: `fue`, `des`, `con`, `int`, `sab`, `car`. El `filtro` compara campos; si el campo es una lista, basta con que contenga el valor: `{"desde": "conjuros", "filtro": {"listas": "mago", "nivel": 0}}`.
 
 **Opciones con efectos propios** (cuando cada opción hace algo distinto):
 

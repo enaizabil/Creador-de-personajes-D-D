@@ -9,6 +9,7 @@ from collections.abc import Iterator
 from typing import TYPE_CHECKING
 
 from ...nucleo.efectos import MARCADOR_OPCION
+from ...nucleo.expresiones import comprobar
 from .constantes import (
     CARACTERISTICAS,
     CATEGORIAS_COMPETENCIA,
@@ -18,13 +19,25 @@ from .constantes import (
     GRUPOS_COMPETENCIA,
     HABILIDADES,
     NIVEL_INICIO_PROGRESION,
+    PASIVAS,
+    RECARGAS,
     TAMANOS,
 )
 
 if TYPE_CHECKING:
     from ...nucleo.paquetes import Catalogo
 
-CATEGORIAS = ("razas", "subrazas", "clases", "subclases", "trasfondos", "dotes", "conjuros", "objetos", "idiomas")
+CATEGORIAS = (
+    "razas", "subrazas", "clases", "subclases", "trasfondos", "dotes", "opciones", "conjuros", "objetos", "idiomas",
+)
+
+# Variables disponibles en los textos con {expresiones} y en «usos».
+VARIABLES_EXPRESION = {
+    "nivel", "nivel_clase", "competencia", "escala",
+    *(f"mod_{c}" for c in CARACTERISTICAS),
+}
+FUENTES_EQUIPO = ("objetos", "armas", "herramientas")
+CLAVES_REQUISITO = ("caracteristicas", "alguna_caracteristica", "competencia", "lanzador", "texto")
 
 # Fuentes válidas para elecciones con ``"opciones": {"desde": ...}``.
 FUENTES_OPCIONES = ("caracteristicas", "habilidades", "herramientas", "armas", *CATEGORIAS)
@@ -45,9 +58,14 @@ CAMPOS_EFECTO: dict[str, tuple[str, ...]] = {
     "bonificador_ataque": ("valor",),
     "iniciativa": ("valor",),
     "ignora_penalizacion_armadura": (),
+    "pasiva": ("habilidad", "valor"),
+    "max_des_armadura_media": ("valor",),
+    "ataque_des": ("armas",),
+    "ataque_desarmado": ("dano",),
     "rasgo": ("nombre",),
     "conjuro": ("id",),
     "dote": ("id",),
+    "opcion": ("id",),
     "mejora_caracteristica": (),
     "eleccion": ("id", "opciones"),
 }
@@ -59,6 +77,7 @@ CAMPOS_ENTRADA: dict[str, dict[str, type]] = {
     "subclases": {"nombre": str, "clase": str},
     "trasfondos": {"nombre": str},
     "dotes": {"nombre": str},
+    "opciones": {"nombre": str, "grupo": str},
     "conjuros": {"nombre": str, "nivel": int, "escuela": str, "listas": list},
     "objetos": {"nombre": str, "categoria": str},
     "idiomas": {"nombre": str},
@@ -121,6 +140,9 @@ def _validar_efecto(tipo: str, efecto: dict) -> list[str]:
     condicion = efecto.get("condicion")
     condiciones = [condicion] if isinstance(condicion, str) else (condicion or [])
     errores.extend(f"condición desconocida «{c}»" for c in condiciones if c not in CONDICIONES)
+    nivel_minimo = efecto.get("nivel_minimo")
+    if nivel_minimo is not None and (not isinstance(nivel_minimo, int) or not 1 <= nivel_minimo <= 20):
+        errores.append("«nivel_minimo» debe ser un entero entre 1 y 20")
 
     if tipo == "caracteristica":
         car = efecto.get("car")
@@ -141,6 +163,42 @@ def _validar_efecto(tipo: str, efecto: dict) -> list[str]:
     elif tipo == "ca_alternativa":
         if any(c not in CARACTERISTICAS for c in efecto.get("suma", [])):
             errores.append("«suma» contiene características desconocidas")
+    elif tipo == "pasiva":
+        if efecto.get("habilidad") not in PASIVAS:
+            errores.append(f"«habilidad» debe ser una de {', '.join(PASIVAS)}")
+    elif tipo == "rasgo":
+        errores.extend(_validar_rasgo(efecto))
+    elif tipo == "ataque_desarmado":
+        errores.extend(_validar_escala(efecto))
+        if isinstance(efecto.get("dano"), str):
+            errores.extend(comprobar(efecto["dano"], VARIABLES_EXPRESION))
+    elif tipo == "conjuro":
+        if efecto.get("siempre_preparado") and not efecto.get("clase"):
+            errores.append("un conjuro «siempre_preparado» necesita «clase»")
+    return errores
+
+
+def _validar_escala(efecto: dict) -> list[str]:
+    escala = efecto.get("escala")
+    if escala is None:
+        return []
+    if not isinstance(escala, dict) or not all(str(n).isdigit() and 1 <= int(n) <= 20 for n in escala):
+        return ["«escala» debe ser un objeto {\"nivel\": valor} con niveles de 1 a 20"]
+    return []
+
+
+def _validar_rasgo(efecto: dict) -> list[str]:
+    errores = _validar_escala(efecto)
+    if isinstance(efecto.get("resumen"), str):
+        errores.extend(comprobar(efecto["resumen"], VARIABLES_EXPRESION))
+    if "usos" in efecto:
+        usos = efecto["usos"]
+        if isinstance(usos, str):
+            errores.extend(comprobar(usos, VARIABLES_EXPRESION, es_expresion=True))
+        elif not isinstance(usos, int):
+            errores.append("«usos» debe ser un número o una expresión")
+    if efecto.get("recarga") not in (None, *RECARGAS):
+        errores.append(f"«recarga» debe ser una de {', '.join(RECARGAS)}")
     return errores
 
 
@@ -190,8 +248,18 @@ def validar_entrada(categoria: str, entrada: dict) -> list[str]:
         errores.append(f"tamaño desconocido «{entrada['tamano']}»")
     elif categoria == "clases":
         errores.extend(_validar_clase(entrada))
-    elif categoria == "subclases" and "lanzamiento" in entrada:
-        errores.extend(_validar_lanzamiento(entrada["lanzamiento"]))
+    elif categoria == "subclases":
+        if "lanzamiento" in entrada:
+            errores.extend(_validar_lanzamiento(entrada["lanzamiento"]))
+        if not isinstance(entrada.get("conjuros_adicionales", []), list):
+            errores.append("«conjuros_adicionales» debe ser una lista de ids")
+    elif categoria == "dotes" and "prerrequisito" in entrada:
+        errores.extend(_validar_requisito(entrada["prerrequisito"], "prerrequisito"))
+    elif categoria == "trasfondos":
+        if "equipo" in entrada:
+            errores.extend(_validar_equipo(entrada["equipo"], "equipo"))
+        if "personalidad" in entrada:
+            errores.extend(_validar_personalidad(entrada["personalidad"]))
     elif categoria == "conjuros":
         if not 0 <= entrada["nivel"] <= 9:
             errores.append("«nivel» debe estar entre 0 (truco) y 9")
@@ -218,6 +286,60 @@ def _validar_clase(clase: dict) -> list[str]:
         errores.append("«nivel_subclase» debe estar entre 1 y 20")
     if "lanzamiento" in clase:
         errores.extend(_validar_lanzamiento(clase["lanzamiento"]))
+    if "requisitos_multiclase" in clase:
+        errores.extend(_validar_requisito(clase["requisitos_multiclase"], "requisitos_multiclase"))
+    if "equipo_inicial" in clase:
+        errores.extend(_validar_equipo(clase["equipo_inicial"], "equipo_inicial"))
+    return errores
+
+
+def _validar_requisito(requisito, campo: str) -> list[str]:
+    if not isinstance(requisito, dict):
+        return [f"«{campo}» debe ser un objeto"]
+    errores = [f"{campo}: clave desconocida «{k}»" for k in requisito if k not in CLAVES_REQUISITO]
+    for clave in ("caracteristicas", "alguna_caracteristica"):
+        valores = requisito.get(clave, {})
+        if not isinstance(valores, dict) or any(c not in CARACTERISTICAS or not isinstance(v, int)
+                                                for c, v in valores.items()):
+            errores.append(f"{campo}.{clave}: debe ser {{característica: mínimo}}")
+    return errores
+
+
+def _validar_equipo(bloques, campo: str) -> list[str]:
+    """Equipo: lista de bloques; cada bloque, lista de alternativas; cada alternativa, lista de líneas."""
+    if not isinstance(bloques, list):
+        return [f"«{campo}» debe ser una lista de bloques"]
+    errores: list[str] = []
+    for i, bloque in enumerate(bloques):
+        if not isinstance(bloque, list) or not bloque:
+            errores.append(f"{campo}[{i}]: cada bloque es una lista no vacía de alternativas")
+            continue
+        for j, alternativa in enumerate(bloque):
+            if not isinstance(alternativa, list):
+                errores.append(f"{campo}[{i}][{j}]: cada alternativa es una lista de líneas")
+                continue
+            for k, linea in enumerate(alternativa):
+                ruta = f"{campo}[{i}][{j}][{k}]"
+                if not isinstance(linea, dict) or ("id" in linea) == ("desde" in linea):
+                    errores.append(f"{ruta}: cada línea lleva «id» o «desde» (no ambos)")
+                elif "desde" in linea and linea["desde"] not in FUENTES_EQUIPO:
+                    errores.append(f"{ruta}: «desde» debe ser una de {', '.join(FUENTES_EQUIPO)}")
+                elif not isinstance(linea.get("cantidad", 1), int):
+                    errores.append(f"{ruta}: «cantidad» debe ser un entero")
+    return errores
+
+
+def _validar_personalidad(personalidad) -> list[str]:
+    if not isinstance(personalidad, dict):
+        return ["«personalidad» debe ser un objeto"]
+    errores = []
+    for clave in ("rasgos", "vinculos", "defectos"):
+        valores = personalidad.get(clave)
+        if not isinstance(valores, list) or not valores or not all(isinstance(v, str) for v in valores):
+            errores.append(f"personalidad.{clave}: debe ser una lista de textos")
+    ideales = personalidad.get("ideales")
+    if not isinstance(ideales, list) or not ideales or not all(isinstance(i, dict) and "texto" in i for i in ideales):
+        errores.append("personalidad.ideales: debe ser una lista de {\"texto\", \"alineamiento\"}")
     return errores
 
 
@@ -272,7 +394,17 @@ def validar_catalogo(catalogo: Catalogo) -> list[str]:
         if catalogo.obtener("clases", subclase.get("clase", "")) is None:
             errores.append(f"subclases/{subclase['id']}: la clase «{subclase.get('clase')}» no existe")
 
-    referencias = {"dote": "dotes", "conjuro": "conjuros"}
+    for subclase in catalogo.listar("subclases"):
+        for id_ in subclase.get("conjuros_adicionales", []):
+            if catalogo.obtener("conjuros", id_) is None:
+                errores.append(f"subclases/{subclase['id']}: el conjuro adicional «{id_}» no existe")
+    for categoria, campo in (("clases", "equipo_inicial"), ("trasfondos", "equipo")):
+        for entrada in catalogo.listar(categoria):
+            for id_ in _ids_de_equipo(entrada.get(campo, [])):
+                if catalogo.obtener("objetos", id_) is None:
+                    errores.append(f"{categoria}/{entrada['id']}: el objeto «{id_}» de «{campo}» no existe")
+
+    referencias = {"dote": "dotes", "conjuro": "conjuros", "opcion": "opciones"}
     for categoria in CATEGORIAS:
         for entrada in catalogo.listar(categoria):
             for _, efectos in listas_de_efectos(entrada):
@@ -288,3 +420,11 @@ def validar_catalogo(catalogo: Catalogo) -> list[str]:
                     if destino and catalogo.obtener(destino, id_) is None:
                         errores.append(f"{categoria}/{entrada['id']}: «{id_}» no existe en {destino}")
     return errores
+
+
+def _ids_de_equipo(bloques) -> Iterator[str]:
+    for bloque in bloques if isinstance(bloques, list) else []:
+        for alternativa in bloque if isinstance(bloque, list) else []:
+            for linea in alternativa if isinstance(alternativa, list) else []:
+                if isinstance(linea, dict) and isinstance(linea.get("id"), str):
+                    yield linea["id"]

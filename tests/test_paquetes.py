@@ -118,3 +118,55 @@ def test_fusionar():
     assert fusionar(base, {"a": 2, "lista": [2, 3], "sub": {"y": [2]}}) == {
         "a": 2, "lista": [1, 2, 3], "sub": {"x": 1, "y": [1, 2]}}
     assert base["lista"] == [1, 2]
+
+
+def test_validacion_de_campos_nuevos(tmp_path):
+    clase = {"id": "c", "nombre": "C", "dado_golpe": 8, "salvaciones": ["fue"],
+             "requisitos_multiclase": {"caracteristicas": {"fue": "trece"}, "nivel": 3},
+             "equipo_inicial": [[[{"id": "nada"}]], [[{"desde": "pociones"}]], "mal"],
+             "niveles": {"1": [
+                 {"tipo": "rasgo", "nombre": "R1", "resumen": "{nivel_clase**2}"},
+                 {"tipo": "rasgo", "nombre": "R2", "resumen": "{nivel_cls}", "usos": "1+", "recarga": "semanal"},
+                 {"tipo": "rasgo", "nombre": "R3", "escala": {"25": "1d4"}, "nivel_minimo": 0},
+                 {"tipo": "pasiva", "habilidad": "sigilo", "valor": 5},
+                 {"tipo": "conjuro", "id": "x", "siempre_preparado": True},
+                 {"tipo": "opcion", "id": "no_existe"},
+             ]}}
+    crear_paquete(tmp_path, "nuevo", {
+        "clases": [clase],
+        "subclases": [{"id": "s", "nombre": "S", "clase": "c", "conjuros_adicionales": ["fantasma"]}],
+        "trasfondos": [{"id": "t", "nombre": "T", "personalidad": {"rasgos": [], "ideales": ["sin objeto"]}}],
+        "dotes": [{"id": "d", "nombre": "D", "prerrequisito": {"fuerza": 13}}],
+        "conjuros": [{"id": "x", "nombre": "X", "nivel": 1, "escuela": "evocacion", "listas": ["c"]}],
+    })
+    _, errores = cargar(tmp_path, "nuevo")
+    texto = "\n".join(errores)
+    esperados = [
+        "requisitos_multiclase: clave desconocida «nivel»",
+        "requisitos_multiclase.caracteristicas: debe ser {característica: mínimo}",
+        "equipo_inicial[1][0][0]: «desde» debe ser una de",
+        "equipo_inicial[2]: cada bloque es una lista no vacía",
+        "operación no permitida en «nivel_clase**2»",
+        "variable desconocida «nivel_cls»",
+        "expresión mal formada «1+»",
+        "«recarga» debe ser una de",
+        "«escala» debe ser un objeto",
+        "«nivel_minimo» debe ser un entero entre 1 y 20",
+        "«habilidad» debe ser una de",
+        "un conjuro «siempre_preparado» necesita «clase»",
+        "«no_existe» no existe en opciones",
+        "el conjuro adicional «fantasma» no existe",
+        "el objeto «nada» de «equipo_inicial» no existe",
+        "personalidad.rasgos: debe ser una lista de textos",
+        "personalidad.ideales: debe ser una lista",
+        "prerrequisito: clave desconocida «fuerza»",
+    ]
+    faltan = [e for e in esperados if e not in texto]
+    assert faltan == [], texto
+
+
+def test_filtro_anidado(entorno):
+    _, catalogo = entorno
+    marciales = {e["id"] for e in catalogo.listar("objetos", {"arma": {"categoria": "marcial"}})}
+    assert {"espada_larga", "arco_largo", "espada_corta"} <= marciales
+    assert "daga" not in marciales and "escudo" not in marciales

@@ -43,6 +43,10 @@ class SistemaReglas(ABC):
     def opciones_desde(self, fuente: str, filtro: dict | None, catalogo: Catalogo) -> list[Opcion]:
         """Opciones de una elección declarada como ``{"desde": fuente, "filtro": ...}``."""
 
+    def efecto_activo(self, efecto: dict, personaje: Personaje) -> bool:
+        """Si el efecto (o la elección) se aplica ya; p. ej. rasgos que llegan a cierto nivel."""
+        return True
+
     def expandir_efecto(self, efecto: dict, catalogo: Catalogo, personaje: Personaje) -> list[dict] | None:
         """Sustituye un efecto por otros (p. ej. una dote por sus efectos) o None si es terminal."""
         return None

@@ -16,6 +16,8 @@ if TYPE_CHECKING:
 
 # Fuentes de opciones que son subconjuntos de «objetos».
 _FUENTES_OBJETO = {"herramientas": "herramienta", "armas": "arma"}
+# Campos de una dote u opción de clase que pasan a su rasgo en la ficha.
+_CAMPOS_RASGO = ("descripcion", "resumen", "usos", "recarga", "escala", "clase")
 
 
 class Sistema5e2014(SistemaReglas):
@@ -43,13 +45,19 @@ class Sistema5e2014(SistemaReglas):
         opciones = [Opcion(e["id"], e["nombre"]) for e in catalogo.listar(fuente, filtro)]
         return sorted(opciones, key=lambda o: clave_alfabetica(o.nombre))
 
+    def efecto_activo(self, efecto: dict, personaje: Personaje) -> bool:
+        return efecto.get("nivel_minimo", 1) <= max(1, personaje.nivel_total)
+
     def expandir_efecto(self, efecto: dict, catalogo: Catalogo, personaje: Personaje) -> list[dict] | None:
-        if efecto["tipo"] == "dote":
-            dote = catalogo.obtener("dotes", efecto["id"])
-            if dote is None:
-                raise ErrorReferencia(f"la dote «{efecto['id']}» no existe en los paquetes activos")
-            rasgo = {"tipo": "rasgo", "nombre": f"Dote: {dote['nombre']}", "descripcion": dote.get("descripcion", "")}
-            return [rasgo, *dote.get("efectos", [])]
+        if efecto["tipo"] in ("dote", "opcion"):
+            categoria = "dotes" if efecto["tipo"] == "dote" else "opciones"
+            entrada = catalogo.obtener(categoria, efecto["id"])
+            if entrada is None:
+                raise ErrorReferencia(f"«{efecto['id']}» no existe en {categoria} de los paquetes activos")
+            rasgo = {"tipo": "rasgo", "nombre": entrada["nombre"], **{c: entrada[c] for c in _CAMPOS_RASGO if c in entrada}}
+            if efecto["tipo"] == "dote":
+                rasgo.update(nombre=f"Dote: {entrada['nombre']}", dote=entrada["id"])
+            return [rasgo, *entrada.get("efectos", [])]
         if efecto["tipo"] == "mejora_caracteristica":
             return [self._eleccion_mejora(personaje)]
         return None

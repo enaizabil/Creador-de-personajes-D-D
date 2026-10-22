@@ -82,9 +82,16 @@ def descubrir_paquetes(directorios: Iterable[Path]) -> tuple[dict[str, InfoPaque
 
 
 def coincide(entrada: dict, filtro: dict | None) -> bool:
-    """Filtro por igualdad; si el campo de la entrada es una lista, basta con que contenga el valor."""
+    """Filtro por igualdad; si el campo de la entrada es una lista, basta con que contenga el valor.
+
+    Un filtro anidado (``{"arma": {"categoria": "marcial"}}``) se aplica al objeto interior.
+    """
     for campo, esperado in (filtro or {}).items():
         actual = entrada.get(campo)
+        if isinstance(esperado, dict):
+            if not isinstance(actual, dict) or not coincide(actual, esperado):
+                return False
+            continue
         esperados = esperado if isinstance(esperado, list) else [esperado]
         actuales = actual if isinstance(actual, list) else [actual]
         if not any(valor in actuales for valor in esperados):
