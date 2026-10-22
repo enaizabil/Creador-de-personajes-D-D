@@ -1,1 +1,1504 @@
-{}
+{
+  "clases": [
+    {
+      "id": "hechicero",
+      "nombre": "Hechicero",
+      "fuente": "SRD 5.1 p. 36",
+      "descripcion": "Lanzador de conjuros innato: su magia no sale del estudio, sino de un don de sangre o de una influencia sobrenatural, y la moldea a voluntad con sus puntos de hechicería y la Metamagia.",
+      "perfil": {
+        "arcano": 3,
+        "carisma": 2,
+        "aguante": 1
+      },
+      "dado_golpe": 6,
+      "salvaciones": [
+        "con",
+        "car"
+      ],
+      "nivel_subclase": 1,
+      "competencias": [
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "ballesta_ligera"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "baston"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "daga"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "dardo"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "honda"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "habilidades",
+          "nombre": "Habilidades de hechicero",
+          "elegir": 2,
+          "fuente": "habilidades",
+          "opciones": [
+            "conocimiento_arcano",
+            "engano",
+            "intimidacion",
+            "perspicacia",
+            "persuasion",
+            "religion"
+          ],
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "habilidad",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "competencias_multiclase": [],
+      "requisitos_multiclase": {
+        "caracteristicas": {
+          "car": 13
+        }
+      },
+      "equipo_inicial": [
+        [
+          [
+            {
+              "id": "ballesta_ligera"
+            },
+            {
+              "id": "virote",
+              "cantidad": 20
+            }
+          ],
+          [
+            {
+              "desde": "armas",
+              "filtro": {
+                "arma": {
+                  "categoria": "sencilla"
+                }
+              }
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "saquito_de_componentes"
+            }
+          ],
+          [
+            {
+              "desde": "objetos",
+              "filtro": {
+                "categoria": "foco",
+                "subcategoria": "arcano"
+              }
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "paquete_de_explorador_de_mazmorras"
+            }
+          ],
+          [
+            {
+              "id": "paquete_de_explorador"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "daga",
+              "cantidad": 2
+            }
+          ]
+        ]
+      ],
+      "lanzamiento": {
+        "caracteristica": "car",
+        "progresion": "completo",
+        "trucos_conocidos": [
+          4,
+          4,
+          4,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "conjuros_conocidos": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          12,
+          13,
+          13,
+          14,
+          14,
+          15,
+          15,
+          15,
+          15
+        ]
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Lanzamiento de Conjuros",
+            "resumen": "CAR; CD {8+competencia+mod_car}, ataque de conjuro +{competencia+mod_car}; {escala}; espacios: se recuperan tras un descanso largo; al subir de nivel puedes cambiar un conjuro conocido; canalizador: canalizador arcano",
+            "descripcion": "Conoces trucos y conjuros de la lista del hechicero según las columnas «Trucos conocidos» y «Conjuros conocidos» de la tabla «El hechicero», siempre de niveles para los que tengas espacios, y recuperas los espacios gastados tras un descanso largo. Cada vez que subes de nivel en esta clase puedes cambiar un conjuro de hechicero que conozcas por otro de la lista. El Carisma es tu aptitud mágica y puedes usar un canalizador arcano como canalizador mágico.",
+            "escala": {
+              "1": "4 trucos y 2 conjuros conocidos",
+              "2": "4 trucos y 3 conjuros conocidos",
+              "3": "4 trucos y 4 conjuros conocidos",
+              "4": "5 trucos y 5 conjuros conocidos",
+              "5": "5 trucos y 6 conjuros conocidos",
+              "6": "5 trucos y 7 conjuros conocidos",
+              "7": "5 trucos y 8 conjuros conocidos",
+              "8": "5 trucos y 9 conjuros conocidos",
+              "9": "5 trucos y 10 conjuros conocidos",
+              "10": "6 trucos y 11 conjuros conocidos",
+              "11": "6 trucos y 12 conjuros conocidos",
+              "13": "6 trucos y 13 conjuros conocidos",
+              "15": "6 trucos y 14 conjuros conocidos",
+              "17": "6 trucos y 15 conjuros conocidos"
+            }
+          }
+        ],
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Fuente de Magia",
+            "resumen": "{nivel_clase} puntos de hechicería; los recuperas todos tras un descanso largo",
+            "descripcion": "Tienes una reserva de puntos de hechicería igual a tu nivel de hechicero (columna «Puntos de hechicería» de la tabla), que gastas en Lanzamiento Flexible y, desde el nivel 3, en Metamagia. Nunca puedes tener más puntos de los que indica la tabla para tu nivel y recuperas los gastados tras un descanso largo.",
+            "usos": "nivel_clase",
+            "recarga": "largo"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Lanzamiento Flexible",
+            "resumen": "acción adicional: creas un espacio de conjuro gastando puntos de hechicería (nivel 1: 2 puntos, 2: 3, 3: 5, 4: 6, 5: 7; nivel máximo 5; desaparece tras un descanso largo) o gastas un espacio para ganar tantos puntos como su nivel",
+            "descripcion": "Como acción adicional en tu turno puedes transformar puntos de hechicería en un espacio de conjuro (2, 3, 5, 6 o 7 puntos para los niveles 1 a 5; no puedes crear espacios de nivel superior a 5); los espacios así creados se desvanecen al terminar un descanso largo. También como acción adicional puedes gastar un espacio de conjuro para obtener tantos puntos de hechicería como su nivel."
+          }
+        ],
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Metamagia",
+            "resumen": "conoces {escala} opciones de Metamagia; solo puedes aplicar una a cada conjuro, salvo Conjuro Potenciado",
+            "descripcion": "Puedes alterar tus conjuros al lanzarlos gastando puntos de hechicería. Eliges dos opciones de Metamagia a nivel 3 y una más a los niveles 10 y 17. Solo puedes usar una opción de Metamagia en cada conjuro que lanzas, a menos que la opción diga otra cosa.",
+            "escala": {
+              "3": 2,
+              "10": 3,
+              "17": 4
+            }
+          },
+          {
+            "tipo": "eleccion",
+            "id": "metamagia",
+            "nombre": "Metamagia",
+            "elegir": 2,
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "metamagia",
+                "clases": "hechicero"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ],
+        "4": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ]
+      }
+    },
+    {
+      "id": "brujo",
+      "nombre": "Brujo",
+      "fuente": "SRD 5.1 p. 15",
+      "descripcion": "Buscador de saber prohibido que ha cerrado un pacto con un ser de otro mundo: su patrón le concede una magia que se renueva con cada descanso e invocaciones sobrenaturales.",
+      "perfil": {
+        "arcano": 3,
+        "astucia": 2,
+        "carisma": 1,
+        "saber": 1
+      },
+      "dado_golpe": 8,
+      "salvaciones": [
+        "sab",
+        "car"
+      ],
+      "nivel_subclase": 1,
+      "competencias": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_sencillas"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "habilidades",
+          "nombre": "Habilidades de brujo",
+          "elegir": 2,
+          "fuente": "habilidades",
+          "opciones": [
+            "conocimiento_arcano",
+            "engano",
+            "historia",
+            "intimidacion",
+            "investigacion",
+            "naturaleza",
+            "religion"
+          ],
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "habilidad",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "competencias_multiclase": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_sencillas"
+        }
+      ],
+      "requisitos_multiclase": {
+        "caracteristicas": {
+          "car": 13
+        }
+      },
+      "equipo_inicial": [
+        [
+          [
+            {
+              "id": "ballesta_ligera"
+            },
+            {
+              "id": "virote",
+              "cantidad": 20
+            }
+          ],
+          [
+            {
+              "desde": "armas",
+              "filtro": {
+                "arma": {
+                  "categoria": "sencilla"
+                }
+              }
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "saquito_de_componentes"
+            }
+          ],
+          [
+            {
+              "desde": "objetos",
+              "filtro": {
+                "categoria": "foco",
+                "subcategoria": "arcano"
+              }
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "paquete_de_erudito"
+            }
+          ],
+          [
+            {
+              "id": "paquete_de_explorador_de_mazmorras"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "armadura_de_cuero"
+            },
+            {
+              "desde": "armas",
+              "filtro": {
+                "arma": {
+                  "categoria": "sencilla"
+                }
+              }
+            },
+            {
+              "id": "daga",
+              "cantidad": 2
+            }
+          ]
+        ]
+      ],
+      "lanzamiento": {
+        "caracteristica": "car",
+        "progresion": "pacto",
+        "trucos_conocidos": [
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "conjuros_conocidos": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          10,
+          11,
+          11,
+          12,
+          12,
+          13,
+          13,
+          14,
+          14,
+          15,
+          15
+        ]
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Magia del Pacto",
+            "resumen": "CAR; CD {8+competencia+mod_car}, ataque de conjuro +{competencia+mod_car}; {escala}; los espacios se recuperan tras un descanso corto o largo; al subir de nivel puedes cambiar un conjuro conocido; canalizador: canalizador arcano",
+            "descripcion": "Conoces trucos y conjuros de la lista del brujo según la tabla «El brujo». Todos tus espacios de conjuro son del mismo nivel (columna «Nivel de los espacios»), cualquier conjuro de brujo que lances con ellos se lanza a ese nivel y recuperas los gastados tras un descanso corto o largo. Cada vez que subes de nivel en esta clase puedes cambiar un conjuro de brujo que conozcas por otro de un nivel para el que tengas espacios. El Carisma es tu aptitud mágica y puedes usar un canalizador arcano como canalizador mágico.",
+            "escala": {
+              "1": "2 trucos y 2 conjuros conocidos; 1 espacio de conjuro de nivel 1",
+              "2": "2 trucos y 3 conjuros conocidos; 2 espacios de conjuro de nivel 1",
+              "3": "2 trucos y 4 conjuros conocidos; 2 espacios de conjuro de nivel 2",
+              "4": "3 trucos y 5 conjuros conocidos; 2 espacios de conjuro de nivel 2",
+              "5": "3 trucos y 6 conjuros conocidos; 2 espacios de conjuro de nivel 3",
+              "6": "3 trucos y 7 conjuros conocidos; 2 espacios de conjuro de nivel 3",
+              "7": "3 trucos y 8 conjuros conocidos; 2 espacios de conjuro de nivel 4",
+              "8": "3 trucos y 9 conjuros conocidos; 2 espacios de conjuro de nivel 4",
+              "9": "3 trucos y 10 conjuros conocidos; 2 espacios de conjuro de nivel 5",
+              "10": "4 trucos y 10 conjuros conocidos; 2 espacios de conjuro de nivel 5",
+              "11": "4 trucos y 11 conjuros conocidos; 3 espacios de conjuro de nivel 5",
+              "13": "4 trucos y 12 conjuros conocidos; 3 espacios de conjuro de nivel 5",
+              "15": "4 trucos y 13 conjuros conocidos; 3 espacios de conjuro de nivel 5",
+              "17": "4 trucos y 14 conjuros conocidos; 4 espacios de conjuro de nivel 5",
+              "19": "4 trucos y 15 conjuros conocidos; 4 espacios de conjuro de nivel 5"
+            }
+          }
+        ],
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Invocaciones Sobrenaturales",
+            "resumen": "conoces {escala} invocaciones; al subir de nivel de brujo puedes cambiar una por otra cuyo requisito cumplas",
+            "descripcion": "Has desenterrado fragmentos de saber prohibido que te dan una capacidad mágica permanente. Aprendes dos invocaciones a nivel 2 y más al subir de nivel (3 a nivel 5, 4 a nivel 7, 5 a nivel 9, 6 a nivel 12, 7 a nivel 15 y 8 a nivel 18). Debes cumplir los requisitos de cada una (los niveles son de brujo), aunque puedes aprenderla en el momento en que los cumples.",
+            "escala": {
+              "2": 2,
+              "5": 3,
+              "7": 4,
+              "9": 5,
+              "12": 6,
+              "15": 7,
+              "18": 8
+            }
+          },
+          {
+            "tipo": "eleccion",
+            "id": "invocaciones",
+            "nombre": "Invocaciones Sobrenaturales",
+            "elegir": 2,
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "invocacion",
+                "clases": "brujo"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ],
+        "3": [
+          {
+            "tipo": "eleccion",
+            "id": "beneficio_pacto",
+            "nombre": "Beneficio del Pacto",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "pacto",
+                "clases": "brujo"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ],
+        "4": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "5": [
+          {
+            "tipo": "eleccion",
+            "id": "invocacion_nivel_5",
+            "nombre": "Invocación Sobrenatural adicional (3.ª)",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "invocacion",
+                "clases": "brujo"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "subclases": [
+    {
+      "id": "linaje_draconico",
+      "nombre": "Linaje Dracónico",
+      "clase": "hechicero",
+      "fuente": "SRD 5.1 p. 39",
+      "descripcion": "Hechiceros cuyo poder innato procede de la magia de los dragones, mezclada con su sangre o con la de sus antepasados: su piel se cubre de un lustre de escamas y su magia adopta el elemento de su linaje.",
+      "perfil": {
+        "arcano": 3,
+        "aguante": 2,
+        "carisma": 1
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "eleccion",
+            "id": "ancestro",
+            "nombre": "Ancestro Dragón",
+            "opciones": [
+              {
+                "id": "azul",
+                "nombre": "Azul (relámpago)",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Ancestro Dragón: Azul",
+                    "resumen": "daño de tu linaje: relámpago; hablas, lees y escribes dracónico; si tu bonificador por competencia se aplica a una prueba de CAR para relacionarte con dragones, se duplica",
+                    "descripcion": "Tu antepasado es un dragón azul, así que el tipo de daño de tu linaje es relámpago: lo usan los rasgos de este origen que obtienes más adelante (Afinidad Elemental, a nivel 6). Puedes hablar, leer y escribir dracónico y, cuando haces una prueba de Carisma para relacionarte con dragones, duplicas tu bonificador por competencia si se aplica a la prueba."
+                  }
+                ]
+              },
+              {
+                "id": "blanco",
+                "nombre": "Blanco (frío)",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Ancestro Dragón: Blanco",
+                    "resumen": "daño de tu linaje: frío; hablas, lees y escribes dracónico; si tu bonificador por competencia se aplica a una prueba de CAR para relacionarte con dragones, se duplica",
+                    "descripcion": "Tu antepasado es un dragón blanco, así que el tipo de daño de tu linaje es frío: lo usan los rasgos de este origen que obtienes más adelante (Afinidad Elemental, a nivel 6). Puedes hablar, leer y escribir dracónico y, cuando haces una prueba de Carisma para relacionarte con dragones, duplicas tu bonificador por competencia si se aplica a la prueba."
+                  }
+                ]
+              },
+              {
+                "id": "bronce",
+                "nombre": "Bronce (relámpago)",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Ancestro Dragón: Bronce",
+                    "resumen": "daño de tu linaje: relámpago; hablas, lees y escribes dracónico; si tu bonificador por competencia se aplica a una prueba de CAR para relacionarte con dragones, se duplica",
+                    "descripcion": "Tu antepasado es un dragón bronce, así que el tipo de daño de tu linaje es relámpago: lo usan los rasgos de este origen que obtienes más adelante (Afinidad Elemental, a nivel 6). Puedes hablar, leer y escribir dracónico y, cuando haces una prueba de Carisma para relacionarte con dragones, duplicas tu bonificador por competencia si se aplica a la prueba."
+                  }
+                ]
+              },
+              {
+                "id": "cobre",
+                "nombre": "Cobre (ácido)",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Ancestro Dragón: Cobre",
+                    "resumen": "daño de tu linaje: ácido; hablas, lees y escribes dracónico; si tu bonificador por competencia se aplica a una prueba de CAR para relacionarte con dragones, se duplica",
+                    "descripcion": "Tu antepasado es un dragón cobre, así que el tipo de daño de tu linaje es ácido: lo usan los rasgos de este origen que obtienes más adelante (Afinidad Elemental, a nivel 6). Puedes hablar, leer y escribir dracónico y, cuando haces una prueba de Carisma para relacionarte con dragones, duplicas tu bonificador por competencia si se aplica a la prueba."
+                  }
+                ]
+              },
+              {
+                "id": "negro",
+                "nombre": "Negro (ácido)",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Ancestro Dragón: Negro",
+                    "resumen": "daño de tu linaje: ácido; hablas, lees y escribes dracónico; si tu bonificador por competencia se aplica a una prueba de CAR para relacionarte con dragones, se duplica",
+                    "descripcion": "Tu antepasado es un dragón negro, así que el tipo de daño de tu linaje es ácido: lo usan los rasgos de este origen que obtienes más adelante (Afinidad Elemental, a nivel 6). Puedes hablar, leer y escribir dracónico y, cuando haces una prueba de Carisma para relacionarte con dragones, duplicas tu bonificador por competencia si se aplica a la prueba."
+                  }
+                ]
+              },
+              {
+                "id": "oro",
+                "nombre": "Oro (fuego)",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Ancestro Dragón: Oro",
+                    "resumen": "daño de tu linaje: fuego; hablas, lees y escribes dracónico; si tu bonificador por competencia se aplica a una prueba de CAR para relacionarte con dragones, se duplica",
+                    "descripcion": "Tu antepasado es un dragón oro, así que el tipo de daño de tu linaje es fuego: lo usan los rasgos de este origen que obtienes más adelante (Afinidad Elemental, a nivel 6). Puedes hablar, leer y escribir dracónico y, cuando haces una prueba de Carisma para relacionarte con dragones, duplicas tu bonificador por competencia si se aplica a la prueba."
+                  }
+                ]
+              },
+              {
+                "id": "oropel",
+                "nombre": "Oropel (fuego)",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Ancestro Dragón: Oropel",
+                    "resumen": "daño de tu linaje: fuego; hablas, lees y escribes dracónico; si tu bonificador por competencia se aplica a una prueba de CAR para relacionarte con dragones, se duplica",
+                    "descripcion": "Tu antepasado es un dragón oropel, así que el tipo de daño de tu linaje es fuego: lo usan los rasgos de este origen que obtienes más adelante (Afinidad Elemental, a nivel 6). Puedes hablar, leer y escribir dracónico y, cuando haces una prueba de Carisma para relacionarte con dragones, duplicas tu bonificador por competencia si se aplica a la prueba."
+                  }
+                ]
+              },
+              {
+                "id": "plata",
+                "nombre": "Plata (frío)",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Ancestro Dragón: Plata",
+                    "resumen": "daño de tu linaje: frío; hablas, lees y escribes dracónico; si tu bonificador por competencia se aplica a una prueba de CAR para relacionarte con dragones, se duplica",
+                    "descripcion": "Tu antepasado es un dragón plata, así que el tipo de daño de tu linaje es frío: lo usan los rasgos de este origen que obtienes más adelante (Afinidad Elemental, a nivel 6). Puedes hablar, leer y escribir dracónico y, cuando haces una prueba de Carisma para relacionarte con dragones, duplicas tu bonificador por competencia si se aplica a la prueba."
+                  }
+                ]
+              },
+              {
+                "id": "rojo",
+                "nombre": "Rojo (fuego)",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Ancestro Dragón: Rojo",
+                    "resumen": "daño de tu linaje: fuego; hablas, lees y escribes dracónico; si tu bonificador por competencia se aplica a una prueba de CAR para relacionarte con dragones, se duplica",
+                    "descripcion": "Tu antepasado es un dragón rojo, así que el tipo de daño de tu linaje es fuego: lo usan los rasgos de este origen que obtienes más adelante (Afinidad Elemental, a nivel 6). Puedes hablar, leer y escribir dracónico y, cuando haces una prueba de Carisma para relacionarte con dragones, duplicas tu bonificador por competencia si se aplica a la prueba."
+                  }
+                ]
+              },
+              {
+                "id": "verde",
+                "nombre": "Verde (veneno)",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Ancestro Dragón: Verde",
+                    "resumen": "daño de tu linaje: veneno; hablas, lees y escribes dracónico; si tu bonificador por competencia se aplica a una prueba de CAR para relacionarte con dragones, se duplica",
+                    "descripcion": "Tu antepasado es un dragón verde, así que el tipo de daño de tu linaje es veneno: lo usan los rasgos de este origen que obtienes más adelante (Afinidad Elemental, a nivel 6). Puedes hablar, leer y escribir dracónico y, cuando haces una prueba de Carisma para relacionarte con dragones, duplicas tu bonificador por competencia si se aplica a la prueba."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "idioma",
+            "id": "draconico"
+          },
+          {
+            "tipo": "pg_maximos",
+            "por_nivel": 1,
+            "clase": "hechicero"
+          },
+          {
+            "tipo": "ca_alternativa",
+            "base": 13,
+            "suma": [
+              "des"
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Resistencia Dracónica",
+            "resumen": "+{nivel_clase} PG máximos (+1 por nivel de hechicero, ya sumados); sin armadura, CA {13+mod_des} (el escudo se suma)",
+            "descripcion": "La magia que recorre tu cuerpo hace aflorar rasgos de tus antepasados dragones. Tus puntos de golpe máximos aumentan en 1 por cada nivel de hechicero y partes de tu piel se cubren de un fino lustre parecido a las escamas de un dragón: mientras no lleves armadura, tu CA es 13 + tu modificador por Destreza."
+          }
+        ]
+      }
+    },
+    {
+      "id": "el_infernal",
+      "nombre": "El Infernal",
+      "clase": "brujo",
+      "fuente": "SRD 5.1 p. 20",
+      "descripcion": "Pacto con un infernal de los Planos Inferiores, como un señor demoníaco, un archidiablo o un yugoloth poderoso: un ser que desea la corrupción y la destrucción de todo, incluido su brujo.",
+      "perfil": {
+        "arcano": 3,
+        "aguante": 2,
+        "combate": 1
+      },
+      "conjuros_adicionales": [
+        "manos_ardientes",
+        "orden_imperiosa",
+        "rayo_abrasador",
+        "sordera_ceguera",
+        "bola_de_fuego",
+        "nube_apestosa"
+      ],
+      "niveles": {
+        "1": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Lista de conjuros ampliada",
+            "resumen": "añadidos a tu lista de brujo: manos ardientes, orden imperiosa (1); rayo abrasador, sordera/ceguera (2); bola de fuego, nube apestosa (3); escudo de fuego, muro de fuego (4); consagrar, golpe flamígero (5)",
+            "descripcion": "El Infernal te deja elegir de una lista ampliada cada vez que aprendes un conjuro de brujo: manos ardientes y orden imperiosa (nivel 1), rayo abrasador y sordera/ceguera (2), bola de fuego y nube apestosa (3), escudo de fuego y muro de fuego (4), y consagrar y golpe flamígero (5) se añaden para ti a la lista de conjuros de brujo."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Bendición del Oscuro",
+            "resumen": "al reducir a 0 los PG de una criatura hostil, ganas {max(1,mod_car+nivel_clase)} PG temporales",
+            "descripcion": "Cuando reduces a 0 los puntos de golpe de una criatura hostil, obtienes tantos puntos de golpe temporales como tu modificador por Carisma + tu nivel de brujo (mínimo 1)."
+          }
+        ]
+      }
+    }
+  ],
+  "opciones": [
+    {
+      "id": "conjuro_acelerado",
+      "nombre": "Metamagia: Conjuro Acelerado",
+      "grupo": "metamagia",
+      "clases": [
+        "hechicero"
+      ],
+      "fuente": "SRD 5.1 p. 38",
+      "resumen": "2 puntos de hechicería: un conjuro de 1 acción se lanza como acción adicional",
+      "descripcion": "Cuando lanzas un conjuro cuyo tiempo de lanzamiento es de 1 acción, puedes gastar 2 puntos de hechicería para lanzarlo como acción adicional."
+    },
+    {
+      "id": "conjuro_cuidadoso",
+      "nombre": "Metamagia: Conjuro Cuidadoso",
+      "grupo": "metamagia",
+      "clases": [
+        "hechicero"
+      ],
+      "fuente": "SRD 5.1 p. 38",
+      "resumen": "1 punto de hechicería: hasta {max(1,mod_car)} criaturas que elijas superan automáticamente la salvación contra tu conjuro",
+      "descripcion": "Cuando lanzas un conjuro que obliga a otras criaturas a hacer una tirada de salvación, puedes gastar 1 punto de hechicería y elegir hasta tantas de esas criaturas como tu modificador por Carisma (mínimo una): superan automáticamente la salvación contra el conjuro."
+    },
+    {
+      "id": "conjuro_distante",
+      "nombre": "Metamagia: Conjuro Distante",
+      "grupo": "metamagia",
+      "clases": [
+        "hechicero"
+      ],
+      "fuente": "SRD 5.1 p. 38",
+      "resumen": "1 punto de hechicería: duplicas el alcance de un conjuro de 5 pies o más, o das 30 pies a uno de toque",
+      "descripcion": "Cuando lanzas un conjuro con un alcance de al menos 5 pies, puedes gastar 1 punto de hechicería para duplicar su alcance. Si el conjuro tiene alcance de toque, por 1 punto su alcance pasa a ser de 30 pies."
+    },
+    {
+      "id": "conjuro_extendido",
+      "nombre": "Metamagia: Conjuro Extendido",
+      "grupo": "metamagia",
+      "clases": [
+        "hechicero"
+      ],
+      "fuente": "SRD 5.1 p. 38",
+      "resumen": "1 punto de hechicería: duplicas la duración de un conjuro que dure 1 minuto o más (máximo 24 horas)",
+      "descripcion": "Cuando lanzas un conjuro con una duración de al menos 1 minuto, puedes gastar 1 punto de hechicería para duplicar su duración, hasta un máximo de 24 horas."
+    },
+    {
+      "id": "conjuro_gemelo",
+      "nombre": "Metamagia: Conjuro Gemelo",
+      "grupo": "metamagia",
+      "clases": [
+        "hechicero"
+      ],
+      "fuente": "SRD 5.1 p. 38",
+      "resumen": "puntos de hechicería iguales al nivel del conjuro (1 si es truco): un conjuro que solo puede afectar a una criatura y no tiene alcance «Lanzador» afecta también a una segunda criatura dentro del alcance",
+      "descripcion": "Cuando lanzas un conjuro que tiene como objetivo a una sola criatura y cuyo alcance no es «Lanzador», puedes gastar tantos puntos de hechicería como su nivel (1 si es un truco) para que afecte además a una segunda criatura dentro del alcance. El conjuro no debe poder afectar a más de una criatura al nivel al que lo lanzas (proyectil mágico y rayo abrasador no valen; rayo de escarcha, sí)."
+    },
+    {
+      "id": "conjuro_intensificado",
+      "nombre": "Metamagia: Conjuro Intensificado",
+      "grupo": "metamagia",
+      "clases": [
+        "hechicero"
+      ],
+      "fuente": "SRD 5.1 p. 38",
+      "resumen": "3 puntos de hechicería: un objetivo del conjuro tiene desventaja en su primera salvación contra él",
+      "descripcion": "Cuando lanzas un conjuro que obliga a al menos una criatura a hacer una tirada de salvación para resistir sus efectos, puedes gastar 3 puntos de hechicería para que uno de los objetivos tenga desventaja en la primera tirada de salvación que haga contra el conjuro."
+    },
+    {
+      "id": "conjuro_potenciado",
+      "nombre": "Metamagia: Conjuro Potenciado",
+      "grupo": "metamagia",
+      "clases": [
+        "hechicero"
+      ],
+      "fuente": "SRD 5.1 p. 38",
+      "resumen": "1 punto de hechicería: repites hasta {max(1,mod_car)} dados de daño del conjuro y te quedas con los nuevos; se puede combinar con otra Metamagia",
+      "descripcion": "Cuando tiras el daño de un conjuro, puedes gastar 1 punto de hechicería para volver a tirar tantos dados de daño como tu modificador por Carisma (mínimo uno) y debes usar los nuevos resultados. Puedes usarlo aunque ya hayas aplicado otra opción de Metamagia al mismo conjuro."
+    },
+    {
+      "id": "conjuro_sutil",
+      "nombre": "Metamagia: Conjuro Sutil",
+      "grupo": "metamagia",
+      "clases": [
+        "hechicero"
+      ],
+      "fuente": "SRD 5.1 p. 38",
+      "resumen": "1 punto de hechicería: lanzas el conjuro sin componentes verbales ni somáticos",
+      "descripcion": "Cuando lanzas un conjuro, puedes gastar 1 punto de hechicería para lanzarlo sin componentes somáticos ni verbales."
+    },
+    {
+      "id": "pacto_de_la_cadena",
+      "nombre": "Pacto de la Cadena",
+      "grupo": "pacto",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 16",
+      "resumen": "conoces encontrar familiar y puedes lanzarlo como ritual (no cuenta como conjuro conocido); formas especiales: diablillo, duende, pseudodragón o quasit; al usar la acción de Atacar puedes renunciar a uno de tus ataques para que tu familiar ataque con su reacción",
+      "descripcion": "Aprendes el conjuro encontrar familiar y puedes lanzarlo como ritual; no cuenta para tus conjuros conocidos. Además de las formas habituales, tu familiar puede ser un diablillo, un duende, un pseudodragón o un quasit. Cuando realizas la acción de Atacar, puedes renunciar a uno de tus ataques para que tu familiar haga uno propio con su reacción.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "encontrar_familiar",
+          "clase": "brujo",
+          "siempre_preparado": true
+        }
+      ]
+    },
+    {
+      "id": "pacto_del_filo",
+      "nombre": "Pacto del Filo",
+      "grupo": "pacto",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 16",
+      "resumen": "acción: creas en tu mano vacía un arma cuerpo a cuerpo de pacto (eliges la forma cada vez), con la que eres competente y que cuenta como mágica; desaparece si está a más de 5 pies de ti durante 1 minuto, si vuelves a crearla, si la descartas o si mueres",
+      "descripcion": "Como acción creas un arma de pacto cuerpo a cuerpo en tu mano vacía, con la forma que elijas; eres competente con ella mientras la empuñes y cuenta como mágica para superar resistencias e inmunidades. Con un ritual de 1 hora (que puede hacerse durante un descanso corto) puedes convertir un arma mágica que no sea un artefacto ni un arma consciente en tu arma de pacto, guardarla en un espacio extradimensional y hacerla aparecer al usar este rasgo; el vínculo se rompe si mueres, si haces el ritual con otra arma o si lo rompes con otro ritual de 1 hora."
+    },
+    {
+      "id": "pacto_del_grimorio",
+      "nombre": "Pacto del Grimorio",
+      "grupo": "pacto",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 17",
+      "resumen": "Libro de las Sombras: mientras lo lleves, lanzas a voluntad 3 trucos de cualquier lista, que cuentan como conjuros de brujo pero no como trucos conocidos; si lo pierdes, ceremonia de 1 hora para recibir otro",
+      "descripcion": "Tu patrón te entrega un grimorio, el Libro de las Sombras. Eliges tres trucos de las listas de cualquier clase (no tienen por qué ser de la misma): mientras tengas el libro contigo puedes lanzarlos a voluntad, no cuentan para tus trucos conocidos y para ti son conjuros de brujo. Si pierdes el libro, una ceremonia de 1 hora durante un descanso corto o largo te da uno nuevo y destruye el anterior; el libro se convierte en cenizas cuando mueres.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "trucos",
+          "nombre": "Pacto del Grimorio: trucos del Libro de las Sombras",
+          "elegir": 3,
+          "opciones": {
+            "desde": "conjuros",
+            "filtro": {
+              "nivel": 0
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "conjuro",
+              "id": "$opcion",
+              "clase": "brujo",
+              "siempre_preparado": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "armadura_de_sombras",
+      "nombre": "Invocación: Armadura de Sombras",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 17",
+      "resumen": "lanzas armadura de mago sobre ti a voluntad, sin espacio de conjuro ni componentes materiales: sin armadura, CA {13+mod_des} (la ficha la da por lanzada; el escudo se suma)",
+      "descripcion": "Puedes lanzar armadura de mago sobre ti mismo a voluntad, sin gastar un espacio de conjuro ni componentes materiales. Mientras dure y no lleves armadura, tu CA base es 13 + tu modificador por Destreza.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "armadura_de_mago",
+          "clase": "brujo",
+          "siempre_preparado": true
+        },
+        {
+          "tipo": "ca_alternativa",
+          "base": 13,
+          "suma": [
+            "des"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cadenas_de_carceri",
+      "nombre": "Invocación: Cadenas de Carceri",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 17",
+      "prerrequisito": {
+        "texto": "nivel 15 de brujo y Pacto de la Cadena"
+      },
+      "resumen": "lanzas inmovilizar monstruo a voluntad sobre un celestial, un infernal o un elemental, sin espacio de conjuro ni componentes materiales; no puedes repetirlo contra la misma criatura hasta un descanso largo",
+      "descripcion": "Requisito: nivel 15 de brujo y Pacto de la Cadena. Puedes lanzar inmovilizar monstruo a voluntad, con un celestial, un infernal o un elemental como objetivo, sin gastar un espacio de conjuro ni componentes materiales. Debes terminar un descanso largo para volver a usar esta invocación contra la misma criatura."
+    },
+    {
+      "id": "descarga_agonica",
+      "nombre": "Invocación: Descarga Agónica",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 17",
+      "prerrequisito": {
+        "texto": "truco descarga sobrenatural"
+      },
+      "resumen": "+{mod_car} al daño de descarga sobrenatural cuando impacta",
+      "descripcion": "Requisito: truco descarga sobrenatural. Cuando lanzas descarga sobrenatural, sumas tu modificador por Carisma al daño que inflige si impacta."
+    },
+    {
+      "id": "descarga_ahuyentadora",
+      "nombre": "Invocación: Descarga Ahuyentadora",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 18",
+      "prerrequisito": {
+        "texto": "truco descarga sobrenatural"
+      },
+      "resumen": "al impactar a una criatura con descarga sobrenatural, puedes empujarla hasta 10 pies en línea recta, alejándola de ti",
+      "descripcion": "Requisito: truco descarga sobrenatural. Cuando impactas a una criatura con tu descarga sobrenatural, puedes empujarla hasta 10 pies en línea recta en dirección contraria a ti."
+    },
+    {
+      "id": "devorador_de_vida",
+      "nombre": "Invocación: Devorador de Vida",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 18",
+      "prerrequisito": {
+        "texto": "nivel 12 de brujo y Pacto del Filo"
+      },
+      "resumen": "+{max(1,mod_car)} de daño necrótico al impactar con tu arma de pacto",
+      "descripcion": "Requisito: nivel 12 de brujo y Pacto del Filo. Cuando impactas a una criatura con tu arma de pacto, le infliges un daño necrótico adicional igual a tu modificador por Carisma (mínimo 1)."
+    },
+    {
+      "id": "enfangar_la_mente",
+      "nombre": "Invocación: Enfangar la Mente",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 18",
+      "prerrequisito": {
+        "texto": "nivel 5 de brujo"
+      },
+      "resumen": "lanzas ralentizar una vez con un espacio de conjuro de brujo; vuelves a poder hacerlo tras un descanso largo",
+      "descripcion": "Requisito: nivel 5 de brujo. Puedes lanzar ralentizar una vez usando un espacio de conjuro de brujo. No puedes volver a hacerlo hasta terminar un descanso largo.",
+      "usos": 1,
+      "recarga": "largo",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "ralentizar",
+          "clase": "brujo",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 5
+        }
+      ]
+    },
+    {
+      "id": "esbirros_del_caos",
+      "nombre": "Invocación: Esbirros del Caos",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 18",
+      "prerrequisito": {
+        "texto": "nivel 9 de brujo"
+      },
+      "resumen": "lanzas conjurar elemental una vez con un espacio de conjuro de brujo; vuelves a poder hacerlo tras un descanso largo",
+      "descripcion": "Requisito: nivel 9 de brujo. Puedes lanzar conjurar elemental una vez usando un espacio de conjuro de brujo. No puedes volver a hacerlo hasta terminar un descanso largo.",
+      "usos": 1,
+      "recarga": "largo"
+    },
+    {
+      "id": "escultor_de_la_carne",
+      "nombre": "Invocación: Escultor de la Carne",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 18",
+      "prerrequisito": {
+        "texto": "nivel 7 de brujo"
+      },
+      "resumen": "lanzas polimorfar una vez con un espacio de conjuro de brujo; vuelves a poder hacerlo tras un descanso largo",
+      "descripcion": "Requisito: nivel 7 de brujo. Puedes lanzar polimorfar una vez usando un espacio de conjuro de brujo. No puedes volver a hacerlo hasta terminar un descanso largo.",
+      "usos": 1,
+      "recarga": "largo"
+    },
+    {
+      "id": "filo_sediento",
+      "nombre": "Invocación: Filo Sediento",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 18",
+      "prerrequisito": {
+        "texto": "nivel 5 de brujo y Pacto del Filo"
+      },
+      "resumen": "al usar la acción de Atacar, haces 2 ataques con tu arma de pacto (no se suma a Ataque Adicional)",
+      "descripcion": "Requisito: nivel 5 de brujo y Pacto del Filo. Cuando realizas la acción de Atacar en tu turno, puedes atacar dos veces con tu arma de pacto en lugar de una. No te da más ataques si ya tienes Ataque Adicional de otra clase."
+    },
+    {
+      "id": "habla_bestial",
+      "nombre": "Invocación: Habla Bestial",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 18",
+      "resumen": "lanzas hablar con los animales a voluntad, sin espacio de conjuro",
+      "descripcion": "Puedes lanzar hablar con los animales a voluntad, sin gastar un espacio de conjuro.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "hablar_con_los_animales",
+          "clase": "brujo",
+          "siempre_preparado": true
+        }
+      ]
+    },
+    {
+      "id": "influencia_seductora",
+      "nombre": "Invocación: Influencia Seductora",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 18",
+      "resumen": "competencia en Engaño y Persuasión",
+      "descripcion": "Obtienes competencia en las habilidades Engaño y Persuasión.",
+      "efectos": [
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "engano"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "habilidad",
+          "id": "persuasion"
+        }
+      ]
+    },
+    {
+      "id": "ladron_de_los_cinco_destinos",
+      "nombre": "Invocación: Ladrón de los Cinco Destinos",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 18",
+      "resumen": "lanzas perdición una vez con un espacio de conjuro de brujo; vuelves a poder hacerlo tras un descanso largo",
+      "descripcion": "Puedes lanzar perdición una vez usando un espacio de conjuro de brujo. No puedes volver a hacerlo hasta terminar un descanso largo.",
+      "usos": 1,
+      "recarga": "largo",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "perdicion",
+          "clase": "brujo",
+          "siempre_preparado": true
+        }
+      ]
+    },
+    {
+      "id": "lanza_sobrenatural",
+      "nombre": "Invocación: Lanza Sobrenatural",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 18",
+      "prerrequisito": {
+        "texto": "truco descarga sobrenatural"
+      },
+      "resumen": "descarga sobrenatural tiene un alcance de 300 pies",
+      "descripcion": "Requisito: truco descarga sobrenatural. Cuando lanzas descarga sobrenatural, su alcance es de 300 pies."
+    },
+    {
+      "id": "libro_de_secretos_ancestrales",
+      "nombre": "Invocación: Libro de Secretos Ancestrales",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 18",
+      "prerrequisito": {
+        "texto": "Pacto del Grimorio"
+      },
+      "resumen": "tu Libro de las Sombras guarda 2 conjuros rituales de nivel 1 de cualquier clase (no cuentan como conocidos) que solo lanzas como rituales, y lanzas como rituales tus conjuros de brujo con la etiqueta «ritual»; puedes copiar más rituales de nivel {(nivel_clase+1)//2} o inferior (2 horas y 50 po por nivel del conjuro)",
+      "descripcion": "Requisito: Pacto del Grimorio. Puedes anotar rituales en tu Libro de las Sombras: eliges dos conjuros de nivel 1 con la etiqueta «ritual» de las listas de cualquier clase, que no cuentan para tus conjuros conocidos. Con el libro a mano puedes lanzarlos, pero solo como rituales (salvo que los tengas por otra vía), y también puedes lanzar como rituales los conjuros de brujo que conozcas con esa etiqueta. Puedes añadir rituales que encuentres si su nivel no supera la mitad de tu nivel de brujo (redondeando hacia arriba), a razón de 2 horas y 50 po por nivel del conjuro.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "rituales",
+          "nombre": "Libro de Secretos Ancestrales: rituales de nivel 1",
+          "elegir": 2,
+          "opciones": {
+            "desde": "conjuros",
+            "filtro": {
+              "nivel": 1,
+              "ritual": true
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "conjuro",
+              "id": "$opcion",
+              "clase": "brujo",
+              "siempre_preparado": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "maestro_de_las_formas_innumerables",
+      "nombre": "Invocación: Maestro de las Formas Innumerables",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 18",
+      "prerrequisito": {
+        "texto": "nivel 15 de brujo"
+      },
+      "resumen": "lanzas alterar el propio aspecto a voluntad, sin espacio de conjuro",
+      "descripcion": "Requisito: nivel 15 de brujo. Puedes lanzar alterar el propio aspecto a voluntad, sin gastar un espacio de conjuro.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "alterar_el_propio_aspecto",
+          "clase": "brujo",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 15
+        }
+      ]
+    },
+    {
+      "id": "marca_del_mal_augurio",
+      "nombre": "Invocación: Marca del Mal Augurio",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 18",
+      "prerrequisito": {
+        "texto": "nivel 5 de brujo"
+      },
+      "resumen": "lanzas imponer maldición una vez con un espacio de conjuro de brujo; vuelves a poder hacerlo tras un descanso largo",
+      "descripcion": "Requisito: nivel 5 de brujo. Puedes lanzar imponer maldición una vez usando un espacio de conjuro de brujo. No puedes volver a hacerlo hasta terminar un descanso largo.",
+      "usos": 1,
+      "recarga": "largo",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "imponer_maldicion",
+          "clase": "brujo",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 5
+        }
+      ]
+    },
+    {
+      "id": "mascara_de_los_mil_rostros",
+      "nombre": "Invocación: Máscara de los Mil Rostros",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 18",
+      "resumen": "lanzas disfrazarse a voluntad, sin espacio de conjuro",
+      "descripcion": "Puedes lanzar disfrazarse a voluntad, sin gastar un espacio de conjuro.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "disfrazarse",
+          "clase": "brujo",
+          "siempre_preparado": true
+        }
+      ]
+    },
+    {
+      "id": "mirada_de_las_dos_mentes",
+      "nombre": "Invocación: Mirada de las Dos Mentes",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 18",
+      "resumen": "acción: tocas a un humanoide voluntario y percibes por sus sentidos hasta el final de tu siguiente turno (prorrogable con tu acción cada turno); mientras, estás cegado y ensordecido en tu entorno",
+      "descripcion": "Como acción tocas a un humanoide voluntario y percibes el mundo a través de sus sentidos hasta el final de tu siguiente turno; mientras sigáis en el mismo plano, puedes usar tu acción en los turnos siguientes para prolongar la conexión. Ganas los sentidos especiales de la criatura, pero estás cegado y ensordecido con respecto a tu propio entorno."
+    },
+    {
+      "id": "ojos_del_guardian_de_las_runas",
+      "nombre": "Invocación: Ojos del Guardián de las Runas",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 19",
+      "resumen": "puedes leer cualquier escrito",
+      "descripcion": "Puedes leer cualquier escrito."
+    },
+    {
+      "id": "palabra_aterradora",
+      "nombre": "Invocación: Palabra Aterradora",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 19",
+      "prerrequisito": {
+        "texto": "nivel 7 de brujo"
+      },
+      "resumen": "lanzas confusión una vez con un espacio de conjuro de brujo; vuelves a poder hacerlo tras un descanso largo",
+      "descripcion": "Requisito: nivel 7 de brujo. Puedes lanzar confusión una vez usando un espacio de conjuro de brujo. No puedes volver a hacerlo hasta terminar un descanso largo.",
+      "usos": 1,
+      "recarga": "largo"
+    },
+    {
+      "id": "paso_ascendente",
+      "nombre": "Invocación: Paso Ascendente",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 19",
+      "prerrequisito": {
+        "texto": "nivel 9 de brujo"
+      },
+      "resumen": "lanzas levitar sobre ti a voluntad, sin espacio de conjuro ni componentes materiales",
+      "descripcion": "Requisito: nivel 9 de brujo. Puedes lanzar levitar sobre ti mismo a voluntad, sin gastar un espacio de conjuro ni componentes materiales.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "levitar",
+          "clase": "brujo",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 9
+        }
+      ]
+    },
+    {
+      "id": "salto_sobrenatural",
+      "nombre": "Invocación: Salto Sobrenatural",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 19",
+      "prerrequisito": {
+        "texto": "nivel 9 de brujo"
+      },
+      "resumen": "lanzas salto sobre ti a voluntad, sin espacio de conjuro ni componentes materiales",
+      "descripcion": "Requisito: nivel 9 de brujo. Puedes lanzar salto sobre ti mismo a voluntad, sin gastar un espacio de conjuro ni componentes materiales.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "salto",
+          "clase": "brujo",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 9
+        }
+      ]
+    },
+    {
+      "id": "susurros_del_sepulcro",
+      "nombre": "Invocación: Susurros del Sepulcro",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 19",
+      "prerrequisito": {
+        "texto": "nivel 9 de brujo"
+      },
+      "resumen": "lanzas hablar con los muertos a voluntad, sin espacio de conjuro",
+      "descripcion": "Requisito: nivel 9 de brujo. Puedes lanzar hablar con los muertos a voluntad, sin gastar un espacio de conjuro.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "hablar_con_los_muertos",
+          "clase": "brujo",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 9
+        }
+      ]
+    },
+    {
+      "id": "susurros_embrujados",
+      "nombre": "Invocación: Susurros Embrujados",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 19",
+      "prerrequisito": {
+        "texto": "nivel 7 de brujo"
+      },
+      "resumen": "lanzas compulsión una vez con un espacio de conjuro de brujo; vuelves a poder hacerlo tras un descanso largo",
+      "descripcion": "Requisito: nivel 7 de brujo. Puedes lanzar compulsión una vez usando un espacio de conjuro de brujo. No puedes volver a hacerlo hasta terminar un descanso largo.",
+      "usos": 1,
+      "recarga": "largo"
+    },
+    {
+      "id": "uno_con_las_sombras",
+      "nombre": "Invocación: Uno con las Sombras",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 19",
+      "prerrequisito": {
+        "texto": "nivel 5 de brujo"
+      },
+      "resumen": "en luz tenue u oscuridad, acción: te vuelves invisible hasta que te muevas o hagas una acción o reacción",
+      "descripcion": "Requisito: nivel 5 de brujo. Cuando estás en una zona de luz tenue u oscuridad, puedes usar tu acción para volverte invisible hasta que te muevas o lleves a cabo una acción o una reacción."
+    },
+    {
+      "id": "vigor_infernal",
+      "nombre": "Invocación: Vigor Infernal",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 19",
+      "resumen": "lanzas falsa vida sobre ti a voluntad como conjuro de nivel 1, sin espacio de conjuro ni componentes materiales",
+      "descripcion": "Puedes lanzar falsa vida sobre ti mismo a voluntad, como un conjuro de nivel 1, sin gastar un espacio de conjuro ni componentes materiales.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "falsa_vida",
+          "clase": "brujo",
+          "siempre_preparado": true
+        }
+      ]
+    },
+    {
+      "id": "vision_bruja",
+      "nombre": "Invocación: Visión Bruja",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 19",
+      "prerrequisito": {
+        "texto": "nivel 15 de brujo"
+      },
+      "resumen": "ves la verdadera forma de cambiaformas y de criaturas ocultas por ilusionismo o transmutación mágicos a 30 pies o menos y en tu línea de visión",
+      "descripcion": "Requisito: nivel 15 de brujo. Puedes ver la verdadera forma de cualquier cambiaformas o criatura oculta tras un efecto mágico de ilusionismo o transmutación, siempre que esté a 30 pies o menos de ti y en tu línea de visión."
+    },
+    {
+      "id": "vision_sobrenatural",
+      "nombre": "Invocación: Visión Sobrenatural",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 19",
+      "resumen": "lanzas detectar magia a voluntad, sin espacio de conjuro",
+      "descripcion": "Puedes lanzar detectar magia a voluntad, sin gastar un espacio de conjuro.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "detectar_magia",
+          "clase": "brujo",
+          "siempre_preparado": true
+        }
+      ]
+    },
+    {
+      "id": "visiones_brumosas",
+      "nombre": "Invocación: Visiones Brumosas",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 19",
+      "resumen": "lanzas imagen silenciosa a voluntad, sin espacio de conjuro ni componentes materiales",
+      "descripcion": "Puedes lanzar imagen silenciosa a voluntad, sin gastar un espacio de conjuro ni componentes materiales.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "imagen_silenciosa",
+          "clase": "brujo",
+          "siempre_preparado": true
+        }
+      ]
+    },
+    {
+      "id": "visiones_de_reinos_remotos",
+      "nombre": "Invocación: Visiones de Reinos Remotos",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 19",
+      "prerrequisito": {
+        "texto": "nivel 15 de brujo"
+      },
+      "resumen": "lanzas ojo arcano a voluntad, sin espacio de conjuro",
+      "descripcion": "Requisito: nivel 15 de brujo. Puedes lanzar ojo arcano a voluntad, sin gastar un espacio de conjuro."
+    },
+    {
+      "id": "vista_del_diablo",
+      "nombre": "Invocación: Vista del Diablo",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 19",
+      "resumen": "ves con normalidad en la oscuridad, mágica o no, hasta 120 pies",
+      "descripcion": "Puedes ver con normalidad en la oscuridad, tanto mágica como no mágica, hasta una distancia de 120 pies.",
+      "efectos": [
+        {
+          "tipo": "sentido",
+          "id": "vista_del_diablo",
+          "nombre": "Vista del Diablo (oscuridad mágica incluida)",
+          "alcance": 120
+        }
+      ]
+    },
+    {
+      "id": "voz_del_amo_de_la_cadena",
+      "nombre": "Invocación: Voz del Amo de la Cadena",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "SRD 5.1 p. 19",
+      "prerrequisito": {
+        "texto": "Pacto de la Cadena"
+      },
+      "resumen": "telepatía con tu familiar y percepción a través de sus sentidos mientras estéis en el mismo plano; puedes hablar a través de él con tu voz",
+      "descripcion": "Requisito: Pacto de la Cadena. Puedes comunicarte telepáticamente con tu familiar y percibir el mundo a través de sus sentidos mientras estéis en el mismo plano de existencia. Mientras percibes así, también puedes hablar a través de tu familiar con tu propia voz, aunque normalmente no pueda hablar."
+    }
+  ]
+}

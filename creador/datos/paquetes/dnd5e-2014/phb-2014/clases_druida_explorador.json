@@ -1,1 +1,129 @@
-{}
+{
+  "clases": [
+    {
+      "id": "druida",
+      "modifica": true,
+      "oro_inicial": "2d4x10"
+    },
+    {
+      "id": "explorador",
+      "modifica": true,
+      "oro_inicial": "5d4x10"
+    }
+  ],
+  "subclases": [
+    {
+      "id": "circulo_de_la_luna",
+      "nombre": "Círculo de la Luna",
+      "clase": "druida",
+      "fuente": "PHB 2014",
+      "descripcion": "Druidas que guardan los rincones más indómitos y se reúnen bajo la luna llena; su comunión con lo salvaje les deja tomar formas de bestia mucho más temibles y combatir con ellas.",
+      "perfil": {
+        "naturaleza": 3,
+        "combate": 2,
+        "aguante": 2
+      },
+      "niveles": {
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Forma Salvaje de Combate",
+            "resumen": "usas Forma Salvaje como acción adicional; transformado, con una acción adicional gastas un espacio de conjuro y recuperas 1d8 PG por cada nivel del espacio",
+            "descripcion": "Al entrar en este círculo puedes activar Forma Salvaje en tu turno con una acción adicional en vez de con una acción. Además, mientras estés transformado puedes usar una acción adicional para gastar un espacio de conjuro y curarte 1d8 puntos de golpe por cada nivel de ese espacio."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Formas del Círculo",
+            "resumen": "Forma Salvaje: bestias de VD {max(1,nivel_clase//3)} o menos (en lugar del VD máximo de la tabla), {escala}",
+            "descripcion": "Los ritos de tu círculo te abren formas animales más peligrosas: desde el nivel 2, Forma Salvaje te permite convertirte en bestias de VD 1 o inferior, sin hacer caso de la columna de VD máximo de la tabla «Formas de bestia» pero respetando sus demás limitaciones. A partir del nivel 6, el VD máximo pasa a ser tu nivel de druida dividido entre 3, redondeando hacia abajo.",
+            "escala": {
+              "2": "sin velocidad nadando ni volando",
+              "4": "sin velocidad volando",
+              "8": "sin limitaciones de velocidad"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "senor_de_las_bestias",
+      "nombre": "Señor de las Bestias",
+      "clase": "explorador",
+      "fuente": "PHB 2014",
+      "descripcion": "Exploradores que forjan un lazo profundo con un animal y luchan junto a él como un solo equipo, unidos por un vínculo casi mágico con el mundo natural.",
+      "perfil": {
+        "naturaleza": 3,
+        "combate": 2,
+        "agilidad": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Compañero del Explorador",
+            "resumen": "bestia compañera Mediana o menor de VD 1/4 o menos (p. ej., halcón, mastín o pantera): suma +{competencia} a su CA, ataques, daño y salvaciones y habilidades con competencia; PG máximos: los de su perfil o {4*nivel_clase}, lo que sea mayor; actúa en tu iniciativa: le indicas dónde moverse sin gastar acción y, con tu acción, le ordenas Atacar, Correr, Destrabarse, Esquivar o Ayudar{escala}",
+            "descripcion": "Una bestia entrenada para luchar a tu lado te acompaña: debe ser de tamaño Mediano o menor y de VD 1/4 o inferior. Le sumas tu bonificador por competencia a la CA, a las tiradas de ataque y de daño y a las salvaciones y habilidades en las que sea competente; sus PG máximos son los de su perfil o cuatro veces tu nivel de explorador, lo que sea mayor, y como cualquier criatura puede gastar Dados de Golpe en un descanso corto. Te obedece y actúa en tu turno de iniciativa, pero solo realiza una acción si se la ordenas usando la tuya (Atacar, Correr, Destrabarse, Esquivar o Ayudar); cuando tienes Ataque Adicional, al ordenarle atacar también puedes hacer tú un ataque con arma. Si viajáis solos por tu terreno predilecto podéis moveros con sigilo a ritmo normal, y si muere puedes conseguir otra pasando 8 horas creando un vínculo mágico con una bestia que no te sea hostil.",
+            "escala": {
+              "3": "",
+              "5": "; al ordenarle Atacar, tú también haces un ataque con arma"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "opciones": [
+    {
+      "id": "circulo_infraoscuridad",
+      "nombre": "Conjuros de círculo: Infraoscuridad",
+      "grupo": "terreno_del_circulo",
+      "clases": [
+        "druida"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "siempre preparados, sin contar para el límite: trepar cual arácnido y telaraña desde nivel 3 de druida; forma gaseosa y nube apestosa desde nivel 5",
+      "descripcion": "Tu iniciación tuvo lugar en la Infraoscuridad, y su magia queda unida a la tuya. Cuando llegas a los niveles de druida 3, 5, 7 y 9 ganas sus conjuros de círculo, que tienes preparados en todo momento sin que ocupen hueco en tu preparación diaria y que cuentan como conjuros de druida aunque no figuren en esa lista: a nivel 3, trepar cual arácnido y telaraña; a nivel 5, forma gaseosa y nube apestosa; a nivel 7, invisibilidad mejorada y moldear la piedra; a nivel 9, nube aniquiladora y plaga de insectos.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "trepar_cual_aracnido",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 3
+        },
+        {
+          "tipo": "conjuro",
+          "id": "telarana",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 3
+        },
+        {
+          "tipo": "conjuro",
+          "id": "forma_gaseosa",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 5
+        },
+        {
+          "tipo": "conjuro",
+          "id": "nube_apestosa",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 5
+        }
+      ]
+    },
+    {
+      "id": "terreno_infraoscuridad",
+      "nombre": "Explorador Nato: Infraoscuridad",
+      "grupo": "terreno_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "pruebas de INT o SAB relacionadas con la Infraoscuridad: doble bonificador por competencia si usas una habilidad con competencia; viajando 1 h o más por ella: el terreno difícil no frena a tu grupo, no os perdéis salvo por magia, sigues alerta aunque hagas otra actividad, vas con sigilo a ritmo normal si viajas solo, encuentras el doble de comida al forrajear y, al rastrear, sabes cuántas criaturas son, su tamaño y hace cuánto pasaron",
+      "descripcion": "Tu terreno predilecto es la Infraoscuridad. En las pruebas de Inteligencia o Sabiduría relacionadas con ella, tu bonificador por competencia se duplica si usas una habilidad en la que eres competente. Cuando viajas al menos una hora por ella, el terreno difícil no ralentiza el viaje de tu grupo, no os podéis perder salvo por medios mágicos, permaneces atento al peligro aunque estés ocupado en otra actividad (forrajear, orientarte o rastrear), puedes moverte con sigilo a ritmo normal si viajas solo, encuentras el doble de comida al forrajear y, al rastrear a otras criaturas, descubres cuántas son, su tamaño y hace cuánto pasaron. A niveles 6 y 10 eliges otro terreno predilecto."
+    }
+  ]
+}

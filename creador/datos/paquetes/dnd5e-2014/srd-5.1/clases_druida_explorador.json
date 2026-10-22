@@ -1,1 +1,1531 @@
-{}
+{
+  "clases": [
+    {
+      "id": "druida",
+      "nombre": "Druida",
+      "fuente": "SRD 5.1 p. 25",
+      "descripcion": "Sacerdote de la Antigua Fe que extrae su magia de la esencia de la naturaleza: lanza conjuros que moldean el mundo natural, adopta la forma de las bestias que ha visto y no lleva armaduras ni escudos de metal.",
+      "perfil": {
+        "naturaleza": 3,
+        "arcano": 2,
+        "curacion": 1,
+        "fe": 1
+      },
+      "dado_golpe": 8,
+      "salvaciones": [
+        "int",
+        "sab"
+      ],
+      "nivel_subclase": 2,
+      "competencias": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_medias"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "escudos"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Armaduras y escudos no metálicos",
+          "resumen": "los druidas no llevan armaduras ni usan escudos hechos de metal",
+          "descripcion": "Tu competencia con armaduras ligeras y medias y con escudos lleva una condición: los druidas no llevan armaduras ni usan escudos hechos de metal."
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "baston"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "cimitarra"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "daga"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "dardo"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "garrote"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "hoz"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "honda"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "jabalina"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "lanza"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "maza"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "utiles_de_herborista"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "habilidades",
+          "nombre": "Habilidades de druida",
+          "elegir": 2,
+          "fuente": "habilidades",
+          "opciones": [
+            "conocimiento_arcano",
+            "medicina",
+            "naturaleza",
+            "percepcion",
+            "perspicacia",
+            "religion",
+            "supervivencia",
+            "trato_con_animales"
+          ],
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "habilidad",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "competencias_multiclase": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_medias"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "escudos"
+        },
+        {
+          "tipo": "rasgo",
+          "nombre": "Armaduras y escudos no metálicos",
+          "resumen": "los druidas no llevan armaduras ni usan escudos hechos de metal",
+          "descripcion": "Tu competencia con armaduras ligeras y medias y con escudos lleva una condición: los druidas no llevan armaduras ni usan escudos hechos de metal."
+        }
+      ],
+      "requisitos_multiclase": {
+        "caracteristicas": {
+          "sab": 13
+        }
+      },
+      "equipo_inicial": [
+        [
+          [
+            {
+              "id": "escudo"
+            }
+          ],
+          [
+            {
+              "desde": "armas",
+              "filtro": {
+                "arma": {
+                  "categoria": "sencilla"
+                }
+              }
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "cimitarra"
+            }
+          ],
+          [
+            {
+              "desde": "armas",
+              "filtro": {
+                "arma": {
+                  "categoria": "sencilla",
+                  "tipo": "cuerpo_a_cuerpo"
+                }
+              }
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "armadura_de_cuero"
+            },
+            {
+              "id": "paquete_de_explorador"
+            },
+            {
+              "desde": "objetos",
+              "filtro": {
+                "categoria": "foco",
+                "subcategoria": "druidico"
+              }
+            }
+          ]
+        ]
+      ],
+      "lanzamiento": {
+        "caracteristica": "sab",
+        "progresion": "completo",
+        "trucos_conocidos": [
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "preparados": "nivel"
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "competencia",
+            "categoria": "idioma",
+            "id": "druidico"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Druídico",
+            "resumen": "hablas druídico, el idioma secreto de los druidas, y puedes dejar mensajes ocultos en él: quien no lo sepa necesita una prueba de SAB (Percepción) CD 15 para verlos y magia para descifrarlos",
+            "descripcion": "Sabes druídico, el idioma secreto de los druidas. Puedes hablarlo y usarlo para dejar mensajes ocultos, que tú y cualquiera que lo conozca detectáis de inmediato; los demás deben superar una prueba de Sabiduría (Percepción) CD 15 para advertirlos y no pueden descifrarlos sin magia."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Lanzamiento de Conjuros",
+            "resumen": "SAB; CD {8+competencia+mod_sab}, ataque +{competencia+mod_sab}; trucos conocidos: {escala}; conjuros preparados: {max(1,mod_sab+nivel_clase)}, se cambian tras cada descanso largo (los de círculo no cuentan); rituales si están preparados; canalizador: canalizador druídico",
+            "descripcion": "Conoces trucos de druida según tu nivel y, tras cada descanso largo, preparas tantos conjuros de la lista del druida como tu nivel de druida + tu modificador por Sabiduría (mínimo uno), de niveles para los que tengas espacios; prepararlos lleva al menos 1 minuto por nivel de cada conjuro. La Sabiduría es tu aptitud mágica; puedes lanzar como ritual los conjuros preparados que lo permitan y usar un canalizador druídico como canalizador mágico.",
+            "escala": {
+              "1": 2,
+              "4": 3,
+              "10": 4
+            }
+          }
+        ],
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Forma Salvaje",
+            "resumen": "acción: adoptas la forma de una bestia que hayas visto, de VD {escala}; dura hasta {nivel_clase//2} h; vuelves a tu forma con una acción adicional, o al quedar inconsciente, caer a 0 PG o morir; transformado no puedes lanzar conjuros",
+            "descripcion": "Como acción adoptas mágicamente la forma de una bestia que hayas visto antes, con el VD máximo y las limitaciones de velocidad que marca tu nivel de druida (tabla «Formas de bestia»). Usas el perfil de la bestia, incluidos sus puntos de golpe y Dados de Golpe, pero conservas tu alineamiento, tu personalidad, tus puntuaciones de Inteligencia, Sabiduría y Carisma y tus competencias en habilidades y salvaciones; al volver a tu forma recuperas los PG que tenías y el daño sobrante se aplica a tu forma normal. Transformado no puedes lanzar conjuros (no se rompe tu concentración), tus acciones dependen de lo que pueda hacer la bestia, no usas tus sentidos especiales salvo que ella los tenga y eliges si tu equipo cae al suelo, se funde con la nueva forma o lo sigues llevando.",
+            "usos": 2,
+            "recarga": "corto",
+            "escala": {
+              "2": "1/4 o menos, sin velocidad nadando ni volando (p. ej., lobo)",
+              "4": "1/2 o menos, sin velocidad volando (p. ej., cocodrilo)",
+              "8": "1 o menos (p. ej., águila gigante)"
+            }
+          }
+        ],
+        "4": [
+          {
+            "tipo": "mejora_caracteristica"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Mejora de Forma Salvaje",
+            "resumen": "Forma Salvaje: bestias de VD 1/2 o menos, ya con velocidad nadando (pero no volando); a nivel 8, VD 1 o menos sin limitaciones de velocidad",
+            "descripcion": "Tu Forma Salvaje mejora a niveles 4 y 8 de druida, como indica la tabla «Formas de bestia»: a nivel 4 puedes adoptar la forma de bestias de VD 1/2 o menos que no tengan velocidad volando, y a nivel 8, de VD 1 o menos sin limitaciones de velocidad."
+          }
+        ]
+      }
+    },
+    {
+      "id": "explorador",
+      "nombre": "Explorador",
+      "fuente": "SRD 5.1 p. 30",
+      "descripcion": "Cazador y rastreador de las tierras salvajes que vigila las fronteras de la civilización: une el dominio de las armas, el conocimiento de su terreno y de sus enemigos predilectos y una magia natural parecida a la de los druidas.",
+      "perfil": {
+        "naturaleza": 3,
+        "agilidad": 2,
+        "sigilo": 2,
+        "combate": 1
+      },
+      "dado_golpe": 10,
+      "salvaciones": [
+        "fue",
+        "des"
+      ],
+      "nivel_subclase": 3,
+      "competencias": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_medias"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "escudos"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_sencillas"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_marciales"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "habilidades",
+          "nombre": "Habilidades de explorador",
+          "elegir": 3,
+          "fuente": "habilidades",
+          "opciones": [
+            "atletismo",
+            "investigacion",
+            "naturaleza",
+            "percepcion",
+            "perspicacia",
+            "sigilo",
+            "supervivencia",
+            "trato_con_animales"
+          ],
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "habilidad",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "competencias_multiclase": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_medias"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "escudos"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_sencillas"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_marciales"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "habilidad",
+          "nombre": "Habilidad de explorador (multiclase)",
+          "elegir": 1,
+          "fuente": "habilidades",
+          "opciones": [
+            "atletismo",
+            "investigacion",
+            "naturaleza",
+            "percepcion",
+            "perspicacia",
+            "sigilo",
+            "supervivencia",
+            "trato_con_animales"
+          ],
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "habilidad",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "requisitos_multiclase": {
+        "caracteristicas": {
+          "des": 13,
+          "sab": 13
+        }
+      },
+      "equipo_inicial": [
+        [
+          [
+            {
+              "id": "cota_de_escamas"
+            }
+          ],
+          [
+            {
+              "id": "armadura_de_cuero"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "espada_corta",
+              "cantidad": 2
+            }
+          ],
+          [
+            {
+              "desde": "armas",
+              "filtro": {
+                "arma": {
+                  "categoria": "sencilla",
+                  "tipo": "cuerpo_a_cuerpo"
+                }
+              },
+              "cantidad": 2
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "paquete_de_explorador_de_mazmorras"
+            }
+          ],
+          [
+            {
+              "id": "paquete_de_explorador"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "arco_largo"
+            },
+            {
+              "id": "aljaba"
+            },
+            {
+              "id": "flecha",
+              "cantidad": 20
+            }
+          ]
+        ]
+      ],
+      "lanzamiento": {
+        "caracteristica": "sab",
+        "progresion": "medio",
+        "conjuros_conocidos": [
+          0,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5,
+          5,
+          6,
+          6,
+          7,
+          7,
+          8,
+          8,
+          9,
+          9,
+          10,
+          10,
+          11,
+          11
+        ]
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "eleccion",
+            "id": "enemigo_predilecto",
+            "nombre": "Enemigo Predilecto",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "enemigo_predilecto",
+                "clases": "explorador"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "eleccion",
+            "id": "terreno_predilecto",
+            "nombre": "Explorador Nato: terreno predilecto",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "terreno_predilecto",
+                "clases": "explorador"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "tipo": "eleccion",
+            "id": "estilo_combate",
+            "nombre": "Estilo de Combate",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "estilo_combate",
+                "clases": "explorador"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Lanzamiento de Conjuros",
+            "resumen": "SAB; CD {8+competencia+mod_sab}, ataque +{competencia+mod_sab}; conjuros conocidos: {escala} (al subir de nivel puedes cambiar uno por otro de la lista del explorador); sin trucos",
+            "descripcion": "Desde el nivel 2 lanzas conjuros de la lista del explorador con la Sabiduría como aptitud mágica. Conoces dos conjuros de nivel 1 y aprendes más según la columna «Conjuros conocidos» de la tabla «El explorador», siempre de niveles para los que tengas espacios; cada vez que subes de nivel en esta clase puedes cambiar uno de los que conoces por otro de la lista.",
+            "escala": {
+              "2": 2,
+              "3": 3,
+              "5": 4,
+              "7": 5,
+              "9": 6,
+              "11": 7,
+              "13": 8,
+              "15": 9,
+              "17": 10,
+              "19": 11
+            }
+          }
+        ],
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Percepción Primigenia",
+            "resumen": "acción y un espacio de conjuro de explorador: durante 1 minuto por nivel del espacio sabes si hay aberraciones, celestiales, dragones, elementales, feéricos, infernales o muertos vivientes a 1 milla o menos (6 millas en tu terreno predilecto); no revela cuántos son ni dónde están",
+            "descripcion": "Usas tu acción y gastas un espacio de conjuro de explorador para concentrar tu percepción en la región. Durante 1 minuto por cada nivel del espacio, sientes si hay aberraciones, celestiales, dragones, elementales, feéricos, infernales o muertos vivientes a 1 milla o menos de ti (6 millas si estás en tu terreno predilecto), pero no cuántos son ni dónde están."
+          }
+        ],
+        "4": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "5": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Ataque Adicional",
+            "resumen": "2 ataques al usar la acción de Atacar",
+            "descripcion": "Cuando realizas la acción de Atacar durante tu turno, puedes hacer dos ataques en lugar de uno."
+          }
+        ]
+      }
+    }
+  ],
+  "subclases": [
+    {
+      "id": "circulo_de_la_tierra",
+      "nombre": "Círculo de la Tierra",
+      "clase": "druida",
+      "fuente": "SRD 5.1 p. 27",
+      "descripcion": "Místicos y eruditos que custodian ritos y saberes antiguos mediante una rica tradición oral y se reúnen en círculos sagrados de árboles o menhires; su magia está marcada por la tierra en la que fueron iniciados.",
+      "perfil": {
+        "arcano": 3,
+        "naturaleza": 2,
+        "saber": 2
+      },
+      "niveles": {
+        "2": [
+          {
+            "tipo": "eleccion",
+            "id": "truco_adicional",
+            "nombre": "Truco Adicional: truco de druida",
+            "opciones": {
+              "desde": "conjuros",
+              "filtro": {
+                "listas": "druida",
+                "nivel": 0
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "conjuro",
+                "id": "$opcion",
+                "clase": "druida",
+                "siempre_preparado": true
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Truco Adicional",
+            "resumen": "un truco de druida adicional a tu elección (no cuenta para tus trucos conocidos)",
+            "descripcion": "Cuando escoges este círculo a nivel 2, aprendes un truco de druida adicional a tu elección."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Recuperación Natural",
+            "resumen": "durante un descanso corto recuperas espacios de conjuro gastados que sumen hasta {(nivel_clase+1)//2} niveles (ninguno de nivel 6 o superior); 1 vez por descanso largo",
+            "descripcion": "Durante un descanso corto puedes meditar y comulgar con la naturaleza para recuperar espacios de conjuro gastados cuya suma de niveles no supere la mitad de tu nivel de druida, redondeada hacia arriba; ninguno puede ser de nivel 6 o superior. No puedes volver a usar este rasgo hasta terminar un descanso largo.",
+            "usos": 1,
+            "recarga": "largo"
+          },
+          {
+            "tipo": "eleccion",
+            "id": "terreno",
+            "nombre": "Conjuros de círculo: terreno",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "terreno_del_circulo",
+                "clases": "druida"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cazador",
+      "nombre": "Cazador",
+      "clase": "explorador",
+      "fuente": "SRD 5.1 p. 33",
+      "descripcion": "Explorador que asume su papel de baluarte entre la civilización y los terrores de lo salvaje, y aprende técnicas especializadas para enfrentarse a incursores ogros, hordas de orcos, gigantes o dragones.",
+      "perfil": {
+        "combate": 3,
+        "agilidad": 2,
+        "proteccion": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "eleccion",
+            "id": "presa",
+            "nombre": "El Cazador y la Presa",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "presa_del_cazador",
+                "clases": "explorador"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "opciones": [
+    {
+      "id": "circulo_artico",
+      "nombre": "Conjuros de círculo: Ártico",
+      "grupo": "terreno_del_circulo",
+      "clases": [
+        "druida"
+      ],
+      "fuente": "SRD 5.1 p. 28",
+      "resumen": "siempre preparados, sin contar para el límite: crecimiento espinoso y inmovilizar persona desde nivel 3 de druida; ralentizar y tormenta de aguanieve desde nivel 5",
+      "descripcion": "Te convertiste en druida en el ártico. Al alcanzar los niveles de druida 3, 5, 7 y 9 accedes a sus conjuros de círculo, que siempre se consideran preparados, no cuentan para el total que preparas cada día y son para ti conjuros de druida aunque no estén en su lista: nivel 3, crecimiento espinoso y inmovilizar persona; nivel 5, ralentizar y tormenta de aguanieve; nivel 7, libertad de movimiento y tormenta de hielo; nivel 9, comunión con la naturaleza y cono de frío.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "crecimiento_espinoso",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 3
+        },
+        {
+          "tipo": "conjuro",
+          "id": "inmovilizar_persona",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 3
+        },
+        {
+          "tipo": "conjuro",
+          "id": "ralentizar",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 5
+        },
+        {
+          "tipo": "conjuro",
+          "id": "tormenta_de_aguanieve",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 5
+        }
+      ]
+    },
+    {
+      "id": "circulo_bosque",
+      "nombre": "Conjuros de círculo: Bosque",
+      "grupo": "terreno_del_circulo",
+      "clases": [
+        "druida"
+      ],
+      "fuente": "SRD 5.1 p. 28",
+      "resumen": "siempre preparados, sin contar para el límite: piel robliza y trepar cual arácnido desde nivel 3 de druida; crecimiento vegetal y llamar al relámpago desde nivel 5",
+      "descripcion": "Te convertiste en druida en el bosque. Al alcanzar los niveles de druida 3, 5, 7 y 9 accedes a sus conjuros de círculo, que siempre se consideran preparados, no cuentan para el total que preparas cada día y son para ti conjuros de druida aunque no estén en su lista: nivel 3, piel robliza y trepar cual arácnido; nivel 5, crecimiento vegetal y llamar al relámpago; nivel 7, adivinación y libertad de movimiento; nivel 9, comunión con la naturaleza y paso arbóreo.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "piel_robliza",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 3
+        },
+        {
+          "tipo": "conjuro",
+          "id": "trepar_cual_aracnido",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 3
+        },
+        {
+          "tipo": "conjuro",
+          "id": "crecimiento_vegetal",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 5
+        },
+        {
+          "tipo": "conjuro",
+          "id": "llamar_al_relampago",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 5
+        }
+      ]
+    },
+    {
+      "id": "circulo_costa",
+      "nombre": "Conjuros de círculo: Costa",
+      "grupo": "terreno_del_circulo",
+      "clases": [
+        "druida"
+      ],
+      "fuente": "SRD 5.1 p. 28",
+      "resumen": "siempre preparados, sin contar para el límite: imagen múltiple y paso brumoso desde nivel 3 de druida; caminar sobre el agua y respirar bajo el agua desde nivel 5",
+      "descripcion": "Te convertiste en druida en la costa. Al alcanzar los niveles de druida 3, 5, 7 y 9 accedes a sus conjuros de círculo, que siempre se consideran preparados, no cuentan para el total que preparas cada día y son para ti conjuros de druida aunque no estén en su lista: nivel 3, imagen múltiple y paso brumoso; nivel 5, caminar sobre el agua y respirar bajo el agua; nivel 7, controlar agua y libertad de movimiento; nivel 9, conjurar elemental y escudriñar.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "imagen_multiple",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 3
+        },
+        {
+          "tipo": "conjuro",
+          "id": "paso_brumoso",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 3
+        },
+        {
+          "tipo": "conjuro",
+          "id": "caminar_sobre_el_agua",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 5
+        },
+        {
+          "tipo": "conjuro",
+          "id": "respirar_bajo_el_agua",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 5
+        }
+      ]
+    },
+    {
+      "id": "circulo_desierto",
+      "nombre": "Conjuros de círculo: Desierto",
+      "grupo": "terreno_del_circulo",
+      "clases": [
+        "druida"
+      ],
+      "fuente": "SRD 5.1 p. 28",
+      "resumen": "siempre preparados, sin contar para el límite: contorno borroso y silencio desde nivel 3 de druida; crear comida y agua y protección contra energía desde nivel 5",
+      "descripcion": "Te convertiste en druida en el desierto. Al alcanzar los niveles de druida 3, 5, 7 y 9 accedes a sus conjuros de círculo, que siempre se consideran preparados, no cuentan para el total que preparas cada día y son para ti conjuros de druida aunque no estén en su lista: nivel 3, contorno borroso y silencio; nivel 5, crear comida y agua y protección contra energía; nivel 7, marchitar y terreno alucinatorio; nivel 9, muro de piedra y plaga de insectos.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "contorno_borroso",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 3
+        },
+        {
+          "tipo": "conjuro",
+          "id": "silencio",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 3
+        },
+        {
+          "tipo": "conjuro",
+          "id": "crear_comida_y_agua",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 5
+        },
+        {
+          "tipo": "conjuro",
+          "id": "proteccion_contra_energia",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 5
+        }
+      ]
+    },
+    {
+      "id": "circulo_montana",
+      "nombre": "Conjuros de círculo: Montaña",
+      "grupo": "terreno_del_circulo",
+      "clases": [
+        "druida"
+      ],
+      "fuente": "SRD 5.1 p. 28",
+      "resumen": "siempre preparados, sin contar para el límite: crecimiento espinoso y trepar cual arácnido desde nivel 3 de druida; fundirse con la piedra y relámpago desde nivel 5",
+      "descripcion": "Te convertiste en druida en la montaña. Al alcanzar los niveles de druida 3, 5, 7 y 9 accedes a sus conjuros de círculo, que siempre se consideran preparados, no cuentan para el total que preparas cada día y son para ti conjuros de druida aunque no estén en su lista: nivel 3, crecimiento espinoso y trepar cual arácnido; nivel 5, fundirse con la piedra y relámpago; nivel 7, moldear la piedra y piel pétrea; nivel 9, muro de piedra y pasamuros.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "crecimiento_espinoso",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 3
+        },
+        {
+          "tipo": "conjuro",
+          "id": "trepar_cual_aracnido",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 3
+        },
+        {
+          "tipo": "conjuro",
+          "id": "fundirse_con_la_piedra",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 5
+        },
+        {
+          "tipo": "conjuro",
+          "id": "relampago",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 5
+        }
+      ]
+    },
+    {
+      "id": "circulo_pantano",
+      "nombre": "Conjuros de círculo: Pantano",
+      "grupo": "terreno_del_circulo",
+      "clases": [
+        "druida"
+      ],
+      "fuente": "SRD 5.1 p. 28",
+      "resumen": "siempre preparados, sin contar para el límite: flecha ácida y oscuridad desde nivel 3 de druida; caminar sobre el agua y nube apestosa desde nivel 5",
+      "descripcion": "Te convertiste en druida en el pantano. Al alcanzar los niveles de druida 3, 5, 7 y 9 accedes a sus conjuros de círculo, que siempre se consideran preparados, no cuentan para el total que preparas cada día y son para ti conjuros de druida aunque no estén en su lista: nivel 3, flecha ácida y oscuridad; nivel 5, caminar sobre el agua y nube apestosa; nivel 7, libertad de movimiento y localizar criatura; nivel 9, escudriñar y plaga de insectos.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "flecha_acida",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 3
+        },
+        {
+          "tipo": "conjuro",
+          "id": "oscuridad",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 3
+        },
+        {
+          "tipo": "conjuro",
+          "id": "caminar_sobre_el_agua",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 5
+        },
+        {
+          "tipo": "conjuro",
+          "id": "nube_apestosa",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 5
+        }
+      ]
+    },
+    {
+      "id": "circulo_pradera",
+      "nombre": "Conjuros de círculo: Pradera",
+      "grupo": "terreno_del_circulo",
+      "clases": [
+        "druida"
+      ],
+      "fuente": "SRD 5.1 p. 28",
+      "resumen": "siempre preparados, sin contar para el límite: invisibilidad y pasar sin rastro desde nivel 3 de druida; acelerar y luz del día desde nivel 5",
+      "descripcion": "Te convertiste en druida en la pradera. Al alcanzar los niveles de druida 3, 5, 7 y 9 accedes a sus conjuros de círculo, que siempre se consideran preparados, no cuentan para el total que preparas cada día y son para ti conjuros de druida aunque no estén en su lista: nivel 3, invisibilidad y pasar sin rastro; nivel 5, acelerar y luz del día; nivel 7, adivinación y libertad de movimiento; nivel 9, ensueño y plaga de insectos.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "invisibilidad",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 3
+        },
+        {
+          "tipo": "conjuro",
+          "id": "pasar_sin_rastro",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 3
+        },
+        {
+          "tipo": "conjuro",
+          "id": "acelerar",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 5
+        },
+        {
+          "tipo": "conjuro",
+          "id": "luz_del_dia",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 5
+        }
+      ]
+    },
+    {
+      "id": "enemigo_aberraciones",
+      "nombre": "Enemigo Predilecto: Aberraciones",
+      "grupo": "enemigo_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 30",
+      "resumen": "ventaja en pruebas de SAB (Supervivencia) para rastrearlas y de INT para recordar información sobre ellas; conoces un idioma que hablen (si hablan alguno)",
+      "descripcion": "Tus enemigos predilectos son las aberraciones. Tienes ventaja en las pruebas de Sabiduría (Supervivencia) para rastrearlas y en las pruebas de Inteligencia para recordar información sobre ellas. Al elegir este enemigo aprendes un idioma de tu elección que hablen, si es que hablan alguno. A niveles 6 y 14 eliges otro enemigo predilecto, con su idioma.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "idioma",
+          "nombre": "Idioma de tu enemigo predilecto",
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enemigo_automatas",
+      "nombre": "Enemigo Predilecto: Autómatas",
+      "grupo": "enemigo_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 30",
+      "resumen": "ventaja en pruebas de SAB (Supervivencia) para rastrearlos y de INT para recordar información sobre ellos; conoces un idioma que hablen (si hablan alguno)",
+      "descripcion": "Tus enemigos predilectos son los autómatas. Tienes ventaja en las pruebas de Sabiduría (Supervivencia) para rastrearlos y en las pruebas de Inteligencia para recordar información sobre ellos. Al elegir este enemigo aprendes un idioma de tu elección que hablen, si es que hablan alguno. A niveles 6 y 14 eliges otro enemigo predilecto, con su idioma.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "idioma",
+          "nombre": "Idioma de tu enemigo predilecto",
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enemigo_bestias",
+      "nombre": "Enemigo Predilecto: Bestias",
+      "grupo": "enemigo_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 30",
+      "resumen": "ventaja en pruebas de SAB (Supervivencia) para rastrearlas y de INT para recordar información sobre ellas",
+      "descripcion": "Tus enemigos predilectos son las bestias. Tienes ventaja en las pruebas de Sabiduría (Supervivencia) para rastrearlas y en las pruebas de Inteligencia para recordar información sobre ellas. Las bestias no hablan ningún idioma, así que esta elección no te da ninguno. A niveles 6 y 14 eliges otro enemigo predilecto, con su idioma.",
+      "efectos": []
+    },
+    {
+      "id": "enemigo_celestiales",
+      "nombre": "Enemigo Predilecto: Celestiales",
+      "grupo": "enemigo_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 30",
+      "resumen": "ventaja en pruebas de SAB (Supervivencia) para rastrearlos y de INT para recordar información sobre ellos; conoces un idioma que hablen (si hablan alguno)",
+      "descripcion": "Tus enemigos predilectos son los celestiales. Tienes ventaja en las pruebas de Sabiduría (Supervivencia) para rastrearlos y en las pruebas de Inteligencia para recordar información sobre ellos. Al elegir este enemigo aprendes un idioma de tu elección que hablen, si es que hablan alguno. A niveles 6 y 14 eliges otro enemigo predilecto, con su idioma.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "idioma",
+          "nombre": "Idioma de tu enemigo predilecto",
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enemigo_cienos",
+      "nombre": "Enemigo Predilecto: Cienos",
+      "grupo": "enemigo_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 30",
+      "resumen": "ventaja en pruebas de SAB (Supervivencia) para rastrearlos y de INT para recordar información sobre ellos",
+      "descripcion": "Tus enemigos predilectos son los cienos. Tienes ventaja en las pruebas de Sabiduría (Supervivencia) para rastrearlos y en las pruebas de Inteligencia para recordar información sobre ellos. Los cienos no hablan ningún idioma, así que esta elección no te da ninguno. A niveles 6 y 14 eliges otro enemigo predilecto, con su idioma.",
+      "efectos": []
+    },
+    {
+      "id": "enemigo_dragones",
+      "nombre": "Enemigo Predilecto: Dragones",
+      "grupo": "enemigo_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 30",
+      "resumen": "ventaja en pruebas de SAB (Supervivencia) para rastrearlos y de INT para recordar información sobre ellos; conoces un idioma que hablen (si hablan alguno)",
+      "descripcion": "Tus enemigos predilectos son los dragones. Tienes ventaja en las pruebas de Sabiduría (Supervivencia) para rastrearlos y en las pruebas de Inteligencia para recordar información sobre ellos. Al elegir este enemigo aprendes un idioma de tu elección que hablen, si es que hablan alguno. A niveles 6 y 14 eliges otro enemigo predilecto, con su idioma.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "idioma",
+          "nombre": "Idioma de tu enemigo predilecto",
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enemigo_elementales",
+      "nombre": "Enemigo Predilecto: Elementales",
+      "grupo": "enemigo_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 30",
+      "resumen": "ventaja en pruebas de SAB (Supervivencia) para rastrearlos y de INT para recordar información sobre ellos; conoces un idioma que hablen (si hablan alguno)",
+      "descripcion": "Tus enemigos predilectos son los elementales. Tienes ventaja en las pruebas de Sabiduría (Supervivencia) para rastrearlos y en las pruebas de Inteligencia para recordar información sobre ellos. Al elegir este enemigo aprendes un idioma de tu elección que hablen, si es que hablan alguno. A niveles 6 y 14 eliges otro enemigo predilecto, con su idioma.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "idioma",
+          "nombre": "Idioma de tu enemigo predilecto",
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enemigo_feericos",
+      "nombre": "Enemigo Predilecto: Feéricos",
+      "grupo": "enemigo_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 30",
+      "resumen": "ventaja en pruebas de SAB (Supervivencia) para rastrearlos y de INT para recordar información sobre ellos; conoces un idioma que hablen (si hablan alguno)",
+      "descripcion": "Tus enemigos predilectos son los feéricos. Tienes ventaja en las pruebas de Sabiduría (Supervivencia) para rastrearlos y en las pruebas de Inteligencia para recordar información sobre ellos. Al elegir este enemigo aprendes un idioma de tu elección que hablen, si es que hablan alguno. A niveles 6 y 14 eliges otro enemigo predilecto, con su idioma.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "idioma",
+          "nombre": "Idioma de tu enemigo predilecto",
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enemigo_gigantes",
+      "nombre": "Enemigo Predilecto: Gigantes",
+      "grupo": "enemigo_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 30",
+      "resumen": "ventaja en pruebas de SAB (Supervivencia) para rastrearlos y de INT para recordar información sobre ellos; conoces un idioma que hablen (si hablan alguno)",
+      "descripcion": "Tus enemigos predilectos son los gigantes. Tienes ventaja en las pruebas de Sabiduría (Supervivencia) para rastrearlos y en las pruebas de Inteligencia para recordar información sobre ellos. Al elegir este enemigo aprendes un idioma de tu elección que hablen, si es que hablan alguno. A niveles 6 y 14 eliges otro enemigo predilecto, con su idioma.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "idioma",
+          "nombre": "Idioma de tu enemigo predilecto",
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enemigo_infernales",
+      "nombre": "Enemigo Predilecto: Infernales",
+      "grupo": "enemigo_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 30",
+      "resumen": "ventaja en pruebas de SAB (Supervivencia) para rastrearlos y de INT para recordar información sobre ellos; conoces un idioma que hablen (si hablan alguno)",
+      "descripcion": "Tus enemigos predilectos son los infernales. Tienes ventaja en las pruebas de Sabiduría (Supervivencia) para rastrearlos y en las pruebas de Inteligencia para recordar información sobre ellos. Al elegir este enemigo aprendes un idioma de tu elección que hablen, si es que hablan alguno. A niveles 6 y 14 eliges otro enemigo predilecto, con su idioma.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "idioma",
+          "nombre": "Idioma de tu enemigo predilecto",
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enemigo_monstruosidades",
+      "nombre": "Enemigo Predilecto: Monstruosidades",
+      "grupo": "enemigo_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 30",
+      "resumen": "ventaja en pruebas de SAB (Supervivencia) para rastrearlas y de INT para recordar información sobre ellas; conoces un idioma que hablen (si hablan alguno)",
+      "descripcion": "Tus enemigos predilectos son las monstruosidades. Tienes ventaja en las pruebas de Sabiduría (Supervivencia) para rastrearlas y en las pruebas de Inteligencia para recordar información sobre ellas. Al elegir este enemigo aprendes un idioma de tu elección que hablen, si es que hablan alguno. A niveles 6 y 14 eliges otro enemigo predilecto, con su idioma.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "idioma",
+          "nombre": "Idioma de tu enemigo predilecto",
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enemigo_muertos_vivientes",
+      "nombre": "Enemigo Predilecto: Muertos vivientes",
+      "grupo": "enemigo_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 30",
+      "resumen": "ventaja en pruebas de SAB (Supervivencia) para rastrearlos y de INT para recordar información sobre ellos; conoces un idioma que hablen (si hablan alguno)",
+      "descripcion": "Tus enemigos predilectos son los muertos vivientes. Tienes ventaja en las pruebas de Sabiduría (Supervivencia) para rastrearlos y en las pruebas de Inteligencia para recordar información sobre ellos. Al elegir este enemigo aprendes un idioma de tu elección que hablen, si es que hablan alguno. A niveles 6 y 14 eliges otro enemigo predilecto, con su idioma.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "idioma",
+          "nombre": "Idioma de tu enemigo predilecto",
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enemigo_plantas",
+      "nombre": "Enemigo Predilecto: Plantas",
+      "grupo": "enemigo_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 30",
+      "resumen": "ventaja en pruebas de SAB (Supervivencia) para rastrearlas y de INT para recordar información sobre ellas; conoces un idioma que hablen (si hablan alguno)",
+      "descripcion": "Tus enemigos predilectos son las plantas. Tienes ventaja en las pruebas de Sabiduría (Supervivencia) para rastrearlas y en las pruebas de Inteligencia para recordar información sobre ellas. Al elegir este enemigo aprendes un idioma de tu elección que hablen, si es que hablan alguno. A niveles 6 y 14 eliges otro enemigo predilecto, con su idioma.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "idioma",
+          "nombre": "Idioma de tu enemigo predilecto",
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enemigo_humanoides",
+      "nombre": "Enemigo Predilecto: dos razas de humanoides",
+      "grupo": "enemigo_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 30",
+      "resumen": "ventaja en pruebas de SAB (Supervivencia) para rastrearlas y de INT para recordar información sobre ellas; conoces un idioma que hablen (si hablan alguno)",
+      "descripcion": "Tus enemigos predilectos son las dos razas de humanoides que elijas (p. ej., gnolls y orcos). Tienes ventaja en las pruebas de Sabiduría (Supervivencia) para rastrearlas y en las pruebas de Inteligencia para recordar información sobre ellas. Al elegir este enemigo aprendes un idioma de tu elección que hablen, si es que hablan alguno. A niveles 6 y 14 eliges otro enemigo predilecto, con su idioma.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "idioma",
+          "nombre": "Idioma de tu enemigo predilecto",
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "terreno_artico",
+      "nombre": "Explorador Nato: Ártico",
+      "grupo": "terreno_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 31",
+      "resumen": "pruebas de INT o SAB relacionadas con el ártico: doble bonificador por competencia si usas una habilidad con competencia; viajando 1 h o más por él: el terreno difícil no frena a tu grupo, no os perdéis salvo por magia, sigues alerta aunque hagas otra actividad, vas con sigilo a ritmo normal si viajas solo, encuentras el doble de comida al forrajear y, al rastrear, sabes cuántas criaturas son, su tamaño y hace cuánto pasaron",
+      "descripcion": "Tu terreno predilecto es el ártico. En las pruebas de Inteligencia o Sabiduría relacionadas con él, tu bonificador por competencia se duplica si usas una habilidad en la que eres competente. Cuando viajas al menos una hora por él, el terreno difícil no ralentiza el viaje de tu grupo, no os podéis perder salvo por medios mágicos, permaneces atento al peligro aunque estés ocupado en otra actividad (forrajear, orientarte o rastrear), puedes moverte con sigilo a ritmo normal si viajas solo, encuentras el doble de comida al forrajear y, al rastrear a otras criaturas, descubres cuántas son, su tamaño y hace cuánto pasaron. A niveles 6 y 10 eliges otro terreno predilecto."
+    },
+    {
+      "id": "terreno_bosque",
+      "nombre": "Explorador Nato: Bosque",
+      "grupo": "terreno_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 31",
+      "resumen": "pruebas de INT o SAB relacionadas con el bosque: doble bonificador por competencia si usas una habilidad con competencia; viajando 1 h o más por él: el terreno difícil no frena a tu grupo, no os perdéis salvo por magia, sigues alerta aunque hagas otra actividad, vas con sigilo a ritmo normal si viajas solo, encuentras el doble de comida al forrajear y, al rastrear, sabes cuántas criaturas son, su tamaño y hace cuánto pasaron",
+      "descripcion": "Tu terreno predilecto es el bosque. En las pruebas de Inteligencia o Sabiduría relacionadas con él, tu bonificador por competencia se duplica si usas una habilidad en la que eres competente. Cuando viajas al menos una hora por él, el terreno difícil no ralentiza el viaje de tu grupo, no os podéis perder salvo por medios mágicos, permaneces atento al peligro aunque estés ocupado en otra actividad (forrajear, orientarte o rastrear), puedes moverte con sigilo a ritmo normal si viajas solo, encuentras el doble de comida al forrajear y, al rastrear a otras criaturas, descubres cuántas son, su tamaño y hace cuánto pasaron. A niveles 6 y 10 eliges otro terreno predilecto."
+    },
+    {
+      "id": "terreno_costa",
+      "nombre": "Explorador Nato: Costa",
+      "grupo": "terreno_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 31",
+      "resumen": "pruebas de INT o SAB relacionadas con la costa: doble bonificador por competencia si usas una habilidad con competencia; viajando 1 h o más por ella: el terreno difícil no frena a tu grupo, no os perdéis salvo por magia, sigues alerta aunque hagas otra actividad, vas con sigilo a ritmo normal si viajas solo, encuentras el doble de comida al forrajear y, al rastrear, sabes cuántas criaturas son, su tamaño y hace cuánto pasaron",
+      "descripcion": "Tu terreno predilecto es la costa. En las pruebas de Inteligencia o Sabiduría relacionadas con ella, tu bonificador por competencia se duplica si usas una habilidad en la que eres competente. Cuando viajas al menos una hora por ella, el terreno difícil no ralentiza el viaje de tu grupo, no os podéis perder salvo por medios mágicos, permaneces atento al peligro aunque estés ocupado en otra actividad (forrajear, orientarte o rastrear), puedes moverte con sigilo a ritmo normal si viajas solo, encuentras el doble de comida al forrajear y, al rastrear a otras criaturas, descubres cuántas son, su tamaño y hace cuánto pasaron. A niveles 6 y 10 eliges otro terreno predilecto."
+    },
+    {
+      "id": "terreno_desierto",
+      "nombre": "Explorador Nato: Desierto",
+      "grupo": "terreno_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 31",
+      "resumen": "pruebas de INT o SAB relacionadas con el desierto: doble bonificador por competencia si usas una habilidad con competencia; viajando 1 h o más por él: el terreno difícil no frena a tu grupo, no os perdéis salvo por magia, sigues alerta aunque hagas otra actividad, vas con sigilo a ritmo normal si viajas solo, encuentras el doble de comida al forrajear y, al rastrear, sabes cuántas criaturas son, su tamaño y hace cuánto pasaron",
+      "descripcion": "Tu terreno predilecto es el desierto. En las pruebas de Inteligencia o Sabiduría relacionadas con él, tu bonificador por competencia se duplica si usas una habilidad en la que eres competente. Cuando viajas al menos una hora por él, el terreno difícil no ralentiza el viaje de tu grupo, no os podéis perder salvo por medios mágicos, permaneces atento al peligro aunque estés ocupado en otra actividad (forrajear, orientarte o rastrear), puedes moverte con sigilo a ritmo normal si viajas solo, encuentras el doble de comida al forrajear y, al rastrear a otras criaturas, descubres cuántas son, su tamaño y hace cuánto pasaron. A niveles 6 y 10 eliges otro terreno predilecto."
+    },
+    {
+      "id": "terreno_montana",
+      "nombre": "Explorador Nato: Montaña",
+      "grupo": "terreno_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 31",
+      "resumen": "pruebas de INT o SAB relacionadas con la montaña: doble bonificador por competencia si usas una habilidad con competencia; viajando 1 h o más por ella: el terreno difícil no frena a tu grupo, no os perdéis salvo por magia, sigues alerta aunque hagas otra actividad, vas con sigilo a ritmo normal si viajas solo, encuentras el doble de comida al forrajear y, al rastrear, sabes cuántas criaturas son, su tamaño y hace cuánto pasaron",
+      "descripcion": "Tu terreno predilecto es la montaña. En las pruebas de Inteligencia o Sabiduría relacionadas con ella, tu bonificador por competencia se duplica si usas una habilidad en la que eres competente. Cuando viajas al menos una hora por ella, el terreno difícil no ralentiza el viaje de tu grupo, no os podéis perder salvo por medios mágicos, permaneces atento al peligro aunque estés ocupado en otra actividad (forrajear, orientarte o rastrear), puedes moverte con sigilo a ritmo normal si viajas solo, encuentras el doble de comida al forrajear y, al rastrear a otras criaturas, descubres cuántas son, su tamaño y hace cuánto pasaron. A niveles 6 y 10 eliges otro terreno predilecto."
+    },
+    {
+      "id": "terreno_pantano",
+      "nombre": "Explorador Nato: Pantano",
+      "grupo": "terreno_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 31",
+      "resumen": "pruebas de INT o SAB relacionadas con el pantano: doble bonificador por competencia si usas una habilidad con competencia; viajando 1 h o más por él: el terreno difícil no frena a tu grupo, no os perdéis salvo por magia, sigues alerta aunque hagas otra actividad, vas con sigilo a ritmo normal si viajas solo, encuentras el doble de comida al forrajear y, al rastrear, sabes cuántas criaturas son, su tamaño y hace cuánto pasaron",
+      "descripcion": "Tu terreno predilecto es el pantano. En las pruebas de Inteligencia o Sabiduría relacionadas con él, tu bonificador por competencia se duplica si usas una habilidad en la que eres competente. Cuando viajas al menos una hora por él, el terreno difícil no ralentiza el viaje de tu grupo, no os podéis perder salvo por medios mágicos, permaneces atento al peligro aunque estés ocupado en otra actividad (forrajear, orientarte o rastrear), puedes moverte con sigilo a ritmo normal si viajas solo, encuentras el doble de comida al forrajear y, al rastrear a otras criaturas, descubres cuántas son, su tamaño y hace cuánto pasaron. A niveles 6 y 10 eliges otro terreno predilecto."
+    },
+    {
+      "id": "terreno_pradera",
+      "nombre": "Explorador Nato: Pradera",
+      "grupo": "terreno_predilecto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 31",
+      "resumen": "pruebas de INT o SAB relacionadas con la pradera: doble bonificador por competencia si usas una habilidad con competencia; viajando 1 h o más por ella: el terreno difícil no frena a tu grupo, no os perdéis salvo por magia, sigues alerta aunque hagas otra actividad, vas con sigilo a ritmo normal si viajas solo, encuentras el doble de comida al forrajear y, al rastrear, sabes cuántas criaturas son, su tamaño y hace cuánto pasaron",
+      "descripcion": "Tu terreno predilecto es la pradera. En las pruebas de Inteligencia o Sabiduría relacionadas con ella, tu bonificador por competencia se duplica si usas una habilidad en la que eres competente. Cuando viajas al menos una hora por ella, el terreno difícil no ralentiza el viaje de tu grupo, no os podéis perder salvo por medios mágicos, permaneces atento al peligro aunque estés ocupado en otra actividad (forrajear, orientarte o rastrear), puedes moverte con sigilo a ritmo normal si viajas solo, encuentras el doble de comida al forrajear y, al rastrear a otras criaturas, descubres cuántas son, su tamaño y hace cuánto pasaron. A niveles 6 y 10 eliges otro terreno predilecto."
+    },
+    {
+      "id": "asesino_de_gigantes",
+      "nombre": "El Cazador y la Presa: Asesino de Gigantes",
+      "grupo": "presa_del_cazador",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 33",
+      "resumen": "reacción: cuando una criatura Grande o mayor que puedas ver a 5 pies o menos te ataque (impacte o falle), la atacas justo después de su ataque",
+      "descripcion": "Cuando una criatura Grande o de mayor tamaño que esté a 5 pies o menos de ti te ataque, tanto si impacta como si falla, puedes usar tu reacción para atacarla inmediatamente después de su ataque, siempre que puedas verla."
+    },
+    {
+      "id": "azote_de_colosos",
+      "nombre": "El Cazador y la Presa: Azote de Colosos",
+      "grupo": "presa_del_cazador",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 33",
+      "resumen": "una vez por turno, +1d8 de daño al impactar con un ataque con arma a una criatura que no tenga sus PG máximos",
+      "descripcion": "Cuando impactas a una criatura con un ataque con arma, sufre 1d8 de daño adicional si no tiene todos sus puntos de golpe máximos. Solo puedes infligir este daño adicional una vez por turno."
+    },
+    {
+      "id": "destructor_de_hordas",
+      "nombre": "El Cazador y la Presa: Destructor de Hordas",
+      "grupo": "presa_del_cazador",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 33",
+      "resumen": "una vez en cada uno de tus turnos, al hacer un ataque con arma, puedes hacer otro con la misma arma contra otra criatura a 5 pies o menos del objetivo original y dentro del alcance del arma",
+      "descripcion": "Una vez en cada uno de tus turnos, cuando hagas un ataque con arma, puedes realizar otro ataque con la misma arma contra una criatura distinta que esté a 5 pies o menos del objetivo original y dentro del alcance de tu arma."
+    }
+  ]
+}

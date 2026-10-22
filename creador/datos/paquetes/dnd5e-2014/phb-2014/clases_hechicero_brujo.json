@@ -1,1 +1,121 @@
-{}
+{
+  "clases": [
+    {
+      "id": "hechicero",
+      "modifica": true,
+      "oro_inicial": "3d4x10"
+    },
+    {
+      "id": "brujo",
+      "modifica": true,
+      "oro_inicial": "4d4x10"
+    }
+  ],
+  "subclases": [
+    {
+      "id": "magia_salvaje",
+      "nombre": "Magia Salvaje",
+      "clase": "hechicero",
+      "fuente": "PHB 2014",
+      "descripcion": "Hechiceros cuyo poder brota del caos que subyace bajo el orden del mundo: una exposición a energías desatadas o a una influencia de otro plano les dejó una magia imprevisible que a veces se desboca.",
+      "perfil": {
+        "arcano": 3,
+        "astucia": 2,
+        "agilidad": 1
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Oleada de Magia Salvaje",
+            "resumen": "justo después de que lances un conjuro de hechicero de nivel 1 o superior, el DM puede pedirte un d20: con un 1, tiras en la tabla de Oleada de Magia Salvaje (d100) y se produce un efecto al azar",
+            "descripcion": "Tu magia puede escaparse de tu control. Tras lanzar un conjuro de hechicero de nivel 1 o superior, el DM puede hacerte tirar un d20; si sale 1, tiras en la tabla de Oleada de Magia Salvaje del Manual del Jugador y se produce el efecto mágico que salga. Si ese efecto es un conjuro, no admite Metamagia y, aunque normalmente requiera concentración, dura todo su tiempo sin ella."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Mareas del Caos",
+            "resumen": "ventaja en una tirada de ataque, prueba de característica o salvación; 1 uso por descanso largo, que también recuperas si el DM te hace tirar en la tabla de Oleada de Magia Salvaje tras lanzar un conjuro de hechicero de nivel 1 o superior",
+            "descripcion": "Puedes forzar el azar a tu favor y tener ventaja en una tirada de ataque, prueba de característica o tirada de salvación. Después necesitas un descanso largo para volver a hacerlo, salvo que antes el DM te pida tirar en la tabla de Oleada de Magia Salvaje justo después de lanzar un conjuro de hechicero de nivel 1 o superior: en ese caso, tiras y recuperas el uso.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "el_archihada",
+      "nombre": "El Archihada",
+      "clase": "brujo",
+      "fuente": "PHB 2014",
+      "descripcion": "Pacto con un señor o una señora de las hadas, seres antiguos y caprichosos del reino feérico cuya magia gira en torno al encanto, la ilusión y el engaño.",
+      "perfil": {
+        "astucia": 3,
+        "carisma": 2,
+        "arcano": 2,
+        "naturaleza": 1
+      },
+      "conjuros_adicionales": [
+        "fuego_feerico",
+        "dormir",
+        "calmar_emociones",
+        "fuerza_fantasmal",
+        "desplazamiento",
+        "crecimiento_vegetal"
+      ],
+      "niveles": {
+        "1": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Lista de conjuros ampliada",
+            "resumen": "añadidos a tu lista de brujo: fuego feérico, dormir (1); calmar emociones, fuerza fantasmal (2); desplazamiento, crecimiento vegetal (3); dominar bestia, invisibilidad mejorada (4); dominar persona, apariencia (5)",
+            "descripcion": "Tu patrón feérico amplía las opciones entre las que eliges al aprender conjuros de brujo: fuego feérico y dormir (nivel 1), calmar emociones y fuerza fantasmal (2), desplazamiento y crecimiento vegetal (3), dominar bestia e invisibilidad mejorada (4), y dominar persona y apariencia (5) cuentan para ti como conjuros de brujo."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Presencia Feérica",
+            "resumen": "acción: cada criatura en un cubo de 10 pies que parte de ti hace una salvación de SAB CD {8+competencia+mod_car}; si falla, queda hechizada o asustada por ti (tú eliges) hasta el final de tu siguiente turno; 1 uso por descanso corto o largo",
+            "descripcion": "Puedes mostrar el porte seductor e inquietante de las hadas. Como acción, obligas a cada criatura que esté en un cubo de 10 pies con origen en ti a superar una tirada de salvación de Sabiduría contra la CD de tus conjuros de brujo; las que fallen quedan hechizadas o asustadas por ti (a tu elección) hasta el final de tu siguiente turno. Recuperas el uso tras un descanso corto o largo.",
+            "usos": 1,
+            "recarga": "corto"
+          }
+        ]
+      }
+    },
+    {
+      "id": "el_primigenio",
+      "nombre": "El Primigenio",
+      "clase": "brujo",
+      "fuente": "PHB 2014",
+      "descripcion": "Pacto con una entidad remota e insondable, ajena a la realidad conocida y de fines incomprensibles, cuya magia toca la mente y los secretos que nadie debería saber.",
+      "perfil": {
+        "arcano": 3,
+        "saber": 2,
+        "astucia": 1
+      },
+      "conjuros_adicionales": [
+        "susurros_discordantes",
+        "risa_horrible",
+        "detectar_pensamientos",
+        "fuerza_fantasmal",
+        "clarividencia",
+        "recado"
+      ],
+      "niveles": {
+        "1": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Lista de conjuros ampliada",
+            "resumen": "añadidos a tu lista de brujo: susurros discordantes, risa horrible (1); detectar pensamientos, fuerza fantasmal (2); clarividencia, recado (3); dominar bestia, tentáculos negros (4); dominar persona, telequinesis (5)",
+            "descripcion": "Tu patrón amplía las opciones entre las que eliges al aprender conjuros de brujo: susurros discordantes y risa horrible (nivel 1), detectar pensamientos y fuerza fantasmal (2), clarividencia y recado (3), dominar bestia y tentáculos negros (4), y dominar persona y telequinesis (5) cuentan para ti como conjuros de brujo."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Mente Despierta",
+            "resumen": "telepatía con cualquier criatura que veas a 30 pies o menos; no necesitáis un idioma común, pero debe entender al menos uno",
+            "descripcion": "Tu contacto con lo ajeno te permite hablar mentalmente: puedes comunicarte por telepatía con cualquier criatura que veas a 30 pies o menos de ti. No hace falta que compartáis idioma, pero la criatura tiene que entender al menos alguno."
+          }
+        ]
+      }
+    }
+  ]
+}
