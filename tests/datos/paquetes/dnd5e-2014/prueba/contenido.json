@@ -1,0 +1,145 @@
+{
+  "idiomas": [
+    {"id": "comun", "nombre": "Común"},
+    {"id": "enano", "nombre": "Enano"},
+    {"id": "elfico", "nombre": "Élfico"},
+    {"id": "draconico", "nombre": "Dracónico"}
+  ],
+  "razas": [
+    {"id": "enano", "nombre": "Enano", "tamano": "mediano", "velocidad": 25, "efectos": [
+      {"tipo": "caracteristica", "car": "con", "valor": 2},
+      {"tipo": "sentido", "id": "vision_en_la_oscuridad", "nombre": "Visión en la oscuridad", "alcance": 60},
+      {"tipo": "resistencia", "dano": "veneno"},
+      {"tipo": "ignora_penalizacion_armadura"},
+      {"tipo": "competencia", "categoria": "arma", "id": "hacha_de_guerra"},
+      {"tipo": "competencia", "categoria": "idioma", "id": "comun"},
+      {"tipo": "competencia", "categoria": "idioma", "id": "enano"},
+      {"tipo": "rasgo", "nombre": "Rasgo enano de prueba", "descripcion": "Texto de prueba."}
+    ]},
+    {"id": "elfo", "nombre": "Elfo", "tamano": "mediano", "velocidad": 30, "efectos": [
+      {"tipo": "caracteristica", "car": "des", "valor": 2},
+      {"tipo": "competencia", "categoria": "habilidad", "id": "percepcion"},
+      {"tipo": "competencia", "categoria": "idioma", "id": "comun"},
+      {"tipo": "competencia", "categoria": "idioma", "id": "elfico"}
+    ]}
+  ],
+  "subrazas": [
+    {"id": "enano_colinas", "nombre": "Enano de las colinas", "raza": "enano", "efectos": [
+      {"tipo": "caracteristica", "car": "sab", "valor": 1},
+      {"tipo": "pg_maximos", "por_nivel": 1}
+    ]},
+    {"id": "elfo_alto", "nombre": "Elfo alto", "raza": "elfo", "efectos": [
+      {"tipo": "caracteristica", "car": "int", "valor": 1},
+      {"tipo": "eleccion", "id": "truco", "nombre": "Truco de mago",
+       "opciones": {"desde": "conjuros", "filtro": {"listas": "mago", "nivel": 0}},
+       "aplicar": [{"tipo": "conjuro", "id": "$opcion", "caracteristica": "int"}]},
+      {"tipo": "eleccion", "id": "idioma", "nombre": "Idioma adicional",
+       "opciones": {"desde": "idiomas"},
+       "aplicar": [{"tipo": "competencia", "categoria": "idioma", "id": "$opcion"}]}
+    ]}
+  ],
+  "clases": [
+    {"id": "guerrero", "nombre": "Guerrero", "dado_golpe": 10, "salvaciones": ["fue", "con"], "nivel_subclase": 3,
+     "competencias": [
+       {"tipo": "competencia", "categoria": "armadura", "id": "armaduras_ligeras"},
+       {"tipo": "competencia", "categoria": "armadura", "id": "armaduras_medias"},
+       {"tipo": "competencia", "categoria": "armadura", "id": "armaduras_pesadas"},
+       {"tipo": "competencia", "categoria": "armadura", "id": "escudos"},
+       {"tipo": "competencia", "categoria": "arma", "id": "armas_sencillas"},
+       {"tipo": "competencia", "categoria": "arma", "id": "armas_marciales"},
+       {"tipo": "eleccion", "id": "habilidades", "nombre": "Habilidades de guerrero", "elegir": 2, "fuente": "habilidades",
+        "opciones": ["acrobacias", "atletismo", "historia", "intimidacion", "percepcion", "supervivencia"],
+        "aplicar": [{"tipo": "competencia", "categoria": "habilidad", "id": "$opcion"}]}
+     ],
+     "competencias_multiclase": [
+       {"tipo": "competencia", "categoria": "armadura", "id": "armaduras_ligeras"},
+       {"tipo": "competencia", "categoria": "arma", "id": "armas_marciales"}
+     ],
+     "niveles": {
+       "1": [
+         {"tipo": "eleccion", "id": "estilo", "nombre": "Estilo de combate", "opciones": [
+           {"id": "defensa", "nombre": "Defensa", "efectos": [
+             {"tipo": "bonificador_ca", "valor": 1, "condicion": "con_armadura"},
+             {"tipo": "rasgo", "nombre": "Estilo de combate: Defensa"}]},
+           {"id": "arqueria", "nombre": "Tiro con arco", "efectos": [
+             {"tipo": "bonificador_ataque", "valor": 2, "tipo_arma": "distancia"},
+             {"tipo": "rasgo", "nombre": "Estilo de combate: Tiro con arco"}]}
+         ]},
+         {"tipo": "rasgo", "nombre": "Rasgo de guerrero de prueba", "descripcion": "Texto de prueba."}
+       ],
+       "4": [{"tipo": "mejora_caracteristica"}]
+     }},
+    {"id": "mago", "nombre": "Mago", "dado_golpe": 6, "salvaciones": ["int", "sab"], "nivel_subclase": 2,
+     "competencias": [{"tipo": "competencia", "categoria": "arma", "id": "daga"}],
+     "lanzamiento": {"caracteristica": "int", "progresion": "completo", "preparados": "nivel",
+                     "trucos_conocidos": [3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]}},
+    {"id": "paladin", "nombre": "Paladín", "dado_golpe": 10, "salvaciones": ["sab", "car"],
+     "lanzamiento": {"caracteristica": "car", "progresion": "medio", "preparados": "mitad_nivel"}},
+    {"id": "brujo", "nombre": "Brujo", "dado_golpe": 8, "salvaciones": ["sab", "car"],
+     "lanzamiento": {"caracteristica": "car", "progresion": "pacto"}},
+    {"id": "barbaro", "nombre": "Bárbaro", "dado_golpe": 12, "salvaciones": ["fue", "con"],
+     "niveles": {"1": [{"tipo": "ca_alternativa", "base": 10, "suma": ["des", "con"]}]}},
+    {"id": "bardo", "nombre": "Bardo", "dado_golpe": 8, "salvaciones": ["des", "car"],
+     "niveles": {"2": [{"tipo": "medio_competencia", "caracteristicas": "todas"}]}}
+  ],
+  "subclases": [
+    {"id": "campeon", "nombre": "Campeón", "clase": "guerrero", "niveles": {
+      "3": [{"tipo": "rasgo", "nombre": "Rasgo de campeón de prueba"}],
+      "7": [{"tipo": "medio_competencia", "caracteristicas": ["fue", "des", "con"], "redondeo": "arriba"}]
+    }}
+  ],
+  "trasfondos": [
+    {"id": "acolito", "nombre": "Acólito", "efectos": [
+      {"tipo": "competencia", "categoria": "habilidad", "id": "perspicacia"},
+      {"tipo": "competencia", "categoria": "habilidad", "id": "religion"},
+      {"tipo": "eleccion", "id": "idiomas", "nombre": "Idiomas", "elegir": 2, "opciones": {"desde": "idiomas"},
+       "aplicar": [{"tipo": "competencia", "categoria": "idioma", "id": "$opcion"}]}
+    ]}
+  ],
+  "dotes": [
+    {"id": "resiliente", "nombre": "Resiliente", "efectos": [
+      {"tipo": "eleccion", "id": "car", "nombre": "Característica", "opciones": {"desde": "caracteristicas"},
+       "aplicar": [
+         {"tipo": "caracteristica", "car": "$opcion", "valor": 1},
+         {"tipo": "competencia", "categoria": "salvacion", "id": "$opcion"}
+       ]}
+    ]},
+    {"id": "alerta", "nombre": "Alerta", "efectos": [{"tipo": "iniciativa", "valor": 5}]},
+    {"id": "iniciado", "nombre": "Iniciado en la magia (prueba)", "efectos": [
+      {"tipo": "eleccion", "id": "clase", "nombre": "Clase",
+       "opciones": [{"id": "mago", "nombre": "Mago"}, {"id": "bardo", "nombre": "Bardo"}],
+       "aplicar": [
+         {"tipo": "eleccion", "id": "truco", "nombre": "Truco",
+          "opciones": {"desde": "conjuros", "filtro": {"listas": "$opcion", "nivel": 0}},
+          "aplicar": [{"tipo": "conjuro", "id": "$opcion"}]}
+       ]}
+    ]}
+  ],
+  "objetos": [
+    {"id": "espada_larga", "nombre": "Espada larga", "categoria": "arma", "arma": {
+      "categoria": "marcial", "tipo": "cuerpo_a_cuerpo", "dano": "1d8", "tipo_dano": "cortante",
+      "propiedades": ["versatil"], "dano_versatil": "1d10"}},
+    {"id": "hacha_de_guerra", "nombre": "Hacha de guerra", "categoria": "arma", "arma": {
+      "categoria": "marcial", "tipo": "cuerpo_a_cuerpo", "dano": "1d8", "tipo_dano": "cortante",
+      "propiedades": ["versatil"], "dano_versatil": "1d10"}},
+    {"id": "daga", "nombre": "Daga", "categoria": "arma", "arma": {
+      "categoria": "sencilla", "tipo": "cuerpo_a_cuerpo", "dano": "1d4", "tipo_dano": "perforante",
+      "propiedades": ["sutil", "ligera", "arrojadiza"], "alcance": "20/60"}},
+    {"id": "arco_largo", "nombre": "Arco largo", "categoria": "arma", "arma": {
+      "categoria": "marcial", "tipo": "distancia", "dano": "1d8", "tipo_dano": "perforante",
+      "propiedades": ["municion", "pesada", "a_dos_manos"], "alcance": "150/600"}},
+    {"id": "cota_de_mallas", "nombre": "Cota de mallas", "categoria": "armadura", "armadura": {
+      "tipo": "pesada", "ca": 16, "fuerza_minima": 13, "desventaja_sigilo": true}},
+    {"id": "cuero", "nombre": "Armadura de cuero", "categoria": "armadura", "armadura": {"tipo": "ligera", "ca": 11}},
+    {"id": "escudo", "nombre": "Escudo", "categoria": "escudo", "escudo": {"bonificador": 2}},
+    {"id": "utiles_de_herrero", "nombre": "Útiles de herrero", "categoria": "herramienta"}
+  ],
+  "conjuros": [
+    {"id": "luz", "nombre": "Luz", "nivel": 0, "escuela": "evocacion", "listas": ["mago", "bardo"]},
+    {"id": "mano_de_mago", "nombre": "Mano de mago", "nivel": 0, "escuela": "conjuracion", "listas": ["mago", "bardo"]},
+    {"id": "rayo_de_escarcha", "nombre": "Rayo de escarcha", "nivel": 0, "escuela": "evocacion", "listas": ["mago"]},
+    {"id": "proyectil_magico", "nombre": "Proyectil mágico", "nivel": 1, "escuela": "evocacion", "listas": ["mago"]},
+    {"id": "bola_de_fuego", "nombre": "Bola de fuego", "nivel": 3, "escuela": "evocacion", "listas": ["mago"]},
+    {"id": "taumaturgia", "nombre": "Taumaturgia", "nivel": 0, "escuela": "transmutacion", "listas": ["clerigo"]}
+  ]
+}

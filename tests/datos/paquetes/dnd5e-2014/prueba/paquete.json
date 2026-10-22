@@ -1,0 +1,9 @@
+{
+  "id": "prueba",
+  "nombre": "Paquete de prueba",
+  "sistema": "dnd5e-2014",
+  "version": "1.0.0",
+  "tipo": "homebrew",
+  "descripcion": "Contenido mínimo para los tests del motor. Los textos no son reglas reales.",
+  "archivos": ["contenido.json"]
+}

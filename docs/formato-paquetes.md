@@ -1,0 +1,207 @@
+# Formato de paquetes de contenido — D&D 5e (2014)
+
+Un **paquete** es una carpeta con un manifiesto `paquete.json` y uno o más archivos JSON de contenido. Así se añaden el SRD, el PHB, expansiones (Tasha, Xanathar…) o homebrew sin tocar el código.
+
+## 1. Dónde se buscan
+
+En este orden de prioridad (si un `id` de paquete se repite, gana el primero):
+
+1. `creador/datos/paquetes/` — integrados en el ejecutable.
+2. `paquetes/` junto al ejecutable (o en la raíz del proyecto al ejecutar desde el código) — modo portable.
+3. `~/.creador-personajes/paquetes/` — carpeta del usuario.
+
+Convención: `paquetes/<sistema>/<id-paquete>/paquete.json`.
+
+## 2. Manifiesto (`paquete.json`)
+
+```json
+{
+  "id": "tasha",
+  "nombre": "Caldero de Tasha para todo",
+  "sistema": "dnd5e-2014",
+  "version": "1.0.0",
+  "tipo": "oficial",
+  "licencia": "",
+  "descripcion": "Subclases y opciones adicionales",
+  "depende_de": ["phb"],
+  "archivos": ["subclases.json", "dotes.json"]
+}
+```
+
+| Campo | Obligatorio | Notas |
+|---|---|---|
+| `id` | sí | Único entre todos los paquetes instalados. |
+| `nombre` | sí | Texto visible. |
+| `sistema` | sí | `dnd5e-2014`. Un paquete de otro sistema se rechaza. |
+| `version` | sí | Libre (se recomienda `x.y.z`). |
+| `archivos` | sí | Rutas relativas a la carpeta del paquete. |
+| `depende_de` | no | Se cargan antes y se activan automáticamente. |
+| `tipo` | no | `oficial` o `homebrew` (por defecto). |
+
+## 3. Archivos de contenido
+
+Cada archivo es un objeto `{"categoria": [entradas]}`. Un archivo puede mezclar categorías.
+
+Categorías: `razas`, `subrazas`, `clases`, `subclases`, `trasfondos`, `dotes`, `conjuros`, `objetos`, `idiomas`.
+
+Toda entrada necesita `id` (texto, sin espacios, en minúsculas y sin tildes: `enano_colinas`) y `nombre`. Puede llevar `descripcion` y `fuente` (p. ej. `"PHB p. 20"`).
+
+### Añadir, reemplazar o modificar
+
+| Marca | Efecto |
+|---|---|
+| (ninguna) | Entrada nueva. Si el `id` ya existe en esa categoría → **error**. |
+| `"reemplaza": true` | Sustituye por completo la entrada existente. |
+| `"modifica": true` | Fusiona con la existente: los objetos se combinan, las listas **se amplían** y los valores sueltos se sobrescriben. |
+
+Ejemplo: un paquete que añade el conjuro *Luz* a la lista del paladín sin redefinirlo:
+
+```json
+{"conjuros": [{"id": "luz", "modifica": true, "listas": ["paladin"]}]}
+```
+
+## 4. Campos por categoría
+
+### razas
+`velocidad` (pies, entero) · `tamano` (`pequeno`, `mediano`…) · `efectos`.
+
+### subrazas
+`raza` (id de la raza) · `efectos`.
+
+### clases
+| Campo | Notas |
+|---|---|
+| `dado_golpe` | 6, 8, 10 o 12. |
+| `salvaciones` | Ids de característica. Solo las da la clase inicial. |
+| `competencias` | Efectos que recibe la **clase inicial** (armaduras, armas, elección de habilidades…). |
+| `competencias_multiclase` | Efectos al entrar en la clase por multiclase. |
+| `nivel_subclase` | Nivel en que se elige la subclase. |
+| `niveles` | `{"1": [efectos], "2": [...], ...}` hasta 20. |
+| `lanzamiento` | Ver abajo. |
+
+**`lanzamiento`** (también en subclases, p. ej. Caballero Arcano):
+
+```json
+{
+  "caracteristica": "int",
+  "progresion": "completo",
+  "trucos_conocidos": [3,3,3,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5],
+  "conjuros_conocidos": [ ... 20 valores ... ],
+  "preparados": "nivel",
+  "listas": ["mago"],
+  "desde_nivel": 1,
+  "redondeo_multiclase": "abajo"
+}
+```
+
+- `progresion`: `completo` (mago, clérigo…), `medio` (paladín, explorador), `tercio` (Caballero Arcano, Embaucador Arcano) o `pacto` (brujo).
+- Usa `conjuros_conocidos` (tabla de 20 valores) **o** `preparados`: `nivel` → mod + nivel, o `mitad_nivel` → mod + nivel/2.
+- `listas`: listas de conjuros adicionales a la de la propia clase.
+- `desde_nivel` y `redondeo_multiclase` solo hacen falta si difieren del estándar.
+
+### subclases
+`clase` (id) · `niveles` · `lanzamiento` opcional.
+
+### trasfondos
+`efectos` (competencias, idiomas…). Las tablas de personalidad irán en `personalidad` (se definirá con el modo sencillo).
+
+### dotes
+`efectos` · `prerrequisito` (texto, de momento informativo).
+
+### conjuros
+`nivel` (0 = truco, hasta 9) · `escuela` (`abjuracion`, `adivinacion`, `conjuracion`, `encantamiento`, `evocacion`, `ilusion`, `nigromancia`, `transmutacion`) · `listas` (ids de clase o subclase). Opcionales: `tiempo`, `alcance`, `componentes`, `duracion`, `ritual`, `concentracion`, `descripcion`.
+
+### objetos
+`categoria`: `arma`, `armadura`, `escudo`, `herramienta`, `municion`, `foco`, `equipo`, `montura`, `vehiculo`. Opcionales: `coste`, `peso`.
+
+```json
+{"id": "espada_larga", "nombre": "Espada larga", "categoria": "arma",
+ "arma": {"categoria": "marcial", "tipo": "cuerpo_a_cuerpo", "dano": "1d8", "tipo_dano": "cortante",
+          "propiedades": ["versatil"], "dano_versatil": "1d10"}}
+
+{"id": "cota_de_mallas", "nombre": "Cota de mallas", "categoria": "armadura",
+ "armadura": {"tipo": "pesada", "ca": 16, "fuerza_minima": 13, "desventaja_sigilo": true}}
+
+{"id": "escudo", "nombre": "Escudo", "categoria": "escudo", "escudo": {"bonificador": 2}}
+```
+
+- `arma.tipo`: `cuerpo_a_cuerpo` o `distancia`. Con la propiedad `sutil` se usa la mejor de FUE y DES.
+- `armadura.tipo`: `ligera` (CA + DES), `media` (CA + DES hasta `max_des`, 2 por defecto) o `pesada`.
+
+### idiomas
+Solo `id` y `nombre` (opcional `tipo`: `estandar` / `exotico`).
+
+## 5. Efectos
+
+Una lista de objetos con `tipo`. Cualquier efecto admite `condicion` (`sin_armadura`, `con_armadura`, `sin_armadura_pesada`, `sin_escudo`, `con_escudo`, o una lista de ellas).
+
+| `tipo` | Campos | Ejemplo de uso |
+|---|---|---|
+| `caracteristica` | `car`, `valor`, `maximo` (20 por defecto) | +2 CON racial; +4 FUE con máximo 24. |
+| `competencia` | `categoria` (`habilidad`, `salvacion`, `arma`, `armadura`, `herramienta`, `idioma`), `id` | Grupos: `armaduras_ligeras`, `armaduras_medias`, `armaduras_pesadas`, `escudos`, `armas_sencillas`, `armas_marciales`. |
+| `pericia` | `id` | Pericia del pícaro. |
+| `medio_competencia` | `caracteristicas` (`"todas"` o lista), `redondeo` (`abajo`/`arriba`) | Polivalente del bardo, Atleta extraordinario. |
+| `velocidad` | `modo` (`caminar`, `nadar`, `trepar`, `volar`), `valor` o `bonificador` | Velocidad nadando 30; +10 de Movimiento rápido. |
+| `ignora_penalizacion_armadura` | — | Enanos y armadura pesada. |
+| `sentido` | `id`, `nombre`, `alcance` | Visión en la oscuridad 60. |
+| `resistencia` | `dano` | Resistencia al veneno. |
+| `inmunidad` | `id` | Inmune a una condición o daño. |
+| `pg_maximos` | `por_nivel`, `valor`, `clase` (opcional) | Dureza enana (+1/nivel); Resiliencia dracónica (+1/nivel de hechicero). |
+| `ca_alternativa` | `base`, `suma` (características) | Defensa sin armadura: `{"base": 10, "suma": ["des", "con"]}`. |
+| `bonificador_ca` | `valor` | Estilo Defensa (`"condicion": "con_armadura"`). |
+| `bonificador_ataque` | `valor`, `tipo_arma` (opcional) | Estilo Tiro con arco. |
+| `iniciativa` | `valor` | Dote Alerta. |
+| `rasgo` | `nombre`, `descripcion` | Rasgo descriptivo que aparece en la ficha. |
+| `conjuro` | `id`, `caracteristica` | Conjuro racial o innato. |
+| `dote` | `id` | Concede una dote (aplica sus efectos). |
+| `mejora_caracteristica` | — | Mejora de característica: +2/+1+1 o una dote (si las dotes están activadas). |
+| `eleccion` | ver abajo | Cualquier decisión del jugador. |
+
+## 6. Elecciones
+
+```json
+{"tipo": "eleccion", "id": "habilidades", "nombre": "Habilidades de guerrero", "elegir": 2,
+ "fuente": "habilidades",
+ "opciones": ["acrobacias", "atletismo", "historia", "intimidacion", "percepcion", "supervivencia"],
+ "aplicar": [{"tipo": "competencia", "categoria": "habilidad", "id": "$opcion"}]}
+```
+
+| Campo | Notas |
+|---|---|
+| `id` | Único dentro de la lista en la que aparece. |
+| `elegir` | Número de selecciones (1 por defecto). |
+| `repetible` | `true` permite elegir la misma opción varias veces. |
+| `opciones` | Lista de ids, lista de objetos `{"id", "nombre", "efectos"}` o una fuente `{"desde": ..., "filtro": {...}}`. |
+| `fuente` | Con una lista de ids, de dónde salen los nombres y se valida que existan. |
+| `aplicar` | Efectos para cada opción elegida; `$opcion` se sustituye por el id elegido. |
+
+**Fuentes** (`desde`): `caracteristicas`, `habilidades`, `herramientas`, `armas`, o cualquier categoría (`idiomas`, `dotes`, `conjuros`…). El `filtro` compara campos; si el campo es una lista, basta con que contenga el valor: `{"desde": "conjuros", "filtro": {"listas": "mago", "nivel": 0}}`.
+
+**Opciones con efectos propios** (cuando cada opción hace algo distinto):
+
+```json
+{"tipo": "eleccion", "id": "estilo", "nombre": "Estilo de combate", "opciones": [
+  {"id": "defensa", "nombre": "Defensa", "efectos": [{"tipo": "bonificador_ca", "valor": 1, "condicion": "con_armadura"}]},
+  {"id": "arqueria", "nombre": "Tiro con arco", "efectos": [{"tipo": "bonificador_ataque", "valor": 2, "tipo_arma": "distancia"}]}
+]}
+```
+
+**Elecciones anidadas.** `$opcion` siempre se refiere a la elección más cercana. Una elección interior puede usar la opción exterior en sus campos, pero no en su `aplicar`. Ejemplo (elegir clase y luego un truco de esa clase):
+
+```json
+{"tipo": "eleccion", "id": "clase", "opciones": [{"id": "mago", "nombre": "Mago"}, {"id": "bardo", "nombre": "Bardo"}],
+ "aplicar": [{"tipo": "eleccion", "id": "truco",
+              "opciones": {"desde": "conjuros", "filtro": {"listas": "$opcion", "nivel": 0}},
+              "aplicar": [{"tipo": "conjuro", "id": "$opcion"}]}]}
+```
+
+## 7. Validación
+
+Al cargar, el programa informa de cada error con su ruta exacta, por ejemplo:
+
+```
+[mi-homebrew] razas/orco_gris: niveles.3[0].aplicar[1]: falta «car»
+[mi-homebrew] subrazas/orco_gris: la raza «orco» no existe
+```
+
+Un error de contenido no impide cargar el resto del paquete.

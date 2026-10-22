@@ -1,0 +1,58 @@
+# Creador de personajes de D&D
+
+Programa portable para crear personajes de rol, con dos modos (normal y sencillo) y contenido ampliable por paquetes. Primer sistema: **D&D 5ª edición (2014)**.
+
+> **Estado: fase 1 de 6 (arquitectura base).** Están hechos el núcleo, el motor de reglas de 5e y el formato de paquetes. Todavía no hay interfaz gráfica ni datos de juego.
+
+## Hoja de ruta
+
+| Fase | Contenido | Estado |
+|---|---|---|
+| 1 | Núcleo: paquetes, personaje, motor de efectos y elecciones, reglas derivadas de 5e (niveles 1–20) | ✅ |
+| 2 | Datos 5e 2014: SRD 5.1 + PHB (razas, clases, trasfondos, dotes, equipo, conjuros) por fases de nivel | ⏳ |
+| 3 | Modo normal: asistente por pasos con selector de sistema y paquetes | ⏳ |
+| 4 | Modo sencillo: cuestionario de situaciones → raza, clase, trasfondo, características y habilidades | ⏳ |
+| 5 | Salidas: JSON, réplica de la ficha oficial, rellenado del PDF oficial y guía para Nivel20 | ⏳ |
+| 6 | Ejecutables para Windows, macOS y Linux (PyInstaller + GitHub Actions) y gestor de paquetes | ⏳ |
+
+## Requisitos
+
+- Python 3.10 o superior. El núcleo no tiene dependencias externas.
+- Para los tests: `pip install pytest`.
+
+## Uso (provisional, por línea de órdenes)
+
+```bash
+python -m creador paquetes              # lista los paquetes instalados
+python -m creador ficha personaje.json  # calcula y muestra la ficha de un personaje
+python -m pytest                        # ejecuta los tests
+```
+
+## Arquitectura
+
+```
+creador/
+├── nucleo/                 # independiente del sistema de reglas
+│   ├── paquetes.py         # descubrimiento, dependencias, fusión y validación de paquetes
+│   ├── personaje.py        # decisiones del jugador (JSON); nunca guarda valores derivados
+│   ├── efectos.py          # resolución genérica de efectos y elecciones anidadas
+│   ├── sistema.py          # interfaz que implementa cada edición
+│   └── rutas.py            # ubicación de datos (código fuente o ejecutable)
+├── sistemas/
+│   └── dnd5e_2014/         # reglas de 5e: constantes, características, validación, motor y ficha
+├── datos/paquetes/         # paquetes integrados en el ejecutable
+└── entorno.py              # carga sistema + catálogo
+docs/formato-paquetes.md    # especificación del formato de contenido
+tests/                      # tests con un paquete de prueba propio
+```
+
+Principios:
+
+- **El personaje guarda decisiones, no resultados.** CA, PG, bonificadores, etc. se recalculan siempre, así que subir de nivel o cambiar de raza no deja datos incoherentes.
+- **Las reglas viven en el sistema y el contenido en los paquetes.** Añadir Tasha's u homebrew es añadir un paquete. Añadir otra edición (5e 2024, 3.5) supone crear un nuevo módulo en `sistemas/`, porque las reglas cambian.
+- **Elecciones con clave estable** (`"clase:guerrero:4/mejora"`): la interfaz pregunta solo lo que falta (`elecciones_pendientes`) y los dos modos comparten el mismo motor.
+
+## Contenido y licencias
+
+- El contenido del **SRD 5.1** se distribuye bajo [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode). La atribución obligatoria se añadirá junto con los datos (fase 2).
+- El contenido del PHB que no está en el SRD está protegido por derechos de autor. **Este repositorio debe ser privado** antes de incluirlo.
