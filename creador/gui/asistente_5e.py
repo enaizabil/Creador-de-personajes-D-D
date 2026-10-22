@@ -443,7 +443,7 @@ class VistaAsistente5e(ctk.CTkFrame):
         ficha = self.a.ficha()
         if ficha.avisos:
             ListaAvisos(master, ficha.avisos, "Revisa antes de jugar").pack(fill="x", padx=10, pady=(0, 6))
-        caja = ctk.CTkTextbox(master, height=520, wrap="word", font=ctk.CTkFont(family="DejaVu Sans Mono", size=13))
+        caja = ctk.CTkTextbox(master, height=520, wrap="word", font=ctk.CTkFont(family="Courier", size=13))
         caja.insert("1.0", resumen_ficha(ficha))
         caja.configure(state="disabled")
         caja.pack(fill="both", expand=True, padx=10, pady=8)
