@@ -16,7 +16,7 @@ from ...nucleo.personaje import EntradaClase, ObjetoInventario
 from ...nucleo.texto import clave_alfabetica
 from . import motor
 from .caracteristicas import asignar_por_prioridad, coste_compra, modificador, tirar_4d6, validar_base
-from .constantes import ARRAY_ESTANDAR, CARACTERISTICAS, COSTE_COMPRA, NIVEL_MAXIMO, PUNTOS_COMPRA
+from .constantes import ARRAY_ESTANDAR, CARACTERISTICAS, COSTE_COMPRA, HABILIDADES, NIVEL_MAXIMO, PUNTOS_COMPRA
 from .ficha import Ficha, PlanConjuros
 
 if TYPE_CHECKING:
@@ -310,6 +310,37 @@ class Asistente5e:
         """Todas las elecciones de un paso (hechas o no), en orden de aparición."""
         prefijos = PREFIJOS_PASO.get(paso, ())
         return [e for e in self.sistema.resolver(self.personaje, self.catalogo).elecciones if e.clave.startswith(prefijos)]
+
+    def _categoria_de(self, id_: str) -> str | None:
+        """Qué es una opción: habilidad, idioma, herramienta, arma o conjuro (None para el resto)."""
+        if id_ in HABILIDADES:
+            return "habilidad"
+        if self.catalogo.obtener("idiomas", id_):
+            return "idioma"
+        if self.catalogo.obtener("conjuros", id_):
+            return "conjuro"
+        objeto = self.catalogo.obtener("objetos", id_)
+        return objeto["categoria"] if objeto and objeto["categoria"] in ("herramienta", "arma") else None
+
+    def conocidas(self, eleccion: EleccionPendiente) -> set[str]:
+        """Opciones de la elección que el personaje ya tiene por otra vía: elegirlas sería desperdiciarlas."""
+        resolucion = self.sistema.resolver(self.personaje, self.catalogo)
+        propias = (eleccion.clave, eleccion.clave + "=")
+        tiene: set[tuple[str, str]] = set()
+        for aplicado in resolucion.aplicados:
+            if aplicado.origen == propias[0] or aplicado.origen.startswith(propias[1]):
+                continue
+            if aplicado.tipo == "competencia":
+                tiene.add((aplicado.efecto["categoria"], aplicado.efecto["id"]))
+            elif aplicado.tipo == "conjuro":
+                tiene.add(("conjuro", aplicado.efecto["id"]))
+        tiene |= {("conjuro", id_) for ids in self.personaje.conjuros.values() for id_ in ids}
+        return {o.id for o in eleccion.opciones if (self._categoria_de(o.id), o.id) in tiene}
+
+    def conjuros_de_otras_fuentes(self) -> set[str]:
+        """Conjuros que ya llegan por raza, dote o subclase (innatos o siempre preparados)."""
+        resolucion = self.sistema.resolver(self.personaje, self.catalogo)
+        return {a.efecto["id"] for a in resolucion.aplicados if a.tipo == "conjuro"}
 
     def elegir(self, clave: str, valores: list[str]) -> None:
         if valores:

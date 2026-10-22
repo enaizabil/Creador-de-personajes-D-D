@@ -218,3 +218,26 @@ def test_avisos_del_libro_de_conjuros(entorno_real):
     assert mago.libro[1] == ["Escudo", "Proyectil mágico"]
     personaje.conjuros["mago"] = ["alarma", "dormir", "escudo", "grasa", "identificar", "salto", "proyectil_magico"]
     assert any("7 conjuros en el libro, máximo 6" in x for x in sistema.calcular(personaje, catalogo).avisos)
+
+
+def test_opciones_que_ya_se_tienen_por_otra_via(asistente):
+    a = asistente
+    a.elegir_raza("elfo")
+    a.elegir_subraza("alto_elfo")
+    a.elegir_clase("mago")
+    a.elegir_trasfondo("sabio")
+    idioma_elfo = next(e for e in a.elecciones("raza") if e.clave == "subraza:alto_elfo/idioma")
+    assert {"comun", "elfico"} <= a.conocidas(idioma_elfo)
+    a.elegir(idioma_elfo.clave, ["abisal"])
+    idiomas_sabio = next(e for e in a.elecciones("trasfondo") if e.clave.startswith("trasfondo:sabio/"))
+    assert "abisal" in a.conocidas(idiomas_sabio)
+    idioma_elfo = next(e for e in a.elecciones("raza") if e.clave == idioma_elfo.clave)
+    assert "abisal" not in a.conocidas(idioma_elfo)  # la propia selección no cuenta
+    habilidades_mago = next(e for e in a.elecciones("clase") if e.clave == "clase:mago:inicial/habilidades")
+    assert {"conocimiento_arcano", "historia"} <= a.conocidas(habilidades_mago)  # las da el trasfondo
+    truco = next(e for e in a.elecciones("raza") if e.clave == "subraza:alto_elfo/truco")
+    a.elegir(truco.clave, ["luz"])
+    assert "luz" in a.conjuros_de_otras_fuentes()
+    a.elegir_conjuros("mago", ["mano_de_mago"])
+    truco = next(e for e in a.elecciones("raza") if e.clave == "subraza:alto_elfo/truco")
+    assert a.conocidas(truco) == {"mano_de_mago"}

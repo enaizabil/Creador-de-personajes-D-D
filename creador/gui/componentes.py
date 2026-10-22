@@ -8,6 +8,7 @@ import customtkinter as ctk
 from ..nucleo.efectos import EleccionPendiente
 
 NINGUNA = "— elige —"
+YA_LA_TIENES = " (ya la tienes)"
 MAX_CASILLAS = 10  # con más opciones se usan desplegables
 
 
@@ -86,10 +87,13 @@ class ListaOpciones(ctk.CTkFrame):
 class SelectorEleccion(ctk.CTkFrame):
     """Una elección del motor: casillas si hay pocas opciones, desplegables si hay muchas o se repiten."""
 
-    def __init__(self, master, eleccion: EleccionPendiente, al_cambiar: Callable[[str, list[str]], None]):
+    def __init__(self, master, eleccion: EleccionPendiente, al_cambiar: Callable[[str, list[str]], None],
+                 conocidas: set[str] | None = None):
         super().__init__(master)
         self.eleccion = eleccion
         self.al_cambiar = al_cambiar
+        # Lo que ya se tiene por otra vía: no se ofrece (o se marca, si ya está elegido).
+        self.conocidas = conocidas or set()
         completa = eleccion.faltan <= 0
         cabecera = f"{'✓' if completa else '•'} {eleccion.nombre}  ·  elige {eleccion.elegir}"
         ctk.CTkLabel(self, text=cabecera, font=fuente(14, True), anchor="w",
@@ -106,7 +110,8 @@ class SelectorEleccion(ctk.CTkFrame):
         self.variables = {}
         for i, opcion in enumerate(self.eleccion.opciones):
             variable = ctk.BooleanVar(value=opcion.id in self.eleccion.seleccion)
-            casilla = ctk.CTkCheckBox(cuerpo, text=opcion.nombre, variable=variable, command=self._casilla_cambiada)
+            texto = opcion.nombre + (YA_LA_TIENES if opcion.id in self.conocidas else "")
+            casilla = ctk.CTkCheckBox(cuerpo, text=texto, variable=variable, command=self._casilla_cambiada)
             casilla.grid(row=i // 3, column=i % 3, sticky="w", padx=4, pady=3)
             self.variables[opcion.id] = (variable, casilla)
         self._limitar()
@@ -118,16 +123,19 @@ class SelectorEleccion(ctk.CTkFrame):
 
     def _limitar(self) -> None:
         llenas = sum(v.get() for v, _ in self.variables.values()) >= self.eleccion.elegir
-        for variable, casilla in self.variables.values():
-            casilla.configure(state="disabled" if llenas and not variable.get() else "normal")
+        for id_, (variable, casilla) in self.variables.items():
+            bloqueada = (llenas or id_ in self.conocidas) and not variable.get()
+            casilla.configure(state="disabled" if bloqueada else "normal")
 
     def _desplegables(self, cuerpo) -> None:
-        nombres = {o.id: o.nombre for o in self.eleccion.opciones}
-        self.ids_por_nombre = {o.nombre: o.id for o in self.eleccion.opciones}
+        nombres = {o.id: o.nombre + (YA_LA_TIENES if o.id in self.conocidas else "") for o in self.eleccion.opciones}
+        self.ids_por_nombre = {nombre: id_ for id_, nombre in nombres.items()}
+        libres = [nombre for id_, nombre in nombres.items() if id_ not in self.conocidas]
         self.menus = []
         for i in range(self.eleccion.elegir):
             actual = self.eleccion.seleccion[i] if i < len(self.eleccion.seleccion) else None
-            menu = ctk.CTkOptionMenu(cuerpo, values=[NINGUNA, *nombres.values()], width=260,
+            valores = [NINGUNA, *libres, *([nombres[actual]] if actual in self.conocidas else [])]
+            menu = ctk.CTkOptionMenu(cuerpo, values=valores, width=260,
                                      command=lambda _valor: self._desplegable_cambiado(), dynamic_resizing=False)
             menu.set(nombres.get(actual, NINGUNA))
             menu.grid(row=i // 2, column=i % 2, sticky="w", padx=4, pady=3)

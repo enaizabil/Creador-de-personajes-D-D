@@ -102,7 +102,8 @@ class VistaAsistente5e(ctk.CTkFrame):
         if elecciones:
             titulo(master, "Elecciones", 15).pack(anchor="w", padx=10, pady=(14, 4))
         for eleccion in elecciones:
-            SelectorEleccion(master, eleccion, self._eleccion_cambiada).pack(fill="x", padx=10, pady=4)
+            SelectorEleccion(master, eleccion, self._eleccion_cambiada,
+                             self.a.conocidas(eleccion)).pack(fill="x", padx=10, pady=4)
 
     def _eleccion_cambiada(self, clave: str, valores: list[str]) -> None:
         self.a.elegir(clave, valores)
@@ -347,7 +348,9 @@ class VistaAsistente5e(ctk.CTkFrame):
         self._cabecera_paso(master, "conjuros")
         ficha = self.a.ficha()
         lanzadores = {lanzador.clase_id: lanzador for lanzador in ficha.lanzadores}
+        otras_fuentes = self.a.conjuros_de_otras_fuentes()
         for plan in self.a.planes_conjuros():
+            nombres = {id_: nombre for opciones in plan.disponibles.values() for id_, nombre in opciones}
             lanzador = lanzadores.get(plan.clase_id)
             cabecera = f"{plan.clase}: CD {lanzador.cd}, ataque {lanzador.ataque:+d}" if lanzador else plan.clase
             titulo(master, cabecera, 16).pack(anchor="w", padx=10, pady=(4, 0))
@@ -366,7 +369,7 @@ class VistaAsistente5e(ctk.CTkFrame):
             marco_preparados = ctk.CTkFrame(master, fg_color="transparent") if libro else None
 
             def actualizar(plan=plan, casillas=casillas, contador=contador, limite_otros=limite_otros,
-                           marco_preparados=marco_preparados):
+                           marco_preparados=marco_preparados, nombres=nombres):
                 ids = [i for i, (v, _, _) in casillas.items() if v.get()]
                 self.a.elegir_conjuros(plan.clase_id, ids)
                 trucos = sum(1 for i in ids if casillas[i][2] == 0)
@@ -378,13 +381,13 @@ class VistaAsistente5e(ctk.CTkFrame):
                     palabra = {"conocidos": "Conocidos", "preparados": "Preparados", "libro": "Libro"}[plan.modo]
                     texto.append(f"{palabra} {otros}/{limite_otros}")
                 contador.configure(text="  ·  ".join(texto))
-                for _id, (variable, casilla, nivel) in casillas.items():
+                for id_, (variable, casilla, nivel) in casillas.items():
                     limite = plan.limite_trucos if nivel == 0 else limite_otros
                     lleno = limite is not None and (trucos if nivel == 0 else otros) >= limite
-                    casilla.configure(state="disabled" if lleno and not variable.get() else "normal")
+                    bloqueada = (lleno or id_ in otras_fuentes) and not variable.get()
+                    casilla.configure(state="disabled" if bloqueada else "normal")
                 if marco_preparados is not None:
-                    self._preparados_del_libro(marco_preparados, plan, [(i, casillas[i][1].cget("text"))
-                                                                        for i in ids if casillas[i][2] > 0])
+                    self._preparados_del_libro(marco_preparados, plan, [(i, nombres[i]) for i in ids if casillas[i][2] > 0])
                 self._refrescar()
 
             for nivel, opciones in plan.disponibles.items():
@@ -394,7 +397,8 @@ class VistaAsistente5e(ctk.CTkFrame):
                 rejilla.pack(anchor="w", padx=16)
                 for i, (id_, nombre) in enumerate(opciones):
                     variable = ctk.BooleanVar(value=id_ in elegidos)
-                    casilla = ctk.CTkCheckBox(rejilla, text=nombre, variable=variable, width=240, command=actualizar)
+                    texto = nombre + (" (ya lo tienes)" if id_ in otras_fuentes else "")
+                    casilla = ctk.CTkCheckBox(rejilla, text=texto, variable=variable, width=240, command=actualizar)
                     casilla.grid(row=i // 3, column=i % 3, sticky="w", padx=4, pady=2)
                     casillas[id_] = (variable, casilla, nivel)
             if marco_preparados is not None:
