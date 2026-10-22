@@ -11,7 +11,7 @@ from .componentes import fuente, texto_ajustado, titulo
 
 
 class PantallaInicio(ctk.CTkFrame):
-    def __init__(self, master, al_crear: Callable[[str, list[str]], None], al_abrir: Callable[[], None]):
+    def __init__(self, master, al_crear: Callable[[str, list[str], str], None], al_abrir: Callable[[], None]):
         super().__init__(master, fg_color="transparent")
         self.al_crear = al_crear
         self.disponibles, self.avisos = paquetes_instalados()
@@ -20,8 +20,9 @@ class PantallaInicio(ctk.CTkFrame):
 
         titulo(self, "Creador de personajes de rol", 26).pack(anchor="w", padx=30, pady=(30, 4))
         texto_ajustado(self, "Elige la edición y los libros o homebrew que se usan en tu mesa. "
-                             "Solo aparecerá lo que aporten los paquetes marcados.", 760,
-                       text_color="gray").pack(anchor="w", padx=30)
+                             "Solo aparecerá lo que aporten los paquetes marcados. «Crear con preguntas» decide el "
+                             "personaje por ti a partir de situaciones cotidianas; «paso a paso» te deja elegirlo todo.",
+                       760, text_color="gray").pack(anchor="w", padx=30)
 
         fila = ctk.CTkFrame(self, fg_color="transparent")
         fila.pack(anchor="w", padx=30, pady=(20, 6))
@@ -35,9 +36,11 @@ class PantallaInicio(ctk.CTkFrame):
 
         botones = ctk.CTkFrame(self, fg_color="transparent")
         botones.pack(anchor="w", padx=30, pady=20)
-        ctk.CTkButton(botones, text="Crear personaje", width=180, height=38, font=fuente(14, True),
-                      command=self._crear).pack(side="left", padx=(0, 12))
-        ctk.CTkButton(botones, text="Abrir personaje…", width=160, height=38, fg_color="transparent", border_width=1,
+        ctk.CTkButton(botones, text="Crear con preguntas", width=200, height=40, font=fuente(15, True),
+                      command=lambda: self._crear("sencillo")).pack(side="left", padx=(0, 12))
+        ctk.CTkButton(botones, text="Crear paso a paso", width=170, height=40,
+                      command=lambda: self._crear("normal")).pack(side="left", padx=(0, 12))
+        ctk.CTkButton(botones, text="Abrir personaje…", width=160, height=40, fg_color="transparent", border_width=1,
                       text_color=("gray10", "gray90"), command=al_abrir).pack(side="left")
         if self.avisos:
             texto_ajustado(self, "Avisos al buscar paquetes: " + "; ".join(self.avisos), 760,
@@ -84,6 +87,6 @@ class PantallaInicio(ctk.CTkFrame):
                     self.casillas[otro].set(False)
                     self._dependencias(otro)
 
-    def _crear(self) -> None:
+    def _crear(self, modo: str) -> None:
         elegidos = [id_ for id_, variable in self.casillas.items() if variable.get()]
-        self.al_crear(self.sistema_id, elegidos)
+        self.al_crear(self.sistema_id, elegidos, modo)

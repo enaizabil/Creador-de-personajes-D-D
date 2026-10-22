@@ -142,6 +142,24 @@ Razas, clases, subclases y trasfondos llevan un `perfil` con los rasgos que más
 
 Rasgos: `combate`, `agilidad`, `aguante`, `proteccion`, `sigilo`, `astucia`, `carisma`, `saber`, `naturaleza`, `fe`, `arcano`, `curacion`. Usa 2-4 rasgos por entrada; reserva el 3 para lo que define a la opción.
 
+### preguntas (modo sencillo)
+Situaciones cotidianas; cada respuesta puntúa el perfil del jugador. `nombre` (título corto) · `texto` · `respuestas` (2 o más) · `requiere` opcional (la pregunta solo sale si todo eso está cargado: `["clases:artifice"]`). Cada respuesta: `id` · `texto` y al menos uno de:
+
+- `perfil`: rasgos que suma (`{"combate": 2, "astucia": 1}`).
+- `pesos`: empujones directos de -5 a 5 a razas, subrazas, clases, subclases o trasfondos (`{"clases:guerrero": 3}`); cada punto vale 5 de afinidad sobre 100. Si el id no está cargado, no cuenta.
+- `eje`: alineamiento, de -3 a 3 (`{"orden": -1, "moral": -2}`); con ±2 acumulado el personaje es legal/caótico o bueno/malvado.
+
+```json
+{"id": "lapiz", "nombre": "El lápiz", "texto": "En clase, el de al lado te pide un lápiz. ¿Qué haces?",
+ "respuestas": [{"id": "clavar", "texto": "Se lo clavo en la mano.", "perfil": {"combate": 2, "astucia": 1},
+                 "eje": {"moral": -2, "orden": -1}}, …]}
+```
+
+La recomendación es la afinidad (coseno) entre el perfil del jugador y el de cada raza (más su subraza), clase o trasfondo, más los pesos. Las características siguen a la clase (su característica clave primero) y, el resto, a los rasgos del jugador.
+
+### recomendaciones (modo sencillo)
+Preferencias para rellenar lo que el cuestionario no pregunta. `id`: el de la clase (o `general`, para cualquiera) · `nombre` · `conjuros`, `opciones`, `dotes`: ids en orden de preferencia. Lo que no aparece se elige al azar (reproducible: mismas respuestas, mismo personaje).
+
 ### 4.1 Requisitos (dotes y multiclase)
 
 | Clave | Significado |

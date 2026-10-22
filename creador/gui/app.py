@@ -11,10 +11,11 @@ from ..entorno import abrir_catalogo
 from ..nucleo.paquetes import ErrorPaquete
 from ..nucleo.personaje import Personaje
 from .asistente_5e import VistaAsistente5e
+from .cuestionario_5e import VistaCuestionario5e
 from .inicio import PantallaInicio
 
-# Vista del asistente de cada sistema de reglas.
-VISTAS = {"dnd5e-2014": VistaAsistente5e}
+# Vistas de cada sistema de reglas: asistente paso a paso (normal) y cuestionario (sencillo).
+VISTAS = {"dnd5e-2014": {"normal": VistaAsistente5e, "sencillo": VistaCuestionario5e}}
 
 
 class Aplicacion(ctk.CTk):
@@ -37,7 +38,7 @@ class Aplicacion(ctk.CTk):
     def mostrar_inicio(self) -> None:
         self._cambiar(PantallaInicio(self, self.crear, self.abrir))
 
-    def _cargar(self, personaje: Personaje) -> None:
+    def _cargar(self, personaje: Personaje, modo: str = "normal") -> None:
         try:
             sistema, catalogo, errores = abrir_catalogo(personaje.sistema, personaje.paquetes)
         except (ErrorPaquete, KeyError) as exc:
@@ -47,17 +48,29 @@ class Aplicacion(ctk.CTk):
             resumen = "\n".join(errores[:12]) + (f"\n… y {len(errores) - 12} más" if len(errores) > 12 else "")
             if not messagebox.askyesno("Errores en los paquetes", f"{resumen}\n\n¿Continuar de todos modos?"):
                 return
-        vista = VISTAS.get(sistema.id)
-        if vista is None:
-            messagebox.showerror("Sin asistente", f"El sistema «{sistema.nombre}» aún no tiene asistente de creación.")
+        vistas = VISTAS.get(sistema.id, {})
+        if modo not in vistas:
+            messagebox.showerror("Sin asistente", f"El sistema «{sistema.nombre}» aún no tiene ese modo de creación.")
             return
-        self._cambiar(vista(self, sistema.crear_asistente(personaje, catalogo), self.mostrar_inicio))
+        if modo == "normal":
+            self._cambiar(vistas["normal"](self, sistema.crear_asistente(personaje, catalogo), self.mostrar_inicio))
+            return
+        cuestionario = sistema.crear_cuestionario(personaje, catalogo)
+        if not cuestionario.preguntas():
+            messagebox.showwarning("Sin preguntas", "Ningún paquete marcado trae preguntas (p. ej. «Cuestionario de "
+                                                    "situaciones»). Márcalo o crea el personaje paso a paso.")
+            return
+        # Al terminar, el personaje generado se abre en el resumen del asistente para retocarlo.
+        self._cambiar(vistas["sencillo"](
+            self, cuestionario,
+            lambda: self._cambiar(vistas["normal"](self, cuestionario.asistente, self.mostrar_inicio, "resumen")),
+            self.mostrar_inicio))
 
-    def crear(self, sistema_id: str, paquetes: list[str]) -> None:
+    def crear(self, sistema_id: str, paquetes: list[str], modo: str = "normal") -> None:
         if not paquetes:
             messagebox.showwarning("Sin paquetes", "Marca al menos un paquete de contenido.")
             return
-        self._cargar(Personaje(sistema=sistema_id, paquetes=paquetes))
+        self._cargar(Personaje(sistema=sistema_id, paquetes=paquetes), modo)
 
     def abrir(self) -> None:
         ruta = filedialog.askopenfilename(filetypes=[("Personaje", "*.json")])

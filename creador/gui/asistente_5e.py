@@ -18,7 +18,7 @@ NOMBRES_PERFIL = {r: r.capitalize() for r in RASGOS_PERFIL} | {"proteccion": "Pr
 
 
 class VistaAsistente5e(ctk.CTkFrame):
-    def __init__(self, master, asistente: Asistente5e, al_volver: Callable[[], None]):
+    def __init__(self, master, asistente: Asistente5e, al_volver: Callable[[], None], paso_inicial: str = "inicio"):
         super().__init__(master, fg_color="transparent")
         self.a = asistente
         self.al_volver = al_volver
@@ -45,7 +45,7 @@ class VistaAsistente5e(ctk.CTkFrame):
                       text_color=("gray10", "gray90"), command=self.guardar).pack(side="right")
         ctk.CTkButton(pie, text="Inicio", width=90, fg_color="transparent", text_color=("gray10", "gray90"),
                       command=self._volver).pack(side="right", padx=10)
-        self.mostrar("inicio")
+        self.mostrar(paso_inicial)
 
     # ── navegación y estado ───────────────────────────────────────────────
 

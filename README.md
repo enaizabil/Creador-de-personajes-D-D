@@ -2,7 +2,7 @@
 
 Programa portable para crear personajes de rol, con dos modos (normal y sencillo) y contenido ampliable por paquetes. Primer sistema: **D&D 5ª edición (2014)**.
 
-> **Estado: fases 1 a 3 de 6.** Núcleo, motor de reglas de 5e, datos de 5e 2014 (SRD + Manual del Jugador + Guía del DM) hasta nivel 5 e interfaz gráfica con el asistente del modo normal.
+> **Estado: fases 1 a 4 de 6.** Núcleo, motor de reglas de 5e, datos de 5e 2014 (SRD + Manual del Jugador + Guía del DM) hasta nivel 5 e interfaz gráfica con los dos modos: preguntas de situaciones cotidianas (sencillo) y asistente paso a paso (normal).
 
 ## Hoja de ruta
 
@@ -11,7 +11,7 @@ Programa portable para crear personajes de rol, con dos modos (normal y sencillo
 | 1 | Núcleo: paquetes, personaje, motor de efectos y elecciones, reglas derivadas de 5e (niveles 1–20) | ✅ |
 | 2 | Datos 5e 2014: SRD 5.1 + PHB + Guía del DM (razas, clases, trasfondos, dotes, equipo, conjuros 0-3) hasta nivel 5 | ✅ (niveles 6-20 pendientes; dudas en `docs/dudas-contenido.md`) |
 | 3 | Modo normal: asistente por pasos con selector de sistema y paquetes (CustomTkinter) | ✅ (sin multiclase en el asistente) |
-| 4 | Modo sencillo: cuestionario de situaciones → raza, clase, trasfondo, características y habilidades | ⏳ |
+| 4 | Modo sencillo: cuestionario de situaciones → raza, clase, trasfondo, características y habilidades | ✅ (17 preguntas; el personaje se retoca luego en el modo normal) |
 | 5 | Salidas: JSON, réplica de la ficha oficial, rellenado del PDF oficial y guía para Nivel20 | ⏳ |
 | 6 | Ejecutables para Windows, macOS y Linux (PyInstaller + GitHub Actions) y gestor de paquetes | ⏳ |
 
