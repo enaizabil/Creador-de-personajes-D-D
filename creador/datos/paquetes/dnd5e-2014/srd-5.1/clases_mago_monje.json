@@ -1,1 +1,506 @@
-{}
+{
+  "clases": [
+    {
+      "id": "mago",
+      "nombre": "Mago",
+      "fuente": "SRD 5.1 p. 40",
+      "descripcion": "Estudioso de la magia arcana: reúne conjuros en su libro, prepara cada día los que necesita y su tradición arcana marca la escuela de magia que domina.",
+      "perfil": {
+        "arcano": 3,
+        "saber": 3
+      },
+      "dado_golpe": 6,
+      "salvaciones": [
+        "int",
+        "sab"
+      ],
+      "nivel_subclase": 2,
+      "competencias": [
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "ballesta_ligera"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "baston"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "daga"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "dardo"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "honda"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "habilidades",
+          "nombre": "Habilidades de mago",
+          "elegir": 2,
+          "fuente": "habilidades",
+          "opciones": [
+            "conocimiento_arcano",
+            "historia",
+            "investigacion",
+            "medicina",
+            "perspicacia",
+            "religion"
+          ],
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "habilidad",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "competencias_multiclase": [],
+      "requisitos_multiclase": {
+        "caracteristicas": {
+          "int": 13
+        }
+      },
+      "equipo_inicial": [
+        [
+          [
+            {
+              "id": "baston"
+            }
+          ],
+          [
+            {
+              "id": "daga"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "saquito_de_componentes"
+            }
+          ],
+          [
+            {
+              "desde": "objetos",
+              "filtro": {
+                "categoria": "foco",
+                "subcategoria": "arcano"
+              }
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "paquete_de_erudito"
+            }
+          ],
+          [
+            {
+              "id": "paquete_de_explorador"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "libro_de_conjuros"
+            }
+          ]
+        ]
+      ],
+      "oro_inicial": "5d4x10",
+      "lanzamiento": {
+        "caracteristica": "int",
+        "progresion": "completo",
+        "trucos_conocidos": [
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "preparados": "nivel"
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Lanzamiento de Conjuros",
+            "resumen": "INT; CD {8+competencia+mod_int}, ataque +{competencia+mod_int}; conjuros preparados: {max(1,mod_int+nivel_clase)} de tu libro, se cambian tras cada descanso largo; libro de conjuros: {4+2*nivel_clase} conjuros gratuitos (6 a nivel 1 y 2 más por nivel) más los que copies; rituales del libro sin prepararlos; canalizador: canalizador arcano",
+            "descripcion": "Conoces tres trucos de mago (cuatro a nivel 4 y cinco a nivel 10). Tu libro de conjuros empieza con seis conjuros de mago de nivel 1 a tu elección y cada vez que subes un nivel de mago añades gratis dos conjuros de mago de niveles para los que tengas espacios; también puedes copiar los que encuentres (2 horas y 50 po por nivel del conjuro). Tras cada descanso largo preparas de tu libro tantos conjuros como tu nivel de mago + tu modificador por Inteligencia (mínimo uno), de niveles para los que tengas espacios. La Inteligencia es tu aptitud mágica; puedes lanzar como ritual los conjuros de tu libro que lo permitan sin tenerlos preparados y usar un canalizador arcano como canalizador mágico."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Recuperación Arcana",
+            "resumen": "una vez al día, al terminar un descanso corto: recuperas espacios de conjuro gastados cuya suma de niveles no supere {max(1,(nivel_clase+1)//2)} (ninguno de nivel 6 o superior)",
+            "descripcion": "Una vez al día, cuando terminas un descanso corto, puedes elegir espacios de conjuro gastados y recuperarlos. La suma de sus niveles no puede superar la mitad de tu nivel de mago (redondeando hacia arriba) y ninguno puede ser de nivel 6 o superior. Por ejemplo, un mago de nivel 4 puede recuperar un espacio de nivel 2 o dos de nivel 1.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ],
+        "4": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ]
+      }
+    },
+    {
+      "id": "monje",
+      "nombre": "Monje",
+      "fuente": "SRD 5.1 p. 44",
+      "descripcion": "Maestro de las artes marciales que canaliza el ki, la energía mística de su cuerpo, para golpear con rapidez, esquivar ataques y realizar proezas sobrehumanas sin armadura ni armas pesadas.",
+      "perfil": {
+        "agilidad": 3,
+        "combate": 2,
+        "aguante": 1
+      },
+      "dado_golpe": 8,
+      "salvaciones": [
+        "fue",
+        "des"
+      ],
+      "nivel_subclase": 3,
+      "competencias": [
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_sencillas"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "espada_corta"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "herramienta",
+          "nombre": "Herramientas de artesano o instrumento musical de monje",
+          "opciones": {
+            "desde": "herramientas",
+            "filtro": {
+              "subcategoria": [
+                "artesano",
+                "instrumento"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "herramienta",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "eleccion",
+          "id": "habilidades",
+          "nombre": "Habilidades de monje",
+          "elegir": 2,
+          "fuente": "habilidades",
+          "opciones": [
+            "acrobacias",
+            "atletismo",
+            "historia",
+            "perspicacia",
+            "religion",
+            "sigilo"
+          ],
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "habilidad",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "competencias_multiclase": [
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_sencillas"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "espada_corta"
+        }
+      ],
+      "requisitos_multiclase": {
+        "caracteristicas": {
+          "des": 13,
+          "sab": 13
+        }
+      },
+      "equipo_inicial": [
+        [
+          [
+            {
+              "id": "espada_corta"
+            }
+          ],
+          [
+            {
+              "desde": "armas",
+              "filtro": {
+                "arma": {
+                  "categoria": "sencilla"
+                }
+              }
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "paquete_de_explorador_de_mazmorras"
+            }
+          ],
+          [
+            {
+              "id": "paquete_de_explorador"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "dardo",
+              "cantidad": 10
+            }
+          ]
+        ]
+      ],
+      "oro_inicial": "5d4x10",
+      "niveles": {
+        "1": [
+          {
+            "tipo": "ca_alternativa",
+            "base": 10,
+            "suma": [
+              "des",
+              "sab"
+            ],
+            "condicion": "sin_escudo"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Defensa sin Armadura",
+            "resumen": "sin armadura ni escudo, CA {10+mod_des+mod_sab}",
+            "descripcion": "A partir del nivel 1, mientras no portes ninguna armadura ni embraces un escudo, tu CA será 10 + tu modificador por Destreza + tu modificador por Sabiduría."
+          },
+          {
+            "tipo": "ataque_des",
+            "armas": [
+              "armas_sencillas",
+              "espada_corta"
+            ],
+            "excluir_propiedades": [
+              "a_dos_manos",
+              "pesada"
+            ],
+            "tipo_arma": "cuerpo_a_cuerpo",
+            "condicion": [
+              "sin_armadura",
+              "sin_escudo"
+            ]
+          },
+          {
+            "tipo": "ataque_desarmado",
+            "nombre": "Ataque sin armas",
+            "dano": "{escala}",
+            "escala": {
+              "1": "1d4",
+              "5": "1d6",
+              "11": "1d8",
+              "17": "1d10"
+            },
+            "caracteristicas": [
+              "fue",
+              "des"
+            ],
+            "condicion": [
+              "sin_armadura",
+              "sin_escudo"
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Artes Marciales",
+            "resumen": "sin armadura ni escudo, desarmado o solo con armas de monje (espada corta y armas sencillas cuerpo a cuerpo sin «a dos manos» ni «pesada»): DES en lugar de FUE para atacar y dañar; dado de artes marciales {escala} en lugar del daño normal; tras la acción de Atacar con un ataque sin armas o un arma de monje, un ataque sin armas como acción adicional",
+            "descripcion": "Dominas los estilos de combate que emplean ataques sin armas y armas de monje, que son las espadas cortas y cualquier arma cuerpo a cuerpo sencilla que no tenga las propiedades «a dos manos» ni «pesada». Mientras no portes armadura ni escudo y estés desarmado o empuñes solo armas de monje: puedes usar tu Destreza en lugar de tu Fuerza para las tiradas de ataque y de daño de tus ataques sin armas y armas de monje; puedes tirar tu dado de artes marciales (1d4; 1d6 a nivel 5, 1d8 a nivel 11 y 1d10 a nivel 17) en lugar de su daño normal; y cuando usas la acción de Atacar con un ataque sin armas o un arma de monje, puedes hacer un ataque sin armas como acción adicional.",
+            "escala": {
+              "1": "1d4",
+              "5": "1d6",
+              "11": "1d8",
+              "17": "1d10"
+            }
+          }
+        ],
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Ki",
+            "resumen": "{nivel_clase} puntos de ki; los recuperas tras un descanso corto o largo si meditas al menos 30 minutos; CD de ki {8+competencia+mod_sab}",
+            "descripcion": "A partir del nivel 2 controlas la energía mística llamada ki: tienes tantos puntos de ki como tu nivel de monje y los gastas en tus rasgos de ki (al principio, Defensa Paciente, Paso del Viento y Ráfaga de Golpes). Recuperas todo el ki gastado al terminar un descanso corto o largo, si pasas al menos 30 minutos meditando. CD de salvación de ki = 8 + tu bonificador por competencia + tu modificador por Sabiduría.",
+            "usos": "nivel_clase",
+            "recarga": "corto"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Defensa Paciente",
+            "resumen": "1 ki: acción de Esquivar como acción adicional en tu turno",
+            "descripcion": "Puedes gastar 1 punto de ki para realizar la acción de esquivar como acción adicional durante tu turno."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Paso del Viento",
+            "resumen": "1 ki: acción de Correr o de Destrabarse como acción adicional en tu turno; tu distancia de salto se duplica este turno",
+            "descripcion": "Puedes gastar 1 punto de ki para llevar a cabo las acciones de correr o destrabarse como acción adicional durante tu turno. Además, tu distancia de salto se duplica durante este turno."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Ráfaga de Golpes",
+            "resumen": "1 ki, justo después de la acción de Atacar: dos ataques sin armas como acción adicional",
+            "descripcion": "Inmediatamente después de llevar a cabo la acción de atacar durante tu turno, puedes gastar 1 punto de ki para realizar dos ataques sin armas como acción adicional."
+          },
+          {
+            "tipo": "velocidad",
+            "modo": "caminar",
+            "bonificador": 10,
+            "condicion": [
+              "sin_armadura",
+              "sin_escudo"
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Movimiento sin Armadura",
+            "resumen": "+{escala} pies de velocidad sin armadura ni escudo",
+            "descripcion": "A partir del nivel 2, mientras no portes armadura ni escudo, tu velocidad aumenta en 10 pies. El aumento pasa a 15 pies a nivel 6, 20 a nivel 10, 25 a nivel 14 y 30 a nivel 18. A nivel 9, durante tu turno, puedes además moverte por superficies verticales y sobre líquidos sin caerte.",
+            "escala": {
+              "2": 10,
+              "6": 15,
+              "10": 20,
+              "14": 25,
+              "18": 30
+            }
+          }
+        ],
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Desviar Proyectiles",
+            "resumen": "reacción al recibir un impacto de un ataque con arma a distancia: reduces el daño en 1d10+{mod_des+nivel_clase}; si lo dejas en 0, atrapas el proyectil (si cabe en una mano y tienes una libre) y puedes gastar 1 ki para devolverlo en la misma reacción (con competencia, arma de monje, alcance 20/60 pies)",
+            "descripcion": "Puedes usar tu reacción para desviar o atrapar el proyectil de un ataque con arma a distancia que te haya impactado: el daño se reduce en 1d10 + tu modificador por Destreza + tu nivel de monje. Si lo reduces a 0, puedes atrapar el proyectil si es lo bastante pequeño para sujetarlo con una mano y tienes al menos una libre; entonces puedes gastar 1 punto de ki para hacer, como parte de la misma reacción, un ataque a distancia con él como si fueras competente. El proyectil cuenta como arma de monje para ese ataque, con un alcance normal de 20 pies y largo de 60 pies."
+          }
+        ],
+        "4": [
+          {
+            "tipo": "mejora_caracteristica"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Caída Lenta",
+            "resumen": "reacción al caer: reduces el daño por caída en {5*nivel_clase}",
+            "descripcion": "A partir del nivel 4, puedes usar tu reacción cuando caigas para reducir cualquier daño por caída que sufras en una cantidad igual a cinco veces tu nivel de monje."
+          }
+        ],
+        "5": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Ataque Adicional",
+            "resumen": "2 ataques al usar la acción de Atacar",
+            "descripcion": "Cuando realizas la acción de Atacar durante tu turno, puedes hacer dos ataques en lugar de uno."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Golpe Aturdidor",
+            "resumen": "al impactar con un ataque con arma cuerpo a cuerpo (incluidos los ataques sin armas), 1 ki: salvación de CON CD {8+competencia+mod_sab} o queda aturdido hasta el final de tu siguiente turno",
+            "descripcion": "Puedes interferir con el flujo de ki del cuerpo de un oponente. Cuando impactas a otra criatura con un ataque con arma cuerpo a cuerpo, puedes gastar 1 punto de ki para intentar asestar un golpe aturdidor: el objetivo debe superar una tirada de salvación de Constitución o quedará aturdido hasta el final de tu siguiente turno."
+          }
+        ]
+      }
+    }
+  ],
+  "subclases": [
+    {
+      "id": "escuela_de_evocacion",
+      "nombre": "Escuela de Evocación",
+      "clase": "mago",
+      "fuente": "SRD 5.1 p. 42",
+      "descripcion": "Tradición centrada en la magia que crea poderosos efectos elementales: frío penetrante, llamas abrasadoras, ácidos corrosivos, truenos y relámpagos. Sus magos sirven como artillería, protegen a los débiles o buscan su propio beneficio.",
+      "perfil": {
+        "arcano": 3,
+        "saber": 2,
+        "proteccion": 1
+      },
+      "niveles": {
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Experto en Evocación",
+            "resumen": "copiar conjuros de evocación en tu libro te cuesta la mitad de tiempo y de oro (1 hora y 25 po por nivel del conjuro)",
+            "descripcion": "A partir del momento en el que eliges esta escuela a nivel 2, el tiempo y el dinero necesarios para copiar un conjuro de evocación en tu libro de conjuros se reducen a la mitad."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Esculpir Conjuros",
+            "resumen": "al lanzar un conjuro de evocación que afecte a criaturas que puedas ver, eliges hasta 1 + el nivel del conjuro de ellas: superan automáticamente la salvación y no reciben daño si normalmente recibirían la mitad",
+            "descripcion": "Cuando lanzas un conjuro de evocación que afecte a otras criaturas que puedas ver, puedes elegir una cantidad de ellas igual a 1 + el nivel del conjuro. Las criaturas elegidas tienen éxito automáticamente en sus tiradas de salvación contra el conjuro y no reciben daño alguno si normalmente recibirían la mitad del daño al superar la salvación."
+          }
+        ]
+      }
+    },
+    {
+      "id": "camino_de_la_mano_abierta",
+      "nombre": "Camino de la Mano Abierta",
+      "clase": "monje",
+      "fuente": "SRD 5.1 p. 47",
+      "descripcion": "Los monjes del Camino de la Mano Abierta son los maestros definitivos de las artes marciales, con o sin armas: empujan y derriban a sus oponentes, manipulan el ki para curar su propio cuerpo y practican una meditación que los protege de toda agresión.",
+      "perfil": {
+        "combate": 3,
+        "agilidad": 2,
+        "curacion": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Técnica de la Mano Abierta",
+            "resumen": "al impactar con un ataque de Ráfaga de Golpes, eliges uno: salvación de DES CD {8+competencia+mod_sab} o queda derribado; salvación de FUE CD {8+competencia+mod_sab} o lo empujas hasta 15 pies lejos de ti; o no puede llevar a cabo reacciones hasta el final de tu siguiente turno",
+            "descripcion": "Siempre que impactas a una criatura con uno de los ataques que te proporciona Ráfaga de Golpes, puedes imponerle uno de estos efectos: debe superar una tirada de salvación de Destreza o será derribada; debe superar una tirada de salvación de Fuerza o la empujas hasta 15 pies en dirección contraria a ti; o no puede llevar a cabo reacciones hasta el final de tu siguiente turno."
+          }
+        ]
+      }
+    }
+  ]
+}

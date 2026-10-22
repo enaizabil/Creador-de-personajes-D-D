@@ -1,1 +1,431 @@
-{}
+{
+  "subclases": [
+    {
+      "id": "escuela_de_abjuracion",
+      "nombre": "Escuela de Abjuración",
+      "clase": "mago",
+      "fuente": "PHB 2014",
+      "descripcion": "Tradición de la magia que protege, bloquea y destierra. Sus magos deshacen hechizos dañinos, expulsan a criaturas de otros planos y se rodean de defensas mágicas.",
+      "perfil": {
+        "proteccion": 3,
+        "arcano": 2,
+        "aguante": 1
+      },
+      "niveles": {
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Experto en Abjuración",
+            "resumen": "copiar conjuros de abjuración en tu libro te cuesta la mitad de tiempo y de oro (1 hora y 25 po por nivel del conjuro)",
+            "descripcion": "Desde que eliges esta escuela a nivel 2, el oro y el tiempo que necesitas para copiar un conjuro de abjuración en tu libro de conjuros se reducen a la mitad."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Custodia Arcana",
+            "resumen": "al lanzar un conjuro de abjuración de nivel 1 o superior, creas sobre ti una custodia de {2*nivel_clase+mod_int} PG máximos que absorbe primero el daño que recibes; recupera 2 PG por nivel de cada conjuro de abjuración de nivel 1 o superior que lances; dura hasta tu siguiente descanso largo; se crea 1 vez por descanso largo",
+            "descripcion": "Al lanzar un conjuro de abjuración de nivel 1 o superior puedes aprovechar parte de su magia para envolverte en una custodia que dura hasta que termines un descanso largo. Sus puntos de golpe máximos son el doble de tu nivel de mago más tu modificador por Inteligencia. Cuando sufres daño, la custodia lo recibe en tu lugar; si se queda a 0 puntos de golpe, el daño sobrante te llega a ti. A 0 puntos de golpe no absorbe nada, pero no desaparece, y cada vez que lanzas un conjuro de abjuración de nivel 1 o superior recupera el doble del nivel del conjuro en puntos de golpe. No puedes volver a crearla hasta terminar un descanso largo.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escuela_de_adivinacion",
+      "nombre": "Escuela de Adivinación",
+      "clase": "mago",
+      "fuente": "PHB 2014",
+      "descripcion": "Tradición de la magia que revela lo oculto y anticipa lo que está por venir. Sus magos buscan entender el pasado, el presente y el futuro, y sus visiones les permiten torcer el destino.",
+      "perfil": {
+        "saber": 3,
+        "arcano": 2,
+        "astucia": 1
+      },
+      "niveles": {
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Experto en Adivinación",
+            "resumen": "copiar conjuros de adivinación en tu libro te cuesta la mitad de tiempo y de oro (1 hora y 25 po por nivel del conjuro)",
+            "descripcion": "Desde que eliges esta escuela a nivel 2, el oro y el tiempo que necesitas para copiar un conjuro de adivinación en tu libro de conjuros se reducen a la mitad."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Presagio",
+            "resumen": "al terminar un descanso largo tiras {escala} d20 y anotas los resultados; antes de que se tire, puedes sustituir con uno de ellos una tirada de ataque, salvación o prueba de característica tuya o de una criatura que veas; cada resultado se usa una vez; máximo 1 por turno",
+            "descripcion": "Tus visiones te avisan de lo que va a pasar. Cuando terminas un descanso largo tiras dos d20 (tres a partir del nivel 14) y apuntas los resultados. Puedes cambiar por uno de ellos cualquier tirada de ataque, de salvación o prueba de característica que hagas tú o una criatura que puedas ver, siempre que lo decidas antes de tirar. Cada resultado sirve una sola vez, no puedes usar más de uno por turno y los que no gastes se pierden al terminar tu siguiente descanso largo.",
+            "escala": {
+              "2": 2,
+              "14": 3
+            },
+            "usos": "escala",
+            "recarga": "largo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escuela_de_conjuracion",
+      "nombre": "Escuela de Conjuración",
+      "clase": "mago",
+      "fuente": "PHB 2014",
+      "descripcion": "Tradición de la magia que crea objetos y criaturas de la nada, los trae desde otros lugares o traslada a los seres de un punto a otro en un instante.",
+      "perfil": {
+        "arcano": 3,
+        "saber": 1,
+        "agilidad": 1
+      },
+      "niveles": {
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Experto en Conjuración",
+            "resumen": "copiar conjuros de conjuración en tu libro te cuesta la mitad de tiempo y de oro (1 hora y 25 po por nivel del conjuro)",
+            "descripcion": "Desde que eliges esta escuela a nivel 2, el oro y el tiempo que necesitas para copiar un conjuro de conjuración en tu libro de conjuros se reducen a la mitad."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Conjuración Menor",
+            "resumen": "acción: haces aparecer en tu mano o en el suelo, a 10 pies o menos, un objeto inanimado no mágico que hayas visto (máx. 3 pies de lado y 10 libras); da luz tenue en 5 pies; desaparece al cabo de 1 hora, si vuelves a usar el rasgo o si recibe o inflige daño",
+            "descripcion": "Como acción, creas un objeto inanimado en tu mano o en el suelo, en un espacio desocupado que puedas ver a 10 pies o menos. No puede medir más de 3 pies por lado ni pesar más de 10 libras, y debe tener la forma de un objeto no mágico que hayas visto. Se nota que es mágico: emite luz tenue en un radio de 5 pies. Desaparece al cabo de 1 hora, cuando vuelves a usar este rasgo o si sufre o causa algún daño."
+          }
+        ]
+      }
+    },
+    {
+      "id": "escuela_de_encantamiento",
+      "nombre": "Escuela de Encantamiento",
+      "clase": "mago",
+      "fuente": "PHB 2014",
+      "descripcion": "Tradición de la magia que influye en la mente ajena: sus magos hechizan, persuaden o someten a personas y monstruos, ya sea para resolver conflictos o para su propio provecho.",
+      "perfil": {
+        "carisma": 3,
+        "arcano": 2,
+        "astucia": 1
+      },
+      "niveles": {
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Experto en Encantamiento",
+            "resumen": "copiar conjuros de encantamiento en tu libro te cuesta la mitad de tiempo y de oro (1 hora y 25 po por nivel del conjuro)",
+            "descripcion": "Desde que eliges esta escuela a nivel 2, el oro y el tiempo que necesitas para copiar un conjuro de encantamiento en tu libro de conjuros se reducen a la mitad."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Mirada Hipnótica",
+            "resumen": "acción: una criatura que veas a 5 pies o menos y que pueda verte u oírte hace una salvación de SAB CD {8+competencia+mod_int}; si falla, queda hechizada hasta el final de tu siguiente turno (velocidad 0, incapacitada y visiblemente atontada); puedes prolongarlo con tu acción en cada turno; termina si te alejas más de 5 pies, si deja de verte y oírte o si recibe daño; después, no puedes usarlo contra ella hasta un descanso largo",
+            "descripcion": "Con tu acción eliges a una criatura que puedas ver a 5 pies o menos; si puede verte u oírte, debe superar una salvación de Sabiduría contra la CD de tus conjuros de mago o quedará hechizada por ti hasta el final de tu siguiente turno: su velocidad pasa a 0 y queda incapacitada y visiblemente atontada. En los turnos siguientes puedes gastar tu acción en mantener el efecto un turno más. El efecto se rompe si te alejas más de 5 pies de ella, si deja de poder verte y oírte o si sufre daño. Cuando termina, o si supera la salvación, no puedes volver a usar este rasgo contra esa criatura hasta terminar un descanso largo."
+          }
+        ]
+      }
+    },
+    {
+      "id": "escuela_de_ilusionismo",
+      "nombre": "Escuela de Ilusionismo",
+      "clase": "mago",
+      "fuente": "PHB 2014",
+      "descripcion": "Tradición de la magia que engaña a los sentidos y a la mente: sus magos crean imágenes, sonidos y apariencias tan convincentes que hasta los más astutos las toman por reales.",
+      "perfil": {
+        "astucia": 3,
+        "arcano": 2,
+        "sigilo": 1
+      },
+      "niveles": {
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Experto en Ilusionismo",
+            "resumen": "copiar conjuros de ilusionismo en tu libro te cuesta la mitad de tiempo y de oro (1 hora y 25 po por nivel del conjuro)",
+            "descripcion": "Desde que eliges esta escuela a nivel 2, el oro y el tiempo que necesitas para copiar un conjuro de ilusionismo en tu libro de conjuros se reducen a la mitad."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "ilusion_menor",
+            "clase": "mago",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Ilusión Menor Mejorada",
+            "resumen": "conoces el truco ilusión menor (si ya lo conocías, otro truco de mago a tu elección), que no cuenta para tus trucos conocidos; con un solo lanzamiento creas a la vez un sonido y una imagen",
+            "descripcion": "Aprendes el truco ilusión menor; si ya lo conocías, aprendes en su lugar otro truco de mago que elijas. Este truco no cuenta para tu número de trucos conocidos. Además, cuando lanzas ilusión menor puedes crear a la vez un sonido y una imagen en lugar de solo una de las dos cosas."
+          }
+        ]
+      }
+    },
+    {
+      "id": "escuela_de_nigromancia",
+      "nombre": "Escuela de Nigromancia",
+      "clase": "mago",
+      "fuente": "PHB 2014",
+      "descripcion": "Tradición de la magia que manipula las fuerzas de la vida, la muerte y la no muerte. Sus magos estudian la energía vital, la arrebatan a otros y aprenden a alzar y someter a los muertos vivientes.",
+      "perfil": {
+        "arcano": 3,
+        "saber": 2,
+        "aguante": 1
+      },
+      "niveles": {
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Experto en Nigromancia",
+            "resumen": "copiar conjuros de nigromancia en tu libro te cuesta la mitad de tiempo y de oro (1 hora y 25 po por nivel del conjuro)",
+            "descripcion": "Desde que eliges esta escuela a nivel 2, el oro y el tiempo que necesitas para copiar un conjuro de nigromancia en tu libro de conjuros se reducen a la mitad."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Cosecha Siniestra",
+            "resumen": "una vez por turno, al matar a una o más criaturas con un conjuro de nivel 1 o superior, recuperas PG iguales al doble del nivel del conjuro (el triple si es de nigromancia); no funciona con autómatas ni muertos vivientes",
+            "descripcion": "Absorbes la energía vital de quienes matas con tu magia. Una vez por turno, cuando un conjuro tuyo de nivel 1 o superior mata a una o más criaturas, recuperas tantos puntos de golpe como el doble del nivel del conjuro, o el triple si el conjuro es de la escuela de nigromancia. No ganas nada al matar autómatas ni muertos vivientes."
+          }
+        ]
+      }
+    },
+    {
+      "id": "escuela_de_transmutacion",
+      "nombre": "Escuela de Transmutación",
+      "clase": "mago",
+      "fuente": "PHB 2014",
+      "descripcion": "Tradición de la magia que altera la energía y la materia: sus magos cambian la sustancia de los objetos, la forma de las criaturas y sus capacidades físicas.",
+      "perfil": {
+        "saber": 3,
+        "arcano": 2,
+        "naturaleza": 1
+      },
+      "niveles": {
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Experto en Transmutación",
+            "resumen": "copiar conjuros de transmutación en tu libro te cuesta la mitad de tiempo y de oro (1 hora y 25 po por nivel del conjuro)",
+            "descripcion": "Desde que eliges esta escuela a nivel 2, el oro y el tiempo que necesitas para copiar un conjuro de transmutación en tu libro de conjuros se reducen a la mitad."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Alquimia Menor",
+            "resumen": "10 minutos por pie cúbico: conviertes un objeto no mágico hecho solo de madera, piedra (no gemas), hierro, cobre o plata en otro de esos materiales; vuelve a su sustancia original al cabo de 1 hora o si pierdes la concentración (como con un conjuro)",
+            "descripcion": "Puedes cambiar de forma temporal la sustancia de un objeto no mágico compuesto por completo de madera, piedra (pero no gemas), hierro, cobre o plata, transformándolo en otro de esos materiales. Cada 10 minutos de trabajo alquímico transforman hasta 1 pie cúbico. El material recupera su naturaleza original al cabo de 1 hora o si pierdes la concentración, como si te estuvieras concentrando en un conjuro."
+          }
+        ]
+      }
+    },
+    {
+      "id": "camino_de_la_sombra",
+      "nombre": "Camino de la Sombra",
+      "clase": "monje",
+      "fuente": "PHB 2014",
+      "descripcion": "Tradición de monjes que valoran el sigilo y el secreto: espías y asesinos que se mueven entre las sombras y las dominan, a menudo organizados en clanes o monasterios muy jerarquizados.",
+      "perfil": {
+        "sigilo": 3,
+        "agilidad": 2,
+        "astucia": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "ilusion_menor",
+            "caracteristica": "sab"
+          },
+          {
+            "tipo": "conjuro",
+            "id": "oscuridad",
+            "caracteristica": "sab"
+          },
+          {
+            "tipo": "conjuro",
+            "id": "vision_en_la_oscuridad",
+            "caracteristica": "sab"
+          },
+          {
+            "tipo": "conjuro",
+            "id": "pasar_sin_rastro",
+            "caracteristica": "sab"
+          },
+          {
+            "tipo": "conjuro",
+            "id": "silencio",
+            "caracteristica": "sab"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Artes Sombrías",
+            "resumen": "acción, 2 ki: lanzas oscuridad, visión en la oscuridad, pasar sin rastro o silencio sin componentes materiales; conoces el truco ilusión menor; CD {8+competencia+mod_sab}",
+            "descripcion": "Usas tu ki para imitar ciertos conjuros: como acción, gastas 2 puntos de ki para lanzar oscuridad, visión en la oscuridad, pasar sin rastro o silencio sin necesidad de componentes materiales. Además aprendes el truco ilusión menor si no lo conocías."
+          }
+        ]
+      }
+    },
+    {
+      "id": "camino_de_los_cuatro_elementos",
+      "nombre": "Camino de los Cuatro Elementos",
+      "clase": "monje",
+      "fuente": "PHB 2014",
+      "descripcion": "Tradición que enseña a canalizar el ki para dominar el aire, el agua, la tierra y el fuego, y a usar los elementos como una prolongación del propio cuerpo.",
+      "perfil": {
+        "arcano": 3,
+        "agilidad": 2,
+        "naturaleza": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Discípulo de los Elementos",
+            "resumen": "disciplinas: Sintonía Elemental + {1+min(1,nivel_clase//6)+min(1,nivel_clase//11)+min(1,nivel_clase//17)} a tu elección; CD {8+competencia+mod_sab}; los conjuros de disciplina no necesitan componentes materiales y desde nivel 5 puedes gastar ki adicional para lanzarlos a más nivel (+1 nivel por punto); máximo de ki por conjuro: {escala}",
+            "descripcion": "Aprendes disciplinas mágicas que aprovechan el poder de los elementos y que se alimentan de ki. Conoces la disciplina Sintonía Elemental y otra disciplina elemental a tu elección; aprendes una más a los niveles 6, 11 y 17, y cada vez que aprendes una nueva puedes cambiar otra que ya conozcas. Si una disciplina te deja lanzar un conjuro, sigues sus reglas normales pero no necesitas componentes materiales. A partir del nivel 5 puedes gastar puntos de ki adicionales para subir el nivel de un conjuro de disciplina que mejore a niveles superiores (un nivel por punto). El máximo de ki que puedes gastar en un conjuro, incluido el coste base, es 2 a niveles 3-4, 3 a niveles 5-8, 4 a niveles 9-12, 5 a niveles 13-16 y 6 a niveles 17-20.",
+            "escala": {
+              "3": 2,
+              "5": 3,
+              "9": 4,
+              "13": 5,
+              "17": 6
+            }
+          },
+          {
+            "tipo": "opcion",
+            "id": "sintonia_elemental"
+          },
+          {
+            "tipo": "eleccion",
+            "id": "disciplina_elemental",
+            "nombre": "Disciplina elemental",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "disciplina_elemental",
+                "clases": "monje",
+                "nivel_monje": 3
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "opciones": [
+    {
+      "id": "sintonia_elemental",
+      "nombre": "Disciplina: Sintonía Elemental",
+      "grupo": "disciplina_elemental",
+      "clases": [
+        "monje"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "acción, sin coste de ki: un efecto elemental menor cerca de ti (efecto sensorial inofensivo de aire, tierra, fuego o agua; encender o apagar una vela, antorcha o pequeña hoguera; enfriar o calentar hasta 1 libra de materia inerte durante 1 hora; o dar una forma tosca durante 1 minuto a tierra, fuego, agua o niebla que quepa en un cubo de 1 pie)",
+      "descripcion": "Todo monje de los Cuatro Elementos conoce esta disciplina desde el nivel 3, sin elegirla. Como acción controlas brevemente las fuerzas elementales cercanas para lograr uno de estos efectos: un efecto sensorial instantáneo e inofensivo ligado al aire, la tierra, el fuego o el agua (una lluvia de chispas, una ráfaga de aire, una neblina, un leve temblor de la piedra); encender o apagar al instante una vela, una antorcha o una pequeña hoguera; enfriar o calentar hasta 1 libra de materia no viva durante un máximo de 1 hora; o hacer que tierra, fuego, agua o niebla que quepan en un cubo de 1 pie adopten durante 1 minuto una forma tosca que elijas."
+    },
+    {
+      "id": "colmillos_de_la_serpiente_de_fuego",
+      "nombre": "Disciplina: Colmillos de la Serpiente de Fuego",
+      "grupo": "disciplina_elemental",
+      "clases": [
+        "monje"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "al usar la acción de Atacar, 1 ki: hasta el final del turno tus ataques sin armas tienen 10 pies más de alcance y hacen daño de fuego en lugar de contundente; al impactar, 1 ki más: +1d10 de daño de fuego",
+      "descripcion": "Cuando realizas la acción de Atacar en tu turno, puedes gastar 1 punto de ki para que te broten lenguas de fuego de puños y pies. Durante esa acción y el resto del turno, tus ataques sin armas ganan 10 pies de alcance y causan daño de fuego en vez de contundente. Si gastas otro punto de ki cuando uno de esos ataques impacta, causa además 1d10 de daño de fuego.",
+      "nivel_monje": 3
+    },
+    {
+      "id": "puno_de_los_cuatro_truenos",
+      "nombre": "Disciplina: Puño de los Cuatro Truenos",
+      "grupo": "disciplina_elemental",
+      "clases": [
+        "monje"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "2 ki: lanzas ola atronadora (salvación de CON CD {8+competencia+mod_sab})",
+      "descripcion": "Puedes gastar 2 puntos de ki para lanzar el conjuro ola atronadora.",
+      "nivel_monje": 3,
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "ola_atronadora",
+          "caracteristica": "sab"
+        }
+      ]
+    },
+    {
+      "id": "puno_del_aire_inquebrantable",
+      "nombre": "Disciplina: Puño del Aire Inquebrantable",
+      "grupo": "disciplina_elemental",
+      "clases": [
+        "monje"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "acción, 2 ki: una criatura a 30 pies o menos hace una salvación de FUE CD {8+competencia+mod_sab}; si falla, 3d10 de daño contundente (+1d10 por cada ki adicional), la empujas hasta 20 pies y la derribas; si la supera, la mitad del daño y nada más",
+      "descripcion": "Lanzas un golpe de aire comprimido que pega como un puño enorme. Como acción, gastas 2 puntos de ki y eliges a una criatura a 30 pies o menos, que hace una tirada de salvación de Fuerza. Si falla, sufre 3d10 de daño contundente, más 1d10 por cada punto de ki adicional que gastes, y puedes alejarla hasta 20 pies de ti y tirarla al suelo. Si la supera, sufre la mitad del daño y no la mueves ni la derribas.",
+      "nivel_monje": 3
+    },
+    {
+      "id": "acometida_de_los_espiritus_del_vendaval",
+      "nombre": "Disciplina: Acometida de los Espíritus del Vendaval",
+      "grupo": "disciplina_elemental",
+      "clases": [
+        "monje"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "2 ki: lanzas ráfaga de viento (salvación de FUE CD {8+competencia+mod_sab})",
+      "descripcion": "Puedes gastar 2 puntos de ki para lanzar el conjuro ráfaga de viento.",
+      "nivel_monje": 3,
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "rafaga_de_viento",
+          "caracteristica": "sab"
+        }
+      ]
+    },
+    {
+      "id": "moldear_el_rio_fluyente",
+      "nombre": "Disciplina: Moldear el Río Fluyente",
+      "grupo": "disciplina_elemental",
+      "clases": [
+        "monje"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "acción, 1 ki: en un área de agua o hielo de hasta 30 pies de lado a 120 pies o menos, conviertes agua en hielo o al revés y das forma al hielo (subir o bajar el nivel, abrir o rellenar zanjas, alzar o derribar muros, formar columnas) hasta la mitad de la mayor dimensión del área; no sirve para atrapar ni herir a criaturas",
+      "descripcion": "Como acción, gastas 1 punto de ki y eliges una zona de hielo o agua de no más de 30 pies de lado a 120 pies o menos de ti. Dentro de ella puedes transformar el agua en hielo y el hielo en agua, y moldear el hielo como quieras: elevar o hundir su superficie, abrir o rellenar una zanja, levantar o derribar un muro o formar una columna. Ningún cambio puede superar la mitad de la mayor dimensión de la zona (en un cuadrado de 30 pies, hasta 15 pies de alto o de hondo). No puedes dar forma al hielo para atrapar o dañar a una criatura que esté en la zona.",
+      "nivel_monje": 3
+    },
+    {
+      "id": "golpe_de_ceniza_arrolladora",
+      "nombre": "Disciplina: Golpe de Ceniza Arrolladora",
+      "grupo": "disciplina_elemental",
+      "clases": [
+        "monje"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "2 ki: lanzas manos ardientes (salvación de DES CD {8+competencia+mod_sab})",
+      "descripcion": "Puedes gastar 2 puntos de ki para lanzar el conjuro manos ardientes.",
+      "nivel_monje": 3,
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "manos_ardientes",
+          "caracteristica": "sab"
+        }
+      ]
+    },
+    {
+      "id": "latigo_de_agua",
+      "nombre": "Disciplina: Látigo de Agua",
+      "grupo": "disciplina_elemental",
+      "clases": [
+        "monje"
+      ],
+      "fuente": "PHB 2014",
+      "resumen": "acción adicional, 2 ki: una criatura que veas a 30 pies o menos hace una salvación de DES CD {8+competencia+mod_sab}; si falla, 3d10 de daño contundente (+1d10 por cada ki adicional) y la derribas o la atraes hasta 25 pies hacia ti; si la supera, la mitad del daño y nada más",
+      "descripcion": "Gastas 2 puntos de ki como acción adicional para formar un látigo de agua que empuja y tira de una criatura para desequilibrarla. Una criatura que puedas ver a 30 pies o menos hace una tirada de salvación de Destreza. Si falla, sufre 3d10 de daño contundente, más 1d10 por cada punto de ki adicional que gastes, y puedes derribarla o acercarla hasta 25 pies hacia ti. Si la supera, sufre la mitad del daño y no la mueves ni la derribas.",
+      "nivel_monje": 3
+    }
+  ]
+}
