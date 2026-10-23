@@ -396,3 +396,29 @@ def test_multiclase_desactivada(asistente):
     a.elegir_clase("guerrero")
     with pytest.raises(ValueError):
         a.anadir_clase("picaro")
+
+
+def test_canalizar_divinidad_de_dos_clases_no_suma_usos(asistente):
+    a = asistente
+    a.establecer_nivel(9)
+    a.elegir_clase("clerigo")
+    a.anadir_clase("paladin", 3)  # clérigo 6 (2 usos) y paladín 3 (1 uso)
+    completar_elecciones(a, "clase")
+    rasgos = [r for r in a.ficha().rasgos if r.nombre == "Canalizar Divinidad"]
+    assert sorted(r.usos or 0 for r in rasgos) == [0, 2]
+    assert any(r.resumen.startswith("usos: los de Clérigo 2 (no se suman)") for r in rasgos)
+
+
+def test_defensa_sin_armadura_solo_de_la_primera_clase(asistente):
+    a = asistente
+    a.elegir_raza("humano")
+    a.elegir_subraza("humano_estandar")
+    a.establecer_nivel(4)
+    a.elegir_clase("barbaro")
+    a.anadir_clase("monje", 1)
+    a.establecer_metodo("manual")
+    a.personaje.caracteristicas_base = {"fue": 14, "des": 14, "con": 10, "int": 8, "sab": 16, "car": 8}
+    a.personaje.equipo = []
+    ficha = a.ficha()
+    # Bárbaro: 10 + DES 2 + CON 0 = 12, aunque la del monje (10 + 2 + 3 = 15) sería mejor.
+    assert ficha.ca == 10 + ficha.caracteristicas["des"].modificador + ficha.caracteristicas["con"].modificador

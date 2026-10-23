@@ -409,7 +409,8 @@
               "des",
               "sab"
             ],
-            "condicion": "sin_escudo"
+            "condicion": "sin_escudo",
+            "no_acumula": "defensa_sin_armadura"
           },
           {
             "tipo": "rasgo",

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import math
+import re
 from collections import defaultdict
 from collections.abc import Iterator
 from typing import TYPE_CHECKING
@@ -181,7 +182,7 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
         habilidades=habilidades,
         percepcion_pasiva=pasivas["percepcion"],
         pasivas=pasivas,
-        ca=_clase_armadura(mods, armadura, escudo, de_tipo("ca_alternativa"), de_tipo("bonificador_ca"),
+        ca=_clase_armadura(mods, armadura, escudo, _primera_de_cada(de_tipo("ca_alternativa")), de_tipo("bonificador_ca"),
                            de_tipo("max_des_armadura_media")),
         iniciativa=mods["des"] + medio.get("des", 0) + sum(e["valor"] for e in de_tipo("iniciativa")),
         velocidades=_velocidades(raza, de_tipo("velocidad"), puntuaciones["fue"], armadura,
@@ -246,6 +247,7 @@ def _rasgos(aplicables: list[EfectoAplicado], catalogo: Catalogo, niveles_clase:
             contexto: dict, avisos: list[str]) -> list[Rasgo]:
     rasgos: list[Rasgo] = []
     no_acumula: dict[str, int] = {}  # nombre -> posición del rasgo que se queda
+    compartidos: dict[str, list[int]] = {}  # clave -> posiciones de rasgos con una sola reserva de usos
     for aplicado in aplicables:
         if aplicado.tipo != "rasgo":
             continue
@@ -260,6 +262,8 @@ def _rasgos(aplicables: list[EfectoAplicado], catalogo: Catalogo, niveles_clase:
             resumen, usos = efecto.get("resumen", ""), None
         rasgo = Rasgo(efecto["nombre"], efecto.get("descripcion", ""), aplicado.etiqueta,
                       resumen, usos, _por_nivel(efecto.get("recarga", ""), variables["nivel_clase"]))
+        if efecto.get("usos_compartidos"):
+            compartidos.setdefault(efecto["usos_compartidos"], []).append(len(rasgos))
         if efecto.get("no_acumula"):
             # Multiclase: Ataque Adicional, Defensa sin Armadura… de dos clases no se suman; queda el mejor.
             previo = no_acumula.get(efecto["nombre"])
@@ -269,7 +273,36 @@ def _rasgos(aplicables: list[EfectoAplicado], catalogo: Catalogo, niveles_clase:
                 continue
             no_acumula[efecto["nombre"]] = len(rasgos)
         rasgos.append(rasgo)
+    for posiciones in compartidos.values():
+        _compartir_usos([rasgos[i] for i in posiciones])
     return rasgos
+
+
+def _compartir_usos(grupo: list[Rasgo]) -> None:
+    """Multiclase: el mismo rasgo de dos clases no suma usos; los conserva el que más tiene."""
+    if len(grupo) < 2:
+        return
+    mejor = max(grupo, key=lambda r: r.usos or 0)
+    for rasgo in grupo:
+        if rasgo is not mejor:
+            sin_usos = re.sub(r"^usos: [^;]*; ", "", rasgo.resumen)
+            rasgo.resumen = f"usos: los de {mejor.origen} (no se suman); {sin_usos}"
+            rasgo.usos, rasgo.recarga = None, ""
+
+
+def _primera_de_cada(efectos: list[dict]) -> list[dict]:
+    """Efectos con la misma clave «no_acumula»: solo cuenta el primero (Defensa sin Armadura de bárbaro y monje:
+    vale la de la clase que la dio antes)."""
+    vistas: set[str] = set()
+    resultado = []
+    for efecto in efectos:
+        clave = efecto.get("no_acumula")
+        if isinstance(clave, str):
+            if clave in vistas:
+                continue
+            vistas.add(clave)
+        resultado.append(efecto)
+    return resultado
 
 
 def _numero_inicial(texto: str) -> int:

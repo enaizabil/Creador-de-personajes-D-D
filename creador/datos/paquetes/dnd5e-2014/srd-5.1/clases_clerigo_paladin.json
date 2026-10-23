@@ -208,7 +208,8 @@
               "2": 1,
               "6": 2,
               "18": 3
-            }
+            },
+            "usos_compartidos": "canalizar_divinidad"
           },
           {
             "tipo": "rasgo",
@@ -525,7 +526,8 @@
             "resumen": "usos: 1 por descanso corto o largo; CD {8+competencia+mod_car}; las opciones te las da tu juramento",
             "descripcion": "Tu juramento te permite canalizar energía divina para alimentar las opciones de Canalizar Divinidad que te concede. Al usarlo eliges una de ellas y no puedes volver a hacerlo hasta terminar un descanso corto o largo. La CD de las salvaciones es la de tus conjuros de paladín.",
             "usos": 1,
-            "recarga": "corto"
+            "recarga": "corto",
+            "usos_compartidos": "canalizar_divinidad"
           }
         ],
         "4": [

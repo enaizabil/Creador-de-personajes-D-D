@@ -168,7 +168,8 @@
             "suma": [
               "des",
               "con"
-            ]
+            ],
+            "no_acumula": "defensa_sin_armadura"
           },
           {
             "tipo": "rasgo",
