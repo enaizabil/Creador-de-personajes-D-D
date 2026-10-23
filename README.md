@@ -10,8 +10,8 @@ Programa portable para crear personajes de rol, con dos modos (normal y sencillo
 |---|---|---|
 | 1 | Núcleo: paquetes, personaje, motor de efectos y elecciones, reglas derivadas de 5e (niveles 1–20) | ✅ |
 | 2 | Datos 5e 2014: SRD 5.1 + PHB + Guía del DM (razas, clases, trasfondos, dotes, equipo, conjuros) | ✅ Hasta nivel 20 (dudas en `docs/dudas-contenido.md`) |
-| 3 | Modo normal: asistente por pasos con selector de sistema y paquetes (CustomTkinter) | ✅ (sin multiclase en el asistente) |
-| 4 | Modo sencillo: cuestionario de situaciones → raza, clase, trasfondo, características y habilidades | ✅ (17 preguntas; el personaje se retoca luego en el modo normal) |
+| 3 | Modo normal: asistente por pasos con selector de sistema y paquetes (CustomTkinter) | ✅ (con multiclase: reparto de niveles en el paso «Clase») |
+| 4 | Modo sencillo: cuestionario de situaciones → raza, clase, trasfondo, características y habilidades | ✅ (17 preguntas; una sola clase o, si se acepta, propuesta de multiclase; el personaje se retoca luego en el modo normal) |
 | 5 | Salidas: JSON, réplica de la ficha oficial, rellenado del PDF oficial y guía para Nivel20 | ✅ (hoja editable en español rellena, réplica en A4 y nota de Obsidian con la guía de Nivel20) |
 | 6 | Ejecutables para Windows, macOS y Linux (PyInstaller) y gestor de paquetes | ✅ (compilación local en dos ediciones, completa y libre; gestor con importación validada y homebrew de ejemplo) |
 

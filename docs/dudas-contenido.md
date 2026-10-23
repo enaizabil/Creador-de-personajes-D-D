@@ -376,3 +376,11 @@ Los ids no cambian aunque cambien los nombres.
 
 - **Dominio de la Muerte y Rompejuramentos completos hasta nivel 20.** Nombres tal cual en el texto: Destrucción Inevitable, Golpe Divino, Segador Mejorado, Aura de Odio, Resistencia Sobrenatural y Amo del Pavor.
 - **Resistencia Sobrenatural y Avatar de Batalla** (solo contra armas no mágicas) van como rasgo, sin efecto de resistencia: el motor no distingue daño mágico de no mágico y la ficha mostraría una resistencia total.
+
+## Multiclase
+
+- **Requisitos** (FUE o DES 13, INT 13…): se comprueban los de todas las clases, también la inicial, con las puntuaciones finales y solo avisan (decisión de diseño). El reglamento los mira en el momento de añadir la clase; si una mejora posterior es la que permite cumplirlos, el programa no lo detecta.
+- **Rasgos que no se acumulan** («no_acumula»): Ataque Adicional, Defensa sin Armadura, Evasión y Esquiva Asombrosa aparecen una sola vez; de Ataque Adicional se queda el que da más ataques. Defensa sin Armadura de bárbaro y monje: la CA usa la mejor de las dos fórmulas, aunque el reglamento dice que no se puede ganar por segunda vez (cuenta solo la de la primera clase que la dio).
+- **Canalizar Divinidad** de clérigo y paladín: se muestran los dos rasgos con sus usos; el reglamento dice que al ganarla otra vez se ganan sus opciones, pero no usos adicionales. Revísalo a mano en la ficha.
+- **Equipo inicial y salvaciones**: solo los de la clase inicial; de las demás, las competencias de multiclase.
+- **Reparto propuesto por el cuestionario**: heurística propia (no es una regla): desde nivel 4, la clase más afín y la siguiente compatible (no más de tres características clave entre las dos) con un tercio de los niveles (1-5), sin dejar a la principal por debajo de su subclase.
