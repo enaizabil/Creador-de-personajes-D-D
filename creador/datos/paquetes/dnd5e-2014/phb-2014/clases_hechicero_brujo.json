@@ -23,7 +23,6 @@
         "astucia": 2,
         "carisma": 1
       },
-      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -39,6 +38,30 @@
             "descripcion": "Puedes forzar el azar a tu favor y tener ventaja en una tirada de ataque, prueba de característica o tirada de salvación. Después necesitas un descanso largo para volver a hacerlo, salvo que antes el DM te pida tirar en la tabla de Oleada de Magia Salvaje justo después de lanzar un conjuro de hechicero de nivel 1 o superior: en ese caso, tiras y recuperas el uso.",
             "usos": 1,
             "recarga": "largo"
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Doblegar la Suerte",
+            "resumen": "reacción y 2 puntos de hechicería: tiras 1d4 y lo sumas o restas a la tirada de ataque, prueba o salvación de otra criatura que veas (después de la tirada, antes de los efectos)",
+            "descripcion": "Cuando otra criatura que puedas ver hace una tirada de ataque, una prueba de característica o una tirada de salvación, puedes usar tu reacción y gastar 2 puntos de hechicería para tirar 1d4 y aplicar el resultado como bonificador o penalizador (a tu elección) a su tirada. Puedes hacerlo después de que tire, pero antes de que se apliquen sus efectos."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Caos Controlado",
+            "resumen": "cuando tiras en la tabla de Oleada de Magia Salvaje, tiras dos veces y eliges el resultado",
+            "descripcion": "Ganas cierto control sobre el caos de tu magia: cada vez que tiras en la tabla de Oleada de Magia Salvaje, puedes tirar dos veces y usar cualquiera de los dos números."
+          }
+        ],
+        "18": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Bombardeo de Conjuros",
+            "resumen": "una vez por turno, si al tirar el daño de un conjuro sacas el máximo en algún dado, lo vuelves a tirar y sumas el resultado",
+            "descripcion": "La energía dañina de tus conjuros se intensifica: cuando tiras el daño de un conjuro y sacas el número más alto posible en cualquiera de los dados, eliges uno de ellos, lo tiras otra vez y sumas ese resultado al daño. Solo puedes usar este rasgo una vez por turno."
           }
         ]
       }
@@ -61,9 +84,12 @@
         "calmar_emociones",
         "fuerza_fantasmal",
         "desplazamiento",
-        "crecimiento_vegetal"
+        "crecimiento_vegetal",
+        "dominar_bestia",
+        "invisibilidad_mejorada",
+        "dominar_persona",
+        "apariencia"
       ],
-      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -77,6 +103,34 @@
             "nombre": "Presencia Feérica",
             "resumen": "acción: cada criatura en un cubo de 10 pies que parte de ti hace una salvación de SAB CD {8+competencia+mod_car}; si falla, queda hechizada o asustada por ti (tú eliges) hasta el final de tu siguiente turno; 1 uso por descanso corto o largo",
             "descripcion": "Puedes mostrar el porte seductor e inquietante de las hadas. Como acción, obligas a cada criatura que esté en un cubo de 10 pies con origen en ti a superar una tirada de salvación de Sabiduría contra la CD de tus conjuros de brujo; las que fallen quedan hechizadas o asustadas por ti (a tu elección) hasta el final de tu siguiente turno. Recuperas el uso tras un descanso corto o largo.",
+            "usos": 1,
+            "recarga": "corto"
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Escape Brumoso",
+            "resumen": "reacción al recibir daño: te vuelves invisible y te teletransportas hasta 60 pies a un espacio libre que veas (invisible hasta el principio de tu siguiente turno o hasta que ataques o lances un conjuro)",
+            "descripcion": "Puedes desvanecerte en una nube de niebla en respuesta al daño. Cuando recibes daño, puedes usar tu reacción para volverte invisible y teletransportarte hasta 60 pies a un espacio sin ocupar que puedas ver. Sigues invisible hasta el principio de tu siguiente turno o hasta que ataques o lances un conjuro. Después debes terminar un descanso corto o largo para volver a usarlo.",
+            "usos": 1,
+            "recarga": "corto"
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Defensas Seductoras",
+            "resumen": "inmune a quedar hechizado; cuando alguien intenta hechizarte, con tu reacción le devuelves el efecto: salvación de SAB o queda hechizado por ti 1 minuto o hasta que reciba daño",
+            "descripcion": "Tu patrón te enseña a volver contra quien los usa los efectos que afectan a la mente. Eres inmune a quedar hechizado y, cuando otra criatura intenta hechizarte, puedes usar tu reacción para devolverle el encantamiento: debe superar una tirada de salvación de Sabiduría contra tu CD de conjuros o quedará hechizada por ti durante 1 minuto o hasta que reciba daño."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Delirio Oscuro",
+            "resumen": "acción: una criatura que veas a 60 pies hace una salvación de SAB o queda hechizada o asustada (a tu elección) en un reino ilusorio durante 1 minuto o hasta que se rompa tu concentración o reciba daño",
+            "descripcion": "Como acción, eliges una criatura que puedas ver a 60 pies o menos: debe hacer una tirada de salvación de Sabiduría contra tu CD de conjuros. Si la falla, queda hechizada o asustada de ti (a tu elección) durante 1 minuto o hasta que se rompa tu concentración (como si te concentraras en un conjuro). Mientras dura, cree estar perdida en un reino brumoso cuyo aspecto eliges tú; solo ve y oye a sí misma, a ti y la ilusión. El efecto termina antes si recibe daño. Después debes terminar un descanso corto o largo para volver a usarlo.",
             "usos": 1,
             "recarga": "corto"
           }
@@ -100,9 +154,12 @@
         "detectar_pensamientos",
         "fuerza_fantasmal",
         "clarividencia",
-        "recado"
+        "recado",
+        "dominar_bestia",
+        "tentaculos_negros",
+        "dominar_persona",
+        "telequinesis"
       ],
-      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -116,6 +173,36 @@
             "nombre": "Mente Despierta",
             "resumen": "telepatía con cualquier criatura que veas a 30 pies o menos; no necesitáis un idioma común, pero debe entender al menos uno",
             "descripcion": "Tu contacto con lo ajeno te permite hablar mentalmente: puedes comunicarte por telepatía con cualquier criatura que veas a 30 pies o menos de ti. No hace falta que compartáis idioma, pero la criatura tiene que entender al menos alguno."
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Guarda Entrópica",
+            "resumen": "reacción cuando una criatura te ataca: le impones desventaja; si falla, tu siguiente ataque contra ella antes del final de tu próximo turno tiene ventaja",
+            "descripcion": "Aprendes a protegerte mágicamente de los ataques y a convertir el fallo de un enemigo en tu suerte. Cuando una criatura hace una tirada de ataque contra ti, puedes usar tu reacción para imponerle desventaja. Si el ataque falla, tu siguiente tirada de ataque contra esa criatura tiene ventaja si la haces antes del final de tu siguiente turno. Después debes terminar un descanso corto o largo para volver a usarlo.",
+            "usos": 1,
+            "recarga": "corto"
+          }
+        ],
+        "10": [
+          {
+            "tipo": "resistencia",
+            "dano": "psiquico"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Escudo Mental",
+            "resumen": "nadie lee tus pensamientos por telepatía sin tu permiso; resistencia al daño psíquico; quien te causa daño psíquico recibe el mismo daño",
+            "descripcion": "Tus pensamientos no pueden leerse por telepatía ni por otros medios salvo que lo permitas. Tienes resistencia al daño psíquico y, cuando una criatura te causa daño psíquico, ella recibe la misma cantidad de daño que tú."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Crear Siervo",
+            "resumen": "acción: tocas a un humanoide incapacitado y queda hechizado por ti hasta que se lance levantar maldición, se le quite el estado o vuelvas a usar este rasgo; os comunicáis por telepatía en el mismo plano",
+            "descripcion": "Ganas la capacidad de infectar la mente de un humanoide con la magia ajena de tu patrón. Como acción, tocas a un humanoide incapacitado: queda hechizado por ti hasta que se le lance levantar maldición, se le quite el estado de hechizado o vuelvas a usar este rasgo. Puedes comunicarte telepáticamente con él mientras estéis en el mismo plano de existencia."
           }
         ]
       }

@@ -23,7 +23,6 @@
         "carisma": 2,
         "proteccion": 1
       },
-      "niveles_completos": 5,
       "niveles": {
         "3": [
           {
@@ -59,6 +58,22 @@
               "15": "1d12"
             }
           }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Ataque Adicional",
+            "resumen": "2 ataques al usar la acción de Atacar",
+            "descripcion": "Cuando realizas la acción de Atacar en tu turno, puedes atacar dos veces en lugar de una."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Magia de Batalla",
+            "resumen": "cuando usas tu acción para lanzar un conjuro de bardo, puedes hacer un ataque con arma como acción adicional",
+            "descripcion": "Cuando usas tu acción para lanzar un conjuro de bardo, puedes hacer un ataque con arma como acción adicional."
+          }
         ]
       }
     },
@@ -73,7 +88,6 @@
         "combate": 2,
         "astucia": 2
       },
-      "niveles_completos": 5,
       "niveles": {
         "3": [
           {
@@ -97,6 +111,30 @@
             "nombre": "Asesinar",
             "resumen": "ventaja en tiradas de ataque contra criaturas que aún no hayan actuado en el combate; tus impactos contra criaturas sorprendidas son críticos",
             "descripcion": "Eres letal cuando pillas al enemigo desprevenido: tienes ventaja en las tiradas de ataque contra cualquier criatura que todavía no haya tenido su turno en el combate, y cualquier impacto que consigas contra una criatura sorprendida es un crítico."
+          }
+        ],
+        "9": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Experto en Infiltración",
+            "resumen": "con 7 días y 25 po creas una identidad falsa completa (historia, profesión, contactos y documentos)",
+            "descripcion": "Puedes crear identidades falsas a la perfección. Debes pasar siete días y gastar 25 po para establecer la historia, la profesión y las afiliaciones de una identidad, y conseguir documentos que la respalden. No puedes adoptar una identidad que ya pertenezca a otra persona. Los demás te creen esa persona hasta que tengan un motivo evidente para no hacerlo."
+          }
+        ],
+        "13": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Impostor",
+            "resumen": "tras 3 horas de estudio imitas el habla, la escritura y los gestos de una persona; si alguien sospecha, ventaja en las pruebas de CAR (Engaño) para no ser descubierto",
+            "descripcion": "Puedes imitar sin errores el habla, la letra y el comportamiento de otra persona. Debes pasar al menos tres horas estudiando esos tres aspectos: escucharla, examinar su letra y observar sus gestos. Un observador casual no nota el engaño; si una criatura recelosa sospecha algo, tienes ventaja en las pruebas de Carisma (Engaño) para que no te descubra."
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Golpe Letal",
+            "resumen": "al impactar a una criatura sorprendida, hace una salvación de CON (CD {8+mod_des+competencia}) o tu ataque causa el doble de daño",
+            "descripcion": "Cuando atacas e impactas a una criatura sorprendida, debe hacer una tirada de salvación de Constitución (CD 8 + tu modificador por Destreza + tu bonificador por competencia). Si la falla, el ataque le causa el doble de daño."
           }
         ]
       }
@@ -163,7 +201,6 @@
           "mago"
         ]
       },
-      "niveles_completos": 5,
       "niveles": {
         "3": [
           {
@@ -183,6 +220,32 @@
             "nombre": "Juego de Manos con Mano de Mago",
             "resumen": "tu mano de mago puede ser invisible, guardar o sacar objetos de un contenedor que lleve otra criatura y usar herramientas de ladrón a distancia; la controlas con la acción adicional de Acción Astuta; para que no te vean, DES (Juego de Manos) contra SAB (Percepción)",
             "descripcion": "Cuando lanzas mano de mago, puedes volver invisible la mano espectral y usarla para tareas nuevas: meter un objeto que sostenga en un contenedor que lleve otra criatura, sacar un objeto de un contenedor así, o usar herramientas de ladrón a distancia para abrir cerraduras y desarmar trampas. Puedes hacer una de estas tareas sin que una criatura se dé cuenta si superas una prueba de Destreza (Juego de Manos) enfrentada a su Sabiduría (Percepción). Además, puedes controlar la mano con la acción adicional de Acción Astuta."
+          }
+        ],
+        "9": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Emboscada Mágica",
+            "resumen": "si estás escondido de una criatura al lanzarle un conjuro, tiene desventaja en las salvaciones contra él este turno",
+            "descripcion": "Si estás escondido de una criatura cuando le lanzas un conjuro, tiene desventaja en las tiradas de salvación que haga contra ese conjuro en este turno."
+          }
+        ],
+        "13": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Embaucador Versátil",
+            "resumen": "acción adicional: tu mano de mago distrae a una criatura a 5 pies de ella y tienes ventaja en los ataques contra esa criatura hasta el final del turno",
+            "descripcion": "Como acción adicional, puedes designar a una criatura que esté a 5 pies o menos de la mano espectral de mano de mago: la mano la distrae y tienes ventaja en las tiradas de ataque contra ella hasta el final del turno."
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Ladrón de Conjuros",
+            "resumen": "reacción cuando una criatura te lanza un conjuro (o te incluye en su área): salvación con su aptitud mágica contra tu CD ({8+competencia+mod_int}); si la falla, el conjuro no te afecta y, si es de un nivel que puedas lanzar, lo conoces 8 horas y ella no puede lanzarlo",
+            "descripcion": "Justo después de que una criatura lance un conjuro que te tenga como objetivo o te incluya en su área, puedes usar tu reacción para obligarla a hacer una tirada de salvación con su modificador de aptitud mágica contra tu CD de salvación de conjuros. Si la falla, anulas el efecto del conjuro sobre ti y le robas su conocimiento, si es de nivel 1 o superior y de un nivel que puedas lanzar (no tiene que ser de mago). Durante las 8 horas siguientes conoces el conjuro y puedes lanzarlo con tus espacios, y la criatura no puede lanzarlo hasta que pasen esas 8 horas. Después debes terminar un descanso largo para volver a usarlo.",
+            "usos": 1,
+            "recarga": "largo"
           }
         ]
       }

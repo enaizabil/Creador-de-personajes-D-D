@@ -1,0 +1,73 @@
+{
+  "conjuros": [
+    {
+      "id": "aura_de_pureza",
+      "nombre": "Aura de pureza",
+      "nivel": 4,
+      "escuela": "abjuracion",
+      "listas": [
+        "paladin"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal (radio de 30 pies)",
+      "componentes": "V",
+      "duracion": "Concentración, hasta 10 minutos",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Aura de 30 pies que se mueve contigo: las criaturas no hostiles dentro (tú incluido) no pueden contraer enfermedades, tienen resistencia al daño de veneno y ventaja en las salvaciones contra quedar cegadas, hechizadas, ensordecidas, asustadas, paralizadas, envenenadas o aturdidas.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "aura_de_vida",
+      "nombre": "Aura de vida",
+      "nivel": 4,
+      "escuela": "abjuracion",
+      "listas": [
+        "paladin"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal (radio de 30 pies)",
+      "componentes": "V",
+      "duracion": "Concentración, hasta 10 minutos",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Aura de 30 pies que se mueve contigo: las criaturas no hostiles dentro (tú incluido) tienen resistencia al daño necrótico y sus puntos de golpe máximos no pueden reducirse. Una criatura viva no hostil que empiece su turno en el aura con 0 puntos de golpe recupera 1.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "castigo_abrumador",
+      "nombre": "Castigo abrumador",
+      "nivel": 4,
+      "escuela": "encantamiento",
+      "listas": [
+        "paladin"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "Personal",
+      "componentes": "V",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "La próxima vez que impactes con un ataque con arma cuerpo a cuerpo mientras dure, el ataque causa 4d6 de daño psíquico adicional y el objetivo supera una salvación de Sabiduría o tiene desventaja en ataques y pruebas y no puede usar reacciones hasta el final de su siguiente turno.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "enredadera",
+      "nombre": "Enredadera",
+      "nivel": 4,
+      "escuela": "conjuracion",
+      "listas": [
+        "druida",
+        "explorador"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "30 pies",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Una enredadera brota en un espacio libre que veas. Al lanzarlo, y como acción adicional en cada uno de tus turnos, azota a una criatura a 30 pies o menos de ella: salvación de Destreza o es arrastrada 20 pies hacia la enredadera.",
+      "fuente": "PHB 2014"
+    }
+  ]
+}

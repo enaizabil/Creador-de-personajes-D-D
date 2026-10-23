@@ -258,8 +258,10 @@ def test_nivel_limitado_a_los_datos(asistente, monkeypatch):
     assert any("solo llegan a nivel 5" in x for x in a.ficha().avisos)
 
 
-def test_subclase_con_datos_hasta_un_nivel_menor(asistente):
+def test_subclase_con_datos_hasta_un_nivel_menor(asistente, monkeypatch):
     a = asistente
+    # Como un paquete (homebrew, expansión) cuya subclase solo tiene datos hasta nivel 5.
+    monkeypatch.setitem(a.catalogo.obtener("subclases", "maestro_de_batalla"), "niveles_completos", 5)
     a.establecer_nivel(10)
     a.elegir_clase("guerrero")
     nombres = {o.id: o.nombre for o in a.subclases()}

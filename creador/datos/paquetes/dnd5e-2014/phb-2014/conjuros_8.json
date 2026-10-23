@@ -1,0 +1,38 @@
+{
+  "conjuros": [
+    {
+      "id": "telepatia",
+      "nombre": "Telepatía",
+      "nivel": 8,
+      "escuela": "evocacion",
+      "listas": [
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Ilimitado",
+      "componentes": "V, S, M (un par de anillos de plata enlazados)",
+      "duracion": "24 horas",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Creas un vínculo telepático con una criatura voluntaria que conozcas en tu mismo plano: os comunicáis al instante con palabras, imágenes, sonidos y otras sensaciones, aunque no compartáis idioma (necesita Inteligencia 1 o más).",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "tsunami",
+      "nombre": "Tsunami",
+      "nivel": 8,
+      "escuela": "conjuracion",
+      "listas": [
+        "druida"
+      ],
+      "tiempo": "1 minuto",
+      "alcance": "Vista",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 6 asaltos",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Un muro de agua de hasta 300 pies de largo, 300 de alto y 50 de grueso: quien esté dentro hace una salvación de Fuerza, 6d10 de daño contundente (mitad si la supera). Al principio de cada uno de tus turnos el muro avanza 50 pies alejándose de ti y arrastra a lo que tenga dentro (salvación de Fuerza o 5d10 contundente, una vez por asalto); cada turno pierde 50 pies de altura y 1d10 de daño, y termina al llegar a 0. Moverse dentro exige una prueba de Fuerza (Atletismo) contra tu CD de conjuros.",
+      "fuente": "PHB 2014"
+    }
+  ]
+}

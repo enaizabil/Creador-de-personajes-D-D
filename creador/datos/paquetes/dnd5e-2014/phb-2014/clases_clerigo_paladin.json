@@ -23,7 +23,6 @@
         "fe": 2,
         "arcano": 1
       },
-      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -120,6 +119,60 @@
             "clase": "clerigo",
             "siempre_preparado": true
           }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Leer Pensamientos",
+            "resumen": "acción: una criatura que veas a 60 pies hace una salvación de SAB; si la falla, lees sus pensamientos superficiales 1 minuto y puedes terminar el efecto para lanzarle sugestión sin espacio y sin salvación",
+            "descripcion": "Como acción, eliges una criatura que puedas ver a 60 pies o menos: debe hacer una tirada de salvación de Sabiduría. Si la supera, no puedes volver a usar este rasgo con ella hasta un descanso largo. Si la falla, durante 1 minuto lees sus pensamientos superficiales (lo que tiene en mente, sus emociones y lo que considera) mientras esté a 60 pies o menos. Mientras dura, puedes usar tu acción para terminarlo y lanzarle sugestión sin gastar espacio de conjuro; la falla automáticamente."
+          }
+        ],
+        "7": [
+          {
+            "tipo": "conjuro",
+            "id": "ojo_arcano",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "confusion",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "8": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Lanzamiento Potente",
+            "resumen": "sumas +{mod_sab} al daño de tus trucos de clérigo",
+            "descripcion": "Sumas tu modificador por Sabiduría al daño que causas con cualquier truco de clérigo."
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "conocer_las_leyendas",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "escudrinar",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Visiones del Pasado",
+            "resumen": "meditando (con concentración) ves imágenes del pasado de un objeto que sostienes (su último dueño) o de la zona que te rodea (sucesos de hasta tantos días como tu puntuación de Sabiduría); 1 vez por descanso corto o largo",
+            "descripcion": "Puedes invocar visiones del pasado de un objeto que sostengas o de tu entorno inmediato: pasas al menos 1 minuto meditando y rezando y luego recibes visiones oníricas y borrosas de lo ocurrido, durante un número de minutos igual a tu puntuación de Sabiduría (con concentración, como un conjuro). Lectura de objeto: tras 1 minuto ves a su anterior dueño, sabes cómo lo obtuvo y cómo lo perdió y el suceso significativo más reciente que los relaciona. Lectura de zona: ves sucesos recientes de tu entorno inmediato (una habitación, una calle, un túnel o un claro, hasta un cubo de 50 pies), remontándote tantos días como tu puntuación de Sabiduría. Después debes terminar un descanso corto o largo para volver a usarlo.",
+            "usos": 1,
+            "recarga": "corto"
+          }
         ]
       }
     },
@@ -134,7 +187,6 @@
         "fe": 2,
         "proteccion": 1
       },
-      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -205,6 +257,58 @@
             "clase": "clerigo",
             "siempre_preparado": true
           }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Destello Mejorado",
+            "resumen": "puedes usar Destello Protector también cuando atacan a una criatura (no tú) a 30 pies o menos",
+            "descripcion": "Puedes usar tu Destello Protector cuando una criatura que puedas ver a 30 pies o menos de ti ataca a otra criatura que no seas tú."
+          }
+        ],
+        "7": [
+          {
+            "tipo": "conjuro",
+            "id": "guardian_de_la_fe",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "muro_de_fuego",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "8": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Lanzamiento Potente",
+            "resumen": "sumas +{mod_sab} al daño de tus trucos de clérigo",
+            "descripcion": "Sumas tu modificador por Sabiduría al daño que causas con cualquier truco de clérigo."
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "golpe_flamigero",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "escudrinar",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Corona de Luz",
+            "resumen": "acción: aura de luz solar 1 minuto (brillante a 60 pies y tenue 30 más); los enemigos en la luz brillante tienen desventaja en las salvaciones contra conjuros de daño de fuego o radiante",
+            "descripcion": "Como acción, emanas un aura de luz solar durante 1 minuto o hasta que la descartes con otra acción: luz brillante en un radio de 60 pies y tenue 30 pies más allá. Tus enemigos que estén en la luz brillante tienen desventaja en las tiradas de salvación contra cualquier conjuro que cause daño de fuego o radiante."
+          }
         ]
       }
     },
@@ -219,7 +323,6 @@
         "fe": 2,
         "proteccion": 1
       },
-      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -325,6 +428,62 @@
             "clase": "clerigo",
             "siempre_preparado": true
           }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Amortiguar los Elementos",
+            "resumen": "reacción: cuando tú o una criatura a 30 pies recibís daño de ácido, frío, fuego, relámpago o trueno, le das resistencia contra ese daño",
+            "descripcion": "Cuando tú o una criatura a 30 pies o menos de ti recibís daño de ácido, frío, fuego, relámpago o trueno, puedes usar tu reacción para darle resistencia contra esa instancia de daño."
+          }
+        ],
+        "7": [
+          {
+            "tipo": "conjuro",
+            "id": "dominar_bestia",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "enredadera",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "8": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Golpe Divino",
+            "resumen": "una vez en cada uno de tus turnos, al impactar con un ataque con arma, +{escala} de daño de frío, fuego o relámpago (a tu elección)",
+            "descripcion": "Una vez en cada uno de tus turnos, cuando impactas a una criatura con un ataque con arma, puedes hacer que cause 1d8 de daño adicional de frío, fuego o relámpago (a tu elección); a nivel 14 son 2d8.",
+            "escala": {
+              "8": "1d8",
+              "14": "2d8"
+            }
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "plaga_de_insectos",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "paso_arboreo",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Señor de la Naturaleza",
+            "resumen": "con una acción adicional das órdenes verbales a las bestias y plantas que tengas hechizadas",
+            "descripcion": "Puedes dar órdenes a los animales y a las criaturas planta: mientras una de ellas esté hechizada por tu Canalizar Divinidad: Hechizar Animales y Plantas, puedes usar una acción adicional en tu turno para indicarle verbalmente qué hará en su siguiente turno."
+          }
         ]
       }
     },
@@ -339,7 +498,6 @@
         "combate": 2,
         "fe": 2
       },
-      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -414,6 +572,62 @@
             "clase": "clerigo",
             "siempre_preparado": true
           }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Golpe del Rayo",
+            "resumen": "cuando causas daño de relámpago a una criatura Grande o menor, puedes empujarla hasta 10 pies",
+            "descripcion": "Cuando causas daño de relámpago a una criatura Grande o más pequeña, también puedes empujarla hasta 10 pies lejos de ti."
+          }
+        ],
+        "7": [
+          {
+            "tipo": "conjuro",
+            "id": "controlar_agua",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "tormenta_de_hielo",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "8": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Golpe Divino",
+            "resumen": "una vez en cada uno de tus turnos, al impactar con un ataque con arma, +{escala} de daño de trueno",
+            "descripcion": "Una vez en cada uno de tus turnos, cuando impactas a una criatura con un ataque con arma, puedes hacer que cause 1d8 de daño de trueno adicional; a nivel 14 son 2d8.",
+            "escala": {
+              "8": "1d8",
+              "14": "2d8"
+            }
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "ola_destructora",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "plaga_de_insectos",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Nacido de la Tormenta",
+            "resumen": "al aire libre (no bajo tierra ni bajo techo) vuelas a tu velocidad caminando",
+            "descripcion": "Tienes una velocidad volando igual a tu velocidad caminando siempre que no estés bajo tierra ni en un interior."
+          }
         ]
       }
     },
@@ -428,7 +642,6 @@
         "sigilo": 2,
         "fe": 2
       },
-      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -485,6 +698,62 @@
             "clase": "clerigo",
             "siempre_preparado": true
           }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Manto de Sombras",
+            "resumen": "acción: te vuelves invisible hasta el final de tu siguiente turno (o hasta que ataques o lances un conjuro)",
+            "descripcion": "Como acción, te vuelves invisible hasta el final de tu siguiente turno. Dejas de serlo si atacas o lanzas un conjuro."
+          }
+        ],
+        "7": [
+          {
+            "tipo": "conjuro",
+            "id": "puerta_dimensional",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "polimorfar",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "8": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Golpe Divino",
+            "resumen": "una vez en cada uno de tus turnos, al impactar con un ataque con arma, +{escala} de daño de veneno",
+            "descripcion": "Una vez en cada uno de tus turnos, cuando impactas a una criatura con un ataque con arma, puedes hacer que cause 1d8 de daño de veneno adicional; a nivel 14 son 2d8.",
+            "escala": {
+              "8": "1d8",
+              "14": "2d8"
+            }
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "dominar_persona",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "alterar_los_recuerdos",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Duplicidad Mejorada",
+            "resumen": "Invocar Duplicidad crea hasta cuatro duplicados y puedes mover cualquier número de ellos con una acción adicional",
+            "descripcion": "Cuando usas Invocar Duplicidad, puedes crear hasta cuatro duplicados de ti en lugar de uno, y como acción adicional puedes mover cualquier número de ellos hasta 30 pies, hasta un máximo de 120 pies de ti."
+          }
         ]
       }
     },
@@ -499,7 +768,6 @@
         "fe": 2,
         "proteccion": 1
       },
-      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -574,6 +842,62 @@
             "clase": "clerigo",
             "siempre_preparado": true
           }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Bendición del Dios de la Guerra",
+            "resumen": "reacción: cuando una criatura a 30 pies hace una tirada de ataque, le das +10 (después de ver la tirada, antes de saber si impacta)",
+            "descripcion": "Cuando una criatura a 30 pies o menos de ti hace una tirada de ataque, puedes usar tu reacción para darle un bonificador de +10 a esa tirada, usando tu Canalizar Divinidad. Puedes decidirlo después de ver la tirada, pero antes de que el DM diga si impacta o falla."
+          }
+        ],
+        "7": [
+          {
+            "tipo": "conjuro",
+            "id": "libertad_de_movimiento",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "piel_petrea",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "8": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Golpe Divino",
+            "resumen": "una vez en cada uno de tus turnos, al impactar con un ataque con arma, +{escala} de daño del mismo tipo que el del arma",
+            "descripcion": "Una vez en cada uno de tus turnos, cuando impactas a una criatura con un ataque con arma, puedes hacer que cause 1d8 de daño adicional del mismo tipo que el del arma; a nivel 14 son 2d8.",
+            "escala": {
+              "8": "1d8",
+              "14": "2d8"
+            }
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "golpe_flamigero",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "inmovilizar_monstruo",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Avatar de Batalla",
+            "resumen": "resistencia al daño contundente, cortante y perforante de armas no mágicas",
+            "descripcion": "Tienes resistencia al daño contundente, cortante y perforante de armas no mágicas."
+          }
         ]
       }
     },
@@ -588,7 +912,6 @@
         "proteccion": 2,
         "fe": 2
       },
-      "niveles_completos": 5,
       "niveles": {
         "3": [
           {
@@ -629,6 +952,80 @@
             "clase": "paladin",
             "siempre_preparado": true
           }
+        ],
+        "7": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Aura de Custodia",
+            "resumen": "tú y los aliados a {escala} pies o menos tenéis resistencia al daño de los conjuros",
+            "descripcion": "La magia antigua te protege tanto que forma una custodia sobrenatural: tú y las criaturas amistosas a 10 pies o menos de ti tenéis resistencia al daño de los conjuros. A nivel 18 el aura alcanza 30 pies.",
+            "escala": {
+              "7": 10,
+              "18": 30
+            }
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "crecimiento_vegetal",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "proteccion_contra_energia",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "13": [
+          {
+            "tipo": "conjuro",
+            "id": "tormenta_de_hielo",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "piel_petrea",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "15": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Centinela Imperecedero",
+            "resumen": "si caes a 0 PG y no mueres en el acto, te quedas con 1 PG (1 vez por descanso largo); no sufres los males de la vejez ni envejeces por magia",
+            "descripcion": "Cuando tus puntos de golpe se reducen a 0 y no mueres en el acto, puedes quedarte con 1 punto de golpe en su lugar; después debes terminar un descanso largo para volver a hacerlo. Además, no sufres ninguno de los inconvenientes de la vejez y no se te puede envejecer mágicamente.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ],
+        "17": [
+          {
+            "tipo": "conjuro",
+            "id": "comunion_con_la_naturaleza",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "paso_arboreo",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "20": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Campeón Ancestral",
+            "resumen": "acción: durante 1 minuto recuperas 10 PG al principio de cada turno, lanzas como acción adicional los conjuros de paladín de 1 acción y los enemigos a 10 pies tienen desventaja en las salvaciones contra tus conjuros de paladín y tu Canalizar Divinidad",
+            "descripcion": "Como acción, adoptas la forma de una fuerza antigua de la naturaleza durante 1 minuto: al principio de cada uno de tus turnos recuperas 10 puntos de golpe; cuando lanzas un conjuro de paladín con un tiempo de lanzamiento de 1 acción, puedes lanzarlo como acción adicional; y las criaturas enemigas a 10 pies o menos de ti tienen desventaja en las salvaciones contra tus conjuros de paladín y tus opciones de Canalizar Divinidad. Después debes terminar un descanso largo para volver a usarlo.",
+            "usos": 1,
+            "recarga": "largo"
+          }
         ]
       }
     },
@@ -643,7 +1040,6 @@
         "fe": 2,
         "agilidad": 1
       },
-      "niveles_completos": 5,
       "niveles": {
         "3": [
           {
@@ -683,6 +1079,74 @@
             "id": "paso_brumoso",
             "clase": "paladin",
             "siempre_preparado": true
+          }
+        ],
+        "7": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Vengador Implacable",
+            "resumen": "al impactar con un ataque de oportunidad, puedes moverte hasta la mitad de tu velocidad como parte de la misma reacción sin provocar ataques de oportunidad",
+            "descripcion": "Cuando impactas a una criatura con un ataque de oportunidad, puedes moverte hasta la mitad de tu velocidad justo después, como parte de la misma reacción. Este movimiento no provoca ataques de oportunidad."
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "acelerar",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "proteccion_contra_energia",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "13": [
+          {
+            "tipo": "conjuro",
+            "id": "destierro",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "puerta_dimensional",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "15": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Alma de Venganza",
+            "resumen": "cuando la criatura de tu Voto de Enemistad ataca, puedes usar tu reacción para hacerle un ataque con arma cuerpo a cuerpo si está a tu alcance",
+            "descripcion": "Cuando una criatura bajo los efectos de tu Voto de Enemistad hace un ataque, puedes usar tu reacción para hacer un ataque con arma cuerpo a cuerpo contra ella si está a tu alcance."
+          }
+        ],
+        "17": [
+          {
+            "tipo": "conjuro",
+            "id": "inmovilizar_monstruo",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "escudrinar",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "20": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Ángel Vengador",
+            "resumen": "acción: durante 1 hora tienes alas (volar 60 pies) y un aura de amenaza de 30 pies: el enemigo que entra en ella o empieza allí su turno por primera vez supera una salvación de SAB o queda asustado 1 minuto (o hasta que reciba daño), y los ataques contra él tienen ventaja",
+            "descripcion": "Como acción, sufres una transformación durante 1 hora: te brotan alas de la espalda y ganas una velocidad volando de 60 pies, y emanas un aura de amenaza de 30 pies de radio. La primera vez que una criatura enemiga entra en el aura o empieza su turno en ella durante la batalla, debe superar una tirada de salvación de Sabiduría o quedará asustada de ti durante 1 minuto o hasta que reciba daño. Las tiradas de ataque contra la criatura asustada tienen ventaja. Después debes terminar un descanso largo para volver a usarlo.",
+            "usos": 1,
+            "recarga": "largo"
           }
         ]
       }

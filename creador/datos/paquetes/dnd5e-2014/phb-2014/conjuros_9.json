@@ -1,0 +1,21 @@
+{
+  "conjuros": [
+    {
+      "id": "palabra_de_poder_sanar",
+      "nombre": "Palabra de poder: sanar",
+      "nivel": 9,
+      "escuela": "evocacion",
+      "listas": [
+        "bardo"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "La criatura tocada recupera todos sus puntos de golpe y deja de estar hechizada, asustada, paralizada o aturdida; si está derribada, puede levantarse usando su reacción. No afecta a muertos vivientes ni a autómatas.",
+      "fuente": "PHB 2014"
+    }
+  ]
+}

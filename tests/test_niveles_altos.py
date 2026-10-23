@@ -154,3 +154,39 @@ def test_forma_salvaje_ilimitada_a_nivel_20(real):
     # Los conjuros de círculo de nivel 7 y 9 del terreno elegido (el primero: ártico).
     siempre = {n for ns in f.lanzadores[0].siempre_preparados.values() for n in ns}
     assert {"Tormenta de hielo", "Cono de frío"} <= siempre
+
+
+def test_disciplinas_elementales_por_nivel(real):
+    sistema, catalogo = real
+    pj = personaje("monje", 17, "camino_de_los_cuatro_elementos")
+    resolver_todo(sistema, pj, catalogo)
+    eleccion = {e.clave: e for e in sistema.resolver(pj, catalogo).elecciones}
+    a_6 = {o.id for o in eleccion["subclase:camino_de_los_cuatro_elementos:6/disciplina_elemental_6"].opciones}
+    a_17 = {o.id for o in eleccion["subclase:camino_de_los_cuatro_elementos:17/disciplina_elemental_17"].opciones}
+    assert "gong_de_la_cumbre" in a_6 and "llamas_del_fenix" not in a_6 and "aliento_del_invierno" not in a_6
+    assert {"gong_de_la_cumbre", "llamas_del_fenix", "aliento_del_invierno"} <= a_17
+
+
+def test_piedra_del_transmutador_aplica_su_beneficio(real):
+    sistema, catalogo = real
+    pj = personaje("mago", 6, "escuela_de_transmutacion")
+    resolver_todo(sistema, pj, catalogo)
+    pj.elecciones["subclase:escuela_de_transmutacion:6/piedra_del_transmutador"] = ["constitucion"]
+    assert sistema.calcular(pj, catalogo).salvaciones["con"].competente
+
+
+def test_patrones_del_phb_amplian_la_lista_a_niveles_4_y_5(real):
+    sistema, catalogo = real
+    pj = personaje("brujo", 9, "el_archihada")
+    resolver_todo(sistema, pj, catalogo)
+    mods = {c: v.modificador for c, v in sistema.calcular(pj, catalogo).caracteristicas.items()}
+    plan = motor.planes_de_conjuros(pj, catalogo, mods)[0]
+    ids = {i for nivel in plan.disponibles.values() for i, _ in nivel}
+    assert {"invisibilidad_mejorada", "apariencia", "dominar_persona"} <= ids
+
+
+def test_dominio_del_phb_con_conjuros_de_nivel_alto(real):
+    f = ficha(real, personaje("clerigo", 9, "dominio_de_la_tempestad"))
+    siempre = {n for ns in f.lanzadores[0].siempre_preparados.values() for n in ns}
+    assert {"Controlar agua", "Tormenta de hielo", "Ola destructora", "Plaga de insectos"} <= siempre
+    assert rasgo(f, "Golpe Divino").resumen.endswith("1d8 de daño de trueno")

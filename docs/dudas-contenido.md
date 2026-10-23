@@ -351,3 +351,23 @@ Los ids no cambian aunque cambien los nombres.
 - **Oro inicial**: la tabla de riqueza por clase no está en el SRD ni en la Guía del DM, así que todo el oro inicial va en `phb-2014`. Corregidos dos valores: mago 4d4 × 10 po (no 5d4 × 10) y monje **5d4 po** (sin × 10).
 - **Látigo de espinas**: faltaba (truco del PHB para el druida). Añadido en `phb-2014`; nombre sin verificar.
 - **Opciones de clase repetidas** (p. ej. la misma invocación a nivel 2 y 5): ahora el motor avisa.
+
+## Niveles 6 a 20
+
+### SRD (contrastado con el texto oficial)
+
+- **Furia y Forma Salvaje ilimitadas a nivel 20**: «usos» es una tabla por nivel con `null` desde el 20; la ficha deja de mostrar contador.
+- **Secretos Mágicos** (bardo 10, 14 y 18): se eligen entre todos los conjuros de cualquier lista hasta el nivel que el bardo puede lanzar en ese momento (5, 7 y 9). Ocupan plazas de conocidos (`cuenta_como_conocido`); los Secretos Mágicos adicionales del Conocimiento (nivel 6, hasta nivel 3) no. Si se elige un truco, también ocupa plaza de conjuro conocido: así lo dice el texto («están incluidos en la columna Conjuros conocidos»).
+- **Maestría sobre Conjuros y Conjuros Característicos** (mago 18 y 20): se eligen entre los conjuros de mago de nivel 1, 2 y 3; el programa **no comprueba que estén en el libro** (lo dice el rasgo). Los característicos quedan siempre preparados.
+- **Aura de Protección**: se suma a las salvaciones de la ficha del propio paladín; el alcance (10 o 30 pies) va en el resumen.
+- **Arcanum Místico**: aparece entre los conjuros siempre preparados del brujo (niveles 6 a 9) aunque sus espacios de pacto no pasen de 5.
+- **Explorador**: Paso de la Tierra (nivel 8) se llama igual que el rasgo del Círculo de la Tierra, como en el SRD.
+
+### Manual del Jugador (de memoria; pendiente de revisar con el libro)
+
+- **Nombres de los 13 conjuros de nivel 4-9 solo del PHB** (`nombres_phb_altos`): tomados de la traducción oficial de 2024 que publica aidedd.org/spell/es/, como los de niveles 0-3. Dudosos para la edición de 2014: Enredadera (¿Enredadera apresadora?), Conjurar lluvia de flechas (¿Conjurar andanada?; ojo: el de nivel 3 se llama aquí «Conjurar andanada»), Castigo desterrador, Ola destructora, Puerta arcana (¿Portal arcano?) y Palabra de poder: sanar (aidedd escribe «Palabra de poder sanar»; se ha puesto con dos puntos como «Palabra de poder: matar» del SRD). Si cambia un nombre, el id se mantiene.
+- **Nombres de rasgos de subclase del PHB** (`rasgos_phb_altos`): traducidos por mí; los más dudosos: Aspecto de la Bestia, Caminante Espiritual, Sintonía Totémica, Conoce a tu Enemigo, Golpe Sobrenatural, Carga Arcana, Experto en Infiltración, Emboscada Mágica, Embaucador Versátil, Ladrón de Conjuros, Lanzamiento Potente, Destello Mejorado, Amortiguar los Elementos, Golpe del Rayo, Nacido de la Tormenta, Duplicidad Mejorada, Aura de Custodia, Centinela Imperecedero, Campeón Ancestral, Vengador Implacable, Alma de Venganza, Ángel Vengador, Golpe Primigenio, Mil Formas, Entrenamiento Excepcional, Furia Bestial, Compartir Conjuros, Doblegar la Suerte, Caos Controlado, Bombardeo de Conjuros, Escape Brumoso, Defensas Seductoras, Delirio Oscuro, Guarda Entrópica, Escudo Mental, Crear Siervo, Custodia Proyectada, Adivinación Experta, El Tercer Ojo, Transposición Benigna, Invocaciones Duraderas, Encanto Instintivo, Dividir Encantamiento, Ilusiones Maleables, Doble Ilusorio, Realidad Ilusoria, Siervos No Muertos, Acostumbrado a la Muerte, Dominar Muertos Vivientes, Piedra del Transmutador, Maestro Transmutador, Paso de las Sombras, Manto de Sombras y Oportunista.
+- **Disciplinas elementales de nivel 6, 11 y 17** (`disciplinas_altas`): nombres traducidos por mí (Garra del Viento del Norte, Gong de la Cumbre, Llamas del Fénix, Postura de Niebla, Cabalgar el Viento, Aliento del Invierno, Defensa de la Montaña Eterna, Río de Llamas Hambrientas, Ola de Tierra Ondulante). Costes de ki de memoria: 3, 3, 4, 4, 4, 6, 5, 5 y 6.
+- **Piedra del Transmutador**: la ficha aplica el beneficio elegido al mago, como si la llevara él; si se la da a otro, hay que quitarlo a mano.
+- **Siervos No Muertos y Cambiaformas**: el rasgo dice que añadas animar a los muertos o polimorfar al libro; el programa no lo añade solo.
+- **Guerrero Totémico**: Aspecto de la Bestia (6) y Sintonía Totémica (14) son elecciones independientes del Espíritu Tótem de nivel 3, como en el libro.

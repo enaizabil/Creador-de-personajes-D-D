@@ -23,7 +23,6 @@
         "combate": 2,
         "aguante": 2
       },
-      "niveles_completos": 5,
       "niveles": {
         "2": [
           {
@@ -43,6 +42,35 @@
               "8": "sin limitaciones de velocidad"
             }
           }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Golpe Primigenio",
+            "resumen": "en forma de bestia, tus ataques cuentan como mágicos para superar resistencias e inmunidades",
+            "descripcion": "Tus ataques en forma de bestia cuentan como mágicos a efectos de superar la resistencia y la inmunidad a ataques y daño no mágicos."
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Forma Salvaje Elemental",
+            "resumen": "gastando dos usos de Forma Salvaje te transformas en un elemental de aire, tierra, fuego o agua",
+            "descripcion": "Puedes gastar dos usos de Forma Salvaje a la vez para transformarte en un elemental de aire, de tierra, de fuego o de agua."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "conjuro",
+            "id": "alterar_el_propio_aspecto",
+            "caracteristica": "sab"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Mil Formas",
+            "resumen": "lanzas alterar el propio aspecto a voluntad",
+            "descripcion": "Has aprendido a usar la magia para alterar tu forma física de maneras más sutiles: puedes lanzar el conjuro alterar el propio aspecto a voluntad."
+          }
         ]
       }
     },
@@ -57,7 +85,6 @@
         "combate": 2,
         "agilidad": 1
       },
-      "niveles_completos": 5,
       "niveles": {
         "3": [
           {
@@ -69,6 +96,30 @@
               "3": "",
               "5": "; al ordenarle Atacar, tú también haces un ataque con arma"
             }
+          }
+        ],
+        "7": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Entrenamiento Excepcional",
+            "resumen": "en un turno en que tu compañero no ataque, puedes ordenarle con una acción adicional que Corra, se Destrabe, Esquive o Ayude",
+            "descripcion": "En cualquiera de tus turnos en que tu compañero bestia no ataque, puedes usar una acción adicional para ordenarle que realice la acción de Correr, Destrabarse, Esquivar o Ayudar en su turno."
+          }
+        ],
+        "11": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Furia Bestial",
+            "resumen": "tu compañero hace dos ataques cuando le ordenas Atacar",
+            "descripcion": "Cuando ordenas a tu compañero bestia que realice la acción de Atacar, puede hacer dos ataques."
+          }
+        ],
+        "15": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Compartir Conjuros",
+            "resumen": "cuando lanzas un conjuro que te tiene como objetivo, también puede afectar a tu compañero si está a 30 pies o menos",
+            "descripcion": "Cuando lanzas un conjuro cuyo objetivo eres tú, también puedes hacer que afecte a tu compañero bestia si está a 30 pies o menos de ti."
           }
         ]
       }

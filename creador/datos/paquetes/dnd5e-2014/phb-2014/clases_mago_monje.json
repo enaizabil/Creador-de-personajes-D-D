@@ -23,7 +23,6 @@
         "arcano": 2,
         "aguante": 1
       },
-      "niveles_completos": 5,
       "niveles": {
         "2": [
           {
@@ -40,6 +39,30 @@
             "usos": 1,
             "recarga": "largo"
           }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Custodia Proyectada",
+            "resumen": "reacción: cuando una criatura que veas a 30 pies recibe daño, tu Custodia Arcana absorbe ese daño",
+            "descripcion": "Cuando una criatura que puedas ver a 30 pies o menos de ti recibe daño, puedes usar tu reacción para que tu Custodia Arcana absorba ese daño. Si el daño reduce la custodia a 0 puntos de golpe, la criatura recibe el daño sobrante."
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Abjuración Mejorada",
+            "resumen": "sumas tu bonificador por competencia a las pruebas de característica de tus conjuros de abjuración (contraconjuro, disipar magia…)",
+            "descripcion": "Cuando lanzas un conjuro de abjuración que te pide hacer una prueba de característica como parte del lanzamiento (como contraconjuro o disipar magia), sumas tu bonificador por competencia a esa prueba."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Resistencia a Conjuros",
+            "resumen": "ventaja en las salvaciones contra conjuros y resistencia al daño de los conjuros",
+            "descripcion": "Tienes ventaja en las tiradas de salvación contra conjuros y resistencia al daño de los conjuros."
+          }
         ]
       }
     },
@@ -54,7 +77,6 @@
         "arcano": 2,
         "astucia": 1
       },
-      "niveles_completos": 5,
       "niveles": {
         "2": [
           {
@@ -75,6 +97,32 @@
             "usos": "escala",
             "recarga": "largo"
           }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Adivinación Experta",
+            "resumen": "al lanzar un conjuro de adivinación de nivel 2 o más con un espacio, recuperas un espacio gastado de nivel menor que el conjuro (máximo 5)",
+            "descripcion": "Lanzar conjuros de adivinación te resulta tan fácil que apenas gasta tus reservas. Cuando lanzas un conjuro de adivinación de nivel 2 o superior usando un espacio de conjuro, recuperas un espacio gastado de nivel inferior al del conjuro lanzado y no superior a 5."
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "El Tercer Ojo",
+            "resumen": "acción: hasta que quedes incapacitado o descanses, ganas visión en la oscuridad a 60 pies, visión etérea a 60 pies, la capacidad de leer cualquier idioma o la de ver lo invisible a 10 pies (eliges una)",
+            "descripcion": "Como acción, eliges uno de estos beneficios, que dura hasta que quedes incapacitado o hagas un descanso corto o largo: visión en la oscuridad a 60 pies; ver en el Plano Etéreo a 60 pies; leer cualquier idioma; o ver criaturas y objetos invisibles a 10 pies o menos que estén en tu línea de visión. Después debes terminar un descanso corto o largo para volver a usarlo.",
+            "usos": 1,
+            "recarga": "corto"
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Presagio Mayor",
+            "resumen": "tiras tres d20 de Presagio en lugar de dos",
+            "descripcion": "Las visiones de tus sueños se intensifican y te muestran con más claridad lo que está por venir: tiras tres d20 para tu rasgo Presagio en lugar de dos."
+          }
         ]
       }
     },
@@ -89,7 +137,6 @@
         "saber": 1,
         "agilidad": 1
       },
-      "niveles_completos": 5,
       "niveles": {
         "2": [
           {
@@ -103,6 +150,32 @@
             "nombre": "Conjuración Menor",
             "resumen": "acción: haces aparecer en tu mano o en el suelo, a 10 pies o menos, un objeto inanimado no mágico que hayas visto (máx. 3 pies de lado y 10 libras); da luz tenue en 5 pies; desaparece al cabo de 1 hora, si vuelves a usar el rasgo o si recibe o inflige daño",
             "descripcion": "Como acción, creas un objeto inanimado en tu mano o en el suelo, en un espacio desocupado que puedas ver a 10 pies o menos. No puede medir más de 3 pies por lado ni pesar más de 10 libras, y debe tener la forma de un objeto no mágico que hayas visto. Se nota que es mágico: emite luz tenue en un radio de 5 pies. Desaparece al cabo de 1 hora, cuando vuelves a usar este rasgo o si sufre o causa algún daño."
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Transposición Benigna",
+            "resumen": "acción: te teletransportas hasta 30 pies a un espacio libre que veas, o te intercambias con una criatura voluntaria Pequeña o Mediana; se recupera con un descanso largo o al lanzar un conjuro de conjuración de nivel 1 o más",
+            "descripcion": "Como acción, puedes teletransportarte hasta 30 pies a un espacio sin ocupar que puedas ver; o bien puedes elegir un espacio a ese alcance ocupado por una criatura voluntaria Pequeña o Mediana e intercambiaros de lugar. Después no puedes volver a usarlo hasta que termines un descanso largo o lances un conjuro de conjuración de nivel 1 o superior.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Conjuración Concentrada",
+            "resumen": "el daño no rompe tu concentración en un conjuro de conjuración",
+            "descripcion": "Mientras te concentras en un conjuro de conjuración, recibir daño no puede hacerte perder la concentración."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Invocaciones Duraderas",
+            "resumen": "las criaturas que invocas o creas con conjuros de conjuración tienen 30 PG temporales",
+            "descripcion": "Cualquier criatura que invoques o crees con un conjuro de conjuración tiene 30 puntos de golpe temporales."
           }
         ]
       }
@@ -118,7 +191,6 @@
         "arcano": 2,
         "astucia": 1
       },
-      "niveles_completos": 5,
       "niveles": {
         "2": [
           {
@@ -132,6 +204,30 @@
             "nombre": "Mirada Hipnótica",
             "resumen": "acción: una criatura que veas a 5 pies o menos y que pueda verte u oírte hace una salvación de SAB CD {8+competencia+mod_int}; si falla, queda hechizada hasta el final de tu siguiente turno (velocidad 0, incapacitada y visiblemente atontada); puedes prolongarlo con tu acción en cada turno; termina si te alejas más de 5 pies, si deja de verte y oírte o si recibe daño; después, no puedes usarlo contra ella hasta un descanso largo",
             "descripcion": "Con tu acción eliges a una criatura que puedas ver a 5 pies o menos; si puede verte u oírte, debe superar una salvación de Sabiduría contra la CD de tus conjuros de mago o quedará hechizada por ti hasta el final de tu siguiente turno: su velocidad pasa a 0 y queda incapacitada y visiblemente atontada. En los turnos siguientes puedes gastar tu acción en mantener el efecto un turno más. El efecto se rompe si te alejas más de 5 pies de ella, si deja de poder verte y oírte o si sufre daño. Cuando termina, o si supera la salvación, no puedes volver a usar este rasgo contra esa criatura hasta terminar un descanso largo."
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Encanto Instintivo",
+            "resumen": "reacción cuando una criatura que ves a 30 pies te ataca: salvación de SAB o desvía el ataque a la criatura más cercana (no tú ni ella); si la supera, es inmune 24 horas",
+            "descripcion": "Cuando una criatura que puedas ver a 30 pies o menos de ti hace una tirada de ataque contra ti, puedes usar tu reacción para desviar el ataque, siempre que haya otra criatura a su alcance. El atacante debe hacer una tirada de salvación de Sabiduría contra tu CD de conjuros: si la falla, debe atacar a la criatura más cercana a él que no seas tú ni él mismo (si hay varias, elige él); si la supera, no puedes volver a usar este rasgo contra él hasta un descanso largo. Debes decidirlo antes de saber si el ataque impacta. Las criaturas que no pueden quedar hechizadas son inmunes."
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Dividir Encantamiento",
+            "resumen": "tus conjuros de encantamiento de nivel 1 o más que afectan a una sola criatura pueden afectar a una segunda",
+            "descripcion": "Cuando lanzas un conjuro de encantamiento de nivel 1 o superior que tiene como objetivo a una sola criatura, puedes hacer que afecte también a una segunda."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Alterar Recuerdos",
+            "resumen": "la criatura que hechizas con un conjuro puede no darse cuenta; antes de que acabe, con una acción le haces olvidar (salvación de INT) hasta {1+mod_car} horas del tiempo que estuvo hechizada",
+            "descripcion": "Cuando lanzas un conjuro de encantamiento para hechizar a una o más criaturas, puedes alterar la percepción de una de ellas para que no sepa que está hechizada. Además, una vez antes de que el conjuro termine, puedes usar tu acción para intentar que olvide parte del tiempo que pasó hechizada: debe superar una tirada de salvación de Inteligencia contra tu CD de conjuros o perderá hasta 1 + tu modificador por Carisma (mínimo 1) horas de recuerdos, sin superar la duración del conjuro."
           }
         ]
       }
@@ -147,7 +243,6 @@
         "arcano": 2,
         "sigilo": 1
       },
-      "niveles_completos": 5,
       "niveles": {
         "2": [
           {
@@ -168,6 +263,32 @@
             "resumen": "conoces el truco ilusión menor (si ya lo conocías, otro truco de mago a tu elección), que no cuenta para tus trucos conocidos; con un solo lanzamiento creas a la vez un sonido y una imagen",
             "descripcion": "Aprendes el truco ilusión menor; si ya lo conocías, aprendes en su lugar otro truco de mago que elijas. Este truco no cuenta para tu número de trucos conocidos. Además, cuando lanzas ilusión menor puedes crear a la vez un sonido y una imagen en lugar de solo una de las dos cosas."
           }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Ilusiones Maleables",
+            "resumen": "con una acción cambias la naturaleza de tus ilusiones de 1 minuto o más (dentro de sus límites)",
+            "descripcion": "Cuando lanzas un conjuro de ilusionismo con una duración de 1 minuto o más, puedes usar tu acción para cambiar la naturaleza de la ilusión (respetando los parámetros normales del conjuro), siempre que puedas verla."
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Doble Ilusorio",
+            "resumen": "reacción cuando una criatura te ataca: un duplicado ilusorio se interpone y el ataque falla",
+            "descripcion": "Puedes crear un duplicado ilusorio de ti como reacción instintiva ante el peligro. Cuando una criatura hace una tirada de ataque contra ti, puedes usar tu reacción para interponer el duplicado: el ataque falla automáticamente y la ilusión se disipa. Después debes terminar un descanso corto o largo para volver a usarlo.",
+            "usos": 1,
+            "recarga": "corto"
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Realidad Ilusoria",
+            "resumen": "al lanzar un conjuro de ilusionismo de nivel 1 o más, con una acción adicional haces real durante 1 minuto un objeto inanimado y no mágico de la ilusión (no puede causar daño)",
+            "descripcion": "Has aprendido a entretejer la magia de las sombras en tus ilusiones para darles una realidad a medias. Cuando lanzas un conjuro de ilusionismo de nivel 1 o superior, puedes elegir un objeto inanimado y no mágico que forme parte de la ilusión y hacerlo real, usando una acción adicional en tu turno mientras el conjuro dure. El objeto es real durante 1 minuto: por ejemplo, un puente sobre un abismo. No puede causar daño ni dañar directamente a nadie."
+          }
         ]
       }
     },
@@ -182,7 +303,6 @@
         "saber": 2,
         "aguante": 1
       },
-      "niveles_completos": 5,
       "niveles": {
         "2": [
           {
@@ -196,6 +316,34 @@
             "nombre": "Cosecha Siniestra",
             "resumen": "una vez por turno, al matar a una o más criaturas con un conjuro de nivel 1 o superior, recuperas PG iguales al doble del nivel del conjuro (el triple si es de nigromancia); no funciona con autómatas ni muertos vivientes",
             "descripcion": "Absorbes la energía vital de quienes matas con tu magia. Una vez por turno, cuando un conjuro tuyo de nivel 1 o superior mata a una o más criaturas, recuperas tantos puntos de golpe como el doble del nivel del conjuro, o el triple si el conjuro es de la escuela de nigromancia. No ganas nada al matar autómatas ni muertos vivientes."
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Siervos No Muertos",
+            "resumen": "animar a los muertos alza un cadáver más; tus muertos vivientes nigrománticos tienen +{nivel_clase} PG máximos y suman +{competencia} al daño de sus armas",
+            "descripcion": "Añades animar a los muertos a tu libro de conjuros si no lo tenías. Cuando lo lanzas, puedes elegir como objetivo un cadáver o montón de huesos adicional, creando otro zombi o esqueleto. Además, los muertos vivientes que creas con un conjuro de nigromancia tienen beneficios: sus puntos de golpe máximos aumentan en tu nivel de mago y suman tu bonificador por competencia a sus tiradas de daño con armas."
+          }
+        ],
+        "10": [
+          {
+            "tipo": "resistencia",
+            "dano": "necrotico"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Acostumbrado a la Muerte",
+            "resumen": "resistencia al daño necrótico; tus puntos de golpe máximos no pueden reducirse",
+            "descripcion": "Tienes resistencia al daño necrótico y tus puntos de golpe máximos no pueden reducirse."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Dominar Muertos Vivientes",
+            "resumen": "acción: un muerto viviente que veas a 60 pies hace una salvación de CAR (CD {8+competencia+mod_int}); si la falla, te obedece hasta que vuelvas a usar el rasgo (con INT 8 o más, ventaja; con 12 o más, repite cada hora)",
+            "descripcion": "Como acción, eliges un muerto viviente que puedas ver a 60 pies o menos: debe hacer una tirada de salvación de Carisma contra tu CD de conjuros. Si la supera, no puedes volver a usar este rasgo con él. Si la falla, pasa a ser amistoso y obedece tus órdenes hasta que vuelvas a usar este rasgo. Los muertos vivientes inteligentes son más difíciles de controlar: si tienen Inteligencia 8 o más, tienen ventaja en la salvación, y si tienen 12 o más y la fallan, pueden repetirla al final de cada hora hasta que la superen y se liberen."
           }
         ]
       }
@@ -211,7 +359,6 @@
         "arcano": 2,
         "naturaleza": 1
       },
-      "niveles_completos": 5,
       "niveles": {
         "2": [
           {
@@ -225,6 +372,171 @@
             "nombre": "Alquimia Menor",
             "resumen": "10 minutos por pie cúbico: conviertes un objeto no mágico hecho solo de madera, piedra (no gemas), hierro, cobre o plata en otro de esos materiales; vuelve a su sustancia original al cabo de 1 hora o si pierdes la concentración (como con un conjuro)",
             "descripcion": "Puedes cambiar de forma temporal la sustancia de un objeto no mágico compuesto por completo de madera, piedra (pero no gemas), hierro, cobre o plata, transformándolo en otro de esos materiales. Cada 10 minutos de trabajo alquímico transforman hasta 1 pie cúbico. El material recupera su naturaleza original al cabo de 1 hora o si pierdes la concentración, como si te estuvieras concentrando en un conjuro."
+          }
+        ],
+        "6": [
+          {
+            "tipo": "eleccion",
+            "id": "piedra_del_transmutador",
+            "nombre": "Piedra del Transmutador: beneficio",
+            "opciones": [
+              {
+                "id": "vision",
+                "nombre": "Visión en la oscuridad",
+                "efectos": [
+                  {
+                    "tipo": "sentido",
+                    "id": "vision_en_la_oscuridad",
+                    "nombre": "Visión en la Oscuridad",
+                    "alcance": 60
+                  },
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Piedra del Transmutador: Visión en la oscuridad",
+                    "resumen": "visión en la oscuridad a 60 pies",
+                    "descripcion": "Mientras lleves la piedra del transmutador, te concede este beneficio."
+                  }
+                ]
+              },
+              {
+                "id": "velocidad",
+                "nombre": "Velocidad",
+                "efectos": [
+                  {
+                    "tipo": "velocidad",
+                    "modo": "caminar",
+                    "bonificador": 10
+                  },
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Piedra del Transmutador: Velocidad",
+                    "resumen": "+10 pies de velocidad mientras no vayas cargado",
+                    "descripcion": "Mientras lleves la piedra del transmutador, te concede este beneficio."
+                  }
+                ]
+              },
+              {
+                "id": "constitucion",
+                "nombre": "Salvaciones de Constitución",
+                "efectos": [
+                  {
+                    "tipo": "competencia",
+                    "categoria": "salvacion",
+                    "id": "con"
+                  },
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Piedra del Transmutador: Salvaciones de Constitución",
+                    "resumen": "competencia en las salvaciones de Constitución",
+                    "descripcion": "Mientras lleves la piedra del transmutador, te concede este beneficio."
+                  }
+                ]
+              },
+              {
+                "id": "resistencia_acido",
+                "nombre": "Resistencia al ácido",
+                "efectos": [
+                  {
+                    "tipo": "resistencia",
+                    "dano": "acido"
+                  },
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Piedra del Transmutador: Resistencia al ácido",
+                    "resumen": "resistencia al daño de ácido",
+                    "descripcion": "Mientras lleves la piedra del transmutador, te concede este beneficio."
+                  }
+                ]
+              },
+              {
+                "id": "resistencia_frio",
+                "nombre": "Resistencia al frío",
+                "efectos": [
+                  {
+                    "tipo": "resistencia",
+                    "dano": "frio"
+                  },
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Piedra del Transmutador: Resistencia al frío",
+                    "resumen": "resistencia al daño de frío",
+                    "descripcion": "Mientras lleves la piedra del transmutador, te concede este beneficio."
+                  }
+                ]
+              },
+              {
+                "id": "resistencia_fuego",
+                "nombre": "Resistencia al fuego",
+                "efectos": [
+                  {
+                    "tipo": "resistencia",
+                    "dano": "fuego"
+                  },
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Piedra del Transmutador: Resistencia al fuego",
+                    "resumen": "resistencia al daño de fuego",
+                    "descripcion": "Mientras lleves la piedra del transmutador, te concede este beneficio."
+                  }
+                ]
+              },
+              {
+                "id": "resistencia_relampago",
+                "nombre": "Resistencia al relámpago",
+                "efectos": [
+                  {
+                    "tipo": "resistencia",
+                    "dano": "relampago"
+                  },
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Piedra del Transmutador: Resistencia al relámpago",
+                    "resumen": "resistencia al daño de relámpago",
+                    "descripcion": "Mientras lleves la piedra del transmutador, te concede este beneficio."
+                  }
+                ]
+              },
+              {
+                "id": "resistencia_trueno",
+                "nombre": "Resistencia al trueno",
+                "efectos": [
+                  {
+                    "tipo": "resistencia",
+                    "dano": "trueno"
+                  },
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Piedra del Transmutador: Resistencia al trueno",
+                    "resumen": "resistencia al daño de trueno",
+                    "descripcion": "Mientras lleves la piedra del transmutador, te concede este beneficio."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Piedra del Transmutador",
+            "resumen": "con 8 horas creas una piedra que da un beneficio a quien la lleve (el que elijas); puedes cambiarlo al lanzar un conjuro de transmutación de nivel 1 o más; solo una piedra a la vez",
+            "descripcion": "Puedes pasar 8 horas creando una piedra del transmutador que almacena magia de transmutación. Puedes beneficiarte de ella tú mismo o dársela a otra criatura. Quien la lleve obtiene el beneficio que elijas al crearla: visión en la oscuridad a 60 pies; +10 pies de velocidad mientras no vaya cargado; competencia en las salvaciones de Constitución; o resistencia al daño de ácido, frío, fuego, relámpago o trueno (a tu elección). Cada vez que lanzas un conjuro de transmutación de nivel 1 o superior, puedes cambiar el efecto si la piedra está contigo. Si creas una nueva, la anterior deja de funcionar. (La ficha aplica el beneficio a ti, como si la llevaras.)"
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Cambiaformas",
+            "resumen": "lanzas polimorfar sobre ti sin gastar espacio, para convertirte en una bestia de VD 1 o menos; 1 vez por descanso corto o largo",
+            "descripcion": "Añades polimorfar a tu libro de conjuros si no lo tenías. Puedes lanzarlo sin gastar un espacio de conjuro; cuando lo haces así, solo puedes elegirte a ti como objetivo y transformarte en una bestia de VD 1 o inferior. Después debes terminar un descanso corto o largo para volver a lanzarlo de este modo.",
+            "usos": 1,
+            "recarga": "corto"
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Maestro Transmutador",
+            "resumen": "acción: consumes la piedra del transmutador para una transformación mayor (de un objeto), una panacea, devolver la vida (alzar a los muertos) o devolver la juventud",
+            "descripcion": "Como acción, consumes la reserva de magia de tu piedra del transmutador para lanzar uno de estos efectos (la piedra se destruye y no puedes crear otra hasta terminar un descanso largo). Transformación mayor: transformas un objeto no mágico (hasta un cubo de 5 pies) en otro de tamaño y masa similares y de valor igual o menor, con 10 minutos de trabajo. Panacea: quitas todas las maldiciones, enfermedades y venenos de una criatura que toques y recupera todos sus puntos de golpe. Devolver la vida: lanzas alzar a los muertos sobre una criatura que toques sin espacio de conjuro ni componentes. Devolver la juventud: la edad aparente de una criatura voluntaria que toques baja 3d10 años (mínimo 13), sin alargar su vida."
           }
         ]
       }
@@ -240,7 +552,6 @@
         "agilidad": 2,
         "astucia": 1
       },
-      "niveles_completos": 5,
       "niveles": {
         "3": [
           {
@@ -274,6 +585,30 @@
             "resumen": "acción, 2 ki: lanzas oscuridad, visión en la oscuridad, pasar sin rastro o silencio sin componentes materiales; conoces el truco ilusión menor; CD {8+competencia+mod_sab}",
             "descripcion": "Usas tu ki para imitar ciertos conjuros: como acción, gastas 2 puntos de ki para lanzar oscuridad, visión en la oscuridad, pasar sin rastro o silencio sin necesidad de componentes materiales. Además aprendes el truco ilusión menor si no lo conocías."
           }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Paso de las Sombras",
+            "resumen": "en luz tenue u oscuridad, acción adicional: te teletransportas hasta 60 pies a otro espacio en luz tenue u oscuridad que veas y tienes ventaja en el primer ataque cuerpo a cuerpo de ese turno",
+            "descripcion": "Cuando estás en luz tenue o en oscuridad, como acción adicional puedes teletransportarte hasta 60 pies a un espacio sin ocupar que puedas ver y que también esté en luz tenue o en oscuridad. Tienes ventaja en el primer ataque cuerpo a cuerpo que hagas antes del final del turno."
+          }
+        ],
+        "11": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Manto de Sombras",
+            "resumen": "en luz tenue u oscuridad, acción: te vuelves invisible hasta que ataques, lances un conjuro o estés en luz brillante",
+            "descripcion": "Cuando estás en una zona de luz tenue o de oscuridad, puedes usar tu acción para volverte invisible. Sigues invisible hasta que hagas un ataque, lances un conjuro o estés en una zona de luz brillante."
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Oportunista",
+            "resumen": "reacción: cuando otra criatura impacta a una criatura a 5 pies de ti, le haces un ataque cuerpo a cuerpo",
+            "descripcion": "Puedes aprovecharte de la distracción momentánea de una criatura cuando un ataque la alcanza: cuando una criatura a 5 pies o menos de ti recibe un impacto de un ataque hecho por otra criatura que no seas tú, puedes usar tu reacción para hacer un ataque cuerpo a cuerpo contra ella."
+          }
         ]
       }
     },
@@ -288,7 +623,6 @@
         "agilidad": 2,
         "naturaleza": 1
       },
-      "niveles_completos": 5,
       "niveles": {
         "3": [
           {
@@ -318,6 +652,81 @@
                 "grupo": "disciplina_elemental",
                 "clases": "monje",
                 "nivel_monje": 3
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ],
+        "6": [
+          {
+            "tipo": "eleccion",
+            "id": "disciplina_elemental_6",
+            "nombre": "Disciplina elemental (nivel 6)",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "disciplina_elemental",
+                "clases": "monje",
+                "nivel_monje": [
+                  3,
+                  6
+                ]
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ],
+        "11": [
+          {
+            "tipo": "eleccion",
+            "id": "disciplina_elemental_11",
+            "nombre": "Disciplina elemental (nivel 11)",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "disciplina_elemental",
+                "clases": "monje",
+                "nivel_monje": [
+                  3,
+                  6,
+                  11
+                ]
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ],
+        "17": [
+          {
+            "tipo": "eleccion",
+            "id": "disciplina_elemental_17",
+            "nombre": "Disciplina elemental (nivel 17)",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "disciplina_elemental",
+                "clases": "monje",
+                "nivel_monje": [
+                  3,
+                  6,
+                  11,
+                  17
+                ]
               }
             },
             "aplicar": [
@@ -447,6 +856,204 @@
       "resumen": "acción adicional, 2 ki: una criatura que veas a 30 pies o menos hace una salvación de DES CD {8+competencia+mod_sab}; si falla, 3d10 de daño contundente (+1d10 por cada ki adicional) y la derribas o la atraes hasta 25 pies hacia ti; si la supera, la mitad del daño y nada más",
       "descripcion": "Gastas 2 puntos de ki como acción adicional para formar un látigo de agua que empuja y tira de una criatura para desequilibrarla. Una criatura que puedas ver a 30 pies o menos hace una tirada de salvación de Destreza. Si falla, sufre 3d10 de daño contundente, más 1d10 por cada punto de ki adicional que gastes, y puedes derribarla o acercarla hasta 25 pies hacia ti. Si la supera, sufre la mitad del daño y no la mueves ni la derribas.",
       "nivel_monje": 3
+    },
+    {
+      "id": "garra_del_viento_del_norte",
+      "nombre": "Disciplina: Garra del Viento del Norte",
+      "grupo": "disciplina_elemental",
+      "clases": [
+        "monje"
+      ],
+      "fuente": "PHB 2014",
+      "prerrequisito": {
+        "texto": "nivel 6 de monje"
+      },
+      "resumen": "3 ki: lanzas inmovilizar persona",
+      "descripcion": "Requisito: nivel 6 de monje. Puedes gastar 3 puntos de ki para lanzar el conjuro inmovilizar persona.",
+      "nivel_monje": 6,
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "inmovilizar_persona",
+          "caracteristica": "sab"
+        }
+      ]
+    },
+    {
+      "id": "gong_de_la_cumbre",
+      "nombre": "Disciplina: Gong de la Cumbre",
+      "grupo": "disciplina_elemental",
+      "clases": [
+        "monje"
+      ],
+      "fuente": "PHB 2014",
+      "prerrequisito": {
+        "texto": "nivel 6 de monje"
+      },
+      "resumen": "3 ki: lanzas hacer añicos",
+      "descripcion": "Requisito: nivel 6 de monje. Puedes gastar 3 puntos de ki para lanzar el conjuro hacer añicos.",
+      "nivel_monje": 6,
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "hacer_anicos",
+          "caracteristica": "sab"
+        }
+      ]
+    },
+    {
+      "id": "llamas_del_fenix",
+      "nombre": "Disciplina: Llamas del Fénix",
+      "grupo": "disciplina_elemental",
+      "clases": [
+        "monje"
+      ],
+      "fuente": "PHB 2014",
+      "prerrequisito": {
+        "texto": "nivel 11 de monje"
+      },
+      "resumen": "4 ki: lanzas bola de fuego",
+      "descripcion": "Requisito: nivel 11 de monje. Puedes gastar 4 puntos de ki para lanzar el conjuro bola de fuego.",
+      "nivel_monje": 11,
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "bola_de_fuego",
+          "caracteristica": "sab"
+        }
+      ]
+    },
+    {
+      "id": "postura_de_niebla",
+      "nombre": "Disciplina: Postura de Niebla",
+      "grupo": "disciplina_elemental",
+      "clases": [
+        "monje"
+      ],
+      "fuente": "PHB 2014",
+      "prerrequisito": {
+        "texto": "nivel 11 de monje"
+      },
+      "resumen": "4 ki: lanzas forma gaseosa (solo sobre ti)",
+      "descripcion": "Requisito: nivel 11 de monje. Puedes gastar 4 puntos de ki para lanzar el conjuro forma gaseosa (solo sobre ti).",
+      "nivel_monje": 11,
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "forma_gaseosa",
+          "caracteristica": "sab"
+        }
+      ]
+    },
+    {
+      "id": "cabalgar_el_viento",
+      "nombre": "Disciplina: Cabalgar el Viento",
+      "grupo": "disciplina_elemental",
+      "clases": [
+        "monje"
+      ],
+      "fuente": "PHB 2014",
+      "prerrequisito": {
+        "texto": "nivel 11 de monje"
+      },
+      "resumen": "4 ki: lanzas volar (solo sobre ti)",
+      "descripcion": "Requisito: nivel 11 de monje. Puedes gastar 4 puntos de ki para lanzar el conjuro volar (solo sobre ti).",
+      "nivel_monje": 11,
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "volar",
+          "caracteristica": "sab"
+        }
+      ]
+    },
+    {
+      "id": "aliento_del_invierno",
+      "nombre": "Disciplina: Aliento del Invierno",
+      "grupo": "disciplina_elemental",
+      "clases": [
+        "monje"
+      ],
+      "fuente": "PHB 2014",
+      "prerrequisito": {
+        "texto": "nivel 17 de monje"
+      },
+      "resumen": "6 ki: lanzas cono de frío",
+      "descripcion": "Requisito: nivel 17 de monje. Puedes gastar 6 puntos de ki para lanzar el conjuro cono de frío.",
+      "nivel_monje": 17,
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "cono_de_frio",
+          "caracteristica": "sab"
+        }
+      ]
+    },
+    {
+      "id": "defensa_de_la_montana_eterna",
+      "nombre": "Disciplina: Defensa de la Montaña Eterna",
+      "grupo": "disciplina_elemental",
+      "clases": [
+        "monje"
+      ],
+      "fuente": "PHB 2014",
+      "prerrequisito": {
+        "texto": "nivel 17 de monje"
+      },
+      "resumen": "5 ki: lanzas piel pétrea (solo sobre ti)",
+      "descripcion": "Requisito: nivel 17 de monje. Puedes gastar 5 puntos de ki para lanzar el conjuro piel pétrea (solo sobre ti).",
+      "nivel_monje": 17,
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "piel_petrea",
+          "caracteristica": "sab"
+        }
+      ]
+    },
+    {
+      "id": "rio_de_llamas_hambrientas",
+      "nombre": "Disciplina: Río de Llamas Hambrientas",
+      "grupo": "disciplina_elemental",
+      "clases": [
+        "monje"
+      ],
+      "fuente": "PHB 2014",
+      "prerrequisito": {
+        "texto": "nivel 17 de monje"
+      },
+      "resumen": "5 ki: lanzas muro de fuego",
+      "descripcion": "Requisito: nivel 17 de monje. Puedes gastar 5 puntos de ki para lanzar el conjuro muro de fuego.",
+      "nivel_monje": 17,
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "muro_de_fuego",
+          "caracteristica": "sab"
+        }
+      ]
+    },
+    {
+      "id": "ola_de_tierra_ondulante",
+      "nombre": "Disciplina: Ola de Tierra Ondulante",
+      "grupo": "disciplina_elemental",
+      "clases": [
+        "monje"
+      ],
+      "fuente": "PHB 2014",
+      "prerrequisito": {
+        "texto": "nivel 17 de monje"
+      },
+      "resumen": "6 ki: lanzas muro de piedra",
+      "descripcion": "Requisito: nivel 17 de monje. Puedes gastar 6 puntos de ki para lanzar el conjuro muro de piedra.",
+      "nivel_monje": 17,
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "muro_de_piedra",
+          "caracteristica": "sab"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,23 @@
+{
+  "conjuros": [
+    {
+      "id": "puerta_arcana",
+      "nombre": "Puerta arcana",
+      "nivel": 6,
+      "escuela": "conjuracion",
+      "listas": [
+        "brujo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "500 pies",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 10 minutos",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Creas dos portales circulares de 10 pies de diámetro unidos entre sí: uno a 10 pies o menos de ti y otro en un punto que veas dentro del alcance. Lo que entra por la cara delantera de uno sale por el otro; como acción adicional puedes girar los portales.",
+      "fuente": "PHB 2014"
+    }
+  ]
+}

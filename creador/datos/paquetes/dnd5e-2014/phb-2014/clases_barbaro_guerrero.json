@@ -23,7 +23,6 @@
         "aguante": 2,
         "combate": 2
       },
-      "niveles_completos": 5,
       "niveles": {
         "3": [
           {
@@ -83,6 +82,108 @@
               }
             ]
           }
+        ],
+        "6": [
+          {
+            "tipo": "eleccion",
+            "id": "aspecto_de_la_bestia",
+            "nombre": "Aspecto de la Bestia",
+            "opciones": [
+              {
+                "id": "oso",
+                "nombre": "Oso",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Aspecto de la Bestia: Oso",
+                    "resumen": "tu capacidad de carga (incluido empujar, arrastrar y levantar) se duplica y tienes ventaja en las pruebas de FUE para empujar, tirar, levantar o romper objetos",
+                    "descripcion": "Ganas la fuerza de un oso: tu capacidad de carga, incluida la máxima para empujar, arrastrar o levantar, se duplica, y tienes ventaja en las pruebas de Fuerza para empujar, tirar, levantar o romper objetos."
+                  }
+                ]
+              },
+              {
+                "id": "aguila",
+                "nombre": "Águila",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Aspecto de la Bestia: Águila",
+                    "resumen": "ves con claridad hasta 1 milla como si estuviera a 100 pies y la luz tenue no te da desventaja en las pruebas de SAB (Percepción)",
+                    "descripcion": "Ganas la vista de un águila: distingues detalles hasta a 1 milla como si estuvieran a 100 pies, y la luz tenue no impone desventaja a tus pruebas de Sabiduría (Percepción)."
+                  }
+                ]
+              },
+              {
+                "id": "lobo",
+                "nombre": "Lobo",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Aspecto de la Bestia: Lobo",
+                    "resumen": "puedes rastrear a ritmo rápido y moverte con sigilo a ritmo normal",
+                    "descripcion": "Ganas los instintos de caza de un lobo: puedes rastrear a otras criaturas mientras viajas a ritmo rápido y moverte con sigilo mientras viajas a ritmo normal."
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "10": [
+          {
+            "tipo": "conjuro",
+            "id": "comunion_con_la_naturaleza"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Caminante Espiritual",
+            "resumen": "lanzas comunión con la naturaleza, solo como ritual; un espíritu de tu animal tótem te transmite la respuesta",
+            "descripcion": "Puedes lanzar el conjuro comunión con la naturaleza, pero solo como ritual. Cuando lo haces, una versión espiritual de uno de los animales que elegiste en Espíritu Tótem o en Aspecto de la Bestia se te aparece para darte la información."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "eleccion",
+            "id": "sintonia_totemica",
+            "nombre": "Sintonía Totémica",
+            "opciones": [
+              {
+                "id": "oso",
+                "nombre": "Oso",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Sintonía Totémica: Oso",
+                    "resumen": "en furia, las criaturas hostiles a 5 pies que te vean u oigan y puedan quedar asustadas tienen desventaja al atacar a otros que no seas tú (o tengan este rasgo)",
+                    "descripcion": "Mientras estás enfurecido, cualquier criatura a 5 pies o menos de ti que te sea hostil tiene desventaja en las tiradas de ataque contra objetivos que no seas tú u otro personaje con este rasgo. Un enemigo es inmune si no puede verte ni oírte o si no puede quedar asustado."
+                  }
+                ]
+              },
+              {
+                "id": "aguila",
+                "nombre": "Águila",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Sintonía Totémica: Águila",
+                    "resumen": "en furia, vuelas a tu velocidad caminando, pero caes si acabas el turno en el aire sin nada que te sostenga",
+                    "descripcion": "Mientras estás enfurecido, tienes una velocidad volando igual a tu velocidad caminando. Solo vuelas en rachas: si terminas tu turno en el aire y nada te sostiene, caes."
+                  }
+                ]
+              },
+              {
+                "id": "lobo",
+                "nombre": "Lobo",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Sintonía Totémica: Lobo",
+                    "resumen": "en furia, al impactar con un ataque cuerpo a cuerpo a una criatura Grande o menor, puedes derribarla como acción adicional",
+                    "descripcion": "Mientras estás enfurecido, puedes usar una acción adicional en tu turno para derribar a una criatura Grande o más pequeña cuando la impactas con un ataque con arma cuerpo a cuerpo."
+                  }
+                ]
+              }
+            ]
+          }
         ]
       }
     },
@@ -98,7 +199,6 @@
         "saber": 1,
         "carisma": 1
       },
-      "niveles_completos": 5,
       "niveles": {
         "3": [
           {
@@ -156,6 +256,81 @@
                 "id": "$opcion"
               }
             ]
+          }
+        ],
+        "7": [
+          {
+            "tipo": "eleccion",
+            "id": "maniobras_nivel_7",
+            "nombre": "Maniobras: aprendes 2 más (nivel 7)",
+            "elegir": 2,
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "maniobra",
+                "clases": "guerrero"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Conoce a tu Enemigo",
+            "resumen": "observando 1 minuto a una criatura fuera de combate sabes si te iguala, supera o es inferior en dos de: FUE, DES, CON, CA, PG actuales, niveles de clase totales o niveles de guerrero",
+            "descripcion": "Si pasas al menos 1 minuto observando o tratando con otra criatura fuera de combate, conoces su capacidad frente a la tuya: el DM te dice si es igual, superior o inferior a ti en dos de estas características, a tu elección: Fuerza, Destreza, Constitución, Clase de Armadura, puntos de golpe actuales, total de niveles de clase y niveles de guerrero."
+          }
+        ],
+        "10": [
+          {
+            "tipo": "eleccion",
+            "id": "maniobras_nivel_10",
+            "nombre": "Maniobras: aprendes 2 más (nivel 10)",
+            "elegir": 2,
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "maniobra",
+                "clases": "guerrero"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ],
+        "15": [
+          {
+            "tipo": "eleccion",
+            "id": "maniobras_nivel_15",
+            "nombre": "Maniobras: aprendes 2 más (nivel 15)",
+            "elegir": 2,
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "maniobra",
+                "clases": "guerrero"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Implacable",
+            "resumen": "si al tirar iniciativa no te queda ningún dado de superioridad, recuperas uno",
+            "descripcion": "Cuando tiras iniciativa y no te queda ningún dado de superioridad, recuperas uno."
           }
         ]
       }
@@ -222,7 +397,6 @@
           "mago"
         ]
       },
-      "niveles_completos": 5,
       "niveles": {
         "3": [
           {
@@ -236,6 +410,38 @@
             "nombre": "Vínculo con un Arma",
             "resumen": "ritual de 1 hora: no pueden desarmarte del arma vinculada y la llamas a tu mano como acción adicional (hasta 2 armas)",
             "descripcion": "Con un ritual de 1 hora, que puede hacerse durante un descanso corto, te vinculas a un arma que tengas a tu alcance. Salvo que estés incapacitado, nadie puede desarmarte de ella y, si está en tu mismo plano de existencia, puedes llamarla como acción adicional para que se teletransporte al instante a tu mano. Puedes tener hasta dos armas vinculadas, pero solo llamas a una cada vez; vincular una tercera rompe el vínculo con una de las otras dos."
+          }
+        ],
+        "7": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Magia de Guerra",
+            "resumen": "cuando usas tu acción para lanzar un truco, puedes hacer un ataque con arma como acción adicional",
+            "descripcion": "Cuando usas tu acción para lanzar un truco, puedes hacer un ataque con arma como acción adicional."
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Golpe Sobrenatural",
+            "resumen": "al impactar a una criatura con un ataque con arma, tiene desventaja en la siguiente salvación contra un conjuro tuyo antes del final de tu siguiente turno",
+            "descripcion": "Cuando impactas a una criatura con un ataque con arma, tiene desventaja en la siguiente tirada de salvación que haga contra un conjuro que lances antes del final de tu siguiente turno."
+          }
+        ],
+        "15": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Carga Arcana",
+            "resumen": "al usar Acción Súbita puedes teletransportarte hasta 30 pies a un espacio libre que veas, antes o después de la acción adicional",
+            "descripcion": "Cuando usas Acción Súbita, puedes teletransportarte hasta 30 pies a un espacio sin ocupar que puedas ver. Puedes hacerlo antes o después de la acción adicional."
+          }
+        ],
+        "18": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Magia de Guerra Mejorada",
+            "resumen": "cuando usas tu acción para lanzar un conjuro, puedes hacer un ataque con arma como acción adicional",
+            "descripcion": "Cuando usas tu acción para lanzar un conjuro, puedes hacer un ataque con arma como acción adicional."
           }
         ]
       }

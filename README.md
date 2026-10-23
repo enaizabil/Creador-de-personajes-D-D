@@ -2,14 +2,14 @@
 
 Programa portable para crear personajes de rol, con dos modos (normal y sencillo) y contenido ampliable por paquetes. Primer sistema: **D&D 5ª edición (2014)**.
 
-> **Estado: las 6 fases hechas.** Clases y subclases del SRD hasta nivel 20 y conjuros del SRD de nivel 0 a 9; subclases del Manual del Jugador y de la Guía del DM hasta nivel 5 (en curso). Núcleo, motor de reglas de 5e, datos de 5e 2014 (SRD + Manual del Jugador + Guía del DM) e interfaz gráfica con los dos modos: preguntas de situaciones cotidianas (sencillo) y asistente paso a paso (normal), y salidas en PDF (hoja oficial editable rellena y réplica) y Markdown para Obsidian/Nivel20.
+> **Estado: las 6 fases hechas.** Clases y subclases del SRD y del Manual del Jugador hasta nivel 20 y conjuros de nivel 0 a 9; subclases de la Guía del DM hasta nivel 5 (en curso). Núcleo, motor de reglas de 5e, datos de 5e 2014 (SRD + Manual del Jugador + Guía del DM) e interfaz gráfica con los dos modos: preguntas de situaciones cotidianas (sencillo) y asistente paso a paso (normal), y salidas en PDF (hoja oficial editable rellena y réplica) y Markdown para Obsidian/Nivel20.
 
 ## Hoja de ruta
 
 | Fase | Contenido | Estado |
 |---|---|---|
 | 1 | Núcleo: paquetes, personaje, motor de efectos y elecciones, reglas derivadas de 5e (niveles 1–20) | ✅ |
-| 2 | Datos 5e 2014: SRD 5.1 + PHB + Guía del DM (razas, clases, trasfondos, dotes, equipo, conjuros) | ✅ SRD hasta nivel 20; PHB y Guía del DM: subclases hasta nivel 5 y conjuros 0-3 (niveles altos en curso; dudas en `docs/dudas-contenido.md`) |
+| 2 | Datos 5e 2014: SRD 5.1 + PHB + Guía del DM (razas, clases, trasfondos, dotes, equipo, conjuros) | ✅ SRD y PHB hasta nivel 20; Guía del DM: subclases hasta nivel 5 (en curso; dudas en `docs/dudas-contenido.md`) |
 | 3 | Modo normal: asistente por pasos con selector de sistema y paquetes (CustomTkinter) | ✅ (sin multiclase en el asistente) |
 | 4 | Modo sencillo: cuestionario de situaciones → raza, clase, trasfondo, características y habilidades | ✅ (17 preguntas; el personaje se retoca luego en el modo normal) |
 | 5 | Salidas: JSON, réplica de la ficha oficial, rellenado del PDF oficial y guía para Nivel20 | ✅ (hoja editable en español rellena, réplica en A4 y nota de Obsidian con la guía de Nivel20) |

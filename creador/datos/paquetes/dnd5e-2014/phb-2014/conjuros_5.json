@@ -1,0 +1,89 @@
+{
+  "conjuros": [
+    {
+      "id": "carcaj_veloz",
+      "nombre": "Carcaj veloz",
+      "nivel": 5,
+      "escuela": "transmutacion",
+      "listas": [
+        "explorador"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "Toque",
+      "componentes": "V, S, M (un carcaj con al menos una pieza de munición)",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "El carcaj tocado repone mágicamente cada pieza de munición no mágica que saques de él. En cada uno de tus turnos, como acción adicional, haces dos ataques con un arma que use munición del carcaj. La munición disparada se desvanece al impactar o fallar.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "castigo_desterrador",
+      "nombre": "Castigo desterrador",
+      "nivel": 5,
+      "escuela": "abjuracion",
+      "listas": [
+        "paladin"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "Personal",
+      "componentes": "V",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "La próxima vez que impactes con un ataque con arma mientras dure, el ataque causa 5d10 de daño de fuerza adicional. Si deja al objetivo con 50 puntos de golpe o menos, queda desterrado: si es de otro plano, vuelve a su plano natal; si es de este, va a un semiplano inofensivo, incapacitado, hasta que acabe el conjuro.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "circulo_de_poder",
+      "nombre": "Círculo de poder",
+      "nivel": 5,
+      "escuela": "abjuracion",
+      "listas": [
+        "paladin"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal (radio de 30 pies)",
+      "componentes": "V",
+      "duracion": "Concentración, hasta 10 minutos",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Aura de 30 pies que se mueve contigo: las criaturas amistosas dentro (tú incluido) tienen ventaja en las salvaciones contra conjuros y otros efectos mágicos, y si superan una salvación que reduce el daño a la mitad, no reciben ninguno.",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "conjurar_lluvia_de_flechas",
+      "nombre": "Conjurar lluvia de flechas",
+      "nivel": 5,
+      "escuela": "conjuracion",
+      "listas": [
+        "explorador"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "150 pies",
+      "componentes": "V, S, M (una pieza de munición o un arma arrojadiza)",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Disparas munición o lanzas un arma al aire y cientos de copias caen en un cilindro de 40 pies de radio y 20 de alto: salvación de Destreza, 8d8 de daño del tipo del arma o la munición (mitad si la supera).",
+      "fuente": "PHB 2014"
+    },
+    {
+      "id": "ola_destructora",
+      "nombre": "Ola destructora",
+      "nivel": 5,
+      "escuela": "evocacion",
+      "listas": [
+        "paladin"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal (radio de 30 pies)",
+      "componentes": "V",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Golpeas el suelo y las criaturas que elijas a 30 pies o menos hacen una salvación de Constitución: 5d6 de daño de trueno y 5d6 de daño radiante o necrótico (a tu elección) y quedan derribadas; si la superan, mitad del daño y no caen.",
+      "fuente": "PHB 2014"
+    }
+  ]
+}
