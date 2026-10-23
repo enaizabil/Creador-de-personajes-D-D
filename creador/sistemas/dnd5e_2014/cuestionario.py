@@ -220,6 +220,8 @@ class Cuestionario5e:
     def aceptar_multiclase(self, acepta: bool) -> None:
         """Lo primero que se pregunta: si el jugador quiere una sola clase o acepta una propuesta de multiclase."""
         self.personaje.extra.setdefault("cuestionario", {})["multiclase"] = acepta
+        # Aceptarla es activar la regla opcional, que viene apagada.
+        self.personaje.reglas_opcionales["multiclase"] = acepta
 
     def _claves(self, clase_id: str) -> set[str]:
         """Características que la clase necesita altas: la de lanzar conjuros y las de su requisito de multiclase."""
@@ -241,8 +243,7 @@ class Cuestionario5e:
         quitarle a la principal lo que la define (como mínimo, llega al nivel de su subclase).
         """
         clase = clase or self.recomendar_clases()[0].id
-        if (not self.acepta_multiclase or nivel < NIVEL_MINIMO_MULTICLASE
-                or not self.personaje.reglas_opcionales.get("multiclase", True)):
+        if not self.acepta_multiclase or nivel < NIVEL_MINIMO_MULTICLASE or not self.asistente.multiclase_activa():
             return [(clase, nivel)]
         candidatas = [r.id for r in self.recomendar_clases() if r.id != clase][:CANDIDATAS_SECUNDARIA]
         secundaria = next((c for c in candidatas if self.compatibles(clase, c)), None)
@@ -277,6 +278,8 @@ class Cuestionario5e:
             a.elegir_subraza(subraza)
         nivel = min(nivel, a.nivel_maximo())
         reparto = reparto or self.proponer_reparto(nivel, clase)
+        if len(reparto) > 1:  # un reparto explícito en varias clases es pedir la multiclase
+            self.personaje.reglas_opcionales["multiclase"] = True
         a.personaje.clases = []
         a.establecer_nivel(sum(n for _, n in reparto))
         a.elegir_clase(reparto[0][0])

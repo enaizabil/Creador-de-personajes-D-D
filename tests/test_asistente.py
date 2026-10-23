@@ -321,6 +321,7 @@ def test_multiclase_reparte_el_nivel_total(asistente):
     a = asistente
     a.establecer_nivel(8)
     a.elegir_clase("guerrero")
+    a.establecer_regla("multiclase", True)
     a.anadir_clase("picaro", 3)
     assert [(e.clase, e.nivel) for e in a.personaje.clases] == [("guerrero", 5), ("picaro", 3)]
     assert a.nivel == 8
@@ -342,6 +343,7 @@ def test_multiclase_subclase_por_clase_y_lo_que_falta(asistente):
     a = asistente
     a.establecer_nivel(6)
     a.elegir_clase("guerrero")
+    a.establecer_regla("multiclase", True)
     a.anadir_clase("clerigo", 1)  # el clérigo elige dominio a nivel 1
     assert a.subclases("clerigo") and a.subclases("guerrero")
     faltan = a.faltan("clase")
@@ -361,6 +363,7 @@ def test_multiclase_requisitos_avisan_sin_bloquear(asistente):
     a.elegir_clase("guerrero")
     a.establecer_metodo("estandar")
     a.personaje.caracteristicas_base = {"fue": 15, "des": 14, "con": 13, "int": 8, "sab": 12, "car": 10}
+    a.establecer_regla("multiclase", True)
     a.anadir_clase("mago", 1)  # INT 9 con el humano: no llega a 13
     assert a.requisito_multiclase("mago") == ("INT 13", False)
     assert any("Multiclase: Mago requiere INT 13" in x for x in a.ficha().avisos)
@@ -372,6 +375,7 @@ def test_multiclase_cambiar_la_principal_conserva_las_demas(asistente):
     a = asistente
     a.establecer_nivel(5)
     a.elegir_clase("mago")
+    a.establecer_regla("multiclase", True)
     a.anadir_clase("guerrero", 2)
     a.elegir_conjuros("mago", ["mano_de_mago"])
     a.elegir_clase("guerrero")  # la secundaria pasa a principal y se queda con todos los niveles
@@ -383,6 +387,7 @@ def test_rasgos_que_no_se_acumulan(asistente):
     a = asistente
     a.establecer_nivel(16)
     a.elegir_clase("guerrero")
+    a.establecer_regla("multiclase", True)
     a.anadir_clase("monje", 5)  # guerrero 11 (3 ataques) y monje 5 (2 ataques)
     completar_elecciones(a, "clase")
     rasgos = [r for r in a.ficha().rasgos if r.nombre == "Ataque Adicional"]
@@ -402,6 +407,7 @@ def test_canalizar_divinidad_de_dos_clases_no_suma_usos(asistente):
     a = asistente
     a.establecer_nivel(9)
     a.elegir_clase("clerigo")
+    a.establecer_regla("multiclase", True)
     a.anadir_clase("paladin", 3)  # clérigo 6 (2 usos) y paladín 3 (1 uso)
     completar_elecciones(a, "clase")
     rasgos = [r for r in a.ficha().rasgos if r.nombre == "Canalizar Divinidad"]
@@ -415,6 +421,7 @@ def test_defensa_sin_armadura_solo_de_la_primera_clase(asistente):
     a.elegir_subraza("humano_estandar")
     a.establecer_nivel(4)
     a.elegir_clase("barbaro")
+    a.establecer_regla("multiclase", True)
     a.anadir_clase("monje", 1)
     a.establecer_metodo("manual")
     a.personaje.caracteristicas_base = {"fue": 14, "des": 14, "con": 10, "int": 8, "sab": 16, "car": 8}
@@ -440,3 +447,30 @@ def test_la_resolucion_se_reutiliza_mientras_el_personaje_no_cambia(asistente, m
     assert a.elecciones("clase")[0].seleccion == ["acrobacias"]
     a.bloqueadas(a.elecciones("clase")[0])
     assert len(llamadas) == 1
+
+
+def test_multiclase_apagada_de_serie_y_nunca_a_nivel_1(asistente):
+    a = asistente
+    a.elegir_raza("humano")
+    a.elegir_subraza("humano_estandar")
+    a.elegir_clase("guerrero")
+    assert not a.multiclase_activa() and not a.puede_anadir_clase()
+    with pytest.raises(ValueError):
+        a.anadir_clase("picaro")
+    a.establecer_regla("multiclase", True)
+    assert not a.puede_anadir_clase()  # nivel 1: no hay niveles que repartir
+    a.establecer_nivel(2)
+    assert a.puede_anadir_clase()
+
+
+def test_personaje_guardado_con_varias_clases_conserva_la_multiclase(asistente):
+    a = asistente
+    a.elegir_raza("humano")
+    a.elegir_subraza("humano_estandar")
+    a.establecer_nivel(5)
+    a.elegir_clase("guerrero")
+    a.establecer_regla("multiclase", True)
+    a.anadir_clase("picaro", 2)
+    del a.personaje.reglas_opcionales["multiclase"]  # como en un archivo anterior a la regla apagada de serie
+    assert a.multiclase_activa()
+    assert not [e for e in a.ficha().avisos if "regla opcional de multiclase" in e]

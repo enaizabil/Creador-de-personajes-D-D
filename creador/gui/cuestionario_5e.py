@@ -72,20 +72,21 @@ class VistaCuestionario5e(ctk.CTkFrame):
         ctk.CTkLabel(fila, text="Nivel del personaje:", font=fuente(14, True)).pack(side="left", padx=(0, 10))
         maximo = self.q.asistente.nivel_maximo()
         menu = ctk.CTkOptionMenu(fila, values=[str(n) for n in range(1, maximo + 1)], width=80,
-                                 command=lambda v: setattr(self, "nivel", int(v)))
+                                 command=lambda v: (setattr(self, "nivel", int(v)), self.pantalla_inicio()))
         menu.set(str(self.nivel))
         menu.pack(side="left")
         ctk.CTkLabel(fila, text="(si no te lo han dicho, nivel 1)", text_color="gray").pack(side="left", padx=10)
-        fila = ctk.CTkFrame(columna, fg_color="transparent")
-        fila.pack(anchor="w", pady=(0, 6))
-        ctk.CTkLabel(fila, text="Clases:", font=fuente(14, True)).pack(side="left", padx=(0, 10))
-        opciones = {"Una sola clase": False, "Acepto multiclase": True}
-        selector = ctk.CTkSegmentedButton(fila, values=list(opciones),
-                                          command=lambda v: self.q.aceptar_multiclase(opciones[v]))
-        selector.set("Acepto multiclase" if self.q.acepta_multiclase else "Una sola clase")
-        selector.pack(side="left")
-        ctk.CTkLabel(fila, text="(con multiclase te proponemos un reparto entre dos clases desde nivel 4)",
-                     text_color="gray").pack(side="left", padx=10)
+        # La multiclase confunde a quien empieza: apagada de serie y solo cuando el nivel da para repartir.
+        if self.nivel < NIVEL_MINIMO_MULTICLASE:
+            if self.q.acepta_multiclase:
+                self.q.aceptar_multiclase(False)
+        else:
+            variable = ctk.BooleanVar(value=self.q.acepta_multiclase)
+            ctk.CTkSwitch(columna, text="Multiclase: repartir los niveles entre dos clases (para jugadores con experiencia)",
+                          variable=variable, command=lambda: self.q.aceptar_multiclase(variable.get())
+                          ).pack(anchor="w", pady=(0, 2))
+            ctk.CTkLabel(columna, text="Si no sabes qué es, déjala apagada: tendrás una sola clase.",
+                         text_color="gray").pack(anchor="w", padx=50, pady=(0, 6))
         botones = ctk.CTkFrame(columna, fg_color="transparent")
         botones.pack(anchor="w", pady=10)
         ctk.CTkButton(botones, text="Empezar", width=180, height=40, font=fuente(15, True),

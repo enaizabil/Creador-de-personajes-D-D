@@ -193,15 +193,20 @@ class VistaAsistente5e(ctk.CTkFrame):
                          text_color="gray").pack(side="left", padx=10)
 
         interruptores = [("dotes", "Dotes (regla opcional del Manual del Jugador)", True),
-                         ("multiclase", "Multiclase (regla opcional del Manual del Jugador)", True),
+                         ("multiclase", "Multiclase (regla opcional del Manual del Jugador)", False),
                          ("opciones_dm", "Opciones de la Guía del DM que requieren su permiso (aasimar, eladrín…)", False)]
         if any(p.id == "dmg-2014" for p in self.a.catalogo.paquetes):
             interruptores.append(("equipo_por_nivel", "Oro extra al empezar por encima de nivel 4 (Guía del DM)", False))
         for regla, texto, defecto in interruptores:
-            variable = ctk.BooleanVar(value=reglas.get(regla, defecto))
+            activa = self.a.multiclase_activa() if regla == "multiclase" else reglas.get(regla, defecto)
+            variable = ctk.BooleanVar(value=activa)
             ctk.CTkSwitch(caja, text=texto, variable=variable,
                           command=lambda r=regla, v=variable: (self.a.establecer_regla(r, v.get()), self._refrescar())
                           ).pack(anchor="w", padx=12, pady=4)
+            if regla == "multiclase":
+                texto_ajustado(caja, "Reparte los niveles entre varias clases (desde nivel 2, en el paso «Clase»). Es para "
+                                     "jugadores con experiencia: si no sabes qué es, déjala apagada.", 700,
+                               text_color="gray").pack(anchor="w", padx=60, pady=(0, 4))
         fila_pg = ctk.CTkFrame(caja, fg_color="transparent")
         fila_pg.pack(anchor="w", padx=12, pady=(8, 12))
         ctk.CTkLabel(fila_pg, text="Puntos de golpe al subir de nivel:").pack(side="left", padx=(0, 10))
@@ -238,8 +243,8 @@ class VistaAsistente5e(ctk.CTkFrame):
             ListaOpciones(master, "Subclase", subclases, p.clases[0].subclase,
                           lambda i: (self.a.elegir_subclase(i), self._redibujar()), self.nombres_paquetes,
                           alto=180, nombres_perfil=NOMBRES_PERFIL).pack(fill="x", padx=10, pady=(14, 0))
-        # Con la regla desactivada se sigue mostrando si ya hay secundarias, para poder quitarlas.
-        if p.clases and (self.a.multiclase_activa() or len(p.clases) > 1):
+        # Solo desde nivel 2 con la regla activa; si ya hay secundarias, siempre, para poder quitarlas.
+        if p.clases and (self.a.puede_anadir_clase() or len(p.clases) > 1):
             self._multiclase(master)
         self._elecciones(master, "clase")
         self._faltan(master, "clase")
@@ -264,7 +269,7 @@ class VistaAsistente5e(ctk.CTkFrame):
                                                                                                  pady=(4, 12))
             return
         candidatas = self.a.clases_para_multiclase()
-        if not candidatas:
+        if not candidatas or not self.a.puede_anadir_clase():
             return
         fila = ctk.CTkFrame(caja, fg_color="transparent")
         fila.pack(anchor="w", padx=12, pady=(6, 12))

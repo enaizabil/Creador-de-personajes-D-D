@@ -278,7 +278,14 @@ class Asistente5e:
     # ── multiclase ─────────────────────────────────────────────────────────
 
     def multiclase_activa(self) -> bool:
-        return self.personaje.reglas_opcionales.get("multiclase", True)
+        """Regla opcional apagada de serie: confunde a quien empieza. Un personaje guardado que ya tiene varias
+        clases y no dice nada de la regla la conserva."""
+        return self.personaje.reglas_opcionales.get("multiclase", len(self.personaje.clases) > 1)
+
+    def puede_anadir_clase(self) -> bool:
+        """Con la regla activa y algún nivel de la principal que ceder (a nivel 1 no hay multiclase)."""
+        principal = self._entrada(None)
+        return self.multiclase_activa() and principal is not None and principal.nivel >= 2
 
     def clases_para_multiclase(self) -> list[OpcionDetallada]:
         """Clases que aún se pueden añadir (las que no tiene ya)."""

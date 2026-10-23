@@ -309,3 +309,15 @@ def test_maestria_y_caracteristicos_entran_en_el_libro_sin_desplazar_recomendado
     recomendados = catalogo.obtener("recomendaciones", "mago")["conjuros"]
     assert {"bola_de_fuego", "contrahechizo"} <= set(libro) & set(recomendados)
     assert not [a for a in sistema.calcular(q.personaje, catalogo).avisos if "libro" in a]
+
+
+def test_sin_aceptar_multiclase_siempre_una_clase(entorno):
+    q = nuevo(entorno)
+    responder_al_azar(q, "una")
+    assert not q.acepta_multiclase
+    assert len(q.proponer_reparto(10)) == 1
+    q.aceptar_multiclase(True)
+    assert q.personaje.reglas_opcionales["multiclase"] is True
+    assert len(q.proponer_reparto(10)) == 2
+    q.aceptar_multiclase(False)
+    assert len(q.proponer_reparto(10)) == 1
