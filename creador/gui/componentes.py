@@ -11,7 +11,8 @@ from ..nucleo.texto import clave_alfabetica
 NINGUNA = "— elige —"
 MAX_CASILLAS = 10  # con más opciones se usan desplegables
 MAX_DESPLEGABLE = 40  # con más aún (Secretos Mágicos: cualquier conjuro), un buscador
-MAX_RESULTADOS = 60  # casillas que muestra el buscador a la vez
+MAX_RESULTADOS = 20  # casillas que muestra el buscador a la vez (cada una cuesta ~5 ms de dibujo)
+ESPERA_BUSQUEDA = 250  # ms sin teclear antes de repintar los resultados
 _BUSQUEDAS: dict[str, str] = {}  # texto buscado por elección: el paso se redibuja tras cada clic
 
 
@@ -149,12 +150,25 @@ class SelectorEleccion(ctk.CTkFrame):
         self.resumen_elegidas.pack(anchor="w")
         self.resultados = ctk.CTkScrollableFrame(cuerpo, height=180)
         self.resultados.pack(fill="x", pady=(4, 0))
-        self.busqueda.bind("<KeyRelease>", lambda _evento: self._busqueda_cambiada())
+        self._pendiente = None
+        self.busqueda.bind("<KeyRelease>", lambda _evento: self._programar_busqueda())
         self._pintar_resultados()
 
+    def _programar_busqueda(self) -> None:
+        # Se repinta cuando deja de teclear, no en cada pulsación: así escribir no se vuelve lento.
+        if self._pendiente:
+            self.after_cancel(self._pendiente)
+        self._pendiente = self.after(ESPERA_BUSQUEDA, self._busqueda_cambiada)
+
     def _busqueda_cambiada(self) -> None:
+        self._pendiente = None
         _BUSQUEDAS[self.eleccion.clave] = self.busqueda.get()
         self._pintar_resultados()
+
+    def destroy(self) -> None:
+        if getattr(self, "_pendiente", None):
+            self.after_cancel(self._pendiente)
+        super().destroy()
 
     def _pintar_resultados(self) -> None:
         for hijo in self.resultados.winfo_children():

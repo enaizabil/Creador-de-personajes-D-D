@@ -6,6 +6,7 @@ asistente con otros pasos.
 """
 from __future__ import annotations
 
+import json
 import random
 import re
 from dataclasses import dataclass, field, replace
@@ -20,6 +21,7 @@ from .constantes import ARRAY_ESTANDAR, CARACTERISTICAS, COSTE_COMPRA, NIVEL_MAX
 from .ficha import Ficha, PlanConjuros
 
 if TYPE_CHECKING:
+    from ...nucleo.efectos import Resolucion
     from ...nucleo.paquetes import Catalogo
     from ...nucleo.personaje import Personaje
     from ...nucleo.sistema import SistemaReglas
@@ -129,8 +131,17 @@ class Asistente5e:
         self.catalogo = catalogo
         self.personaje = personaje
         self.rng = rng or random.Random()
+        self._cache: tuple[str, Resolucion] | None = None
 
     # ── utilidades ─────────────────────────────────────────────────────────
+
+    def _resolucion(self) -> Resolucion:
+        """La resolución del personaje, reutilizada mientras no cambie: al redibujar un paso la interfaz la pide
+        varias veces por elección (opciones que ya tiene, pericias sin competencia…)."""
+        huella = json.dumps(self.personaje.a_dict(), sort_keys=True, ensure_ascii=False, default=str)
+        if self._cache is None or self._cache[0] != huella:
+            self._cache = (huella, self.sistema.resolver(self.personaje, self.catalogo))
+        return self._cache[1]
 
     def _visible(self, entrada: dict) -> bool:
         if entrada.get("permiso_dm") and not self.personaje.reglas_opcionales.get("opciones_dm", False):
@@ -144,7 +155,7 @@ class Asistente5e:
                        for e in entradas), key=lambda o: clave_alfabetica(o.nombre))
 
     def _limpiar(self) -> None:
-        self.personaje.limpiar_elecciones(self.sistema.resolver(self.personaje, self.catalogo).claves_visitadas)
+        self.personaje.limpiar_elecciones(self._resolucion().claves_visitadas)
 
     @property
     def extra(self) -> dict:
@@ -430,7 +441,7 @@ class Asistente5e:
     def elecciones(self, paso: str) -> list[EleccionPendiente]:
         """Todas las elecciones de un paso (hechas o no), en orden de aparición."""
         prefijos = PREFIJOS_PASO.get(paso, ())
-        return [e for e in self.sistema.resolver(self.personaje, self.catalogo).elecciones if e.clave.startswith(prefijos)]
+        return [e for e in self._resolucion().elecciones if e.clave.startswith(prefijos)]
 
     def conocidas(self, eleccion: EleccionPendiente) -> set[str]:
         """Opciones de la elección que el personaje ya tiene por otra vía: elegirlas sería desperdiciarlas.
@@ -440,7 +451,7 @@ class Asistente5e:
         u opción. Así la pericia del pícaro, que se elige entre habilidades en las que ya es competente, no
         queda bloqueada.
         """
-        resolucion = self.sistema.resolver(self.personaje, self.catalogo)
+        resolucion = self._resolucion()
         tiene: set[tuple[str, str]] = set()
         for aplicado in resolucion.aplicados:
             if aplicado.origen == eleccion.clave or aplicado.origen.startswith(eleccion.clave + "="):
@@ -478,7 +489,7 @@ class Asistente5e:
         La pericia del pícaro o del bardo solo vale en habilidades (o herramientas) con competencia; la de las
         Bendiciones del Conocimiento da las dos cosas y no se bloquea.
         """
-        resolucion = self.sistema.resolver(self.personaje, self.catalogo)
+        resolucion = self._resolucion()
         competente = {a.efecto["id"] for a in resolucion.aplicados if a.tipo == "competencia"}
         bloqueadas = set()
         for opcion in eleccion.opciones:
@@ -497,7 +508,7 @@ class Asistente5e:
 
     def conjuros_de_otras_fuentes(self) -> set[str]:
         """Conjuros que ya llegan por raza, dote o subclase (innatos o siempre preparados)."""
-        resolucion = self.sistema.resolver(self.personaje, self.catalogo)
+        resolucion = self._resolucion()
         return {a.efecto["id"] for a in resolucion.aplicados if a.tipo == "conjuro"}
 
     def elegir(self, clave: str, valores: list[str]) -> None:
@@ -625,7 +636,7 @@ class Asistente5e:
 
     def planes_conjuros(self) -> list[PlanConjuros]:
         mods = {c: v.modificador for c, v in self.ficha().caracteristicas.items()}
-        efectos = [a.efecto for a in self.sistema.resolver(self.personaje, self.catalogo).aplicados if a.tipo == "conjuro"]
+        efectos = [a.efecto for a in self._resolucion().aplicados if a.tipo == "conjuro"]
         return motor.planes_de_conjuros(self.personaje, self.catalogo, mods, motor.conocidos_por_efectos(efectos))
 
     def elegir_conjuros(self, clase_id: str, ids: list[str]) -> None:
@@ -636,7 +647,7 @@ class Asistente5e:
 
     def libro_extra(self, clase_id: str) -> list[str]:
         """Conjuros que un rasgo añade gratis al libro (Siervos No Muertos…): se pueden preparar."""
-        efectos = [a.efecto for a in self.sistema.resolver(self.personaje, self.catalogo).aplicados if a.tipo == "conjuro"]
+        efectos = [a.efecto for a in self._resolucion().aplicados if a.tipo == "conjuro"]
         return motor.libro_por_efectos(efectos).get(clase_id, [])
 
     def elegir_preparados(self, clase_id: str, ids: list[str]) -> None:

@@ -422,3 +422,21 @@ def test_defensa_sin_armadura_solo_de_la_primera_clase(asistente):
     ficha = a.ficha()
     # Bárbaro: 10 + DES 2 + CON 0 = 12, aunque la del monje (10 + 2 + 3 = 15) sería mejor.
     assert ficha.ca == 10 + ficha.caracteristicas["des"].modificador + ficha.caracteristicas["con"].modificador
+
+
+def test_la_resolucion_se_reutiliza_mientras_el_personaje_no_cambia(asistente, monkeypatch):
+    a = asistente
+    a.elegir_raza("humano")
+    a.elegir_subraza("humano_estandar")
+    a.elegir_clase("picaro")
+    llamadas = []
+    original = a.sistema.resolver
+    monkeypatch.setattr(a.sistema, "resolver", lambda *x: llamadas.append(1) or original(*x))
+    for eleccion in a.elecciones("clase"):
+        a.bloqueadas(eleccion)
+    assert llamadas == []  # la dejó calculada elegir_clase y nada ha cambiado desde entonces
+    # Cualquier cambio en el personaje, aunque se haga sin pasar por el asistente, invalida la caché.
+    a.personaje.elecciones["clase:picaro:inicial/habilidades"] = ["acrobacias"]
+    assert a.elecciones("clase")[0].seleccion == ["acrobacias"]
+    a.bloqueadas(a.elecciones("clase")[0])
+    assert len(llamadas) == 1
