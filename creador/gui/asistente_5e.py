@@ -179,10 +179,15 @@ class VistaAsistente5e(ctk.CTkFrame):
         fila.pack(anchor="w", padx=12, pady=12)
         ctk.CTkLabel(fila, text="Nivel inicial:", font=fuente(14, True)).pack(side="left", padx=(0, 10))
         maximo = self.a.nivel_maximo()
-        menu = ctk.CTkOptionMenu(fila, values=[str(n) for n in range(1, maximo + 1)], width=80,
+        # Con varias clases, el total no puede bajar de lo repartido en las secundarias (+1 de la principal).
+        minimo = 1 + sum(e.nivel for e in self.a.personaje.clases[1:])
+        menu = ctk.CTkOptionMenu(fila, values=[str(n) for n in range(minimo, maximo + 1)], width=80,
                                  command=lambda v: (self.a.establecer_nivel(int(v)), self._redibujar()))
         menu.set(str(self.a.nivel))
         menu.pack(side="left")
+        if minimo > 1:
+            ctk.CTkLabel(fila, text="(total de todas las clases; el reparto se hace en el paso «Clase»)",
+                         text_color="gray").pack(side="left", padx=10)
         if maximo < 20:
             ctk.CTkLabel(fila, text=f"(los datos de clase llegan, por ahora, hasta nivel {maximo})",
                          text_color="gray").pack(side="left", padx=10)
@@ -224,15 +229,83 @@ class VistaAsistente5e(ctk.CTkFrame):
         self._cabecera_paso(master, "clase")
         p = self.a.personaje
         actual = p.clases[0].clase if p.clases else None
-        ListaOpciones(master, "Clase", self.a.clases(), actual, lambda i: (self.a.elegir_clase(i), self._redibujar()),
+        varias = len(p.clases) > 1
+        ListaOpciones(master, "Clase principal" if varias else "Clase", self.a.clases(), actual,
+                      lambda i: (self.a.elegir_clase(i), self._redibujar()),
                       self.nombres_paquetes, nombres_perfil=NOMBRES_PERFIL).pack(fill="x", padx=10)
         subclases = self.a.subclases()
         if subclases:
             ListaOpciones(master, "Subclase", subclases, p.clases[0].subclase,
                           lambda i: (self.a.elegir_subclase(i), self._redibujar()), self.nombres_paquetes,
                           alto=180, nombres_perfil=NOMBRES_PERFIL).pack(fill="x", padx=10, pady=(14, 0))
+        # Con la regla desactivada se sigue mostrando si ya hay secundarias, para poder quitarlas.
+        if p.clases and (self.a.multiclase_activa() or len(p.clases) > 1):
+            self._multiclase(master)
         self._elecciones(master, "clase")
         self._faltan(master, "clase")
+
+    def _multiclase(self, master) -> None:
+        """Clases secundarias: niveles (los quitan a la principal), requisito, subclase y añadir otra."""
+        p = self.a.personaje
+        caja = ctk.CTkFrame(master)
+        caja.pack(fill="x", padx=10, pady=(14, 0))
+        titulo(caja, "Multiclase", 15).pack(anchor="w", padx=12, pady=(10, 0))
+        nombres = {o.id: o.nombre for o in self.a.clases()}
+        reparto = " · ".join(f"{nombres.get(e.clase, e.clase)} {e.nivel}" for e in p.clases)
+        texto_ajustado(caja, f"Nivel total {self.a.nivel}: {reparto}. Los niveles de las otras clases se le quitan a la "
+                             "principal; el equipo inicial y las salvaciones son solo los de la principal.", 760,
+                       text_color="gray").pack(anchor="w", padx=12, pady=(2, 6))
+        principal = p.clases[0]
+        for entrada in p.clases[1:]:
+            self._fila_multiclase(caja, entrada, nombres, principal.nivel + entrada.nivel - 1)
+        if not self.a.multiclase_activa():
+            texto_ajustado(caja, "La regla de multiclase está desactivada: quita las clases secundarias o actívala en "
+                                 "«Edición y reglas».", 760, text_color=("#b45309", "#fbbf24")).pack(anchor="w", padx=12,
+                                                                                                 pady=(4, 12))
+            return
+        candidatas = self.a.clases_para_multiclase()
+        if not candidatas:
+            return
+        fila = ctk.CTkFrame(caja, fg_color="transparent")
+        fila.pack(anchor="w", padx=12, pady=(6, 12))
+        menu = ctk.CTkOptionMenu(fila, values=[o.nombre for o in candidatas], width=200, dynamic_resizing=False)
+        menu.set(candidatas[0].nombre)
+        menu.pack(side="left")
+        por_nombre = {o.nombre: o.id for o in candidatas}
+        boton = ctk.CTkButton(fila, text="Añadir otra clase", width=150,
+                              command=lambda: (self.a.anadir_clase(por_nombre[menu.get()]), self._redibujar()))
+        boton.pack(side="left", padx=10)
+        if principal.nivel <= 1:
+            boton.configure(state="disabled")
+            ctk.CTkLabel(fila, text="Sube el nivel total (paso «Edición y reglas») para tener niveles que repartir",
+                         text_color="gray").pack(side="left")
+
+    def _fila_multiclase(self, caja, entrada, nombres: dict[str, str], maximo: int) -> None:
+        marco = ctk.CTkFrame(caja, fg_color="transparent")
+        marco.pack(fill="x", padx=12, pady=4)
+        fila = ctk.CTkFrame(marco, fg_color="transparent")
+        fila.pack(anchor="w")
+        ctk.CTkLabel(fila, text=nombres.get(entrada.clase, entrada.clase), font=fuente(14, True), width=120,
+                     anchor="w").pack(side="left")
+        ctk.CTkLabel(fila, text="Niveles:").pack(side="left", padx=(6, 4))
+        niveles = ctk.CTkOptionMenu(fila, values=[str(n) for n in range(1, max(1, maximo) + 1)], width=70,
+                                    command=lambda v, c=entrada.clase: (self.a.establecer_niveles_clase(c, int(v)),
+                                                                        self._redibujar()))
+        niveles.set(str(entrada.nivel))
+        niveles.pack(side="left")
+        requisito = self.a.requisito_multiclase(entrada.clase)
+        if requisito:
+            texto, cumple = requisito
+            ctk.CTkLabel(fila, text=f"{'✓' if cumple else '✗'} requisito: {texto}",
+                         text_color=("#15803d", "#4ade80") if cumple else ("#b45309", "#fbbf24")).pack(side="left", padx=12)
+        ctk.CTkButton(fila, text="Quitar", width=70, fg_color="transparent", border_width=1,
+                      text_color=("gray10", "gray90"),
+                      command=lambda c=entrada.clase: (self.a.quitar_clase(c), self._redibujar())).pack(side="left", padx=6)
+        subclases = self.a.subclases(entrada.clase)
+        if subclases:
+            ListaOpciones(marco, f"Subclase de {nombres.get(entrada.clase, entrada.clase)}", subclases, entrada.subclase,
+                          lambda i, c=entrada.clase: (self.a.elegir_subclase(i, c), self._redibujar()),
+                          self.nombres_paquetes, alto=140, nombres_perfil=NOMBRES_PERFIL).pack(fill="x", pady=(6, 0))
 
     def _paso_caracteristicas(self, master) -> None:
         self._cabecera_paso(master, "caracteristicas")
