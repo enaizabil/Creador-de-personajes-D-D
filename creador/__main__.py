@@ -4,11 +4,13 @@
     python -m creador paquetes
     python -m creador validar srd-5.1 phb-2014
     python -m creador ficha personaje.json
+    python -m creador exportar personaje.json [--pdf ficha.pdf] [--nota nota.md]
 """
 from __future__ import annotations
 
 import argparse
 import sys
+from pathlib import Path
 
 from . import __version__
 from .entorno import abrir_catalogo, paquetes_instalados
@@ -63,6 +65,34 @@ def _orden_ficha(archivo: str) -> int:
     return 0
 
 
+def _orden_exportar(archivo: str, pdf: str | None, nota: str | None) -> int:
+    personaje = Personaje.cargar(archivo)
+    try:
+        sistema, catalogo, errores = abrir_catalogo(personaje.sistema, personaje.paquetes)
+    except (ErrorPaquete, KeyError) as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 1
+    for error in errores:
+        print(f"ERROR DE PAQUETE: {error}", file=sys.stderr)
+    if pdf is None and nota is None:  # sin indicar nada, las dos junto al JSON
+        base = Path(archivo).with_suffix("")
+        pdf, nota = f"{base}.pdf", f"{base}.md"
+    asistente = sistema.crear_asistente(personaje, catalogo)
+    if nota:
+        from .sistemas.dnd5e_2014.salidas.nota import nota_obsidian
+        Path(nota).write_text(nota_obsidian(asistente), encoding="utf-8")
+        print(f"Nota para Obsidian y Nivel20: {nota}")
+    if pdf:
+        try:
+            from .sistemas.dnd5e_2014.salidas.ficha_pdf import generar_ficha_pdf
+        except ImportError as exc:
+            print(f"ERROR: no se puede generar el PDF ({exc}). Instala reportlab.", file=sys.stderr)
+            return 1
+        generar_ficha_pdf(asistente, pdf)
+        print(f"Ficha en PDF: {pdf}")
+    return 0
+
+
 def _orden_gui() -> int:
     try:
         from .gui import ejecutar
@@ -85,6 +115,10 @@ def main(argv: list[str] | None = None) -> int:
     validar.add_argument("--sistema", default="dnd5e-2014")
     ficha = ordenes.add_parser("ficha", help="calcula la ficha de un personaje guardado en JSON")
     ficha.add_argument("archivo")
+    exportar = ordenes.add_parser("exportar", help="genera la ficha en PDF y la nota para Obsidian/Nivel20")
+    exportar.add_argument("archivo")
+    exportar.add_argument("--pdf", help="ruta del PDF (réplica de la hoja oficial)")
+    exportar.add_argument("--nota", help="ruta de la nota Markdown con la guía de Nivel20")
     args = parser.parse_args(argv)
 
     if args.orden in (None, "gui"):
@@ -95,6 +129,8 @@ def main(argv: list[str] | None = None) -> int:
         return _orden_validar(args.sistema, args.paquetes)
     if args.orden == "ficha":
         return _orden_ficha(args.archivo)
+    if args.orden == "exportar":
+        return _orden_exportar(args.archivo, args.pdf, args.nota)
     parser.print_help()
     return 0
 

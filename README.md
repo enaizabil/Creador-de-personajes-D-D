@@ -12,13 +12,13 @@ Programa portable para crear personajes de rol, con dos modos (normal y sencillo
 | 2 | Datos 5e 2014: SRD 5.1 + PHB + Guía del DM (razas, clases, trasfondos, dotes, equipo, conjuros 0-3) hasta nivel 5 | ✅ (niveles 6-20 pendientes; dudas en `docs/dudas-contenido.md`) |
 | 3 | Modo normal: asistente por pasos con selector de sistema y paquetes (CustomTkinter) | ✅ (sin multiclase en el asistente) |
 | 4 | Modo sencillo: cuestionario de situaciones → raza, clase, trasfondo, características y habilidades | ✅ (17 preguntas; el personaje se retoca luego en el modo normal) |
-| 5 | Salidas: JSON, réplica de la ficha oficial, rellenado del PDF oficial y guía para Nivel20 | ⏳ |
+| 5 | Salidas: JSON, réplica de la ficha oficial, rellenado del PDF oficial y guía para Nivel20 | 🟡 JSON, réplica en PDF (A4) y nota de Obsidian con la guía de Nivel20 hechas; falta rellenar el PDF oficial |
 | 6 | Ejecutables para Windows, macOS y Linux (PyInstaller + GitHub Actions) y gestor de paquetes | ⏳ |
 
 ## Requisitos
 
 - Python 3.10 o superior con Tkinter (incluido en los instaladores de python.org; en Debian/Ubuntu: `apt install python3-tk`).
-- Interfaz: `pip install -r requirements.txt` (CustomTkinter). El núcleo y la línea de órdenes no tienen dependencias externas.
+- Interfaz y ficha en PDF: `pip install -r requirements.txt` (CustomTkinter y reportlab). El núcleo y el resto de la línea de órdenes no tienen dependencias externas.
 - Para los tests: `pip install pytest`.
 
 ## Uso
@@ -27,6 +27,7 @@ Programa portable para crear personajes de rol, con dos modos (normal y sencillo
 python -m creador                       # abre la interfaz gráfica (también: python -m creador gui)
 python -m creador paquetes              # lista los paquetes instalados
 python -m creador ficha personaje.json  # calcula y muestra la ficha de un personaje
+python -m creador exportar personaje.json [--pdf ficha.pdf] [--nota nota.md]  # ficha en PDF y nota para Nivel20
 python -m pytest                        # ejecuta los tests
 ```
 
