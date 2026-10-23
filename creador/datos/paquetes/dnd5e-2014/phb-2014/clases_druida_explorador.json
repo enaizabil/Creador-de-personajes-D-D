@@ -23,6 +23,7 @@
         "combate": 2,
         "aguante": 2
       },
+      "niveles_completos": 5,
       "niveles": {
         "2": [
           {
@@ -56,6 +57,7 @@
         "combate": 2,
         "agilidad": 1
       },
+      "niveles_completos": 5,
       "niveles": {
         "3": [
           {

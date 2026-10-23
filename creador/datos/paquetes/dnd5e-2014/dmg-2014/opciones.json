@@ -147,6 +147,7 @@
       "permiso_dm": true,
       "fuente": "Guía del DM 2014, p. 96",
       "descripcion": "Dominio de las fuerzas que ponen fin a la vida y de la energía que alza a los muertos vivientes. Opción de la Guía del DM: solo con permiso explícito del DM.",
+      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -246,6 +247,7 @@
       "permiso_dm": true,
       "fuente": "Guía del DM 2014, p. 97",
       "descripcion": "Paladín malvado que rompió sus votos; sustituye los rasgos de su Juramento Sagrado (desde nivel 3). Opción de la Guía del DM: solo con permiso explícito del DM.",
+      "niveles_completos": 5,
       "niveles": {
         "3": [
           {

@@ -23,6 +23,7 @@
         "fe": 2,
         "arcano": 1
       },
+      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -133,6 +134,7 @@
         "fe": 2,
         "proteccion": 1
       },
+      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -217,6 +219,7 @@
         "fe": 2,
         "proteccion": 1
       },
+      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -336,6 +339,7 @@
         "combate": 2,
         "fe": 2
       },
+      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -424,6 +428,7 @@
         "sigilo": 2,
         "fe": 2
       },
+      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -494,6 +499,7 @@
         "fe": 2,
         "proteccion": 1
       },
+      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -582,6 +588,7 @@
         "proteccion": 2,
         "fe": 2
       },
+      "niveles_completos": 5,
       "niveles": {
         "3": [
           {
@@ -636,6 +643,7 @@
         "fe": 2,
         "agilidad": 1
       },
+      "niveles_completos": 5,
       "niveles": {
         "3": [
           {

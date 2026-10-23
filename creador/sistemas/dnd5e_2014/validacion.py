@@ -40,7 +40,7 @@ EJES_ALINEAMIENTO = ("orden", "moral")
 
 # Variables disponibles en los textos con {expresiones} y en «usos».
 VARIABLES_EXPRESION = {
-    "nivel", "nivel_clase", "competencia", "escala",
+    "nivel", "nivel_clase", "competencia", "escala", "conjuro",
     *(f"mod_{c}" for c in CARACTERISTICAS),
 }
 FUENTES_EQUIPO = ("objetos", "armas", "herramientas")
@@ -63,6 +63,7 @@ CAMPOS_EFECTO: dict[str, tuple[str, ...]] = {
     "ca_alternativa": ("base",),
     "bonificador_ca": ("valor",),
     "bonificador_ataque": ("valor",),
+    "bonificador_salvacion": ("valor",),
     "iniciativa": ("valor",),
     "ignora_penalizacion_armadura": (),
     "pasiva": ("habilidad", "valor"),
@@ -187,6 +188,17 @@ def _validar_efecto(tipo: str, efecto: dict) -> list[str]:
     elif tipo == "conjuro":
         if efecto.get("siempre_preparado") and not efecto.get("clase"):
             errores.append("un conjuro «siempre_preparado» necesita «clase»")
+        if efecto.get("cuenta_como_conocido") and not efecto.get("clase"):
+            errores.append("un conjuro «cuenta_como_conocido» necesita «clase»")
+    elif tipo == "bonificador_salvacion":
+        valor = efecto.get("valor")
+        if isinstance(valor, str):
+            errores.extend(comprobar(valor, VARIABLES_EXPRESION, es_expresion=True))
+        elif not isinstance(valor, int) or isinstance(valor, bool):
+            errores.append("«valor» debe ser un número o una expresión")
+        cars = efecto.get("caracteristicas", "todas")
+        if cars != "todas" and (not isinstance(cars, list) or any(c not in CARACTERISTICAS for c in cars)):
+            errores.append("«caracteristicas» debe ser \"todas\" o una lista de características")
     return errores
 
 
@@ -205,10 +217,18 @@ def _validar_rasgo(efecto: dict) -> list[str]:
         errores.extend(comprobar(efecto["resumen"], VARIABLES_EXPRESION))
     if "usos" in efecto:
         usos = efecto["usos"]
-        if isinstance(usos, str):
-            errores.extend(comprobar(usos, VARIABLES_EXPRESION, es_expresion=True))
-        elif not isinstance(usos, int):
-            errores.append("«usos» debe ser un número o una expresión")
+        # Tabla {"nivel": usos}: null quita el límite desde ese nivel (Furia a nivel 20).
+        if isinstance(usos, dict):
+            if not all(str(n).isdigit() and 1 <= int(n) <= 20 for n in usos):
+                errores.append("«usos» por nivel debe usar niveles de 1 a 20")
+            valores = list(usos.values())
+        else:
+            valores = [usos]
+        for valor in valores:
+            if isinstance(valor, str):
+                errores.extend(comprobar(valor, VARIABLES_EXPRESION, es_expresion=True))
+            elif not (valor is None and isinstance(usos, dict)) and (not isinstance(valor, int) or isinstance(valor, bool)):
+                errores.append("«usos» debe ser un número, una expresión o una tabla {\"nivel\": usos}")
     recarga = efecto.get("recarga")
     recargas = recarga.values() if isinstance(recarga, dict) else [recarga]
     if any(r not in (None, *RECARGAS) for r in recargas):
@@ -268,6 +288,9 @@ def validar_entrada(categoria: str, entrada: dict) -> list[str]:
     elif categoria == "clases":
         errores.extend(_validar_clase(entrada))
     elif categoria == "subclases":
+        completos = entrada.get("niveles_completos", 20)
+        if not isinstance(completos, int) or not 1 <= completos <= 20:
+            errores.append("«niveles_completos» debe estar entre 1 y 20")
         if "lanzamiento" in entrada:
             errores.extend(_validar_lanzamiento(entrada["lanzamiento"]))
         if not isinstance(entrada.get("conjuros_adicionales", []), list):

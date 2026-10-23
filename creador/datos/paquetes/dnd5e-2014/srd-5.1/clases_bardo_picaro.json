@@ -276,7 +276,7 @@
           22
         ]
       },
-      "niveles_completos": 5,
+      "niveles_completos": 20,
       "niveles": {
         "1": [
           {
@@ -361,6 +361,159 @@
             "nombre": "Fuente de Inspiración",
             "resumen": "recuperas todos los usos de Inspiración Bárdica tras un descanso corto o largo",
             "descripcion": "A partir del nivel 5, recuperas todos los usos gastados de Inspiración Bárdica cuando terminas un descanso corto o largo."
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Contraencantamiento",
+            "resumen": "acción: hasta el final de tu siguiente turno, tú y los aliados a 30 pies que te oigan tenéis ventaja en las salvaciones contra quedar asustados o hechizados",
+            "descripcion": "Como acción, empiezas una interpretación que dura hasta el final de tu siguiente turno. Mientras tanto, tú y las criaturas amistosas a 30 pies o menos que puedan oírte tenéis ventaja en las tiradas de salvación para evitar quedar asustados o hechizados. Termina antes si quedas incapacitado o silenciado, o si decides acabarla (no requiere acción)."
+          }
+        ],
+        "8": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "10": [
+          {
+            "tipo": "eleccion",
+            "id": "pericia_nivel_10",
+            "nombre": "Pericia de bardo a nivel 10 (2 habilidades más)",
+            "elegir": 2,
+            "opciones": {
+              "desde": "habilidades"
+            },
+            "aplicar": [
+              {
+                "tipo": "pericia",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "eleccion",
+            "id": "secretos_magicos_10",
+            "nombre": "Secretos Mágicos (nivel 10): 2 conjuros de cualquier lista, hasta nivel 5",
+            "elegir": 2,
+            "opciones": {
+              "desde": "conjuros",
+              "filtro": {
+                "nivel": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "conjuro",
+                "id": "$opcion",
+                "clase": "bardo",
+                "siempre_preparado": true,
+                "cuenta_como_conocido": true
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Secretos Mágicos",
+            "resumen": "aprendes 2 conjuros de cualquier lista (hasta el nivel que puedas lanzar) a los niveles 10, 14 y 18; son conjuros de bardo y cuentan como conocidos",
+            "descripcion": "Eliges dos conjuros de las listas de cualquier clase (también la tuya): trucos o conjuros de un nivel que puedas lanzar según la tabla del bardo. Para ti son conjuros de bardo y cuentan para tus conjuros conocidos. Aprendes otros dos de cualquier clase a los niveles 14 y 18."
+          }
+        ],
+        "12": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "14": [
+          {
+            "tipo": "eleccion",
+            "id": "secretos_magicos_14",
+            "nombre": "Secretos Mágicos (nivel 14): 2 conjuros de cualquier lista, hasta nivel 7",
+            "elegir": 2,
+            "opciones": {
+              "desde": "conjuros",
+              "filtro": {
+                "nivel": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "conjuro",
+                "id": "$opcion",
+                "clase": "bardo",
+                "siempre_preparado": true,
+                "cuenta_como_conocido": true
+              }
+            ]
+          }
+        ],
+        "16": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "18": [
+          {
+            "tipo": "eleccion",
+            "id": "secretos_magicos_18",
+            "nombre": "Secretos Mágicos (nivel 18): 2 conjuros de cualquier lista, hasta nivel 9",
+            "elegir": 2,
+            "opciones": {
+              "desde": "conjuros",
+              "filtro": {
+                "nivel": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9
+                ]
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "conjuro",
+                "id": "$opcion",
+                "clase": "bardo",
+                "siempre_preparado": true,
+                "cuenta_como_conocido": true
+              }
+            ]
+          }
+        ],
+        "19": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "20": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Inspiración Superior",
+            "resumen": "si al tirar iniciativa no te quedan usos de Inspiración Bárdica, recuperas uno",
+            "descripcion": "Cuando tiras iniciativa y no te queda ningún uso de Inspiración Bárdica, recuperas uno."
           }
         ]
       }
@@ -553,7 +706,7 @@
           ]
         ]
       ],
-      "niveles_completos": 5,
+      "niveles_completos": 20,
       "niveles": {
         "1": [
           {
@@ -702,6 +855,178 @@
             "resumen": "reacción: cuando un atacante que puedas ver te impacte con un ataque, reduces su daño a la mitad",
             "descripcion": "Cuando un atacante que puedas ver te impacte con un ataque, puedes usar tu reacción para reducir a la mitad el daño que te causa dicho ataque."
           }
+        ],
+        "6": [
+          {
+            "tipo": "eleccion",
+            "id": "pericia_nivel_6",
+            "nombre": "Pericia de pícaro a nivel 6 (2 más)",
+            "elegir": 2,
+            "opciones": [
+              {
+                "id": "acrobacias",
+                "nombre": "Acrobacias"
+              },
+              {
+                "id": "atletismo",
+                "nombre": "Atletismo"
+              },
+              {
+                "id": "conocimiento_arcano",
+                "nombre": "Conocimiento Arcano"
+              },
+              {
+                "id": "engano",
+                "nombre": "Engaño"
+              },
+              {
+                "id": "historia",
+                "nombre": "Historia"
+              },
+              {
+                "id": "interpretacion",
+                "nombre": "Interpretación"
+              },
+              {
+                "id": "intimidacion",
+                "nombre": "Intimidación"
+              },
+              {
+                "id": "investigacion",
+                "nombre": "Investigación"
+              },
+              {
+                "id": "juego_de_manos",
+                "nombre": "Juego de Manos"
+              },
+              {
+                "id": "medicina",
+                "nombre": "Medicina"
+              },
+              {
+                "id": "naturaleza",
+                "nombre": "Naturaleza"
+              },
+              {
+                "id": "percepcion",
+                "nombre": "Percepción"
+              },
+              {
+                "id": "perspicacia",
+                "nombre": "Perspicacia"
+              },
+              {
+                "id": "persuasion",
+                "nombre": "Persuasión"
+              },
+              {
+                "id": "religion",
+                "nombre": "Religión"
+              },
+              {
+                "id": "sigilo",
+                "nombre": "Sigilo"
+              },
+              {
+                "id": "supervivencia",
+                "nombre": "Supervivencia"
+              },
+              {
+                "id": "trato_con_animales",
+                "nombre": "Trato con Animales"
+              },
+              {
+                "id": "herramientas_de_ladron",
+                "nombre": "Herramientas de ladrón"
+              }
+            ],
+            "aplicar": [
+              {
+                "tipo": "pericia",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ],
+        "7": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Evasión",
+            "resumen": "en efectos con salvación de DES para la mitad del daño: ningún daño si la superas, mitad si la fallas",
+            "descripcion": "Cuando un efecto te permite hacer una tirada de salvación de Destreza para recibir solo la mitad del daño, no recibes ningún daño si la superas y solo la mitad si la fallas."
+          }
+        ],
+        "8": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "10": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "11": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Talentos Fiables",
+            "resumen": "en las pruebas en las que sumas tu competencia, un 9 o menos en el d20 cuenta como 10",
+            "descripcion": "Cuando haces una prueba de característica que te permite sumar tu bonificador por competencia, puedes tratar un resultado de 9 o menos en el d20 como un 10."
+          }
+        ],
+        "12": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Sentir sin Ver",
+            "resumen": "si puedes oír, sabes dónde está cualquier criatura escondida o invisible a 10 pies o menos",
+            "descripcion": "Si puedes oír, conoces la ubicación de cualquier criatura escondida o invisible que esté a 10 pies o menos de ti."
+          }
+        ],
+        "15": [
+          {
+            "tipo": "competencia",
+            "categoria": "salvacion",
+            "id": "sab"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Mente Escurridiza",
+            "resumen": "competencia en las salvaciones de Sabiduría",
+            "descripcion": "Has adquirido una gran fortaleza mental: ganas competencia en las tiradas de salvación de Sabiduría."
+          }
+        ],
+        "16": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "18": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Elusivo",
+            "resumen": "ningún ataque contra ti tiene ventaja mientras no estés incapacitado",
+            "descripcion": "Eres tan escurridizo que ninguna tirada de ataque contra ti tiene ventaja mientras no estés incapacitado."
+          }
+        ],
+        "19": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "20": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Golpe de Suerte",
+            "resumen": "conviertes un ataque fallido contra un objetivo a tu alcance en un impacto, o un d20 de una prueba fallida en un 20",
+            "descripcion": "Si fallas un ataque contra un objetivo a tu alcance, puedes convertir el fallo en un impacto. Como alternativa, si fallas una prueba de característica, puedes tratar la tirada del d20 como un 20. Después debes terminar un descanso corto o largo para volver a usarlo.",
+            "usos": 1,
+            "recarga": "corto"
+          }
         ]
       }
     }
@@ -772,6 +1097,47 @@
               "15": "1d12"
             }
           }
+        ],
+        "6": [
+          {
+            "tipo": "eleccion",
+            "id": "secretos_magicos_adicionales",
+            "nombre": "Secretos Mágicos adicionales: 2 conjuros de cualquier lista, hasta nivel 3",
+            "elegir": 2,
+            "opciones": {
+              "desde": "conjuros",
+              "filtro": {
+                "nivel": [
+                  0,
+                  1,
+                  2,
+                  3
+                ]
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "conjuro",
+                "id": "$opcion",
+                "clase": "bardo",
+                "siempre_preparado": true
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Secretos Mágicos Adicionales",
+            "resumen": "aprendes 2 conjuros de cualquier lista (trucos o hasta nivel 3); son conjuros de bardo y no cuentan como conocidos",
+            "descripcion": "Aprendes dos conjuros de las listas de cualquier clase: trucos o conjuros de un nivel que puedas lanzar según la tabla del bardo. Para ti son conjuros de bardo, pero no cuentan para tus conjuros conocidos."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Habilidad sin Parangón",
+            "resumen": "al hacer una prueba de característica, gastas un uso de Inspiración Bárdica y sumas el dado (después de tirar, antes de saber el resultado)",
+            "descripcion": "Cuando haces una prueba de característica, puedes gastar un uso de Inspiración Bárdica: tira el dado y suma el resultado a la prueba. Puedes decidirlo después de tirar, pero antes de que el DM diga si la superas."
+          }
         ]
       }
     },
@@ -799,6 +1165,30 @@
             "nombre": "Balconero",
             "resumen": "trepar no te cuesta movimiento adicional; al saltar con carrerilla, la distancia aumenta en {mod_des} pies",
             "descripcion": "Trepar ya no te cuesta movimiento adicional. Además, cuando saltas con carrerilla, la distancia que cubres aumenta en tantos pies como tu modificador por Destreza."
+          }
+        ],
+        "9": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Sigilo Supremo",
+            "resumen": "ventaja en las pruebas de DES (Sigilo) si ese turno no te mueves más de la mitad de tu velocidad",
+            "descripcion": "Tienes ventaja en las pruebas de Destreza (Sigilo) si no te mueves más de la mitad de tu velocidad en ese turno."
+          }
+        ],
+        "13": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Usar Objetos Mágicos",
+            "resumen": "ignoras los requisitos de clase, raza y nivel para usar objetos mágicos",
+            "descripcion": "Has aprendido lo suficiente sobre la magia como para usar cualquier objeto: ignoras todos los requisitos de clase, raza y nivel de los objetos mágicos."
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Reflejos de Ladrón",
+            "resumen": "en el primer asalto de cada combate tienes dos turnos: con tu iniciativa y con tu iniciativa −10 (no si estás sorprendido)",
+            "descripcion": "Puedes actuar dos turnos durante el primer asalto de cualquier combate: el primero con tu iniciativa normal y el segundo con tu iniciativa menos 10. No puedes usar este rasgo si estás sorprendido."
           }
         ]
       }

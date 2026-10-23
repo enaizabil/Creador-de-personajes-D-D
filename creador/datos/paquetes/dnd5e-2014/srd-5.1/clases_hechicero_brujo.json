@@ -178,7 +178,7 @@
           15
         ]
       },
-      "niveles_completos": 5,
+      "niveles_completos": 20,
       "niveles": {
         "1": [
           {
@@ -255,6 +255,74 @@
         "4": [
           {
             "tipo": "mejora_caracteristica"
+          }
+        ],
+        "8": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "10": [
+          {
+            "tipo": "eleccion",
+            "id": "metamagia_nivel_10",
+            "nombre": "Metamagia adicional (nivel 10)",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "metamagia",
+                "clases": "hechicero"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ],
+        "12": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "16": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "17": [
+          {
+            "tipo": "eleccion",
+            "id": "metamagia_nivel_17",
+            "nombre": "Metamagia adicional (nivel 17)",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "metamagia",
+                "clases": "hechicero"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ],
+        "19": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "20": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Recuperación Mágica",
+            "resumen": "recuperas 4 puntos de hechicería gastados al terminar cada descanso corto",
+            "descripcion": "Cada vez que terminas un descanso corto, recuperas 4 puntos de hechicería gastados."
           }
         ]
       }
@@ -446,7 +514,7 @@
           15
         ]
       },
-      "niveles_completos": 5,
+      "niveles_completos": 20,
       "niveles": {
         "1": [
           {
@@ -552,6 +620,232 @@
                 "id": "$opcion"
               }
             ]
+          }
+        ],
+        "7": [
+          {
+            "tipo": "eleccion",
+            "id": "invocacion_nivel_7",
+            "nombre": "Invocación Sobrenatural adicional (4.ª)",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "invocacion",
+                "clases": "brujo"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ],
+        "8": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "9": [
+          {
+            "tipo": "eleccion",
+            "id": "invocacion_nivel_9",
+            "nombre": "Invocación Sobrenatural adicional (5.ª)",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "invocacion",
+                "clases": "brujo"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ],
+        "11": [
+          {
+            "tipo": "eleccion",
+            "id": "arcanum_mistico_6",
+            "nombre": "Arcanum Místico (conjuro de nivel 6)",
+            "opciones": {
+              "desde": "conjuros",
+              "filtro": {
+                "listas": "brujo",
+                "nivel": 6
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "conjuro",
+                "id": "$opcion",
+                "clase": "brujo",
+                "siempre_preparado": true
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Arcanum Místico",
+            "resumen": "lanzas cada conjuro de arcanum una vez sin gastar espacio de conjuro y lo recuperas tras un descanso largo; tienes arcanum de {escala}",
+            "descripcion": "Tu patrón te concede un secreto mágico, el arcanum: eliges un conjuro de brujo de nivel 6. Puedes lanzarlo una vez sin gastar un espacio de conjuro y debes terminar un descanso largo para volver a hacerlo. Ganas otro arcanum de nivel 7 a nivel 13, de nivel 8 a nivel 15 y de nivel 9 a nivel 17.",
+            "escala": {
+              "11": "nivel 6",
+              "13": "niveles 6 y 7",
+              "15": "niveles 6, 7 y 8",
+              "17": "niveles 6, 7, 8 y 9"
+            }
+          }
+        ],
+        "12": [
+          {
+            "tipo": "mejora_caracteristica"
+          },
+          {
+            "tipo": "eleccion",
+            "id": "invocacion_nivel_12",
+            "nombre": "Invocación Sobrenatural adicional (6.ª)",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "invocacion",
+                "clases": "brujo"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ],
+        "13": [
+          {
+            "tipo": "eleccion",
+            "id": "arcanum_mistico_7",
+            "nombre": "Arcanum Místico (conjuro de nivel 7)",
+            "opciones": {
+              "desde": "conjuros",
+              "filtro": {
+                "listas": "brujo",
+                "nivel": 7
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "conjuro",
+                "id": "$opcion",
+                "clase": "brujo",
+                "siempre_preparado": true
+              }
+            ]
+          }
+        ],
+        "15": [
+          {
+            "tipo": "eleccion",
+            "id": "arcanum_mistico_8",
+            "nombre": "Arcanum Místico (conjuro de nivel 8)",
+            "opciones": {
+              "desde": "conjuros",
+              "filtro": {
+                "listas": "brujo",
+                "nivel": 8
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "conjuro",
+                "id": "$opcion",
+                "clase": "brujo",
+                "siempre_preparado": true
+              }
+            ]
+          },
+          {
+            "tipo": "eleccion",
+            "id": "invocacion_nivel_15",
+            "nombre": "Invocación Sobrenatural adicional (7.ª)",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "invocacion",
+                "clases": "brujo"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ],
+        "16": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "17": [
+          {
+            "tipo": "eleccion",
+            "id": "arcanum_mistico_9",
+            "nombre": "Arcanum Místico (conjuro de nivel 9)",
+            "opciones": {
+              "desde": "conjuros",
+              "filtro": {
+                "listas": "brujo",
+                "nivel": 9
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "conjuro",
+                "id": "$opcion",
+                "clase": "brujo",
+                "siempre_preparado": true
+              }
+            ]
+          }
+        ],
+        "18": [
+          {
+            "tipo": "eleccion",
+            "id": "invocacion_nivel_18",
+            "nombre": "Invocación Sobrenatural adicional (8.ª)",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "invocacion",
+                "clases": "brujo"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ],
+        "19": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "20": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Maestro Sobrenatural",
+            "resumen": "1 minuto suplicando a tu patrón: recuperas todos los espacios de Magia del Pacto",
+            "descripcion": "Puedes pasar 1 minuto suplicando a tu patrón para recuperar todos los espacios de conjuro gastados de Magia del Pacto. Después debes terminar un descanso largo para volver a usarlo.",
+            "usos": 1,
+            "recarga": "largo"
           }
         ]
       }
@@ -721,6 +1015,30 @@
             "resumen": "+{nivel_clase} PG máximos (+1 por nivel de hechicero, ya sumados); sin armadura, CA {13+mod_des} (el escudo se suma)",
             "descripcion": "La magia que recorre tu cuerpo hace aflorar rasgos de tus antepasados dragones. Tus puntos de golpe máximos aumentan en 1 por cada nivel de hechicero y partes de tu piel se cubren de un fino lustre parecido a las escamas de un dragón: mientras no lleves armadura, tu CA es 13 + tu modificador por Destreza."
           }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Afinidad Elemental",
+            "resumen": "al lanzar un conjuro que cause el daño de tu linaje, sumas +{mod_car} a una de sus tiradas de daño; con 1 punto de hechicería, resistencia a ese daño durante 1 hora",
+            "descripcion": "Cuando lanzas un conjuro que inflige daño del tipo asociado a tu linaje dracónico, puedes sumar tu modificador por Carisma a una de las tiradas de daño de ese conjuro. Además, puedes gastar 1 punto de hechicería para obtener resistencia a ese tipo de daño durante 1 hora."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Alas de Dragón",
+            "resumen": "acción adicional: te brotan alas y vuelas a tu velocidad actual hasta que las retires (otra acción adicional); no con armadura que no esté adaptada",
+            "descripcion": "Como acción adicional puedes hacer que te broten alas de dragón en la espalda: ganas una velocidad volando igual a tu velocidad actual hasta que las retires como acción adicional. No puedes desplegarlas con armadura salvo que esté adaptada para ello, y la ropa que no deje espacio a las alas podría destruirse."
+          }
+        ],
+        "18": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Presencia Dracónica",
+            "resumen": "acción y 5 puntos de hechicería: aura de 60 pies de asombro o terror durante 1 minuto (con concentración); los hostiles que empiezan su turno en ella superan una salvación de SAB o quedan hechizados o asustados hasta que acabe; quien la supera es inmune 24 horas",
+            "descripcion": "Como acción, gastas 5 puntos de hechicería para crear un aura de asombro o de terror (a tu elección) de 60 pies de radio. Durante 1 minuto o hasta que pierdas la concentración (como con un conjuro), cada criatura hostil que empiece su turno en el aura debe superar una tirada de salvación de Sabiduría o queda hechizada (asombro) o asustada (terror) hasta que el aura termine. Quien supera la salvación es inmune a tu aura durante 24 horas."
+          }
         ]
       }
     },
@@ -741,7 +1059,11 @@
         "rayo_abrasador",
         "sordera_ceguera",
         "bola_de_fuego",
-        "nube_apestosa"
+        "nube_apestosa",
+        "escudo_de_fuego",
+        "muro_de_fuego",
+        "consagrar",
+        "golpe_flamigero"
       ],
       "niveles": {
         "1": [
@@ -756,6 +1078,34 @@
             "nombre": "Bendición del Oscuro",
             "resumen": "al reducir a 0 los PG de una criatura hostil, ganas {max(1,mod_car+nivel_clase)} PG temporales",
             "descripcion": "Cuando reduces a 0 los puntos de golpe de una criatura hostil, obtienes tantos puntos de golpe temporales como tu modificador por Carisma + tu nivel de brujo (mínimo 1)."
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "La Suerte del Oscuro",
+            "resumen": "sumas 1d10 a una prueba de característica o tirada de salvación (después de tirar, antes de los efectos)",
+            "descripcion": "Cuando haces una prueba de característica o una tirada de salvación, puedes sumar 1d10 a la tirada. Puedes decidirlo después de ver el resultado, pero antes de que se apliquen sus efectos. Después debes terminar un descanso corto o largo para volver a usarlo.",
+            "usos": 1,
+            "recarga": "corto"
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Resistencia Infernal",
+            "resumen": "al terminar un descanso corto o largo eliges un tipo de daño y tienes resistencia a él (no contra armas mágicas o de plata) hasta que elijas otro",
+            "descripcion": "Cada vez que terminas un descanso corto o largo, puedes elegir un tipo de daño: tienes resistencia a él hasta que vuelvas a usar este rasgo para escoger otro. El daño de armas mágicas o de plata ignora esta resistencia."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Arrastrar por el Infierno",
+            "resumen": "al impactar con un ataque, el objetivo desaparece en los Planos Inferiores hasta el final de tu siguiente turno; si no es un infernal, sufre 10d10 de daño psíquico al volver",
+            "descripcion": "Cuando impactas a una criatura con un ataque, puedes teletransportarla a los Planos Inferiores, donde cae por un paisaje de pesadilla. Al final de tu siguiente turno vuelve al espacio que ocupaba (o al libre más cercano); si no es un infernal, sufre 10d10 de daño psíquico. Después debes terminar un descanso largo para volver a usarlo.",
+            "usos": 1,
+            "recarga": "largo"
           }
         ]
       }

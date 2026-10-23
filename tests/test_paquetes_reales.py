@@ -1,6 +1,7 @@
 """Comprobaciones de integración sobre los paquetes reales srd-5.1 y phb-2014.
 
-Construyen personajes de todas las clases, subclases y razas a niveles 1, 3 y 5,
+Construyen personajes de todas las clases y subclases a niveles 1, 3, 5, 10, 15 y 20 (y de todas las
+razas a 1 y 5),
 eligiendo siempre las primeras opciones de cada elección, y exigen que el motor
 no encuentre referencias rotas ni expresiones inválidas.
 """
@@ -55,7 +56,7 @@ def casos_de_clase():
     for clase in catalogo.listar("clases"):
         subclases = [s["id"] for s in catalogo.listar("subclases", {"clase": clase["id"]})] or [None]
         for subclase in subclases:
-            for nivel in (1, 3, 5):
+            for nivel in (1, 3, 5, 10, 15, 20):
                 casos.append((clase["id"], subclase, nivel))
     return casos
 

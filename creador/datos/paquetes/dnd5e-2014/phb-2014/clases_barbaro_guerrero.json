@@ -23,6 +23,7 @@
         "aguante": 2,
         "combate": 2
       },
+      "niveles_completos": 5,
       "niveles": {
         "3": [
           {
@@ -97,6 +98,7 @@
         "saber": 1,
         "carisma": 1
       },
+      "niveles_completos": 5,
       "niveles": {
         "3": [
           {
@@ -220,6 +222,7 @@
           "mago"
         ]
       },
+      "niveles_completos": 5,
       "niveles": {
         "3": [
           {

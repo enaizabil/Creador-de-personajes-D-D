@@ -228,7 +228,7 @@
         ],
         "preparados": "nivel"
       },
-      "niveles_completos": 5,
+      "niveles_completos": 20,
       "niveles": {
         "1": [
           {
@@ -260,8 +260,14 @@
             "nombre": "Forma Salvaje",
             "resumen": "acción: adoptas la forma de una bestia que hayas visto, de VD {escala}; dura hasta {nivel_clase//2} h; vuelves a tu forma con una acción adicional, o al quedar inconsciente, caer a 0 PG o morir; transformado no puedes lanzar conjuros",
             "descripcion": "Como acción adoptas mágicamente la forma de una bestia que hayas visto antes, con el VD máximo y las limitaciones de velocidad que marca tu nivel de druida (tabla «Formas de bestia»). Usas el perfil de la bestia, incluidos sus puntos de golpe y Dados de Golpe, pero conservas tu alineamiento, tu personalidad, tus puntuaciones de Inteligencia, Sabiduría y Carisma y tus competencias en habilidades y salvaciones; al volver a tu forma recuperas los PG que tenías y el daño sobrante se aplica a tu forma normal. Transformado no puedes lanzar conjuros (no se rompe tu concentración), tus acciones dependen de lo que pueda hacer la bestia, no usas tus sentidos especiales salvo que ella los tenga y eliges si tu equipo cae al suelo, se funde con la nueva forma o lo sigues llevando.",
-            "usos": 2,
-            "recarga": "corto",
+            "usos": {
+              "2": 2,
+              "20": null
+            },
+            "recarga": {
+              "2": "corto",
+              "20": null
+            },
             "escala": {
               "2": "1/4 o menos, sin velocidad nadando ni volando (p. ej., lobo)",
               "4": "1/2 o menos, sin velocidad volando (p. ej., cocodrilo)",
@@ -278,6 +284,48 @@
             "nombre": "Mejora de Forma Salvaje",
             "resumen": "Forma Salvaje: bestias de VD 1/2 o menos, ya con velocidad nadando (pero no volando); a nivel 8, VD 1 o menos sin limitaciones de velocidad",
             "descripcion": "Tu Forma Salvaje mejora a niveles 4 y 8 de druida, como indica la tabla «Formas de bestia»: a nivel 4 puedes adoptar la forma de bestias de VD 1/2 o menos que no tengan velocidad volando, y a nivel 8, de VD 1 o menos sin limitaciones de velocidad."
+          }
+        ],
+        "8": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "12": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "16": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "18": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Cuerpo Atemporal",
+            "resumen": "envejeces un año por cada diez que pasan",
+            "descripcion": "La magia primordial que dominas ralentiza tu envejecimiento: tu cuerpo solo envejece un año por cada diez que pasan."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Conjurar como Bestia",
+            "resumen": "en Forma Salvaje puedes lanzar conjuros de druida con componentes verbales y somáticos (no materiales)",
+            "descripcion": "Puedes lanzar muchos de tus conjuros de druida con cualquier forma de Forma Salvaje: ejecutas sus componentes verbales y somáticos aunque tengas forma de bestia, pero sigues sin poder aportar los materiales."
+          }
+        ],
+        "19": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "20": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Archidruida",
+            "resumen": "Forma Salvaje ilimitada; ignoras los componentes verbales y somáticos de tus conjuros de druida y los materiales sin coste que no se consumen (también transformado)",
+            "descripcion": "Puedes usar Forma Salvaje un número ilimitado de veces. Además, ignoras los componentes verbales y somáticos de tus conjuros de druida, así como los materiales que no tengan un coste indicado ni se consuman, tanto en tu forma normal como con las formas de bestia."
           }
         ]
       }
@@ -493,7 +541,7 @@
           11
         ]
       },
-      "niveles_completos": 5,
+      "niveles_completos": 20,
       "niveles": {
         "1": [
           {
@@ -591,6 +639,138 @@
             "resumen": "2 ataques al usar la acción de Atacar",
             "descripcion": "Cuando realizas la acción de Atacar durante tu turno, puedes hacer dos ataques en lugar de uno."
           }
+        ],
+        "6": [
+          {
+            "tipo": "eleccion",
+            "id": "enemigo_predilecto_nivel_6",
+            "nombre": "Enemigo Predilecto adicional (nivel 6)",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "enemigo_predilecto",
+                "clases": "explorador"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "eleccion",
+            "id": "terreno_predilecto_nivel_6",
+            "nombre": "Explorador Nato: terreno adicional (nivel 6)",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "terreno_predilecto",
+                "clases": "explorador"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ],
+        "8": [
+          {
+            "tipo": "mejora_caracteristica"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Paso de la Tierra",
+            "resumen": "el terreno difícil no mágico no te cuesta movimiento extra; atraviesas plantas no mágicas sin frenarte ni dañarte; ventaja en salvaciones contra plantas mágicas que estorban el movimiento (p. ej., enmarañar)",
+            "descripcion": "Moverte por terreno difícil no mágico no te cuesta movimiento adicional, y puedes atravesar plantas no mágicas sin que te frenen ni te dañen aunque tengan espinas o pinchos. Además, tienes ventaja en las tiradas de salvación contra plantas creadas o manipuladas mágicamente para impedir el movimiento, como las del conjuro enmarañar."
+          }
+        ],
+        "10": [
+          {
+            "tipo": "eleccion",
+            "id": "terreno_predilecto_nivel_10",
+            "nombre": "Explorador Nato: terreno adicional (nivel 10)",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "terreno_predilecto",
+                "clases": "explorador"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Esconderse a Plena Vista",
+            "resumen": "con 1 minuto y materiales naturales te camuflas; pegado a una superficie al menos de tu tamaño, +10 a DES (Sigilo) mientras no te muevas ni actúes",
+            "descripcion": "Puedes pasar 1 minuto preparando un camuflaje con barro, tierra, plantas, hollín u otros materiales naturales. Una vez camuflado, puedes intentar esconderte pegado a una superficie sólida al menos tan alta y ancha como tú (un árbol, un muro): tienes +10 a las pruebas de Destreza (Sigilo) mientras no te muevas ni hagas ninguna acción. Si te mueves o haces una acción o reacción, debes volver a camuflarte."
+          }
+        ],
+        "12": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "14": [
+          {
+            "tipo": "eleccion",
+            "id": "enemigo_predilecto_nivel_14",
+            "nombre": "Enemigo Predilecto adicional (nivel 14)",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "enemigo_predilecto",
+                "clases": "explorador"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Desvanecerse",
+            "resumen": "puedes esconderte como acción adicional; no se te puede rastrear por medios no mágicos salvo que quieras",
+            "descripcion": "Puedes usar la acción de esconderte como acción adicional en tu turno. Además, no se te puede rastrear por medios no mágicos, salvo que decidas dejar un rastro."
+          }
+        ],
+        "16": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "18": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Sentidos Salvajes",
+            "resumen": "atacar a una criatura que no ves no te impone desventaja; sabes dónde está cualquier criatura invisible a 30 pies o menos que no se esconda de ti (si no estás cegado ni ensordecido)",
+            "descripcion": "Cuando atacas a una criatura que no puedes ver, no poder verla no impone desventaja a tus tiradas de ataque contra ella. Además, conoces la ubicación de cualquier criatura invisible a 30 pies o menos de ti, siempre que no se esté escondiendo de ti y no estés cegado ni ensordecido."
+          }
+        ],
+        "19": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "20": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Azote de Enemigos",
+            "resumen": "una vez en cada uno de tus turnos sumas +{mod_sab} al ataque o al daño de un ataque contra un enemigo predilecto (antes o después de tirar)",
+            "descripcion": "Una vez en cada uno de tus turnos, puedes sumar tu modificador por Sabiduría a la tirada de ataque o de daño de un ataque contra uno de tus enemigos predilectos. Puedes decidirlo antes o después de tirar, pero antes de que se apliquen sus efectos."
+          }
         ]
       }
     }
@@ -661,6 +841,38 @@
               }
             ]
           }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Paso de la Tierra",
+            "resumen": "el terreno difícil no mágico no te cuesta movimiento extra; atraviesas plantas no mágicas sin frenarte ni dañarte; ventaja en salvaciones contra plantas mágicas que estorban el movimiento (p. ej., enmarañar)",
+            "descripcion": "Moverte por terreno difícil no mágico no te cuesta movimiento adicional, y puedes atravesar plantas no mágicas sin que te frenen ni te dañen aunque tengan espinas o pinchos. Además, tienes ventaja en las tiradas de salvación contra plantas creadas o manipuladas mágicamente para impedir el movimiento, como las del conjuro enmarañar."
+          }
+        ],
+        "10": [
+          {
+            "tipo": "inmunidad",
+            "id": "enfermedades"
+          },
+          {
+            "tipo": "inmunidad",
+            "id": "veneno"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Protección de la Naturaleza",
+            "resumen": "los elementales y los feéricos no pueden asustarte ni hechizarte; inmune al veneno y a las enfermedades",
+            "descripcion": "No puedes ser asustado ni hechizado por elementales ni feéricos, y eres inmune al veneno y a las enfermedades."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Santuario de la Naturaleza",
+            "resumen": "una bestia o planta que te ataque hace una salvación de SAB contra tu CD de conjuros: si la falla, cambia de objetivo o falla el ataque; si la supera, es inmune 24 horas",
+            "descripcion": "Las criaturas del mundo natural notan tu vínculo con la naturaleza y dudan en atacarte. Cuando una bestia o una planta te ataca, debe hacer una tirada de salvación de Sabiduría contra tu CD de salvación de conjuros de druida. Si la falla, debe elegir otro objetivo o el ataque falla automáticamente; si la supera, es inmune a este efecto durante 24 horas. La criatura conoce el efecto antes de decidir si te ataca."
+          }
         ]
       }
     },
@@ -695,6 +907,66 @@
               }
             ]
           }
+        ],
+        "7": [
+          {
+            "tipo": "eleccion",
+            "id": "tacticas_defensivas",
+            "nombre": "Tácticas Defensivas",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "tacticas_defensivas",
+                "clases": "explorador"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ],
+        "11": [
+          {
+            "tipo": "eleccion",
+            "id": "ataque_multiple",
+            "nombre": "Ataque Múltiple",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "ataque_multiple",
+                "clases": "explorador"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ],
+        "15": [
+          {
+            "tipo": "eleccion",
+            "id": "defensa_cazador_experto",
+            "nombre": "Defensa de Cazador Experto",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "defensa_cazador_experto",
+                "clases": "explorador"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          }
         ]
       }
     }
@@ -708,7 +980,7 @@
         "druida"
       ],
       "fuente": "SRD 5.1 p. 28",
-      "resumen": "siempre preparados, sin contar para el límite: crecimiento espinoso y inmovilizar persona desde nivel 3 de druida; ralentizar y tormenta de aguanieve desde nivel 5",
+      "resumen": "siempre preparados, sin contar para el límite: crecimiento espinoso y inmovilizar persona desde nivel 3 de druida; ralentizar y tormenta de aguanieve desde nivel 5; libertad de movimiento y tormenta de hielo desde nivel 7; comunión con la naturaleza y cono de frío desde nivel 9",
       "descripcion": "Te convertiste en druida en el ártico. Al alcanzar los niveles de druida 3, 5, 7 y 9 accedes a sus conjuros de círculo, que siempre se consideran preparados, no cuentan para el total que preparas cada día y son para ti conjuros de druida aunque no estén en su lista: nivel 3, crecimiento espinoso y inmovilizar persona; nivel 5, ralentizar y tormenta de aguanieve; nivel 7, libertad de movimiento y tormenta de hielo; nivel 9, comunión con la naturaleza y cono de frío.",
       "efectos": [
         {
@@ -738,6 +1010,34 @@
           "clase": "druida",
           "siempre_preparado": true,
           "nivel_clase_minimo": 5
+        },
+        {
+          "tipo": "conjuro",
+          "id": "libertad_de_movimiento",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 7
+        },
+        {
+          "tipo": "conjuro",
+          "id": "tormenta_de_hielo",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 7
+        },
+        {
+          "tipo": "conjuro",
+          "id": "comunion_con_la_naturaleza",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 9
+        },
+        {
+          "tipo": "conjuro",
+          "id": "cono_de_frio",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 9
         }
       ]
     },
@@ -749,7 +1049,7 @@
         "druida"
       ],
       "fuente": "SRD 5.1 p. 28",
-      "resumen": "siempre preparados, sin contar para el límite: piel robliza y trepar cual arácnido desde nivel 3 de druida; crecimiento vegetal y llamar al relámpago desde nivel 5",
+      "resumen": "siempre preparados, sin contar para el límite: piel robliza y trepar cual arácnido desde nivel 3 de druida; crecimiento vegetal y llamar al relámpago desde nivel 5; adivinación y libertad de movimiento desde nivel 7; comunión con la naturaleza y paso arbóreo desde nivel 9",
       "descripcion": "Te convertiste en druida en el bosque. Al alcanzar los niveles de druida 3, 5, 7 y 9 accedes a sus conjuros de círculo, que siempre se consideran preparados, no cuentan para el total que preparas cada día y son para ti conjuros de druida aunque no estén en su lista: nivel 3, piel robliza y trepar cual arácnido; nivel 5, crecimiento vegetal y llamar al relámpago; nivel 7, adivinación y libertad de movimiento; nivel 9, comunión con la naturaleza y paso arbóreo.",
       "efectos": [
         {
@@ -779,6 +1079,34 @@
           "clase": "druida",
           "siempre_preparado": true,
           "nivel_clase_minimo": 5
+        },
+        {
+          "tipo": "conjuro",
+          "id": "adivinacion",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 7
+        },
+        {
+          "tipo": "conjuro",
+          "id": "libertad_de_movimiento",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 7
+        },
+        {
+          "tipo": "conjuro",
+          "id": "comunion_con_la_naturaleza",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 9
+        },
+        {
+          "tipo": "conjuro",
+          "id": "paso_arboreo",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 9
         }
       ]
     },
@@ -790,7 +1118,7 @@
         "druida"
       ],
       "fuente": "SRD 5.1 p. 28",
-      "resumen": "siempre preparados, sin contar para el límite: imagen múltiple y paso brumoso desde nivel 3 de druida; caminar sobre el agua y respirar bajo el agua desde nivel 5",
+      "resumen": "siempre preparados, sin contar para el límite: imagen múltiple y paso brumoso desde nivel 3 de druida; caminar sobre el agua y respirar bajo el agua desde nivel 5; controlar agua y libertad de movimiento desde nivel 7; conjurar elemental y escudriñar desde nivel 9",
       "descripcion": "Te convertiste en druida en la costa. Al alcanzar los niveles de druida 3, 5, 7 y 9 accedes a sus conjuros de círculo, que siempre se consideran preparados, no cuentan para el total que preparas cada día y son para ti conjuros de druida aunque no estén en su lista: nivel 3, imagen múltiple y paso brumoso; nivel 5, caminar sobre el agua y respirar bajo el agua; nivel 7, controlar agua y libertad de movimiento; nivel 9, conjurar elemental y escudriñar.",
       "efectos": [
         {
@@ -820,6 +1148,34 @@
           "clase": "druida",
           "siempre_preparado": true,
           "nivel_clase_minimo": 5
+        },
+        {
+          "tipo": "conjuro",
+          "id": "controlar_agua",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 7
+        },
+        {
+          "tipo": "conjuro",
+          "id": "libertad_de_movimiento",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 7
+        },
+        {
+          "tipo": "conjuro",
+          "id": "conjurar_elemental",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 9
+        },
+        {
+          "tipo": "conjuro",
+          "id": "escudrinar",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 9
         }
       ]
     },
@@ -831,7 +1187,7 @@
         "druida"
       ],
       "fuente": "SRD 5.1 p. 28",
-      "resumen": "siempre preparados, sin contar para el límite: contorno borroso y silencio desde nivel 3 de druida; crear comida y agua y protección contra energía desde nivel 5",
+      "resumen": "siempre preparados, sin contar para el límite: contorno borroso y silencio desde nivel 3 de druida; crear comida y agua y protección contra energía desde nivel 5; marchitar y terreno alucinatorio desde nivel 7; muro de piedra y plaga de insectos desde nivel 9",
       "descripcion": "Te convertiste en druida en el desierto. Al alcanzar los niveles de druida 3, 5, 7 y 9 accedes a sus conjuros de círculo, que siempre se consideran preparados, no cuentan para el total que preparas cada día y son para ti conjuros de druida aunque no estén en su lista: nivel 3, contorno borroso y silencio; nivel 5, crear comida y agua y protección contra energía; nivel 7, marchitar y terreno alucinatorio; nivel 9, muro de piedra y plaga de insectos.",
       "efectos": [
         {
@@ -861,6 +1217,34 @@
           "clase": "druida",
           "siempre_preparado": true,
           "nivel_clase_minimo": 5
+        },
+        {
+          "tipo": "conjuro",
+          "id": "marchitar",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 7
+        },
+        {
+          "tipo": "conjuro",
+          "id": "terreno_alucinatorio",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 7
+        },
+        {
+          "tipo": "conjuro",
+          "id": "muro_de_piedra",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 9
+        },
+        {
+          "tipo": "conjuro",
+          "id": "plaga_de_insectos",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 9
         }
       ]
     },
@@ -872,7 +1256,7 @@
         "druida"
       ],
       "fuente": "SRD 5.1 p. 28",
-      "resumen": "siempre preparados, sin contar para el límite: crecimiento espinoso y trepar cual arácnido desde nivel 3 de druida; fundirse con la piedra y relámpago desde nivel 5",
+      "resumen": "siempre preparados, sin contar para el límite: crecimiento espinoso y trepar cual arácnido desde nivel 3 de druida; fundirse con la piedra y relámpago desde nivel 5; moldear la piedra y piel pétrea desde nivel 7; muro de piedra y pasamuros desde nivel 9",
       "descripcion": "Te convertiste en druida en la montaña. Al alcanzar los niveles de druida 3, 5, 7 y 9 accedes a sus conjuros de círculo, que siempre se consideran preparados, no cuentan para el total que preparas cada día y son para ti conjuros de druida aunque no estén en su lista: nivel 3, crecimiento espinoso y trepar cual arácnido; nivel 5, fundirse con la piedra y relámpago; nivel 7, moldear la piedra y piel pétrea; nivel 9, muro de piedra y pasamuros.",
       "efectos": [
         {
@@ -902,6 +1286,34 @@
           "clase": "druida",
           "siempre_preparado": true,
           "nivel_clase_minimo": 5
+        },
+        {
+          "tipo": "conjuro",
+          "id": "moldear_la_piedra",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 7
+        },
+        {
+          "tipo": "conjuro",
+          "id": "piel_petrea",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 7
+        },
+        {
+          "tipo": "conjuro",
+          "id": "muro_de_piedra",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 9
+        },
+        {
+          "tipo": "conjuro",
+          "id": "pasamuros",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 9
         }
       ]
     },
@@ -913,7 +1325,7 @@
         "druida"
       ],
       "fuente": "SRD 5.1 p. 28",
-      "resumen": "siempre preparados, sin contar para el límite: flecha ácida y oscuridad desde nivel 3 de druida; caminar sobre el agua y nube apestosa desde nivel 5",
+      "resumen": "siempre preparados, sin contar para el límite: flecha ácida y oscuridad desde nivel 3 de druida; caminar sobre el agua y nube apestosa desde nivel 5; libertad de movimiento y localizar criatura desde nivel 7; escudriñar y plaga de insectos desde nivel 9",
       "descripcion": "Te convertiste en druida en el pantano. Al alcanzar los niveles de druida 3, 5, 7 y 9 accedes a sus conjuros de círculo, que siempre se consideran preparados, no cuentan para el total que preparas cada día y son para ti conjuros de druida aunque no estén en su lista: nivel 3, flecha ácida y oscuridad; nivel 5, caminar sobre el agua y nube apestosa; nivel 7, libertad de movimiento y localizar criatura; nivel 9, escudriñar y plaga de insectos.",
       "efectos": [
         {
@@ -943,6 +1355,34 @@
           "clase": "druida",
           "siempre_preparado": true,
           "nivel_clase_minimo": 5
+        },
+        {
+          "tipo": "conjuro",
+          "id": "libertad_de_movimiento",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 7
+        },
+        {
+          "tipo": "conjuro",
+          "id": "localizar_criatura",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 7
+        },
+        {
+          "tipo": "conjuro",
+          "id": "escudrinar",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 9
+        },
+        {
+          "tipo": "conjuro",
+          "id": "plaga_de_insectos",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 9
         }
       ]
     },
@@ -954,7 +1394,7 @@
         "druida"
       ],
       "fuente": "SRD 5.1 p. 28",
-      "resumen": "siempre preparados, sin contar para el límite: invisibilidad y pasar sin rastro desde nivel 3 de druida; acelerar y luz del día desde nivel 5",
+      "resumen": "siempre preparados, sin contar para el límite: invisibilidad y pasar sin rastro desde nivel 3 de druida; acelerar y luz del día desde nivel 5; adivinación y libertad de movimiento desde nivel 7; ensueño y plaga de insectos desde nivel 9",
       "descripcion": "Te convertiste en druida en la pradera. Al alcanzar los niveles de druida 3, 5, 7 y 9 accedes a sus conjuros de círculo, que siempre se consideran preparados, no cuentan para el total que preparas cada día y son para ti conjuros de druida aunque no estén en su lista: nivel 3, invisibilidad y pasar sin rastro; nivel 5, acelerar y luz del día; nivel 7, adivinación y libertad de movimiento; nivel 9, ensueño y plaga de insectos.",
       "efectos": [
         {
@@ -984,6 +1424,34 @@
           "clase": "druida",
           "siempre_preparado": true,
           "nivel_clase_minimo": 5
+        },
+        {
+          "tipo": "conjuro",
+          "id": "adivinacion",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 7
+        },
+        {
+          "tipo": "conjuro",
+          "id": "libertad_de_movimiento",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 7
+        },
+        {
+          "tipo": "conjuro",
+          "id": "ensueno",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 9
+        },
+        {
+          "tipo": "conjuro",
+          "id": "plaga_de_insectos",
+          "clase": "druida",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 9
         }
       ]
     },
@@ -1528,6 +1996,94 @@
       "fuente": "SRD 5.1 p. 33",
       "resumen": "una vez en cada uno de tus turnos, al hacer un ataque con arma, puedes hacer otro con la misma arma contra otra criatura a 5 pies o menos del objetivo original y dentro del alcance del arma",
       "descripcion": "Una vez en cada uno de tus turnos, cuando hagas un ataque con arma, puedes realizar otro ataque con la misma arma contra una criatura distinta que esté a 5 pies o menos del objetivo original y dentro del alcance de tu arma."
+    },
+    {
+      "id": "defensa_contra_ataques_multiples",
+      "nombre": "Tácticas Defensivas: Defensa contra Ataques Múltiples",
+      "grupo": "tacticas_defensivas",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 33",
+      "resumen": "cuando una criatura te impacta, tienes +4 a la CA contra sus siguientes ataques hasta el final del turno",
+      "descripcion": "Cuando una criatura te impacta con un ataque, ganas un bonificador de +4 a la CA contra todos los ataques posteriores de esa criatura hasta el final del turno."
+    },
+    {
+      "id": "escapar_de_la_horda",
+      "nombre": "Tácticas Defensivas: Escapar de la Horda",
+      "grupo": "tacticas_defensivas",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 33",
+      "resumen": "los ataques de oportunidad contra ti tienen desventaja",
+      "descripcion": "Los ataques de oportunidad que se hacen contra ti tienen desventaja."
+    },
+    {
+      "id": "voluntad_de_acero",
+      "nombre": "Tácticas Defensivas: Voluntad de Acero",
+      "grupo": "tacticas_defensivas",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 33",
+      "resumen": "ventaja en las salvaciones contra quedar asustado",
+      "descripcion": "Tienes ventaja en las tiradas de salvación para evitar quedar asustado."
+    },
+    {
+      "id": "andanada",
+      "nombre": "Ataque Múltiple: Andanada",
+      "grupo": "ataque_multiple",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 33",
+      "resumen": "acción: un ataque a distancia contra cada criatura a 10 pies o menos de un punto que veas al alcance de tu arma (una tirada por objetivo y munición para todos)",
+      "descripcion": "Puedes usar tu acción para hacer un ataque a distancia contra cualquier número de criaturas que estén a 10 pies o menos de un punto que puedas ver dentro del alcance de tu arma. Necesitas munición para cada objetivo y haces una tirada de ataque distinta para cada uno."
+    },
+    {
+      "id": "ataque_huracanado",
+      "nombre": "Ataque Múltiple: Ataque Huracanado",
+      "grupo": "ataque_multiple",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 33",
+      "resumen": "acción: un ataque cuerpo a cuerpo contra cada criatura a 5 pies o menos de ti (una tirada por objetivo)",
+      "descripcion": "Puedes usar tu acción para hacer un ataque cuerpo a cuerpo contra cualquier número de criaturas que estén a 5 pies o menos de ti, con una tirada de ataque distinta para cada una."
+    },
+    {
+      "id": "aguantar_la_marea",
+      "nombre": "Defensa de Cazador Experto: Aguantar la Marea",
+      "grupo": "defensa_cazador_experto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 34",
+      "resumen": "reacción: cuando una criatura hostil falla un ataque cuerpo a cuerpo contra ti, la obligas a repetirlo contra otra criatura que elijas (no ella misma)",
+      "descripcion": "Cuando una criatura hostil falla un ataque cuerpo a cuerpo contra ti, puedes usar tu reacción para obligarla a repetir el ataque contra otra criatura de tu elección que no sea ella misma."
+    },
+    {
+      "id": "esquiva_asombrosa_cazador",
+      "nombre": "Defensa de Cazador Experto: Esquiva Asombrosa",
+      "grupo": "defensa_cazador_experto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 34",
+      "resumen": "reacción: cuando un atacante que ves te impacta, reduces el daño de ese ataque a la mitad",
+      "descripcion": "Cuando un atacante que puedas ver te impacta con un ataque, puedes usar tu reacción para reducir a la mitad el daño que te causa."
+    },
+    {
+      "id": "evasion_cazador",
+      "nombre": "Defensa de Cazador Experto: Evasión",
+      "grupo": "defensa_cazador_experto",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "SRD 5.1 p. 34",
+      "resumen": "en efectos con salvación de DES para la mitad del daño: ningún daño si la superas, mitad si la fallas",
+      "descripcion": "Cuando un efecto te permite hacer una tirada de salvación de Destreza para recibir solo la mitad del daño (como el aliento de un dragón rojo o el conjuro relámpago), no recibes daño si la superas y solo la mitad si la fallas."
     }
   ]
 }

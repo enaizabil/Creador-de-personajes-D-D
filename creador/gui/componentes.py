@@ -6,9 +6,13 @@ from collections.abc import Callable
 import customtkinter as ctk
 
 from ..nucleo.efectos import EleccionPendiente
+from ..nucleo.texto import clave_alfabetica
 
 NINGUNA = "— elige —"
 MAX_CASILLAS = 10  # con más opciones se usan desplegables
+MAX_DESPLEGABLE = 40  # con más aún (Secretos Mágicos: cualquier conjuro), un buscador
+MAX_RESULTADOS = 60  # casillas que muestra el buscador a la vez
+_BUSQUEDAS: dict[str, str] = {}  # texto buscado por elección: el paso se redibuja tras cada clic
 
 
 def fuente(tamano: int = 13, negrita: bool = False) -> ctk.CTkFont:
@@ -84,7 +88,8 @@ class ListaOpciones(ctk.CTkFrame):
 
 
 class SelectorEleccion(ctk.CTkFrame):
-    """Una elección del motor: casillas si hay pocas opciones, desplegables si hay muchas o se repiten."""
+    """Una elección del motor: casillas si hay pocas opciones, desplegables si hay muchas o se repiten y un
+    buscador si hay tantas que un desplegable no cabría en pantalla."""
 
     def __init__(self, master, eleccion: EleccionPendiente, al_cambiar: Callable[[str, list[str]], None],
                  bloqueadas: dict[str, str] | None = None):
@@ -100,7 +105,9 @@ class SelectorEleccion(ctk.CTkFrame):
         ctk.CTkLabel(self, text=eleccion.etiqueta, text_color="gray", anchor="w").pack(anchor="w", padx=10)
         cuerpo = ctk.CTkFrame(self, fg_color="transparent")
         cuerpo.pack(fill="x", padx=10, pady=(4, 10))
-        if eleccion.repetible or len(eleccion.opciones) > MAX_CASILLAS:
+        if not eleccion.repetible and len(eleccion.opciones) > MAX_DESPLEGABLE:
+            self._buscador(cuerpo)
+        elif eleccion.repetible or len(eleccion.opciones) > MAX_CASILLAS:
             self._desplegables(cuerpo)
         else:
             self._casillas(cuerpo)
@@ -129,6 +136,58 @@ class SelectorEleccion(ctk.CTkFrame):
         for id_, (variable, casilla) in self.variables.items():
             bloqueada = (llenas or id_ in self.bloqueadas) and not variable.get()
             casilla.configure(state="disabled" if bloqueada else "normal")
+
+    def _buscador(self, cuerpo) -> None:
+        self.elegidas = list(self.eleccion.seleccion)
+        # Sin textvariable: con ella CustomTkinter no muestra el texto de ayuda del campo vacío.
+        self.busqueda = ctk.CTkEntry(cuerpo, width=320,
+                                     placeholder_text=f"Buscar entre {len(self.eleccion.opciones)} opciones…")
+        if _BUSQUEDAS.get(self.eleccion.clave):
+            self.busqueda.insert(0, _BUSQUEDAS[self.eleccion.clave])
+        self.busqueda.pack(anchor="w", pady=(0, 4))
+        self.resumen_elegidas = ctk.CTkLabel(cuerpo, text="", anchor="w", justify="left", wraplength=640)
+        self.resumen_elegidas.pack(anchor="w")
+        self.resultados = ctk.CTkScrollableFrame(cuerpo, height=180)
+        self.resultados.pack(fill="x", pady=(4, 0))
+        self.busqueda.bind("<KeyRelease>", lambda _evento: self._busqueda_cambiada())
+        self._pintar_resultados()
+
+    def _busqueda_cambiada(self) -> None:
+        _BUSQUEDAS[self.eleccion.clave] = self.busqueda.get()
+        self._pintar_resultados()
+
+    def _pintar_resultados(self) -> None:
+        for hijo in self.resultados.winfo_children():
+            hijo.destroy()
+        nombres = {o.id: o.nombre for o in self.eleccion.opciones}
+        self.resumen_elegidas.configure(
+            text="Elegidas: " + (", ".join(nombres.get(i, i) for i in self.elegidas) or "ninguna"))
+        buscado = clave_alfabetica(self.busqueda.get().strip())
+        coinciden = [o for o in self.eleccion.opciones if buscado in clave_alfabetica(o.nombre)]
+        # Las elegidas primero, para poder quitarlas sin buscarlas.
+        coinciden.sort(key=lambda o: o.id not in self.elegidas)
+        llenas = len(self.elegidas) >= self.eleccion.elegir
+        for opcion in coinciden[:MAX_RESULTADOS]:
+            marcada = opcion.id in self.elegidas
+            variable = ctk.BooleanVar(value=marcada)
+            casilla = ctk.CTkCheckBox(self.resultados, text=self._texto(opcion), variable=variable,
+                                      command=lambda i=opcion.id, v=variable: self._buscador_cambiado(i, v.get()))
+            if not marcada and (llenas or opcion.id in self.bloqueadas):
+                casilla.configure(state="disabled")
+            casilla.pack(anchor="w", padx=4, pady=2)
+        if len(coinciden) > MAX_RESULTADOS:
+            ctk.CTkLabel(self.resultados, text=f"… y {len(coinciden) - MAX_RESULTADOS} más: escribe para afinar",
+                         text_color="gray").pack(anchor="w", padx=4)
+        elif not coinciden:
+            ctk.CTkLabel(self.resultados, text="Nada coincide con la búsqueda", text_color="gray").pack(anchor="w")
+
+    def _buscador_cambiado(self, id_: str, marcada: bool) -> None:
+        if marcada and id_ not in self.elegidas:
+            self.elegidas.append(id_)
+        elif not marcada and id_ in self.elegidas:
+            self.elegidas.remove(id_)
+        self._pintar_resultados()
+        self.al_cambiar(self.eleccion.clave, list(self.elegidas))
 
     def _desplegables(self, cuerpo) -> None:
         nombres = {o.id: self._texto(o) for o in self.eleccion.opciones}

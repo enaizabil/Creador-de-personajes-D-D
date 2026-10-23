@@ -186,7 +186,7 @@
         ],
         "preparados": "nivel"
       },
-      "niveles_completos": 5,
+      "niveles_completos": 20,
       "niveles": {
         "1": [
           {
@@ -235,6 +235,42 @@
               "14": "3",
               "17": "4"
             }
+          }
+        ],
+        "8": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Intercesión Divina",
+            "resumen": "acción: describes la ayuda que pides y tiras d100; si sacas {nivel_clase} o menos, tu deidad interviene (el DM decide cómo). Si interviene, no puedes repetir en 7 días; si no, tras un descanso largo. A nivel 20 funciona siempre",
+            "descripcion": "Como acción, implora la ayuda de tu deidad: describe lo que necesitas y tira los dados percentiles. Si sacas un número igual o inferior a tu nivel de clérigo, tu deidad interviene; el DM decide cómo (el efecto de un conjuro de clérigo o de dominio sería apropiado). Si interviene, no puedes volver a usar este rasgo durante 7 días; si no, puedes intentarlo de nuevo tras un descanso largo. A nivel 20 la intercesión tiene éxito automáticamente, sin tirar."
+          }
+        ],
+        "12": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "16": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "19": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "20": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Mejora de Intercesión Divina",
+            "resumen": "tu Intercesión Divina tiene éxito sin tirar",
+            "descripcion": "Tu petición de auxilio a tu deidad tiene éxito automáticamente, sin necesidad de tirar."
           }
         ]
       }
@@ -421,7 +457,7 @@
         "progresion": "medio",
         "preparados": "mitad_nivel"
       },
-      "niveles_completos": 5,
+      "niveles_completos": 20,
       "niveles": {
         "1": [
           {
@@ -503,6 +539,80 @@
             "nombre": "Ataque Adicional",
             "resumen": "2 ataques al usar la acción de Atacar",
             "descripcion": "Cuando realizas la acción de Atacar durante tu turno, puedes hacer dos ataques en lugar de uno."
+          }
+        ],
+        "6": [
+          {
+            "tipo": "bonificador_salvacion",
+            "valor": "max(1,mod_car)"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Aura de Protección",
+            "resumen": "tú y los aliados a {escala} pies o menos sumáis +{max(1,mod_car)} a las tiradas de salvación mientras estés consciente",
+            "descripcion": "Cuando tú o una criatura amistosa a 10 pies o menos de ti hacéis una tirada de salvación, sumáis tu modificador por Carisma (mínimo +1). Debes estar consciente. A nivel 18 el aura alcanza 30 pies.",
+            "escala": {
+              "6": 10,
+              "18": 30
+            }
+          }
+        ],
+        "8": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Aura de Coraje",
+            "resumen": "tú y los aliados a {escala} pies o menos no podéis quedar asustados mientras estés consciente",
+            "descripcion": "Ni tú ni las criaturas amistosas a 10 pies o menos de ti podéis quedar asustadas mientras estés consciente. A nivel 18 el aura alcanza 30 pies.",
+            "escala": {
+              "10": 10,
+              "18": 30
+            }
+          }
+        ],
+        "11": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Castigo Divino Mejorado",
+            "resumen": "tus ataques con arma cuerpo a cuerpo causan siempre 1d8 de daño radiante adicional (se suma a Castigo Divino)",
+            "descripcion": "Todos tus golpes con armas cuerpo a cuerpo llevan fuerza divina: cuando impactas a una criatura con un arma cuerpo a cuerpo, sufre 1d8 de daño radiante adicional. Si además usas Castigo Divino, este daño se suma al suyo."
+          }
+        ],
+        "12": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Toque Purificador",
+            "resumen": "acción: terminas un conjuro que te afecte a ti o a una criatura voluntaria que toques",
+            "descripcion": "Como acción, puedes poner fin a un conjuro que te afecte a ti o a una criatura voluntaria que toques. Tienes tantos usos como tu modificador por Carisma (mínimo 1) y los recuperas tras un descanso largo.",
+            "usos": "max(1,mod_car)",
+            "recarga": "largo"
+          }
+        ],
+        "16": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "18": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Mejoras de Auras",
+            "resumen": "tus auras alcanzan 30 pies",
+            "descripcion": "El alcance de tus auras de paladín aumenta de 10 a 30 pies."
+          }
+        ],
+        "19": [
+          {
+            "tipo": "mejora_caracteristica"
           }
         ]
       }
@@ -587,6 +697,62 @@
             "clase": "clerigo",
             "siempre_preparado": true
           }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Sanador Bendito",
+            "resumen": "cuando un conjuro tuyo de nivel 1 o superior cura a otra criatura, tú recuperas 2 + el nivel del conjuro",
+            "descripcion": "Los conjuros de curación que lanzas sobre otros también te sanan a ti: cuando lanzas un conjuro de nivel 1 o superior que hace recuperar puntos de golpe a otra criatura, recuperas 2 + el nivel del conjuro."
+          }
+        ],
+        "7": [
+          {
+            "tipo": "conjuro",
+            "id": "guarda_contra_la_muerte",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "guardian_de_la_fe",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "8": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Golpe Divino",
+            "resumen": "una vez en cada uno de tus turnos, al impactar con un ataque con arma, +{escala} de daño radiante",
+            "descripcion": "Una vez en cada uno de tus turnos, cuando impactas a una criatura con un ataque con arma, puedes hacer que cause 1d8 de daño radiante adicional; a nivel 14 son 2d8.",
+            "escala": {
+              "8": "1d8",
+              "14": "2d8"
+            }
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "alzar_a_los_muertos",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "curar_heridas_en_masa",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Sanación Suprema",
+            "resumen": "tus conjuros curan el máximo de cada dado en lugar de tirarlo",
+            "descripcion": "Cuando un conjuro te pida tirar dados para hacer recuperar puntos de golpe, usas el número más alto posible de cada dado (por ejemplo, 12 en lugar de 2d6)."
+          }
         ]
       }
     },
@@ -641,6 +807,78 @@
             "id": "zona_de_la_verdad",
             "clase": "paladin",
             "siempre_preparado": true
+          }
+        ],
+        "7": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Aura de Entrega",
+            "resumen": "tú y los aliados a {escala} pies o menos no podéis quedar hechizados mientras estés consciente",
+            "descripcion": "Ni tú ni las criaturas amistosas a 10 pies o menos de ti podéis quedar hechizadas mientras estés consciente. A nivel 18 el aura alcanza 30 pies.",
+            "escala": {
+              "7": 10,
+              "18": 30
+            }
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "disipar_magia",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "senal_de_esperanza",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "13": [
+          {
+            "tipo": "conjuro",
+            "id": "guardian_de_la_fe",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "libertad_de_movimiento",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "15": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Pureza de Espíritu",
+            "resumen": "estás siempre bajo los efectos de protección contra el bien y el mal",
+            "descripcion": "Estás siempre bajo los efectos del conjuro protección contra el bien y el mal: aberraciones, celestiales, elementales, feéricos, infernales y muertos vivientes tienen desventaja al atacarte y no pueden hechizarte, asustarte ni poseerte."
+          }
+        ],
+        "17": [
+          {
+            "tipo": "conjuro",
+            "id": "comunion",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "golpe_flamigero",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "20": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Halo Sagrado",
+            "resumen": "acción: durante 1 minuto emites luz solar (brillante a 30 pies); los enemigos que empiezan su turno en ella reciben 10 de daño radiante y tienes ventaja en las salvaciones contra conjuros de infernales y muertos vivientes",
+            "descripcion": "Como acción, emanas un aura de luz solar durante 1 minuto: luz brillante en un radio de 30 pies y tenue 30 pies más allá. Cada criatura enemiga que empieza su turno en la luz brillante sufre 10 de daño radiante, y mientras dura tienes ventaja en las tiradas de salvación contra conjuros lanzados por infernales o muertos vivientes. Después debes terminar un descanso largo para volver a usarlo.",
+            "usos": 1,
+            "recarga": "largo"
           }
         ]
       }

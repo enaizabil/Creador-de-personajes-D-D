@@ -243,8 +243,11 @@ def test_opciones_que_ya_se_tienen_por_otra_via(asistente):
     assert a.conocidas(truco) == {"mano_de_mago"}
 
 
-def test_nivel_limitado_a_los_datos(asistente):
+def test_nivel_limitado_a_los_datos(asistente, monkeypatch):
     a = asistente
+    assert a.nivel_maximo() == 20
+    for clase in a.catalogo.listar("clases"):  # como un paquete cuyos datos solo llegan a nivel 5
+        monkeypatch.setitem(a.catalogo.obtener("clases", clase["id"]), "niveles_completos", 5)
     assert a.nivel_maximo() == 5
     with pytest.raises(ValueError):
         a.establecer_nivel(6)
@@ -253,6 +256,17 @@ def test_nivel_limitado_a_los_datos(asistente):
     assert a.personaje.clases[0].nivel == 5
     a.personaje.clases[0].nivel = 7  # p. ej. un JSON editado a mano
     assert any("solo llegan a nivel 5" in x for x in a.ficha().avisos)
+
+
+def test_subclase_con_datos_hasta_un_nivel_menor(asistente):
+    a = asistente
+    a.establecer_nivel(10)
+    a.elegir_clase("guerrero")
+    nombres = {o.id: o.nombre for o in a.subclases()}
+    assert nombres["campeon"] == "Campeón"  # SRD: completa hasta 20
+    assert nombres["maestro_de_batalla"].endswith("(datos hasta nivel 5)")
+    a.elegir_subclase("maestro_de_batalla")
+    assert any("Maestro de Batalla solo llegan a nivel 5" in x for x in a.ficha().avisos)
 
 
 def test_la_pericia_no_se_bloquea_por_ser_competente(asistente):

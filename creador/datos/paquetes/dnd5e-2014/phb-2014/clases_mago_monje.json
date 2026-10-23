@@ -23,6 +23,7 @@
         "arcano": 2,
         "aguante": 1
       },
+      "niveles_completos": 5,
       "niveles": {
         "2": [
           {
@@ -53,6 +54,7 @@
         "arcano": 2,
         "astucia": 1
       },
+      "niveles_completos": 5,
       "niveles": {
         "2": [
           {
@@ -87,6 +89,7 @@
         "saber": 1,
         "agilidad": 1
       },
+      "niveles_completos": 5,
       "niveles": {
         "2": [
           {
@@ -115,6 +118,7 @@
         "arcano": 2,
         "astucia": 1
       },
+      "niveles_completos": 5,
       "niveles": {
         "2": [
           {
@@ -143,6 +147,7 @@
         "arcano": 2,
         "sigilo": 1
       },
+      "niveles_completos": 5,
       "niveles": {
         "2": [
           {
@@ -177,6 +182,7 @@
         "saber": 2,
         "aguante": 1
       },
+      "niveles_completos": 5,
       "niveles": {
         "2": [
           {
@@ -205,6 +211,7 @@
         "arcano": 2,
         "naturaleza": 1
       },
+      "niveles_completos": 5,
       "niveles": {
         "2": [
           {
@@ -233,6 +240,7 @@
         "agilidad": 2,
         "astucia": 1
       },
+      "niveles_completos": 5,
       "niveles": {
         "3": [
           {
@@ -280,6 +288,7 @@
         "agilidad": 2,
         "naturaleza": 1
       },
+      "niveles_completos": 5,
       "niveles": {
         "3": [
           {

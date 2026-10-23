@@ -150,7 +150,7 @@
           "por_nivel": 2
         }
       },
-      "niveles_completos": 5,
+      "niveles_completos": 20,
       "niveles": {
         "1": [
           {
@@ -171,6 +171,102 @@
         "4": [
           {
             "tipo": "mejora_caracteristica"
+          }
+        ],
+        "8": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "12": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "16": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "18": [
+          {
+            "tipo": "eleccion",
+            "id": "maestria_conjuros_1",
+            "nombre": "Maestría sobre Conjuros: conjuro de mago de nivel 1 de tu libro",
+            "opciones": {
+              "desde": "conjuros",
+              "filtro": {
+                "listas": "mago",
+                "nivel": 1
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "rasgo",
+                "nombre": "Maestría sobre Conjuros (nivel 1)",
+                "resumen": "{conjuro}: si lo tienes preparado, lo lanzas a nivel 1 sin gastar espacio de conjuro",
+                "descripcion": "Escoges un conjuro de mago de nivel 1 y otro de nivel 2 de tu libro de conjuros. Si los tienes preparados, puedes lanzarlos a su nivel más bajo sin gastar un espacio de conjuro; para lanzarlos a un nivel superior gastas un espacio de forma normal. Estudiando 8 horas puedes cambiar uno o ambos por otros del mismo nivel.",
+                "conjuro": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "eleccion",
+            "id": "maestria_conjuros_2",
+            "nombre": "Maestría sobre Conjuros: conjuro de mago de nivel 2 de tu libro",
+            "opciones": {
+              "desde": "conjuros",
+              "filtro": {
+                "listas": "mago",
+                "nivel": 2
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "rasgo",
+                "nombre": "Maestría sobre Conjuros (nivel 2)",
+                "resumen": "{conjuro}: si lo tienes preparado, lo lanzas a nivel 2 sin gastar espacio de conjuro",
+                "descripcion": "Escoges un conjuro de mago de nivel 1 y otro de nivel 2 de tu libro de conjuros. Si los tienes preparados, puedes lanzarlos a su nivel más bajo sin gastar un espacio de conjuro; para lanzarlos a un nivel superior gastas un espacio de forma normal. Estudiando 8 horas puedes cambiar uno o ambos por otros del mismo nivel.",
+                "conjuro": "$opcion"
+              }
+            ]
+          }
+        ],
+        "19": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "20": [
+          {
+            "tipo": "eleccion",
+            "id": "conjuros_caracteristicos",
+            "nombre": "Conjuros Característicos: 2 conjuros de mago de nivel 3 de tu libro",
+            "elegir": 2,
+            "opciones": {
+              "desde": "conjuros",
+              "filtro": {
+                "listas": "mago",
+                "nivel": 3
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "conjuro",
+                "id": "$opcion",
+                "clase": "mago",
+                "siempre_preparado": true
+              },
+              {
+                "tipo": "rasgo",
+                "nombre": "Conjuro Característico",
+                "resumen": "{conjuro}: siempre preparado; lo lanzas a nivel 3 sin gastar espacio una vez por descanso corto o largo",
+                "descripcion": "Escoges dos conjuros de mago de nivel 3 de tu libro como conjuros característicos: siempre los tienes preparados, no cuentan para el total que preparas y puedes lanzar cada uno a nivel 3 sin gastar un espacio de conjuro. Después debes terminar un descanso corto o largo para volver a hacerlo con ese conjuro. Para lanzarlos a un nivel superior gastas un espacio de forma normal.",
+                "conjuro": "$opcion",
+                "usos": 1,
+                "recarga": "corto"
+              }
+            ]
           }
         ]
       }
@@ -303,7 +399,7 @@
           ]
         ]
       ],
-      "niveles_completos": 5,
+      "niveles_completos": 20,
       "niveles": {
         "1": [
           {
@@ -451,6 +547,178 @@
             "resumen": "al impactar con un ataque con arma cuerpo a cuerpo (incluidos los ataques sin armas), 1 ki: salvación de CON CD {8+competencia+mod_sab} o queda aturdido hasta el final de tu siguiente turno",
             "descripcion": "Puedes interferir con el flujo de ki del cuerpo de un oponente. Cuando impactas a otra criatura con un ataque con arma cuerpo a cuerpo, puedes gastar 1 punto de ki para intentar asestar un golpe aturdidor: el objetivo debe superar una tirada de salvación de Constitución o quedará aturdido hasta el final de tu siguiente turno."
           }
+        ],
+        "6": [
+          {
+            "tipo": "velocidad",
+            "modo": "caminar",
+            "bonificador": 5,
+            "condicion": [
+              "sin_armadura",
+              "sin_escudo"
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Golpes Potenciados con Ki",
+            "resumen": "tus ataques sin armas cuentan como mágicos para superar resistencias e inmunidades",
+            "descripcion": "Tus ataques sin armas cuentan como mágicos a efectos de superar la resistencia y la inmunidad a ataques y daño no mágicos."
+          }
+        ],
+        "7": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Evasión",
+            "resumen": "en efectos con salvación de DES para la mitad del daño: ningún daño si la superas, mitad si la fallas",
+            "descripcion": "Cuando un efecto te permite hacer una tirada de salvación de Destreza para recibir solo la mitad del daño, no recibes ningún daño si la superas y solo la mitad si la fallas."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Quietud Mental",
+            "resumen": "acción: terminas un efecto que te tenga asustado o hechizado",
+            "descripcion": "Puedes usar tu acción para poner fin a un efecto que te esté causando los estados asustado o hechizado."
+          }
+        ],
+        "8": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "9": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Mejora de Movimiento sin Armadura",
+            "resumen": "en tu turno puedes moverte por superficies verticales y sobre líquidos sin caerte durante el movimiento",
+            "descripcion": "Durante tu turno puedes moverte por superficies verticales y sobre líquidos sin caerte mientras dure el movimiento."
+          }
+        ],
+        "10": [
+          {
+            "tipo": "velocidad",
+            "modo": "caminar",
+            "bonificador": 5,
+            "condicion": [
+              "sin_armadura",
+              "sin_escudo"
+            ]
+          },
+          {
+            "tipo": "inmunidad",
+            "id": "enfermedades"
+          },
+          {
+            "tipo": "inmunidad",
+            "id": "veneno"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Pureza de Cuerpo",
+            "resumen": "inmune a las enfermedades y al veneno",
+            "descripcion": "Tu dominio del ki te hace inmune a las enfermedades y al veneno."
+          }
+        ],
+        "12": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "13": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Lengua del Sol y la Luna",
+            "resumen": "entiendes todos los idiomas hablados y cualquier criatura que sepa un idioma te entiende",
+            "descripcion": "Entiendes todos los idiomas hablados y cualquier criatura que comprenda al menos un idioma entiende lo que dices."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "velocidad",
+            "modo": "caminar",
+            "bonificador": 5,
+            "condicion": [
+              "sin_armadura",
+              "sin_escudo"
+            ]
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "salvacion",
+            "id": "fue"
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "salvacion",
+            "id": "des"
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "salvacion",
+            "id": "con"
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "salvacion",
+            "id": "int"
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "salvacion",
+            "id": "sab"
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "salvacion",
+            "id": "car"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Alma Diamantina",
+            "resumen": "competencia en todas las tiradas de salvación; al fallar una, puedes gastar 1 punto de ki para repetirla",
+            "descripcion": "Tu dominio del ki te da competencia en todas las tiradas de salvación. Además, cuando fallas una tirada de salvación, puedes gastar 1 punto de ki para repetirla y quedarte con el nuevo resultado."
+          }
+        ],
+        "15": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Cuerpo Atemporal",
+            "resumen": "no sufres la fragilidad de la vejez ni envejeces por magia (aunque puedes morir de viejo); no necesitas comer ni beber",
+            "descripcion": "Tu ki te sustenta: no sufres la fragilidad de la vejez y no puedes envejecer por medios mágicos, aunque todavía puedes morir de viejo. Además, ya no necesitas comida ni agua."
+          }
+        ],
+        "16": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "18": [
+          {
+            "tipo": "velocidad",
+            "modo": "caminar",
+            "bonificador": 5,
+            "condicion": [
+              "sin_armadura",
+              "sin_escudo"
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Cuerpo Vacío",
+            "resumen": "acción y 4 de ki: invisible 1 minuto con resistencia a todo el daño salvo el de fuerza; 8 de ki: proyección astral sin componentes materiales, solo para ti",
+            "descripcion": "Como acción, puedes gastar 4 puntos de ki para volverte invisible durante 1 minuto; mientras tanto tienes resistencia a todo el daño excepto el de fuerza. Además, puedes gastar 8 puntos de ki para lanzar el conjuro proyección astral sin componentes materiales, pero no puedes llevar a ninguna otra criatura contigo."
+          }
+        ],
+        "19": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "20": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Yo Perfecto",
+            "resumen": "si al tirar iniciativa no te quedan puntos de ki, recuperas 4",
+            "descripcion": "Cuando tiras iniciativa y no te queda ningún punto de ki, recuperas 4."
+          }
         ]
       }
     }
@@ -481,6 +749,30 @@
             "resumen": "al lanzar un conjuro de evocación que afecte a criaturas que puedas ver, eliges hasta 1 + el nivel del conjuro de ellas: superan automáticamente la salvación y no reciben daño si normalmente recibirían la mitad",
             "descripcion": "Cuando lanzas un conjuro de evocación que afecte a otras criaturas que puedas ver, puedes elegir una cantidad de ellas igual a 1 + el nivel del conjuro. Las criaturas elegidas tienen éxito automáticamente en sus tiradas de salvación contra el conjuro y no reciben daño alguno si normalmente recibirían la mitad del daño al superar la salvación."
           }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Truco Potente",
+            "resumen": "las criaturas que superan la salvación contra tus trucos de daño reciben la mitad del daño (sin otros efectos)",
+            "descripcion": "Cuando una criatura supera una tirada de salvación contra uno de tus trucos, recibe igualmente la mitad de su daño (si lo tiene), pero no sufre ningún otro de sus efectos."
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Evocación Potenciada",
+            "resumen": "sumas +{mod_int} a una tirada de daño de tus conjuros de evocación de mago",
+            "descripcion": "Puedes sumar tu modificador por Inteligencia a una de las tiradas de daño de cualquier conjuro de evocación de mago que lances."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Sobrecanalizar",
+            "resumen": "un conjuro de mago de nivel 1 a 5 que cause daño hace el daño máximo; repetirlo antes de un descanso largo te causa 2d12 de daño necrótico por nivel del conjuro (+1d12 por nivel en cada uso siguiente)",
+            "descripcion": "Cuando lanzas un conjuro de mago de nivel 1 a 5 que causa daño, puedes hacer que inflija el daño máximo. La primera vez no tiene consecuencias; si vuelves a usarlo antes de terminar un descanso largo, recibes 2d12 de daño necrótico por cada nivel del conjuro justo después de lanzarlo, y cada uso adicional antes del descanso aumenta ese daño en 1d12 por nivel. Este daño ignora resistencias e inmunidades."
+          }
         ]
       }
     },
@@ -502,6 +794,32 @@
             "nombre": "Técnica de la Mano Abierta",
             "resumen": "al impactar con un ataque de Ráfaga de Golpes, eliges uno: salvación de DES CD {8+competencia+mod_sab} o queda derribado; salvación de FUE CD {8+competencia+mod_sab} o lo empujas hasta 15 pies lejos de ti; o no puede llevar a cabo reacciones hasta el final de tu siguiente turno",
             "descripcion": "Siempre que impactas a una criatura con uno de los ataques que te proporciona Ráfaga de Golpes, puedes imponerle uno de estos efectos: debe superar una tirada de salvación de Destreza o será derribada; debe superar una tirada de salvación de Fuerza o la empujas hasta 15 pies en dirección contraria a ti; o no puede llevar a cabo reacciones hasta el final de tu siguiente turno."
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Plenitud de Cuerpo",
+            "resumen": "acción: recuperas {3*nivel_clase} PG",
+            "descripcion": "Como acción, recuperas tantos puntos de golpe como el triple de tu nivel de monje. Después debes terminar un descanso largo para volver a usarlo.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ],
+        "11": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Tranquilidad",
+            "resumen": "al terminar un descanso largo quedas bajo los efectos de santuario (CD {8+mod_sab+competencia}) hasta tu siguiente descanso largo (termina antes como de costumbre)",
+            "descripcion": "Al terminar un descanso largo, obtienes el efecto del conjuro santuario hasta el comienzo de tu siguiente descanso largo (puede terminar antes de lo normal, como el conjuro). La CD de la salvación es 8 + tu modificador por Sabiduría + tu bonificador por competencia."
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Palma Estremecedora",
+            "resumen": "al impactar sin armas, 3 de ki: vibraciones durante {nivel_clase} días; con tu acción las terminas y el objetivo hace una salvación de CON: si la falla, queda a 0 PG; si la supera, 10d10 de daño necrótico",
+            "descripcion": "Cuando impactas a una criatura con un ataque sin armas, puedes gastar 3 puntos de ki para iniciar en ella unas vibraciones imperceptibles que duran tantos días como tu nivel de monje. Son inofensivas hasta que usas tu acción para terminarlas (el objetivo debe estar en tu mismo plano): entonces hace una tirada de salvación de Constitución; si la falla, sus puntos de golpe se reducen a 0, y si la supera, sufre 10d10 de daño necrótico. Solo puedes tener una criatura bajo este efecto a la vez y puedes terminar las vibraciones sin daño cuando quieras (no requiere acción)."
           }
         ]
       }

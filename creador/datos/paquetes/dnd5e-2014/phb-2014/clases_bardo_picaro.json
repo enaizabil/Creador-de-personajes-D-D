@@ -23,6 +23,7 @@
         "carisma": 2,
         "proteccion": 1
       },
+      "niveles_completos": 5,
       "niveles": {
         "3": [
           {
@@ -72,6 +73,7 @@
         "combate": 2,
         "astucia": 2
       },
+      "niveles_completos": 5,
       "niveles": {
         "3": [
           {
@@ -161,6 +163,7 @@
           "mago"
         ]
       },
+      "niveles_completos": 5,
       "niveles": {
         "3": [
           {

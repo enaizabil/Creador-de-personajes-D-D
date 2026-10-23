@@ -110,7 +110,7 @@ Ejemplo: un paquete que añade el conjuro *Luz* a la lista del paladín sin rede
 - `desde_nivel` y `redondeo_multiclase` solo hacen falta si difieren del estándar.
 
 ### subclases
-`clase` (id) · `niveles` · `lanzamiento` opcional · `conjuros_adicionales`: ids de conjuros que pasan a estar en la lista de la clase (lista ampliada del patrón del brujo). Los conjuros de dominio, juramento o círculo se dan con efectos `conjuro` con `clase` y `siempre_preparado` en el nivel que toque.
+`clase` (id) · `niveles` · `lanzamiento` opcional · `conjuros_adicionales`: ids de conjuros que pasan a estar en la lista de la clase (lista ampliada del patrón del brujo). Los conjuros de dominio, juramento o círculo se dan con efectos `conjuro` con `clase` y `siempre_preparado` en el nivel que toque. · `niveles_completos`: hasta qué nivel están sus datos (por defecto 20); si el personaje lo supera, el asistente lo marca en el selector («datos hasta nivel 5») y la ficha avisa.
 
 ### trasfondos
 `efectos` (competencias, idiomas, el rasgo del trasfondo…) · `equipo` (mismo formato que `equipo_inicial`) · `monedas` (`{"po": 15}`) · `personalidad`:
@@ -227,13 +227,14 @@ Una lista de objetos con `tipo`. Cualquier efecto admite `condicion` (`sin_armad
 | `ca_alternativa` | `base`, `suma` (características) | Defensa sin armadura: `{"base": 10, "suma": ["des", "con"]}`. |
 | `bonificador_ca` | `valor` | Estilo Defensa (`"condicion": "con_armadura"`). |
 | `bonificador_ataque` | `valor`, `tipo_arma` (opcional) | Estilo Tiro con arco. |
+| `bonificador_salvacion` | `valor` (número o expresión), `caracteristicas` (`"todas"` o lista) | Aura de Protección: `"max(1,mod_car)"`. |
 | `iniciativa` | `valor` | Dote Alerta. |
 | `pasiva` | `habilidad` (`percepcion`, `perspicacia`, `investigacion`), `valor` | Dote Observador (+5). |
 | `max_des_armadura_media` | `valor` | Maestro en armaduras medias (3). |
 | `ataque_des` | `armas` (ids o grupos), `excluir_propiedades`, `tipo_arma` | Armas de monje: pueden usar DES. |
 | `ataque_desarmado` | `dano` (admite `{escala}`), `escala`, `caracteristicas`, `nombre` | Artes Marciales. |
 | `rasgo` | `nombre`, `descripcion`, `resumen`, `usos`, `recarga`, `escala`, `clase` | Rasgo que aparece en la ficha (ver §5.1). |
-| `conjuro` | `id`, `caracteristica`; o `clase` + `siempre_preparado` | Conjuro racial o innato; o de dominio/juramento (siempre preparado). |
+| `conjuro` | `id`, `caracteristica`; o `clase` + `siempre_preparado`; `cuenta_como_conocido` | Conjuro racial o innato; o de dominio/juramento (siempre preparado). Con `cuenta_como_conocido` (Secretos Mágicos del bardo) ocupa una plaza de los conjuros conocidos de esa clase. |
 | `dote` | `id` | Concede una dote (aplica sus efectos). |
 | `opcion` | `id` | Concede una opción de clase. |
 | `mejora_caracteristica` | — | Mejora de característica: +2/+1+1 o una dote (si las dotes están activadas). |
@@ -253,7 +254,7 @@ Cualquier efecto (también una elección) admite `nivel_minimo`: solo se aplica 
 
 ### 5.1 Rasgos con valores calculados
 
-`resumen` es la línea corta de la ficha y puede llevar `{expresiones}`; `usos` es un número o una expresión; `recarga` es `corto` o `largo`, o una tabla por nivel (`{"1": "largo", "5": "corto"}`, como la Inspiración Bárdica con Fuente de Inspiración); `escala` es una tabla `{"nivel": valor}` (se toma el último umbral alcanzado) que se usa como `{escala}`.
+`resumen` es la línea corta de la ficha y puede llevar `{expresiones}`; `usos` es un número, una expresión o una tabla por nivel en la que `null` quita el límite (`{"1": 2, "20": null}`: Furia ilimitada a nivel 20); `recarga` es `corto` o `largo`, o una tabla por nivel (`{"1": "largo", "5": "corto"}`, como la Inspiración Bárdica con Fuente de Inspiración); `escala` es una tabla `{"nivel": valor}` (se toma el último umbral alcanzado) que se usa como `{escala}`.
 
 ```json
 {"tipo": "rasgo", "nombre": "Ataque Furtivo", "resumen": "+{escala} de daño una vez por turno",
@@ -262,7 +263,7 @@ Cualquier efecto (también una elección) admite `nivel_minimo`: solo se aplica 
 {"tipo": "rasgo", "nombre": "Sentido Divino", "usos": "1+mod_car", "recarga": "largo"}
 ```
 
-Variables: `nivel` (de personaje), `nivel_clase` (de la clase del rasgo; en rasgos raciales, el de personaje), `competencia`, `mod_fue`…`mod_car` y `escala`. Operaciones: `+ - * //`, `max`, `min` y `abs`. `clase` fuerza la clase de referencia.
+Variables: `nivel` (de personaje), `nivel_clase` (de la clase del rasgo; en rasgos raciales, el de personaje), `competencia`, `mod_fue`…`mod_car`, `escala` y `conjuro` (el nombre del conjuro del campo `conjuro` del rasgo, útil en un `aplicar`: `{"tipo": "rasgo", "conjuro": "$opcion", "resumen": "{conjuro}: sin gastar espacio"}`). Operaciones: `+ - * //`, `max`, `min` y `abs`. `clase` fuerza la clase de referencia.
 
 ## 6. Elecciones
 

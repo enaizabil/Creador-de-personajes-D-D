@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import random
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from typing import TYPE_CHECKING
 
 from ...nucleo.efectos import EleccionPendiente
@@ -212,7 +212,14 @@ class Asistente5e:
         clase = self.catalogo.obtener("clases", self.personaje.clases[0].clase) or {}
         if self.nivel < clase.get("nivel_subclase", 1):
             return []
-        return self._opciones("subclases", {"clase": clase.get("id")})
+        opciones = []
+        for opcion in self._opciones("subclases", {"clase": clase.get("id")}):
+            # Subclases (PHB, homebrew…) cuyos datos no llegan al nivel elegido: se avisa en el nombre.
+            completos = (self.catalogo.obtener("subclases", opcion.id) or {}).get("niveles_completos", NIVEL_MAXIMO)
+            if completos < self.nivel:
+                opcion = replace(opcion, nombre=f"{opcion.nombre} (datos hasta nivel {completos})")
+            opciones.append(opcion)
+        return opciones
 
     def elegir_clase(self, id_: str) -> None:
         """Cambia la clase; si sus datos no llegan al nivel elegido, baja el nivel hasta donde llegan."""
@@ -513,7 +520,8 @@ class Asistente5e:
 
     def planes_conjuros(self) -> list[PlanConjuros]:
         mods = {c: v.modificador for c, v in self.ficha().caracteristicas.items()}
-        return motor.planes_de_conjuros(self.personaje, self.catalogo, mods)
+        efectos = [a.efecto for a in self.sistema.resolver(self.personaje, self.catalogo).aplicados if a.tipo == "conjuro"]
+        return motor.planes_de_conjuros(self.personaje, self.catalogo, mods, motor.conocidos_por_efectos(efectos))
 
     def elegir_conjuros(self, clase_id: str, ids: list[str]) -> None:
         """Trucos y conjuros conocidos o preparados; en modo libro, los trucos y los conjuros del libro."""

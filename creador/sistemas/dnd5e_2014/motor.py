@@ -127,9 +127,12 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
         competencias[efecto["categoria"]].add(efecto["id"])
     pericias = {e["id"] for e in de_tipo("pericia")}
     medio = _medio_competencia(de_tipo("medio_competencia"), competencia)
+    contexto = {"nivel": nivel, "competencia": competencia, **{f"mod_{c}": m for c, m in mods.items()}}
+    extra_salvacion = _bonificadores_salvacion(de_tipo("bonificador_salvacion"), contexto, avisos)
 
     salvaciones = {
-        c: Tirada(nombre, c, mods[c] + (competencia if c in competencias["salvacion"] else 0), c in competencias["salvacion"])
+        c: Tirada(nombre, c, mods[c] + (competencia if c in competencias["salvacion"] else 0) + extra_salvacion[c],
+                  c in competencias["salvacion"])
         for c, nombre in CARACTERISTICAS.items()
     }
     habilidades = {}
@@ -148,10 +151,10 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
 
     _avisos_competencia_armadura(armadura, escudo, competencias["armadura"], avisos)
     pg_maximos, dados_golpe = _puntos_golpe(personaje, catalogo, mods["con"], de_tipo("pg_maximos"), avisos)
-    espacios, pacto, lanzadores = _magia(personaje, catalogo, mods, competencia, avisos)
+    espacios, pacto, lanzadores = _magia(personaje, catalogo, mods, competencia, avisos,
+                                         conocidos_por_efectos(de_tipo("conjuro")))
     conjuros_innatos = _repartir_conjuros_de_efectos(de_tipo("conjuro"), lanzadores, catalogo, avisos)
     niveles_clase = _niveles_por_clase(personaje, catalogo)
-    contexto = {"nivel": nivel, "competencia": competencia, **{f"mod_{c}": m for c, m in mods.items()}}
     _avisos_requisitos(personaje, catalogo, aplicables, puntuaciones, competencias,
                        bool(lanzadores or conjuros_innatos), avisos)
     _avisos_repeticiones(aplicables, catalogo, avisos)
@@ -232,7 +235,11 @@ def _contexto_efecto(efecto: dict, origen: str, catalogo: Catalogo, niveles_clas
     for umbral, valor in sorted(((int(n), v) for n, v in efecto.get("escala", {}).items())):
         if umbral <= nivel_clase:
             escala = valor
-    return {**contexto, "nivel_clase": nivel_clase, "escala": escala}
+    variables = {**contexto, "nivel_clase": nivel_clase, "escala": escala}
+    if efecto.get("conjuro"):
+        # Rasgo ligado a un conjuro elegido (Maestría sobre Conjuros…): su nombre para el resumen.
+        variables["conjuro"] = (catalogo.obtener("conjuros", efecto["conjuro"]) or {}).get("nombre", efecto["conjuro"])
+    return variables
 
 
 def _rasgos(aplicables: list[EfectoAplicado], catalogo: Catalogo, niveles_clase: dict[str, int],
@@ -245,8 +252,8 @@ def _rasgos(aplicables: list[EfectoAplicado], catalogo: Catalogo, niveles_clase:
         variables = _contexto_efecto(efecto, aplicado.origen, catalogo, niveles_clase, contexto)
         try:
             resumen = rellenar(efecto.get("resumen", ""), variables)
-            usos = efecto.get("usos")
-            usos = max(0, int(evaluar(usos, variables))) if isinstance(usos, str) else usos
+            usos = _por_nivel(efecto.get("usos"), variables["nivel_clase"])
+            usos = None if usos == "" else max(0, int(evaluar(usos, variables))) if isinstance(usos, str) else usos
         except (ErrorExpresion, TypeError, ValueError) as exc:
             avisos.append(f"{efecto['nombre']}: {exc}")
             resumen, usos = efecto.get("resumen", ""), None
@@ -286,12 +293,13 @@ def _avisos_repeticiones(aplicables: list[EfectoAplicado], catalogo: Catalogo, a
 
 
 def _avisos_niveles_sin_datos(personaje: Personaje, catalogo: Catalogo, avisos: list[str]) -> None:
-    """Clases a un nivel por encima de los que tienen completos sus datos («niveles_completos»)."""
+    """Clases y subclases a un nivel por encima de los que tienen completos sus datos («niveles_completos»)."""
     for entrada in personaje.clases:
-        clase = catalogo.obtener("clases", entrada.clase)
-        if clase and entrada.nivel > clase.get("niveles_completos", NIVEL_MAXIMO):
-            avisos.append(f"Los datos de {clase['nombre']} solo llegan a nivel {clase['niveles_completos']}: "
-                          f"faltan los rasgos de los niveles {clase['niveles_completos'] + 1}–{entrada.nivel}")
+        for categoria, id_ in (("clases", entrada.clase), ("subclases", entrada.subclase)):
+            datos = catalogo.obtener(categoria, id_) if id_ else None
+            if datos and entrada.nivel > datos.get("niveles_completos", NIVEL_MAXIMO):
+                avisos.append(f"Los datos de {datos['nombre']} solo llegan a nivel {datos['niveles_completos']}: "
+                              f"faltan los rasgos de los niveles {datos['niveles_completos'] + 1}–{entrada.nivel}")
 
 
 def _avisos_reglas_opcionales(personaje: Personaje, catalogo: Catalogo, avisos: list[str]) -> None:
@@ -370,6 +378,30 @@ def _puntuaciones(personaje: Personaje, mejoras: list[dict]) -> dict[str, int]:
         nuevo = valores[car] + efecto["valor"]
         valores[car] = nuevo if nuevo <= maximo else max(valores[car], maximo)
     return valores
+
+
+def _bonificadores_salvacion(efectos: list[dict], contexto: dict, avisos: list[str]) -> dict[str, int]:
+    """Bonificadores a las tiradas de salvación (Aura de Protección…); «valor» puede ser una expresión."""
+    resultado = dict.fromkeys(CARACTERISTICAS, 0)
+    for efecto in efectos:
+        try:
+            valor = int(evaluar(efecto["valor"], contexto)) if isinstance(efecto["valor"], str) else efecto["valor"]
+        except (ErrorExpresion, TypeError, ValueError) as exc:
+            avisos.append(f"Bonificador a las salvaciones: {exc}")
+            continue
+        cars = efecto.get("caracteristicas", "todas")
+        for car in CARACTERISTICAS if cars == "todas" else cars:
+            resultado[car] += valor
+    return resultado
+
+
+def conocidos_por_efectos(efectos: list[dict]) -> dict[str, int]:
+    """Conjuros que llegan por efectos pero cuentan para los conocidos de su clase (Secretos Mágicos del bardo)."""
+    resultado: dict[str, int] = defaultdict(int)
+    for efecto in efectos:
+        if efecto.get("cuenta_como_conocido") and efecto.get("clase"):
+            resultado[efecto["clase"]] += 1
+    return dict(resultado)
 
 
 def _medio_competencia(efectos: list[dict], competencia: int) -> dict[str, int]:
@@ -525,8 +557,11 @@ def _nivel_maximo_conjuro(config: dict, nivel: int) -> int:
     return len(ESPACIOS_LANZADOR_COMPLETO[math.ceil(nivel / PROGRESIONES_LANZAMIENTO[config["progresion"]])])
 
 
-def _limites(config: dict, nivel: int, mod: int) -> tuple[int | None, int | None]:
-    """(trucos, conjuros) que puede conocer o preparar la clase a ese nivel; None si no hay límite."""
+def _limites(config: dict, nivel: int, mod: int, ocupados: int = 0) -> tuple[int | None, int | None]:
+    """(trucos, conjuros) que puede conocer o preparar la clase a ese nivel; None si no hay límite.
+
+    «ocupados»: plazas de conjuros conocidos que ya llenan efectos (Secretos Mágicos del bardo).
+    """
     trucos = config["trucos_conocidos"][nivel - 1] if "trucos_conocidos" in config else None
     if "conjuros_conocidos" in config:
         conjuros = config["conjuros_conocidos"][nivel - 1]
@@ -536,6 +571,8 @@ def _limites(config: dict, nivel: int, mod: int) -> tuple[int | None, int | None
         conjuros = max(1, mod + nivel // 2)
     else:
         conjuros = None
+    if conjuros is not None:
+        conjuros = max(0, conjuros - ocupados)
     return trucos, conjuros
 
 
@@ -571,8 +608,12 @@ def _listas_validas(clase: dict, subclase: dict | None, config: dict) -> tuple[s
     return listas, set((subclase or {}).get("conjuros_adicionales", []))
 
 
-def planes_de_conjuros(personaje: Personaje, catalogo: Catalogo, mods: dict[str, int]) -> list[PlanConjuros]:
-    """Para cada clase que ya lanza conjuros: límites y conjuros elegibles hasta su nivel máximo."""
+def planes_de_conjuros(personaje: Personaje, catalogo: Catalogo, mods: dict[str, int],
+                       conocidos_extra: dict[str, int] | None = None) -> list[PlanConjuros]:
+    """Para cada clase que ya lanza conjuros: límites y conjuros elegibles hasta su nivel máximo.
+
+    «conocidos_extra»: conjuros por clase que ya ocupan plazas de conocidos (ver conocidos_por_efectos).
+    """
     planes = []
     for entrada in personaje.clases:
         configuracion = _configuracion_lanzador(entrada, catalogo)
@@ -580,7 +621,8 @@ def planes_de_conjuros(personaje: Personaje, catalogo: Catalogo, mods: dict[str,
             continue
         clase, subclase, config = configuracion
         nivel_maximo = _nivel_maximo_conjuro(config, entrada.nivel)
-        trucos, conjuros = _limites(config, entrada.nivel, mods[config["caracteristica"]])
+        trucos, conjuros = _limites(config, entrada.nivel, mods[config["caracteristica"]],
+                                    (conocidos_extra or {}).get(clase["id"], 0))
         listas, adicionales = _listas_validas(clase, subclase, config)
         disponibles: dict[int, list[tuple[str, str]]] = {}
         for conjuro in catalogo.listar("conjuros"):
@@ -596,7 +638,8 @@ def planes_de_conjuros(personaje: Personaje, catalogo: Catalogo, mods: dict[str,
 
 
 def _magia(personaje: Personaje, catalogo: Catalogo, mods: dict[str, int], competencia: int,
-           avisos: list[str]) -> tuple[dict[int, int], dict[str, int] | None, list[Lanzador]]:
+           avisos: list[str], conocidos_extra: dict[str, int]
+           ) -> tuple[dict[int, int], dict[str, int] | None, list[Lanzador]]:
     lanzadores: list[Lanzador] = []
     niveles_espacios: list[tuple[int, dict]] = []  # (nivel de clase, configuración) sin magia de pacto
     pacto = None
@@ -617,7 +660,8 @@ def _magia(personaje: Personaje, catalogo: Catalogo, mods: dict[str, int], compe
         car = config["caracteristica"]
         lanzador = Lanzador(clase["id"], clase["nombre"], car, 8 + competencia + mods[car], competencia + mods[car],
                             nivel_maximo)
-        _conjuros_elegidos(lanzador, entrada, clase, subclase, config, personaje, catalogo, mods[car], avisos)
+        _conjuros_elegidos(lanzador, entrada, clase, subclase, config, personaje, catalogo, mods[car], avisos,
+                           conocidos_extra.get(clase["id"], 0))
         lanzadores.append(lanzador)
 
     if len(niveles_espacios) == 1:
@@ -638,7 +682,8 @@ def _nivel_multiclase(nivel: int, config: dict) -> int:
 
 
 def _conjuros_elegidos(lanzador: Lanzador, entrada: EntradaClase, clase: dict, subclase: dict | None, config: dict,
-                       personaje: Personaje, catalogo: Catalogo, mod: int, avisos: list[str]) -> None:
+                       personaje: Personaje, catalogo: Catalogo, mod: int, avisos: list[str],
+                       conocidos_extra: int = 0) -> None:
     listas, adicionales = _listas_validas(clase, subclase, config)
     trucos = conjuros = 0
     vistos: set[str] = set()
@@ -667,7 +712,7 @@ def _conjuros_elegidos(lanzador: Lanzador, entrada: EntradaClase, clase: dict, s
             conjuros += 1
             niveles_libro.append(conjuro["nivel"])
 
-    limite_trucos, limite = _limites(config, entrada.nivel, mod)
+    limite_trucos, limite = _limites(config, entrada.nivel, mod, conocidos_extra)
     if config.get("libro"):
         maximo_libro = limite_libro(config, entrada.nivel)
         if conjuros > maximo_libro:

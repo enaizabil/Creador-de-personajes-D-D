@@ -136,7 +136,7 @@
           ]
         ]
       ],
-      "niveles_completos": 5,
+      "niveles_completos": 20,
       "niveles": {
         "1": [
           {
@@ -144,8 +144,18 @@
             "nombre": "Furia",
             "resumen": "acción adicional, 1 minuto, sin armadura pesada: +{escala} al daño de ataques con arma cuerpo a cuerpo con FUE; resistencia a daño contundente, cortante y perforante; ventaja en pruebas y salvaciones de FUE; no puedes lanzar conjuros ni concentrarte",
             "descripcion": "En tu turno, como acción adicional, te enfureces durante 1 minuto. Mientras no lleves armadura pesada, tienes ventaja en las pruebas y tiradas de salvación de Fuerza, sumas el daño por furia a los ataques con arma cuerpo a cuerpo que usen Fuerza y tienes resistencia al daño contundente, cortante y perforante; no puedes lanzar conjuros ni concentrarte en ellos. La furia termina antes si quedas inconsciente o si acabas tu turno sin haber atacado a una criatura hostil ni recibido daño desde tu turno anterior, y puedes terminarla como acción adicional. Usos: 2 (3 a nivel 3, 4 a nivel 6, 5 a nivel 12, 6 a nivel 17, ilimitados a nivel 20) por descanso largo.",
-            "usos": "2+min(1,nivel_clase//3)+min(1,nivel_clase//6)+min(1,nivel_clase//12)+min(1,nivel_clase//17)",
-            "recarga": "largo",
+            "usos": {
+              "1": 2,
+              "3": 3,
+              "6": 4,
+              "12": 5,
+              "17": 6,
+              "20": null
+            },
+            "recarga": {
+              "1": "largo",
+              "20": null
+            },
             "escala": {
               "1": 2,
               "9": 3,
@@ -204,6 +214,91 @@
             "nombre": "Movimiento Rápido",
             "resumen": "+10 pies de velocidad sin armadura pesada",
             "descripcion": "Tu velocidad aumenta en 10 pies mientras no lleves armadura pesada."
+          }
+        ],
+        "7": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Instinto Salvaje",
+            "resumen": "ventaja en las tiradas de iniciativa; si te sorprenden, actúas en tu primer turno siempre que te enfurezcas antes de hacer nada más (y no estés incapacitado)",
+            "descripcion": "Tus instintos están tan afinados que tienes ventaja en las tiradas de iniciativa. Además, si estás sorprendido al empezar un combate y no estás incapacitado, puedes actuar con normalidad en tu primer turno, pero solo si te enfureces antes de hacer cualquier otra cosa en ese turno."
+          }
+        ],
+        "8": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "9": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Crítico Brutal",
+            "resumen": "en un crítico con un ataque cuerpo a cuerpo tiras {escala} dado(s) de daño del arma más y lo sumas al daño adicional del crítico",
+            "descripcion": "Cuando haces un crítico con un ataque cuerpo a cuerpo, puedes tirar uno de los dados de daño del arma una vez más y sumarlo al daño adicional del crítico. Son dos dados a partir del nivel 13 y tres a partir del nivel 17.",
+            "escala": {
+              "9": 1,
+              "13": 2,
+              "17": 3
+            }
+          }
+        ],
+        "11": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Furia Implacable",
+            "resumen": "si caes a 0 PG enfurecido y no mueres en el acto, salvación de CON CD 10 para quedarte con 1 PG; la CD sube 5 en cada uso y vuelve a 10 tras un descanso corto o largo",
+            "descripcion": "Si tus puntos de golpe se reducen a 0 mientras estás enfurecido y no mueres en el acto, puedes hacer una tirada de salvación de Constitución con CD 10. Si la superas, te quedas con 1 punto de golpe. Cada vez que uses este rasgo después de la primera, la CD aumenta en 5; tras un descanso corto o largo vuelve a ser 10."
+          }
+        ],
+        "12": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "15": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Furia Persistente",
+            "resumen": "tu furia solo termina antes de tiempo si quedas inconsciente o decides acabarla",
+            "descripcion": "Tu furia es tan violenta que solo termina antes de tiempo si quedas inconsciente o si eliges ponerle fin."
+          }
+        ],
+        "16": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "18": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Poderío Indómito",
+            "resumen": "si el total de una prueba de FUE es menor que tu puntuación de Fuerza, usas la puntuación",
+            "descripcion": "Si el total de una de tus pruebas de Fuerza es inferior a tu puntuación de Fuerza, puedes usar esa puntuación en lugar del total."
+          }
+        ],
+        "19": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "20": [
+          {
+            "tipo": "caracteristica",
+            "car": "fue",
+            "valor": 4,
+            "maximo": 24
+          },
+          {
+            "tipo": "caracteristica",
+            "car": "con",
+            "valor": 4,
+            "maximo": 24
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Campeón Primordial",
+            "resumen": "FUE y CON +4 (máximo 24); furias ilimitadas",
+            "descripcion": "Encarnas el poder de la naturaleza salvaje: tus puntuaciones de Fuerza y Constitución aumentan en 4 y su máximo pasa a ser 24. Además, a nivel 20 tus furias son ilimitadas."
           }
         ]
       }
@@ -390,7 +485,7 @@
           ]
         ]
       ],
-      "niveles_completos": 5,
+      "niveles_completos": 20,
       "niveles": {
         "1": [
           {
@@ -447,6 +542,46 @@
               "20": 4
             }
           }
+        ],
+        "6": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "8": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "9": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Indómito",
+            "resumen": "repites una tirada de salvación fallida y te quedas con el nuevo resultado",
+            "descripcion": "Puedes repetir una tirada de salvación que hayas fallado, y debes quedarte con el nuevo resultado. Tienes un uso entre descansos largos, dos a partir del nivel 13 y tres a partir del nivel 17.",
+            "usos": "1+min(1,nivel_clase//13)+min(1,nivel_clase//17)",
+            "recarga": "largo"
+          }
+        ],
+        "12": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "14": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "16": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "19": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
         ]
       }
     }
@@ -470,6 +605,30 @@
             "resumen": "al enfurecerte puedes entrar en frenesí: 1 ataque con arma cuerpo a cuerpo como acción adicional en cada turno posterior; al acabar la furia, 1 nivel de cansancio",
             "descripcion": "Cuando te enfureces puedes abandonarte al frenesí. Mientras dure la furia, puedes hacer un único ataque con arma cuerpo a cuerpo como acción adicional en cada uno de tus turnos posteriores. Cuando la furia termina, sufres un nivel de cansancio."
           }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Furia Irracional",
+            "resumen": "mientras estás enfurecido no puedes quedar asustado ni hechizado (si ya lo estabas, el efecto se suspende durante la furia)",
+            "descripcion": "Mientras estás enfurecido no puedes ser asustado ni hechizado. Si ya lo estabas al enfurecerte, el efecto se suspende mientras dure la furia."
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Presencia Intimidante",
+            "resumen": "acción: una criatura que veas a 30 pies o menos y que te vea u oiga hace una salvación de SAB (CD {8+competencia+mod_car}) o queda asustada hasta el final de tu siguiente turno; puedes prolongarlo con tu acción cada turno; si la supera, no puedes repetir con ella en 24 horas",
+            "descripcion": "Usas tu acción para asustar a una criatura que puedas ver a 30 pies o menos con tu mera presencia. Si puede verte u oírte, debe superar una tirada de salvación de Sabiduría (CD 8 + tu bonificador por competencia + tu modificador por Carisma) o quedará asustada de ti hasta el final de tu siguiente turno. En tus turnos siguientes puedes usar tu acción para alargar el efecto hasta el final de tu siguiente turno. El efecto termina si la criatura acaba su turno fuera de tu línea de visión o a más de 60 pies de ti. Si supera la salvación, no puedes volver a usar este rasgo contra ella durante 24 horas."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Represalia",
+            "resumen": "reacción: cuando una criatura a 5 pies o menos te causa daño, le haces un ataque con arma cuerpo a cuerpo",
+            "descripcion": "Cuando recibes daño de una criatura que esté a 5 pies o menos de ti, puedes usar tu reacción para hacer un ataque con arma cuerpo a cuerpo contra ella."
+          }
         ]
       }
     },
@@ -491,6 +650,65 @@
             "nombre": "Crítico Mejorado",
             "resumen": "tus ataques con arma hacen crítico con 19 o 20",
             "descripcion": "Tus ataques con arma causan un crítico con un resultado de 19 o 20 en la tirada."
+          }
+        ],
+        "7": [
+          {
+            "tipo": "medio_competencia",
+            "caracteristicas": [
+              "fue",
+              "des",
+              "con"
+            ],
+            "redondeo": "arriba"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Atleta Sobresaliente",
+            "resumen": "+{(competencia+1)//2} a las pruebas de FUE, DES y CON sin competencia (también la iniciativa); tus saltos de longitud con carrerilla ganan {max(0,mod_fue)} pies",
+            "descripcion": "Sumas la mitad de tu bonificador por competencia (redondeando hacia arriba) a las pruebas de Fuerza, Destreza o Constitución que no lo sumen ya. Además, cuando haces un salto de longitud con carrerilla, la distancia aumenta en tantos pies como tu modificador por Fuerza."
+          }
+        ],
+        "10": [
+          {
+            "tipo": "eleccion",
+            "id": "estilo_combate_adicional",
+            "nombre": "Estilo de Combate adicional",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "estilo_combate",
+                "clases": "guerrero"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Estilo de Combate Adicional",
+            "resumen": "eliges un segundo Estilo de Combate (no puede ser el mismo)",
+            "descripcion": "Escoges una segunda opción del rasgo Estilo de Combate, distinta de la que ya tienes."
+          }
+        ],
+        "15": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Crítico Superior",
+            "resumen": "tus ataques con arma hacen crítico con 18, 19 o 20",
+            "descripcion": "Tus ataques con arma causan un crítico con un resultado de 18 a 20 en la tirada."
+          }
+        ],
+        "18": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Superviviente",
+            "resumen": "al principio de cada uno de tus turnos, si tienes la mitad de tus PG o menos (y más de 0), recuperas {5+mod_con} PG",
+            "descripcion": "Al comienzo de cada uno de tus turnos recuperas tantos puntos de golpe como 5 + tu modificador por Constitución si no te queda más de la mitad de tus puntos de golpe. No recibes este beneficio si tienes 0 puntos de golpe."
           }
         ]
       }
