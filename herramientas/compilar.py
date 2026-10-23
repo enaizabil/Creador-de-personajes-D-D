@@ -51,6 +51,12 @@ Cómo abrirlo
 
 Es portable: no se instala. Copia la carpeta entera donde quieras (también a un USB).
 
+Cómo desinstalarlo
+- Windows: doble clic en Desinstalar.bat (con el programa cerrado). Borra esta carpeta y
+  %USERPROFILE%\\.creador-personajes; lo que hayas guardado en otras carpetas no se toca.
+- macOS y Linux: borra esta carpeta y ~/.creador-personajes.
+- El programa no crea accesos directos ni escribe en el registro: no queda nada más.
+
 Homebrew y expansiones
 - Programa → «Paquetes…» → «Importar .zip…» o «Importar carpeta…». Se validan antes de instalarse.
 - O copia la carpeta del paquete dentro de «paquetes», junto a este archivo.
@@ -123,6 +129,10 @@ def compilar(edicion: str) -> Path:
         encoding="utf-8")
     (carpeta / "LEEME.txt").write_text(LEEME.format(version=__version__, edicion=edicion, nombre=NOMBRE,
                                                     licencia=LICENCIAS[edicion]), encoding="utf-8")
+    if sys.platform == "win32":
+        # Con saltos de línea CRLF: cmd.exe falla con «goto» en archivos con LF.
+        desinstalar = (RAIZ / "herramientas" / "desinstalar_windows.bat").read_text(encoding="ascii")
+        (carpeta / "Desinstalar.bat").write_bytes(desinstalar.replace("\r\n", "\n").replace("\n", "\r\n").encode("ascii"))
     (RAIZ / "dist").mkdir(exist_ok=True)
     archivo = shutil.make_archive(str(RAIZ / "dist" / f"{NOMBRE}-{__version__}-{edicion}-{plataforma()}"), "zip",
                                   root_dir=distribucion, base_dir=NOMBRE)
