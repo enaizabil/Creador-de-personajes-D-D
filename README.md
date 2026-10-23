@@ -2,7 +2,7 @@
 
 Programa portable para crear personajes de rol, con dos modos (normal y sencillo) y contenido ampliable por paquetes. Primer sistema: **D&D 5ª edición (2014)**.
 
-> **Estado: fases 1 a 5 de 6.** Núcleo, motor de reglas de 5e, datos de 5e 2014 (SRD + Manual del Jugador + Guía del DM) hasta nivel 5 e interfaz gráfica con los dos modos: preguntas de situaciones cotidianas (sencillo) y asistente paso a paso (normal), y salidas en PDF (hoja oficial editable rellena y réplica) y Markdown para Obsidian/Nivel20.
+> **Estado: las 6 fases hechas** (datos de clase hasta nivel 5). Núcleo, motor de reglas de 5e, datos de 5e 2014 (SRD + Manual del Jugador + Guía del DM) hasta nivel 5 e interfaz gráfica con los dos modos: preguntas de situaciones cotidianas (sencillo) y asistente paso a paso (normal), y salidas en PDF (hoja oficial editable rellena y réplica) y Markdown para Obsidian/Nivel20.
 
 ## Hoja de ruta
 
@@ -13,7 +13,7 @@ Programa portable para crear personajes de rol, con dos modos (normal y sencillo
 | 3 | Modo normal: asistente por pasos con selector de sistema y paquetes (CustomTkinter) | ✅ (sin multiclase en el asistente) |
 | 4 | Modo sencillo: cuestionario de situaciones → raza, clase, trasfondo, características y habilidades | ✅ (17 preguntas; el personaje se retoca luego en el modo normal) |
 | 5 | Salidas: JSON, réplica de la ficha oficial, rellenado del PDF oficial y guía para Nivel20 | ✅ (hoja editable en español rellena, réplica en A4 y nota de Obsidian con la guía de Nivel20) |
-| 6 | Ejecutables para Windows, macOS y Linux (PyInstaller + GitHub Actions) y gestor de paquetes | ⏳ |
+| 6 | Ejecutables para Windows, macOS y Linux (PyInstaller) y gestor de paquetes | ✅ (compilación local en dos ediciones, completa y libre; gestor con importación validada y homebrew de ejemplo) |
 
 ## Requisitos
 
@@ -21,11 +21,38 @@ Programa portable para crear personajes de rol, con dos modos (normal y sencillo
 - Interfaz y salidas en PDF: `pip install -r requirements.txt` (CustomTkinter, reportlab y pypdf). El núcleo y el resto de la línea de órdenes no tienen dependencias externas.
 - Para los tests: `pip install pytest`.
 
+## Ejecutables portables
+
+No se instalan: es una carpeta que se copia donde se quiera (también a un USB). Se compilan en cada sistema
+operativo, en local:
+
+- **Windows:** instala Python 3.10+ de [python.org](https://www.python.org/downloads/) (marca «Add python.exe to
+  PATH») y haz doble clic en `herramientas\compilar_windows.bat`.
+- **macOS / Linux:** `sh herramientas/compilar.sh` (Python con Tkinter; en Linux, `python3-tk` y `python3-venv`).
+
+Salen dos `.zip` en `dist/`:
+
+| Edición | Contenido | ¿Se puede compartir? |
+|---|---|---|
+| **completa** | SRD 5.1, Manual del Jugador, Guía del DM, cuestionario y hoja oficial editable | **No**: solo para tu grupo de juego |
+| **libre** | SRD 5.1 y cuestionario (sin hoja oficial) | Sí |
+
+Cada carpeta trae un `LEEME.txt` y una carpeta `paquetes/` para homebrew. Los ejecutables no están firmados:
+Windows (SmartScreen) y macOS (Gatekeeper) avisarán la primera vez.
+
+## Paquetes de homebrew
+
+Desde el programa: **Paquetes…** → **Importar .zip…** o **Importar carpeta…**. Se valida antes de instalarse
+(solo datos JSON/Markdown/texto, sin pisar los integrados, con sus dependencias y sin errores de contenido).
+Ejemplo para copiar: [`docs/ejemplos/homebrew-ejemplo`](docs/ejemplos/homebrew-ejemplo/LEEME.md); formato completo:
+[`docs/formato-paquetes.md`](docs/formato-paquetes.md).
+
 ## Uso
 
 ```bash
 python -m creador                       # abre la interfaz gráfica (también: python -m creador gui)
 python -m creador paquetes              # lista los paquetes instalados
+python -m creador instalar homebrew.zip # instala un paquete (o una carpeta); quitar <id> lo quita
 python -m creador ficha personaje.json  # calcula y muestra la ficha de un personaje
 python -m creador exportar personaje.json [--oficial hoja.pdf] [--pdf ficha.pdf] [--nota nota.md]  # salidas
 python -m pytest                        # ejecuta los tests

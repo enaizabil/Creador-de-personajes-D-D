@@ -1,6 +1,7 @@
 """Ubicación de los datos, tanto ejecutando desde el código como empaquetado con PyInstaller."""
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -16,10 +17,24 @@ def directorio_datos_integrados() -> Path:
 
 
 def directorio_portable() -> Path:
-    """Carpeta junto al ejecutable (o raíz del proyecto al ejecutar desde el código)."""
+    """Carpeta junto al ejecutable (o raíz del proyecto al ejecutar desde el código).
+
+    En macOS el ejecutable está dentro de «Programa.app/Contents/MacOS»: la carpeta portable es la que
+    contiene la .app, donde el usuario la ve.
+    """
     if _congelado():
-        return Path(sys.executable).resolve().parent
+        ejecutable = Path(sys.executable).resolve()
+        app = next((p for p in ejecutable.parents if p.suffix == ".app"), None)
+        return app.parent if sys.platform == "darwin" and app is not None else ejecutable.parent
     return Path(__file__).resolve().parents[2]
+
+
+def edicion() -> str:
+    """«completa» o «libre» en los ejecutables (lo escribe herramientas/compilar.py); «desarrollo» desde el código."""
+    try:
+        return json.loads((directorio_datos_integrados() / "edicion.json").read_text(encoding="utf-8"))["edicion"]
+    except (OSError, ValueError, KeyError):
+        return "desarrollo"
 
 
 def directorios_paquetes() -> list[Path]:

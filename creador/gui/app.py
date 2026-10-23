@@ -10,6 +10,7 @@ from .. import __version__
 from ..entorno import abrir_catalogo
 from ..nucleo.paquetes import ErrorPaquete
 from ..nucleo.personaje import Personaje
+from ..nucleo.rutas import edicion
 from .asistente_5e import VistaAsistente5e
 from .cuestionario_5e import VistaCuestionario5e
 from .inicio import PantallaInicio
@@ -24,7 +25,8 @@ class Aplicacion(ctk.CTk):
         super().__init__()
         ctk.set_appearance_mode("system")
         ctk.set_default_color_theme("blue")
-        self.title(f"Creador de personajes de rol {__version__}")
+        version = __version__ if edicion() == "desarrollo" else f"{__version__} · edición {edicion()}"
+        self.title(f"Creador de personajes de rol {version}")
         self.geometry("1200x780")
         self.minsize(980, 640)
         self.vista = None

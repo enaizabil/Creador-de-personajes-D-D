@@ -8,6 +8,7 @@ dependencies = ["customtkinter>=5.2", "reportlab>=4.0", "pypdf>=6.0"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
+compilar = ["pyinstaller>=6.0"]
 
 [project.scripts]
 creador = "creador.__main__:main"

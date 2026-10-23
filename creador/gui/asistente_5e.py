@@ -535,7 +535,9 @@ class VistaAsistente5e(ctk.CTkFrame):
         # Las exportaciones arriba, a la vista; el resumen debajo.
         botones = ctk.CTkFrame(master, fg_color="transparent")
         botones.pack(anchor="w", padx=10, pady=(4, 2))
+        from ..sistemas.dnd5e_2014.salidas import hay_hoja_oficial
         ctk.CTkButton(botones, text="Hoja oficial (PDF editable)…", width=210,
+                      state="normal" if hay_hoja_oficial() else "disabled",
                       command=lambda: self.exportar("oficial")).pack(side="left")
         ctk.CTkButton(botones, text="Ficha en PDF…", width=140,
                       command=lambda: self.exportar("pdf")).pack(side="left", padx=(10, 0))

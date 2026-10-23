@@ -19,14 +19,14 @@ from pypdf import PdfReader, PdfWriter
 from pypdf.generic import NameObject, TextStringObject
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
-from ....nucleo.rutas import directorio_datos_integrados
+from . import RUTA_HOJA_OFICIAL
 from ..constantes import CARACTERISTICAS, RECARGAS
 
 if TYPE_CHECKING:
     from ..asistente import Asistente5e
     from ..ficha import Ficha
 
-PLANTILLA = directorio_datos_integrados() / "plantillas" / "dnd5e-2014" / "hoja_editable_es.pdf"
+PLANTILLA = RUTA_HOJA_OFICIAL
 CARACTERISTICA_CAMPO = {"fue": "STR", "des": "DEX", "con": "CON", "int": "INT", "sab": "WIS", "car": "CHA"}
 HABILIDAD_CAMPO = {
     "acrobacias": ("Acrobatics", "acroPROF"), "atletismo": ("Athletics", "athPROF"),

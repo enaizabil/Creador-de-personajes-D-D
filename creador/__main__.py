@@ -107,6 +107,10 @@ def _orden_exportar(archivo: str, pdf: str | None, nota: str | None, oficial: st
     if pdf is None and nota is None and oficial is None:  # sin indicar nada, las tres junto al JSON
         base = Path(archivo).with_suffix("")
         pdf, nota, oficial = f"{base}.pdf", f"{base}.md", f"{base} (hoja oficial).pdf"
+        from .sistemas.dnd5e_2014.salidas import hay_hoja_oficial
+
+        if not hay_hoja_oficial():
+            oficial = None
     asistente = sistema.crear_asistente(personaje, catalogo)
     if nota:
         from .sistemas.dnd5e_2014.salidas.nota import nota_obsidian
@@ -121,6 +125,11 @@ def _orden_exportar(archivo: str, pdf: str | None, nota: str | None, oficial: st
         generar_ficha_pdf(asistente, pdf)
         print(f"Ficha en PDF: {pdf}")
     if oficial:
+        from .sistemas.dnd5e_2014.salidas import hay_hoja_oficial
+
+        if not hay_hoja_oficial():
+            print("ERROR: esta edición no incluye la hoja oficial editable (solo la completa).", file=sys.stderr)
+            return 1
         try:
             from .sistemas.dnd5e_2014.salidas.pdf_oficial import rellenar_hoja_oficial
         except ImportError as exc:
