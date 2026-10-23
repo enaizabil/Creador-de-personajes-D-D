@@ -23,7 +23,7 @@ TEXTO = (RAIZ / "fuentes" / "SRD_5.1_ES_pypdf.txt").read_text(encoding="utf-8").
 # Segunda extracción (pdftotext): cada una corta mal algunas columnas, así que las listas de clase se leen de las dos.
 TEXTO_ALTERNATIVO = (RAIZ / "fuentes" / "SRD_5.1_ES.txt").read_text(encoding="utf-8").splitlines()
 PAQUETE = RAIZ / "creador" / "datos" / "paquetes" / "dnd5e-2014" / "srd-5.1"
-NIVEL_MAXIMO_CONJURO = 3
+NIVEL_MAXIMO_CONJURO = 9
 
 ESCUELAS = {"abjuración": "abjuracion", "adivinación": "adivinacion", "conjuración": "conjuracion",
             "encantamiento": "encantamiento", "evocación": "evocacion", "ilusionismo": "ilusion",
@@ -231,7 +231,8 @@ def verificar_armaduras(datos: dict) -> list[str]:
 
 def main() -> int:
     datos = cargar_datos()
-    secciones = {"Conjuros (niveles 0-3)": verificar_conjuros, "Armas": verificar_armas, "Armaduras": verificar_armaduras}
+    secciones = {f"Conjuros (niveles 0-{NIVEL_MAXIMO_CONJURO})": verificar_conjuros, "Armas": verificar_armas,
+                 "Armaduras": verificar_armaduras}
     total = 0
     for titulo, funcion in secciones.items():
         problemas = funcion(datos)

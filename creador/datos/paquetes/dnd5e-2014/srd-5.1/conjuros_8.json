@@ -1,0 +1,297 @@
+{
+  "conjuros": [
+    {
+      "id": "antipatia_simpatia",
+      "nombre": "Antipatía/simpatía",
+      "nivel": 8,
+      "escuela": "encantamiento",
+      "listas": [
+        "druida",
+        "mago"
+      ],
+      "tiempo": "1 hora",
+      "alcance": "60 pies",
+      "componentes": "V, S, M (un pedazo de alumbre empapado en vinagre para el efecto de antipatía o una gota de miel para el efecto de simpatía)",
+      "duracion": "10 días",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Durante 10 días, un objeto, una criatura o una zona (hasta un cubo de 200 pies) atrae o repele a un tipo de criatura inteligente que elijas. Antipatía: al verlo o estar a 60 pies, salvación de Sabiduría o queda asustada y se aleja. Simpatía: salvación de Sabiduría o se acerca y no puede alejarse voluntariamente. Repite la salvación al acabar un turno lejos o sin verlo, y cada 24 horas.",
+      "fuente": "SRD 5.1 p. 124"
+    },
+    {
+      "id": "aspectos_animales",
+      "nombre": "Aspectos animales",
+      "nivel": 8,
+      "escuela": "transmutacion",
+      "listas": [
+        "druida"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "30 pies",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 24 horas",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Conviertes a las criaturas voluntarias que elijas en bestias Grandes o menores de VD 4 o menos (puedes cambiarlas con tu acción). Toman el perfil y los puntos de golpe de la bestia, conservan Inteligencia, Sabiduría, Carisma y alineamiento, y no pueden hablar ni lanzar conjuros; a 0 puntos de golpe vuelven a su forma y el daño sobrante pasa a ella.",
+      "fuente": "SRD 5.1 p. 126"
+    },
+    {
+      "id": "aura_sagrada",
+      "nombre": "Aura sagrada",
+      "nivel": 8,
+      "escuela": "abjuracion",
+      "listas": [
+        "clerigo"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal",
+      "componentes": "V, S, M (un pequeño relicario que valga al menos 1000 po y que contenga una reliquia sagrada, como un jirón de ropa de la túnica de un santo o un pedazo de pergamino de un texto religioso)",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Las criaturas que elijas a 30 pies tienen ventaja en todas las salvaciones y los demás tienen desventaja al atacarlas. Si un infernal o un muerto viviente golpea cuerpo a cuerpo a una de ellas, supera una salvación de Constitución o queda cegado hasta que acabe el conjuro.",
+      "fuente": "SRD 5.1 p. 127"
+    },
+    {
+      "id": "campo_antimagia",
+      "nombre": "Campo antimagia",
+      "nivel": 8,
+      "escuela": "abjuracion",
+      "listas": [
+        "clerigo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal (esfera de 10 pies de radio)",
+      "componentes": "V, S, M (una pizca de hierro en polvo o virutas de hierro)",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Esfera de 10 pies de radio centrada en ti en la que se suprime la magia (salvo la de artefactos y deidades): no se lanzan conjuros, los objetos mágicos se vuelven mundanos, las criaturas invocadas desaparecen, no entran áreas ni efectos dirigidos, y no funcionan el teletransporte, el viaje entre planos ni los portales. Disipar magia no la afecta.",
+      "fuente": "SRD 5.1 p. 131"
+    },
+    {
+      "id": "clon",
+      "nombre": "Clon",
+      "nivel": 8,
+      "escuela": "nigromancia",
+      "listas": [
+        "mago"
+      ],
+      "tiempo": "1 hora",
+      "alcance": "Toque",
+      "componentes": "V, S, M (un diamante que valga al menos 1000 po y al menos un cubo de carne de 1 pulgada de la criatura que se desea clonar, que se consumen como parte del conjuro, y un recipiente que valga al menos 2000 po, que tenga una tapa sellable y con un tamaño suficiente como para alojar a una criatura Mediana, como una gran urna, un féretro, una zanja llena de barro en el suelo o un contenedor de cristal lleno de agua salada)",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Creas en un recipiente sellado un duplicado inerte de una criatura viva, que madura en 120 días (puede ser más joven). Si la criatura muere después, su alma pasa al clon, idéntico en cuerpo, recuerdos y capacidades pero sin equipo; los restos originales ya no pueden revivirse.",
+      "fuente": "SRD 5.1 p. 135"
+    },
+    {
+      "id": "controlar_el_clima",
+      "nombre": "Controlar el clima",
+      "nivel": 8,
+      "escuela": "transmutacion",
+      "listas": [
+        "clerigo",
+        "druida",
+        "mago"
+      ],
+      "tiempo": "10 minutos",
+      "alcance": "Personal (radio de 5 millas)",
+      "componentes": "V, S, M (incienso y pedacitos de tierra y madera mezclados en agua)",
+      "duracion": "Concentración, hasta 8 horas",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Al aire libre, controlas el clima en 5 millas a tu alrededor: cada cambio sube o baja un grado las precipitaciones, la temperatura o el viento (y su dirección) y tarda 1d4 × 10 minutos en surtir efecto. Termina si pierdes la vista del cielo; luego el clima vuelve poco a poco a la normalidad.",
+      "fuente": "SRD 5.1 p. 142"
+    },
+    {
+      "id": "dominar_monstruo",
+      "nombre": "Dominar monstruo",
+      "nivel": 8,
+      "escuela": "encantamiento",
+      "listas": [
+        "bardo",
+        "brujo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Una criatura que veas supera una salvación de Sabiduría (con ventaja si la estáis combatiendo) o queda hechizada por ti: le das órdenes por telepatía sin gastar acción y, con tu acción, la controlas por completo hasta tu siguiente turno. Repite la salvación cada vez que recibe daño. A niveles superiores: hasta 8 horas con un espacio de nivel 9.",
+      "fuente": "SRD 5.1 p. 151"
+    },
+    {
+      "id": "explosion_solar",
+      "nombre": "Explosión solar",
+      "nivel": 8,
+      "escuela": "evocacion",
+      "listas": [
+        "druida",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "150 pies",
+      "componentes": "V, S, M (fuego y un trozo de heliolita)",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Esfera de 60 pies de radio de luz solar: salvación de Constitución, 12d6 de daño radiante y cegado 1 minuto (mitad y sin ceguera si la supera; muertos vivientes y cienos con desventaja). Los cegados repiten la salvación al final de cada turno. Disipa la oscuridad mágica de la zona.",
+      "fuente": "SRD 5.1 p. 158"
+    },
+    {
+      "id": "laberinto",
+      "nombre": "Laberinto",
+      "nivel": 8,
+      "escuela": "conjuracion",
+      "listas": [
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 10 minutos",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Destierras a una criatura que veas a un laberinto en un semiplano. Con su acción puede intentar salir con una prueba de Inteligencia CD 20 (los minotauros y goristros lo consiguen siempre); al acabar, reaparece donde estaba.",
+      "fuente": "SRD 5.1 p. 170"
+    },
+    {
+      "id": "labia",
+      "nombre": "Labia",
+      "nivel": 8,
+      "escuela": "transmutacion",
+      "listas": [
+        "bardo",
+        "brujo"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal",
+      "componentes": "V",
+      "duracion": "1 hora",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Durante 1 hora, al hacer una prueba de Carisma puedes sustituir la tirada por un 15, y la magia que detecte mentiras siempre indica que dices la verdad.",
+      "fuente": "SRD 5.1 p. 170"
+    },
+    {
+      "id": "mente_en_blanco",
+      "nombre": "Mente en blanco",
+      "nivel": 8,
+      "escuela": "abjuracion",
+      "listas": [
+        "bardo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "V, S",
+      "duracion": "24 horas",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Durante 24 horas, la criatura voluntaria tocada es inmune al daño psíquico, a la lectura de emociones o pensamientos, a la adivinación y a quedar hechizada, incluso contra deseo.",
+      "fuente": "SRD 5.1 p. 176"
+    },
+    {
+      "id": "nube_incendiaria",
+      "nombre": "Nube incendiaria",
+      "nivel": 8,
+      "escuela": "conjuracion",
+      "listas": [
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "150 pies",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Esfera de humo y ascuas de 20 pies de radio (muy oscura) que se aleja de ti 10 pies al principio de cada uno de tus turnos. Al aparecer, y cuando alguien entra por primera vez en un turno o termina allí su turno, salvación de Destreza: 10d8 de daño de fuego (mitad si la supera). Un viento moderado la dispersa.",
+      "fuente": "SRD 5.1 p. 180"
+    },
+    {
+      "id": "palabra_de_poder_aturdir",
+      "nombre": "Palabra de poder: aturdir",
+      "nivel": 8,
+      "escuela": "encantamiento",
+      "listas": [
+        "bardo",
+        "brujo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Si una criatura que veas tiene 150 puntos de golpe o menos, queda aturdida (sin salvación); repite una salvación de Constitución al final de cada uno de sus turnos para librarse.",
+      "fuente": "SRD 5.1 p. 182"
+    },
+    {
+      "id": "romper_la_mente",
+      "nombre": "Romper la mente",
+      "nivel": 8,
+      "escuela": "encantamiento",
+      "listas": [
+        "bardo",
+        "brujo",
+        "druida",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "150 pies",
+      "componentes": "V, S, M (un puñado de arcilla, cristal, vidrio o esferas minerales)",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Una criatura que veas recibe 4d6 de daño psíquico y hace una salvación de Inteligencia: si la falla, su Inteligencia y su Carisma pasan a 1 y no puede lanzar conjuros, usar objetos mágicos, entender idiomas ni comunicarse, aunque reconoce a sus amigos. Repite la salvación cada 30 días; lo quitan curar, deseo y restablecimiento mayor.",
+      "fuente": "SRD 5.1 p. 196"
+    },
+    {
+      "id": "semiplano",
+      "nombre": "Semiplano",
+      "nivel": 8,
+      "escuela": "conjuracion",
+      "listas": [
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "S",
+      "duracion": "1 hora",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Creas una puerta de sombras en una superficie plana que lleva a una sala vacía de 30 pies de lado en un semiplano, nueva o una que ya hayas creado (o de otro lanzador si la conoces). Al acabar, lo que quede dentro se queda atrapado allí.",
+      "fuente": "SRD 5.1 p. 197"
+    },
+    {
+      "id": "terremoto",
+      "nombre": "Terremoto",
+      "nivel": 8,
+      "escuela": "evocacion",
+      "listas": [
+        "clerigo",
+        "druida",
+        "hechicero"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "500 pies",
+      "componentes": "V, S, M (una pizca de tierra, un trozo de roca y un poco de arcilla)",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Un círculo de 100 pies de radio tiembla: terreno difícil, quienes se concentran en el suelo hacen una salvación de Constitución o pierden la concentración, y al lanzarlo y al final de cada turno todos los del suelo hacen una salvación de Destreza o caen derribados. Se abren 1d6 grietas (salvación de Destreza para no caer) y las estructuras reciben 50 de daño contundente por turno; si se derrumban, 5d6 de daño contundente y sepultados a quien esté cerca.",
+      "fuente": "SRD 5.1 p. 203"
+    }
+  ]
+}

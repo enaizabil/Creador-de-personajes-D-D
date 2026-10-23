@@ -1,0 +1,374 @@
+{
+  "conjuros": [
+    {
+      "id": "bola_de_fuego_de_explosion_retardada",
+      "nombre": "Bola de fuego de explosión retardada",
+      "nivel": 7,
+      "escuela": "evocacion",
+      "listas": [
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "150 pies",
+      "componentes": "V, S, M (una pelotita de guano de murciélago y azufre)",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Una cuenta brillante espera en un punto y estalla al terminar el conjuro (al perder la concentración o cuando decidas) en una esfera de 20 pies de radio: salvación de Destreza, 12d6 de daño de fuego (mitad si la supera), más 1d6 por cada uno de tus turnos que acabe sin que haya estallado. Quien la toque hace una salvación de Destreza: si la falla, estalla; si la supera, puede lanzarla hasta 40 pies. A niveles superiores: +1d6 al daño base por cada nivel de espacio por encima de 7.",
+      "fuente": "SRD 5.1 p. 129"
+    },
+    {
+      "id": "conjurar_celestial",
+      "nombre": "Conjurar celestial",
+      "nivel": 7,
+      "escuela": "conjuracion",
+      "listas": [
+        "clerigo"
+      ],
+      "tiempo": "1 minuto",
+      "alcance": "90 pies",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Invocas un celestial de VD 4 o menos, amistoso, que actúa en su propio turno y obedece tus órdenes verbales que no vayan contra su alineamiento; desaparece a 0 puntos de golpe o al acabar el conjuro. A niveles superiores: VD 5 o menos con un espacio de nivel 9.",
+      "fuente": "SRD 5.1 p. 137"
+    },
+    {
+      "id": "dedo_de_la_muerte",
+      "nombre": "Dedo de la muerte",
+      "nivel": 7,
+      "escuela": "nigromancia",
+      "listas": [
+        "brujo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Una criatura que veas hace una salvación de Constitución: 7d8 + 30 de daño necrótico (mitad si la supera). Un humanoide que muera así se alza al principio de tu siguiente turno como zombi permanentemente a tus órdenes.",
+      "fuente": "SRD 5.1 p. 146"
+    },
+    {
+      "id": "desplazamiento_entre_planos",
+      "nombre": "Desplazamiento entre planos",
+      "nivel": 7,
+      "escuela": "conjuracion",
+      "listas": [
+        "brujo",
+        "clerigo",
+        "druida",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "V, S, M (una vara de metal con forma de horquilla que valga al menos 250 po, sintonizada con un plano de existencia concreto)",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Tú y hasta ocho criaturas voluntarias cogidas de la mano viajáis a otro plano, a un destino general o a un círculo de teletransportación cuya secuencia de sellos conozcas. También sirve para desterrar: ataque de conjuro cuerpo a cuerpo y, si impacta, salvación de Carisma o el objetivo va a un lugar aleatorio del plano que elijas.",
+      "fuente": "SRD 5.1 p. 148"
+    },
+    {
+      "id": "espada_arcana",
+      "nombre": "Espada arcana",
+      "nivel": 7,
+      "escuela": "evocacion",
+      "listas": [
+        "bardo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V, S, M (una espada en miniatura de platino con empuñadura y pomo de cobre y zinc, con un valor de 250 po)",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Una espada de fuerza flotante: al aparecer, y luego con una acción adicional cada turno (moviéndola hasta 20 pies), haces un ataque de conjuro cuerpo a cuerpo contra un objetivo a 5 pies de ella: 3d10 de daño de fuerza.",
+      "fuente": "SRD 5.1 p. 157"
+    },
+    {
+      "id": "espejismo_arcano",
+      "nombre": "Espejismo arcano",
+      "nivel": 7,
+      "escuela": "ilusion",
+      "listas": [
+        "bardo",
+        "druida",
+        "mago"
+      ],
+      "tiempo": "10 minutos",
+      "alcance": "Vista",
+      "componentes": "V, S",
+      "duracion": "10 días",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Un terreno de hasta 1 milla de lado parece, suena, huele y se siente como otro (incluidas estructuras añadidas o cambiadas), así que puede volverse terreno difícil o despejado de verdad. No oculta criaturas. La visión verdadera revela la forma real, pero la ilusión sigue siendo tangible.",
+      "fuente": "SRD 5.1 p. 157"
+    },
+    {
+      "id": "excursion_eterea",
+      "nombre": "Excursión etérea",
+      "nivel": 7,
+      "escuela": "transmutacion",
+      "listas": [
+        "bardo",
+        "brujo",
+        "clerigo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal",
+      "componentes": "V, S",
+      "duracion": "Hasta 8 horas",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Pasas a la Frontera Etérea hasta 8 horas: ves tu plano en gris a 60 pies, atraviesas objetos y solo interactúas con lo que esté en el Etéreo (subir o bajar cuesta el doble de movimiento). Al volver, si coincides con algo sólido, te desplazas al espacio libre más cercano y recibes 2 de daño de fuerza por cada pie. A niveles superiores: tres criaturas voluntarias más a 10 pies por cada nivel de espacio por encima de 7.",
+      "fuente": "SRD 5.1 p. 158"
+    },
+    {
+      "id": "invertir_la_gravedad",
+      "nombre": "Invertir la gravedad",
+      "nivel": 7,
+      "escuela": "transmutacion",
+      "listas": [
+        "druida",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "100 pies",
+      "componentes": "V, S, M (un imán natural y virutas de hierro)",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "En un cilindro de 50 pies de radio y 100 de alto la gravedad se invierte: lo que no esté sujeto cae hacia arriba (salvación de Destreza para agarrarse a algo fijo) y se golpea con el techo como en una caída. Al terminar, todo cae hacia abajo.",
+      "fuente": "SRD 5.1 p. 169"
+    },
+    {
+      "id": "jaula_de_fuerza",
+      "nombre": "Jaula de fuerza",
+      "nivel": 7,
+      "escuela": "evocacion",
+      "listas": [
+        "bardo",
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "100 pies",
+      "componentes": "V, S, M (polvo de rubí con un valor de 1500 po)",
+      "duracion": "1 hora",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Prisión invisible de fuerza: jaula de barrotes de hasta 20 pies de lado o caja cerrada de hasta 10 pies. Atrapa a quien esté dentro, bloquea la materia y los conjuros (en la caja) y el viaje etéreo; para salir con teletransporte o viaje entre planos hay que superar una salvación de Carisma o se pierde el intento. Disipar magia no la elimina.",
+      "fuente": "SRD 5.1 p. 170"
+    },
+    {
+      "id": "mansion_magnifica",
+      "nombre": "Mansión magnífica",
+      "nivel": 7,
+      "escuela": "conjuracion",
+      "listas": [
+        "bardo",
+        "mago"
+      ],
+      "tiempo": "1 minuto",
+      "alcance": "300 pies",
+      "componentes": "V, S, M (un portal en miniatura tallado en marfil, un trozo pequeño de mármol pulido y una cucharita de plata, cada uno que valga al menos 5 po)",
+      "duracion": "24 horas",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Abres un portal invisible (5 × 10 pies) a una mansión extradimensional de hasta 50 cubos de 10 pies, amueblada a tu gusto, con comida para un banquete de nueve platos para 100 personas y 100 sirvientes invisibles que no pueden atacar. Solo entran quienes designes. Al acabar, todos salen junto a la entrada; nada creado puede sacarse.",
+      "fuente": "SRD 5.1 p. 174"
+    },
+    {
+      "id": "palabra_divina",
+      "nombre": "Palabra divina",
+      "nivel": 7,
+      "escuela": "evocacion",
+      "listas": [
+        "clerigo"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "30 pies",
+      "componentes": "V",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Las criaturas que elijas que te oigan hacen una salvación de Carisma; si la fallan, según sus puntos de golpe actuales: 50 o menos, ensordecidas 1 minuto; 40 o menos, además cegadas 10 minutos; 30 o menos, además aturdidas 1 hora; 20 o menos, mueren. Los celestiales, feéricos e infernales que fallen vuelven a su plano y no pueden regresar en 24 horas.",
+      "fuente": "SRD 5.1 p. 182"
+    },
+    {
+      "id": "proyectar_imagen",
+      "nombre": "Proyectar imagen",
+      "nivel": 7,
+      "escuela": "ilusion",
+      "listas": [
+        "bardo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "500 millas",
+      "componentes": "V, S, M (una pequeña reproducción de ti hecha de materiales que valgan al menos 5 po)",
+      "duracion": "Concentración, hasta 1 día",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Creas una copia ilusoria de ti en un lugar que hayas visto, a hasta 500 millas. Con tu acción la mueves hasta el doble de tu velocidad y la haces hablar y gesticular; con una acción adicional usas sus sentidos (quedando ciego y sordo para los tuyos) o vuelves a los tuyos. Desaparece si recibe daño; se descubre al tacto o con una prueba de Inteligencia (Investigación).",
+      "fuente": "SRD 5.1 p. 189"
+    },
+    {
+      "id": "recluir",
+      "nombre": "Recluir",
+      "nivel": 7,
+      "escuela": "transmutacion",
+      "listas": [
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Toque",
+      "componentes": "V, S, M (un polvo de diamante, esmeralda, rubí y zafiro que valga al menos 5000 po y que se consume como parte del conjuro)",
+      "duracion": "Hasta que sea disipado",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "La criatura voluntaria o el objeto tocado se vuelve invisible e indetectable por la adivinación y los sensores de escudriñamiento; si es una criatura, queda en animación suspendida y no envejece. Termina si recibe daño o si se cumple la condición que fijes (que ocurra o se vea a 1 milla o menos).",
+      "fuente": "SRD 5.1 p. 191"
+    },
+    {
+      "id": "regenerar",
+      "nombre": "Regenerar",
+      "nivel": 7,
+      "escuela": "transmutacion",
+      "listas": [
+        "bardo",
+        "clerigo",
+        "druida"
+      ],
+      "tiempo": "1 minuto",
+      "alcance": "Toque",
+      "componentes": "V, S, M (una rueda de plegarias y agua bendita)",
+      "duracion": "1 hora",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "La criatura tocada recupera 4d8 + 15 puntos de golpe y luego 1 punto de golpe al principio de cada uno de sus turnos durante 1 hora. Los miembros cortados vuelven a crecer en 2 minutos (o se unen al instante si los mantienes en su sitio).",
+      "fuente": "SRD 5.1 p. 192"
+    },
+    {
+      "id": "resurreccion",
+      "nombre": "Resurrección",
+      "nivel": 7,
+      "escuela": "nigromancia",
+      "listas": [
+        "bardo",
+        "clerigo"
+      ],
+      "tiempo": "1 hora",
+      "alcance": "Toque",
+      "componentes": "V, S, M (un diamante que valga al menos 1000 po y que se consume como parte del conjuro)",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Devuelves a la vida con todos sus puntos de golpe a una criatura muerta hace 100 años o menos que no muriera de vieja ni sea muerto viviente. Neutraliza venenos y enfermedades normales, cierra heridas y repone partes del cuerpo. Sufre −4 a ataques, salvaciones y pruebas, que baja 1 por cada descanso largo. Si llevaba muerta un año o más, no puedes lanzar conjuros y tienes desventaja en todo hasta tu siguiente descanso largo.",
+      "fuente": "SRD 5.1 p. 194"
+    },
+    {
+      "id": "rociada_prismatica",
+      "nombre": "Rociada prismática",
+      "nivel": 7,
+      "escuela": "evocacion",
+      "listas": [
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal (cono de 60 pies)",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Cono de 60 pies: salvación de Destreza y un rayo al azar (1d8) para cada criatura: 1-5, 10d6 de daño de fuego, ácido, relámpago, veneno o frío (mitad si la supera); 6, apresada y luego petrificada si falla tres salvaciones de Constitución; 7, cegada y, si falla una salvación de Sabiduría, enviada a otro plano; 8, dos rayos.",
+      "fuente": "SRD 5.1 p. 195"
+    },
+    {
+      "id": "simbolo",
+      "nombre": "Símbolo",
+      "nivel": 7,
+      "escuela": "abjuracion",
+      "listas": [
+        "bardo",
+        "clerigo",
+        "mago"
+      ],
+      "tiempo": "1 minuto",
+      "alcance": "Toque",
+      "componentes": "V, S, M (mercurio, fósforo y diamante y ópalo en polvo que valgan al menos 1000 po en total y que se consumen como parte del conjuro)",
+      "duracion": "Hasta que sea disipado o se active",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Inscribes un glifo casi invisible (hasta 10 pies de diámetro, o en un objeto que se pueda cerrar) que se activa con la condición que fijes. Al activarse, la esfera de 60 pies afecta 10 minutos a quien esté dentro o entre con el efecto elegido: aturdimiento, desesperanza, discordia, dolor, dormir, locura, terror (cada uno con su salvación, normalmente 1 minuto) o muerte (salvación de Constitución, 10d10 de daño necrótico, mitad si la supera).",
+      "fuente": "SRD 5.1 p. 198"
+    },
+    {
+      "id": "simulacro",
+      "nombre": "Simulacro",
+      "nivel": 7,
+      "escuela": "ilusion",
+      "listas": [
+        "mago"
+      ],
+      "tiempo": "12 horas",
+      "alcance": "Toque",
+      "componentes": "V, S, M (nieve o hielo en cantidad suficiente para hacer una copia a tamaño real de la criatura duplicada, algo de pelo, trozos de uña u otra parte del cuerpo de esa criatura colocadas dentro de la nieve o el hielo y polvo de rubí que valga al menos 1500 po, espolvoreado sobre el duplicado y que se consume como parte del conjuro)",
+      "duracion": "Hasta que sea disipado",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Creas una copia de hielo de una bestia o un humanoide presente todo el lanzamiento: tiene su perfil y la mitad de sus puntos de golpe máximos, sin equipo; te obedece y actúa en tu turno, pero no progresa ni recupera espacios de conjuro. Se repara a 100 po por punto de golpe en un laboratorio; si lanzas el conjuro otra vez, el anterior se destruye.",
+      "fuente": "SRD 5.1 p. 199"
+    },
+    {
+      "id": "teletransporte",
+      "nombre": "Teletransporte",
+      "nivel": 7,
+      "escuela": "conjuracion",
+      "listas": [
+        "bardo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "10 pies",
+      "componentes": "V",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Te teletransporta a ti y a hasta ocho criaturas voluntarias (o un objeto que quepa en un cubo de 10 pies) a un destino de tu plano. El éxito depende de lo bien que lo conozcas (círculo permanente u objeto asociado: seguro; muy familiar; visto a menudo; visto una vez o por descripción; destino falso): el DM tira 1d100 y podéis llegar al sitio, desviaros, acabar en un área parecida o sufrir un percance (3d10 de daño de fuerza y nueva tirada).",
+      "fuente": "SRD 5.1 p. 201"
+    },
+    {
+      "id": "tormenta_de_fuego",
+      "nombre": "Tormenta de fuego",
+      "nivel": 7,
+      "escuela": "evocacion",
+      "listas": [
+        "clerigo",
+        "druida",
+        "hechicero"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "150 pies",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Hasta diez cubos de 10 pies de lado conectados: salvación de Destreza, 7d10 de daño de fuego (mitad si la supera). Prende los objetos inflamables que nadie lleve; puedes no dañar a las plantas.",
+      "fuente": "SRD 5.1 p. 205"
+    }
+  ]
+}

@@ -1,0 +1,277 @@
+{
+  "conjuros": [
+    {
+      "id": "cambiar_de_forma",
+      "nombre": "Cambiar de forma",
+      "nivel": 9,
+      "escuela": "transmutacion",
+      "listas": [
+        "druida",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal",
+      "componentes": "V, S, M (una diadema de jade que valga al menos 1500 po y que debes ponerte en la cabeza antes de lanzar el conjuro)",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Adoptas la forma de una criatura que hayas visto de VD igual o menor que tu nivel (ni autómata ni muerto viviente): tomas su perfil, puntos de golpe y Dados de Golpe, conservas Inteligencia, Sabiduría, Carisma, alineamiento, competencias y rasgos (si la forma puede usarlos); no usas sus acciones legendarias ni de guarida y solo hablas si ella puede. Con tu acción cambias a otra forma. A 0 puntos de golpe vuelves a la tuya y el daño sobrante pasa a ella.",
+      "fuente": "SRD 5.1 p. 130"
+    },
+    {
+      "id": "cautiverio",
+      "nombre": "Cautiverio",
+      "nivel": 9,
+      "escuela": "abjuracion",
+      "listas": [
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 minuto",
+      "alcance": "30 pies",
+      "componentes": "V, S, M (una representación del objetivo en forma de una estatuilla tallada o de un dibujo en vitela, y un componente especial según la versión escogida del conjuro que valga al menos 500 po por cada Dado de Golpe de dicho objetivo)",
+      "duracion": "Hasta que sea disipado",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Una criatura que veas supera una salvación de Sabiduría o queda presa (sin envejecer ni necesitar comer o respirar, invisible a la adivinación) de la forma elegida: encerrada en una gema, encadenada, enterrada en una esfera de fuerza, en un semiplano prisión o dormida. Fijas una condición razonable para liberarla; solo disipar magia de nivel 9 sobre la prisión o el componente la anula.",
+      "fuente": "SRD 5.1 p. 132"
+    },
+    {
+      "id": "curar_en_masa",
+      "nombre": "Curar en masa",
+      "nivel": 9,
+      "escuela": "evocacion",
+      "listas": [
+        "clerigo"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Repartes hasta 700 puntos de golpe entre las criaturas que elijas a la vista, que además se curan de enfermedades, ceguera y sordera. No afecta a autómatas ni a muertos vivientes.",
+      "fuente": "SRD 5.1 p. 145"
+    },
+    {
+      "id": "deseo",
+      "nombre": "Deseo",
+      "nivel": 9,
+      "escuela": "conjuracion",
+      "listas": [
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal",
+      "componentes": "V",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Duplicas cualquier conjuro de nivel 8 o menos sin requisitos ni componentes, o pides otro efecto: crear un objeto no mágico de hasta 25 000 po, curar del todo a veinte criaturas, dar resistencia a un tipo de daño o inmunidad a un conjuro a diez criaturas, repetir una tirada del último asalto… o algo mayor que el DM interpreta. Fuera de duplicar un conjuro, quedas debilitado: 1d10 de daño necrótico por nivel de cada conjuro que lances hasta un descanso largo, Fuerza 3 durante 2d4 días y un 33 % de no poder lanzarlo nunca más.",
+      "fuente": "SRD 5.1 p. 146"
+    },
+    {
+      "id": "muro_prismatico",
+      "nombre": "Muro prismático",
+      "nivel": 9,
+      "escuela": "abjuracion",
+      "listas": [
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V, S",
+      "duracion": "10 minutos",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Muro opaco de siete capas de luz (hasta 90 × 30 pies) o esfera de 30 pies de diámetro; quien se acerque a 20 pies supera una salvación de Constitución o queda cegado 1 minuto. Atravesarlo exige una salvación de Destreza por capa: 10d6 de fuego, ácido, relámpago, veneno y frío, petrificación (añil) y destierro a otro plano (violeta). Cada capa bloquea algo y se destruye de un modo concreto; tú y quien elijas lo cruzáis sin daño.",
+      "fuente": "SRD 5.1 p. 179"
+    },
+    {
+      "id": "palabra_de_poder_matar",
+      "nombre": "Palabra de poder: matar",
+      "nivel": 9,
+      "escuela": "encantamiento",
+      "listas": [
+        "bardo",
+        "brujo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Una criatura que veas con 100 puntos de golpe o menos muere al instante, sin salvación; si tiene más, no pasa nada.",
+      "fuente": "SRD 5.1 p. 182"
+    },
+    {
+      "id": "parar_el_tiempo",
+      "nombre": "Parar el tiempo",
+      "nivel": 9,
+      "escuela": "transmutacion",
+      "listas": [
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Personal",
+      "componentes": "V",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "El tiempo se detiene para todos menos para ti y haces 1d4 + 1 turnos seguidos. Termina si lo que haces afecta a otra criatura o a un objeto que alguien lleve, o si te alejas más de 1000 pies del lugar.",
+      "fuente": "SRD 5.1 p. 183"
+    },
+    {
+      "id": "polimorfar_verdadero",
+      "nombre": "Polimorfar verdadero",
+      "nivel": 9,
+      "escuela": "transmutacion",
+      "listas": [
+        "bardo",
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "30 pies",
+      "componentes": "V, S, M (una gota de mercurio, un poco de goma arábiga y un jirón de humo)",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Transformas una criatura o un objeto no mágico que veas (salvación de Sabiduría si no es voluntaria): criatura en otra criatura de VD igual o menor, objeto en criatura de VD 9 o menos que te obedece, o criatura en objeto. Si mantienes la concentración la hora entera, el cambio es permanente hasta que se disipe.",
+      "fuente": "SRD 5.1 p. 185"
+    },
+    {
+      "id": "portal",
+      "nombre": "Portal",
+      "nivel": 9,
+      "escuela": "conjuracion",
+      "listas": [
+        "clerigo",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V, S, M (un diamante que valga al menos 5000 po)",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Abres un portal circular de 5 a 20 pies de diámetro hacia un lugar preciso de otro plano, que se cruza por su cara delantera. Si dices el nombre de una criatura de otro plano, el portal se abre junto a ella y la arrastra hasta ti, aunque no la controlas.",
+      "fuente": "SRD 5.1 p. 186"
+    },
+    {
+      "id": "presagio",
+      "nombre": "Presagio",
+      "nivel": 9,
+      "escuela": "adivinacion",
+      "listas": [
+        "bardo",
+        "brujo",
+        "druida",
+        "mago"
+      ],
+      "tiempo": "1 minuto",
+      "alcance": "Toque",
+      "componentes": "V, S, M (una pluma de colibrí)",
+      "duracion": "8 horas",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Durante 8 horas, la criatura voluntaria tocada no puede ser sorprendida, tiene ventaja en ataques, pruebas y salvaciones, y los demás tienen desventaja al atacarla.",
+      "fuente": "SRD 5.1 p. 187"
+    },
+    {
+      "id": "proyeccion_astral",
+      "nombre": "Proyección astral",
+      "nivel": 9,
+      "escuela": "nigromancia",
+      "listas": [
+        "brujo",
+        "clerigo",
+        "mago"
+      ],
+      "tiempo": "1 hora",
+      "alcance": "10 pies",
+      "componentes": "V, S, M (por cada criatura afectada por este conjuro, debes proporcionar un jacinto que valga al menos 1000 po y una barra de plata finamente labrada que valga al menos 100 po, que se consumen como parte del conjuro)",
+      "duracion": "Especial",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Tú y hasta ocho criaturas voluntarias proyectáis vuestros cuerpos astrales al Plano Astral (los cuerpos quedan en animación suspendida) unidos por un cordón de plata; si se corta, mueres. Puedes viajar por el Astral y entrar en otros planos, donde tu cuerpo se te une. Termina con tu acción, con disipar magia o al llegar a 0 puntos de golpe.",
+      "fuente": "SRD 5.1 p. 188"
+    },
+    {
+      "id": "resurreccion_verdadera",
+      "nombre": "Resurrección verdadera",
+      "nivel": 9,
+      "escuela": "nigromancia",
+      "listas": [
+        "clerigo",
+        "druida"
+      ],
+      "tiempo": "1 hora",
+      "alcance": "Toque",
+      "componentes": "V, S, M (unas gotas de agua bendita y diamantes que valgan al menos 25 000 po y que se consumen como parte del conjuro)",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Devuelves a la vida con todos sus puntos de golpe a una criatura muerta hace 200 años o menos que no muriera de vieja: cura heridas, venenos, enfermedades y maldiciones y repone miembros. Si el cuerpo ya no existe, basta con decir su nombre para crearle uno nuevo.",
+      "fuente": "SRD 5.1 p. 194"
+    },
+    {
+      "id": "terror_abyecto",
+      "nombre": "Terror abyecto",
+      "nivel": 9,
+      "escuela": "ilusion",
+      "listas": [
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "120 pies",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Esfera de 30 pies de radio: salvación de Sabiduría o quedan asustados. Al final de cada uno de sus turnos repiten la salvación: si la fallan, 4d10 de daño psíquico; si la superan, el conjuro acaba para ellos.",
+      "fuente": "SRD 5.1 p. 204"
+    },
+    {
+      "id": "tormenta_de_la_venganza",
+      "nombre": "Tormenta de la venganza",
+      "nivel": 9,
+      "escuela": "conjuracion",
+      "listas": [
+        "druida"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Vista",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Nube de tormenta de 360 pies de radio: al aparecer, salvación de Constitución o 2d6 de daño de trueno y ensordecido 5 minutos. Luego, en cada asalto de concentración: lluvia ácida (1d6 de ácido), seis relámpagos a tu elección (10d6, salvación de Destreza para la mitad), granizo (2d6 contundente) y, del 5.º al 10.º, terreno difícil, muy oscuro, 1d6 de frío por turno y sin ataques a distancia.",
+      "fuente": "SRD 5.1 p. 205"
+    },
+    {
+      "id": "tormenta_de_meteoritos",
+      "nombre": "Tormenta de meteoritos",
+      "nivel": 9,
+      "escuela": "evocacion",
+      "listas": [
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "1 milla",
+      "componentes": "V, S",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Cuatro esferas de 40 pies de radio en puntos que veas: salvación de Destreza, 20d6 de daño de fuego y 20d6 de daño contundente (mitad si la supera); quien esté en varias solo sufre una. Prende los objetos inflamables que nadie lleve.",
+      "fuente": "SRD 5.1 p. 206"
+    }
+  ]
+}
