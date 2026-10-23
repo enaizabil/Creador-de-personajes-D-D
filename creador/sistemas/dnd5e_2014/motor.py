@@ -144,7 +144,8 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
         habilidades[id_] = Tirada(nombre, car, mods[car] + extra, competente, experto)
     for id_ in pericias - competencias["habilidad"] - competencias["herramienta"]:
         avisos.append(f"Pericia en «{id_}» sin tener competencia: no tiene efecto")
-    if armadura and armadura["armadura"].get("desventaja_sigilo"):
+    if armadura and armadura["armadura"].get("desventaja_sigilo") and not any(
+            e.get("tipo_armadura") in (None, armadura["armadura"]["tipo"]) for e in de_tipo("sin_desventaja_sigilo")):
         habilidades["sigilo"].notas = f"Desventaja ({armadura['nombre']})"
     pasivas = {h: 10 + habilidades[h].valor for h in PASIVAS}
     for efecto in de_tipo("pasiva"):
@@ -194,7 +195,7 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
         tamano=TAMANOS.get((raza or {}).get("tamano", ""), ""),
         competencias=_nombres_competencias(competencias, catalogo),
         ataques=_ataques(objetos, mods, competencia, competencias["arma"], de_tipo("bonificador_ataque"),
-                         de_tipo("ataque_des"))
+                         de_tipo("ataque_des"), (raza or {}).get("tamano") == "pequeno")
                 + _ataques_desarmados(aplicables, catalogo, mods, competencia, niveles_clase, contexto, avisos),
         rasgos=_rasgos(aplicables, catalogo, niveles_clase, contexto, avisos),
         sentidos=_sentidos(de_tipo("sentido")),
@@ -871,7 +872,8 @@ def _admite_destreza(entrada: dict, efectos_des: list[dict]) -> bool:
 
 
 def _ataques(objetos: list[tuple[ObjetoInventario, dict | None]], mods: dict[str, int], competencia: int,
-             competentes: set[str], bonificadores: list[dict], efectos_des: list[dict]) -> list[Ataque]:
+             competentes: set[str], bonificadores: list[dict], efectos_des: list[dict],
+             pequeno: bool = False) -> list[Ataque]:
     ataques, vistos = [], set()
     for _, entrada in objetos:
         if not entrada or entrada["categoria"] != "arma" or entrada["id"] in vistos:
@@ -895,6 +897,8 @@ def _ataques(objetos: list[tuple[ObjetoInventario, dict | None]], mods: dict[str
             notas.append(f"Alcance {arma['alcance']} pies")
         if not competente:
             notas.append("Sin competencia")
+        if pequeno and "pesada" in propiedades:
+            notas.append("Desventaja (arma pesada y criatura Pequeña)")
         dano = _formula_dano(arma["dano"], mods[car])
         ataques.append(Ataque(entrada["nombre"], bono, dano, TIPOS_DANO.get(arma["tipo_dano"], arma["tipo_dano"]),
                               "; ".join(notas)))

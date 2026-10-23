@@ -1672,6 +1672,10 @@
         {
           "tipo": "max_des_armadura_media",
           "valor": 3
+        },
+        {
+          "tipo": "sin_desventaja_sigilo",
+          "tipo_armadura": "media"
         }
       ],
       "fuente": "PHB 2014"

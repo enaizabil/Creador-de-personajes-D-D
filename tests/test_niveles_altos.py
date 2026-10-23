@@ -217,3 +217,27 @@ def test_maestria_avisa_si_el_conjuro_no_esta_en_el_libro(real):
                for a in sistema.calcular(pj, catalogo).avisos)
     pj.conjuros["mago"] = [elegido]
     assert not any("Maestría sobre Conjuros (nivel 1)" in a for a in sistema.calcular(pj, catalogo).avisos)
+
+
+def test_maestro_en_armaduras_medias_quita_la_desventaja_de_sigilo(real):
+    sistema, catalogo = real
+    from creador.nucleo.personaje import ObjetoInventario
+    pj = personaje("guerrero", 4)
+    pj.equipo = [ObjetoInventario("media_armadura", equipado=True)]
+    resolver_todo(sistema, pj, catalogo)
+    assert sistema.calcular(pj, catalogo).habilidades["sigilo"].notas.startswith("Desventaja")
+    pj.elecciones["clase:guerrero:4/mejora"] = ["dote"]
+    pj.elecciones["clase:guerrero:4/mejora=dote/dote"] = ["maestro_en_armaduras_medias"]
+    f = sistema.calcular(pj, catalogo)
+    assert not f.habilidades["sigilo"].notas, f.avisos
+
+
+def test_criatura_pequena_con_arma_pesada(real):
+    sistema, catalogo = real
+    from creador.nucleo.personaje import ObjetoInventario
+    pj = personaje("guerrero", 1)
+    pj.raza, pj.subraza = "mediano", "mediano_piesligeros"
+    pj.equipo = [ObjetoInventario("gran_hacha" if catalogo.obtener("objetos", "gran_hacha") else "hacha_a_dos_manos")]
+    resolver_todo(sistema, pj, catalogo)
+    ataque = sistema.calcular(pj, catalogo).ataques[0]
+    assert "criatura Pequeña" in ataque.notas

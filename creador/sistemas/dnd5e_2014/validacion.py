@@ -68,6 +68,7 @@ CAMPOS_EFECTO: dict[str, tuple[str, ...]] = {
     "ignora_penalizacion_armadura": (),
     "pasiva": ("habilidad", "valor"),
     "max_des_armadura_media": ("valor",),
+    "sin_desventaja_sigilo": (),
     "ataque_des": ("armas",),
     "ataque_desarmado": ("dano",),
     "rasgo": ("nombre",),

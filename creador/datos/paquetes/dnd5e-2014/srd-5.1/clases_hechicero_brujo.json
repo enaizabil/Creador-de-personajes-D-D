@@ -1301,7 +1301,16 @@
         "texto": "nivel 15 de brujo y Pacto de la Cadena"
       },
       "resumen": "lanzas inmovilizar monstruo a voluntad sobre un celestial, un infernal o un elemental, sin espacio de conjuro ni componentes materiales; no puedes repetirlo contra la misma criatura hasta un descanso largo",
-      "descripcion": "Requisito: nivel 15 de brujo y Pacto de la Cadena. Puedes lanzar inmovilizar monstruo a voluntad, con un celestial, un infernal o un elemental como objetivo, sin gastar un espacio de conjuro ni componentes materiales. Debes terminar un descanso largo para volver a usar esta invocación contra la misma criatura."
+      "descripcion": "Requisito: nivel 15 de brujo y Pacto de la Cadena. Puedes lanzar inmovilizar monstruo a voluntad, con un celestial, un infernal o un elemental como objetivo, sin gastar un espacio de conjuro ni componentes materiales. Debes terminar un descanso largo para volver a usar esta invocación contra la misma criatura.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "inmovilizar_monstruo",
+          "clase": "brujo",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 15
+        }
+      ]
     },
     {
       "id": "descarga_agonica",
@@ -1384,7 +1393,16 @@
       "resumen": "lanzas conjurar elemental una vez con un espacio de conjuro de brujo; vuelves a poder hacerlo tras un descanso largo",
       "descripcion": "Requisito: nivel 9 de brujo. Puedes lanzar conjurar elemental una vez usando un espacio de conjuro de brujo. No puedes volver a hacerlo hasta terminar un descanso largo.",
       "usos": 1,
-      "recarga": "largo"
+      "recarga": "largo",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "conjurar_elemental",
+          "clase": "brujo",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 9
+        }
+      ]
     },
     {
       "id": "escultor_de_la_carne",
@@ -1400,7 +1418,16 @@
       "resumen": "lanzas polimorfar una vez con un espacio de conjuro de brujo; vuelves a poder hacerlo tras un descanso largo",
       "descripcion": "Requisito: nivel 7 de brujo. Puedes lanzar polimorfar una vez usando un espacio de conjuro de brujo. No puedes volver a hacerlo hasta terminar un descanso largo.",
       "usos": 1,
-      "recarga": "largo"
+      "recarga": "largo",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "polimorfar",
+          "clase": "brujo",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 7
+        }
+      ]
     },
     {
       "id": "filo_sediento",
@@ -1633,7 +1660,16 @@
       "resumen": "lanzas confusión una vez con un espacio de conjuro de brujo; vuelves a poder hacerlo tras un descanso largo",
       "descripcion": "Requisito: nivel 7 de brujo. Puedes lanzar confusión una vez usando un espacio de conjuro de brujo. No puedes volver a hacerlo hasta terminar un descanso largo.",
       "usos": 1,
-      "recarga": "largo"
+      "recarga": "largo",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "confusion",
+          "clase": "brujo",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 7
+        }
+      ]
     },
     {
       "id": "paso_ascendente",
@@ -1718,7 +1754,16 @@
       "resumen": "lanzas compulsión una vez con un espacio de conjuro de brujo; vuelves a poder hacerlo tras un descanso largo",
       "descripcion": "Requisito: nivel 7 de brujo. Puedes lanzar compulsión una vez usando un espacio de conjuro de brujo. No puedes volver a hacerlo hasta terminar un descanso largo.",
       "usos": 1,
-      "recarga": "largo"
+      "recarga": "largo",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "compulsion",
+          "clase": "brujo",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 7
+        }
+      ]
     },
     {
       "id": "uno_con_las_sombras",
@@ -1817,7 +1862,16 @@
         "texto": "nivel 15 de brujo"
       },
       "resumen": "lanzas ojo arcano a voluntad, sin espacio de conjuro",
-      "descripcion": "Requisito: nivel 15 de brujo. Puedes lanzar ojo arcano a voluntad, sin gastar un espacio de conjuro."
+      "descripcion": "Requisito: nivel 15 de brujo. Puedes lanzar ojo arcano a voluntad, sin gastar un espacio de conjuro.",
+      "efectos": [
+        {
+          "tipo": "conjuro",
+          "id": "ojo_arcano",
+          "clase": "brujo",
+          "siempre_preparado": true,
+          "nivel_clase_minimo": 15
+        }
+      ]
     },
     {
       "id": "vista_del_diablo",
