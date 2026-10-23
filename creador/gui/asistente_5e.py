@@ -495,7 +495,9 @@ class VistaAsistente5e(ctk.CTkFrame):
                     bloqueada = (lleno or id_ in otras_fuentes) and not variable.get()
                     casilla.configure(state="disabled" if bloqueada else "normal")
                 if marco_preparados is not None:
-                    self._preparados_del_libro(marco_preparados, plan, [(i, nombres[i]) for i in ids if casillas[i][2] > 0])
+                    extra = [(i, nombres[i]) for i in self.a.libro_extra(plan.clase_id) if i in nombres and i not in ids]
+                    self._preparados_del_libro(marco_preparados, plan,
+                                               [(i, nombres[i]) for i in ids if casillas[i][2] > 0] + extra)
                 self._refrescar()
 
             for nivel, opciones in plan.disponibles.items():

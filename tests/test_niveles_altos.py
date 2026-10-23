@@ -190,3 +190,30 @@ def test_dominio_del_phb_con_conjuros_de_nivel_alto(real):
     siempre = {n for ns in f.lanzadores[0].siempre_preparados.values() for n in ns}
     assert {"Controlar agua", "Tormenta de hielo", "Ola destructora", "Plaga de insectos"} <= siempre
     assert rasgo(f, "Golpe Divino").resumen.endswith("1d8 de daño de trueno")
+
+
+def test_conjuros_gratis_en_el_libro(real):
+    sistema, catalogo = real
+    pj = personaje("mago", 6, "escuela_de_nigromancia")
+    resolver_todo(sistema, pj, catalogo)
+    libro = [c["id"] for c in catalogo.listar("conjuros", {"listas": "mago", "nivel": 1})][:16]  # 6 + 2 × 5: lleno
+    pj.conjuros["mago"] = libro
+    pj.preparados["mago"] = ["animar_a_los_muertos", *libro[:3]]
+    f = sistema.calcular(pj, catalogo)
+    lanzador = f.lanzadores[0]
+    assert "Animar a los muertos" in lanzador.libro[3]  # en el libro sin ocupar plaza
+    assert "Animar a los muertos" in lanzador.conjuros[3]  # y se puede preparar
+    assert not any("libro" in a for a in f.avisos), f.avisos
+    assert "Animar a los muertos" not in {n for ns in lanzador.siempre_preparados.values() for n in ns}
+
+
+def test_maestria_avisa_si_el_conjuro_no_esta_en_el_libro(real):
+    sistema, catalogo = real
+    pj = personaje("mago", 18, "escuela_de_evocacion")
+    resolver_todo(sistema, pj, catalogo)
+    elegido = pj.elecciones["clase:mago:18/maestria_conjuros_1"][0]
+    pj.conjuros["mago"] = []
+    assert any("Maestría sobre Conjuros (nivel 1)" in a and "no está en tu libro" in a
+               for a in sistema.calcular(pj, catalogo).avisos)
+    pj.conjuros["mago"] = [elegido]
+    assert not any("Maestría sobre Conjuros (nivel 1)" in a for a in sistema.calcular(pj, catalogo).avisos)

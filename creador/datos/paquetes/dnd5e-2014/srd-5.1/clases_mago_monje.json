@@ -206,7 +206,8 @@
                 "nombre": "Maestría sobre Conjuros (nivel 1)",
                 "resumen": "{conjuro}: si lo tienes preparado, lo lanzas a nivel 1 sin gastar espacio de conjuro",
                 "descripcion": "Escoges un conjuro de mago de nivel 1 y otro de nivel 2 de tu libro de conjuros. Si los tienes preparados, puedes lanzarlos a su nivel más bajo sin gastar un espacio de conjuro; para lanzarlos a un nivel superior gastas un espacio de forma normal. Estudiando 8 horas puedes cambiar uno o ambos por otros del mismo nivel.",
-                "conjuro": "$opcion"
+                "conjuro": "$opcion",
+                "en_libro": "mago"
               }
             ]
           },
@@ -227,7 +228,8 @@
                 "nombre": "Maestría sobre Conjuros (nivel 2)",
                 "resumen": "{conjuro}: si lo tienes preparado, lo lanzas a nivel 2 sin gastar espacio de conjuro",
                 "descripcion": "Escoges un conjuro de mago de nivel 1 y otro de nivel 2 de tu libro de conjuros. Si los tienes preparados, puedes lanzarlos a su nivel más bajo sin gastar un espacio de conjuro; para lanzarlos a un nivel superior gastas un espacio de forma normal. Estudiando 8 horas puedes cambiar uno o ambos por otros del mismo nivel.",
-                "conjuro": "$opcion"
+                "conjuro": "$opcion",
+                "en_libro": "mago"
               }
             ]
           }
@@ -264,7 +266,8 @@
                 "descripcion": "Escoges dos conjuros de mago de nivel 3 de tu libro como conjuros característicos: siempre los tienes preparados, no cuentan para el total que preparas y puedes lanzar cada uno a nivel 3 sin gastar un espacio de conjuro. Después debes terminar un descanso corto o largo para volver a hacerlo con ese conjuro. Para lanzarlos a un nivel superior gastas un espacio de forma normal.",
                 "conjuro": "$opcion",
                 "usos": 1,
-                "recarga": "corto"
+                "recarga": "corto",
+                "en_libro": "mago"
               }
             ]
           }

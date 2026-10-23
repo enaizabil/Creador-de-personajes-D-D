@@ -634,9 +634,14 @@ class Asistente5e:
         if clase_id in self.personaje.preparados:
             self.elegir_preparados(clase_id, self.personaje.preparados[clase_id])
 
+    def libro_extra(self, clase_id: str) -> list[str]:
+        """Conjuros que un rasgo añade gratis al libro (Siervos No Muertos…): se pueden preparar."""
+        efectos = [a.efecto for a in self.sistema.resolver(self.personaje, self.catalogo).aplicados if a.tipo == "conjuro"]
+        return motor.libro_por_efectos(efectos).get(clase_id, [])
+
     def elegir_preparados(self, clase_id: str, ids: list[str]) -> None:
         """Modo libro: los preparados, siempre de entre los del libro."""
-        libro = set(self.personaje.conjuros.get(clase_id, []))
+        libro = set(self.personaje.conjuros.get(clase_id, [])) | set(self.libro_extra(clase_id))
         self.personaje.preparados[clase_id] = [i for i in dict.fromkeys(ids) if i in libro]
 
     # ── detalles ───────────────────────────────────────────────────────────

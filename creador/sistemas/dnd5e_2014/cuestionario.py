@@ -290,6 +290,7 @@ class Cuestionario5e:
         self._completar_elecciones()
         self._equipo()
         self._conjuros()
+        self._ajustar_al_libro()
         self._detalles()
         self.personaje.extra.setdefault("cuestionario", {})["generado"] = True
 
@@ -523,6 +524,21 @@ class Cuestionario5e:
             a.elegir_conjuros(plan.clase_id, trucos + libro)
             del_libro = {nivel: [i for i in ids if i in libro] for nivel, ids in por_nivel.items()}
             a.elegir_preparados(plan.clase_id, self._repartir(del_libro, plan.limite_conjuros or 0))
+
+    def _ajustar_al_libro(self) -> None:
+        """Maestría sobre Conjuros y Conjuros Característicos: deben ser conjuros del libro, que se elige después."""
+        resolucion = self.asistente.sistema.resolver(self.personaje, self.catalogo)
+        for eleccion in resolucion.elecciones:
+            clase = next((e.get("en_libro") for e in eleccion.aplicar if isinstance(e, dict) and e.get("en_libro")), None)
+            if not clase:
+                continue
+            libro = set(self.personaje.conjuros.get(clase, []))
+            quedan = [i for i in eleccion.seleccion if i in libro]
+            if len(quedan) == len(eleccion.seleccion) == eleccion.elegir:
+                continue
+            candidatos = [o.id for o in eleccion.opciones if o.id in libro and o.id not in quedan]
+            self._rng(eleccion.clave).shuffle(candidatos)
+            self.asistente.elegir(eleccion.clave, quedan + candidatos[: eleccion.elegir - len(quedan)])
 
     def _libro(self, clase_id: str, por_nivel: dict[int, list[str]]) -> list[str]:
         """Libro del mago: cada conjuro ganado al subir es del nivel más alto que permitía ese nivel de clase."""

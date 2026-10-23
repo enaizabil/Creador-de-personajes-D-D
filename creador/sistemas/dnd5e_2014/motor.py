@@ -152,8 +152,10 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
 
     _avisos_competencia_armadura(armadura, escudo, competencias["armadura"], avisos)
     pg_maximos, dados_golpe = _puntos_golpe(personaje, catalogo, mods["con"], de_tipo("pg_maximos"), avisos)
+    libro_extra = libro_por_efectos(de_tipo("conjuro"))
     espacios, pacto, lanzadores = _magia(personaje, catalogo, mods, competencia, avisos,
-                                         conocidos_por_efectos(de_tipo("conjuro")))
+                                         conocidos_por_efectos(de_tipo("conjuro")), libro_extra)
+    _avisos_en_libro(aplicables, personaje, catalogo, libro_extra, avisos)
     conjuros_innatos = _repartir_conjuros_de_efectos(de_tipo("conjuro"), lanzadores, catalogo, avisos)
     niveles_clase = _niveles_por_clase(personaje, catalogo)
     _avisos_requisitos(personaje, catalogo, aplicables, puntuaciones, competencias,
@@ -459,6 +461,28 @@ def _bonificadores_salvacion(efectos: list[dict], contexto: dict, avisos: list[s
     return resultado
 
 
+def libro_por_efectos(efectos: list[dict]) -> dict[str, list[str]]:
+    """Conjuros que un rasgo añade gratis al libro de una clase («al_libro»: Siervos No Muertos, Cambiaformas)."""
+    resultado: dict[str, list[str]] = defaultdict(list)
+    for efecto in efectos:
+        if efecto.get("al_libro") and efecto.get("clase") and efecto["id"] not in resultado[efecto["clase"]]:
+            resultado[efecto["clase"]].append(efecto["id"])
+    return dict(resultado)
+
+
+def _avisos_en_libro(aplicables: list[EfectoAplicado], personaje: Personaje, catalogo: Catalogo,
+                     libro_extra: dict[str, list[str]], avisos: list[str]) -> None:
+    """Rasgos que exigen que su conjuro esté en el libro («en_libro»: Maestría sobre Conjuros, característicos)."""
+    for aplicado in aplicables:
+        efecto = aplicado.efecto
+        clase = efecto.get("en_libro")
+        if aplicado.tipo != "rasgo" or not clase or not efecto.get("conjuro"):
+            continue
+        if efecto["conjuro"] not in [*personaje.conjuros.get(clase, []), *libro_extra.get(clase, [])]:
+            nombre = (catalogo.obtener("conjuros", efecto["conjuro"]) or {}).get("nombre", efecto["conjuro"])
+            avisos.append(f"{efecto['nombre']}: {nombre} no está en tu libro de conjuros")
+
+
 def conocidos_por_efectos(efectos: list[dict]) -> dict[str, int]:
     """Conjuros que llegan por efectos pero cuentan para los conocidos de su clase (Secretos Mágicos del bardo)."""
     resultado: dict[str, int] = defaultdict(int)
@@ -702,7 +726,7 @@ def planes_de_conjuros(personaje: Personaje, catalogo: Catalogo, mods: dict[str,
 
 
 def _magia(personaje: Personaje, catalogo: Catalogo, mods: dict[str, int], competencia: int,
-           avisos: list[str], conocidos_extra: dict[str, int]
+           avisos: list[str], conocidos_extra: dict[str, int], libro_extra: dict[str, list[str]] | None = None
            ) -> tuple[dict[int, int], dict[str, int] | None, list[Lanzador]]:
     lanzadores: list[Lanzador] = []
     niveles_espacios: list[tuple[int, dict]] = []  # (nivel de clase, configuración) sin magia de pacto
@@ -725,7 +749,7 @@ def _magia(personaje: Personaje, catalogo: Catalogo, mods: dict[str, int], compe
         lanzador = Lanzador(clase["id"], clase["nombre"], car, 8 + competencia + mods[car], competencia + mods[car],
                             nivel_maximo)
         _conjuros_elegidos(lanzador, entrada, clase, subclase, config, personaje, catalogo, mods[car], avisos,
-                           conocidos_extra.get(clase["id"], 0))
+                           conocidos_extra.get(clase["id"], 0), (libro_extra or {}).get(clase["id"], []))
         lanzadores.append(lanzador)
 
     if len(niveles_espacios) == 1:
@@ -747,7 +771,7 @@ def _nivel_multiclase(nivel: int, config: dict) -> int:
 
 def _conjuros_elegidos(lanzador: Lanzador, entrada: EntradaClase, clase: dict, subclase: dict | None, config: dict,
                        personaje: Personaje, catalogo: Catalogo, mod: int, avisos: list[str],
-                       conocidos_extra: int = 0) -> None:
+                       conocidos_extra: int = 0, libro_extra: list[str] | None = None) -> None:
     listas, adicionales = _listas_validas(clase, subclase, config)
     trucos = conjuros = 0
     vistos: set[str] = set()
@@ -778,6 +802,12 @@ def _conjuros_elegidos(lanzador: Lanzador, entrada: EntradaClase, clase: dict, s
 
     limite_trucos, limite = _limites(config, entrada.nivel, mod, conocidos_extra)
     if config.get("libro"):
+        # Los que un rasgo añade gratis al libro están en él pero no cuentan para su límite.
+        for id_ in libro_extra or []:
+            conjuro = catalogo.obtener("conjuros", id_)
+            if conjuro and id_ not in vistos:
+                lanzador.libro.setdefault(conjuro["nivel"], []).append(conjuro["nombre"])
+                vistos.add(id_)
         maximo_libro = limite_libro(config, entrada.nivel)
         if conjuros > maximo_libro:
             avisos.append(f"{clase['nombre']}: {conjuros} conjuros en el libro, máximo {maximo_libro}")
@@ -812,6 +842,8 @@ def _repartir_conjuros_de_efectos(efectos: list[dict], lanzadores: list[Lanzador
             avisos.append(f"Conjuro desconocido «{efecto['id']}»")
             continue
         lanzador = por_clase.get(efecto.get("clase", ""))
+        if efecto.get("al_libro"):
+            continue  # va al libro (ver _conjuros_elegidos), no a los siempre preparados
         if lanzador is not None:
             nombres = lanzador.siempre_preparados.setdefault(conjuro["nivel"], [])
             if conjuro["nombre"] not in nombres:

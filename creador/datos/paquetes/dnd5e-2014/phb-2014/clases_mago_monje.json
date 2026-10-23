@@ -320,6 +320,12 @@
         ],
         "6": [
           {
+            "tipo": "conjuro",
+            "id": "animar_a_los_muertos",
+            "clase": "mago",
+            "al_libro": true
+          },
+          {
             "tipo": "rasgo",
             "nombre": "Siervos No Muertos",
             "resumen": "animar a los muertos alza un cadáver más; tus muertos vivientes nigrománticos tienen +{nivel_clase} PG máximos y suman +{competencia} al daño de sus armas",
@@ -522,6 +528,12 @@
           }
         ],
         "10": [
+          {
+            "tipo": "conjuro",
+            "id": "polimorfar",
+            "clase": "mago",
+            "al_libro": true
+          },
           {
             "tipo": "rasgo",
             "nombre": "Cambiaformas",
