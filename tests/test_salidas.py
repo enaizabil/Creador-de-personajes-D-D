@@ -94,3 +94,69 @@ def test_texto_apto_para_el_pdf():
 
     assert _t("−1 · «Ñandú» — áéíóú") == "-1 · «Ñandú» — áéíóú"
     _t("ŁŒ→≥ x").encode("cp1252")  # todo lo que queda se puede escribir con las fuentes estándar
+
+
+def _leer_formulario(ruta):
+    from pypdf import PdfReader
+
+    lector = PdfReader(str(ruta))
+    return lector, {nombre: campo.get("/V") for nombre, campo in lector.get_fields().items()}
+
+
+def test_plantilla_vacia_con_los_campos_esperados():
+    pypdf = pytest.importorskip("pypdf")
+    from creador.sistemas.dnd5e_2014.salidas.pdf_oficial import PLANTILLA, RENGLONES_CONJURO
+
+    lector = pypdf.PdfReader(str(PLANTILLA))
+    campos = lector.get_fields()
+    assert len(lector.pages) == 5
+    assert all(c.get("/V") in (None, "", "/Off") for c in campos.values())  # sin datos de nadie
+    necesarios = {"CharacterName", "ClassLevel", "STRscore", "Stealth", "stealthPROF", "FeaturesTraits", "Feat+Traits",
+                  "Backstory", "Backstory 3", "SpellSaveDC", "Spells 1", "Spells 3"}
+    necesarios |= {f"Spells{n}" for renglones in RENGLONES_CONJURO.values() for n in renglones}
+    assert necesarios <= set(campos)
+
+
+@pytest.mark.parametrize("clase", ["picaro", "mago", "brujo", "monje"])
+def test_hoja_oficial_rellena(entorno, clase, tmp_path):
+    pytest.importorskip("pypdf")
+    from creador.sistemas.dnd5e_2014.salidas.pdf_oficial import rellenar_hoja_oficial
+
+    a = personaje(entorno, clase)
+    a.establecer_detalle("historia", "Primer párrafo de una historia muy larga. " * 60 + "\n\nY otro más.")
+    ficha = a.ficha()
+    ruta = tmp_path / "oficial.pdf"
+    rellenar_hoja_oficial(a, ruta)
+    lector, valores = _leer_formulario(ruta)
+    assert valores["CharacterName"] == valores["CharacterName 2"] == f"Prueba {clase}"
+    assert valores["ClassLevel"] == ficha.clase_y_nivel and valores["Race"] == ficha.raza
+    assert valores["DEXscore"] == str(ficha.caracteristicas["des"].puntuacion)
+    assert valores["HPMax"] == str(ficha.pg_maximos) and valores["AC"] == str(ficha.ca)
+    sigilo = ficha.habilidades["sigilo"]
+    assert valores["Stealth"] == f"{sigilo.valor:+d}"  # con la pericia ya sumada
+    assert (valores["stealthPROF"] == "/Yes") == sigilo.competente
+    assert "/CO" not in lector.trailer["/Root"]["/AcroForm"]
+    for campo in lector.get_fields().values():
+        acciones = campo.get("/AA")
+        assert acciones is None or "/C" not in acciones.get_object()  # sin cálculos que pisen los valores
+    assert valores.get("Backstory 1")  # la historia larga sigue en la página 5
+    if ficha.lanzadores:
+        assert valores["SpellSaveDC"] == str(ficha.lanzadores[0].cd)
+        assert valores["Spells 1"]  # descripción de conjuros en la página 4
+    if clase == "mago":
+        libro = sum(map(len, ficha.lanzadores[0].libro.values()))
+        preparados = [n for n, v in valores.items() if n.startswith("Check") and v == "/Yes"]
+        assert len(preparados) == sum(len(v) for nivel, v in ficha.lanzadores[0].conjuros.items() if nivel > 0) < libro
+    if clase == "monje":
+        assert valores.get("Feat+Traits")  # los rasgos que no caben siguen en la página 2
+
+
+def test_partir_respeta_el_ancho():
+    pytest.importorskip("reportlab")
+    from reportlab.pdfbase.pdfmetrics import stringWidth
+
+    from creador.sistemas.dnd5e_2014.salidas.pdf_oficial import _partir
+
+    renglones = _partir("Ventaja en las salvaciones para evitar que te hechicen; la magia no puede dormirte.\nOtra.", 80, 7)
+    assert renglones[-1] == "Otra." and len(renglones) > 2
+    assert all(stringWidth(r, "Helvetica", 7) <= 80 for r in renglones)

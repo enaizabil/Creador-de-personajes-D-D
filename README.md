@@ -2,7 +2,7 @@
 
 Programa portable para crear personajes de rol, con dos modos (normal y sencillo) y contenido ampliable por paquetes. Primer sistema: **D&D 5ª edición (2014)**.
 
-> **Estado: fases 1 a 4 de 6.** Núcleo, motor de reglas de 5e, datos de 5e 2014 (SRD + Manual del Jugador + Guía del DM) hasta nivel 5 e interfaz gráfica con los dos modos: preguntas de situaciones cotidianas (sencillo) y asistente paso a paso (normal).
+> **Estado: fases 1 a 5 de 6.** Núcleo, motor de reglas de 5e, datos de 5e 2014 (SRD + Manual del Jugador + Guía del DM) hasta nivel 5 e interfaz gráfica con los dos modos: preguntas de situaciones cotidianas (sencillo) y asistente paso a paso (normal), y salidas en PDF (hoja oficial editable rellena y réplica) y Markdown para Obsidian/Nivel20.
 
 ## Hoja de ruta
 
@@ -12,13 +12,13 @@ Programa portable para crear personajes de rol, con dos modos (normal y sencillo
 | 2 | Datos 5e 2014: SRD 5.1 + PHB + Guía del DM (razas, clases, trasfondos, dotes, equipo, conjuros 0-3) hasta nivel 5 | ✅ (niveles 6-20 pendientes; dudas en `docs/dudas-contenido.md`) |
 | 3 | Modo normal: asistente por pasos con selector de sistema y paquetes (CustomTkinter) | ✅ (sin multiclase en el asistente) |
 | 4 | Modo sencillo: cuestionario de situaciones → raza, clase, trasfondo, características y habilidades | ✅ (17 preguntas; el personaje se retoca luego en el modo normal) |
-| 5 | Salidas: JSON, réplica de la ficha oficial, rellenado del PDF oficial y guía para Nivel20 | 🟡 JSON, réplica en PDF (A4) y nota de Obsidian con la guía de Nivel20 hechas; falta rellenar el PDF oficial |
+| 5 | Salidas: JSON, réplica de la ficha oficial, rellenado del PDF oficial y guía para Nivel20 | ✅ (hoja editable en español rellena, réplica en A4 y nota de Obsidian con la guía de Nivel20) |
 | 6 | Ejecutables para Windows, macOS y Linux (PyInstaller + GitHub Actions) y gestor de paquetes | ⏳ |
 
 ## Requisitos
 
 - Python 3.10 o superior con Tkinter (incluido en los instaladores de python.org; en Debian/Ubuntu: `apt install python3-tk`).
-- Interfaz y ficha en PDF: `pip install -r requirements.txt` (CustomTkinter y reportlab). El núcleo y el resto de la línea de órdenes no tienen dependencias externas.
+- Interfaz y salidas en PDF: `pip install -r requirements.txt` (CustomTkinter, reportlab y pypdf). El núcleo y el resto de la línea de órdenes no tienen dependencias externas.
 - Para los tests: `pip install pytest`.
 
 ## Uso
@@ -27,7 +27,7 @@ Programa portable para crear personajes de rol, con dos modos (normal y sencillo
 python -m creador                       # abre la interfaz gráfica (también: python -m creador gui)
 python -m creador paquetes              # lista los paquetes instalados
 python -m creador ficha personaje.json  # calcula y muestra la ficha de un personaje
-python -m creador exportar personaje.json [--pdf ficha.pdf] [--nota nota.md]  # ficha en PDF y nota para Nivel20
+python -m creador exportar personaje.json [--oficial hoja.pdf] [--pdf ficha.pdf] [--nota nota.md]  # salidas
 python -m pytest                        # ejecuta los tests
 ```
 

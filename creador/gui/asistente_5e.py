@@ -138,7 +138,8 @@ class VistaAsistente5e(ctk.CTkFrame):
 
     def exportar(self, formato: str) -> None:
         """Guarda la ficha en PDF (réplica de la oficial) o la nota para Obsidian con la guía de Nivel20."""
-        extension, tipo = {"pdf": (".pdf", "Ficha en PDF"), "nota": (".md", "Nota de Obsidian")}[formato]
+        extension, tipo = {"pdf": (".pdf", "Ficha en PDF"), "oficial": (".pdf", "Hoja oficial rellenable"),
+                           "nota": (".md", "Nota de Obsidian")}[formato]
         ruta = filedialog.asksaveasfilename(defaultextension=extension, filetypes=[(tipo, f"*{extension}")],
                                             initialfile=f"{self.a.personaje.nombre or 'personaje'}{extension}")
         if not ruta:
@@ -148,11 +149,15 @@ class VistaAsistente5e(ctk.CTkFrame):
             if formato == "pdf":
                 from ..sistemas.dnd5e_2014.salidas.ficha_pdf import generar_ficha_pdf
                 generar_ficha_pdf(self.a, ruta)
+            elif formato == "oficial":
+                from ..sistemas.dnd5e_2014.salidas.pdf_oficial import rellenar_hoja_oficial
+                rellenar_hoja_oficial(self.a, ruta)
             else:
                 from ..sistemas.dnd5e_2014.salidas.nota import nota_obsidian
                 Path(ruta).write_text(nota_obsidian(self.a), encoding="utf-8")
         except ImportError as exc:
-            messagebox.showerror("Falta una dependencia", f"No se puede generar el PDF: {exc}\n(pip install reportlab)")
+            messagebox.showerror("Falta una dependencia",
+                                 f"No se puede generar el PDF: {exc}\n(pip install -r requirements.txt)")
             return
         except OSError as exc:
             messagebox.showerror("No se puede guardar", f"{ruta}\n\n{exc}")
@@ -527,18 +532,23 @@ class VistaAsistente5e(ctk.CTkFrame):
         ficha = self.a.ficha()
         if ficha.avisos:
             ListaAvisos(master, ficha.avisos, "Revisa antes de jugar").pack(fill="x", padx=10, pady=(0, 6))
-        caja = ctk.CTkTextbox(master, height=520, wrap="word", font=ctk.CTkFont(family="Courier", size=13))
-        caja.insert("1.0", resumen_ficha(ficha))
-        caja.configure(state="disabled")
-        caja.pack(fill="both", expand=True, padx=10, pady=8)
+        # Las exportaciones arriba, a la vista; el resumen debajo.
         botones = ctk.CTkFrame(master, fg_color="transparent")
         botones.pack(anchor="w", padx=10, pady=(4, 2))
-        ctk.CTkButton(botones, text="Ficha en PDF…", width=170, command=lambda: self.exportar("pdf")).pack(side="left")
+        ctk.CTkButton(botones, text="Hoja oficial (PDF editable)…", width=210,
+                      command=lambda: self.exportar("oficial")).pack(side="left")
+        ctk.CTkButton(botones, text="Ficha en PDF…", width=140,
+                      command=lambda: self.exportar("pdf")).pack(side="left", padx=(10, 0))
         ctk.CTkButton(botones, text="Nota y guía para Nivel20…", width=210,
                       command=lambda: self.exportar("nota")).pack(side="left", padx=10)
         ctk.CTkButton(botones, text="Personaje (JSON)…", width=160, fg_color="transparent", border_width=1,
                       text_color=("gray10", "gray90"), command=self.guardar).pack(side="left")
-        texto_ajustado(master, "La ficha en PDF reproduce la hoja oficial (A4, 3 páginas). La nota es para Obsidian: "
+        texto_ajustado(master, "La hoja oficial es la editable en español, rellena (se puede seguir editando). La ficha en "
+                               "PDF es una réplica en A4 que no depende de la plantilla. La nota es para Obsidian: "
                                "propiedades de la plantilla de PJ, ficha resumida y los pasos para crearlo en Nivel20. "
                                "El JSON sirve para volver a abrirlo aquí.", 760,
                        text_color="gray").pack(anchor="w", padx=10, pady=(4, 0))
+        caja = ctk.CTkTextbox(master, height=480, wrap="word", font=ctk.CTkFont(family="Courier", size=13))
+        caja.insert("1.0", resumen_ficha(ficha))
+        caja.configure(state="disabled")
+        caja.pack(fill="both", expand=True, padx=10, pady=8)

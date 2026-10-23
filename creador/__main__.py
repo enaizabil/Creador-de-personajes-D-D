@@ -4,7 +4,7 @@
     python -m creador paquetes
     python -m creador validar srd-5.1 phb-2014
     python -m creador ficha personaje.json
-    python -m creador exportar personaje.json [--pdf ficha.pdf] [--nota nota.md]
+    python -m creador exportar personaje.json [--oficial hoja.pdf] [--pdf ficha.pdf] [--nota nota.md]
 """
 from __future__ import annotations
 
@@ -65,7 +65,7 @@ def _orden_ficha(archivo: str) -> int:
     return 0
 
 
-def _orden_exportar(archivo: str, pdf: str | None, nota: str | None) -> int:
+def _orden_exportar(archivo: str, pdf: str | None, nota: str | None, oficial: str | None = None) -> int:
     personaje = Personaje.cargar(archivo)
     try:
         sistema, catalogo, errores = abrir_catalogo(personaje.sistema, personaje.paquetes)
@@ -74,9 +74,9 @@ def _orden_exportar(archivo: str, pdf: str | None, nota: str | None) -> int:
         return 1
     for error in errores:
         print(f"ERROR DE PAQUETE: {error}", file=sys.stderr)
-    if pdf is None and nota is None:  # sin indicar nada, las dos junto al JSON
+    if pdf is None and nota is None and oficial is None:  # sin indicar nada, las tres junto al JSON
         base = Path(archivo).with_suffix("")
-        pdf, nota = f"{base}.pdf", f"{base}.md"
+        pdf, nota, oficial = f"{base}.pdf", f"{base}.md", f"{base} (hoja oficial).pdf"
     asistente = sistema.crear_asistente(personaje, catalogo)
     if nota:
         from .sistemas.dnd5e_2014.salidas.nota import nota_obsidian
@@ -90,6 +90,14 @@ def _orden_exportar(archivo: str, pdf: str | None, nota: str | None) -> int:
             return 1
         generar_ficha_pdf(asistente, pdf)
         print(f"Ficha en PDF: {pdf}")
+    if oficial:
+        try:
+            from .sistemas.dnd5e_2014.salidas.pdf_oficial import rellenar_hoja_oficial
+        except ImportError as exc:
+            print(f"ERROR: no se puede rellenar la hoja oficial ({exc}). Instala pypdf.", file=sys.stderr)
+            return 1
+        rellenar_hoja_oficial(asistente, oficial)
+        print(f"Hoja oficial rellena: {oficial}")
     return 0
 
 
@@ -119,6 +127,7 @@ def main(argv: list[str] | None = None) -> int:
     exportar.add_argument("archivo")
     exportar.add_argument("--pdf", help="ruta del PDF (réplica de la hoja oficial)")
     exportar.add_argument("--nota", help="ruta de la nota Markdown con la guía de Nivel20")
+    exportar.add_argument("--oficial", help="ruta de la hoja oficial editable rellena")
     args = parser.parse_args(argv)
 
     if args.orden in (None, "gui"):
@@ -130,7 +139,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.orden == "ficha":
         return _orden_ficha(args.archivo)
     if args.orden == "exportar":
-        return _orden_exportar(args.archivo, args.pdf, args.nota)
+        return _orden_exportar(args.archivo, args.pdf, args.nota, args.oficial)
     parser.print_help()
     return 0
 
