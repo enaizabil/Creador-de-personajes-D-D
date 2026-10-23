@@ -266,3 +266,46 @@ def test_generar_con_reparto_elegido(entorno):
     assert [(e.clase, e.nivel) for e in q.personaje.clases] == [("paladin", 7), ("brujo", 3)]
     assert all(e.subclase for e in q.personaje.clases)
     assert q.asistente.ficha().avisos == []
+
+
+@pytest.mark.parametrize("clase, subclase", [("bardo", None), ("brujo", None), ("clerigo", None), ("druida", None),
+                                             ("explorador", None), ("guerrero", "caballero_arcano"), ("hechicero", None),
+                                             ("mago", None), ("paladin", None), ("picaro", "embaucador_arcano")])
+def test_conjuros_de_nivel_alto_salen_de_las_recomendaciones(entorno, clase, subclase):
+    """Un conjuro de nivel 3 o más no recomendado solo entra si ya están todos los recomendados de su nivel."""
+    sistema, catalogo = entorno
+    q = nuevo(entorno)
+    responder_al_azar(q, clase)
+    if subclase:  # la única subclase lanzadora de la clase
+        q._mejor_subclase = lambda _clase: subclase
+    q.generar(nivel=20, raza="humano", subraza="humano_estandar", clase=clase)
+    recomendados = catalogo.obtener("recomendaciones", clase)["conjuros"]
+    plan = next(p for p in q.asistente.planes_conjuros() if p.clase_id == clase)
+    elegidos = q.personaje.conjuros[clase]
+    altos = 0
+    for id_ in elegidos:
+        nivel = catalogo.obtener("conjuros", id_)["nivel"]
+        if nivel < 3:
+            continue
+        altos += 1
+        if id_ not in recomendados:
+            disponibles = {i for i, _ in plan.disponibles.get(nivel, [])}
+            olvidados = [r for r in recomendados if r in disponibles and r not in elegidos]
+            assert not olvidados, (id_, olvidados)
+    assert altos, elegidos
+
+
+def test_maestria_y_caracteristicos_entran_en_el_libro_sin_desplazar_recomendados(entorno):
+    sistema, catalogo = entorno
+    q = nuevo(entorno)
+    responder_al_azar(q, "mago")
+    q.generar(nivel=20, raza="humano", subraza="humano_estandar", clase="mago")
+    libro, preparados = q.personaje.conjuros["mago"], q.personaje.preparados["mago"]
+    caracteristicos = q.personaje.elecciones["clase:mago:20/conjuros_caracteristicos"]
+    for clave in ("clase:mago:18/maestria_conjuros_1", "clase:mago:18/maestria_conjuros_2"):
+        assert set(q.personaje.elecciones[clave]) <= set(libro)
+    assert set(caracteristicos) <= set(libro)
+    assert not set(caracteristicos) & set(preparados)  # siempre preparados: no gastan preparación
+    recomendados = catalogo.obtener("recomendaciones", "mago")["conjuros"]
+    assert {"bola_de_fuego", "contrahechizo"} <= set(libro) & set(recomendados)
+    assert not [a for a in sistema.calcular(q.personaje, catalogo).avisos if "libro" in a]

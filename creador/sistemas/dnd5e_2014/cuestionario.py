@@ -509,11 +509,14 @@ class Cuestionario5e:
         for plan in a.planes_conjuros():
             recomendados = self._recomendados("conjuros")
             rng = self._rng(f"conjuros/{plan.clase_id}")
+            # Maestría sobre Conjuros y Conjuros Característicos ya están elegidos y tienen que ir al libro.
+            fijos = self._exigidos_en_libro(plan.clase_id) if plan.modo == "libro" else set()
 
-            def orden(nivel: int, plan=plan, recomendados=recomendados, rng=rng) -> list[str]:
-                ids = [i for i, _ in plan.disponibles.get(nivel, []) if i not in otras]
+            def orden(nivel: int, plan=plan, recomendados=recomendados, rng=rng, fijos=fijos) -> list[str]:
+                ids = [i for i, _ in plan.disponibles.get(nivel, []) if i not in otras or i in fijos]
                 rng.shuffle(ids)
-                return sorted(ids, key=lambda i: recomendados.index(i) if i in recomendados else len(recomendados))
+                return sorted(ids, key=lambda i: (i not in fijos,
+                                                  recomendados.index(i) if i in recomendados else len(recomendados)))
 
             trucos = orden(0)[: plan.limite_trucos or 0]
             por_nivel = {nivel: orden(nivel) for nivel in plan.disponibles if nivel > 0}
@@ -522,8 +525,16 @@ class Cuestionario5e:
                 continue
             libro = self._libro(plan.clase_id, por_nivel)
             a.elegir_conjuros(plan.clase_id, trucos + libro)
-            del_libro = {nivel: [i for i in ids if i in libro] for nivel, ids in por_nivel.items()}
+            # Los que ya están siempre preparados (Característicos) no gastan preparación.
+            del_libro = {nivel: [i for i in ids if i in libro and i not in otras] for nivel, ids in por_nivel.items()}
             a.elegir_preparados(plan.clase_id, self._repartir(del_libro, plan.limite_conjuros or 0))
+
+    def _exigidos_en_libro(self, clase_id: str) -> set[str]:
+        """Conjuros elegidos en rasgos que exigen tenerlos en el libro de esa clase."""
+        resolucion = self.asistente.sistema.resolver(self.personaje, self.catalogo)
+        return {i for eleccion in resolucion.elecciones
+                if any(isinstance(e, dict) and e.get("en_libro") == clase_id for e in eleccion.aplicar)
+                for i in eleccion.seleccion}
 
     def _ajustar_al_libro(self) -> None:
         """Maestría sobre Conjuros y Conjuros Característicos: deben ser conjuros del libro, que se elige después."""

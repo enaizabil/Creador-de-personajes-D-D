@@ -13,7 +13,16 @@
                    "palabra_de_curacion", "susurros_discordantes", "dormir", "hechizar_persona", "heroismo", "curar_heridas",
                    "fuego_feerico", "detectar_magia",
                    "inmovilizar_persona", "invisibilidad", "sugestion", "calmar_emociones", "restablecimiento_menor", "hacer_anicos",
-                   "patron_hipnotico", "disipar_magia", "terror", "recado"]
+                   "patron_hipnotico", "disipar_magia", "terror", "recado",
+                   "invisibilidad_mejorada", "polimorfar", "puerta_dimensional", "libertad_de_movimiento", "confusion",
+                   "compulsion",
+                   "curar_heridas_en_masa", "inmovilizar_monstruo", "restablecimiento_mayor", "animar_objetos",
+                   "dominar_persona", "alzar_a_los_muertos", "escudrinar",
+                   "sugestion_en_masa", "baile_irresistible", "vision_veraz", "mal_de_ojo", "encontrar_el_camino",
+                   "teletransporte", "regenerar", "resurreccion", "jaula_de_fuerza", "excursion_eterea",
+                   "proyectar_imagen",
+                   "mente_en_blanco", "labia", "dominar_monstruo", "palabra_de_poder_aturdir", "romper_la_mente",
+                   "polimorfar_verdadero", "palabra_de_poder_sanar", "presagio", "palabra_de_poder_matar"]
     },
     {
       "id": "brujo",
@@ -21,7 +30,14 @@
       "conjuros": ["descarga_sobrenatural", "prestidigitacion", "mano_de_mago", "guardia_de_cuchillas",
                    "maleficio", "armadura_de_agathys", "reprension_infernal", "hechizar_persona", "retirada_expeditiva",
                    "paso_brumoso", "inmovilizar_persona", "invisibilidad", "oscuridad", "sugestion",
-                   "contrahechizo", "hambre_de_hadar", "terror", "volar", "disipar_magia"],
+                   "contrahechizo", "hambre_de_hadar", "terror", "volar", "disipar_magia",
+                   "destierro", "puerta_dimensional", "marchitar", "terreno_alucinatorio",
+                   "inmovilizar_monstruo", "escudrinar", "ensueno", "contactar_con_otro_plano",
+                   "mal_de_ojo", "circulo_de_muerte", "sugestion_en_masa", "vision_veraz", "puerta_arcana",
+                   "conjurar_feerico",
+                   "dedo_de_la_muerte", "desplazamiento_entre_planos", "jaula_de_fuerza", "excursion_eterea",
+                   "palabra_de_poder_aturdir", "dominar_monstruo", "labia", "romper_la_mente", "semiplano",
+                   "polimorfar_verdadero", "presagio", "palabra_de_poder_matar", "cautiverio", "proyeccion_astral"],
       "opciones": ["descarga_agonica", "armadura_de_sombras", "vista_del_diablo", "mascara_de_los_mil_rostros",
                    "vigor_infernal", "pacto_de_la_cadena"]
     },
@@ -32,7 +48,15 @@
                    "curar_heridas", "palabra_de_curacion", "bendicion", "saeta_guia", "escudo_de_fe", "santuario",
                    "orden_imperiosa", "detectar_magia", "perdicion",
                    "arma_espiritual", "auxilio", "restablecimiento_menor", "inmovilizar_persona", "plegaria_de_curacion", "silencio",
-                   "espiritus_guardianes", "revivir", "disipar_magia", "palabra_de_curacion_en_masa", "senal_de_esperanza"]
+                   "espiritus_guardianes", "revivir", "disipar_magia", "palabra_de_curacion_en_masa", "senal_de_esperanza",
+                   "guardian_de_la_fe", "destierro", "guarda_contra_la_muerte", "libertad_de_movimiento", "adivinacion",
+                   "curar_heridas_en_masa", "restablecimiento_mayor", "alzar_a_los_muertos", "golpe_flamigero",
+                   "plaga_de_insectos", "disipar_el_bien_y_el_mal",
+                   "curar", "palabra_de_regreso", "festin_de_heroes", "barrera_de_cuchillas", "danar", "vision_veraz",
+                   "resurreccion", "regenerar", "desplazamiento_entre_planos", "palabra_divina", "conjurar_celestial",
+                   "tormenta_de_fuego",
+                   "aura_sagrada", "campo_antimagia", "terremoto", "controlar_el_clima",
+                   "curar_en_masa", "resurreccion_verdadera", "portal", "proyeccion_astral"]
     },
     {
       "id": "druida",
@@ -42,7 +66,16 @@
                    "hablar_con_los_animales", "detectar_magia",
                    "rayo_de_luna", "piel_robliza", "pasar_sin_rastro", "esfera_de_llamas", "crecimiento_espinoso",
                    "restablecimiento_menor",
-                   "llamar_al_relampago", "conjurar_animales", "crecimiento_vegetal", "disipar_magia"]
+                   "llamar_al_relampago", "conjurar_animales", "crecimiento_vegetal", "disipar_magia",
+                   "polimorfar", "conjurar_seres_del_bosque", "muro_de_fuego", "libertad_de_movimiento", "piel_petrea",
+                   "tormenta_de_hielo", "dominar_bestia",
+                   "curar_heridas_en_masa", "restablecimiento_mayor", "conjurar_elemental", "muro_de_piedra",
+                   "reencarnar", "plaga_de_insectos", "paso_arboreo",
+                   "festin_de_heroes", "rayo_solar", "curar", "muro_de_espinas", "conjurar_feerico",
+                   "viajar_mediante_plantas",
+                   "regenerar", "tormenta_de_fuego", "invertir_la_gravedad", "desplazamiento_entre_planos",
+                   "aspectos_animales", "explosion_solar", "controlar_el_clima", "romper_la_mente", "terremoto",
+                   "cambiar_de_forma", "presagio", "tormenta_de_la_venganza", "resurreccion_verdadera"]
     },
     {
       "id": "explorador",
@@ -50,7 +83,10 @@
       "conjuros": ["marca_del_cazador", "curar_heridas", "buenas_bayas", "golpe_apresador", "hablar_con_los_animales", "alarma",
                    "zancada_prodigiosa",
                    "pasar_sin_rastro", "piel_robliza", "cordon_de_flechas", "silencio", "restablecimiento_menor",
-                   "conjurar_andanada", "flecha_relampagueante", "conjurar_animales", "indetectable"],
+                   "conjurar_andanada", "flecha_relampagueante", "conjurar_animales", "indetectable",
+                   "libertad_de_movimiento", "piel_petrea", "conjurar_seres_del_bosque", "enredadera",
+                   "localizar_criatura",
+                   "conjurar_lluvia_de_flechas", "carcaj_veloz", "paso_arboreo", "comunion_con_la_naturaleza"],
       "opciones": ["tiro_con_arco", "defensa", "azote_de_colosos"]
     },
     {
@@ -59,7 +95,9 @@
       "conjuros": ["impacto_certero", "guardia_de_cuchillas", "rayo_de_escarcha", "luz", "mano_de_mago",
                    "escudo", "proyectil_magico", "ola_atronadora", "manos_ardientes", "alarma", "armadura_de_mago",
                    "proteccion_contra_el_bien_y_el_mal",
-                   "paso_brumoso", "rayo_abrasador", "contorno_borroso", "hacer_anicos"],
+                   "paso_brumoso", "rayo_abrasador", "contorno_borroso", "hacer_anicos",
+                   "contrahechizo", "disipar_magia", "bola_de_fuego", "relampago", "proteccion_contra_energia",
+                   "escudo_de_fuego", "destierro", "muro_de_fuego", "esfera_elastica", "tormenta_de_hielo"],
       "opciones": ["defensa", "duelo", "ataque_de_precision", "ataque_de_derribo", "ataque_provocador", "parada",
                    "ataque_de_maniobra"]
     },
@@ -70,7 +108,17 @@
                    "proyectil_magico", "escudo", "armadura_de_mago", "dormir", "manos_ardientes", "rociada_de_color",
                    "ola_atronadora",
                    "paso_brumoso", "rayo_abrasador", "inmovilizar_persona", "imagen_multiple", "invisibilidad",
-                   "bola_de_fuego", "acelerar", "contrahechizo", "volar"],
+                   "bola_de_fuego", "acelerar", "contrahechizo", "volar",
+                   "polimorfar", "invisibilidad_mejorada", "destierro", "puerta_dimensional", "muro_de_fuego",
+                   "tormenta_de_hielo", "piel_petrea",
+                   "cono_de_frio", "telequinesis", "inmovilizar_monstruo", "animar_objetos", "dominar_persona",
+                   "muro_de_piedra",
+                   "relampago_en_cadena", "desintegrar", "globo_de_invulnerabilidad", "sugestion_en_masa", "mal_de_ojo",
+                   "circulo_de_muerte",
+                   "teletransporte", "bola_de_fuego_de_explosion_retardada", "dedo_de_la_muerte",
+                   "desplazamiento_entre_planos", "invertir_la_gravedad",
+                   "palabra_de_poder_aturdir", "explosion_solar", "dominar_monstruo", "nube_incendiaria",
+                   "deseo", "parar_el_tiempo", "tormenta_de_meteoritos", "palabra_de_poder_matar", "portal"],
       "opciones": ["conjuro_gemelo", "conjuro_sutil", "conjuro_acelerado", "conjuro_cuidadoso"]
     },
     {
@@ -80,7 +128,17 @@
                    "proyectil_magico", "escudo", "armadura_de_mago", "dormir", "detectar_magia", "encontrar_familiar",
                    "manos_ardientes", "caida_de_pluma", "identificar", "grasa", "alarma", "ola_atronadora",
                    "paso_brumoso", "inmovilizar_persona", "telarana", "invisibilidad", "rayo_abrasador", "imagen_multiple",
-                   "bola_de_fuego", "contrahechizo", "acelerar", "volar", "disipar_magia"]
+                   "bola_de_fuego", "contrahechizo", "acelerar", "volar", "disipar_magia",
+                   "polimorfar", "invisibilidad_mejorada", "destierro", "puerta_dimensional", "tentaculos_negros",
+                   "muro_de_fuego", "esfera_elastica",
+                   "muro_de_fuerza", "inmovilizar_monstruo", "cono_de_frio", "telequinesis", "animar_objetos",
+                   "circulo_de_teletransportacion", "escudrinar",
+                   "globo_de_invulnerabilidad", "desintegrar", "relampago_en_cadena", "contingencia",
+                   "sugestion_en_masa", "muro_de_hielo", "vision_veraz",
+                   "teletransporte", "simulacro", "jaula_de_fuerza", "desplazamiento_entre_planos",
+                   "bola_de_fuego_de_explosion_retardada",
+                   "mente_en_blanco", "palabra_de_poder_aturdir", "campo_antimagia", "clon", "semiplano", "laberinto",
+                   "deseo", "parar_el_tiempo", "polimorfar_verdadero", "presagio", "tormenta_de_meteoritos", "portal"]
     },
     {
       "id": "monje",
@@ -93,7 +151,10 @@
       "conjuros": ["bendicion", "curar_heridas", "escudo_de_fe", "castigo_atronador", "favor_divino", "heroismo",
                    "orden_imperiosa", "detectar_el_bien_y_el_mal",
                    "auxilio", "hallar_corcel", "restablecimiento_menor", "arma_magica",
-                   "revivir", "aura_de_vitalidad", "manto_del_cruzado", "disipar_magia", "levantar_maldicion"],
+                   "revivir", "aura_de_vitalidad", "manto_del_cruzado", "disipar_magia", "levantar_maldicion",
+                   "aura_de_vida", "guarda_contra_la_muerte", "aura_de_pureza", "destierro", "castigo_abrumador",
+                   "circulo_de_poder", "disipar_el_bien_y_el_mal", "alzar_a_los_muertos", "castigo_desterrador",
+                   "ola_destructora"],
       "opciones": ["defensa", "duelo"]
     },
     {
@@ -102,7 +163,9 @@
       "conjuros": ["luz", "ilusion_menor", "prestidigitacion", "mensaje",
                    "dormir", "hechizar_persona", "imagen_silenciosa", "disfrazarse", "risa_horrible", "rociada_de_color",
                    "texto_ilusorio", "escudo", "proyectil_magico",
-                   "invisibilidad", "imagen_multiple", "sugestion", "inmovilizar_persona", "fuerza_fantasmal"]
+                   "invisibilidad", "imagen_multiple", "sugestion", "inmovilizar_persona", "fuerza_fantasmal",
+                   "patron_hipnotico", "imagen_mayor",
+                   "invisibilidad_mejorada", "asesino_fantasmal", "confusion", "terreno_alucinatorio"]
     }
   ]
 }
