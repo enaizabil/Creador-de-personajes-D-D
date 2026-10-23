@@ -210,3 +210,59 @@ def test_secretos_magicos_de_nivel_alto_y_de_otras_listas(entorno):
         elegidos = [catalogo.obtener("conjuros", i) for i in ids]
         assert [c["nivel"] for c in elegidos] == [maximo, maximo]
         assert not any("bardo" in c["listas"] for c in elegidos)
+
+
+# ── multiclase ─────────────────────────────────────────────────────────────
+
+def test_una_sola_clase_si_no_se_acepta_multiclase(entorno):
+    q = nuevo(entorno)
+    responder_al_azar(q, "solo")
+    assert not q.acepta_multiclase
+    assert len(q.proponer_reparto(12)) == 1
+
+
+def test_reparto_propuesto_con_multiclase(entorno):
+    q = nuevo(entorno)
+    responder_al_azar(q, "mixto")
+    q.aceptar_multiclase(True)
+    principal = q.recomendar_clases()[0].id
+    for nivel in (1, 2, 3):
+        assert q.proponer_reparto(nivel) == [(principal, nivel)]  # por debajo de 4, una sola clase
+    for nivel, secundaria in ((4, 1), (9, 3), (20, 5)):
+        reparto = q.proponer_reparto(nivel)
+        assert reparto[0][0] == principal and sum(n for _, n in reparto) == nivel
+        assert reparto[1][1] == secundaria and q.compatibles(principal, reparto[1][0])
+        nivel_subclase = q.catalogo.obtener("clases", principal)["nivel_subclase"]
+        assert reparto[0][1] >= nivel_subclase
+
+
+def test_compatibles_como_mucho_tres_caracteristicas_clave(entorno):
+    q = nuevo(entorno)
+    assert q.compatibles("paladin", "brujo")  # FUE y CAR
+    assert q.compatibles("guerrero", "picaro")  # FUE (o DES) y DES
+    assert not q.compatibles("monje", "paladin")  # DES, SAB, FUE y CAR
+    assert not q.compatibles("mago", "mago")
+
+
+@pytest.mark.parametrize("semilla", ["a", "b", "c", "d", "e", "f"])
+def test_genera_multiclase_completo_y_sin_avisos(entorno, semilla):
+    q = nuevo(entorno)
+    responder_al_azar(q, semilla)
+    q.aceptar_multiclase(True)
+    for nivel in (5, 12, 20):
+        q.generar(nivel=nivel)
+        a = q.asistente
+        assert len(a.personaje.clases) == 2 and a.nivel == nivel
+        faltan = {p.id: a.faltan(p.id) for p in a.pasos() if a.faltan(p.id)}
+        assert faltan == {"detalles": ["Ponle nombre al personaje"], "resumen": ["Ponle nombre al personaje"]}, faltan
+        assert a.ficha().avisos == [], (nivel, a.personaje.clases, a.ficha().avisos)
+
+
+def test_generar_con_reparto_elegido(entorno):
+    q = nuevo(entorno)
+    responder_al_azar(q, "reparto")
+    q.aceptar_multiclase(True)
+    q.generar(nivel=10, raza="humano", subraza="humano_estandar", reparto=[("paladin", 7), ("brujo", 3)])
+    assert [(e.clase, e.nivel) for e in q.personaje.clases] == [("paladin", 7), ("brujo", 3)]
+    assert all(e.subclase for e in q.personaje.clases)
+    assert q.asistente.ficha().avisos == []

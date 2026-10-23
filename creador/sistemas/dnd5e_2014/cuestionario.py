@@ -33,6 +33,9 @@ PUNTOS_POR_PESO = 5  # cada punto de «pesos» suma esto a la afinidad (que va d
 MINIMO_RESPUESTAS = 6  # por debajo, la recomendación es poco fiable
 UMBRAL_ALINEAMIENTO = 2
 BONO_CONSTITUCION = 4  # todo aventurero agradece la Constitución
+NIVEL_MINIMO_MULTICLASE = 4  # antes, repartir deja a la clase principal sin lo básico (p. ej., su subclase)
+MAXIMO_NIVELES_SECUNDARIA = 5
+CANDIDATAS_SECUNDARIA = 4  # la secundaria sale de las clases más afines tras la principal
 
 # Qué características y habilidades empuja cada rasgo del perfil.
 CARACTERISTICAS_POR_RASGO = {
@@ -204,15 +207,64 @@ class Cuestionario5e:
     def recomendar_trasfondos(self) -> list[Recomendacion]:
         return self._recomendar("trasfondos", self.asistente.trasfondos())
 
-    def _mejor_subclase(self) -> str | None:
-        ordenadas = self._recomendar("subclases", self.asistente.subclases())
+    def _mejor_subclase(self, clase_id: str | None = None) -> str | None:
+        ordenadas = self._recomendar("subclases", self.asistente.subclases(clase_id))
         return ordenadas[0].id if ordenadas else None
+
+    # ── multiclase ─────────────────────────────────────────────────────────
+
+    @property
+    def acepta_multiclase(self) -> bool:
+        return bool(self.personaje.extra.get("cuestionario", {}).get("multiclase", False))
+
+    def aceptar_multiclase(self, acepta: bool) -> None:
+        """Lo primero que se pregunta: si el jugador quiere una sola clase o acepta una propuesta de multiclase."""
+        self.personaje.extra.setdefault("cuestionario", {})["multiclase"] = acepta
+
+    def _claves(self, clase_id: str) -> set[str]:
+        """Características que la clase necesita altas: la de lanzar conjuros y las de su requisito de multiclase."""
+        clase = self.catalogo.obtener("clases", clase_id) or {}
+        requisitos = clase.get("requisitos_multiclase", {})
+        claves = set(requisitos.get("caracteristicas", {}))
+        claves |= set(list(requisitos.get("alguna_caracteristica", {}))[:1])
+        lanzamiento = (clase.get("lanzamiento") or {}).get("caracteristica")
+        return claves | ({lanzamiento} if lanzamiento else set())
+
+    def compatibles(self, principal: str, secundaria: str) -> bool:
+        """Entre las dos no piden más de tres características (el array estándar solo tiene 15, 14 y 13)."""
+        return principal != secundaria and len(self._claves(principal) | self._claves(secundaria)) <= 3
+
+    def proponer_reparto(self, nivel: int, clase: str | None = None) -> list[tuple[str, int]]:
+        """[(clase, niveles)]: una sola clase, o la principal y la más afín compatible tras ella.
+
+        La secundaria se queda un tercio de los niveles (de 1 a 5): suficiente para sus rasgos de entrada sin
+        quitarle a la principal lo que la define (como mínimo, llega al nivel de su subclase).
+        """
+        clase = clase or self.recomendar_clases()[0].id
+        if (not self.acepta_multiclase or nivel < NIVEL_MINIMO_MULTICLASE
+                or not self.personaje.reglas_opcionales.get("multiclase", True)):
+            return [(clase, nivel)]
+        candidatas = [r.id for r in self.recomendar_clases() if r.id != clase][:CANDIDATAS_SECUNDARIA]
+        secundaria = next((c for c in candidatas if self.compatibles(clase, c)), None)
+        if secundaria is None:
+            return [(clase, nivel)]
+        niveles = max(1, min(nivel // 3, MAXIMO_NIVELES_SECUNDARIA))
+        # La principal no baja del nivel en que gana su subclase.
+        nivel_subclase = (self.catalogo.obtener("clases", clase) or {}).get("nivel_subclase", 1)
+        niveles = min(niveles, nivel - nivel_subclase)
+        if niveles < 1:
+            return [(clase, nivel)]
+        return [(clase, nivel - niveles), (secundaria, niveles)]
 
     # ── generación del personaje ───────────────────────────────────────────
 
     def generar(self, nivel: int = 1, raza: str | None = None, subraza: str | None = None,
-                clase: str | None = None, trasfondo: str | None = None) -> None:
-        """Rellena el personaje entero con lo recomendado (o lo indicado) y decisiones razonables para el resto."""
+                clase: str | None = None, trasfondo: str | None = None,
+                reparto: list[tuple[str, int]] | None = None) -> None:
+        """Rellena el personaje entero con lo recomendado (o lo indicado) y decisiones razonables para el resto.
+
+        «reparto» fuerza las clases y sus niveles; si no se da y el jugador acepta multiclase, se propone uno.
+        """
         a = self.asistente
         if raza is None:
             mejor = self.recomendar_razas()[0]
@@ -223,10 +275,16 @@ class Cuestionario5e:
         a.elegir_raza(raza)
         if subraza:
             a.elegir_subraza(subraza)
-        a.establecer_nivel(min(nivel, a.nivel_maximo()))
-        a.elegir_clase(clase)
-        if a.subclases():
-            a.elegir_subclase(self._mejor_subclase())
+        nivel = min(nivel, a.nivel_maximo())
+        reparto = reparto or self.proponer_reparto(nivel, clase)
+        a.personaje.clases = []
+        a.establecer_nivel(sum(n for _, n in reparto))
+        a.elegir_clase(reparto[0][0])
+        for otra, niveles in reparto[1:]:
+            a.anadir_clase(otra, niveles)
+        for entrada in list(a.personaje.clases):
+            if a.subclases(entrada.clase):
+                a.elegir_subclase(self._mejor_subclase(entrada.clase), entrada.clase)
         a.elegir_trasfondo(trasfondo)
         self._caracteristicas()
         self._completar_elecciones()
@@ -256,6 +314,9 @@ class Cuestionario5e:
             claves.append(max(alguna, key=lambda c: (puntos[c], -alguna.index(c))))
         claves = list(dict.fromkeys(claves))
         claves.sort(key=lambda c: -puntos[c])
+        # Multiclase: lo que piden las otras clases va justo detrás (necesita 13).
+        for entrada in self.personaje.clases[1:]:
+            claves += [c for c in sorted(self._claves(entrada.clase), key=lambda c: -puntos[c]) if c not in claves]
         resto = [c for c in CARACTERISTICAS if c not in claves]
         resto.sort(key=lambda c: -(puntos[c] + (BONO_CONSTITUCION if c == "con" else 0)))
         return claves + resto
@@ -269,7 +330,7 @@ class Cuestionario5e:
     def _recomendados(self, campo: str) -> list[str]:
         """Ids recomendados para la clase (y los generales), en orden de preferencia."""
         ids = []
-        for id_ in ([self.personaje.clases[0].clase] if self.personaje.clases else []) + ["general"]:
+        for id_ in [e.clase for e in self.personaje.clases] + ["general"]:
             ids += (self.catalogo.obtener("recomendaciones", id_) or {}).get(campo, [])
         return ids
 

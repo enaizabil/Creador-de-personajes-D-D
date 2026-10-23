@@ -5,7 +5,7 @@ from collections.abc import Callable
 
 import customtkinter as ctk
 
-from ..sistemas.dnd5e_2014.cuestionario import MINIMO_RESPUESTAS, Cuestionario5e, Recomendacion
+from ..sistemas.dnd5e_2014.cuestionario import MINIMO_RESPUESTAS, NIVEL_MINIMO_MULTICLASE, Cuestionario5e, Recomendacion
 from .asistente_5e import NOMBRES_PERFIL
 from .componentes import fuente, texto_ajustado, titulo
 
@@ -42,6 +42,8 @@ class VistaCuestionario5e(ctk.CTkFrame):
         self.indice = 0
         self.nivel = 1
         self.eleccion: dict[str, Recomendacion] = {}
+        self.reparto: list[tuple[str, int]] = []  # el que se usará al crear (propuesto o retocado)
+        self.marco_reparto = None
         self.cuerpo = ctk.CTkScrollableFrame(self, fg_color="transparent")
         self.cuerpo.pack(fill="both", expand=True)
         self.pantalla_inicio()
@@ -74,6 +76,16 @@ class VistaCuestionario5e(ctk.CTkFrame):
         menu.set(str(self.nivel))
         menu.pack(side="left")
         ctk.CTkLabel(fila, text="(si no te lo han dicho, nivel 1)", text_color="gray").pack(side="left", padx=10)
+        fila = ctk.CTkFrame(columna, fg_color="transparent")
+        fila.pack(anchor="w", pady=(0, 6))
+        ctk.CTkLabel(fila, text="Clases:", font=fuente(14, True)).pack(side="left", padx=(0, 10))
+        opciones = {"Una sola clase": False, "Acepto multiclase": True}
+        selector = ctk.CTkSegmentedButton(fila, values=list(opciones),
+                                          command=lambda v: self.q.aceptar_multiclase(opciones[v]))
+        selector.set("Acepto multiclase" if self.q.acepta_multiclase else "Una sola clase")
+        selector.pack(side="left")
+        ctk.CTkLabel(fila, text="(con multiclase te proponemos un reparto entre dos clases desde nivel 4)",
+                     text_color="gray").pack(side="left", padx=10)
         botones = ctk.CTkFrame(columna, fg_color="transparent")
         botones.pack(anchor="w", pady=10)
         ctk.CTkButton(botones, text="Empezar", width=180, height=40, font=fuente(15, True),
@@ -144,6 +156,11 @@ class VistaCuestionario5e(ctk.CTkFrame):
                 ("trasfondo", "Trasfondo", self.q.recomendar_trasfondos()))):
             rejilla.grid_columnconfigure(col, weight=1, uniform="col")
             self._columna_recomendaciones(rejilla, col, clave, nombre, recomendaciones[:CUANTAS_RECOMENDACIONES])
+        if self.q.acepta_multiclase:
+            self.marco_reparto = ctk.CTkFrame(columna)
+            self.marco_reparto.pack(fill="x", pady=(14, 0))
+            self.reparto = self.q.proponer_reparto(self.nivel, self.eleccion["clase"].id)
+            self._pintar_reparto()
 
         fila = ctk.CTkFrame(columna, fg_color="transparent")
         fila.pack(anchor="w", pady=(20, 6))
@@ -173,6 +190,9 @@ class VistaCuestionario5e(ctk.CTkFrame):
         def elegir(i=None):
             self.eleccion[clave] = recomendaciones[variable.get()]
             descripcion.configure(text=self.eleccion[clave].descripcion)
+            if clave == "clase" and self.marco_reparto is not None:
+                self.reparto = self.q.proponer_reparto(self.nivel, self.eleccion["clase"].id)
+                self._pintar_reparto()
 
         for i, recomendacion in enumerate(recomendaciones):
             fila = ctk.CTkFrame(caja, fg_color="transparent")
@@ -186,9 +206,51 @@ class VistaCuestionario5e(ctk.CTkFrame):
                          font=fuente(11)).pack(anchor="e")
         descripcion.pack(anchor="w", padx=12, pady=(6, 12))
 
+    def _pintar_reparto(self) -> None:
+        """Multiclase: el reparto propuesto, con la segunda clase y sus niveles a elegir."""
+        for hijo in self.marco_reparto.winfo_children():
+            hijo.destroy()
+        titulo(self.marco_reparto, "Reparto de clases", 16).pack(anchor="w", padx=12, pady=(10, 2))
+        principal = self.eleccion["clase"]
+        nombres = {r.id: r.nombre for r in self.q.recomendar_clases()}
+        nivel_subclase = (self.q.catalogo.obtener("clases", principal.id) or {}).get("nivel_subclase", 1)
+        libres = self.nivel - nivel_subclase  # niveles que puede ceder la principal sin quedarse sin subclase
+        if self.nivel < NIVEL_MINIMO_MULTICLASE or libres < 1:
+            texto_ajustado(self.marco_reparto, f"A nivel {self.nivel} te proponemos una sola clase: repartir dejaría a "
+                                               f"{principal.nombre} sin lo que la define.", ANCHO,
+                           text_color="gray").pack(anchor="w", padx=12, pady=(0, 12))
+            return
+        reparto = " / ".join(f"{nombres.get(c, c)} {n}" for c, n in self.reparto)
+        texto_ajustado(self.marco_reparto, f"Propuesta: {reparto}. Puedes cambiar la segunda clase o sus niveles.",
+                       ANCHO).pack(anchor="w", padx=12)
+        fila = ctk.CTkFrame(self.marco_reparto, fg_color="transparent")
+        fila.pack(anchor="w", padx=12, pady=(6, 12))
+        ctk.CTkLabel(fila, text="Segunda clase:").pack(side="left", padx=(0, 6))
+        candidatas = [r for r in self.q.recomendar_clases() if self.q.compatibles(principal.id, r.id)]
+        por_nombre = {"Ninguna": None, **{r.nombre: r.id for r in candidatas}}
+        actual = self.reparto[1] if len(self.reparto) > 1 else (None, min(libres, 1))
+        menu = ctk.CTkOptionMenu(fila, values=list(por_nombre), width=170, dynamic_resizing=False)
+        menu.set(nombres.get(actual[0], "Ninguna") if actual[0] else "Ninguna")
+        menu.pack(side="left")
+        ctk.CTkLabel(fila, text="niveles:").pack(side="left", padx=(12, 6))
+        niveles = ctk.CTkOptionMenu(fila, values=[str(n) for n in range(1, libres + 1)], width=70)
+        niveles.set(str(min(actual[1], libres)))
+        niveles.pack(side="left")
+
+        def cambiar(_valor=None):
+            otra = por_nombre[menu.get()]
+            n = int(niveles.get())
+            self.reparto = [(principal.id, self.nivel - n), (otra, n)] if otra else [(principal.id, self.nivel)]
+            self._pintar_reparto()
+
+        menu.configure(command=cambiar)
+        niveles.configure(command=cambiar)
+
     def _crear(self) -> None:
         raza, clase, trasfondo = (self.eleccion[c] for c in ("raza", "clase", "trasfondo"))
-        self.q.generar(nivel=self.nivel, raza=raza.id, subraza=raza.subraza, clase=clase.id, trasfondo=trasfondo.id)
+        reparto = self.reparto if self.q.acepta_multiclase and self.reparto and self.reparto[0][0] == clase.id else None
+        self.q.generar(nivel=self.nivel, raza=raza.id, subraza=raza.subraza, clase=clase.id, trasfondo=trasfondo.id,
+                       reparto=reparto)
         nombre = self.entrada_nombre.get().strip()
         if nombre:
             self.q.asistente.establecer_detalle("nombre", nombre)
