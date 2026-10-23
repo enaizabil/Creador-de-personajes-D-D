@@ -102,7 +102,7 @@ Lo que los agentes no pudieron confirmar con una fuente oficial. El SRD 5.1 en e
 
 ## Guía del DM (2014)
 
-Opciones de personaje escritas desde el texto oficial (paquete `dmg-2014`): aasimar, eladrín, Dominio de la Muerte y Rompejuramentos, hasta nivel 5. Los nombres de conjuros que citan coinciden con los de nuestros datos.
+Opciones de personaje escritas desde el texto oficial (paquete `dmg-2014`): aasimar, eladrín, Dominio de la Muerte y Rompejuramentos (estos dos, hasta nivel 20). Los nombres de conjuros que citan coinciden con los de nuestros datos.
 
 Reglas de la Guía que afectan a la ficha y **aún no están en el motor** (no las usa la campaña; se pueden añadir como reglas opcionales):
 
@@ -371,3 +371,8 @@ Los ids no cambian aunque cambien los nombres.
 - **Piedra del Transmutador**: la ficha aplica el beneficio elegido al mago, como si la llevara él; si se la da a otro, hay que quitarlo a mano.
 - **Siervos No Muertos y Cambiaformas**: el rasgo dice que añadas animar a los muertos o polimorfar al libro; el programa no lo añade solo.
 - **Guerrero Totémico**: Aspecto de la Bestia (6) y Sintonía Totémica (14) son elecciones independientes del Espíritu Tótem de nivel 3, como en el libro.
+
+### Guía del DM (desde el texto oficial, p. 96-97)
+
+- **Dominio de la Muerte y Rompejuramentos completos hasta nivel 20.** Nombres tal cual en el texto: Destrucción Inevitable, Golpe Divino, Segador Mejorado, Aura de Odio, Resistencia Sobrenatural y Amo del Pavor.
+- **Resistencia Sobrenatural y Avatar de Batalla** (solo contra armas no mágicas) van como rasgo, sin efecto de resistencia: el motor no distingue daño mágico de no mágico y la ficha mostraría una resistencia total.

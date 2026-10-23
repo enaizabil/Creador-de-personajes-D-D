@@ -147,7 +147,6 @@
       "permiso_dm": true,
       "fuente": "Guía del DM 2014, p. 96",
       "descripcion": "Dominio de las fuerzas que ponen fin a la vida y de la energía que alza a los muertos vivientes. Opción de la Guía del DM: solo con permiso explícito del DM.",
-      "niveles_completos": 5,
       "niveles": {
         "1": [
           {
@@ -232,6 +231,62 @@
             "clase": "clerigo",
             "siempre_preparado": true
           }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Destrucción Inevitable",
+            "resumen": "el daño necrótico de tus conjuros de clérigo y de tu Canalizar Divinidad ignora la resistencia al daño necrótico",
+            "descripcion": "Tu capacidad para canalizar energía negativa se vuelve más poderosa: el daño necrótico que causan tus conjuros de clérigo y tus opciones de Canalizar Divinidad ignora la resistencia al daño necrótico."
+          }
+        ],
+        "7": [
+          {
+            "tipo": "conjuro",
+            "id": "guarda_contra_la_muerte",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "marchitar",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "8": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Golpe Divino",
+            "resumen": "una vez en cada uno de tus turnos, al impactar con un ataque con arma, +{escala} de daño necrótico",
+            "descripcion": "Una vez en cada uno de tus turnos, cuando impactas a una criatura con un ataque con arma, puedes hacer que cause 1d8 de daño necrótico adicional; a nivel 14 son 2d8.",
+            "escala": {
+              "8": "1d8",
+              "14": "2d8"
+            }
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "caparazon_antivida",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "nube_aniquiladora",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Segador Mejorado",
+            "resumen": "tus conjuros de nigromancia de nivel 1 a 5 que tendrían un solo objetivo pueden afectar a dos criaturas a 5 pies o menos una de otra (con componentes materiales para cada una si se consumen)",
+            "descripcion": "Cuando lanzas un conjuro de nigromancia de nivel 1 a 5 que normalmente solo tendría como objetivo a una criatura, puedes elegir a dos criaturas dentro del alcance que estén a 5 pies o menos una de la otra. Si el conjuro consume componentes materiales, debes aportarlos para cada objetivo."
+          }
         ]
       },
       "perfil": {
@@ -247,7 +302,6 @@
       "permiso_dm": true,
       "fuente": "Guía del DM 2014, p. 97",
       "descripcion": "Paladín malvado que rompió sus votos; sustituye los rasgos de su Juramento Sagrado (desde nivel 3). Opción de la Guía del DM: solo con permiso explícito del DM.",
-      "niveles_completos": 5,
       "niveles": {
         "3": [
           {
@@ -285,6 +339,78 @@
             "id": "oscuridad",
             "clase": "paladin",
             "siempre_preparado": true
+          }
+        ],
+        "7": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Aura de Odio",
+            "resumen": "tú y los infernales y muertos vivientes a {escala} pies o menos sumáis +{max(1,mod_car)} al daño de los ataques con arma cuerpo a cuerpo (una criatura solo se beneficia de un aura de este tipo)",
+            "descripcion": "Tú y todos los infernales y muertos vivientes que estén a 10 pies o menos de ti sumáis tu modificador por Carisma (mínimo +1) a las tiradas de daño de los ataques con arma cuerpo a cuerpo. Si varios paladines usan este rasgo a la vez, cada criatura solo se beneficia de uno. A nivel 18 el aura alcanza 30 pies.",
+            "escala": {
+              "7": 10,
+              "18": 30
+            }
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "animar_a_los_muertos",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "imponer_maldicion",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "13": [
+          {
+            "tipo": "conjuro",
+            "id": "confusion",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "marchitar",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "15": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Resistencia Sobrenatural",
+            "resumen": "resistencia al daño contundente, cortante y perforante de armas no mágicas",
+            "descripcion": "Tienes resistencia al daño contundente, cortante y perforante de armas no mágicas."
+          }
+        ],
+        "17": [
+          {
+            "tipo": "conjuro",
+            "id": "contagio",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "dominar_persona",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "20": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Amo del Pavor",
+            "resumen": "acción: aura de pesadumbre de 30 pies durante 1 minuto: la luz brillante pasa a tenue; los enemigos asustados de ti que empiezan su turno en ella reciben 4d10 de daño psíquico; tú y quien elijas estáis envueltos en sombras (desventaja para atacaros si dependen de la vista); con una acción adicional, ataque de conjuro cuerpo a cuerpo de las sombras: 3d10 + {mod_car} de daño necrótico",
+            "descripcion": "Como acción, te rodeas de un aura de pesadumbre durante 1 minuto que reduce a luz tenue cualquier luz brillante a 30 pies o menos de ti. Cada enemigo asustado de ti que empiece su turno en el aura recibe 4d10 de daño psíquico. Además, tú y las criaturas que elijas en el aura estáis envueltos en sombras: las criaturas que dependen de la vista tienen desventaja en las tiradas de ataque contra quien esté envuelto. Mientras dure, puedes usar una acción adicional en tu turno para que las sombras ataquen a una criatura: haces un ataque de conjuro cuerpo a cuerpo y, si impacta, recibe 3d10 + tu modificador por Carisma de daño necrótico. Después debes terminar un descanso largo para volver a usarlo.",
+            "usos": 1,
+            "recarga": "largo"
           }
         ]
       },
