@@ -294,10 +294,8 @@ class Cuestionario5e:
             return self._mejoras(eleccion, n)
         conocidas = self.asistente.conocidas(eleccion)
         libres = [i for i in ids if i not in conocidas and (eleccion.repetible or i not in eleccion.seleccion)]
-        tipos = {e.get("tipo") for i in libres[:1] for e in eleccion.efectos_de(i)}
-        if "pericia" in tipos and "competencia" not in tipos:  # pericia sola: solo donde ya hay competencia
-            habilidades = self.asistente.ficha().habilidades
-            libres = [i for i in libres if i in habilidades and habilidades[i].competente]
+        sin_competencia = self.asistente.sin_competencia(eleccion)  # pericia: solo donde ya hay competencia
+        libres = [i for i in libres if i not in sin_competencia]
         if libres and set(libres) <= set(HABILIDADES):
             return self._habilidades(libres, n, rng)
         preferidas = self._recomendados("opciones") + self._recomendados("dotes") + self._recomendados("conjuros")

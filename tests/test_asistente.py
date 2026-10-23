@@ -269,3 +269,31 @@ def test_la_pericia_no_se_bloquea_por_ser_competente(asistente):
     a.elegir(pericia.clave, ["sigilo", "engano"])
     a.establecer_nivel(5)  # a nivel 6 llegaría otra pericia; aquí basta con ver que no se repite
     assert a.conocidas(next(e for e in a.elecciones("clase") if e.clave == pericia.clave)) == set()
+
+
+def test_la_pericia_solo_donde_hay_competencia(asistente):
+    a = asistente
+    a.elegir_raza("humano")
+    a.elegir_subraza("humano_estandar")
+    a.elegir_clase("picaro")
+    a.elegir_trasfondo("criminal")  # Engaño, Sigilo y herramientas de ladrón (también de clase)
+    pericia = next(e for e in a.elecciones("clase") if e.clave == "clase:picaro:1/pericia")
+    bloqueadas = a.sin_competencia(pericia)
+    assert "acrobacias" in bloqueadas and "medicina" in bloqueadas
+    assert not {"engano", "sigilo", "herramientas_de_ladron"} & bloqueadas
+    assert a.bloqueadas(pericia)["acrobacias"] == "sin competencia"
+    habilidades = next(e for e in a.elecciones("clase") if e.clave == "clase:picaro:inicial/habilidades")
+    a.elegir(habilidades.clave, ["acrobacias", "percepcion", "investigacion", "persuasion"])
+    pericia = next(e for e in a.elecciones("clase") if e.clave == pericia.clave)
+    assert "acrobacias" not in a.sin_competencia(pericia) and "medicina" in a.sin_competencia(pericia)
+
+
+def test_competencia_y_pericia_a_la_vez_no_se_bloquea(asistente):
+    a = asistente
+    a.elegir_raza("humano")
+    a.elegir_subraza("humano_estandar")
+    a.elegir_clase("clerigo")
+    a.elegir_subclase("dominio_del_conocimiento")
+    a.elegir_trasfondo("soldado")
+    bendiciones = next(e for e in a.elecciones("clase") if "Bendiciones" in e.nombre)
+    assert a.sin_competencia(bendiciones) == set()

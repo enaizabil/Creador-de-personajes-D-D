@@ -103,7 +103,7 @@ class VistaAsistente5e(ctk.CTkFrame):
             titulo(master, "Elecciones", 15).pack(anchor="w", padx=10, pady=(14, 4))
         for eleccion in elecciones:
             SelectorEleccion(master, eleccion, self._eleccion_cambiada,
-                             self.a.conocidas(eleccion)).pack(fill="x", padx=10, pady=4)
+                             self.a.bloqueadas(eleccion)).pack(fill="x", padx=10, pady=4)
 
     def _eleccion_cambiada(self, clave: str, valores: list[str]) -> None:
         self.a.elegir(clave, valores)

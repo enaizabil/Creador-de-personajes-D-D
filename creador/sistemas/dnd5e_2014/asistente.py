@@ -360,6 +360,29 @@ class Asistente5e:
 
         return {o.id for o in eleccion.opciones if any(ya_la_tiene(e) for e in eleccion.efectos_de(o.id))}
 
+    def sin_competencia(self, eleccion: EleccionPendiente) -> set[str]:
+        """Opciones que dan pericia sin dar competencia en algo en lo que el personaje aún no es competente.
+
+        La pericia del pícaro o del bardo solo vale en habilidades (o herramientas) con competencia; la de las
+        Bendiciones del Conocimiento da las dos cosas y no se bloquea.
+        """
+        resolucion = self.sistema.resolver(self.personaje, self.catalogo)
+        competente = {a.efecto["id"] for a in resolucion.aplicados if a.tipo == "competencia"}
+        bloqueadas = set()
+        for opcion in eleccion.opciones:
+            efectos = eleccion.efectos_de(opcion.id)
+            pericias = {e.get("id") for e in efectos if e.get("tipo") == "pericia"}
+            concede = {e.get("id") for e in efectos if e.get("tipo") == "competencia"}
+            if any(p not in competente and p not in concede for p in pericias):
+                bloqueadas.add(opcion.id)
+        return bloqueadas
+
+    def bloqueadas(self, eleccion: EleccionPendiente) -> dict[str, str]:
+        """Opciones que no conviene elegir y por qué (lo usa la interfaz)."""
+        motivos = dict.fromkeys(self.sin_competencia(eleccion), "sin competencia")
+        motivos.update(dict.fromkeys(self.conocidas(eleccion), "ya la tienes"))
+        return motivos
+
     def conjuros_de_otras_fuentes(self) -> set[str]:
         """Conjuros que ya llegan por raza, dote o subclase (innatos o siempre preparados)."""
         resolucion = self.sistema.resolver(self.personaje, self.catalogo)
