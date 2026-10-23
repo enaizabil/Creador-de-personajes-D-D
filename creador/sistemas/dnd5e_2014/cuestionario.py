@@ -279,6 +279,9 @@ class Cuestionario5e:
             pendientes = [e for e in resolucion.elecciones if e.faltan > 0]
             if not pendientes:
                 return
+            # Primero las más restringidas (Bendiciones del Conocimiento: 2 de 4), para que las amplias
+            # (Versatilidad con Habilidades del semielfo: 2 de 18) no les quiten las opciones.
+            pendientes.sort(key=lambda e: len(e.opciones) - e.faltan)
             for eleccion in pendientes:
                 elegidas = self._elegir(eleccion, self._rng(f"{eleccion.clave}/{vuelta}"))
                 if not elegidas:
@@ -298,13 +301,25 @@ class Cuestionario5e:
         libres = [i for i in libres if i not in sin_competencia]
         if libres and set(libres) <= set(HABILIDADES):
             return self._habilidades(libres, n, rng)
-        preferidas = self._recomendados("opciones") + self._recomendados("dotes") + self._recomendados("conjuros")
+        conjuros = [self.catalogo.obtener("conjuros", i) for i in libres]
+        if libres and all(conjuros) and len({c["nivel"] for c in conjuros}) > 1:
+            return self._conjuros_de_cualquier_nivel(eleccion, conjuros, n, rng)
+        preferidas =self._recomendados("opciones") + self._recomendados("dotes") + self._recomendados("conjuros")
         elegidas = [i for i in dict.fromkeys(preferidas) if i in libres][:n]
         resto = [i for i in libres if i not in elegidas]
         # Sin recomendación: primero lo que no tiene prerrequisitos (no se comprueban todos) y, entre eso, al azar.
         rng.shuffle(resto)
         resto.sort(key=lambda i: self._tiene_prerrequisito(i))
         return elegidas + resto[: n - len(elegidas)]
+
+    @staticmethod
+    def _conjuros_de_cualquier_nivel(eleccion: EleccionPendiente, conjuros: list[dict], n: int,
+                                     rng: random.Random) -> list[str]:
+        """Secretos Mágicos y similares: lo más valioso es un conjuro de nivel alto que la clase no tenga ya."""
+        clase = next((e.get("clase") for e in eleccion.aplicar if isinstance(e, dict) and e.get("clase")), None)
+        rng.shuffle(conjuros)
+        conjuros.sort(key=lambda c: (clase in c["listas"], -c["nivel"]))
+        return [c["id"] for c in conjuros[:n]]
 
     def _tiene_prerrequisito(self, id_: str) -> bool:
         return any("prerrequisito" in (self.catalogo.obtener(c, id_) or {}) for c in ("opciones", "dotes"))

@@ -336,8 +336,9 @@ class Asistente5e:
         """Opciones de la elección que el personaje ya tiene por otra vía: elegirlas sería desperdiciarlas.
 
         Se mira lo que concede cada opción: la competencia, la pericia, el conjuro, la dote o la opción de
-        clase que ya llega por otro sitio (la propia elección no cuenta). Así la pericia del pícaro, que se
-        elige entre habilidades en las que ya es competente, no queda bloqueada.
+        clase que ya llega por otro sitio (la propia elección no cuenta), y las competencias que da esa dote
+        u opción. Así la pericia del pícaro, que se elige entre habilidades en las que ya es competente, no
+        queda bloqueada.
         """
         resolucion = self.sistema.resolver(self.personaje, self.catalogo)
         tiene: set[tuple[str, str]] = set()
@@ -361,8 +362,12 @@ class Asistente5e:
                 return (f"competencia:{efecto.get('categoria')}", efecto.get("id")) in tiene
             if tipo in ("dote", "opcion"):
                 categoria = "dotes" if tipo == "dote" else "opciones"
-                repetible = (self.catalogo.obtener(categoria, efecto.get("id", "")) or {}).get("repetible")
-                return not repetible and (tipo, efecto.get("id")) in tiene
+                entrada = self.catalogo.obtener(categoria, efecto.get("id", "")) or {}
+                if entrada.get("repetible"):
+                    return False
+                # También si lo que concede ya llega por otro sitio (Influencia Seductora con Engaño y Persuasión).
+                return (tipo, efecto.get("id")) in tiene or any(
+                    e.get("tipo") == "competencia" and ya_la_tiene(e) for e in entrada.get("efectos", []))
             return tipo in ("pericia", "conjuro") and (tipo, efecto.get("id")) in tiene
 
         return {o.id for o in eleccion.opciones if any(ya_la_tiene(e) for e in eleccion.efectos_de(o.id))}

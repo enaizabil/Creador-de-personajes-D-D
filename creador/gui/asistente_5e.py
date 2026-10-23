@@ -61,11 +61,15 @@ class VistaAsistente5e(ctk.CTkFrame):
     def mostrar(self, paso: str) -> None:
         if paso == "equipo" or self.paso_actual == "equipo":
             self.a.aplicar_equipo()
+        nuevo = paso != self.paso_actual
         self.paso_actual = paso
         self.marco_avisos = None
         for hijo in self.contenido.winfo_children():
             hijo.destroy()
         getattr(self, f"_paso_{paso}")(self.contenido)
+        if nuevo:
+            # Otro paso empieza arriba; si no, conserva el desplazamiento del anterior y puede verse en blanco.
+            self.contenido._parent_canvas.yview_moveto(0)
         self._refrescar()
 
     def _redibujar(self) -> None:

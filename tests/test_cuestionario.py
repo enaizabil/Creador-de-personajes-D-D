@@ -136,7 +136,8 @@ def test_recomendaciones_ordenadas_y_una_por_raza(entorno):
 @pytest.mark.parametrize("clase", ["barbaro", "bardo", "brujo", "clerigo", "druida", "explorador", "guerrero",
                                    "hechicero", "mago", "monje", "paladin", "picaro"])
 def test_genera_personajes_completos_y_sin_avisos(entorno, clase):
-    combinaciones = ((1, "mediano", "mediano_piesligeros"), (3, "semielfo", None), (5, "enano", "enano_de_las_colinas"))
+    combinaciones = ((1, "mediano", "mediano_piesligeros"), (3, "semielfo", None), (5, "enano", "enano_de_las_colinas"),
+                     (11, "humano", "humano_estandar"), (17, "elfo", "alto_elfo"), (20, "semiorco", None))
     for nivel, raza, subraza in combinaciones:
         q = nuevo(entorno)
         responder_al_azar(q, f"{clase}{nivel}")
@@ -197,3 +198,15 @@ def test_afinidad():
     assert afinidad({"combate": 3}, {"combate": 5}) == pytest.approx(1)
     assert afinidad({"combate": 3}, {"saber": 5}) == 0
     assert afinidad({}, {"saber": 5}) == 0
+
+
+def test_secretos_magicos_de_nivel_alto_y_de_otras_listas(entorno):
+    q = nuevo(entorno)
+    responder_al_azar(q, "bardo20")
+    q.generar(nivel=20, raza="semielfo", clase="bardo")
+    catalogo = q.catalogo
+    for nivel, maximo in ((10, 5), (14, 7), (18, 9)):
+        ids = q.personaje.elecciones[f"clase:bardo:{nivel}/secretos_magicos_{nivel}"]
+        elegidos = [catalogo.obtener("conjuros", i) for i in ids]
+        assert [c["nivel"] for c in elegidos] == [maximo, maximo]
+        assert not any("bardo" in c["listas"] for c in elegidos)
