@@ -322,13 +322,13 @@ def rellenar_hoja_oficial(a: Asistente5e, ruta, plantilla: Path = PLANTILLA) -> 
     if ficha.lanzadores:
         lanzador = ficha.lanzadores[0]
         hoja.poner("SpellClass", " / ".join(lz.clase for lz in ficha.lanzadores))
+        # La aptitud es un desplegable de la plantilla (un solo valor): la de la primera clase lanzadora. Con
+        # varias clases de aptitudes distintas, la CD y el ataque van en el orden de «SpellClass» («15 / 14»).
         hoja.poner("SpellAbility", APTITUD_CAMPO.get(lanzador.caracteristica, lanzador.caracteristica.upper()))
-        hoja.poner("SpellSaveDC", lanzador.cd)
-        hoja.poner("SAB", _signo(lanzador.ataque))
-        for nivel, espacios in ficha.espacios_conjuro.items():
-            hoja.poner(f"SlotsTot{nivel}", espacios)
-        if ficha.magia_pacto:
-            hoja.poner(f"SlotsTot{ficha.magia_pacto['nivel']}", f"{ficha.magia_pacto['espacios']} (pacto)")
+        hoja.poner("SpellSaveDC", " / ".join(dict.fromkeys(str(lz.cd) for lz in ficha.lanzadores)))
+        hoja.poner("SAB", " / ".join(dict.fromkeys(_signo(lz.ataque) for lz in ficha.lanzadores)))
+        for nivel, texto in texto_espacios(ficha).items():
+            hoja.poner(f"SlotsTot{nivel}", texto)
         for nivel, conjuros in _por_nivel(ficha).items():
             renglones = list(RENGLONES_CONJURO[nivel])
             for numero, (nombre, preparado) in zip(renglones, conjuros, strict=False):
@@ -340,6 +340,15 @@ def rellenar_hoja_oficial(a: Asistente5e, ruta, plantilla: Path = PLANTILLA) -> 
         (a.catalogo.obtener("conjuros", i) for i in _ids_conjuros(a)), key=lambda c: (c["nivel"], c["nombre"])) if c]
     hoja.repartir(descripciones, ["Spells 1", "Spell 2", "Spells 3"], separador="\n\n")
     hoja.guardar(ruta)
+
+
+def texto_espacios(ficha: Ficha) -> dict[int, str]:
+    """Espacios por nivel de conjuro; con brujo multiclase se suman los de pacto: «3 + 2 (pacto)»."""
+    textos = {nivel: str(n) for nivel, n in ficha.espacios_conjuro.items()}
+    if ficha.magia_pacto:
+        nivel, pacto = ficha.magia_pacto["nivel"], f"{ficha.magia_pacto['espacios']} (pacto)"
+        textos[nivel] = f"{textos[nivel]} + {pacto}" if nivel in textos else pacto
+    return dict(sorted(textos.items()))
 
 
 def _por_nivel(ficha: Ficha) -> dict[int, list[tuple[str, bool]]]:

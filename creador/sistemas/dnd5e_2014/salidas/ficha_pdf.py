@@ -436,7 +436,7 @@ def _pagina_conjuros(h: Hoja, ficha: Ficha) -> None:
             else:
                 total = espacios.get(nivel, "")
                 if pacto and pacto["nivel"] == nivel:
-                    total = f"{pacto['espacios']} (pacto)"
+                    total = f"{total} + {pacto['espacios']} (pacto)" if total else f"{pacto['espacios']} (pacto)"
                 h.marco(x + 22, cursor - 19, 44, 16, radio=4, relleno=white)
                 h.texto(str(total), 0, cursor - 15, tam=8, negrita=True, centrado_en=x + 44)
                 h.marco(x + 70, cursor - 19, ancho_col - 74, 16, radio=4, relleno=white)

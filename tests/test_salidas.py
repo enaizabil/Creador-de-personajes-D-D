@@ -160,3 +160,44 @@ def test_partir_respeta_el_ancho():
     renglones = _partir("Ventaja en las salvaciones para evitar que te hechicen; la magia no puede dormirte.\nOtra.", 80, 7)
     assert renglones[-1] == "Otra." and len(renglones) > 2
     assert all(stringWidth(r, "Helvetica", 7) <= 80 for r in renglones)
+
+
+def personaje_multiclase(entorno, reparto, raza="semielfo"):
+    sistema, catalogo = entorno
+    q = sistema.crear_cuestionario(Personaje(sistema="dnd5e-2014", paquetes=PAQUETES), catalogo)
+    rng = random.Random("multiclase")
+    for pregunta in q.preguntas():
+        q.responder(pregunta.id, rng.choice(pregunta.respuestas).id)
+    q.aceptar_multiclase(True)
+    q.generar(nivel=sum(n for _, n in reparto), raza=raza, reparto=reparto)
+    q.asistente.establecer_detalle("nombre", "Prueba multiclase")
+    return q.asistente
+
+
+def test_salidas_de_un_brujo_multiclase(entorno, tmp_path):
+    from creador.sistemas.dnd5e_2014.salidas.pdf_oficial import texto_espacios
+
+    a = personaje_multiclase(entorno, [("paladin", 8), ("brujo", 4)])
+    ficha = a.ficha()
+    assert ficha.espacios_conjuro == {1: 4, 2: 3} and ficha.magia_pacto == {"espacios": 2, "nivel": 2}
+    assert texto_espacios(ficha) == {1: "4", 2: "3 + 2 (pacto)"}  # antes, el pacto tapaba los normales
+    nota = nota_obsidian(a)
+    datos = propiedades(nota)
+    assert datos["clase"].strip() == "Paladín / Brujo" and datos["nivel"].strip() == "12"
+    assert "/" in datos["subclase"]
+    assert "4 de nivel 1, 3 de nivel 2 y 2 de pacto de nivel 2" in nota
+    assert "3. **Clase inicial:** Paladín" in nota and "elige también **Brujo** (4 niveles" in nota
+
+
+def test_hoja_oficial_con_dos_aptitudes(entorno, tmp_path):
+    pytest.importorskip("pypdf")
+    from creador.sistemas.dnd5e_2014.salidas.pdf_oficial import rellenar_hoja_oficial
+
+    a = personaje_multiclase(entorno, [("clerigo", 6), ("mago", 3)], raza="humano")
+    ficha = a.ficha()
+    ruta = tmp_path / "oficial.pdf"
+    rellenar_hoja_oficial(a, ruta)
+    _, valores = _leer_formulario(ruta)
+    assert valores["ClassLevel"] == ficha.clase_y_nivel
+    cds = [str(lz.cd) for lz in ficha.lanzadores]
+    assert valores["SpellSaveDC"] == " / ".join(dict.fromkeys(cds))

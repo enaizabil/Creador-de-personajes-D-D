@@ -45,16 +45,17 @@ def _yaml(valor) -> str:
 
 def _propiedades(a: Asistente5e, ficha: Ficha) -> list[str]:
     p = a.personaje
-    clase = a.catalogo.obtener("clases", p.clases[0].clase) if p.clases else None
-    subclase = a.catalogo.obtener("subclases", p.clases[0].subclase) if p.clases and p.clases[0].subclase else None
+    clases = [a.catalogo.obtener("clases", e.clase) or {} for e in p.clases]
+    subclases = [a.catalogo.obtener("subclases", e.subclase) or {} for e in p.clases if e.subclase]
     propiedades = {
-        "tipo": "pj", "jugador": p.jugador, "raza": ficha.raza, "clase": (clase or {}).get("nombre", ""),
+        "tipo": "pj", "jugador": p.jugador, "raza": ficha.raza,
+        "clase": " / ".join(c.get("nombre", "") for c in clases),  # multiclase: «Guerrero / Pícaro»
         "nivel": ficha.nivel, "hp": ficha.pg_maximos, "ac": ficha.ca, "modifier": ficha.iniciativa,
         "pasiva_percepcion": ficha.pasivas["percepcion"], "pasiva_perspicacia": ficha.pasivas["perspicacia"],
         "pasiva_investigacion": ficha.pasivas["investigacion"], "vision": _vision(ficha), "px": p.experiencia,
     }
-    if subclase:
-        propiedades["subclase"] = subclase["nombre"]
+    if subclases:
+        propiedades["subclase"] = " / ".join(s.get("nombre", "") for s in subclases)
     propiedades |= {"estado": "activo", "grupo": "", "alineamiento": p.detalles.get("alineamiento", "")}
     lineas = ["---", *(f"{k}: {_yaml(v)}" if v != "" else f"{k}:" for k, v in propiedades.items()), "tags: [pj]", "---"]
     return lineas
@@ -117,9 +118,10 @@ def _magia(a: Asistente5e, ficha: Ficha) -> list[str]:
     planes = {plan.clase_id: plan for plan in a.planes_conjuros()}
     for lanzador in ficha.lanzadores:
         plan = planes.get(lanzador.clase_id)
-        espacios = " y ".join(f"{n} de nivel {nivel}" for nivel, n in ficha.espacios_conjuro.items())
+        partes = [f"{n} de nivel {nivel}" for nivel, n in ficha.espacios_conjuro.items()]
         if ficha.magia_pacto:
-            espacios = f"{ficha.magia_pacto['espacios']} de pacto de nivel {ficha.magia_pacto['nivel']}"
+            partes.append(f"{ficha.magia_pacto['espacios']} de pacto de nivel {ficha.magia_pacto['nivel']}")
+        espacios = " y ".join([", ".join(partes[:-1]), partes[-1]] if len(partes) > 1 else partes)
         cantidad = ""
         if plan and plan.limite_conjuros:
             cantidad = f" {'Conoce' if plan.modo == 'conocidos' else 'Prepara'} {plan.limite_conjuros}."
@@ -167,6 +169,7 @@ def _guia(a: Asistente5e, ficha: Ficha) -> list[str]:
     clase = catalogo.obtener("clases", entrada.clase) if entrada else {}
     subclase = catalogo.obtener("subclases", entrada.subclase) if entrada and entrada.subclase else None
     trasfondo = catalogo.obtener("trasfondos", p.trasfondo or "") or {}
+    secundarias = p.clases[1:]
 
     def con_elecciones(texto: str, paso: str) -> list[str]:
         return [texto, *(f"   - {e}" for e in elecciones[paso])]
@@ -177,10 +180,24 @@ def _guia(a: Asistente5e, ficha: Ficha) -> list[str]:
               "1. **Crear:** *Mis personajes → Añadir* y elige **D&D 5e (2014)**, no D&D 5.5 (2024)."]
     lineas += con_elecciones(f"2. **Raza:** {raza.get('nombre', '—')}" +
                              (f", subraza **{subraza['nombre']}**." if subraza else "."), "raza")
-    texto_clase = f"3. **Clase:** {(clase or {}).get('nombre', '—')}, nivel **{ficha.nivel}**"
+    if secundarias:
+        texto_clase = (f"3. **Clase inicial:** {(clase or {}).get('nombre', '—')} (es la que da las salvaciones y "
+                       f"todas sus competencias), hasta nivel **{entrada.nivel}**")
+    else:
+        texto_clase = f"3. **Clase:** {(clase or {}).get('nombre', '—')}, nivel **{ficha.nivel}**"
     if subclase:
         texto_clase += f", subclase **{subclase['nombre']}**"
-    texto_clase += ". Si Nivel20 la crea a nivel 1, súbela nivel a nivel con estas elecciones:"
+    texto_clase += "."
+    if secundarias:
+        otras = []
+        for otra in secundarias:
+            datos = catalogo.obtener("clases", otra.clase) or {}
+            sub = catalogo.obtener("subclases", otra.subclase) if otra.subclase else None
+            otras.append(f"**{datos.get('nombre', otra.clase)}** ({otra.nivel} nivel{'es' if otra.nivel > 1 else ''}"
+                         + (f", subclase **{sub['nombre']}**" if sub else "") + ")")
+        texto_clase += (f" Multiclase: al subir de nivel, elige también {' y '.join(otras)}, hasta llegar a nivel "
+                        f"**{ficha.nivel}** en total. De esas clases solo se ganan las competencias de multiclase.")
+    texto_clase += " Si Nivel20 la crea a nivel 1, súbela nivel a nivel con estas elecciones:"
     lineas += con_elecciones(texto_clase, "clase")
     base = " · ".join(f"{ABREVIATURAS[c]} {p.caracteristicas_base.get(c, '—')}" for c in CARACTERISTICAS)
     total = " · ".join(f"{ABREVIATURAS[c]} {v.puntuacion}" for c, v in ficha.caracteristicas.items())
