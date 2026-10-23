@@ -42,6 +42,8 @@ def vaciar(origen: str, destino: str) -> int:
             elif "/AP" in widget:
                 del widget["/AP"]  # sin apariencia: el visor la dibuja vacía
     escritor.set_need_appearances_writer(True)
+    # Las apariencias quitadas siguen en el archivo como objetos huérfanos (con el texto de antes): fuera.
+    escritor.compress_identical_objects(remove_duplicates=False, remove_unreferenced=True)
     with open(destino, "wb") as salida:
         escritor.write(salida)
     return vaciados
