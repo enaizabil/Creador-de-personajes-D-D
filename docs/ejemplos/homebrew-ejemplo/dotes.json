@@ -1,0 +1,12 @@
+{
+  "dotes": [
+    {
+      "id": "ojo_de_barquero",
+      "nombre": "Ojo de barquero",
+      "fuente": "Homebrew de ejemplo",
+      "resumen": "+1 a Sabiduría; ventaja en Percepción para ver lo que hay en el agua o bajo ella",
+      "descripcion": "Tu Sabiduría aumenta en 1 (máximo 20). Tienes ventaja en las pruebas de Sabiduría (Percepción) para ver lo que flota, nada o se oculta en el agua.",
+      "efectos": [{"tipo": "caracteristica", "car": "sab", "valor": 1}]
+    }
+  ]
+}

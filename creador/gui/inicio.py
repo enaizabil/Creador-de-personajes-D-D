@@ -11,7 +11,8 @@ from .componentes import fuente, texto_ajustado, titulo
 
 
 class PantallaInicio(ctk.CTkFrame):
-    def __init__(self, master, al_crear: Callable[[str, list[str], str], None], al_abrir: Callable[[], None]):
+    def __init__(self, master, al_crear: Callable[[str, list[str], str], None], al_abrir: Callable[[], None],
+                 al_paquetes: Callable[[], None] | None = None):
         super().__init__(master, fg_color="transparent")
         self.al_crear = al_crear
         self.disponibles, self.avisos = paquetes_instalados()
@@ -42,6 +43,9 @@ class PantallaInicio(ctk.CTkFrame):
                       command=lambda: self._crear("normal")).pack(side="left", padx=(0, 12))
         ctk.CTkButton(botones, text="Abrir personaje…", width=160, height=40, fg_color="transparent", border_width=1,
                       text_color=("gray10", "gray90"), command=al_abrir).pack(side="left")
+        if al_paquetes is not None:
+            ctk.CTkButton(botones, text="Paquetes…", width=120, height=40, fg_color="transparent", border_width=1,
+                          text_color=("gray10", "gray90"), command=al_paquetes).pack(side="left", padx=12)
         if self.avisos:
             texto_ajustado(self, "Avisos al buscar paquetes: " + "; ".join(self.avisos), 760,
                            text_color=("#b45309", "#fbbf24")).pack(anchor="w", padx=30)

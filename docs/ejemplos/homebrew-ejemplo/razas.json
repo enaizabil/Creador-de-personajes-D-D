@@ -1,0 +1,27 @@
+{
+  "razas": [
+    {
+      "id": "duende_del_brezo",
+      "nombre": "Duende del brezo",
+      "fuente": "Homebrew de ejemplo",
+      "tamano": "pequeno",
+      "velocidad": 25,
+      "descripcion": "Gente menuda de los páramos, de orejas largas y ojos de color musgo. Viven entre matorrales, conocen cada sendero y desconfían de los caminos empedrados.",
+      "perfil": {"sigilo": 2, "naturaleza": 2, "astucia": 1},
+      "efectos": [
+        {"tipo": "caracteristica", "car": "des", "valor": 2},
+        {"tipo": "caracteristica", "car": "sab", "valor": 1},
+        {"tipo": "sentido", "id": "vision_en_la_oscuridad", "nombre": "Visión en la Oscuridad", "alcance": 60},
+        {"tipo": "competencia", "categoria": "habilidad", "id": "sigilo"},
+        {"tipo": "rasgo", "nombre": "Paso de brezo",
+         "resumen": "El terreno difícil de matorrales y maleza no te frena.",
+         "descripcion": "Moverte por matorrales, brezo, maleza y otra vegetación baja no te cuesta movimiento adicional."},
+        {"tipo": "rasgo", "nombre": "Escondite natural",
+         "resumen": "Puedes intentar esconderte si estás entre vegetación, aunque solo te cubra a medias.",
+         "descripcion": "Puedes intentar esconderte cuando estás ligeramente oculto por follaje, hierba alta o maleza."},
+        {"tipo": "competencia", "categoria": "idioma", "id": "comun"},
+        {"tipo": "competencia", "categoria": "idioma", "id": "silvano"}
+      ]
+    }
+  ]
+}

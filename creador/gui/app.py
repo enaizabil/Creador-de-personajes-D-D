@@ -13,6 +13,7 @@ from ..nucleo.personaje import Personaje
 from .asistente_5e import VistaAsistente5e
 from .cuestionario_5e import VistaCuestionario5e
 from .inicio import PantallaInicio
+from .paquetes import PantallaPaquetes
 
 # Vistas de cada sistema de reglas: asistente paso a paso (normal) y cuestionario (sencillo).
 VISTAS = {"dnd5e-2014": {"normal": VistaAsistente5e, "sencillo": VistaCuestionario5e}}
@@ -36,7 +37,10 @@ class Aplicacion(ctk.CTk):
         vista.pack(fill="both", expand=True)
 
     def mostrar_inicio(self) -> None:
-        self._cambiar(PantallaInicio(self, self.crear, self.abrir))
+        self._cambiar(PantallaInicio(self, self.crear, self.abrir, self.mostrar_paquetes))
+
+    def mostrar_paquetes(self) -> None:
+        self._cambiar(PantallaPaquetes(self, self.mostrar_inicio))
 
     def _cargar(self, personaje: Personaje, modo: str = "normal") -> None:
         try:

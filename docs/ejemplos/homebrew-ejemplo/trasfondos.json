@@ -1,0 +1,36 @@
+{
+  "trasfondos": [
+    {
+      "id": "barquero_del_rio",
+      "nombre": "Barquero del río",
+      "fuente": "Homebrew de ejemplo",
+      "descripcion": "Has pasado años llevando gente, mercancías y secretos de una orilla a otra. Conoces las corrientes, las posadas de los vados y a quién no conviene subir a la barca.",
+      "perfil": {"aguante": 2, "naturaleza": 2, "carisma": 1},
+      "efectos": [
+        {"tipo": "competencia", "categoria": "habilidad", "id": "atletismo"},
+        {"tipo": "competencia", "categoria": "habilidad", "id": "perspicacia"},
+        {"tipo": "competencia", "categoria": "herramienta", "id": "vehiculos_acuaticos"},
+        {"tipo": "eleccion", "id": "idioma", "nombre": "Idioma", "elegir": 1,
+         "opciones": {"desde": "idiomas", "filtro": {"tipo": ["estandar", "exotico"]}},
+         "aplicar": [{"tipo": "competencia", "categoria": "idioma", "id": "$opcion"}]},
+        {"tipo": "rasgo", "nombre": "Gente de los vados",
+         "resumen": "Los barqueros y posaderos de los ríos te dan paso, cama sencilla y noticias.",
+         "descripcion": "Los barqueros, pescadores y posaderos de los ríos te tratan como a uno de los suyos: te cruzan gratis, te dan una cama sencilla y te cuentan qué ha pasado aguas arriba."}
+      ],
+      "equipo": [
+        [[{"id": "vara"}, {"id": "cuerda_de_canamo"}, {"id": "ropas_comunes"}, {"id": "bolsa"}]]
+      ],
+      "monedas": {"po": 10},
+      "personalidad": {
+        "rasgos": ["Hablo del tiempo antes que de cualquier otra cosa.",
+                   "Nunca dejo a nadie en la orilla equivocada, aunque no me pague."],
+        "ideales": [{"texto": "Paso libre. Los ríos son de todos y nadie debería cobrar por cruzarlos.", "alineamiento": "caotico"},
+                    {"texto": "Palabra dada. Si prometo llevarte, te llevo.", "alineamiento": "legal"}],
+        "vinculos": ["Mi barca es lo único que heredé de mi madre.",
+                     "Debo un favor a una cofradía de pescadores que me sacó del agua."],
+        "defectos": ["No sé guardar un secreto que me cuenten en la barca.",
+                     "Desconfío de cualquiera que no sepa nadar."]
+      }
+    }
+  ]
+}

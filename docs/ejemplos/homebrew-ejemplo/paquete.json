@@ -1,0 +1,11 @@
+{
+  "id": "homebrew-ejemplo",
+  "nombre": "Homebrew de ejemplo: gentes del río",
+  "sistema": "dnd5e-2014",
+  "version": "1.0.0",
+  "tipo": "homebrew",
+  "licencia": "Ejemplo libre: cópialo y modifícalo.",
+  "descripcion": "Una raza (duende del brezo), un trasfondo (barquero del río), una dote y una pregunta para el cuestionario. Sirve de plantilla para tu propio homebrew.",
+  "depende_de": ["srd-5.1"],
+  "archivos": ["razas.json", "trasfondos.json", "dotes.json", "preguntas.json"]
+}

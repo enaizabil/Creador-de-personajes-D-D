@@ -1,0 +1,18 @@
+{
+  "preguntas": [
+    {
+      "id": "rio",
+      "nombre": "El río",
+      "texto": "Alguien que no sabe nadar se cae al río delante de ti.",
+      "respuestas": [
+        {"id": "tirarse", "texto": "Me tiro al agua sin pensarlo.", "perfil": {"proteccion": 2, "aguante": 1},
+         "pesos": {"trasfondos:barquero_del_rio": 1}, "eje": {"moral": 1}},
+        {"id": "cuerda", "texto": "Le lanzo la cuerda que siempre llevo encima.", "perfil": {"astucia": 1, "naturaleza": 1},
+         "pesos": {"trasfondos:barquero_del_rio": 2}},
+        {"id": "gritar", "texto": "Grito hasta que venga alguien que sepa nadar.", "perfil": {"carisma": 2}},
+        {"id": "pedir", "texto": "Le pido al río que lo devuelva a la orilla… y lo hace.", "perfil": {"naturaleza": 2, "fe": 1},
+         "pesos": {"razas:duende_del_brezo": 2}}
+      ]
+    }
+  ]
+}

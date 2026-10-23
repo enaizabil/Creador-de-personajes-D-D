@@ -2,6 +2,8 @@
 
     python -m creador            (o: python -m creador gui)
     python -m creador paquetes
+    python -m creador instalar mi-homebrew.zip   (o una carpeta; --reemplazar para actualizarlo)
+    python -m creador quitar mi-homebrew
     python -m creador validar srd-5.1 phb-2014
     python -m creador ficha personaje.json
     python -m creador exportar personaje.json [--oficial hoja.pdf] [--pdf ficha.pdf] [--nota nota.md]
@@ -23,10 +25,38 @@ def _orden_paquetes() -> int:
     if not disponibles:
         print("No hay paquetes de contenido instalados.")
     for info in sorted(disponibles.values(), key=lambda i: (i.sistema, i.id)):
+        from .gestor import es_integrado
+
         dependencias = f" (requiere: {', '.join(info.depende_de)})" if info.depende_de else ""
-        print(f"[{info.sistema}] {info.id} {info.version} – {info.nombre}{dependencias}")
+        origen = "integrado" if es_integrado(info) else f"usuario: {info.ruta}"
+        print(f"[{info.sistema}] {info.id} {info.version} – {info.nombre}{dependencias} [{origen}]")
     for aviso in avisos:
         print(f"AVISO: {aviso}", file=sys.stderr)
+    return 0
+
+
+def _orden_instalar(origen: str, reemplazar: bool) -> int:
+    from .gestor import ErrorInstalacion, instalar
+
+    try:
+        instalado = instalar(Path(origen), reemplazar=reemplazar)
+    except ErrorInstalacion as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 1
+    accion = "Actualizado" if instalado.reemplazado else "Instalado"
+    print(f"{accion}: {instalado.info.nombre} ({instalado.info.id} {instalado.info.version}) en {instalado.ruta}")
+    return 0
+
+
+def _orden_quitar(id_: str) -> int:
+    from .gestor import ErrorInstalacion, quitar
+
+    try:
+        info = quitar(id_)
+    except ErrorInstalacion as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 1
+    print(f"Quitado: {info.nombre} ({info.id})")
     return 0
 
 
@@ -118,6 +148,11 @@ def main(argv: list[str] | None = None) -> int:
     ordenes = parser.add_subparsers(dest="orden")
     ordenes.add_parser("gui", help="abre la interfaz gráfica (también sin argumentos)")
     ordenes.add_parser("paquetes", help="lista los paquetes de contenido instalados")
+    instalar = ordenes.add_parser("instalar", help="instala un paquete (homebrew) desde un .zip o una carpeta")
+    instalar.add_argument("origen")
+    instalar.add_argument("--reemplazar", action="store_true", help="actualiza el paquete si ya estaba instalado")
+    quitar = ordenes.add_parser("quitar", help="quita un paquete instalado por el usuario")
+    quitar.add_argument("id")
     validar = ordenes.add_parser("validar", help="carga paquetes y muestra sus errores (todos si no se indica ninguno)")
     validar.add_argument("paquetes", nargs="*")
     validar.add_argument("--sistema", default="dnd5e-2014")
@@ -134,6 +169,10 @@ def main(argv: list[str] | None = None) -> int:
         return _orden_gui()
     if args.orden == "paquetes":
         return _orden_paquetes()
+    if args.orden == "instalar":
+        return _orden_instalar(args.origen, args.reemplazar)
+    if args.orden == "quitar":
+        return _orden_quitar(args.id)
     if args.orden == "validar":
         return _orden_validar(args.sistema, args.paquetes)
     if args.orden == "ficha":
