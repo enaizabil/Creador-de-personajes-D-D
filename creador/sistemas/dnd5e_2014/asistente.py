@@ -154,28 +154,44 @@ class Asistente5e:
 
     @property
     def nivel(self) -> int:
+        """Nivel total del personaje: la suma de los niveles de sus clases."""
         if self.personaje.clases:
-            return self.personaje.clases[0].nivel
+            return self.personaje.nivel_total
         return self.extra.get("nivel_inicial", 1)
 
+    def _completos(self, clase_id: str) -> int:
+        return (self.catalogo.obtener("clases", clase_id) or {}).get("niveles_completos", NIVEL_MAXIMO)
+
     def nivel_maximo(self) -> int:
-        """Hasta qué nivel hay datos completos: los de la clase elegida o, sin clase, los de la más completa."""
-        clases = ([self.catalogo.obtener("clases", self.personaje.clases[0].clase)] if self.personaje.clases
-                  else self.catalogo.listar("clases"))
-        return max((c.get("niveles_completos", NIVEL_MAXIMO) for c in clases if c), default=NIVEL_MAXIMO)
+        """Nivel total máximo con datos: la clase principal llega hasta sus «niveles_completos», más las demás."""
+        if not self.personaje.clases:
+            return max((c.get("niveles_completos", NIVEL_MAXIMO) for c in self.catalogo.listar("clases")),
+                       default=NIVEL_MAXIMO)
+        secundarias = sum(e.nivel for e in self.personaje.clases[1:])
+        return min(NIVEL_MAXIMO, self._completos(self.personaje.clases[0].clase) + secundarias)
 
     def establecer_nivel(self, nivel: int) -> None:
+        """Nivel total. Con varias clases, lo que cambia es el nivel de la principal (las demás se reparten aparte)."""
         if not 1 <= nivel <= self.nivel_maximo():
             raise ValueError(f"El nivel va de 1 a {self.nivel_maximo()} (hasta donde llegan los datos)")
-        self.extra["nivel_inicial"] = nivel
         if self.personaje.clases:
-            entrada = self.personaje.clases[0]
-            entrada.nivel = nivel
-            clase = self.catalogo.obtener("clases", entrada.clase) or {}
-            if nivel < clase.get("nivel_subclase", 1):
-                entrada.subclase = None
-            entrada.tiradas_pg = entrada.tiradas_pg[: max(0, nivel - 1)]
+            secundarias = sum(e.nivel for e in self.personaje.clases[1:])
+            if nivel <= secundarias:
+                raise ValueError(f"Tienes {secundarias} niveles en otras clases: el nivel total debe ser al menos "
+                                 f"{secundarias + 1}")
+            self._poner_nivel(0, nivel - secundarias)
+        self.extra["nivel_inicial"] = nivel
         self._limpiar()
+
+    def _poner_nivel(self, indice: int, nivel: int) -> None:
+        """Cambia el nivel de una clase: quita la subclase si aún no toca y las tiradas de PG que sobran."""
+        entrada = self.personaje.clases[indice]
+        entrada.nivel = nivel
+        clase = self.catalogo.obtener("clases", entrada.clase) or {}
+        if nivel < clase.get("nivel_subclase", 1):
+            entrada.subclase = None
+        # La clase inicial tira desde su nivel 2; las demás desde su nivel 1 (ver motor._tirada_pg).
+        entrada.tiradas_pg = entrada.tiradas_pg[: max(0, nivel - 1 if indice == 0 else nivel)]
 
     def establecer_regla(self, regla: str, activa: bool) -> None:
         """dotes, multiclase, opciones_dm (opciones de la Guía del DM que requieren permiso)."""
@@ -206,34 +222,114 @@ class Asistente5e:
     def clases(self) -> list[OpcionDetallada]:
         return self._opciones("clases")
 
-    def subclases(self) -> list[OpcionDetallada]:
-        if not self.personaje.clases:
+    def _entrada(self, clase_id: str | None) -> EntradaClase | None:
+        """La clase pedida o, sin id, la principal."""
+        if clase_id is None:
+            return self.personaje.clases[0] if self.personaje.clases else None
+        return next((e for e in self.personaje.clases if e.clase == clase_id), None)
+
+    def subclases(self, clase_id: str | None = None) -> list[OpcionDetallada]:
+        """Subclases de esa clase (la principal si no se dice) si su nivel ya llega al de elegirla."""
+        entrada = self._entrada(clase_id)
+        if entrada is None:
             return []
-        clase = self.catalogo.obtener("clases", self.personaje.clases[0].clase) or {}
-        if self.nivel < clase.get("nivel_subclase", 1):
+        clase = self.catalogo.obtener("clases", entrada.clase) or {}
+        if entrada.nivel < clase.get("nivel_subclase", 1):
             return []
         opciones = []
         for opcion in self._opciones("subclases", {"clase": clase.get("id")}):
             # Subclases (PHB, homebrew…) cuyos datos no llegan al nivel elegido: se avisa en el nombre.
             completos = (self.catalogo.obtener("subclases", opcion.id) or {}).get("niveles_completos", NIVEL_MAXIMO)
-            if completos < self.nivel:
+            if completos < entrada.nivel:
                 opcion = replace(opcion, nombre=f"{opcion.nombre} (datos hasta nivel {completos})")
             opciones.append(opcion)
         return opciones
 
     def elegir_clase(self, id_: str) -> None:
-        """Cambia la clase; si sus datos no llegan al nivel elegido, baja el nivel hasta donde llegan."""
-        clase = self.catalogo.obtener("clases", id_) or {}
-        nivel = min(self.nivel, clase.get("niveles_completos", NIVEL_MAXIMO))
-        self.extra["nivel_inicial"] = nivel
-        self.personaje.clases = [EntradaClase(id_, nivel)]
-        self.personaje.conjuros = {}
-        self.personaje.preparados = {}
+        """Cambia la clase principal; si sus datos no llegan a su nivel, lo baja hasta donde llegan.
+
+        Las demás clases se conservan (si la nueva principal era una de ellas, sus niveles pasan a la principal).
+        """
+        actual = self._entrada(None)
+        if actual is not None and actual.clase == id_:
+            return
+        secundarias = [e for e in self.personaje.clases[1:] if e.clase != id_]
+        nivel = min(max(1, self.nivel - sum(e.nivel for e in secundarias)), self._completos(id_))
+        self.personaje.clases = [EntradaClase(id_, nivel), *secundarias]
+        self.extra["nivel_inicial"] = self.personaje.nivel_total
+        self._olvidar_conjuros_de_clases_quitadas()
         self._limpiar()
 
-    def elegir_subclase(self, id_: str | None) -> None:
-        self.personaje.clases[0].subclase = id_
+    def elegir_subclase(self, id_: str | None, clase_id: str | None = None) -> None:
+        self._entrada(clase_id).subclase = id_
         self._limpiar()
+
+    # ── multiclase ─────────────────────────────────────────────────────────
+
+    def multiclase_activa(self) -> bool:
+        return self.personaje.reglas_opcionales.get("multiclase", True)
+
+    def clases_para_multiclase(self) -> list[OpcionDetallada]:
+        """Clases que aún se pueden añadir (las que no tiene ya)."""
+        tiene = {e.clase for e in self.personaje.clases}
+        return [o for o in self._opciones("clases") if o.id not in tiene]
+
+    def anadir_clase(self, id_: str, niveles: int = 1) -> None:
+        """Añade una clase secundaria quitándole esos niveles a la principal (el nivel total no cambia)."""
+        if not self.multiclase_activa():
+            raise ValueError("La multiclase está desactivada en las reglas del personaje")
+        principal = self._entrada(None)
+        if principal is None:
+            raise ValueError("Elige antes la clase principal")
+        if self._entrada(id_) is not None:
+            raise ValueError("El personaje ya tiene esa clase")
+        if self.catalogo.obtener("clases", id_) is None:
+            raise ValueError(f"No existe la clase «{id_}»")
+        if not 1 <= niveles < principal.nivel:
+            raise ValueError("No quedan niveles para otra clase: sube antes el nivel total")
+        self._poner_nivel(0, principal.nivel - niveles)
+        self.personaje.clases.append(EntradaClase(id_, niveles))
+        self._limpiar()
+
+    def quitar_clase(self, id_: str) -> None:
+        """Quita una clase secundaria; sus niveles vuelven a la principal."""
+        indice = next((i for i, e in enumerate(self.personaje.clases) if e.clase == id_), None)
+        if not indice:  # None o la principal
+            raise ValueError("Solo se pueden quitar las clases secundarias")
+        niveles = self.personaje.clases.pop(indice).nivel
+        principal = self.personaje.clases[0]
+        self._poner_nivel(0, min(principal.nivel + niveles, self._completos(principal.clase)))
+        self.extra["nivel_inicial"] = self.personaje.nivel_total
+        self._olvidar_conjuros_de_clases_quitadas()
+        self._limpiar()
+
+    def establecer_niveles_clase(self, id_: str, niveles: int) -> None:
+        """Niveles de una clase secundaria; la principal se queda con el resto del nivel total."""
+        indice = next((i for i, e in enumerate(self.personaje.clases) if e.clase == id_), None)
+        if not indice:
+            raise ValueError("El nivel de la clase principal es el resto del nivel total")
+        principal, entrada = self.personaje.clases[0], self.personaje.clases[indice]
+        disponible = principal.nivel + entrada.nivel - 1
+        if not 1 <= niveles <= min(disponible, self._completos(id_)):
+            raise ValueError(f"Los niveles de {id_} van de 1 a {min(disponible, self._completos(id_))}")
+        self._poner_nivel(0, principal.nivel + entrada.nivel - niveles)
+        self._poner_nivel(indice, niveles)
+        self._limpiar()
+
+    def requisito_multiclase(self, clase_id: str) -> tuple[str, bool] | None:
+        """(texto del requisito, si se cumple con las puntuaciones actuales) o None si la clase no pide nada."""
+        clase = self.catalogo.obtener("clases", clase_id) or {}
+        requisito = clase.get("requisitos_multiclase")
+        if not requisito:
+            return None
+        puntuaciones = {c: v.puntuacion for c, v in self.ficha().caracteristicas.items()}
+        return motor.texto_requisito(requisito), motor.cumple_puntuaciones(requisito, puntuaciones)
+
+    def _olvidar_conjuros_de_clases_quitadas(self) -> None:
+        ids = {e.clase for e in self.personaje.clases}
+        for elegidos in (self.personaje.conjuros, self.personaje.preparados):
+            for clase_id in [c for c in elegidos if c not in ids]:
+                del elegidos[clase_id]
 
     # ── características ────────────────────────────────────────────────────
 
@@ -291,6 +387,10 @@ class Asistente5e:
             prioridad.append(lanzamiento["caracteristica"])
         requisitos = clase.get("requisitos_multiclase", {})
         prioridad += [*requisitos.get("caracteristicas", {}), *requisitos.get("alguna_caracteristica", {})]
+        # Multiclase: lo que piden las otras clases (13), antes que la Constitución.
+        for entrada in self.personaje.clases[1:]:
+            otra = (self.catalogo.obtener("clases", entrada.clase) or {}).get("requisitos_multiclase", {})
+            prioridad += [*otra.get("caracteristicas", {}), *list(otra.get("alguna_caracteristica", {}))[:1]]
         prioridad += ["con", *clase.get("salvaciones", [])]
         return list(dict.fromkeys([*prioridad, *CARACTERISTICAS]))
 
@@ -567,8 +667,11 @@ class Asistente5e:
         elif paso == "clase":
             if not personaje.clases:
                 faltan.insert(0, "Elige una clase")
-            elif self.subclases() and not personaje.clases[0].subclase:
-                faltan.insert(0, "Elige una subclase")
+            for entrada in reversed(personaje.clases):
+                if self.subclases(entrada.clase) and not entrada.subclase:
+                    nombre = (self.catalogo.obtener("clases", entrada.clase) or {}).get("nombre", entrada.clase)
+                    faltan.insert(0, f"Elige una subclase de {nombre}" if len(personaje.clases) > 1
+                                  else "Elige una subclase")
         elif paso == "caracteristicas":
             faltan += validar_base(personaje.metodo_caracteristicas, personaje.caracteristicas_base)
         elif paso == "trasfondo" and not personaje.trasfondo:

@@ -538,7 +538,8 @@
             "tipo": "rasgo",
             "nombre": "Ataque Adicional",
             "resumen": "2 ataques al usar la acción de Atacar",
-            "descripcion": "Cuando realizas la acción de Atacar durante tu turno, puedes hacer dos ataques en lugar de uno."
+            "descripcion": "Cuando realizas la acción de Atacar durante tu turno, puedes hacer dos ataques en lugar de uno.",
+            "no_acumula": true
           }
         ],
         "6": [

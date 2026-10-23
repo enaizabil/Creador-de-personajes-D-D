@@ -244,7 +244,8 @@ def _contexto_efecto(efecto: dict, origen: str, catalogo: Catalogo, niveles_clas
 
 def _rasgos(aplicables: list[EfectoAplicado], catalogo: Catalogo, niveles_clase: dict[str, int],
             contexto: dict, avisos: list[str]) -> list[Rasgo]:
-    rasgos = []
+    rasgos: list[Rasgo] = []
+    no_acumula: dict[str, int] = {}  # nombre -> posición del rasgo que se queda
     for aplicado in aplicables:
         if aplicado.tipo != "rasgo":
             continue
@@ -257,9 +258,28 @@ def _rasgos(aplicables: list[EfectoAplicado], catalogo: Catalogo, niveles_clase:
         except (ErrorExpresion, TypeError, ValueError) as exc:
             avisos.append(f"{efecto['nombre']}: {exc}")
             resumen, usos = efecto.get("resumen", ""), None
-        rasgos.append(Rasgo(efecto["nombre"], efecto.get("descripcion", ""), aplicado.etiqueta,
-                            resumen, usos, _por_nivel(efecto.get("recarga", ""), variables["nivel_clase"])))
+        rasgo = Rasgo(efecto["nombre"], efecto.get("descripcion", ""), aplicado.etiqueta,
+                      resumen, usos, _por_nivel(efecto.get("recarga", ""), variables["nivel_clase"]))
+        if efecto.get("no_acumula"):
+            # Multiclase: Ataque Adicional, Defensa sin Armadura… de dos clases no se suman; queda el mejor.
+            previo = no_acumula.get(efecto["nombre"])
+            if previo is not None:
+                if _numero_inicial(rasgo.resumen) > _numero_inicial(rasgos[previo].resumen):
+                    rasgos[previo] = rasgo
+                continue
+            no_acumula[efecto["nombre"]] = len(rasgos)
+        rasgos.append(rasgo)
     return rasgos
+
+
+def _numero_inicial(texto: str) -> int:
+    """«3 ataques al usar…» -> 3 (0 si no empieza por un número)."""
+    cifras = ""
+    for caracter in texto:
+        if not caracter.isdigit():
+            break
+        cifras += caracter
+    return int(cifras or 0)
 
 
 def _por_nivel(valor, nivel: int):
@@ -312,6 +332,17 @@ def _avisos_reglas_opcionales(personaje: Personaje, catalogo: Catalogo, avisos: 
         for regla in (entrada or {}).get("requiere_reglas", []):
             if not personaje.reglas_opcionales.get(regla, True):
                 avisos.append(f"{entrada['nombre']} requiere la regla opcional «{regla}», que está desactivada")
+
+
+def texto_requisito(requisito: dict) -> str:
+    """«FUE 13 o DES 13», «INT 13»… (para la interfaz)."""
+    return _texto_requisito(requisito)
+
+
+def cumple_puntuaciones(requisito: dict, puntuaciones: dict[str, int]) -> bool:
+    """Solo la parte de puntuaciones de un requisito (lo que piden las clases para la multiclase)."""
+    return _cumple_requisito({k: v for k, v in requisito.items() if k in ("caracteristicas", "alguna_caracteristica")},
+                             puntuaciones, defaultdict(set), True)
 
 
 def _texto_requisito(requisito: dict) -> str:

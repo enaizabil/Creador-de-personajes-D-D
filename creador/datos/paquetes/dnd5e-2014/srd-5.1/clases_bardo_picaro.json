@@ -853,7 +853,8 @@
             "tipo": "rasgo",
             "nombre": "Esquiva Asombrosa",
             "resumen": "reacción: cuando un atacante que puedas ver te impacte con un ataque, reduces su daño a la mitad",
-            "descripcion": "Cuando un atacante que puedas ver te impacte con un ataque, puedes usar tu reacción para reducir a la mitad el daño que te causa dicho ataque."
+            "descripcion": "Cuando un atacante que puedas ver te impacte con un ataque, puedes usar tu reacción para reducir a la mitad el daño que te causa dicho ataque.",
+            "no_acumula": true
           }
         ],
         "6": [
@@ -953,7 +954,8 @@
             "tipo": "rasgo",
             "nombre": "Evasión",
             "resumen": "en efectos con salvación de DES para la mitad del daño: ningún daño si la superas, mitad si la fallas",
-            "descripcion": "Cuando un efecto te permite hacer una tirada de salvación de Destreza para recibir solo la mitad del daño, no recibes ningún daño si la superas y solo la mitad si la fallas."
+            "descripcion": "Cuando un efecto te permite hacer una tirada de salvación de Destreza para recibir solo la mitad del daño, no recibes ningún daño si la superas y solo la mitad si la fallas.",
+            "no_acumula": true
           }
         ],
         "8": [

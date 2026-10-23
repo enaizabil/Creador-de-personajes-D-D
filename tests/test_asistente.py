@@ -313,3 +313,86 @@ def test_competencia_y_pericia_a_la_vez_no_se_bloquea(asistente):
     a.elegir_trasfondo("soldado")
     bendiciones = next(e for e in a.elecciones("clase") if "Bendiciones" in e.nombre)
     assert a.sin_competencia(bendiciones) == set()
+
+
+# ── multiclase ─────────────────────────────────────────────────────────────
+
+def test_multiclase_reparte_el_nivel_total(asistente):
+    a = asistente
+    a.establecer_nivel(8)
+    a.elegir_clase("guerrero")
+    a.anadir_clase("picaro", 3)
+    assert [(e.clase, e.nivel) for e in a.personaje.clases] == [("guerrero", 5), ("picaro", 3)]
+    assert a.nivel == 8
+    a.establecer_niveles_clase("picaro", 2)
+    assert [(e.clase, e.nivel) for e in a.personaje.clases] == [("guerrero", 6), ("picaro", 2)]
+    a.establecer_nivel(10)  # el nivel total sube la principal
+    assert [(e.clase, e.nivel) for e in a.personaje.clases] == [("guerrero", 8), ("picaro", 2)]
+    with pytest.raises(ValueError):
+        a.establecer_nivel(2)  # con 2 niveles de pícaro, el total no puede bajar de 3
+    with pytest.raises(ValueError):
+        a.establecer_niveles_clase("picaro", 10)  # la principal se quedaría sin niveles
+    with pytest.raises(ValueError):
+        a.anadir_clase("picaro")  # ya la tiene
+    a.quitar_clase("picaro")
+    assert [(e.clase, e.nivel) for e in a.personaje.clases] == [("guerrero", 10)]
+
+
+def test_multiclase_subclase_por_clase_y_lo_que_falta(asistente):
+    a = asistente
+    a.establecer_nivel(6)
+    a.elegir_clase("guerrero")
+    a.anadir_clase("clerigo", 1)  # el clérigo elige dominio a nivel 1
+    assert a.subclases("clerigo") and a.subclases("guerrero")
+    faltan = a.faltan("clase")
+    assert "Elige una subclase de Guerrero" in faltan and "Elige una subclase de Clérigo" in faltan
+    a.elegir_subclase("dominio_de_la_vida", "clerigo")
+    a.elegir_subclase("campeon")
+    assert not any("subclase" in f for f in a.faltan("clase"))
+    a.establecer_niveles_clase("clerigo", 4)  # guerrero 2: aún no tiene arquetipo
+    assert a.personaje.clases[0].subclase is None and a.subclases("guerrero") == []
+
+
+def test_multiclase_requisitos_avisan_sin_bloquear(asistente):
+    a = asistente
+    a.elegir_raza("humano")
+    a.elegir_subraza("humano_estandar")
+    a.establecer_nivel(4)
+    a.elegir_clase("guerrero")
+    a.establecer_metodo("estandar")
+    a.personaje.caracteristicas_base = {"fue": 15, "des": 14, "con": 13, "int": 8, "sab": 12, "car": 10}
+    a.anadir_clase("mago", 1)  # INT 9 con el humano: no llega a 13
+    assert a.requisito_multiclase("mago") == ("INT 13", False)
+    assert any("Multiclase: Mago requiere INT 13" in x for x in a.ficha().avisos)
+    a.sugerir_caracteristicas()  # reparte pensando también en el mago
+    assert a.requisito_multiclase("mago")[1]
+
+
+def test_multiclase_cambiar_la_principal_conserva_las_demas(asistente):
+    a = asistente
+    a.establecer_nivel(5)
+    a.elegir_clase("mago")
+    a.anadir_clase("guerrero", 2)
+    a.elegir_conjuros("mago", ["mano_de_mago"])
+    a.elegir_clase("guerrero")  # la secundaria pasa a principal y se queda con todos los niveles
+    assert [(e.clase, e.nivel) for e in a.personaje.clases] == [("guerrero", 5)]
+    assert "mago" not in a.personaje.conjuros
+
+
+def test_rasgos_que_no_se_acumulan(asistente):
+    a = asistente
+    a.establecer_nivel(16)
+    a.elegir_clase("guerrero")
+    a.anadir_clase("monje", 5)  # guerrero 11 (3 ataques) y monje 5 (2 ataques)
+    completar_elecciones(a, "clase")
+    rasgos = [r for r in a.ficha().rasgos if r.nombre == "Ataque Adicional"]
+    assert len(rasgos) == 1 and rasgos[0].resumen.startswith("3 ataques")
+
+
+def test_multiclase_desactivada(asistente):
+    a = asistente
+    a.establecer_regla("multiclase", False)
+    a.establecer_nivel(4)
+    a.elegir_clase("guerrero")
+    with pytest.raises(ValueError):
+        a.anadir_clase("picaro")
