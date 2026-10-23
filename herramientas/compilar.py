@@ -12,6 +12,9 @@ Ediciones:
 Resultado: ``dist/CreadorPersonajes-<versión>-<edición>-<sistema>.zip`` con una carpeta (``--onedir``: arranca
 rápido y da menos falsos positivos del antivirus que un único .exe; CustomTkinter tampoco funciona con
 ``--onefile``). En macOS la carpeta lleva la aplicación «.app».
+
+En Windows se compila en una carpeta de ruta corta (``%USERPROFILE%\\.creador-compilar``) y se borra al acabar:
+dentro de una carpeta con ruta larga, las rutas de PyInstaller pasan de 260 caracteres y la copia falla.
 """
 from __future__ import annotations
 
@@ -34,6 +37,8 @@ PAQUETES = {
     "libre": ["srd-5.1", "cuestionario-basico"],
 }
 PLANTILLAS = {"completa": True, "libre": False}
+# Windows corta las rutas en 260 caracteres si no se activan las rutas largas: fuera del repositorio, cerca de la raíz.
+TEMPORAL = Path.home() / ".creador-compilar" if sys.platform == "win32" else RAIZ / "build"
 
 LEEME = """Creador de personajes de rol {version} (edición {edicion})
 =============================================================
@@ -87,9 +92,14 @@ def compilar(edicion: str) -> Path:
     import PyInstaller.__main__
 
     nombre = f"{NOMBRE}-{edicion}"
-    trabajo = RAIZ / "build" / nombre
+    trabajo = TEMPORAL / nombre
     datos = preparar_datos(edicion, trabajo / "datos")
-    distribucion = RAIZ / "dist" / edicion
+    # Sin __pycache__: no hace falta y sus rutas son las más largas.
+    ctk = trabajo / "customtkinter"
+    if ctk.exists():
+        shutil.rmtree(ctk)
+    shutil.copytree(Path(customtkinter.__file__).parent, ctk, ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
+    distribucion = TEMPORAL / "dist" / edicion
     PyInstaller.__main__.run([
         str(RAIZ / "herramientas" / "lanzador.py"),
         "--noconfirm", "--clean", "--onedir", "--windowed",
@@ -97,7 +107,7 @@ def compilar(edicion: str) -> Path:
         "--distpath", str(distribucion), "--workpath", str(trabajo / "pyinstaller"), "--specpath", str(trabajo),
         "--paths", str(RAIZ),
         "--add-data", f"{datos}{os.pathsep}creador/datos",
-        "--add-data", f"{Path(customtkinter.__file__).parent}{os.pathsep}customtkinter",
+        "--add-data", f"{ctk}{os.pathsep}customtkinter",
         "--collect-submodules", "reportlab.pdfbase",
         "--collect-submodules", "creador",
     ])
@@ -113,6 +123,7 @@ def compilar(edicion: str) -> Path:
         encoding="utf-8")
     (carpeta / "LEEME.txt").write_text(LEEME.format(version=__version__, edicion=edicion, nombre=NOMBRE,
                                                     licencia=LICENCIAS[edicion]), encoding="utf-8")
+    (RAIZ / "dist").mkdir(exist_ok=True)
     archivo = shutil.make_archive(str(RAIZ / "dist" / f"{NOMBRE}-{__version__}-{edicion}-{plataforma()}"), "zip",
                                   root_dir=distribucion, base_dir=NOMBRE)
     return Path(archivo)
@@ -131,8 +142,12 @@ def main() -> int:
               "(y Python con Tkinter: el de python.org lo trae).", file=sys.stderr)
         return 1
     ediciones = ["completa", "libre"] if args.edicion == "ambas" else [args.edicion]
-    for edicion in ediciones:
-        print(f"Listo: {compilar(edicion)}")
+    try:
+        for edicion in ediciones:
+            print(f"Listo: {compilar(edicion)}")
+    finally:
+        if TEMPORAL != RAIZ / "build":
+            shutil.rmtree(TEMPORAL, ignore_errors=True)
     return 0
 
 

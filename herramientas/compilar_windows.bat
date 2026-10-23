@@ -12,6 +12,12 @@ call .venv-compilar\Scripts\activate.bat
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt pyinstaller
 python herramientas\compilar.py %*
+if errorlevel 1 (
+  echo.
+  echo La compilacion ha fallado: copia el mensaje de arriba para revisarlo.
+  pause
+  exit /b 1
+)
 echo.
 echo Los .zip estan en la carpeta dist.
 pause
