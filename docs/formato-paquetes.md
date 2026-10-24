@@ -342,3 +342,10 @@ Un error de contenido no impide cargar el resto del paquete.
 
 - Las entradas con `rasgo` (p. ej. `rasgo_combate`) forman la tabla rasgo del perfil → `dotes`, `opciones`, `escuelas` y `conjuros` que encajan con él.
 - Solo se usan cuando hay respuestas de subida: el perfil (con lo vivido en esa subida reforzado) ordena las dotes, las opciones y los conjuros nuevos.
+
+**Configuración del cuestionario** (campos de cada pregunta de creación)
+
+- `estilo`: `"cotidiana"` (por defecto), `"fantasia"` o `"comun"` (sale en los dos estilos, p. ej. «¿Has jugado antes a rol?»). Con «Mezcla» se alternan las de los dos estilos hasta el tamaño de uno solo.
+- `detalle`: 1, 2 o 3. La pregunta entra en «Rápido» (1), «Recomendado» (1 y 2) o «Preciso» (todas). En el paquete del programa salen 10, 20 y 32 por estilo.
+- `sensible`: `true` si el contenido es sensible o bizarro. Solo sale con el interruptor activado, y entonces se suma a las demás de su nivel.
+- `sustituye`: id de otra pregunta. Si sus requisitos (`requiere`) están cargados, ocupa el sitio de esa pregunta (así un paquete como Tasha cambia preguntas sin alterar el total).

@@ -61,12 +61,14 @@ class VistaCuestionario5e(ctk.CTkFrame):
     def pantalla_inicio(self) -> None:
         columna = self._limpiar()
         titulo(columna, "Crea tu personaje respondiendo preguntas", 26).pack(anchor="w")
-        texto_ajustado(columna, "No hace falta saber nada de reglas. Te contaremos situaciones de la vida cotidiana y "
-                                "tú dices qué haría tu personaje. Con eso proponemos raza, clase, trasfondo, características "
-                                "y todo lo demás. Al final podrás cambiar lo que quieras.", ANCHO,
+        texto_ajustado(columna, "No hace falta saber nada de reglas. Te contaremos situaciones (de la vida cotidiana o de "
+                                "fantasía) y tú dices qué haría tu personaje. Con eso proponemos raza, clase, trasfondo, "
+                                "características y todo lo demás. Al final podrás cambiar lo que quieras.", ANCHO,
                        font=fuente(15)).pack(anchor="w", pady=(10, 18))
+        self._opciones_preguntas(columna)
         texto_ajustado(columna, f"Son {len(self.preguntas)} preguntas; con {MINIMO_RESPUESTAS} ya hay un resultado. "
-                                "Puedes saltarte las que no te convenzan.", ANCHO, text_color="gray").pack(anchor="w")
+                                "Puedes saltarte las que no te convenzan.", ANCHO,
+                       text_color="gray").pack(anchor="w", pady=(8, 0))
         fila = ctk.CTkFrame(columna, fg_color="transparent")
         fila.pack(anchor="w", pady=18)
         ctk.CTkLabel(fila, text="Nivel del personaje:", font=fuente(14, True)).pack(side="left", padx=(0, 10))
@@ -93,6 +95,35 @@ class VistaCuestionario5e(ctk.CTkFrame):
                       command=lambda: self.pantalla_pregunta(0)).pack(side="left")
         ctk.CTkButton(botones, text="Volver al inicio", width=150, height=40, fg_color="transparent", border_width=1,
                       text_color=("gray10", "gray90"), command=self.al_volver).pack(side="left", padx=12)
+
+    def _opciones_preguntas(self, columna) -> None:
+        """Cuántas preguntas, de qué estilo y si entran las de contenido sensible o bizarro."""
+        conf = self.q.configuracion
+
+        def cambiar(**cambio) -> None:
+            self.q.configurar(**cambio)
+            self.preguntas = self.q.preguntas()
+            self.pantalla_inicio()
+
+        fila = ctk.CTkFrame(columna, fg_color="transparent")
+        fila.pack(anchor="w", pady=(0, 6))
+        ctk.CTkLabel(fila, text="Preguntas:", font=fuente(14, True), width=90, anchor="w").pack(side="left")
+        cantidades = {f"{nombre} ({len(self.q.preguntas(cantidad=clave))})": clave for clave, nombre in
+                      (("rapido", "Rápido"), ("recomendado", "Recomendado"), ("preciso", "Preciso"))}
+        selector = ctk.CTkSegmentedButton(fila, values=list(cantidades), command=lambda v: cambiar(cantidad=cantidades[v]))
+        selector.set(next(n for n, c in cantidades.items() if c == conf["cantidad"]))
+        selector.pack(side="left")
+        ctk.CTkLabel(fila, text="(más preguntas, más precisión)", text_color="gray").pack(side="left", padx=10)
+        fila = ctk.CTkFrame(columna, fg_color="transparent")
+        fila.pack(anchor="w", pady=(0, 6))
+        ctk.CTkLabel(fila, text="Estilo:", font=fuente(14, True), width=90, anchor="w").pack(side="left")
+        estilos = {"Vida cotidiana": "cotidiana", "Fantasía": "fantasia", "Mezcla": "mezcla"}
+        selector = ctk.CTkSegmentedButton(fila, values=list(estilos), command=lambda v: cambiar(estilo=estilos[v]))
+        selector.set(next(n for n, e in estilos.items() if e == conf["estilo"]))
+        selector.pack(side="left")
+        variable = ctk.BooleanVar(value=conf["sensible"])
+        ctk.CTkSwitch(columna, text="Incluir preguntas de contenido sensible o bizarro (muerte, crueldad, situaciones absurdas)",
+                      variable=variable, command=lambda: cambiar(sensible=variable.get())).pack(anchor="w", pady=(2, 0))
 
     def pantalla_pregunta(self, indice: int) -> None:
         if indice >= len(self.preguntas):

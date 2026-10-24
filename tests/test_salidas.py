@@ -122,7 +122,8 @@ def test_hoja_oficial_rellena(entorno, clase, tmp_path):
     pytest.importorskip("pypdf")
     from creador.sistemas.dnd5e_2014.salidas.pdf_oficial import rellenar_hoja_oficial
 
-    a = personaje(entorno, clase)
+    # El monje 20 tiene rasgos de sobra para desbordar la página 1, sean cuales sean las respuestas al azar.
+    a = personaje(entorno, clase, nivel=20 if clase == "monje" else 5)
     a.establecer_detalle("historia", "Primer párrafo de una historia muy larga. " * 60 + "\n\nY otro más.")
     ficha = a.ficha()
     ruta = tmp_path / "oficial.pdf"

@@ -460,3 +460,53 @@ def test_historia_al_crear_a_nivel_alto(entorno):
     assert q.personaje.elecciones["clase:guerrero:4/mejora"] == ["dote"]
     assert q.subidas_anteriores[-1]["desde"] == 1 and q.subidas_anteriores[-1]["hasta"] == 8
     assert q.respuestas_subida == {}
+
+
+@pytest.mark.parametrize("estilo", ["cotidiana", "fantasia", "mezcla"])
+def test_cantidad_estilo_y_contenido_sensible(entorno, estilo):
+    _, catalogo = entorno
+    q = nuevo(entorno)
+    tamanos = []
+    for cantidad in ("rapido", "recomendado", "preciso"):
+        normales = q.preguntas(cantidad=cantidad, estilo=estilo, sensible=False)
+        con_sensibles = q.preguntas(cantidad=cantidad, estilo=estilo, sensible=True)
+        assert len(con_sensibles) > len(normales)
+        assert not any(catalogo.obtener("preguntas", p.id).get("sensible") for p in normales)
+        assert normales[0].id == "experiencia"  # la común va siempre la primera
+        estilos = {catalogo.obtener("preguntas", p.id)["estilo"] for p in normales[1:]}
+        assert estilos == ({"cotidiana", "fantasia"} if estilo == "mezcla" else {estilo})
+        # Cada nivel cubre todos los rasgos del perfil al menos dos veces.
+        apariciones = Counter(r for p in normales for resp in catalogo.obtener("preguntas", p.id)["respuestas"]
+                              for r in resp.get("perfil", {}))
+        assert set(apariciones) == set(RASGOS_PERFIL) and min(apariciones.values()) >= 2, (cantidad, apariciones)
+        tamanos.append(len(normales))
+    assert tamanos == [10, 20, 32]
+
+
+def test_la_configuracion_se_guarda_en_el_personaje(entorno):
+    q = nuevo(entorno)
+    assert q.configuracion == {"cantidad": "recomendado", "estilo": "cotidiana", "sensible": False}
+    q.configurar(cantidad="rapido", estilo="fantasia", sensible=True)
+    assert q.personaje.extra["cuestionario"]["configuracion"] == {"cantidad": "rapido", "estilo": "fantasia",
+                                                                  "sensible": True}
+    assert len(q.preguntas()) == 12
+    with pytest.raises(ValueError):
+        q.configurar(estilo="terror")
+
+
+@pytest.mark.parametrize("estilo", ["cotidiana", "fantasia", "mezcla"])
+@pytest.mark.parametrize("cantidad", ["rapido", "recomendado", "preciso"])
+def test_respuestas_coherentes_recomiendan_su_clase(entorno, estilo, cantidad):
+    """Quien responde siempre lo más afín a una clase la tiene entre las dos primeras recomendaciones."""
+    _, catalogo = entorno
+    for clase in catalogo.listar("clases"):
+        perfil = clase.get("perfil", {})
+        q = nuevo(entorno)
+        q.configurar(cantidad=cantidad, estilo=estilo)
+        for pregunta in q.preguntas():
+            respuestas = catalogo.obtener("preguntas", pregunta.id)["respuestas"]
+            mejor = max(respuestas, key=lambda r, p=perfil, c=clase["id"]: sum(p.get(k, 0) * v for k, v in
+                                                                               r.get("perfil", {}).items())
+                        + 3 * r.get("pesos", {}).get(f"clases:{c}", 0))
+            q.responder(pregunta.id, mejor["id"])
+        assert clase["id"] in [r.id for r in q.recomendar_clases()[:2]], clase["id"]

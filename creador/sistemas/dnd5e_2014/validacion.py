@@ -416,6 +416,7 @@ def _referencia_valida(referencia) -> bool:
 
 
 MOMENTOS_PREGUNTA = ("creacion", "subida")
+ESTILOS_PREGUNTA = ("comun", "cotidiana", "fantasia")
 DECISIONES_SUBIDA = ("mejora", "subclase", "conjuros", "opciones")
 
 
@@ -423,6 +424,14 @@ def _validar_pregunta(pregunta: dict) -> list[str]:
     errores: list[str] = []
     if pregunta.get("momento", "creacion") not in MOMENTOS_PREGUNTA:
         errores.append(f"«momento» debe ser uno de: {', '.join(MOMENTOS_PREGUNTA)}")
+    if pregunta.get("estilo", "cotidiana") not in ESTILOS_PREGUNTA:
+        errores.append(f"«estilo» debe ser uno de: {', '.join(ESTILOS_PREGUNTA)}")
+    if pregunta.get("detalle", 1) not in (1, 2, 3):
+        errores.append("«detalle» debe ser 1 (rápido), 2 (recomendado) o 3 (preciso)")
+    if not isinstance(pregunta.get("sensible", False), bool):
+        errores.append("«sensible» debe ser true o false")
+    if not isinstance(pregunta.get("sustituye", ""), str):
+        errores.append("«sustituye» debe ser el id de otra pregunta")
     decide = pregunta.get("decide", [])
     if not isinstance(decide, list) or any(d not in DECISIONES_SUBIDA for d in decide):
         errores.append(f"«decide» debe ser una lista con: {', '.join(DECISIONES_SUBIDA)}")

@@ -22,6 +22,7 @@ import math
 import random
 import re
 from collections import defaultdict
+from itertools import zip_longest
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
@@ -43,6 +44,10 @@ BONO_CONSTITUCION = 4  # todo aventurero agradece la Constitución
 NIVEL_MINIMO_MULTICLASE = 4  # antes, repartir deja a la clase principal sin lo básico (p. ej., su subclase)
 MAXIMO_NIVELES_SECUNDARIA = 5
 CANDIDATAS_SECUNDARIA = 4  # la secundaria sale de las clases más afines tras la principal
+# Cuántas preguntas: cada pregunta tiene un «detalle» (1-3) y entra en ese nivel y en los siguientes.
+CANTIDADES = {"rapido": 1, "recomendado": 2, "preciso": 3}
+ESTILOS = ("cotidiana", "fantasia", "mezcla")
+CONFIGURACION_INICIAL = {"cantidad": "recomendado", "estilo": "cotidiana", "sensible": False}
 PESO_SUBIDA_ACTUAL = 2  # las respuestas de esta subida pesan más que las antiguas en lo que se decide ahora
 
 # Qué características y habilidades empuja cada rasgo del perfil.
@@ -119,10 +124,47 @@ class Cuestionario5e:
         categoria, id_ = referencia.split(":", 1)
         return self.catalogo.obtener(categoria, id_) is not None
 
-    def preguntas(self) -> list[Pregunta]:
-        """Las preguntas de los paquetes cargados cuyos requisitos («requiere») también están cargados."""
-        return [self._pregunta(p) for p in self.catalogo.listar("preguntas")
-                if p.get("momento", "creacion") == "creacion" and all(self._existe(r) for r in p.get("requiere", []))]
+    @property
+    def configuracion(self) -> dict:
+        """Cantidad («rapido», «recomendado», «preciso»), estilo («cotidiana», «fantasia», «mezcla») y si se
+        incluyen las preguntas de contenido sensible o bizarro."""
+        guardada = self.personaje.extra.setdefault("cuestionario", {}).setdefault("configuracion", {})
+        return {**CONFIGURACION_INICIAL, **guardada}
+
+    def configurar(self, cantidad: str | None = None, estilo: str | None = None, sensible: bool | None = None) -> None:
+        if cantidad is not None and cantidad not in CANTIDADES:
+            raise ValueError(f"Cantidad desconocida «{cantidad}»")
+        if estilo is not None and estilo not in ESTILOS:
+            raise ValueError(f"Estilo desconocido «{estilo}»")
+        guardada = self.personaje.extra.setdefault("cuestionario", {}).setdefault("configuracion", {})
+        for clave, valor in (("cantidad", cantidad), ("estilo", estilo), ("sensible", sensible)):
+            if valor is not None:
+                guardada[clave] = valor
+
+    def preguntas(self, **configuracion) -> list[Pregunta]:
+        """Las preguntas de creación según la configuración (o la que se pase para contarlas).
+
+        Solo las de paquetes cargados cuyos requisitos («requiere») también lo están; una pregunta con
+        «sustituye» (p. ej. de Tasha) ocupa el sitio de la que nombra. Con «mezcla», se alternan los dos estilos
+        hasta el tamaño de uno solo; las de detalle 1 van primero porque son las que más distinguen.
+        """
+        conf = {**self.configuracion, **configuracion}
+        tope = CANTIDADES[conf["cantidad"]]
+        validas = [p for p in self.catalogo.listar("preguntas")
+                   if p.get("momento", "creacion") == "creacion" and all(self._existe(r) for r in p.get("requiere", []))
+                   and p.get("detalle", 1) <= tope and (conf["sensible"] or not p.get("sensible"))]
+        sustitutas = {p["sustituye"]: p for p in validas if p.get("sustituye")}
+        validas = [sustitutas.get(p["id"], p) for p in validas if not p.get("sustituye")]
+        comunes = [p for p in validas if p.get("estilo") == "comun"]
+        por_estilo = {e: sorted((p for p in validas if p.get("estilo", "cotidiana") == e), key=lambda p: p.get("detalle", 1))
+                      for e in ("cotidiana", "fantasia")}
+        if conf["estilo"] == "mezcla":
+            largo = max(len(lista) for lista in por_estilo.values())
+            elegidas = [p for par in zip_longest(por_estilo["cotidiana"], por_estilo["fantasia"]) for p in par if p][:largo]
+        else:
+            # Un paquete sin preguntas de ese estilo (homebrew) usa las que tenga.
+            elegidas = por_estilo[conf["estilo"]] or por_estilo["cotidiana"] or por_estilo["fantasia"]
+        return [self._pregunta(p) for p in comunes + elegidas]
 
     @staticmethod
     def _pregunta(datos: dict) -> Pregunta:
