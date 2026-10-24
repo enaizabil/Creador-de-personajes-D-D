@@ -8,6 +8,7 @@
   "descripcion": "Preguntas de la vida cotidiana para el modo sencillo y recomendaciones de conjuros y opciones para que el personaje salga jugable.",
   "archivos": [
     "preguntas.json",
+    "preguntas_subida.json",
     "recomendaciones.json"
   ]
 }

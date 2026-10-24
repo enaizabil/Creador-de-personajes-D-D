@@ -8,9 +8,15 @@ asistente del modo normal.
 
 Solo cuentan las preguntas, perfiles y recomendaciones de los paquetes cargados: un homebrew entra en
 el cuestionario con declarar su «perfil», y un paquete puede añadir preguntas propias.
+
+Al subir de nivel hay otras preguntas («momento»: «subida»), planteadas desde los hitos de la Guía del DM
+(p. 261: un objetivo cumplido, un descubrimiento, un destino alcanzado) y el entrenamiento entre aventuras
+(p. 131). Deciden lo que traen los niveles nuevos: mejora de característica o dote, subclase, opciones de
+clase y conjuros, a través de la tabla rasgo → dotes, opciones y escuelas de las recomendaciones.
 """
 from __future__ import annotations
 
+import copy
 import json
 import math
 import random
@@ -22,11 +28,12 @@ from typing import TYPE_CHECKING
 from ...nucleo.efectos import EleccionPendiente
 from . import motor
 from .asistente import Asistente5e, BloqueEquipo, LineaEquipo, OpcionDetallada
-from .constantes import ARRAY_ESTANDAR, CARACTERISTICAS, GRUPO_ARMADURA, GRUPO_ARMA, HABILIDADES
+from .constantes import ARRAY_ESTANDAR, CARACTERISTICAS, GRUPO_ARMADURA, GRUPO_ARMA, HABILIDADES, VALOR_MAXIMO_PERFIL
+
+from ...nucleo.personaje import Personaje
 
 if TYPE_CHECKING:
     from ...nucleo.paquetes import Catalogo
-    from ...nucleo.personaje import Personaje
     from ...nucleo.sistema import SistemaReglas
 
 PUNTOS_POR_PESO = 5  # cada punto de «pesos» suma esto a la afinidad (que va de 0 a 100)
@@ -36,6 +43,7 @@ BONO_CONSTITUCION = 4  # todo aventurero agradece la Constitución
 NIVEL_MINIMO_MULTICLASE = 4  # antes, repartir deja a la clase principal sin lo básico (p. ej., su subclase)
 MAXIMO_NIVELES_SECUNDARIA = 5
 CANDIDATAS_SECUNDARIA = 4  # la secundaria sale de las clases más afines tras la principal
+PESO_SUBIDA_ACTUAL = 2  # las respuestas de esta subida pesan más que las antiguas en lo que se decide ahora
 
 # Qué características y habilidades empuja cada rasgo del perfil.
 CARACTERISTICAS_POR_RASGO = {
@@ -113,8 +121,13 @@ class Cuestionario5e:
 
     def preguntas(self) -> list[Pregunta]:
         """Las preguntas de los paquetes cargados cuyos requisitos («requiere») también están cargados."""
-        return [Pregunta(p["id"], p["nombre"], p["texto"], tuple(Respuesta(r["id"], r["texto"]) for r in p["respuestas"]))
-                for p in self.catalogo.listar("preguntas") if all(self._existe(r) for r in p.get("requiere", []))]
+        return [self._pregunta(p) for p in self.catalogo.listar("preguntas")
+                if p.get("momento", "creacion") == "creacion" and all(self._existe(r) for r in p.get("requiere", []))]
+
+    @staticmethod
+    def _pregunta(datos: dict) -> Pregunta:
+        return Pregunta(datos["id"], datos["nombre"], datos["texto"],
+                        tuple(Respuesta(r["id"], r["texto"]) for r in datos["respuestas"]))
 
     def responder(self, pregunta: str, respuesta: str | None) -> None:
         if respuesta is None:
@@ -125,26 +138,33 @@ class Cuestionario5e:
             raise ValueError(f"No existe la respuesta «{respuesta}» a la pregunta «{pregunta}»")
         self.respuestas[pregunta] = respuesta
 
-    def _elegidas(self) -> list[dict]:
+    def _elegidas(self, respuestas: dict[str, str] | None = None) -> list[dict]:
         elegidas = []
-        for pregunta, respuesta in self.respuestas.items():
+        for pregunta, respuesta in (self.respuestas if respuestas is None else respuestas).items():
             datos = self.catalogo.obtener("preguntas", pregunta) or {}
             elegidas += [r for r in datos.get("respuestas", []) if r["id"] == respuesta]
         return elegidas
 
-    def perfil(self) -> dict[str, int]:
+    def _todas_las_elegidas(self) -> list[dict]:
+        """Las de la creación y las de todas las subidas de nivel (las ya aplicadas y la que está en curso)."""
+        elegidas = self._elegidas()
+        for subida in self.subidas_anteriores:
+            elegidas += self._elegidas(subida["respuestas"])
+        return elegidas + self._elegidas(self.respuestas_subida)
+
+    @staticmethod
+    def _sumar(respuestas: list[dict], campo: str, factor: int = 1) -> dict[str, int]:
         total: dict[str, int] = defaultdict(int)
-        for respuesta in self._elegidas():
-            for rasgo, valor in respuesta.get("perfil", {}).items():
-                total[rasgo] += valor
+        for respuesta in respuestas:
+            for clave, valor in respuesta.get(campo, {}).items():
+                total[clave] += valor * factor
         return dict(total)
 
+    def perfil(self) -> dict[str, int]:
+        return self._sumar(self._todas_las_elegidas(), "perfil")
+
     def pesos(self) -> dict[str, int]:
-        total: dict[str, int] = defaultdict(int)
-        for respuesta in self._elegidas():
-            for referencia, valor in respuesta.get("pesos", {}).items():
-                total[referencia] += valor
-        return dict(total)
+        return self._sumar(self._todas_las_elegidas(), "pesos")
 
     def alineamiento(self) -> str:
         ejes = {"orden": 0, "moral": 0}
@@ -160,6 +180,133 @@ class Cuestionario5e:
     def _rng(self, sal: str = "") -> random.Random:
         """Azar reproducible: mismas respuestas, mismo personaje (los empates no dependen de la suerte)."""
         return random.Random(json.dumps(sorted(self.respuestas.items())) + sal)
+
+    # ── preguntas al subir de nivel ────────────────────────────────────────
+
+    @property
+    def respuestas_subida(self) -> dict[str, str]:
+        """Respuestas de la subida de nivel en curso (se archivan al aplicarla)."""
+        return self.personaje.extra.setdefault("cuestionario", {}).setdefault("subida", {})
+
+    @property
+    def subidas_anteriores(self) -> list[dict]:
+        """[{«desde», «hasta», «respuestas»}] de cada subida ya aplicada."""
+        return self.personaje.extra.setdefault("cuestionario", {}).setdefault("subidas", [])
+
+    def decisiones_de_subida(self, niveles: int = 1, clase: str | None = None) -> set[str]:
+        """Qué traen esos niveles: «mejora», «subclase», «conjuros» u «opciones» (se prueba sobre una copia)."""
+        copia = Personaje.desde_dict(copy.deepcopy(self.personaje.a_dict()))
+        a = Asistente5e(self.asistente.sistema, self.catalogo, copia)
+        limites = {p.clase_id: (p.limite_trucos, p.limite_conjuros, p.limite_libro) for p in a.planes_conjuros()}
+        a.subir_nivel(niveles, clase)
+        decisiones = set()
+        if any(e.subclase is None and a.subclases(e.clase) for e in copia.clases):
+            decisiones.add("subclase")
+        for eleccion in (e for e in a.sistema.resolver(copia, self.catalogo).elecciones if e.faltan > 0):
+            decisiones.add("mejora" if "caracteristicas" in {o.id for o in eleccion.opciones} else "opciones")
+        if any(limites.get(p.clase_id) != (p.limite_trucos, p.limite_conjuros, p.limite_libro) for p in a.planes_conjuros()):
+            decisiones.add("conjuros")
+        return decisiones
+
+    def preguntas_subida(self, decisiones: set[str] | None = None) -> list[Pregunta]:
+        """Una pregunta distinta por cada tipo de decisión que traen los niveles nuevos (todas si no se dice
+        cuáles): cuantas más decisiones, más preguntas.
+
+        Primero las que aún no se han respondido en subidas anteriores, para no repetir siempre las mismas.
+        """
+        hechas = {p for subida in self.subidas_anteriores for p in subida["respuestas"]}
+        candidatas = [p for p in self.catalogo.listar("preguntas")
+                      if p.get("momento") == "subida" and all(self._existe(r) for r in p.get("requiere", []))]
+        candidatas.sort(key=lambda p: p["id"] in hechas)
+        if decisiones is None:
+            return [self._pregunta(p) for p in candidatas]
+        elegidas: list[dict] = []
+        for decision in ("mejora", "subclase", "opciones", "conjuros"):
+            if decision in decisiones:
+                pregunta = next((p for p in candidatas if decision in p.get("decide", []) and p not in elegidas), None)
+                if pregunta:
+                    elegidas.append(pregunta)
+        return [self._pregunta(p) for p in elegidas]
+
+    def responder_subida(self, pregunta: str, respuesta: str | None) -> None:
+        if respuesta is None:
+            self.respuestas_subida.pop(pregunta, None)
+            return
+        datos = self.catalogo.obtener("preguntas", pregunta)
+        if datos is None or datos.get("momento") != "subida" or not any(r["id"] == respuesta for r in datos["respuestas"]):
+            raise ValueError(f"No existe la respuesta «{respuesta}» a la pregunta de subida «{pregunta}»")
+        self.respuestas_subida[pregunta] = respuesta
+
+    def _hay_subidas(self) -> bool:
+        return bool(self.respuestas_subida or self.subidas_anteriores)
+
+    def _perfil_decision(self) -> dict[str, float]:
+        """El perfil de siempre, llevado a 0-3, más las respuestas de esta subida reforzadas: lo vivido ahora decide y
+        el carácter de siempre desempata."""
+        total = self.perfil()
+        maximo = max(total.values(), default=0) or 1
+        perfil = {rasgo: VALOR_MAXIMO_PERFIL * valor / maximo for rasgo, valor in total.items()}
+        for rasgo, valor in self._sumar(self._elegidas(self.respuestas_subida), "perfil", PESO_SUBIDA_ACTUAL).items():
+            perfil[rasgo] = perfil.get(rasgo, 0) + valor
+        return perfil
+
+    def _quiere_dote(self) -> bool:
+        """Mejora de característica o dote, según cómo dice el jugador que ha entrenado en esta subida."""
+        mejoras = [r["mejora"] for r in self._elegidas(self.respuestas_subida) if "mejora" in r]
+        return mejoras.count("dote") > mejoras.count("caracteristicas")
+
+    def _por_rasgo(self, campo: str) -> list[str]:
+        """Ids de «dotes», «opciones» o «conjuros» que encajan con el perfil (tabla rasgo → ids de las
+        recomendaciones), de más a menos. Solo cuando ha habido preguntas de subida: al crear sin ellas, el
+        cuestionario sigue con las recomendaciones de la clase."""
+        if not self._hay_subidas():
+            return []
+        perfil = self._perfil_decision()
+        puntos: dict[str, float] = defaultdict(float)
+        # Cada id toma su mejor rasgo: Observador sale en tres y no debe ganar siempre por sumarlos.
+        for entrada in self.catalogo.listar("recomendaciones"):
+            valor = perfil.get(entrada.get("rasgo", ""), 0)
+            for posicion, id_ in enumerate(entrada.get(campo, []) if valor > 0 else []):
+                puntos[id_] = max(puntos[id_], valor - posicion / 100)
+        for referencia, valor in self.pesos().items():
+            categoria, id_ = referencia.split(":", 1)
+            if categoria == campo:
+                puntos[id_] += valor
+        return [i for i, p in sorted(puntos.items(), key=lambda x: -x[1]) if p > 0]
+
+    def _puntos_escuela(self) -> dict[str, float]:
+        """Escuelas de magia preferidas: las de los rasgos del perfil y las que piden las respuestas de subida."""
+        if not self._hay_subidas():
+            return {}
+        perfil = self._perfil_decision()
+        puntos: dict[str, float] = defaultdict(float)
+        # Cada escuela toma su mejor rasgo (la abjuración sale de cuatro: no debe ganar por sumarlos).
+        for entrada in self.catalogo.listar("recomendaciones"):
+            for escuela in entrada.get("escuelas", []):
+                puntos[escuela] = max(puntos[escuela], perfil.get(entrada.get("rasgo", ""), 0))
+        anteriores = [r for s in self.subidas_anteriores for r in self._elegidas(s["respuestas"])]
+        for escuela, valor in self._sumar(anteriores, "escuelas").items():
+            puntos[escuela] += valor
+        for escuela, valor in self._sumar(self._elegidas(self.respuestas_subida), "escuelas", PESO_SUBIDA_ACTUAL).items():
+            puntos[escuela] += valor
+        return puntos
+
+    def _cumple_prerrequisito(self, id_: str) -> bool:
+        """Dotes: si ya cumple su prerrequisito. Opciones con prerrequisito (invocaciones…): no se comprueban, así
+        que no se proponen por perfil."""
+        dote = self.catalogo.obtener("dotes", id_)
+        if dote is None:
+            return "prerrequisito" not in (self.catalogo.obtener("opciones", id_) or {})
+        requisito = dote.get("prerrequisito")
+        if not requisito:
+            return True
+        ficha = self.asistente.ficha()
+        puntuaciones = {c: v.puntuacion for c, v in ficha.caracteristicas.items()}
+        competencias: dict[str, set[str]] = defaultdict(set)
+        for aplicado in self.asistente.sistema.resolver(self.personaje, self.catalogo).aplicados:
+            if aplicado.tipo == "competencia":
+                competencias[aplicado.efecto["categoria"]].add(aplicado.efecto["id"])
+        return motor.cumple_requisito(requisito, puntuaciones, competencias, bool(ficha.lanzadores))
 
     # ── recomendaciones ────────────────────────────────────────────────────
 
@@ -301,6 +448,7 @@ class Cuestionario5e:
         """Sube al personaje conservando lo elegido; solo se decide lo nuevo: subclase, mejoras, opciones de clase y
         conjuros (los que ya tenía se quedan)."""
         a = self.asistente
+        desde = a.nivel
         a.subir_nivel(niveles, clase)
         for entrada in list(self.personaje.clases):
             if entrada.subclase is None and a.subclases(entrada.clase):
@@ -308,6 +456,9 @@ class Cuestionario5e:
         self._completar_elecciones()
         self._conjuros(conservar=True)
         self._ajustar_al_libro()
+        # Las respuestas de esta subida quedan en el historial: siguen contando en el perfil, pero ya sin refuerzo.
+        self.subidas_anteriores.append({"desde": desde, "hasta": a.nivel, "respuestas": dict(self.respuestas_subida)})
+        self.respuestas_subida.clear()
 
     def _puntos_caracteristicas(self) -> dict[str, float]:
         puntos = dict.fromkeys(CARACTERISTICAS, 0.0)
@@ -369,10 +520,11 @@ class Cuestionario5e:
         n = eleccion.faltan
         ids = [o.id for o in eleccion.opciones]
         if "caracteristicas" in ids:  # mejora de característica o dote: lo sencillo es la característica
-            return ["caracteristicas"]
-        if set(ids) <= set(CARACTERISTICAS):
-            return self._mejoras(eleccion, n)
+            return ["dote"] if "dote" in ids and self._quiere_dote() else ["caracteristicas"]
         conocidas = self.asistente.conocidas(eleccion)
+        if set(ids) <= set(CARACTERISTICAS):
+            # Resiliente: no en una salvación que ya tiene (si las tiene todas, como el monje 14, da igual).
+            return self._mejoras(eleccion, n, evitar=conocidas if len(conocidas) < len(ids) else set())
         libres = [i for i in ids if i not in conocidas and (eleccion.repetible or i not in eleccion.seleccion)]
         sin_competencia = self.asistente.sin_competencia(eleccion)  # pericia: solo donde ya hay competencia
         libres = [i for i in libres if i not in sin_competencia]
@@ -381,7 +533,10 @@ class Cuestionario5e:
         conjuros = [self.catalogo.obtener("conjuros", i) for i in libres]
         if libres and all(conjuros) and len({c["nivel"] for c in conjuros}) > 1:
             return self._conjuros_de_cualquier_nivel(eleccion, conjuros, n, rng)
-        preferidas =self._recomendados("opciones") + self._recomendados("dotes") + self._recomendados("conjuros")
+        # Lo que encaja con lo vivido al subir de nivel va primero; después, lo recomendado para la clase.
+        por_rasgo = [i for i in self._por_rasgo("opciones") + self._por_rasgo("dotes")
+                     if i in libres and self._cumple_prerrequisito(i)]
+        preferidas = por_rasgo + self._recomendados("opciones") + self._recomendados("dotes") + self._recomendados("conjuros")
         elegidas = [i for i in dict.fromkeys(preferidas) if i in libres][:n]
         resto = [i for i in libres if i not in elegidas]
         # Sin recomendación: primero lo que no tiene prerrequisitos (no se comprueban todos) y, entre eso, al azar.
@@ -401,10 +556,10 @@ class Cuestionario5e:
     def _tiene_prerrequisito(self, id_: str) -> bool:
         return any("prerrequisito" in (self.catalogo.obtener(c, id_) or {}) for c in ("opciones", "dotes"))
 
-    def _mejoras(self, eleccion: EleccionPendiente, n: int) -> list[str]:
+    def _mejoras(self, eleccion: EleccionPendiente, n: int, evitar: set[str] | frozenset = frozenset()) -> list[str]:
         """Mejora de característica: lo más importante para la clase, sin pasar de 20."""
         puntuaciones = {c: v.puntuacion for c, v in self.asistente.ficha().caracteristicas.items()}
-        validas = {o.id for o in eleccion.opciones} - (set() if eleccion.repetible else set(eleccion.seleccion))
+        validas = {o.id for o in eleccion.opciones} - (set() if eleccion.repetible else set(eleccion.seleccion)) - evitar
         elegidas: list[str] = []
         for car in (c for c in self.orden_caracteristicas() if c in validas):
             while len(elegidas) < n and puntuaciones[car] < 20 and (eleccion.repetible or car not in elegidas):
@@ -536,6 +691,11 @@ class Cuestionario5e:
         solo se añaden los que faltan hasta el nuevo límite."""
         a = self.asistente
         otras = a.conjuros_de_otras_fuentes()
+        escuelas = self._puntos_escuela()
+        por_rasgo = self._por_rasgo("conjuros")
+        # Conjuros propuestos por el perfil (curación…): cuanto antes en la lista, más puntos.
+        extra = {id_: len(por_rasgo) - posicion for posicion, id_ in enumerate(por_rasgo)}
+        afinidad = {c["id"]: escuelas.get(c["escuela"], 0) + extra.get(c["id"], 0) for c in self.catalogo.listar("conjuros")}
         for plan in a.planes_conjuros():
             recomendados = self._recomendados("conjuros")
             rng = self._rng(f"conjuros/{plan.clase_id}")
@@ -548,7 +708,9 @@ class Cuestionario5e:
             def orden(nivel: int, plan=plan, recomendados=recomendados, rng=rng, fijos=fijos, previos=previos) -> list[str]:
                 ids = [i for i, _ in plan.disponibles.get(nivel, []) if (i not in otras or i in fijos) and i not in previos]
                 rng.shuffle(ids)
-                return sorted(ids, key=lambda i: (i not in fijos,
+                # Tras preguntas de subida, entre los recomendados (y luego entre el resto) van antes los de las
+                # escuelas y conjuros que encajan con lo vivido.
+                return sorted(ids, key=lambda i: (i not in fijos, i not in recomendados, -afinidad.get(i, 0),
                                                   recomendados.index(i) if i in recomendados else len(recomendados)))
 
             trucos = previos_trucos + orden(0)[: max(0, (plan.limite_trucos or 0) - len(previos_trucos))]

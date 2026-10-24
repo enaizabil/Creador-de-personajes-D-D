@@ -61,7 +61,7 @@ def test_referencias_de_recomendaciones_y_pesos_existen(entorno):
             assert catalogo.obtener("opciones", id_), (recomendacion["id"], id_)
         for id_ in recomendacion.get("dotes", []):
             assert catalogo.obtener("dotes", id_), (recomendacion["id"], id_)
-        if recomendacion["id"] != "general":
+        if recomendacion["id"] != "general" and "rasgo" not in recomendacion:  # rasgo_*: tabla rasgo → ids
             assert catalogo.obtener("clases", recomendacion["id"]), recomendacion["id"]
     for pregunta in catalogo.listar("preguntas"):
         for respuesta in pregunta["respuestas"]:
@@ -354,3 +354,70 @@ def test_subir_de_nivel_con_tiradas_de_pg(entorno):
     entrada = q.personaje.clases[0]
     assert entrada.nivel == 4 and len(entrada.tiradas_pg) == 3
     assert all(1 <= t <= 10 for t in entrada.tiradas_pg)
+
+
+def test_preguntas_de_subida_aparte_y_segun_lo_que_traen_los_niveles(entorno):
+    q = nuevo(entorno)
+    assert not any(p.id.startswith("subida_") for p in q.preguntas())
+    responder_al_azar(q, "decisiones")
+    q.generar(nivel=3, raza="humano", subraza="humano_estandar", clase="guerrero")
+    assert q.decisiones_de_subida(1) == {"mejora"}
+    assert q.personaje.nivel_total == 3  # se prueba sobre una copia
+    preguntas = q.preguntas_subida({"mejora"})
+    assert len(preguntas) == 1 and preguntas[0].id == "subida_entrenamiento"
+    q2 = nuevo(entorno)
+    responder_al_azar(q2, "mago")
+    q2.generar(nivel=1, raza="humano", subraza="humano_estandar", clase="mago")
+    assert q2.decisiones_de_subida(1) == {"subclase", "conjuros"}
+    preguntas = q2.preguntas_subida({"subclase", "conjuros"})
+    assert len({p.id for p in preguntas}) == 2  # una distinta por decisión
+    decide = [set(q2.catalogo.obtener("preguntas", p.id)["decide"]) for p in preguntas]
+    assert "subclase" in decide[0] and "conjuros" in decide[1]
+
+
+@pytest.mark.parametrize("entreno, esperado", [("maestro", "dote"), ("pulir", "caracteristicas")])
+def test_entrenar_decide_entre_mejora_y_dote(entorno, entreno, esperado):
+    sistema, catalogo = entorno
+    q = nuevo(entorno)
+    responder_al_azar(q, "dote")
+    q.generar(nivel=3, raza="humano", subraza="humano_estandar", clase="guerrero")
+    q.responder_subida("subida_entrenamiento", entreno)
+    q.responder_subida("subida_objetivo", "primera_linea")
+    q.subir_nivel(1)
+    assert q.personaje.elecciones["clase:guerrero:4/mejora"] == [esperado]
+    if esperado == "dote":
+        dote = q.personaje.elecciones["clase:guerrero:4/mejora=dote/dote"][0]
+        assert dote in catalogo.obtener("recomendaciones", "rasgo_combate")["dotes"] + \
+            catalogo.obtener("recomendaciones", "rasgo_aguante")["dotes"]
+    assert not [a for a in sistema.calcular(q.personaje, catalogo).avisos if "prerrequisito" in a or "pendiente" in a]
+    assert q.respuestas_subida == {}
+    assert q.subidas_anteriores[-1] == {"desde": 3, "hasta": 4, "respuestas": {"subida_entrenamiento": entreno,
+                                                                               "subida_objetivo": "primera_linea"}}
+
+
+def test_la_escuela_de_magia_elegida_al_subir_ordena_los_conjuros_nuevos(entorno):
+    sistema, catalogo = entorno
+    q = nuevo(entorno)
+    responder_al_azar(q, "escuelas")
+    q.generar(nivel=6, raza="humano", subraza="humano_estandar", clase="mago")
+    antes = set(q.personaje.conjuros["mago"])
+    q.responder_subida("subida_poder", "destruccion")
+    q.subir_nivel(1)
+    nuevos = set(q.personaje.conjuros["mago"]) - antes
+    assert nuevos and all(catalogo.obtener("conjuros", i)["escuela"] == "evocacion" for i in nuevos), nuevos
+
+
+def test_resiliente_no_repite_una_salvacion_que_ya_tiene(entorno):
+    sistema, catalogo = entorno
+    q = nuevo(entorno)
+    responder_al_azar(q, "resiliente")
+    q.generar(nivel=4, raza="humano", subraza="humano_estandar", clase="guerrero")
+    pj = q.personaje
+    for clave in [c for c in pj.elecciones if c.startswith("clase:guerrero:4/mejora")]:
+        del pj.elecciones[clave]
+    pj.elecciones["clase:guerrero:4/mejora"] = ["dote"]
+    pj.elecciones["clase:guerrero:4/mejora=dote/dote"] = ["resiliente"]
+    q._completar_elecciones()
+    elegida = next(v for c, v in pj.elecciones.items() if "resiliente" in c and c.count("/") > 1)
+    assert not set(elegida) & {"fue", "con"}  # las salvaciones del guerrero
+    assert not [a for a in sistema.calcular(pj, catalogo).avisos if "repetida" in a]

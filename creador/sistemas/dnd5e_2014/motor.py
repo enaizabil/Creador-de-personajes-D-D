@@ -403,6 +403,12 @@ def _cumple_requisito(requisito: dict, puntuaciones: dict[str, int], competencia
     return not (requisito.get("lanzador") and not lanzador)
 
 
+def cumple_requisito(requisito: dict, puntuaciones: dict[str, int], competencias: dict[str, set[str]],
+                     lanzador: bool) -> bool:
+    """Prerrequisito completo (de una dote): el cuestionario lo usa para no proponer lo que no se puede tomar."""
+    return _cumple_requisito(requisito, puntuaciones, competencias, lanzador)
+
+
 def _avisos_requisitos(personaje: Personaje, catalogo: Catalogo, aplicables: list[EfectoAplicado],
                        puntuaciones: dict[str, int], competencias: dict[str, set[str]], lanzador: bool,
                        avisos: list[str]) -> None:

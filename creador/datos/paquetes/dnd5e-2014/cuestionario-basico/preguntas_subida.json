@@ -1,0 +1,100 @@
+{
+  "preguntas": [
+    {
+      "id": "subida_entrenamiento",
+      "nombre": "Días de entrenamiento",
+      "momento": "subida",
+      "decide": ["mejora"],
+      "texto": "Antes de volver al camino tienes unos días para entrenar o estudiar. ¿A qué los dedicas?",
+      "respuestas": [
+        {"id": "pulir", "texto": "A pulir lo que mejor se me da, una y otra vez.", "mejora": "caracteristicas"},
+        {"id": "maestro", "texto": "Busco a alguien que me enseñe algo que no sepa nadie más.", "mejora": "dote"},
+        {"id": "cuerpo", "texto": "A ponerme en forma: correr, cargar peso, aguantar el frío.",
+         "mejora": "caracteristicas", "perfil": {"aguante": 2}},
+        {"id": "libros", "texto": "A leer, estudiar mapas y preguntar a los sabios.", "mejora": "dote", "perfil": {"saber": 2}}
+      ]
+    },
+    {
+      "id": "subida_objetivo",
+      "nombre": "Objetivo cumplido",
+      "momento": "subida",
+      "decide": ["mejora", "opciones"],
+      "texto": "Habéis cumplido uno de los objetivos de la aventura. ¿Qué papel tuvo tu personaje?",
+      "respuestas": [
+        {"id": "primera_linea", "texto": "Estuve en primera línea, recibiendo y repartiendo golpes.",
+         "perfil": {"combate": 2, "aguante": 1}},
+        {"id": "proteger", "texto": "Me puse delante para que nadie de los míos cayera.", "perfil": {"proteccion": 2, "curacion": 1}},
+        {"id": "plan", "texto": "Pensé el plan y vi la trampa antes que nadie.", "perfil": {"astucia": 2, "saber": 1}},
+        {"id": "convencer", "texto": "Hablé con quien había que hablar y conseguí lo que necesitábamos.", "perfil": {"carisma": 2}}
+      ]
+    },
+    {
+      "id": "subida_descubrimiento",
+      "nombre": "Un lugar escondido",
+      "momento": "subida",
+      "decide": ["conjuros", "subclase"],
+      "texto": "Descubrís un lugar escondido, lleno de secretos. ¿Qué te llevas de allí?",
+      "respuestas": [
+        {"id": "tomo", "texto": "Un libro de magia que nadie más entiende.", "perfil": {"arcano": 2, "saber": 1}},
+        {"id": "reliquia", "texto": "Una reliquia sagrada que me habla en sueños.", "perfil": {"fe": 2}},
+        {"id": "mapa", "texto": "Un mapa de sendas olvidadas y de guaridas de bestias.", "perfil": {"naturaleza": 2}},
+        {"id": "llave", "texto": "Una llave que abre cualquier puerta y un frasco sin etiqueta.", "perfil": {"astucia": 2, "sigilo": 1}}
+      ]
+    },
+    {
+      "id": "subida_destino",
+      "nombre": "Al final del viaje",
+      "momento": "subida",
+      "decide": ["subclase", "opciones"],
+      "texto": "Por fin llegáis a un destino importante tras un largo viaje. ¿Qué te ha enseñado el camino?",
+      "respuestas": [
+        {"id": "rapido", "texto": "Que sobrevive el más rápido.", "perfil": {"agilidad": 2}},
+        {"id": "sin_ser_visto", "texto": "Que es mejor que no te vean llegar.", "perfil": {"sigilo": 2}},
+        {"id": "cuidar", "texto": "Que hay que cuidar de los compañeros cuando flaquean.", "perfil": {"curacion": 2}},
+        {"id": "voluntad", "texto": "Que con fe y voluntad se cruza cualquier frontera.", "perfil": {"fe": 1, "aguante": 1}}
+      ]
+    },
+    {
+      "id": "subida_cicatriz",
+      "nombre": "Una cicatriz",
+      "momento": "subida",
+      "decide": ["mejora", "opciones"],
+      "texto": "La última pelea fue dura y te dejó una cicatriz. ¿Qué has aprendido de ella?",
+      "respuestas": [
+        {"id": "no_caer", "texto": "A aguantar en pie pase lo que pase.", "perfil": {"aguante": 2}, "pesos": {"dotes:duro": 2}},
+        {"id": "golpear_antes", "texto": "A golpear antes y más fuerte.", "perfil": {"combate": 2}},
+        {"id": "distancia", "texto": "A mantener las distancias y apuntar bien.", "perfil": {"agilidad": 2}},
+        {"id": "magia", "texto": "Que la magia decide las batallas.", "perfil": {"arcano": 2}}
+      ]
+    },
+    {
+      "id": "subida_poder",
+      "nombre": "Un poder que crece",
+      "momento": "subida",
+      "decide": ["conjuros"],
+      "texto": "Notas que tu magia, tu fe o tu instinto han crecido. ¿Cómo se nota?",
+      "respuestas": [
+        {"id": "destruccion", "texto": "Lo que lanzo hace más daño: fuego, rayos, frío.", "escuelas": {"evocacion": 2},
+         "perfil": {"combate": 1}},
+        {"id": "mentes", "texto": "Influyo en las mentes y engaño a los sentidos.", "escuelas": {"encantamiento": 2, "ilusion": 2}},
+        {"id": "amparo", "texto": "Protejo y curo mejor a los míos.", "escuelas": {"abjuracion": 2},
+         "perfil": {"curacion": 1, "proteccion": 1}},
+        {"id": "cambio", "texto": "Cambio las cosas: formas, terreno, el propio cuerpo.", "escuelas": {"transmutacion": 2, "conjuracion": 1}},
+        {"id": "vision", "texto": "Veo lo oculto, lo lejano y lo que vendrá.", "escuelas": {"adivinacion": 2}}
+      ]
+    },
+    {
+      "id": "subida_fama",
+      "nombre": "Se habla de vosotros",
+      "momento": "subida",
+      "decide": ["mejora", "subclase"],
+      "texto": "Tras el último hito, la gente empieza a hablar de vosotros. ¿Por qué te conocen a ti?",
+      "respuestas": [
+        {"id": "valor", "texto": "Por mi valor.", "perfil": {"combate": 1, "proteccion": 1}},
+        {"id": "ingenio", "texto": "Por mi ingenio.", "perfil": {"saber": 1, "astucia": 1}},
+        {"id": "encanto", "texto": "Por mi encanto.", "perfil": {"carisma": 2}},
+        {"id": "misterio", "texto": "Por misterioso: nadie sabe bien qué hago.", "perfil": {"sigilo": 1, "arcano": 1}}
+      ]
+    }
+  ]
+}

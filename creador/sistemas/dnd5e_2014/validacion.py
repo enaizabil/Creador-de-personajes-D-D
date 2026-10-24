@@ -35,7 +35,7 @@ CATEGORIAS = (
     "preguntas", "recomendaciones",
 )
 # Lo que el cuestionario puede recomendar o pesar directamente («clases:guerrero»).
-CATEGORIAS_RECOMENDABLES = ("razas", "subrazas", "clases", "subclases", "trasfondos")
+CATEGORIAS_RECOMENDABLES = ("razas", "subrazas", "clases", "subclases", "trasfondos", "dotes", "opciones", "conjuros")
 EJES_ALINEAMIENTO = ("orden", "moral")
 
 # Variables disponibles en los textos con {expresiones} y en «usos».
@@ -303,6 +303,10 @@ def validar_entrada(categoria: str, entrada: dict) -> list[str]:
     elif categoria == "recomendaciones":
         errores.extend(f"«{c}» debe ser una lista de ids" for c in ("conjuros", "opciones", "dotes")
                        if not isinstance(entrada.get(c, []), list) or not all(isinstance(i, str) for i in entrada.get(c, [])))
+        if "rasgo" in entrada and entrada["rasgo"] not in RASGOS_PERFIL:
+            errores.append(f"rasgo desconocido «{entrada['rasgo']}»")
+        if not isinstance(entrada.get("escuelas", []), list) or any(e not in ESCUELAS_MAGIA for e in entrada.get("escuelas", [])):
+            errores.append(f"«escuelas» debe ser una lista con: {', '.join(ESCUELAS_MAGIA)}")
     elif categoria == "trasfondos":
         if "equipo" in entrada:
             errores.extend(_validar_equipo(entrada["equipo"], "equipo"))
@@ -411,8 +415,17 @@ def _referencia_valida(referencia) -> bool:
     return categoria in CATEGORIAS_RECOMENDABLES and bool(id_)
 
 
+MOMENTOS_PREGUNTA = ("creacion", "subida")
+DECISIONES_SUBIDA = ("mejora", "subclase", "conjuros", "opciones")
+
+
 def _validar_pregunta(pregunta: dict) -> list[str]:
     errores: list[str] = []
+    if pregunta.get("momento", "creacion") not in MOMENTOS_PREGUNTA:
+        errores.append(f"«momento» debe ser uno de: {', '.join(MOMENTOS_PREGUNTA)}")
+    decide = pregunta.get("decide", [])
+    if not isinstance(decide, list) or any(d not in DECISIONES_SUBIDA for d in decide):
+        errores.append(f"«decide» debe ser una lista con: {', '.join(DECISIONES_SUBIDA)}")
     requiere = pregunta.get("requiere", [])
     if not isinstance(requiere, list) or not all(_referencia_valida(r) for r in requiere):
         errores.append("«requiere» debe ser una lista como [\"clases:paladin\"]")
@@ -439,8 +452,14 @@ def _validar_pregunta(pregunta: dict) -> list[str]:
         if not isinstance(eje, dict) or not all(k in EJES_ALINEAMIENTO and isinstance(v, int) and -3 <= v <= 3
                                                 for k, v in eje.items()):
             errores.append(f"{ruta}: «eje» debe ser {{\"orden\": n, \"moral\": n}} con n de -3 a 3")
-        if not any(c in respuesta for c in ("perfil", "pesos", "eje")):
-            errores.append(f"{ruta}: no puntúa nada (falta «perfil», «pesos» o «eje»)")
+        if respuesta.get("mejora", "caracteristicas") not in ("caracteristicas", "dote"):
+            errores.append(f"{ruta}: «mejora» debe ser «caracteristicas» o «dote»")
+        escuelas = respuesta.get("escuelas", {})
+        if not isinstance(escuelas, dict) or not all(e in ESCUELAS_MAGIA and isinstance(v, int) and -3 <= v <= 3
+                                                     for e, v in escuelas.items()):
+            errores.append(f"{ruta}: «escuelas» debe ser {{\"evocacion\": n}} con n de -3 a 3")
+        if not any(c in respuesta for c in ("perfil", "pesos", "eje", "mejora", "escuelas")):
+            errores.append(f"{ruta}: no puntúa nada (falta «perfil», «pesos», «eje», «mejora» o «escuelas»)")
     return errores
 
 

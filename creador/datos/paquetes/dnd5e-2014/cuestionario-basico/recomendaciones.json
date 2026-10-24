@@ -166,6 +166,107 @@
                    "invisibilidad", "imagen_multiple", "sugestion", "inmovilizar_persona", "fuerza_fantasmal",
                    "patron_hipnotico", "imagen_mayor",
                    "invisibilidad_mejorada", "asesino_fantasmal", "confusion", "terreno_alucinatorio"]
+    },
+    {
+      "id": "rasgo_combate",
+      "nombre": "Perfil: combate",
+      "rasgo": "combate",
+      "dotes": ["maestro_en_armas_pesadas", "atacante_salvaje", "maestro_en_armas_de_asta", "maestro_de_armas",
+                   "atacante_a_la_carga", "apresador"],
+      "opciones": ["combate_con_armas_a_dos_manos", "ataque_de_precision", "ataque_de_barrido", "ataque_amenazador"],
+      "escuelas": ["evocacion"]
+    },
+    {
+      "id": "rasgo_agilidad",
+      "nombre": "Perfil: agilidad",
+      "rasgo": "agilidad",
+      "dotes": ["tirador_de_primera", "movil", "experto_en_ballestas", "alerta", "combatiente_con_dos_armas"],
+      "opciones": ["tiro_con_arco", "combate_con_dos_armas", "ataque_de_maniobra", "juego_de_pies_evasivo"],
+      "escuelas": ["transmutacion"]
+    },
+    {
+      "id": "rasgo_aguante",
+      "nombre": "Perfil: aguante",
+      "rasgo": "aguante",
+      "dotes": ["duro", "resistente", "resiliente", "muy_acorazado", "maestro_en_armaduras_pesadas"],
+      "opciones": ["defensa", "vigor_infernal", "armadura_de_sombras", "voluntad_de_acero"],
+      "escuelas": ["abjuracion"]
+    },
+    {
+      "id": "rasgo_proteccion",
+      "nombre": "Perfil: protección",
+      "rasgo": "proteccion",
+      "dotes": ["centinela", "maestro_en_escudos", "duelista_defensivo", "moderadamente_acorazado"],
+      "opciones": ["proteccion", "defensa", "parada", "defensa_contra_ataques_multiples"],
+      "escuelas": ["abjuracion"]
+    },
+    {
+      "id": "rasgo_sigilo",
+      "nombre": "Perfil: sigilo",
+      "rasgo": "sigilo",
+      "dotes": ["acechador", "alerta", "explorador_de_mazmorras", "ligeramente_acorazado"],
+      "opciones": ["uno_con_las_sombras", "mascara_de_los_mil_rostros", "conjuro_sutil"],
+      "escuelas": ["ilusion"]
+    },
+    {
+      "id": "rasgo_astucia",
+      "nombre": "Perfil: astucia",
+      "rasgo": "astucia",
+      "dotes": ["actor", "observador", "afortunado", "mente_aguda"],
+      "opciones": ["conjuro_sutil", "ataque_con_finta", "golpe_distractor", "influencia_seductora"],
+      "escuelas": ["ilusion", "encantamiento"]
+    },
+    {
+      "id": "rasgo_carisma",
+      "nombre": "Perfil: carisma",
+      "rasgo": "carisma",
+      "dotes": ["lider_inspirador", "actor", "linguista"],
+      "opciones": ["influencia_seductora", "golpe_del_comandante"],
+      "escuelas": ["encantamiento"]
+    },
+    {
+      "id": "rasgo_saber",
+      "nombre": "Perfil: saber",
+      "rasgo": "saber",
+      "dotes": ["mente_aguda", "observador", "lanzador_ritual", "linguista", "habilidoso"],
+      "opciones": ["libro_de_secretos_ancestrales", "pacto_del_grimorio", "ojos_del_guardian_de_las_runas"],
+      "escuelas": ["adivinacion"]
+    },
+    {
+      "id": "rasgo_naturaleza",
+      "nombre": "Perfil: naturaleza",
+      "rasgo": "naturaleza",
+      "dotes": ["observador", "atleta", "explorador_de_mazmorras"],
+      "opciones": ["habla_bestial", "azote_de_colosos"],
+      "escuelas": ["conjuracion", "transmutacion"]
+    },
+    {
+      "id": "rasgo_fe",
+      "nombre": "Perfil: fe",
+      "rasgo": "fe",
+      "dotes": ["resiliente", "sanador"],
+      "opciones": ["defensa"],
+      "escuelas": ["abjuracion"]
+    },
+    {
+      "id": "rasgo_arcano",
+      "nombre": "Perfil: arcano",
+      "rasgo": "arcano",
+      "dotes": ["lanzador_en_combate", "francotirador_de_conjuros", "adepto_elemental", "iniciado_en_la_magia",
+                   "azote_de_magos"],
+      "opciones": ["descarga_agonica", "lanza_sobrenatural", "conjuro_gemelo", "conjuro_acelerado",
+                   "pacto_del_grimorio"],
+      "escuelas": ["evocacion", "conjuracion"]
+    },
+    {
+      "id": "rasgo_curacion",
+      "nombre": "Perfil: curación",
+      "rasgo": "curacion",
+      "dotes": ["sanador", "resiliente"],
+      "opciones": ["proteccion"],
+      "escuelas": ["abjuracion"],
+      "conjuros": ["palabra_de_curacion", "curar_heridas", "restablecimiento_menor", "curar_heridas_en_masa",
+                   "restablecimiento_mayor", "curar"]
     }
   ]
 }
