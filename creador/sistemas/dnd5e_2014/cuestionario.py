@@ -297,6 +297,18 @@ class Cuestionario5e:
         self._detalles()
         self.personaje.extra.setdefault("cuestionario", {})["generado"] = True
 
+    def subir_nivel(self, niveles: int = 1, clase: str | None = None) -> None:
+        """Sube al personaje conservando lo elegido; solo se decide lo nuevo: subclase, mejoras, opciones de clase y
+        conjuros (los que ya tenía se quedan)."""
+        a = self.asistente
+        a.subir_nivel(niveles, clase)
+        for entrada in list(self.personaje.clases):
+            if entrada.subclase is None and a.subclases(entrada.clase):
+                a.elegir_subclase(self._mejor_subclase(entrada.clase), entrada.clase)
+        self._completar_elecciones()
+        self._conjuros(conservar=True)
+        self._ajustar_al_libro()
+
     def _puntos_caracteristicas(self) -> dict[str, float]:
         puntos = dict.fromkeys(CARACTERISTICAS, 0.0)
         for rasgo, valor in self.perfil().items():
@@ -506,7 +518,22 @@ class Cuestionario5e:
             restante -= extra
         return [i for nivel in niveles for i in por_nivel[nivel][: cupo[nivel]]]
 
-    def _conjuros(self) -> None:
+    @staticmethod
+    def _lo_mas_alto(por_nivel: dict[int, list[str]], cantidad: int) -> list[str]:
+        """Al subir de nivel, los conjuros nuevos: de los niveles más altos, hasta 2 de cada uno antes de bajar."""
+        niveles = sorted((n for n in por_nivel if n > 0 and por_nivel[n]), reverse=True)
+        elegidos: list[str] = []
+        while len(elegidos) < cantidad:
+            antes = len(elegidos)
+            for nivel in niveles:
+                elegidos += [i for i in por_nivel[nivel] if i not in elegidos][: min(2, cantidad - len(elegidos))]
+            if len(elegidos) == antes:
+                break
+        return elegidos
+
+    def _conjuros(self, conservar: bool = False) -> None:
+        """Trucos y conjuros de cada clase lanzadora. Al subir de nivel («conservar») se quedan los que ya tenía y
+        solo se añaden los que faltan hasta el nuevo límite."""
         a = self.asistente
         otras = a.conjuros_de_otras_fuentes()
         for plan in a.planes_conjuros():
@@ -514,20 +541,27 @@ class Cuestionario5e:
             rng = self._rng(f"conjuros/{plan.clase_id}")
             # Maestría sobre Conjuros y Conjuros Característicos ya están elegidos y tienen que ir al libro.
             fijos = self._exigidos_en_libro(plan.clase_id) if plan.modo == "libro" else set()
+            previos = list(self.personaje.conjuros.get(plan.clase_id, [])) if conservar else []
+            previos_trucos = [i for i in previos if (self.catalogo.obtener("conjuros", i) or {}).get("nivel") == 0]
+            previos_resto = [i for i in previos if i not in previos_trucos]
 
-            def orden(nivel: int, plan=plan, recomendados=recomendados, rng=rng, fijos=fijos) -> list[str]:
-                ids = [i for i, _ in plan.disponibles.get(nivel, []) if i not in otras or i in fijos]
+            def orden(nivel: int, plan=plan, recomendados=recomendados, rng=rng, fijos=fijos, previos=previos) -> list[str]:
+                ids = [i for i, _ in plan.disponibles.get(nivel, []) if (i not in otras or i in fijos) and i not in previos]
                 rng.shuffle(ids)
                 return sorted(ids, key=lambda i: (i not in fijos,
                                                   recomendados.index(i) if i in recomendados else len(recomendados)))
 
-            trucos = orden(0)[: plan.limite_trucos or 0]
+            trucos = previos_trucos + orden(0)[: max(0, (plan.limite_trucos or 0) - len(previos_trucos))]
             por_nivel = {nivel: orden(nivel) for nivel in plan.disponibles if nivel > 0}
             if plan.modo != "libro":
-                a.elegir_conjuros(plan.clase_id, trucos + self._repartir(por_nivel, plan.limite_conjuros or 0))
+                faltan = max(0, (plan.limite_conjuros or 0) - len(previos_resto))
+                nuevos = self._lo_mas_alto(por_nivel, faltan) if conservar else self._repartir(por_nivel, faltan)
+                a.elegir_conjuros(plan.clase_id, trucos + previos_resto + nuevos)
                 continue
-            libro = self._libro(plan.clase_id, por_nivel)
+            libro = previos_resto + self._libro(plan.clase_id, por_nivel, ya=len(previos_resto))
             a.elegir_conjuros(plan.clase_id, trucos + libro)
+            por_nivel = {nivel: [*ids, *(i for i in previos_resto if (self.catalogo.obtener("conjuros", i) or {})
+                                         .get("nivel") == nivel)] for nivel, ids in por_nivel.items()}
             # Los que ya están siempre preparados (Característicos) no gastan preparación.
             del_libro = {nivel: [i for i in ids if i in libro and i not in otras] for nivel, ids in por_nivel.items()}
             a.elegir_preparados(plan.clase_id, self._repartir(del_libro, plan.limite_conjuros or 0))
@@ -554,15 +588,19 @@ class Cuestionario5e:
             self._rng(eleccion.clave).shuffle(candidatos)
             self.asistente.elegir(eleccion.clave, quedan + candidatos[: eleccion.elegir - len(quedan)])
 
-    def _libro(self, clase_id: str, por_nivel: dict[int, list[str]]) -> list[str]:
-        """Libro del mago: cada conjuro ganado al subir es del nivel más alto que permitía ese nivel de clase."""
+    def _libro(self, clase_id: str, por_nivel: dict[int, list[str]], ya: int = 0) -> list[str]:
+        """Libro del mago: cada conjuro ganado al subir es del nivel más alto que permitía ese nivel de clase.
+
+        «ya»: conjuros que el libro ya tiene (al subir de nivel); ocupan los primeros huecos y solo se llenan los
+        de los niveles nuevos.
+        """
         config = motor.configuracion_lanzamiento(self.personaje, self.catalogo, clase_id)
         nivel_clase = next(e.nivel for e in self.personaje.clases if e.clase == clase_id)
         huecos = [motor.nivel_maximo_conjuro(config, 1)] * config["libro"]["inicial"]
         for nivel in range(2, nivel_clase + 1):
             huecos += [motor.nivel_maximo_conjuro(config, nivel)] * config["libro"]["por_nivel"]
         libro: list[str] = []
-        for tope in sorted(huecos, reverse=True):
+        for tope in sorted(huecos[ya:], reverse=True):
             for nivel in range(tope, 0, -1):
                 siguiente = next((i for i in por_nivel.get(nivel, []) if i not in libro), None)
                 if siguiente:

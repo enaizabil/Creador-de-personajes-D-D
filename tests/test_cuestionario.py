@@ -321,3 +321,36 @@ def test_sin_aceptar_multiclase_siempre_una_clase(entorno):
     assert len(q.proponer_reparto(10)) == 2
     q.aceptar_multiclase(False)
     assert len(q.proponer_reparto(10)) == 1
+
+
+@pytest.mark.parametrize("clase", ["bardo", "brujo", "clerigo", "guerrero", "mago", "paladin", "picaro"])
+def test_subir_de_nivel_conserva_lo_elegido_y_completa_lo_nuevo(entorno, clase):
+    sistema, catalogo = entorno
+    q = nuevo(entorno)
+    responder_al_azar(q, f"subir-{clase}")
+    q.generar(nivel=3, raza="humano", subraza="humano_estandar", clase=clase)
+    antes_elecciones = dict(q.personaje.elecciones)
+    antes_conjuros = {c: list(ids) for c, ids in q.personaje.conjuros.items()}
+    subclase = q.personaje.clases[0].subclase
+    q.subir_nivel(5)
+    assert q.personaje.nivel_total == 8
+    assert q.personaje.clases[0].subclase == subclase or subclase is None
+    for clave, valor in antes_elecciones.items():
+        assert q.personaje.elecciones.get(clave) == valor, clave
+    for clase_id, ids in antes_conjuros.items():
+        assert set(ids) <= set(q.personaje.conjuros[clase_id]), clase_id
+    ficha = sistema.calcular(q.personaje, catalogo)
+    assert not [a for a in ficha.avisos if "pendiente" in a or "faltan" in a or "sobran" in a.lower()], ficha.avisos
+    if clase == "mago":  # 6 + 2 por nivel: 20 conjuros en el libro a nivel 8
+        libro = [i for i in q.personaje.conjuros["mago"] if catalogo.obtener("conjuros", i)["nivel"] > 0]
+        assert len(libro) == 6 + 2 * 7
+
+
+def test_subir_de_nivel_con_tiradas_de_pg(entorno):
+    q = nuevo(entorno, metodo_pg="tiradas")
+    responder_al_azar(q, "tiradas")
+    q.generar(nivel=1, raza="humano", subraza="humano_estandar", clase="guerrero")
+    q.subir_nivel(3)
+    entrada = q.personaje.clases[0]
+    assert entrada.nivel == 4 and len(entrada.tiradas_pg) == 3
+    assert all(1 <= t <= 10 for t in entrada.tiradas_pg)

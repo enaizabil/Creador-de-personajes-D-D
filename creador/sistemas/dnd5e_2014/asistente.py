@@ -194,6 +194,31 @@ class Asistente5e:
         self.extra["nivel_inicial"] = nivel
         self._limpiar()
 
+    def subir_nivel(self, niveles: int = 1, clase_id: str | None = None) -> None:
+        """Sube niveles en una clase (la principal si no se dice) sin tocar lo ya elegido.
+
+        Lo nuevo (mejoras, subclase, conjuros…) queda como elecciones pendientes. Con PG por tiradas se tiran los
+        dados de los niveles nuevos.
+        """
+        entrada = self._entrada(clase_id)
+        if entrada is None:
+            raise ValueError("El personaje no tiene esa clase")
+        if niveles < 1 or self.nivel + niveles > NIVEL_MAXIMO:
+            raise ValueError(f"El nivel total va de 1 a {NIVEL_MAXIMO}")
+        completos = self._completos(entrada.clase)
+        if entrada.nivel + niveles > completos:
+            raise ValueError(f"Los datos de esa clase llegan, por ahora, hasta nivel {completos}")
+        indice = self.personaje.clases.index(entrada)
+        if self.personaje.metodo_pg == "tiradas":
+            dado = (self.catalogo.obtener("clases", entrada.clase) or {}).get("dado_golpe", 8)
+            # Las que faltaban ya contaban como la media: se rellenan así para que las nuevas caigan en su nivel.
+            esperadas = entrada.nivel - 1 if indice == 0 else entrada.nivel
+            entrada.tiradas_pg += [dado // 2 + 1] * max(0, esperadas - len(entrada.tiradas_pg))
+            entrada.tiradas_pg += [self.rng.randint(1, dado) for _ in range(niveles)]
+        entrada.nivel += niveles
+        self.extra["nivel_inicial"] = self.nivel
+        self._limpiar()
+
     def _poner_nivel(self, indice: int, nivel: int) -> None:
         """Cambia el nivel de una clase: quita la subclase si aún no toca y las tiradas de PG que sobran."""
         entrada = self.personaje.clases[indice]
