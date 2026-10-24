@@ -631,6 +631,17 @@
                 "nombre": "Guardián",
                 "efectos": [
                   {
+                    "tipo": "ataque",
+                    "nombre": "Guanteletes de Trueno",
+                    "dano": "1d8",
+                    "tipo_dano": "trueno",
+                    "caracteristicas": [
+                      "fue",
+                      "int"
+                    ],
+                    "notas": "Con la Armadura Arcana; el golpeado tiene desventaja contra otros que no seas tú"
+                  },
+                  {
                     "tipo": "rasgo",
                     "nombre": "Modelo de Armadura: Guardián",
                     "resumen": "Guanteletes de Trueno (arma cuerpo a cuerpo sencilla, INT, 1d8 de trueno; el golpeado tiene desventaja contra otros que no seas tú) y Campo Defensivo (acción adicional: {nivel_clase} PG temporales)",
@@ -644,6 +655,17 @@
                 "id": "infiltrador",
                 "nombre": "Infiltrador",
                 "efectos": [
+                  {
+                    "tipo": "ataque",
+                    "nombre": "Lanzarrayos",
+                    "dano": "1d6",
+                    "tipo_dano": "relampago",
+                    "caracteristicas": [
+                      "des",
+                      "int"
+                    ],
+                    "notas": "Con la Armadura Arcana; alcance 90/300 pies; una vez por turno, +1d6 de relámpago"
+                  },
                   {
                     "tipo": "velocidad",
                     "modo": "caminar",

@@ -245,6 +245,9 @@ def test_tradiciones_del_monje_de_tasha(entorno):
     assert "1d6" in rasgos["Mano de Sanación"].resumen  # el dado de Artes Marciales a nivel 5
     astral = sistema.calcular(_con_subclase(entorno, "camino_del_yo_astral", 11).personaje, catalogo)
     assert "1d8" in {r.nombre: r for r in astral.rasgos}["Cuerpo del Yo Astral"].resumen
+    brazos = next(a for a in astral.ataques if a.nombre == "Ataque sin armas (Brazos del Yo Astral)")
+    mejor = max(astral.caracteristicas[c].modificador for c in ("fue", "des", "sab"))
+    assert brazos.tipo_dano == "fuerza" and brazos.dano.startswith("1d8") and brazos.bonificador == mejor + 4
 
 
 def test_juramentos_del_paladin_de_tasha(entorno):
@@ -263,6 +266,9 @@ def test_arquetipos_del_picaro_de_tasha(entorno):
     cuchillo = {r.nombre: r for r in sistema.calcular(_con_subclase(entorno, "cuchillo_del_alma", 5).personaje,
                                                       catalogo).rasgos}
     assert cuchillo["Poder Psiónico"].usos == 6 and "(d8)" in cuchillo["Poder Psiónico"].resumen
+    ataques = {a.nombre: a for a in sistema.calcular(_con_subclase(entorno, "cuchillo_del_alma", 5).personaje,
+                                                      catalogo).ataques}
+    assert ataques["Espada Psíquica"].tipo_dano == "psíquico" and ataques["Espada Psíquica"].dano.startswith("1d6")
 
 
 def test_al_subir_cambia_la_competencia_que_la_subclase_repite(entorno):
@@ -384,6 +390,11 @@ def test_especialistas_del_artifice(entorno):
     ficha = sistema.calcular(armero.personaje, catalogo)
     assert ficha.velocidades["caminar"] == 35
     assert "Modelo de Armadura: Infiltrador" in {r.nombre for r in ficha.rasgos}
+    # El arma del modelo sale en los ataques con Inteligencia (si es la mejor) y competencia.
+    lanzarrayos = next(a for a in ficha.ataques if a.nombre == "Lanzarrayos")
+    mejor = max(ficha.caracteristicas[c].modificador for c in ("des", "int"))
+    assert lanzarrayos.bonificador == mejor + 2 and lanzarrayos.tipo_dano == "relámpago"
+    assert "Guanteletes de Trueno" not in {a.nombre for a in ficha.ataques}
     herrero = sistema.resolver(_con_subclase(entorno, "herrero_de_batalla", 3).personaje, catalogo)
     assert ("arma", "armas_marciales") in {(a.efecto["categoria"], a.efecto["id"]) for a in herrero.aplicados
                                             if a.tipo == "competencia"}

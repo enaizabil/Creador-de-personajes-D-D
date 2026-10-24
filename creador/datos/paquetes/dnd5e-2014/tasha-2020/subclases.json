@@ -2321,6 +2321,24 @@
       "niveles": {
         "3": [
           {
+            "tipo": "ataque_desarmado",
+            "nombre": "Ataque sin armas (Brazos del Yo Astral)",
+            "dano": "{escala}",
+            "escala": {
+              "3": "1d4",
+              "5": "1d6",
+              "11": "1d8",
+              "17": "1d10"
+            },
+            "tipo_dano": "fuerza",
+            "caracteristicas": [
+              "fue",
+              "des",
+              "sab"
+            ],
+            "notas": "Con los brazos manifestados (1 ki); +5 pies de alcance en tu turno"
+          },
+          {
             "tipo": "rasgo",
             "nombre": "Brazos del Yo Astral",
             "resumen": "acción adicional y 1 ki: brazos espectrales 10 minutos; quien elijas a 10 pies salva DES CD {8+competencia+mod_sab} o sufre 2 tiradas de {escala} de fuerza; con ellos usas SAB para FUE y atacas sin armas con +5 pies de alcance, SAB al ataque y al daño y daño de fuerza",
@@ -2722,6 +2740,17 @@
               "11": "d10",
               "17": "d12"
             }
+          },
+          {
+            "tipo": "ataque",
+            "nombre": "Espada Psíquica",
+            "dano": "1d6",
+            "tipo_dano": "psiquico",
+            "caracteristicas": [
+              "fue",
+              "des"
+            ],
+            "notas": "Arrojadiza a 60 pies; la segunda hoja, como acción adicional, hace 1d4"
           },
           {
             "tipo": "rasgo",

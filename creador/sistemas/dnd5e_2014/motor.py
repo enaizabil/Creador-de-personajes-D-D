@@ -217,7 +217,7 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
         competencias=_nombres_competencias(competencias, catalogo),
         ataques=_ataques(objetos, mods, competencia, competencias["arma"], de_tipo("bonificador_ataque"),
                          de_tipo("ataque_des"), (raza or {}).get("tamano") == "pequeno")
-                + _ataques_desarmados(aplicables, catalogo, mods, competencia, niveles_clase, contexto, avisos),
+                + _ataques_de_rasgos(aplicables, catalogo, mods, competencia, niveles_clase, contexto, avisos),
         rasgos=_rasgos(aplicables, catalogo, niveles_clase, contexto, avisos),
         sentidos=_sentidos(de_tipo("sentido")),
         resistencias=sorted({TIPOS_DANO.get(e["dano"], e["dano"]) for e in de_tipo("resistencia")}),
@@ -994,23 +994,26 @@ def _ataques(objetos: list[tuple[ObjetoInventario, dict | None]], mods: dict[str
     return ataques
 
 
-def _ataques_desarmados(aplicables: list[EfectoAplicado], catalogo: Catalogo, mods: dict[str, int], competencia: int,
-                        niveles_clase: dict[str, int], contexto: dict, avisos: list[str]) -> list[Ataque]:
-    """Ataque sin armas mejorado (Artes Marciales del monje y similares). Siempre hay competencia."""
+def _ataques_de_rasgos(aplicables: list[EfectoAplicado], catalogo: Catalogo, mods: dict[str, int], competencia: int,
+                       niveles_clase: dict[str, int], contexto: dict, avisos: list[str]) -> list[Ataque]:
+    """Ataques que da un rasgo y no un objeto: el sin armas mejorado (Artes Marciales del monje y similares) y las
+    armas que crea el rasgo (Espadas Psíquicas, los guanteletes de la Armadura Arcana). Siempre hay competencia."""
     ataques = []
     for aplicado in aplicables:
-        if aplicado.tipo != "ataque_desarmado":
+        if aplicado.tipo not in ("ataque_desarmado", "ataque"):
             continue
         efecto = aplicado.efecto
+        nombre = efecto.get("nombre", "Ataque sin armas")
         variables = _contexto_efecto(efecto, aplicado.origen, catalogo, niveles_clase, contexto)
         try:
             dado = rellenar(efecto["dano"], variables)
         except ErrorExpresion as exc:
-            avisos.append(f"Ataque sin armas: {exc}")
+            avisos.append(f"{nombre}: {exc}")
             continue
         car = max(efecto.get("caracteristicas", ["fue"]), key=lambda c: mods[c])
-        ataques.append(Ataque(efecto.get("nombre", "Ataque sin armas"), mods[car] + competencia,
-                              _formula_dano(dado, mods[car]), efecto.get("tipo_dano", "contundente")))
+        tipo_dano = efecto.get("tipo_dano", "contundente")
+        ataques.append(Ataque(nombre, mods[car] + competencia, _formula_dano(dado, mods[car]),
+                              TIPOS_DANO.get(tipo_dano, tipo_dano), efecto.get("notas", "")))
     return ataques
 
 
