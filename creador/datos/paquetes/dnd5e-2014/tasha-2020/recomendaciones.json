@@ -135,6 +135,48 @@
       "dotes": [
         "chef"
       ]
+    },
+    {
+      "id": "artifice",
+      "nombre": "Artífice",
+      "conjuros": [
+        "reparar",
+        "guia",
+        "descarga_de_fuego",
+        "mano_de_mago",
+        "curar_heridas",
+        "fuego_feerico",
+        "detectar_magia",
+        "identificar",
+        "santuario",
+        "auxilio",
+        "arma_magica",
+        "calentar_metal",
+        "potenciar_caracteristica",
+        "restablecimiento_menor",
+        "volar",
+        "acelerar",
+        "revivir",
+        "disipar_magia",
+        "proteccion_contra_energia",
+        "libertad_de_movimiento",
+        "piel_petrea",
+        "invocar_automata",
+        "restablecimiento_mayor",
+        "animar_objetos",
+        "creacion"
+      ],
+      "opciones": [
+        "arma_mejorada",
+        "defensa_mejorada",
+        "canalizador_arcano_mejorado",
+        "sirviente_homunculo",
+        "replicar_objeto_magico",
+        "armadura_resistente",
+        "anillo_de_recarga_de_conjuros",
+        "yelmo_de_la_alerta",
+        "armadura_de_propulsion_arcana"
+      ]
     }
   ]
 }

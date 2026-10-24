@@ -1,0 +1,564 @@
+{
+  "conjuros": [
+    {
+      "id": "agarre_electrizante",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "atraccion_del_relampago",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "descarga_de_fuego",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "estallido_de_espadas",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "filo_atronador",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "filo_de_llamas_verdes",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "guia",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "latigo_de_espinas",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "luces_danzantes",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "luz",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "mano_de_mago",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "mensaje",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "piedad_con_los_moribundos",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "prestidigitacion",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "rayo_de_escarcha",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "reparar",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "resistencia",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "rociada_venenosa",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "salpicadura_acida",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "alarma",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "brebaje_caustico_de_tasha",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "caida_de_pluma",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "curar_heridas",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "detectar_magia",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "disfrazarse",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "falsa_vida",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "fuego_feerico",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "grasa",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "identificar",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "purificar_comida_y_bebida",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "retirada_expeditiva",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "salto",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "santuario",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "zancada_prodigiosa",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "alterar_el_propio_aspecto",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "agrandar_reducir",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "arma_magica",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "auxilio",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "boca_magica",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "calentar_metal",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "cerradura_arcana",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "contorno_borroso",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "invisibilidad",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "levitar",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "llama_permanente",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "potenciar_caracteristica",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "proteccion_contra_veneno",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "restablecimiento_menor",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "telarana",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "trepar_cual_aracnido",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "truco_de_la_cuerda",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "ver_invisibilidad",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "vision_en_la_oscuridad",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "acelerar",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "arma_elemental",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "caminar_sobre_el_agua",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "crear_comida_y_agua",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "desplazamiento",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "disipar_magia",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "fortaleza_intelectual",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "glifo_custodio",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "proteccion_contra_energia",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "respirar_bajo_el_agua",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "revivir",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "volar",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "cofre_oculto",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "esfera_elastica",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "fabricar",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "invocar_automata",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "libertad_de_movimiento",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "mastin_fiel",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "moldear_la_piedra",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "ojo_arcano",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "piel_petrea",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "sanctasanctorum_privado",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "animar_objetos",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "creacion",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "mano_arcana",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "muro_de_piedra",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    },
+    {
+      "id": "restablecimiento_mayor",
+      "modifica": true,
+      "listas": [
+        "artifice"
+      ]
+    }
+  ]
+}

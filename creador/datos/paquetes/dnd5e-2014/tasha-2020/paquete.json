@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "tipo": "oficial",
   "licencia": "Uso privado. Contenido protegido por derechos de autor; redactado con palabras propias.",
-  "descripcion": "Guía de Tasha: dotes, conjuros, Linaje personalizado, las reglas «Personalizar tu origen» y «Rasgos de clase opcionales», y las 26 subclases de las clases del Manual del Jugador. El artífice, más adelante.",
+  "descripcion": "Guía de Tasha: dotes, conjuros, Linaje personalizado, las reglas «Personalizar tu origen» y «Rasgos de clase opcionales», las 26 subclases de las clases del Manual del Jugador y el artífice con sus cuatro especialistas, infusiones y lista de conjuros.",
   "depende_de": [
     "phb-2014"
   ],
@@ -17,6 +17,8 @@
     "recomendaciones.json",
     "subclases.json",
     "opciones.json",
-    "rasgos_opcionales.json"
+    "rasgos_opcionales.json",
+    "conjuros_artifice.json",
+    "artifice.json"
   ]
 }

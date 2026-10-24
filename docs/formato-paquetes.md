@@ -107,7 +107,7 @@ Ejemplo: un paquete que añade el conjuro *Luz* a la lista del paladín sin rede
 - Usa `conjuros_conocidos` (tabla de 20 valores) **o** `preparados`: `nivel` → mod + nivel, o `mitad_nivel` → mod + nivel/2.
 - `libro` (mago): los conjuros se eligen para el libro (`inicial` a nivel 1 y `por_nivel` más en cada nivel, siempre de niveles con espacios en ese momento) y los preparados salen del libro. El personaje guarda el libro en `conjuros` y los preparados en `preparados`.
 - `listas`: listas de conjuros adicionales a la de la propia clase.
-- `desde_nivel` y `redondeo_multiclase` solo hacen falta si difieren del estándar.
+- `desde_nivel` y `redondeo_multiclase` solo hacen falta si difieren del estándar. Ejemplo: el artífice de Tasha es `medio` con `"desde_nivel": 1` y `"redondeo_multiclase": "arriba"` (espacios desde nivel 1 y, en multiclase, la mitad de sus niveles redondeando hacia arriba). Con un solo lanzador `medio` los espacios ya redondean hacia arriba.
 
 ### subclases
 `clase` (id) · `niveles` · `lanzamiento` opcional · `conjuros_adicionales`: ids de conjuros que pasan a estar en la lista de la clase (lista ampliada del patrón del brujo). Los conjuros de dominio, juramento o círculo se dan con efectos `conjuro` con `clase` y `siempre_preparado` en el nivel que toque. · `niveles_completos`: hasta qué nivel están sus datos (por defecto 20); si el personaje lo supera, el asistente lo marca en el selector («datos hasta nivel 5») y la ficha avisa.

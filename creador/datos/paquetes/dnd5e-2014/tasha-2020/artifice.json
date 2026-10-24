@@ -1,0 +1,1031 @@
+{
+  "clases": [
+    {
+      "id": "artifice",
+      "nombre": "Artífice",
+      "fuente": "Tasha 2020 p. 9-23",
+      "descripcion": "Maestro de la invención mágica: canaliza la magia a través de objetos y herramientas, imbuye objetos corrientes con infusiones y fabrica inventos extravagantes. Inteligencia ante todo.",
+      "perfil": {
+        "saber": 2,
+        "astucia": 2,
+        "arcano": 2
+      },
+      "dado_golpe": 8,
+      "salvaciones": [
+        "con",
+        "int"
+      ],
+      "nivel_subclase": 3,
+      "competencias": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_medias"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "escudos"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "arma",
+          "id": "armas_sencillas"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "herramientas_de_ladron"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "herramientas_de_manitas"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "herramienta",
+          "nombre": "Herramientas de artesano de artífice",
+          "opciones": {
+            "desde": "herramientas",
+            "filtro": {
+              "subcategoria": "artesano"
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "herramienta",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "eleccion",
+          "id": "habilidades",
+          "nombre": "Habilidades de artífice",
+          "elegir": 2,
+          "fuente": "habilidades",
+          "opciones": [
+            "conocimiento_arcano",
+            "historia",
+            "investigacion",
+            "medicina",
+            "naturaleza",
+            "percepcion",
+            "juego_de_manos"
+          ],
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "habilidad",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "competencias_multiclase": [
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_ligeras"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "armaduras_medias"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "armadura",
+          "id": "escudos"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "herramientas_de_ladron"
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "herramientas_de_manitas"
+        }
+      ],
+      "requisitos_multiclase": {
+        "caracteristicas": {
+          "int": 13
+        }
+      },
+      "oro_inicial": "5d4x10",
+      "equipo_inicial": [
+        [
+          [
+            {
+              "desde": "armas",
+              "filtro": {
+                "arma": {
+                  "categoria": "sencilla"
+                }
+              }
+            },
+            {
+              "desde": "armas",
+              "filtro": {
+                "arma": {
+                  "categoria": "sencilla"
+                }
+              }
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "ballesta_ligera"
+            },
+            {
+              "id": "virote",
+              "cantidad": 20
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "armadura_de_cuero_tachonado"
+            }
+          ],
+          [
+            {
+              "id": "cota_de_escamas"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "id": "herramientas_de_ladron"
+            },
+            {
+              "id": "paquete_de_explorador_de_mazmorras"
+            }
+          ]
+        ]
+      ],
+      "lanzamiento": {
+        "caracteristica": "int",
+        "progresion": "medio",
+        "desde_nivel": 1,
+        "redondeo_multiclase": "arriba",
+        "preparados": "mitad_nivel",
+        "trucos_conocidos": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "niveles_completos": 20,
+      "niveles": {
+        "1": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Alterar Mágicamente",
+            "resumen": "acción, con herramientas de ladrón o de artesano: das a un objeto diminuto no mágico luz, un mensaje grabado, un olor o sonido, o una imagen o texto; hasta {max(1,mod_int)} objetos a la vez",
+            "descripcion": "Con herramientas de ladrón o de artesano a mano, tocas como acción un objeto diminuto no mágico y le das una propiedad: emite luz brillante a 5 pies y tenue 5 más; reproduce un mensaje de hasta 6 segundos cuando lo tocan; emite un olor o un sonido no verbal perceptible a 10 pies; o muestra una imagen o hasta 25 palabras en una superficie. Dura indefinidamente (la quitas tocándolo como acción). Puedes tener tantos objetos así como tu modificador por Inteligencia (mínimo uno); al pasarte, el más antiguo la pierde."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Lanzamiento de Conjuros",
+            "resumen": "preparas {max(1,mod_int+nivel_clase//2)} conjuros de artífice (INT); tu canalizador son tus herramientas de ladrón o de artesano (o un objeto con una infusión tuya)",
+            "descripcion": "Lanzas conjuros de artífice con Inteligencia, a través de tus herramientas: necesitas en la mano herramientas de ladrón o de artesano con las que seas competente como canalizador (desde nivel 2, también un objeto con una de tus infusiones). Preparas tantos conjuros como tu modificador por Inteligencia + la mitad de tu nivel de artífice (mínimo uno) y puedes cambiarlos tras un descanso largo. Lanzas como ritual los rituales que tengas preparados."
+          }
+        ],
+        "2": [
+          {
+            "tipo": "eleccion",
+            "id": "infusiones",
+            "nombre": "Imbuir Objeto: infusiones",
+            "elegir": 4,
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "infusion",
+                "clases": "artifice"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Imbuir Objeto",
+            "resumen": "conoces infusiones (4 a nivel 2, 6, 8, 10 y 12 a niveles 6, 10, 14 y 18); tras cada descanso largo imbuyes hasta {escala} objetos no mágicos y los vuelves mágicos",
+            "descripcion": "Aprendes infusiones de artífice (cuatro, y más a niveles 6, 10, 14 y 18) y al subir de nivel puedes cambiar una. Al terminar un descanso largo tocas objetos no mágicos y les das una infusión, que los vuelve mágicos; cada infusión solo puede estar en un objeto y cada objeto solo lleva una. Si el objeto requiere sintonización, puedes sintonizarte al momento. La infusión dura indefinidamente; si mueres, desaparece tras tantos días como tu modificador por Inteligencia (mínimo 1). Al pasarte del máximo de objetos, la más antigua termina.",
+            "escala": {
+              "2": "2",
+              "6": "3",
+              "10": "4",
+              "14": "5",
+              "18": "6"
+            }
+          }
+        ],
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Artífice Especialista",
+            "resumen": "eliges tu especialidad: Alquimista, Armero, Artillero o Herrero de Batalla",
+            "descripcion": "A nivel 3 eliges el tipo de especialista que eres; te da rasgos a niveles 3, 5, 9 y 15."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "La Herramienta Adecuada para el Trabajo",
+            "resumen": "con herramientas de ladrón o de artesano, en 1 hora (puede ser en un descanso) creas unas herramientas de artesano a 5 pies",
+            "descripcion": "Con herramientas de ladrón o de artesano en la mano, en 1 hora de trabajo ininterrumpido (puede coincidir con un descanso corto o largo) creas por arte de magia unas herramientas de artesano en un espacio libre a 5 pies. No son mágicas y desaparecen cuando vuelves a usar el rasgo."
+          }
+        ],
+        "4": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "6": [
+          {
+            "tipo": "eleccion",
+            "id": "infusiones_nivel_6",
+            "nombre": "Imbuir Objeto: infusiones (nivel 6)",
+            "elegir": 2,
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "infusion",
+                "clases": "artifice"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Pericia en Herramientas",
+            "resumen": "bonificador por competencia doble en las pruebas con herramientas en las que eres competente",
+            "descripcion": "Tu bonificador por competencia se duplica en cualquier prueba de característica que hagas usando tu competencia con una herramienta."
+          }
+        ],
+        "7": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Destello de Ingenio",
+            "resumen": "reacción: cuando tú u otro a 30 pies hace una prueba o una salvación, sumas +{mod_int}",
+            "descripcion": "Cuando tú u otra criatura que veas a 30 pies o menos hace una prueba de característica o una salvación, puedes usar tu reacción para sumar tu modificador por Inteligencia a la tirada. Usos: tu modificador por Inteligencia (mínimo uno) por descanso largo.",
+            "usos": "max(1,mod_int)",
+            "recarga": "largo"
+          }
+        ],
+        "8": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "10": [
+          {
+            "tipo": "eleccion",
+            "id": "infusiones_nivel_10",
+            "nombre": "Imbuir Objeto: infusiones (nivel 10)",
+            "elegir": 2,
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "infusion",
+                "clases": "artifice"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Adepto en Objetos Mágicos",
+            "resumen": "te sintonizas con hasta 4 objetos mágicos; fabricar objetos comunes e infrecuentes te lleva un cuarto del tiempo y la mitad del oro",
+            "descripcion": "Puedes estar sintonizado con hasta cuatro objetos mágicos a la vez. Además, si fabricas un objeto mágico común o infrecuente, te lleva una cuarta parte del tiempo y te cuesta la mitad del oro."
+          }
+        ],
+        "11": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Almacenar Conjuro",
+            "resumen": "tras cada descanso largo guardas un conjuro de artífice de nivel 1 o 2 (de 1 acción) en un arma o un canalizador; quien lo sostenga lo lanza como acción, {max(2,mod_int)} veces",
+            "descripcion": "Al terminar un descanso largo tocas un arma sencilla o marcial o un objeto que puedas usar como canalizador y guardas en él un conjuro de artífice de nivel 1 o 2 que se lance con 1 acción (no hace falta tenerlo preparado). Quien sostenga el objeto puede usar una acción para producir su efecto con tu aptitud mágica (y concentrarse, si hace falta). Dura hasta usarse tantas veces como tu modificador por Inteligencia (mínimo dos) o hasta que guardes otro."
+          }
+        ],
+        "12": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "14": [
+          {
+            "tipo": "eleccion",
+            "id": "infusiones_nivel_14",
+            "nombre": "Imbuir Objeto: infusiones (nivel 14)",
+            "elegir": 2,
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "infusion",
+                "clases": "artifice"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Experto en Objetos Mágicos",
+            "resumen": "te sintonizas con hasta 5 objetos mágicos e ignoras los requisitos de clase, raza, conjuro y nivel para sintonizar o usar objetos mágicos",
+            "descripcion": "Puedes estar sintonizado con hasta cinco objetos mágicos a la vez, e ignoras todos los requisitos de clase, raza, conjuro y nivel para sintonizarte con objetos mágicos o usarlos."
+          }
+        ],
+        "16": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "18": [
+          {
+            "tipo": "eleccion",
+            "id": "infusiones_nivel_18",
+            "nombre": "Imbuir Objeto: infusiones (nivel 18)",
+            "elegir": 2,
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "infusion",
+                "clases": "artifice"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Maestro en Objetos Mágicos",
+            "resumen": "te sintonizas con hasta 6 objetos mágicos",
+            "descripcion": "Puedes estar sintonizado con hasta seis objetos mágicos a la vez."
+          }
+        ],
+        "19": [
+          {
+            "tipo": "mejora_caracteristica"
+          }
+        ],
+        "20": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Alma del Artificio",
+            "resumen": "+1 a todas las salvaciones por cada objeto mágico con el que estés sintonizado; si caes a 0 PG sin morir, con tu reacción terminas una infusión y te quedas a 1 PG",
+            "descripcion": "Ganas +1 a todas las tiradas de salvación por cada objeto mágico con el que estés sintonizado. Además, si caes a 0 puntos de golpe sin morir en el acto, puedes usar tu reacción para terminar una de tus infusiones y quedarte a 1 PG."
+          }
+        ]
+      }
+    }
+  ],
+  "subclases": [
+    {
+      "id": "alquimista",
+      "nombre": "Alquimista",
+      "clase": "artifice",
+      "fuente": "Tasha 2020 p. 14-15",
+      "descripcion": "Experto en mezclar reactivos para producir efectos místicos: sus creaciones dan la vida y la quitan. Es la tradición más antigua de los artífices.",
+      "perfil": {
+        "curacion": 2,
+        "saber": 2,
+        "arcano": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "competencia",
+            "categoria": "herramienta",
+            "id": "suministros_de_alquimista"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Competencia con Herramientas",
+            "resumen": "competencia con suministros de alquimista",
+            "descripcion": "Ganas competencia con suministros de alquimista. Si ya la tenías, ganas otras herramientas de artesano: si las elegiste con la herramienta de artesano del nivel 1, cámbialas allí (el programa avisa de la repetición)."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Conjuros de Alquimista",
+            "resumen": "conjuros de tu especialidad siempre preparados (de artífice, sin contar para el límite)",
+            "descripcion": "Al llegar a ciertos niveles de artífice tienes siempre preparados los conjuros de tu especialidad. Son conjuros de artífice para ti y no cuentan para los que puedes preparar."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Elixir Experimental",
+            "resumen": "tras cada descanso largo, {escala} elixir(es) al azar (curación 2d4+{mod_int}, rapidez, resiliencia, audacia, vuelo o transformación); más gastando espacios de conjuro",
+            "descripcion": "Al terminar un descanso largo creas un elixir experimental en un frasco vacío (dos a nivel 6 y tres a nivel 15), con un efecto al azar: Curación (recupera 2d4 + tu modificador por Inteligencia PG), Rapidez (+10 pies de velocidad caminando 1 hora), Resiliencia (+1 a la CA 10 minutos), Audacia (+1d4 a ataques y salvaciones 1 minuto), Vuelo (vuela 10 pies 10 minutos) o Transformación (alterar el propio aspecto 10 minutos). Beberlo o dárselo a un incapacitado es una acción. Puedes crear más gastando un espacio de conjuro (y una acción) por elixir, eligiendo el efecto; necesitas suministros de alquimista. Duran hasta beberse o hasta tu siguiente descanso largo.",
+            "escala": {
+              "3": "1",
+              "6": "2",
+              "15": "3"
+            }
+          },
+          {
+            "tipo": "conjuro",
+            "id": "palabra_de_curacion",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "rayo_nauseabundo",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Erudito Alquímico",
+            "resumen": "con suministros de alquimista como canalizador, +{max(1,mod_int)} a una tirada de curación o de daño de ácido, fuego, necrótico o veneno de tus conjuros",
+            "descripcion": "Cuando lanzas un conjuro usando suministros de alquimista como canalizador, sumas tu modificador por Inteligencia (mínimo +1) a una tirada del conjuro que cure o que cause daño de ácido, fuego, necrótico o veneno."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "esfera_de_llamas",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "flecha_acida",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ],
+        "9": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Reactivos Restauradores",
+            "resumen": "quien beba tus elixires gana 2d6+{mod_int} PG temporales; lanzas restablecimiento menor sin espacio {max(1,mod_int)} veces por descanso largo",
+            "descripcion": "Quien beba uno de tus elixires experimentales gana además 2d6 + tu modificador por Inteligencia puntos de golpe temporales (mínimo 1). Y puedes lanzar restablecimiento menor sin gastar espacio ni prepararlo, usando suministros de alquimista como canalizador, tantas veces como tu modificador por Inteligencia (mínimo una) por descanso largo.",
+            "usos": "max(1,mod_int)",
+            "recarga": "largo"
+          },
+          {
+            "tipo": "conjuro",
+            "id": "forma_gaseosa",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "palabra_de_curacion_en_masa",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ],
+        "13": [
+          {
+            "tipo": "conjuro",
+            "id": "guarda_contra_la_muerte",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "marchitar",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ],
+        "15": [
+          {
+            "tipo": "resistencia",
+            "dano": "acido"
+          },
+          {
+            "tipo": "resistencia",
+            "dano": "veneno"
+          },
+          {
+            "tipo": "inmunidad",
+            "id": "envenenado"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Maestría Química",
+            "resumen": "resistencia al ácido y al veneno, inmune a envenenado; restablecimiento mayor y sanar sin espacio ni componentes, una vez cada uno por descanso largo",
+            "descripcion": "Tienes resistencia al daño de ácido y de veneno y eres inmune al estado envenenado. Además puedes lanzar restablecimiento mayor y sanar sin gastar espacio, sin prepararlos y sin componentes materiales, usando suministros de alquimista como canalizador; una vez cada uno por descanso largo."
+          }
+        ],
+        "17": [
+          {
+            "tipo": "conjuro",
+            "id": "nube_aniquiladora",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "alzar_a_los_muertos",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "armero",
+      "nombre": "Armero",
+      "clase": "artifice",
+      "fuente": "Tasha 2020 p. 15-16",
+      "descripcion": "Convierte su armadura en una segunda piel que perfecciona su magia, desata ataques potentes y le defiende: se une a ella mientras la sigue refinando.",
+      "perfil": {
+        "proteccion": 2,
+        "combate": 2,
+        "aguante": 1,
+        "arcano": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "competencia",
+            "categoria": "armadura",
+            "id": "armaduras_pesadas"
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "herramienta",
+            "id": "herramientas_de_herrero"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Competencia con Herramientas",
+            "resumen": "competencia con herramientas de herrero",
+            "descripcion": "Ganas competencia con herramientas de herrero. Si ya la tenías, ganas otras herramientas de artesano: si las elegiste con la herramienta de artesano del nivel 1, cámbialas allí (el programa avisa de la repetición)."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Conjuros del Armero",
+            "resumen": "conjuros de tu especialidad siempre preparados (de artífice, sin contar para el límite)",
+            "descripcion": "Al llegar a ciertos niveles de artífice tienes siempre preparados los conjuros de tu especialidad. Son conjuros de artífice para ti y no cuentan para los que puedes preparar."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Armadura Arcana",
+            "resumen": "acción, con herramientas de herrero: tu armadura se vuelve Armadura Arcana: sin requisito de Fuerza, canalizador, no te la pueden quitar, cubre todo el cuerpo y sustituye miembros",
+            "descripcion": "Como acción, con herramientas de herrero, conviertes la armadura que llevas en Armadura Arcana hasta que te pongas otra o mueras: ignora su requisito de Fuerza, te sirve de canalizador para tus conjuros de artífice, no te la pueden quitar contra tu voluntad, se extiende por todo tu cuerpo (el casco se recoge o despliega como acción adicional) y sustituye los miembros que te falten. Te la pones o quitas como acción."
+          },
+          {
+            "tipo": "eleccion",
+            "id": "modelo_de_armadura",
+            "nombre": "Modelo de Armadura",
+            "opciones": [
+              {
+                "id": "guardian",
+                "nombre": "Guardián",
+                "efectos": [
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Modelo de Armadura: Guardián",
+                    "resumen": "Guanteletes de Trueno (arma cuerpo a cuerpo sencilla, INT, 1d8 de trueno; el golpeado tiene desventaja contra otros que no seas tú) y Campo Defensivo (acción adicional: {nivel_clase} PG temporales)",
+                    "descripcion": "Guanteletes de Trueno: cada guantelete cuenta como arma cuerpo a cuerpo sencilla con la mano vacía y causa 1d8 de daño de trueno; la criatura golpeada tiene desventaja en sus ataques contra objetivos que no seas tú hasta el comienzo de tu siguiente turno. Campo Defensivo: como acción adicional ganas tantos PG temporales como tu nivel de artífice (los pierdes al quitarte la armadura); usos: tu bonificador por competencia por descanso largo. Atacas con el arma del modelo usando Inteligencia. Cambias de modelo tras un descanso corto o largo, con herramientas de herrero.",
+                    "usos": "competencia",
+                    "recarga": "largo"
+                  }
+                ]
+              },
+              {
+                "id": "infiltrador",
+                "nombre": "Infiltrador",
+                "efectos": [
+                  {
+                    "tipo": "velocidad",
+                    "modo": "caminar",
+                    "bonificador": 5
+                  },
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Modelo de Armadura: Infiltrador",
+                    "resumen": "Lanzarrayos (arma a distancia sencilla, INT, 90/300 pies, 1d6 de relámpago y una vez por turno 1d6 más), Pasos Potenciados (+5 pies) y Campo Amortiguador (ventaja en Sigilo)",
+                    "descripcion": "Lanzarrayos: un nodo como una gema en un puño o en el pecho; cuenta como arma a distancia sencilla (alcance 90/300 pies) que causa 1d6 de daño de relámpago, y una vez en cada uno de tus turnos un impacto causa 1d6 de relámpago adicional. Pasos Potenciados: +5 pies de velocidad caminando. Campo Amortiguador: ventaja en las pruebas de Destreza (Sigilo) (se anula con la desventaja de la armadura). Atacas con el arma del modelo usando Inteligencia. Cambias de modelo tras un descanso corto o largo, con herramientas de herrero."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tipo": "conjuro",
+            "id": "proyectil_magico",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "ola_atronadora",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Ataque Adicional",
+            "resumen": "2 ataques al usar la acción de Atacar",
+            "descripcion": "Cuando realizas la acción de Atacar en tu turno, puedes atacar dos veces en lugar de una.",
+            "no_acumula": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "imagen_multiple",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "hacer_anicos",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ],
+        "9": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Modificaciones de Armadura",
+            "resumen": "tu Armadura Arcana cuenta como cuatro objetos para tus infusiones (pechera, botas, casco y arma) y puedes imbuir 2 objetos más si son parte de ella",
+            "descripcion": "Tu Armadura Arcana cuenta como objetos separados para Imbuir Objeto: la armadura (la pechera), las botas, el casco y el arma del modelo; cada uno puede llevar una infusión, que se conserva al cambiar de modelo. El máximo de objetos imbuidos aumenta en 2, pero esos dos deben ser partes de la armadura."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "patron_hipnotico",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "relampago",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ],
+        "13": [
+          {
+            "tipo": "conjuro",
+            "id": "escudo_de_fuego",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "invisibilidad_mejorada",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ],
+        "15": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Armadura Perfeccionada",
+            "resumen": "Guardián: reacción, una criatura Enorme o menor que acaba su turno a 30 pies salva FUE o la atraes hasta 30 pies (y la atacas si acaba a 5); Infiltrador: quien sufra tu Lanzarrayos brilla, tiene desventaja contra ti y el siguiente ataque contra ella tiene ventaja y +1d6 de relámpago",
+            "descripcion": "Guardián: cuando una criatura Enorme o más pequeña que veas termina su turno a 30 pies o menos, puedes usar tu reacción para que haga una salvación de Fuerza contra tu CD de conjuros o la atraes hasta 30 pies hacia ti; si acaba a 5 pies, puedes atacarla cuerpo a cuerpo como parte de la reacción (usos: tu bonificador por competencia por descanso largo). Infiltrador: una criatura que sufre daño de tu Lanzarrayos brilla con luz tenue a 5 pies hasta el comienzo de tu siguiente turno, tiene desventaja en sus ataques contra ti y el siguiente ataque contra ella tiene ventaja y, si impacta, causa 1d6 de daño de relámpago adicional."
+          }
+        ],
+        "17": [
+          {
+            "tipo": "conjuro",
+            "id": "pasamuros",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "muro_de_fuerza",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "artillero",
+      "nombre": "Artillero",
+      "clase": "artifice",
+      "fuente": "Tasha 2020 p. 17-18",
+      "descripcion": "Especialista en lanzar energía, proyectiles y explosiones en el campo de batalla con su magia; tras la guerra, algunos usan ese poder para mantener la paz.",
+      "perfil": {
+        "arcano": 2,
+        "combate": 2,
+        "saber": 1,
+        "proteccion": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "competencia",
+            "categoria": "herramienta",
+            "id": "herramientas_de_ebanista"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Competencia con Herramientas",
+            "resumen": "competencia con herramientas de ebanista",
+            "descripcion": "Ganas competencia con herramientas de ebanista. Si ya la tenías, ganas otras herramientas de artesano: si las elegiste con la herramienta de artesano del nivel 1, cámbialas allí (el programa avisa de la repetición)."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Conjuros de Artillero",
+            "resumen": "conjuros de tu especialidad siempre preparados (de artífice, sin contar para el límite)",
+            "descripcion": "Al llegar a ciertos niveles de artífice tienes siempre preparados los conjuros de tu especialidad. Son conjuros de artífice para ti y no cuentan para los que puedes preparar."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Cañón Sobrenatural",
+            "resumen": "acción, con herramientas de ebanista o de herrero: creas un cañón Pequeño o Diminuto a 5 pies (CA 18, {5*nivel_clase} PG, 1 hora); acción adicional: lo activas a 60 pies: Lanzallamas (cono de 15 pies, salvación de DES, 2d8 de fuego), Balista de Fuerza (ataque de conjuro a 120 pies, 2d8 de fuerza y empuje) o Protector (1d8+{mod_int} PG temporales a 10 pies); una vez por descanso largo o un espacio",
+            "descripcion": "Como acción, con herramientas de ebanista o de herrero, creas un cañón sobrenatural Pequeño o Diminuto en una superficie a 5 pies. Es un objeto mágico: CA 18, tantos PG como cinco veces tu nivel de artífice, inmune al veneno y al daño psíquico, características a 10; reparar le cura 2d6. Dura 1 hora o hasta llegar a 0 PG (o lo despides como acción). Solo puedes tener uno; crear otro te pide un descanso largo o gastar un espacio de conjuro. En cada turno, como acción adicional y a 60 pies o menos, lo activas (y, si tiene patas, lo mueves 15 pies): Lanzallamas, cono de 15 pies, salvación de Destreza contra tu CD o 2d8 de fuego (la mitad si salva); Balista de Fuerza, ataque de conjuro a distancia a 120 pies, 2d8 de fuerza y empuja 5 pies; Protector, él y las criaturas que elijas a 10 pies ganan 1d8 + tu modificador por Inteligencia PG temporales.",
+            "usos": 1,
+            "recarga": "largo"
+          },
+          {
+            "tipo": "conjuro",
+            "id": "escudo",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "ola_atronadora",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Arma de Fuego Arcana",
+            "resumen": "tras un descanso largo talla sellos en una varita, bastón o cetro: canalizador que suma 1d8 a una tirada de daño de tus conjuros de artífice",
+            "descripcion": "Al terminar un descanso largo puedes tallar sellos con herramientas de ebanista en una varita, un bastón o un cetro y convertirlo en tu arma de fuego arcana: te sirve de canalizador, y cuando lanzas un conjuro de artífice a través de ella tiras un d8 y lo sumas a una de sus tiradas de daño."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "hacer_anicos",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "rayo_abrasador",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ],
+        "9": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Cañón Explosivo",
+            "resumen": "el daño del cañón sube 1d8; acción: lo haces estallar (salvación de DES a 20 pies, 3d8 de fuerza)",
+            "descripcion": "Todas las tiradas de daño de tu cañón aumentan en 1d8. Además, como acción, a 60 pies o menos, puedes hacerlo detonar: se destruye y cada criatura a 20 pies o menos hace una salvación de Destreza contra tu CD de conjuros: 3d8 de daño de fuerza, o la mitad si la supera."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "bola_de_fuego",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "muro_de_viento",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ],
+        "13": [
+          {
+            "tipo": "conjuro",
+            "id": "muro_de_fuego",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "tormenta_de_hielo",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ],
+        "15": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Posición Fortificada",
+            "resumen": "tú y tus aliados a 10 pies de un cañón tenéis cobertura media; puedes tener dos cañones",
+            "descripcion": "Tú y tus aliados tenéis cobertura media mientras estáis a 10 pies o menos de uno de tus cañones. Puedes tener dos cañones a la vez: los creas con la misma acción (no con el mismo espacio) y los activas con la misma acción adicional."
+          }
+        ],
+        "17": [
+          {
+            "tipo": "conjuro",
+            "id": "cono_de_frio",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "muro_de_fuerza",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "herrero_de_batalla",
+      "nombre": "Herrero de Batalla",
+      "clase": "artifice",
+      "fuente": "Tasha 2020 p. 18-19",
+      "descripcion": "Mezcla de protector y médico: defiende a los suyos y repara tanto el material como a las personas, acompañado de un defensor de acero que ha construido.",
+      "perfil": {
+        "proteccion": 2,
+        "combate": 2,
+        "curacion": 1,
+        "saber": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "competencia",
+            "categoria": "herramienta",
+            "id": "herramientas_de_herrero"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Competencia con Herramientas",
+            "resumen": "competencia con herramientas de herrero",
+            "descripcion": "Ganas competencia con herramientas de herrero. Si ya la tenías, ganas otras herramientas de artesano: si las elegiste con la herramienta de artesano del nivel 1, cámbialas allí (el programa avisa de la repetición)."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Conjuros de Herrero de Batalla",
+            "resumen": "conjuros de tu especialidad siempre preparados (de artífice, sin contar para el límite)",
+            "descripcion": "Al llegar a ciertos niveles de artífice tienes siempre preparados los conjuros de tu especialidad. Son conjuros de artífice para ti y no cuentan para los que puedes preparar."
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "arma",
+            "id": "armas_marciales"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Listo para la Batalla",
+            "resumen": "competencia con armas marciales; con armas mágicas atacas y dañas con INT",
+            "descripcion": "Ganas competencia con las armas marciales, y cuando atacas con un arma mágica puedes usar tu modificador por Inteligencia en lugar del de Fuerza o Destreza para el ataque y el daño."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Defensor de Acero",
+            "resumen": "un defensor de acero amistoso (CA 15, {2+mod_int+5*nivel_clase} PG, 40 pies) que actúa tras de ti y solo Esquiva salvo que le ordenes otra acción con una acción adicional",
+            "descripcion": "Construyes un compañero leal, el defensor de acero (autómata Mediano, con dos o cuatro patas): CA 15, PG 2 + tu modificador por Inteligencia + cinco veces tu nivel de artífice, velocidad 40 pies, inmune al veneno, a hechizado, cansancio y envenenado, visión en la oscuridad 60 pies, no puede ser sorprendido; usa tu bonificador por competencia (BC). Desgarro con Fuerza: ataque cuerpo a cuerpo con tu modificador de ataque de conjuros, 1d8 + BC de fuerza. Reparar (3 al día): 2d8 + BC PG a sí mismo o a un constructo u objeto a 5 pies. Desviar Ataque (reacción): desventaja a un ataque contra otra criatura a 5 pies de él. Actúa justo después de ti; solo Esquiva salvo que uses una acción adicional para ordenarle otra acción. Reparar le cura 2d6; si murió hace menos de 1 hora, lo revives con herramientas de herrero y un espacio de conjuro. Tras un descanso largo puedes construir otro."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "heroismo",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "escudo",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Ataque Adicional",
+            "resumen": "2 ataques al usar la acción de Atacar",
+            "descripcion": "Cuando realizas la acción de Atacar en tu turno, puedes atacar dos veces en lugar de una.",
+            "no_acumula": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "castigo_marcador",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "vinculo_protector",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ],
+        "9": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Sacudida Arcana",
+            "resumen": "una vez por turno, al impactar con un arma mágica (o tu defensor): +{escala} de fuerza, o curas {escala} a alguien a 30 pies; {max(1,mod_int)} veces por descanso largo",
+            "descripcion": "Cuando impactas a un objetivo con un arma mágica, o lo impacta tu defensor de acero, puedes canalizar energía: el objetivo sufre 2d6 de daño de fuerza adicional, o una criatura u objeto que veas a 30 pies del objetivo recupera 2d6 PG. No más de una vez por turno. Usos: tu modificador por Inteligencia (mínimo uno) por descanso largo.",
+            "usos": "max(1,mod_int)",
+            "recarga": "largo",
+            "escala": {
+              "9": "2d6",
+              "15": "4d6"
+            }
+          },
+          {
+            "tipo": "conjuro",
+            "id": "aura_de_vitalidad",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "conjurar_andanada",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ],
+        "13": [
+          {
+            "tipo": "conjuro",
+            "id": "aura_de_pureza",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "escudo_de_fuego",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ],
+        "15": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Defensor Mejorado",
+            "resumen": "Sacudida Arcana a 4d6; el defensor gana +2 a la CA y su Desviar Ataque causa 1d4+{mod_int} de fuerza",
+            "descripcion": "El daño y la curación de tu Sacudida Arcana suben a 4d6, tu defensor de acero gana +2 a la CA y, cuando usa Desviar Ataque, el atacante sufre 1d4 + tu modificador por Inteligencia de daño de fuerza."
+          }
+        ],
+        "17": [
+          {
+            "tipo": "conjuro",
+            "id": "castigo_desterrador",
+            "clase": "artifice",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "curar_heridas_en_masa",
+            "clase": "artifice",
+            "siempre_preparado": true
+          }
+        ]
+      }
+    }
+  ]
+}

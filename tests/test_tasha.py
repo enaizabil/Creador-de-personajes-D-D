@@ -23,7 +23,8 @@ def test_contenido_de_la_primera_fase(entorno):
              if catalogo.origen(cat, e["id"]) == "tasha-2020"]
     assert len([e for e in tasha if "prerrequisito" in e or "resumen" in e and "nivel" not in e]) >= 15
     assert len([e for e in tasha if "nivel" in e]) == 21
-    assert {c["id"] for c in catalogo.listar("conjuros") if c["nivel"] == 0 and "artifice" in c["listas"]} == {
+    assert {c["id"] for c in catalogo.listar("conjuros") if c["nivel"] == 0 and "artifice" in c["listas"]
+            and catalogo.origen("conjuros", c["id"]) == "tasha-2020"} == {
         "atraccion_del_relampago", "estallido_de_espadas", "filo_atronador", "filo_de_llamas_verdes"}
 
 
@@ -323,3 +324,84 @@ def test_opciones_de_tasha_solo_con_su_rasgo_opcional(entorno):
         filtro = {"grupo": "estilo_combate" if clase == "guerrero" else "pacto", "clases": clase}
         assert esperado not in {o.id for o in sistema.opciones_desde("opciones", filtro, catalogo, sin)}
         assert esperado in {o.id for o in sistema.opciones_desde("opciones", filtro, catalogo, con)}
+
+
+def test_lista_de_conjuros_del_artifice(entorno):
+    sistema, catalogo = entorno
+    lista = [c for c in catalogo.listar("conjuros") if "artifice" in c["listas"]]
+    assert {n: sum(1 for c in lista if c["nivel"] == n) for n in range(6)} == {0: 19, 1: 15, 2: 19, 3: 12, 4: 10, 5: 5}
+    assert all(c["listas"].count("artifice") == 1 for c in lista)  # «modifica» no repite la lista que ya traía
+    # Iniciado Artífice elige ya entre toda la lista.
+    trucos = sistema.opciones_desde("conjuros", {"listas": "artifice", "nivel": 0}, catalogo)
+    assert len(trucos) == 19
+
+
+def test_espacios_del_artifice_redondean_hacia_arriba(entorno):
+    sistema, catalogo = entorno
+
+    def espacios(*clases):
+        pj = Personaje(sistema="dnd5e-2014", paquetes=PAQUETES, metodo_caracteristicas="manual",
+                       caracteristicas_base={"fue": 10, "des": 14, "con": 14, "int": 15, "sab": 10, "car": 13},
+                       clases=[EntradaClase(c, n) for c, n in clases])
+        return sistema.calcular(pj, catalogo).espacios_conjuro
+
+    assert espacios(("artifice", 1)) == {1: 2}
+    assert espacios(("artifice", 5)) == {1: 4, 2: 2}
+    assert espacios(("artifice", 20)) == {1: 4, 2: 3, 3: 3, 4: 3, 5: 2}
+    # En multiclase suma la mitad de sus niveles redondeando hacia arriba (el paladín, hacia abajo).
+    assert espacios(("artifice", 1), ("mago", 1)) == {1: 3}
+    assert espacios(("artifice", 3), ("paladin", 3)) == {1: 4, 2: 2}
+
+
+def test_infusiones_del_artifice(entorno):
+    sistema, catalogo = entorno
+    de_nivel = {o["id"]: int(o["prerrequisito"]["texto"].split()[1]) for o in catalogo.listar("opciones")
+                if o["grupo"] == "infusion" and "prerrequisito" in o}
+    assert de_nivel == {"anillo_de_recarga_de_conjuros": 6, "arma_radiante": 6, "armadura_resistente": 6,
+                        "botas_del_camino_serpenteante": 6, "escudo_de_repulsion": 6, "yelmo_de_la_alerta": 10,
+                        "armadura_de_propulsion_arcana": 14}
+    for nivel, total in ((2, 4), (6, 6), (10, 8), (14, 10), (18, 12)):
+        for semilla in ("a", "b"):
+            q = _con_subclase(entorno, "artillero", nivel, semilla)
+            infusiones = [v for c, vs in q.personaje.elecciones.items() if "/infusiones" in c for v in vs]
+            assert len(infusiones) == total, (nivel, infusiones)
+            assert len(set(infusiones)) == total or "replicar_objeto_magico" in infusiones
+            # El cuestionario respeta el nivel que pide cada una (el asistente lo muestra en la descripción).
+            assert all(de_nivel.get(i, 0) <= nivel for i in infusiones), (nivel, infusiones)
+            assert q._prerrequisito("armadura_de_propulsion_arcana") is (nivel >= 14)
+
+
+def test_especialistas_del_artifice(entorno):
+    sistema, catalogo = entorno
+    alquimista = _con_subclase(entorno, "alquimista", 15)
+    ficha = sistema.calcular(alquimista.personaje, catalogo)
+    assert {"ácido", "veneno"} <= set(ficha.resistencias) and "envenenado" in ficha.inmunidades
+    siempre = {n for ns in ficha.lanzadores[0].siempre_preparados.values() for n in ns}
+    assert {"Palabra de curación", "Guarda contra la muerte"} <= siempre and "Nube aniquiladora" not in siempre
+    armero = _con_subclase(entorno, "armero", 3)
+    clave = next(c for c in armero.personaje.elecciones if c.endswith("modelo_de_armadura"))
+    armero.personaje.elecciones[clave] = ["infiltrador"]
+    ficha = sistema.calcular(armero.personaje, catalogo)
+    assert ficha.velocidades["caminar"] == 35
+    assert "Modelo de Armadura: Infiltrador" in {r.nombre for r in ficha.rasgos}
+    herrero = sistema.resolver(_con_subclase(entorno, "herrero_de_batalla", 3).personaje, catalogo)
+    assert ("arma", "armas_marciales") in {(a.efecto["categoria"], a.efecto["id"]) for a in herrero.aplicados
+                                            if a.tipo == "competencia"}
+
+
+def test_el_artifice_no_quita_el_mago_a_quien_busca_saber(entorno):
+    sistema, catalogo = entorno
+
+    def recomendada(*rasgos):
+        q = sistema.crear_cuestionario(Personaje(sistema="dnd5e-2014", paquetes=PAQUETES), catalogo)
+        for i, pregunta in enumerate(q.preguntas()):
+            rasgo = rasgos[i % len(rasgos)]
+            respuestas = catalogo.obtener("preguntas", pregunta.id)["respuestas"]
+            mejor = max(respuestas, key=lambda r: r.get("perfil", {}).get(rasgo, 0))
+            if mejor.get("perfil", {}).get(rasgo):
+                q.responder(pregunta.id, mejor["id"])
+        return q.recomendar_clases()[0].id
+
+    assert recomendada("saber") == "mago"
+    assert recomendada("saber", "arcano") == "mago"
+    assert recomendada("saber", "astucia") == "artifice"

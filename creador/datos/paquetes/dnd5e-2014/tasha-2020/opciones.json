@@ -550,6 +550,204 @@
         "texto": "nivel 12 de brujo y Pacto del Talismán"
       },
       "rasgo_opcional": "invocaciones_adicionales"
+    },
+    {
+      "id": "afilador_mental",
+      "nombre": "Infusión: Afilador Mental",
+      "grupo": "infusion",
+      "clases": [
+        "artifice"
+      ],
+      "fuente": "Tasha 2020 p. 20-23",
+      "resumen": "armadura o túnica con 4 cargas: si el portador falla una salvación de concentración, gasta 1 y la supera",
+      "descripcion": "Objeto: una armadura o una túnica. Tiene 4 cargas. Cuando quien la lleva falla una salvación de Constitución para mantener la concentración, puede usar su reacción y gastar 1 carga para superarla. Recupera 1d4 cargas cada amanecer."
+    },
+    {
+      "id": "anillo_de_recarga_de_conjuros",
+      "nombre": "Infusión: Anillo de Recarga de Conjuros",
+      "grupo": "infusion",
+      "clases": [
+        "artifice"
+      ],
+      "fuente": "Tasha 2020 p. 20-23",
+      "resumen": "anillo (sintonización): acción para recuperar un espacio de conjuro de nivel 3 o menos, una vez al día",
+      "descripcion": "Requisito: nivel 6 de artífice. Objeto: un anillo (requiere sintonización). Quien lo lleva puede recuperar como acción un espacio de conjuro gastado de nivel 3 o inferior; después no puede volver a hacerlo hasta el siguiente amanecer.",
+      "prerrequisito": {
+        "texto": "nivel 6 de artífice"
+      }
+    },
+    {
+      "id": "arma_mejorada",
+      "nombre": "Infusión: Arma Mejorada",
+      "grupo": "infusion",
+      "clases": [
+        "artifice"
+      ],
+      "fuente": "Tasha 2020 p. 20-23",
+      "resumen": "arma sencilla o marcial +1 al ataque y al daño (+2 desde nivel 10)",
+      "descripcion": "Objeto: un arma sencilla o marcial. Da +1 a las tiradas de ataque y de daño; +2 cuando llegas a nivel 10 de artífice."
+    },
+    {
+      "id": "arma_radiante",
+      "nombre": "Infusión: Arma Radiante",
+      "grupo": "infusion",
+      "clases": [
+        "artifice"
+      ],
+      "fuente": "Tasha 2020 p. 20-23",
+      "resumen": "arma (sintonización) +1; ilumina a voluntad 30 pies; 4 cargas: reacción tras recibir un golpe, el atacante salva CON o queda cegado",
+      "descripcion": "Requisito: nivel 6 de artífice. Objeto: un arma sencilla o marcial (requiere sintonización). Da +1 a las tiradas de ataque y de daño. Con una acción adicional emite luz brillante a 30 pies y tenue 30 más, o la apaga. Tiene 4 cargas: como reacción justo después de que le golpee un ataque, el portador gasta 1 y el atacante queda cegado hasta el final de su siguiente turno salvo que supere una salvación de Constitución contra tu CD de conjuros. Recupera 1d4 cargas cada amanecer.",
+      "prerrequisito": {
+        "texto": "nivel 6 de artífice"
+      }
+    },
+    {
+      "id": "arma_retornante",
+      "nombre": "Infusión: Arma Retornante",
+      "grupo": "infusion",
+      "clases": [
+        "artifice"
+      ],
+      "fuente": "Tasha 2020 p. 20-23",
+      "resumen": "arma arrojadiza +1 al ataque y al daño que vuelve a la mano tras un ataque a distancia",
+      "descripcion": "Objeto: un arma sencilla o marcial con la propiedad arrojadiza. Da +1 a las tiradas de ataque y de daño y vuelve a la mano de quien la empuña justo después de un ataque a distancia."
+    },
+    {
+      "id": "armadura_de_fuerza_magica",
+      "nombre": "Infusión: Armadura de Fuerza Mágica",
+      "grupo": "infusion",
+      "clases": [
+        "artifice"
+      ],
+      "fuente": "Tasha 2020 p. 20-23",
+      "resumen": "armadura (sintonización) con 6 cargas: +INT a una prueba o salvación de FUE, o evitar caer derribado",
+      "descripcion": "Objeto: una armadura (requiere sintonización). Tiene 6 cargas: al hacer una prueba o una salvación de Fuerza, quien la lleva puede gastar 1 para sumar tu modificador por Inteligencia; y si fuera a caer derribado, puede usar su reacción y gastar 1 para evitarlo. Recupera 1d6 cargas cada amanecer."
+    },
+    {
+      "id": "armadura_de_propulsion_arcana",
+      "nombre": "Infusión: Armadura de Propulsión Arcana",
+      "grupo": "infusion",
+      "clases": [
+        "artifice"
+      ],
+      "fuente": "Tasha 2020 p. 20-23",
+      "resumen": "armadura (sintonización): +5 pies de velocidad, guanteletes mágicos arrojadizos (1d8 de fuerza, 20/60 pies), no se puede quitar contra tu voluntad y sustituye miembros",
+      "descripcion": "Requisito: nivel 14 de artífice. Objeto: una armadura (requiere sintonización). Quien la lleva gana +5 pies de velocidad caminando; la armadura tiene guanteletes que son armas mágicas cuerpo a cuerpo con la mano vacía (competente, 1d8 de daño de fuerza, arrojadizos 20/60 pies, vuelven solos); no se la pueden quitar contra su voluntad; y sustituye manos, brazos, pies o piernas que le falten.",
+      "prerrequisito": {
+        "texto": "nivel 14 de artífice"
+      }
+    },
+    {
+      "id": "armadura_resistente",
+      "nombre": "Infusión: Armadura Resistente",
+      "grupo": "infusion",
+      "clases": [
+        "artifice"
+      ],
+      "fuente": "Tasha 2020 p. 20-23",
+      "resumen": "armadura (sintonización): resistencia a un tipo de daño que eliges al imbuirla",
+      "descripcion": "Requisito: nivel 6 de artífice. Objeto: una armadura (requiere sintonización). Quien la lleva tiene resistencia a un tipo de daño que eliges al imbuirla: ácido, frío, fuego, fuerza, relámpago, necrótico, veneno, psíquico, radiante o trueno.",
+      "prerrequisito": {
+        "texto": "nivel 6 de artífice"
+      }
+    },
+    {
+      "id": "botas_del_camino_serpenteante",
+      "nombre": "Infusión: Botas del Camino Serpenteante",
+      "grupo": "infusion",
+      "clases": [
+        "artifice"
+      ],
+      "fuente": "Tasha 2020 p. 20-23",
+      "resumen": "botas (sintonización): acción adicional, te teletransportas 15 pies a un espacio por el que hayas pasado este turno",
+      "descripcion": "Requisito: nivel 6 de artífice. Objeto: unas botas (requiere sintonización). Quien las lleva puede teletransportarse como acción adicional hasta 15 pies a un espacio libre que vea y que haya ocupado en algún momento de ese turno.",
+      "prerrequisito": {
+        "texto": "nivel 6 de artífice"
+      }
+    },
+    {
+      "id": "canalizador_arcano_mejorado",
+      "nombre": "Infusión: Canalizador Arcano Mejorado",
+      "grupo": "infusion",
+      "clases": [
+        "artifice"
+      ],
+      "fuente": "Tasha 2020 p. 20-23",
+      "resumen": "cetro, bastón o varita (sintonización): +1 a los ataques de conjuro (+2 desde nivel 10) e ignora la cobertura media",
+      "descripcion": "Objeto: un cetro, un bastón o una varita (requiere sintonización). Quien lo sostiene gana +1 a las tiradas de ataque de conjuro (+2 cuando llegas a nivel 10 de artífice) e ignora la cobertura media en sus ataques de conjuro."
+    },
+    {
+      "id": "defensa_mejorada",
+      "nombre": "Infusión: Defensa Mejorada",
+      "grupo": "infusion",
+      "clases": [
+        "artifice"
+      ],
+      "fuente": "Tasha 2020 p. 20-23",
+      "resumen": "armadura o escudo: +1 a la CA (+2 desde nivel 10)",
+      "descripcion": "Objeto: una armadura o un escudo. Quien lo viste o empuña gana +1 a la CA; +2 cuando llegas a nivel 10 de artífice."
+    },
+    {
+      "id": "disparo_repetido",
+      "nombre": "Infusión: Disparo Repetido",
+      "grupo": "infusion",
+      "clases": [
+        "artifice"
+      ],
+      "fuente": "Tasha 2020 p. 20-23",
+      "resumen": "arma con munición (sintonización): +1 a los ataques y al daño a distancia, ignora recarga y crea su propia munición",
+      "descripcion": "Objeto: un arma sencilla o marcial con la propiedad munición (requiere sintonización). Da +1 a las tiradas de ataque y de daño a distancia e ignora la propiedad recarga. Si no está cargada, crea su propia munición mágica, que desaparece tras impactar o fallar."
+    },
+    {
+      "id": "escudo_de_repulsion",
+      "nombre": "Infusión: Escudo de Repulsión",
+      "grupo": "infusion",
+      "clases": [
+        "artifice"
+      ],
+      "fuente": "Tasha 2020 p. 20-23",
+      "resumen": "escudo (sintonización) +1 a la CA; 4 cargas: reacción tras un golpe cuerpo a cuerpo, empujas al atacante 15 pies",
+      "descripcion": "Requisito: nivel 6 de artífice. Objeto: un escudo (requiere sintonización). Da +1 a la CA. Tiene 4 cargas: como reacción justo después de que le golpee un ataque cuerpo a cuerpo, el portador gasta 1 y empuja al atacante hasta 15 pies. Recupera 1d4 cargas cada amanecer.",
+      "prerrequisito": {
+        "texto": "nivel 6 de artífice"
+      }
+    },
+    {
+      "id": "replicar_objeto_magico",
+      "nombre": "Infusión: Replicar Objeto Mágico",
+      "grupo": "infusion",
+      "clases": [
+        "artifice"
+      ],
+      "fuente": "Tasha 2020 p. 20-23",
+      "resumen": "replicas un objeto mágico de las tablas de tu nivel (bolsa de contención, botas élficas, botas aladas…) o uno común; se puede aprender varias veces",
+      "descripcion": "Replicas un objeto mágico concreto. Puedes aprender esta infusión varias veces, con un objeto distinto cada vez, de las tablas de objetos replicables de tu nivel de artífice (2, 6, 10 o 14) o cualquier objeto mágico común que no sea poción ni pergamino. Nivel 2: bolsa de contención, cuerda de escalada, gafas de noche, gorro de respiración acuática, jarra de alquimia, piedras de recado, varita de detectar magia, varita de secretos. Nivel 6: anillo de caminar sobre las aguas, anteojos de encantamiento, botas élficas, capa de manta raya, capa élfica, flauta de aparición, guantes de ladrón, linterna de revelación. Nivel 10 y 14: más objetos (botas aladas, brazales de arquería, capa de protección, anillo de protección, botas de velocidad…): mira el libro.",
+      "repetible": true
+    },
+    {
+      "id": "sirviente_homunculo",
+      "nombre": "Infusión: Sirviente Homúnculo",
+      "grupo": "infusion",
+      "clases": [
+        "artifice"
+      ],
+      "fuente": "Tasha 2020 p. 20-23",
+      "resumen": "una gema de 100 po se vuelve el corazón de un homúnculo (autómata diminuto, CA 13, {1+mod_int+nivel_clase} PG, vuela 30 pies) que actúa tras de ti y canaliza tus conjuros de toque",
+      "descripcion": "Objeto: una gema o un cristal de al menos 100 po. Creas un homúnculo a tu servicio, amistoso y obediente: autómata diminuto, CA 13, PG 1 + tu modificador por Inteligencia + tu nivel de artífice, velocidad 20 pies y volar 30, inmune al veneno, cansancio y envenenado, visión en la oscuridad 60 pies, Evasión; usa tu bonificador por competencia (BC). Impacto de Fuerza: ataque a distancia con tu modificador de ataque de conjuros, 30 pies, 1d4 + BC de fuerza. Canalizar Magia (reacción): lanza a través de él un conjuro tuyo de toque, a 120 pies o menos. Actúa justo después de ti; solo Esquiva salvo que le ordenes otra acción con una acción adicional. Reparar le cura 2d6."
+    },
+    {
+      "id": "yelmo_de_la_alerta",
+      "nombre": "Infusión: Yelmo de la Alerta",
+      "grupo": "infusion",
+      "clases": [
+        "artifice"
+      ],
+      "fuente": "Tasha 2020 p. 20-23",
+      "resumen": "casco (sintonización): ventaja en la iniciativa y no te sorprenden si no estás incapacitado",
+      "descripcion": "Requisito: nivel 10 de artífice. Objeto: un casco (requiere sintonización). Quien lo lleva tiene ventaja en las tiradas de iniciativa y no puede ser sorprendido salvo que esté incapacitado.",
+      "prerrequisito": {
+        "texto": "nivel 10 de artífice"
+      }
     }
   ]
 }

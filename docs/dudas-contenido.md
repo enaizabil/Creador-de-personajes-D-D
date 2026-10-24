@@ -415,7 +415,7 @@ Escrito desde la traducción de Alvaro1555 que aportó el usuario, con palabras 
 - **Pistolero**: la competencia con armas de fuego va en el texto; no hay armas de fuego en el catálogo.
 - **Linaje personalizado**: el programa lo trata como Mediano (el libro deja elegir Pequeño o Mediano).
 - **Personalizar tu origen**: solo se modela el cambio de las mejoras de característica de la raza (regla opcional). El cambio de idiomas y de competencias de la raza aún no.
-- **Iniciado Artífice**: hasta que exista el artífice (fase 4), su lista de conjuros solo tiene los conjuros de Tasha que la incluyen.
+- **Iniciado Artífice**: elige entre toda la lista del artífice (fase 4).
 
 ## Guía de Tasha (paquete `tasha-2020`), fase 2: subclases
 
@@ -447,3 +447,13 @@ Escrito desde la misma traducción, con palabras propias. Se añaden por clases;
 - **Guerrero Druídico y Guerrero Bendito**: los dos trucos se modelan como los de Iniciado en la Magia (con Sabiduría o Carisma), sin ocupar plaza de conocidos.
 - **Listas ampliadas**: los conjuros del capítulo 3 de Tasha ya estaban en las listas de sus clases; los del Manual (Orden imperiosa para el bardo, Portal para el brujo…) solo entran con este rasgo. Mano de Bigby es *mano arcana* en este catálogo.
 
+## Guía de Tasha, fase 4: el artífice
+
+- **Sin Xanathar**: la lista de conjuros del artífice es la de Tasha sin los conjuros de la Guía de Xanathar (no están en el catálogo): 19 trucos y 15, 19, 12, 10 y 5 conjuros de niveles 1 a 5. Se añade con entradas `modifica` sobre los conjuros del Manual y de Tasha (`conjuros_artifice.json`). *Mano de Bigby* es *mano arcana* y *Parpadeo* (Blink) es *desplazamiento* en este catálogo.
+- **Nombres**: son del texto los rasgos de la tabla de la clase (Alterar Mágicamente, Imbuir Objeto, La Herramienta Adecuada para el Trabajo, Destello de Ingenio, Almacenar Conjuro, Alma del Artificio…), Elixir Experimental, Armadura Arcana, Modelo de Armadura y sus partes (Guanteletes de Trueno, Campo Defensivo, Lanzarrayos, Pasos Potenciados, Campo Amortiguador), Cañón Sobrenatural, Arma de Fuego Arcana, Defensor de Acero, Sacudida Arcana y las infusiones. Son míos, a partir del inglés: Erudito Alquímico, Reactivos Restauradores, Maestría Química, Modificaciones de Armadura, Armadura Perfeccionada, Cañón Explosivo, Posición Fortificada, Listo para la Batalla y Defensor Mejorado.
+- **Erratas de la traducción corregidas según el original** (revisar con el libro oficial): Destello de Ingenio y Sacudida Arcana se recuperan con un descanso **largo**; la traducción dice «corto o largo».
+- **Infusiones**: son opciones de clase (grupo «infusion»), 4 a nivel 2 y 2 más a niveles 6, 10, 14 y 18. Las que piden nivel (6, 10 o 14) lo respetan en el modo sencillo; en el modo normal el requisito va en la descripción. Replicar Objeto Mágico se puede repetir; las tablas de objetos replicables van resumidas en su descripción. Ni los objetos imbuidos ni los objetos replicados se añaden al equipo.
+- **Herramienta de especialista repetida**: si la herramienta de artesano elegida a nivel 1 es la que da el especialista, el modo sencillo cambia la elegida al subir de nivel; en el modo normal la ficha avisa.
+- **Criaturas y armas del especialista**: el homúnculo, el cañón sobrenatural y el defensor de acero van resumidos en el rasgo; no se modelan como criaturas. Las armas de la Armadura Arcana (Guanteletes de Trueno, Lanzarrayos) no salen en la lista de ataques, y la ficha calcula los ataques con armas con Fuerza o Destreza: atacar con Inteligencia (Armero, Listo para la Batalla) va en el texto del rasgo.
+- **Perfil en el modo sencillo**: saber, astucia (ingenio) y arcano a partes iguales. Con más peso en saber, quien respondía solo hacia el saber recibía artífice en vez de mago; así el mago se queda el saber puro y el saber con magia, y el artífice el saber con ingenio.
+- **Armas de fuego**: la competencia que da el libro si el DM usa armas de fuego no se modela (no hay armas de fuego en el catálogo).
