@@ -256,3 +256,72 @@ class VistaCuestionario5e(ctk.CTkFrame):
         if nombre:
             self.q.asistente.establecer_detalle("nombre", nombre)
         self.al_terminar()
+
+
+NOMBRES_DECISION = {"mejora": "mejora de característica o dote", "subclase": "subclase",
+                    "opciones": "opciones de clase", "conjuros": "conjuros nuevos"}
+
+
+class VistaSubida5e(ctk.CTkFrame):
+    """Subir de nivel con preguntas: lo vivido desde el último hito decide lo nuevo de esos niveles."""
+
+    def __init__(self, master, cuestionario: Cuestionario5e, niveles: int, clase: str | None,
+                 al_terminar: Callable[[list[str]], None], al_cancelar: Callable[[], None]):
+        super().__init__(master, fg_color="transparent")
+        self.q = cuestionario
+        self.niveles = niveles
+        self.clase = clase
+        self.al_terminar = al_terminar
+        self.al_cancelar = al_cancelar
+        self.decisiones = cuestionario.decisiones_de_subida(niveles, clase)
+        self.preguntas = cuestionario.preguntas_subida(self.decisiones)
+        self.cuerpo = ctk.CTkScrollableFrame(self, fg_color="transparent")
+        self.cuerpo.pack(fill="both", expand=True)
+        self._pintar()
+
+    def _pintar(self) -> None:
+        desplazamiento = self.cuerpo._parent_canvas.yview()[0]
+        for hijo in self.cuerpo.winfo_children():
+            hijo.destroy()
+        columna = ctk.CTkFrame(self.cuerpo, fg_color="transparent", width=ANCHO)
+        columna.pack(pady=24, padx=20)
+        a = self.q.asistente
+        titulo(columna, f"Subir de nivel: de {a.nivel} a {a.nivel + self.niveles}", 26).pack(anchor="w")
+        if self.decisiones:
+            que = ", ".join(NOMBRES_DECISION[d] for d in ("mejora", "subclase", "opciones", "conjuros") if d in self.decisiones)
+            texto = (f"Estos niveles traen decisiones: {que}. Cuéntanos qué ha vivido tu personaje desde el último hito "
+                     "de la aventura y lo decidimos con eso. Puedes dejar preguntas sin responder.")
+        else:
+            texto = "Estos niveles no traen decisiones: solo rasgos y puntos de golpe, que se suman solos."
+        texto_ajustado(columna, texto, ANCHO, font=fuente(15)).pack(anchor="w", pady=(10, 18))
+        for pregunta in self.preguntas:
+            ctk.CTkLabel(columna, text=pregunta.titulo, text_color="gray", anchor="w").pack(anchor="w", pady=(10, 0))
+            texto_ajustado(columna, pregunta.texto, ANCHO, font=fuente(19, True)).pack(anchor="w", pady=(2, 10))
+            actual = self.q.respuestas_subida.get(pregunta.id)
+            for respuesta in pregunta.respuestas:
+                TarjetaRespuesta(columna, respuesta.texto, respuesta.id == actual,
+                                 lambda p=pregunta.id, r=respuesta.id, act=actual: self._responder(p, None if r == act else r)
+                                 ).pack(fill="x", pady=4)
+        pie = ctk.CTkFrame(columna, fg_color="transparent")
+        pie.pack(fill="x", pady=(24, 0))
+        ctk.CTkButton(pie, text="Subir de nivel →", width=180, height=40, font=fuente(15, True),
+                      command=self._subir).pack(side="left")
+        ctk.CTkButton(pie, text="Cancelar", width=120, height=40, fg_color="transparent", border_width=1,
+                      text_color=("gray10", "gray90"), command=self._cancelar).pack(side="left", padx=12)
+        self.update_idletasks()
+        self.cuerpo._parent_canvas.yview_moveto(desplazamiento)
+
+    def _responder(self, pregunta: str, respuesta: str | None) -> None:
+        # Pulsar otra vez la respuesta elegida la quita.
+        self.q.responder_subida(pregunta, respuesta)
+        self._pintar()
+
+    def _cancelar(self) -> None:
+        self.q.respuestas_subida.clear()
+        self.al_cancelar()
+
+    def _subir(self) -> None:
+        a = self.q.asistente
+        antes = a.instantanea()
+        self.q.subir_nivel(self.niveles, self.clase)
+        self.al_terminar(a.novedades(antes))

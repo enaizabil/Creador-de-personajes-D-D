@@ -219,6 +219,33 @@ class Asistente5e:
         self.extra["nivel_inicial"] = self.nivel
         self._limpiar()
 
+    def instantanea(self) -> dict:
+        """Lo que se compara antes y después de subir de nivel para enseñar las novedades."""
+        ficha = self.ficha()
+        return {"clase": ficha.clase_y_nivel, "pg": ficha.pg_maximos,
+                "caracteristicas": {c: v.puntuacion for c, v in ficha.caracteristicas.items()},
+                "rasgos": [r.nombre for r in ficha.rasgos],
+                "conjuros": sorted({i for ids in self.personaje.conjuros.values() for i in ids})}
+
+    def novedades(self, antes: dict) -> list[str]:
+        """Qué ha cambiado desde la instantánea «antes»: nivel, PG, características, rasgos y conjuros nuevos."""
+        ahora = self.instantanea()
+        lineas = [f"{antes['clase']} → {ahora['clase']}"]
+        if ahora["pg"] != antes["pg"]:
+            lineas.append(f"Puntos de golpe máximos: {antes['pg']} → {ahora['pg']}")
+        cambios = [f"{c.upper()} {antes['caracteristicas'].get(c)} → {v}" for c, v in ahora["caracteristicas"].items()
+                   if v != antes["caracteristicas"].get(c)]
+        if cambios:
+            lineas.append("Características: " + ", ".join(cambios))
+        rasgos = [r for r in dict.fromkeys(ahora["rasgos"]) if r not in antes["rasgos"]]
+        if rasgos:
+            lineas.append("Rasgos nuevos: " + ", ".join(rasgos))
+        conjuros = [(self.catalogo.obtener("conjuros", i) or {}).get("nombre", i) for i in ahora["conjuros"]
+                    if i not in antes["conjuros"]]
+        if conjuros:
+            lineas.append("Conjuros nuevos: " + ", ".join(sorted(conjuros, key=clave_alfabetica)))
+        return lineas
+
     def _poner_nivel(self, indice: int, nivel: int) -> None:
         """Cambia el nivel de una clase: quita la subclase si aún no toca y las tiradas de PG que sobran."""
         entrada = self.personaje.clases[indice]

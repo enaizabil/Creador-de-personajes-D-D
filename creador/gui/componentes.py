@@ -225,8 +225,10 @@ class SelectorEleccion(ctk.CTkFrame):
 class ListaAvisos(ctk.CTkFrame):
     """Lo que falta para terminar un paso."""
 
-    def __init__(self, master, mensajes: list[str], titulo_lista: str = "Falta por decidir"):
-        super().__init__(master, fg_color=("#fef3c7", "#3b2f12") if mensajes else ("#dcfce7", "#14321f"))
+    def __init__(self, master, mensajes: list[str], titulo_lista: str = "Falta por decidir", completo: bool = False):
+        # «completo»: los mensajes son buenas noticias (novedades de una subida), en verde.
+        verde = ("#dcfce7", "#14321f")
+        super().__init__(master, fg_color=verde if completo or not mensajes else ("#fef3c7", "#3b2f12"))
         if not mensajes:
             ctk.CTkLabel(self, text="✓ Paso completo", anchor="w").pack(anchor="w", padx=10, pady=6)
             return

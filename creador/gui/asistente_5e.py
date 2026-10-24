@@ -19,10 +19,12 @@ NOMBRES_PERFIL = {r: r.capitalize() for r in RASGOS_PERFIL} | {"proteccion": "Pr
 
 
 class VistaAsistente5e(ctk.CTkFrame):
-    def __init__(self, master, asistente: Asistente5e, al_volver: Callable[[], None], paso_inicial: str = "inicio"):
+    def __init__(self, master, asistente: Asistente5e, al_volver: Callable[[], None], paso_inicial: str = "inicio",
+                 novedades: list[str] | None = None):
         super().__init__(master, fg_color="transparent")
         self.a = asistente
         self.al_volver = al_volver
+        self.novedades = novedades or []  # de la última subida de nivel, para enseñarlas en el resumen
         self.nombres_paquetes = {p.id: p.nombre for p in asistente.catalogo.paquetes}
         self.paso_actual = "inicio"
         self.archivo: str | None = None
@@ -610,9 +612,77 @@ class VistaAsistente5e(ctk.CTkFrame):
             caja.bind("<KeyRelease>", lambda _e, c=campo, w=caja: self.a.establecer_detalle(c, w.get("1.0", "end").strip()))
         self._faltan(master, "detalles")
 
+    def _subir_nivel(self, master) -> None:
+        """Subir de nivel un personaje ya hecho: con preguntas (modo sencillo) o eligiendo uno mismo."""
+        a = self.a
+        p = a.personaje
+        if not p.clases:
+            return
+        caja = ctk.CTkFrame(master)
+        caja.pack(fill="x", padx=10, pady=(0, 8))
+        fila = ctk.CTkFrame(caja, fg_color="transparent")
+        fila.pack(anchor="w", padx=12, pady=(10, 2))
+        ctk.CTkLabel(fila, text=f"Subir de nivel (ahora, nivel {a.nivel}):", font=fuente(14, True)).pack(side="left")
+        quedan = a.nivel_maximo() - a.nivel
+        if quedan < 1:
+            ctk.CTkLabel(fila, text="ya está en el nivel máximo con datos", text_color="gray").pack(side="left", padx=10)
+            ctk.CTkFrame(caja, height=6, fg_color="transparent").pack()
+            return
+        niveles = ctk.CTkOptionMenu(fila, values=[f"+{n}" for n in range(1, quedan + 1)], width=70)
+        niveles.pack(side="left", padx=10)
+        nombres = {o.id: o.nombre for o in a.clases()}
+        por_nombre = {nombres.get(e.clase, e.clase): e.clase for e in p.clases}
+        clase = None
+        if len(p.clases) > 1:
+            clase = ctk.CTkOptionMenu(fila, values=list(por_nombre), width=170)
+            clase.pack(side="left")
+
+        def subir(con_preguntas: bool) -> None:
+            n = int(niveles.get().lstrip("+"))
+            clase_id = por_nombre[clase.get()] if clase is not None else None
+            try:
+                if con_preguntas:
+                    self._subir_con_preguntas(n, clase_id)
+                else:
+                    a.subir_nivel(n, clase_id)
+                    pendientes = [x.id for x in a.pasos() if x.id not in ("resumen", "detalles") and a.faltan(x.id)]
+                    self.novedades = []
+                    self.mostrar(pendientes[0] if pendientes else "resumen")
+            except ValueError as exc:
+                messagebox.showerror("No se puede subir de nivel", str(exc))
+
+        hay_preguntas = any(x.get("momento") == "subida" for x in a.catalogo.listar("preguntas"))
+        ctk.CTkButton(fila, text="Con preguntas…", width=140, state="normal" if hay_preguntas else "disabled",
+                      command=lambda: subir(True)).pack(side="left", padx=(10, 0))
+        ctk.CTkButton(fila, text="Elijo yo", width=100, fg_color="transparent", border_width=1,
+                      text_color=("gray10", "gray90"), command=lambda: subir(False)).pack(side="left", padx=10)
+        ayuda = ("Con preguntas: lo que ha vivido tu personaje desde el último hito (Guía del DM) decide mejoras o dotes, "
+                 "subclase, opciones y conjuros nuevos. Elijo yo: sube el nivel y te lleva a lo que hay que decidir.")
+        if not hay_preguntas:
+            ayuda += " (Para las preguntas, carga el paquete «Cuestionario de situaciones».)"
+        texto_ajustado(caja, ayuda, 760, text_color="gray").pack(anchor="w", padx=12, pady=(0, 10))
+
+    def _subir_con_preguntas(self, niveles: int, clase_id: str | None) -> None:
+        from .cuestionario_5e import VistaSubida5e  # aquí: cuestionario_5e importa este módulo
+
+        app = self.master
+        cuestionario = self.a.sistema.crear_cuestionario(self.a.personaje, self.a.catalogo)
+        archivo = self.archivo
+
+        def volver(novedades: list[str] | None = None) -> None:
+            vista = VistaAsistente5e(app, self.a, self.al_volver, "resumen", novedades=novedades)
+            vista.archivo = archivo
+            app._cambiar(vista)
+
+        app._cambiar(VistaSubida5e(app, cuestionario, niveles, clase_id, volver, volver))
+
     def _paso_resumen(self, master) -> None:
         self._cabecera_paso(master, "resumen")
+        if self.novedades:
+            ListaAvisos(master, self.novedades, "Novedades de la subida de nivel", completo=True).pack(fill="x", padx=10,
+                                                                                                    pady=(0, 6))
         self._faltan(master, "resumen")
+        self._subir_nivel(master)
         ficha = self.a.ficha()
         if ficha.avisos:
             ListaAvisos(master, ficha.avisos, "Revisa antes de jugar").pack(fill="x", padx=10, pady=(0, 6))

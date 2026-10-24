@@ -421,3 +421,15 @@ def test_resiliente_no_repite_una_salvacion_que_ya_tiene(entorno):
     elegida = next(v for c, v in pj.elecciones.items() if "resiliente" in c and c.count("/") > 1)
     assert not set(elegida) & {"fue", "con"}  # las salvaciones del guerrero
     assert not [a for a in sistema.calcular(pj, catalogo).avisos if "repetida" in a]
+
+
+def test_novedades_de_una_subida(entorno):
+    q = nuevo(entorno)
+    responder_al_azar(q, "novedades")
+    q.generar(nivel=4, raza="humano", subraza="humano_estandar", clase="guerrero")
+    antes = q.asistente.instantanea()
+    q.subir_nivel(1)
+    novedades = q.asistente.novedades(antes)
+    assert novedades[0].startswith("Guerrero 4") and "→ Guerrero 5" in novedades[0]
+    assert any(n.startswith("Puntos de golpe máximos:") for n in novedades)
+    assert any("Ataque Adicional" in n for n in novedades)
