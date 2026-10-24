@@ -186,3 +186,23 @@ def test_arquetipos_del_explorador_de_tasha(entorno):
     vagabundo = _con_subclase(entorno, "vagabundo_feerico", 3).personaje
     assert next(v for k, v in vagabundo.elecciones.items() if k.endswith("encanto_sobrenatural"))[0] in (
         "engano", "interpretacion", "persuasion")
+
+
+def test_arquetipos_del_guerrero_de_tasha(entorno):
+    sistema, catalogo = entorno
+    for semilla in ("a", "b", "c", "d"):  # a nivel 3, nunca las runas de nivel 7 (Colina, Tormenta)
+        pj = _con_subclase(entorno, "caballero_runico", 3, semilla).personaje
+        runas = pj.elecciones["subclase:caballero_runico:3/runas"]
+        assert len(runas) == 2 and not set(runas) & {"runa_de_colina", "runa_de_tormenta"}, runas
+    q = _con_subclase(entorno, "caballero_runico", 15)
+    conocidas = [r for k, v in q.personaje.elecciones.items() if "caballero_runico" in k for r in v if r.startswith("runa_")]
+    assert len(set(conocidas)) == 5
+    rasgos = {r.nombre: r for r in sistema.calcular(q.personaje, catalogo).rasgos}
+    assert all(rasgos[catalogo.obtener("opciones", r)["nombre"]].usos == 2 for r in conocidas)  # Maestro de las Runas
+    # Las runas van juntas en una sola pregunta concreta al crear a nivel alto.
+    q = sistema.crear_cuestionario(Personaje(sistema="dnd5e-2014", paquetes=PAQUETES), catalogo)
+    q.responder_subida("c:subclase_de:guerrero", ["caballero_runico"])
+    preguntas = {p.id: p for p in q.preguntas_de_historia(15, raza="humano", subraza="humano_estandar", clase="guerrero")}
+    assert preguntas["c:subclase:caballero_runico:3/runas"].elegir == 5
+    psionico = sistema.calcular(_con_subclase(entorno, "guerrero_psionico", 10).personaje, catalogo)
+    assert "psíquico" in psionico.resistencias

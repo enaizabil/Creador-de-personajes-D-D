@@ -1545,6 +1545,246 @@
           }
         ]
       }
+    },
+    {
+      "id": "caballero_runico",
+      "nombre": "Caballero Rúnico",
+      "clase": "guerrero",
+      "fuente": "Tasha 2020 p. 54-56",
+      "descripcion": "Guerreros que refuerzan sus armas y su cuerpo con runas, un arte antiguo de los gigantes aprendido de un tallador, de una ladera grabada o de un gigante en persona.",
+      "perfil": {
+        "combate": 2,
+        "aguante": 2,
+        "arcano": 1,
+        "proteccion": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "competencia",
+            "categoria": "herramienta",
+            "id": "herramientas_de_herrero"
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "idioma",
+            "id": "gigante"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Competencias Adicionales",
+            "resumen": "competencia con herramientas de herrero; hablas, lees y escribes gigante",
+            "descripcion": "Ganas competencia con las herramientas de herrero y aprendes a hablar, leer y escribir en gigante."
+          },
+          {
+            "tipo": "eleccion",
+            "id": "runas",
+            "nombre": "Tallador de Runas: runas",
+            "elegir": 2,
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "runa",
+                "clases": "guerrero"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Tallador de Runas",
+            "resumen": "conoces {escala} runas; tras cada descanso largo las inscribes en objetos que llevas (una por objeto); CD de las runas {8+competencia+mod_con}",
+            "descripcion": "Aprendes dos runas (y más a niveles 7, 10 y 15: tres, cuatro y cinco); al subir de nivel de guerrero puedes cambiar una por otra. Al terminar un descanso largo tocas tantos objetos como runas conoces (armas, armaduras, escudos, joyas o cosas que vistas o sostengas) e inscribes una runa distinta en cada uno hasta el siguiente descanso largo. La CD de las salvaciones de tus runas es 8 + tu bonificador por competencia + tu modificador por Constitución.",
+            "escala": {
+              "3": "2",
+              "7": "3",
+              "10": "4",
+              "15": "5"
+            }
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Poder del Gigante",
+            "resumen": "acción adicional, 1 minuto: te vuelves Grande (si cabes), ventaja en pruebas y salvaciones de FUE y, una vez por turno, +{escala} de daño con un ataque con arma o sin armas",
+            "descripcion": "Como acción adicional te imbuyes del poder de los gigantes durante 1 minuto: si eres más pequeño que Grande pasas a serlo con lo que llevas (si hay sitio), tienes ventaja en las pruebas y salvaciones de Fuerza y, una vez en cada uno de tus turnos, un ataque con arma o sin armas que impacte causa 1d6 de daño adicional. Usos: tu bonificador por competencia por descanso largo.",
+            "usos": "competencia",
+            "recarga": "largo",
+            "escala": {
+              "3": "1d6",
+              "10": "1d8",
+              "18": "1d10"
+            }
+          }
+        ],
+        "7": [
+          {
+            "tipo": "eleccion",
+            "id": "runa_nivel_7",
+            "nombre": "Tallador de Runas: runa adicional (nivel 7)",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "runa",
+                "clases": "guerrero"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Escudo Rúnico",
+            "resumen": "reacción: cuando otra criatura que ves a 60 pies recibe un impacto, el atacante repite el d20 y usa la nueva tirada",
+            "descripcion": "Cuando otra criatura que puedes ver a 60 pies o menos recibe el impacto de una tirada de ataque, puedes usar tu reacción para obligar al atacante a repetir el d20 y usar el nuevo resultado. Usos: tu bonificador por competencia por descanso largo.",
+            "usos": "competencia",
+            "recarga": "largo"
+          }
+        ],
+        "10": [
+          {
+            "tipo": "eleccion",
+            "id": "runa_nivel_10",
+            "nombre": "Tallador de Runas: runa adicional (nivel 10)",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "runa",
+                "clases": "guerrero"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Gran Estatura",
+            "resumen": "creces 3d4 pulgadas; el daño de Poder del Gigante pasa a 1d8",
+            "descripcion": "La magia de las runas te cambia para siempre: al ganar este rasgo tiras 3d4 y creces esas pulgadas. Además, el daño adicional de Poder del Gigante sube a 1d8."
+          }
+        ],
+        "15": [
+          {
+            "tipo": "eleccion",
+            "id": "runa_nivel_15",
+            "nombre": "Tallador de Runas: runa adicional (nivel 15)",
+            "opciones": {
+              "desde": "opciones",
+              "filtro": {
+                "grupo": "runa",
+                "clases": "guerrero"
+              }
+            },
+            "aplicar": [
+              {
+                "tipo": "opcion",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Maestro de las Runas",
+            "resumen": "cada runa se puede invocar dos veces por descanso corto o largo",
+            "descripcion": "Puedes invocar dos veces cada runa que conoces, en vez de una, y recuperas los usos al terminar un descanso corto o largo."
+          }
+        ],
+        "18": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Gigante Rúnico",
+            "resumen": "Poder del Gigante: 1d10 de daño y puedes hacerte Enorme (+5 pies de alcance)",
+            "descripcion": "El daño adicional de Poder del Gigante sube a 1d10. Además, al usarlo puedes pasar a tamaño Enorme y, mientras lo seas, tu alcance aumenta en 5 pies."
+          }
+        ]
+      }
+    },
+    {
+      "id": "guerrero_psionico",
+      "nombre": "Guerrero Psiónico",
+      "clase": "guerrero",
+      "fuente": "Tasha 2020 p. 56-57",
+      "descripcion": "Guerreros que han despertado el poder psiónico de su mente: golpes cargados de fuerza mental, empujones telequinéticos y barreras de energía. Muchos githyanki y kalashtar siguen esta senda.",
+      "perfil": {
+        "combate": 2,
+        "saber": 1,
+        "arcano": 1,
+        "proteccion": 1,
+        "astucia": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Poder Psiónico",
+            "resumen": "{2*competencia} dados de energía psiónica ({escala}); recuperas uno como acción adicional (una vez por descanso). Campo Protector (reacción: reduces el daño de alguien a 30 pies en el dado + {mod_int}), Golpe Psiónico (una vez por turno, tras impactar con arma a 30 pies: dado + {mod_int} de fuerza) y Movimiento Telequinético (acción: mueves 30 pies un objeto Grande o una criatura voluntaria)",
+            "descripcion": "Tienes tantos dados de energía psiónica como el doble de tu bonificador por competencia: son d6 y pasan a d8 a nivel 5, d10 a nivel 11 y d12 a nivel 17. Los recuperas tras un descanso largo, y como acción adicional recuperas uno (una vez por descanso corto o largo). Campo Protector: cuando tú u otra criatura que ves a 30 pies recibe daño, usas tu reacción y gastas un dado para reducir el daño en lo que saques + tu modificador por Inteligencia (mínimo 1). Golpe Psiónico: una vez por turno, justo después de impactar y dañar con un arma a un objetivo a 30 pies o menos, gastas un dado y le causas lo que saques + tu modificador por Inteligencia de daño de fuerza. Movimiento Telequinético: como acción mueves hasta 30 pies un objeto suelto Grande o menor o una criatura voluntaria (no tú) que veas a 30 pies (o un objeto diminuto a tu mano o desde ella); una vez por descanso corto o largo, o gastando un dado.",
+            "usos": "2*competencia",
+            "recarga": "largo",
+            "escala": {
+              "3": "d6",
+              "5": "d8",
+              "11": "d10",
+              "17": "d12"
+            }
+          }
+        ],
+        "7": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Adepto Telequinético",
+            "resumen": "Salto Impulsado por Psiónica (acción adicional: vuelas el doble de tu velocidad este turno; una vez por descanso o gastando un dado) y Empuje Telequinético (con Golpe Psiónico: salvación de FUE CD {8+competencia+mod_int} o lo derribas o lo mueves 10 pies)",
+            "descripcion": "Salto Impulsado por Psiónica: como acción adicional ganas una velocidad volando igual al doble de tu velocidad caminando hasta el final del turno; una vez por descanso corto o largo, o gastando un dado de energía psiónica. Empuje Telequinético: cuando causas daño con tu Golpe Psiónico, puedes obligar al objetivo a una salvación de Fuerza (CD 8 + tu competencia + tu modificador por Inteligencia); si falla, lo derribas o lo mueves hasta 10 pies en horizontal."
+          }
+        ],
+        "10": [
+          {
+            "tipo": "resistencia",
+            "dano": "psiquico"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Mente Protegida",
+            "resumen": "resistencia al daño psíquico; si empiezas tu turno hechizado o asustado, gastas un dado y terminas esos efectos",
+            "descripcion": "Tienes resistencia al daño psíquico. Además, si empiezas tu turno hechizado o asustado, puedes gastar un dado de energía psiónica para terminar todos esos efectos sobre ti."
+          }
+        ],
+        "15": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Baluarte de Fuerza",
+            "resumen": "acción adicional: hasta {max(1,mod_int)} criaturas a 30 pies (tú incluido) tienen cobertura media 1 minuto; una vez por descanso largo o gastando un dado",
+            "descripcion": "Como acción adicional eliges criaturas que veas a 30 pies o menos (puedes incluirte), tantas como tu modificador por Inteligencia (mínimo una): tienen cobertura media durante 1 minuto o hasta que quedes incapacitado. Una vez por descanso largo, o gastando un dado de energía psiónica."
+          }
+        ],
+        "18": [
+          {
+            "tipo": "conjuro",
+            "id": "telequinesis",
+            "caracteristica": "int"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Maestro Telequinético",
+            "resumen": "lanzas telequinesis sin componentes (INT) una vez por descanso largo o gastando un dado; mientras te concentras en ella, un ataque con arma como acción adicional cada turno",
+            "descripcion": "Puedes lanzar telequinesis sin componentes, con Inteligencia como aptitud mágica. En cada uno de tus turnos mientras te concentras en ella, incluido el turno en que la lanzas, puedes hacer un ataque con arma como acción adicional. Una vez por descanso largo, o gastando un dado de energía psiónica.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ]
+      }
     }
   ]
 }

@@ -15,6 +15,7 @@
     "conjuros.json",
     "preguntas.json",
     "recomendaciones.json",
-    "subclases.json"
+    "subclases.json",
+    "opciones.json"
   ]
 }

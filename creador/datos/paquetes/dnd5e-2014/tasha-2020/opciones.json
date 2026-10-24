@@ -1,0 +1,120 @@
+{
+  "opciones": [
+    {
+      "id": "runa_de_nube",
+      "nombre": "Runa de Nube",
+      "grupo": "runa",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "Tasha 2020 p. 55",
+      "resumen": "ventaja en Juego de Manos y Engaño; reacción: cuando tú u otro a 30 pies recibe un impacto, el ataque pasa a otra criatura a 30 pies (no el atacante) con la misma tirada",
+      "descripcion": "Mientras llevas el objeto con esta runa tienes ventaja en las pruebas de Destreza (Juego de Manos) y Carisma (Engaño). Al invocarla: cuando tú o una criatura que ves a 30 pies o menos recibe el impacto de una tirada de ataque, usas tu reacción para que el objetivo pase a ser otra criatura a 30 pies o menos de ti (que no sea el atacante), con la misma tirada y sin importar el alcance del ataque.",
+      "usos": {
+        "3": 1,
+        "15": 2
+      },
+      "recarga": "corto"
+    },
+    {
+      "id": "runa_de_fuego",
+      "nombre": "Runa de Fuego",
+      "grupo": "runa",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "Tasha 2020 p. 55",
+      "resumen": "bonificador por competencia doble en pruebas con herramientas; al impactar con un arma: +2d6 de fuego y salvación de FUE CD {8+competencia+mod_con} o queda apresado 1 minuto (2d6 de fuego al empezar cada turno)",
+      "descripcion": "Mientras llevas el objeto con esta runa, tu bonificador por competencia se duplica en las pruebas que usan tu competencia con una herramienta. Al invocarla, cuando impactas a una criatura con un arma, la atan grilletes de fuego: sufre 2d6 de daño de fuego adicional y supera una salvación de Fuerza o queda apresada durante 1 minuto; mientras, sufre 2d6 de daño de fuego al comienzo de cada uno de sus turnos y repite la salvación al final de cada uno.",
+      "usos": {
+        "3": 1,
+        "15": 2
+      },
+      "recarga": "corto"
+    },
+    {
+      "id": "runa_de_escarcha",
+      "nombre": "Runa de Escarcha",
+      "grupo": "runa",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "Tasha 2020 p. 55",
+      "resumen": "ventaja en Trato con Animales e Intimidación; acción adicional: +2 a pruebas y salvaciones de FUE y CON durante 10 minutos",
+      "descripcion": "Mientras llevas el objeto con esta runa tienes ventaja en las pruebas de Sabiduría (Trato con Animales) y Carisma (Intimidación). Al invocarla como acción adicional, durante 10 minutos sumas +2 a todas las pruebas de característica y salvaciones de Fuerza y de Constitución.",
+      "usos": {
+        "3": 1,
+        "15": 2
+      },
+      "recarga": "corto"
+    },
+    {
+      "id": "runa_de_piedra",
+      "nombre": "Runa de Piedra",
+      "grupo": "runa",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "Tasha 2020 p. 55-56",
+      "resumen": "ventaja en Perspicacia y visión en la oscuridad a 120 pies; reacción: una criatura que acaba su turno a 30 pies salva SAB CD {8+competencia+mod_con} o queda hechizada, quieta e incapacitada 1 minuto",
+      "descripcion": "Mientras llevas el objeto con esta runa tienes ventaja en las pruebas de Sabiduría (Perspicacia) y visión en la oscuridad a 120 pies. Al invocarla, cuando una criatura que ves termina su turno a 30 pies o menos, usas tu reacción para que haga una salvación de Sabiduría: si falla, queda hechizada por ti durante 1 minuto, con velocidad 0 e incapacitada en un sopor de ensueño; repite la salvación al final de cada uno de sus turnos.",
+      "efectos": [
+        {
+          "tipo": "sentido",
+          "id": "vision_en_la_oscuridad",
+          "nombre": "Visión en la Oscuridad",
+          "alcance": 120
+        }
+      ],
+      "usos": {
+        "3": 1,
+        "15": 2
+      },
+      "recarga": "corto"
+    },
+    {
+      "id": "runa_de_colina",
+      "nombre": "Runa de Colina",
+      "grupo": "runa",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "Tasha 2020 p. 56",
+      "resumen": "ventaja en salvaciones contra veneno y resistencia al daño de veneno; acción adicional: resistencia a daño contundente, perforante y cortante durante 1 minuto",
+      "descripcion": "Requisito: nivel 7 de guerrero. Mientras llevas el objeto con esta runa tienes ventaja en las salvaciones para no quedar envenenado y resistencia al daño de veneno. Al invocarla como acción adicional ganas resistencia al daño contundente, perforante y cortante durante 1 minuto.",
+      "efectos": [
+        {
+          "tipo": "resistencia",
+          "dano": "veneno"
+        }
+      ],
+      "prerrequisito": {
+        "texto": "nivel 7 de guerrero"
+      },
+      "usos": {
+        "3": 1,
+        "15": 2
+      },
+      "recarga": "corto"
+    },
+    {
+      "id": "runa_de_tormenta",
+      "nombre": "Runa de Tormenta",
+      "grupo": "runa",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "Tasha 2020 p. 56",
+      "resumen": "ventaja en Conocimiento Arcano y no te sorprenden; acción adicional: 1 minuto profético, con tu reacción das ventaja o desventaja a un ataque, salvación o prueba de quien veas a 60 pies",
+      "descripcion": "Requisito: nivel 7 de guerrero. Mientras llevas el objeto con esta runa tienes ventaja en las pruebas de Inteligencia (Conocimiento Arcano) y no pueden sorprenderte salvo que estés incapacitado. Al invocarla como acción adicional entras en un estado profético durante 1 minuto o hasta quedar incapacitado: cuando tú u otra criatura que veas a 60 pies o menos hace una tirada de ataque, una salvación o una prueba, puedes usar tu reacción para darle ventaja o desventaja.",
+      "prerrequisito": {
+        "texto": "nivel 7 de guerrero"
+      },
+      "usos": {
+        "3": 1,
+        "15": 2
+      },
+      "recarga": "corto"
+    }
+  ]
+}
