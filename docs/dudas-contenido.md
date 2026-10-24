@@ -416,3 +416,11 @@ Escrito desde la traducción de Alvaro1555 que aportó el usuario, con palabras 
 - **Linaje personalizado**: el programa lo trata como Mediano (el libro deja elegir Pequeño o Mediano).
 - **Personalizar tu origen**: solo se modela el cambio de las mejoras de característica de la raza (regla opcional). El cambio de idiomas y de competencias de la raza aún no.
 - **Iniciado Artífice**: hasta que exista el artífice (fase 4), su lista de conjuros solo tiene los conjuros de Tasha que la incluyen.
+
+## Guía de Tasha (paquete `tasha-2020`), fase 2: subclases
+
+Escrito desde la misma traducción, con palabras propias. Se añaden por clases; esta lista crece con cada grupo.
+
+- **Nombres de los rasgos**: en el texto se perdieron los títulos (quedan como «Rasgo de X de nivel N»). Solo son del texto los nombres que el propio texto cita (Vínculo Alentador, Vínculo Protector, Santuario Crepuscular, Golpe Divino, Recipiente del Genio…). El resto los he puesto yo a partir del inglés y de lo que hace cada rasgo; por ejemplo: Implemento de Paz, Bálsamo de Paz, Vínculo Expansivo, Ojos de la Noche, Bendición Vigilante, Pasos de la Noche, Sudario Crepuscular, Voz de Autoridad, Exigencia del Orden, Encarnación de la Ley e Ira del Orden. Si se corrigen, los ids de las subclases no cambian.
+- **El Insondable**: *invocar elemental* entra en su lista ampliada solo con la forma de agua; el programa no distingue formas y lo añade entero; la descripción de la subclase lo advierte.
+- **Dominios del clérigo**: Lanzamiento Potente (Paz) y Golpe Divino (Crepúsculo y Orden) son los mismos rasgos del Manual del Jugador, con el daño de cada dominio. Los conjuros de dominio que no son de la lista del clérigo (Heroísmo, Dormir, Ralentizar…) van siempre preparados como conjuros de clérigo, como en el Manual.

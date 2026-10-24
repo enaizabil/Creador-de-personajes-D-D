@@ -401,7 +401,7 @@
       "nombre": "El Insondable",
       "clase": "brujo",
       "fuente": "Tasha 2020 p. 34-35",
-      "descripcion": "Tu patrón es una entidad de las profundidades (un kraken, un antiguo elemental del agua, un semidiós tritón, un aquelarre de sagas del mar…) y el mar te llama.",
+      "descripcion": "Tu patrón es una entidad de las profundidades (un kraken, un antiguo elemental del agua, un semidiós tritón, un aquelarre de sagas del mar…) y el mar te llama. En su lista ampliada, invocar elemental solo vale con la forma de agua.",
       "perfil": {
         "naturaleza": 2,
         "arcano": 2,
@@ -489,6 +489,471 @@
         "mano_arcana",
         "cono_de_frio"
       ]
+    },
+    {
+      "id": "dominio_de_la_paz",
+      "nombre": "Dominio de la Paz",
+      "clase": "clerigo",
+      "fuente": "Tasha 2020 p. 37",
+      "descripcion": "Dominio de los dioses de la paz y la concordia. Sus clérigos arbitran disputas, sellan tratados y crean lazos mágicos que ayudan a sus compañeros a sostenerse unos a otros.",
+      "perfil": {
+        "fe": 2,
+        "curacion": 2,
+        "carisma": 2,
+        "proteccion": 1
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "eleccion",
+            "id": "implemento_de_paz",
+            "nombre": "Implemento de Paz: habilidad",
+            "fuente": "habilidades",
+            "opciones": [
+              "perspicacia",
+              "interpretacion",
+              "persuasion"
+            ],
+            "aplicar": [
+              {
+                "tipo": "competencia",
+                "categoria": "habilidad",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Implemento de Paz",
+            "resumen": "competencia en Perspicacia, Interpretación o Persuasión",
+            "descripcion": "Ganas competencia en una de estas habilidades, a tu elección: Perspicacia, Interpretación o Persuasión."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Vínculo Alentador",
+            "resumen": "acción: vinculas a {competencia} criaturas voluntarias a 30 pies (tú incluido) durante 10 minutos; mientras estén a 30 pies de otra vinculada, una vez por turno suman 1d4 a un ataque, una prueba o una salvación",
+            "descripcion": "Como acción eliges tantas criaturas voluntarias a 30 pies o menos como tu bonificador por competencia (puedes incluirte) y las unes con un vínculo mágico durante 10 minutos o hasta que vuelvas a usar el rasgo. Mientras una criatura vinculada esté a 30 pies o menos de otra, puede tirar un d4 y sumarlo a una tirada de ataque, una prueba de característica o una salvación, una vez por turno. Usos: tu bonificador por competencia por descanso largo.",
+            "usos": "competencia",
+            "recarga": "largo"
+          },
+          {
+            "tipo": "conjuro",
+            "id": "heroismo",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "santuario",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Bálsamo de Paz",
+            "resumen": "acción: te mueves hasta tu velocidad sin provocar ataques de oportunidad y curas 2d6+{mod_sab} PG (mínimo 1) a cada criatura a la que pases a 5 pies o menos (una vez cada una)",
+            "descripcion": "Como acción te mueves hasta tu velocidad sin provocar ataques de oportunidad. Cada criatura a la que te acerques a 5 pies o menos durante ese movimiento recupera 2d6 + tu modificador por Sabiduría puntos de golpe (mínimo 1); cada una solo puede recibir esta curación una vez por uso."
+          }
+        ],
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "auxilio",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "vinculo_protector",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "recado",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "senal_de_esperanza",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Vínculo Protector",
+            "resumen": "cuando una criatura de tu Vínculo Alentador va a recibir daño, otra vinculada a 30 pies puede usar su reacción para teletransportarse a 5 pies de ella y recibir todo el daño",
+            "descripcion": "Cuando una criatura afectada por tu Vínculo Alentador está a punto de recibir daño, otra criatura vinculada que esté a 30 pies o menos de ella puede usar su reacción para teletransportarse a un espacio libre a 5 pies o menos de la primera y recibir todo ese daño en su lugar."
+          }
+        ],
+        "7": [
+          {
+            "tipo": "conjuro",
+            "id": "aura_de_pureza",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "esfera_elastica",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "8": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Lanzamiento Potente",
+            "resumen": "sumas +{mod_sab} al daño de tus trucos de clérigo",
+            "descripcion": "Sumas tu modificador por Sabiduría al daño que causas con cualquier truco de clérigo."
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "enlace_telepatico",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "restablecimiento_mayor",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Vínculo Expansivo",
+            "resumen": "Vínculo Alentador y Vínculo Protector funcionan a 60 pies; quien reciba daño con Vínculo Protector tiene resistencia a ese daño",
+            "descripcion": "Los beneficios de Vínculo Alentador y Vínculo Protector funcionan cuando las criaturas están a 60 pies o menos unas de otras. Además, la criatura que usa Vínculo Protector para recibir el daño de otra tiene resistencia a ese daño."
+          }
+        ]
+      }
+    },
+    {
+      "id": "dominio_del_crepusculo",
+      "nombre": "Dominio del Crepúsculo",
+      "clase": "clerigo",
+      "fuente": "Tasha 2020 p. 38-39",
+      "descripcion": "Dominio de los dioses del ocaso, que guardan el descanso de la noche. Sus clérigos dan consuelo a quien busca reposo y se adentran en la oscuridad para que sea un refugio y no un terror.",
+      "perfil": {
+        "fe": 2,
+        "proteccion": 2,
+        "combate": 1,
+        "curacion": 1
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "competencia",
+            "categoria": "arma",
+            "id": "armas_marciales"
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "armadura",
+            "id": "armaduras_pesadas"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Competencias Adicionales",
+            "resumen": "competencia con armas marciales y armaduras pesadas",
+            "descripcion": "Al escoger este dominio pasas a ser competente con las armas marciales y las armaduras pesadas."
+          },
+          {
+            "tipo": "sentido",
+            "id": "vision_en_la_oscuridad",
+            "nombre": "Visión en la Oscuridad",
+            "alcance": 300
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Ojos de la Noche",
+            "resumen": "visión en la oscuridad a 300 pies; acción: la compartes 1 hora con hasta {max(1,mod_sab)} criaturas a 10 pies (otra vez gastando un espacio de conjuro)",
+            "descripcion": "Tienes visión en la oscuridad a 300 pies. Como acción puedes compartirla durante 1 hora con tantas criaturas voluntarias que veas a 10 pies o menos como tu modificador por Sabiduría (mínimo una). Una vez por descanso largo; para volver a hacerlo antes, gastas un espacio de conjuro de cualquier nivel.",
+            "usos": 1,
+            "recarga": "largo"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Bendición Vigilante",
+            "resumen": "acción: una criatura que tocas (tú incluido) tiene ventaja en su próxima tirada de iniciativa",
+            "descripcion": "Como acción das a una criatura que tocas (puedes ser tú) ventaja en su próxima tirada de iniciativa. El beneficio termina tras esa tirada o si vuelves a usar el rasgo."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "dormir",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "fuego_feerico",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Santuario Crepuscular",
+            "resumen": "acción: esfera de luz tenue de 30 pies centrada en ti durante 1 minuto; quien termine su turno dentro gana 1d6+{nivel_clase} PG temporales o deja de estar hechizado o asustado",
+            "descripcion": "Como acción alzas tu símbolo sagrado y emana de ti una esfera de 30 pies de radio de luz tenue que se mueve contigo durante 1 minuto o hasta que quedes incapacitado o mueras. Cuando una criatura (tú incluido) termina su turno dentro, puedes darle 1d6 + tu nivel de clérigo puntos de golpe temporales o terminar un efecto que la tenga hechizada o asustada."
+          }
+        ],
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "rayo_de_luna",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "ver_invisibilidad",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "aura_de_vitalidad",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "pequena_choza",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Pasos de la Noche",
+            "resumen": "acción adicional, en luz tenue u oscuridad: velocidad volando igual a la de caminar durante 1 minuto",
+            "descripcion": "Como acción adicional, cuando estás en luz tenue o en la oscuridad, ganas mágicamente una velocidad volando igual a tu velocidad caminando durante 1 minuto. Usos: tu bonificador por competencia por descanso largo.",
+            "usos": "competencia",
+            "recarga": "largo"
+          }
+        ],
+        "7": [
+          {
+            "tipo": "conjuro",
+            "id": "aura_de_vida",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "invisibilidad_mejorada",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "8": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Golpe Divino",
+            "resumen": "una vez en cada uno de tus turnos, al impactar con un ataque con arma, +{escala} de daño radiante",
+            "descripcion": "Una vez en cada uno de tus turnos, cuando impactas a una criatura con un ataque con arma, puedes hacer que cause 1d8 de daño radiante adicional; a nivel 14 son 2d8.",
+            "escala": {
+              "8": "1d8",
+              "14": "2d8"
+            }
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "circulo_de_poder",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "enganar",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Sudario Crepuscular",
+            "resumen": "tú y tus aliados tenéis cobertura media dentro de tu Santuario Crepuscular",
+            "descripcion": "Mientras estéis dentro de la esfera de tu Santuario Crepuscular, tú y tus aliados tenéis cobertura media."
+          }
+        ]
+      }
+    },
+    {
+      "id": "dominio_del_orden",
+      "nombre": "Dominio del Orden",
+      "clase": "clerigo",
+      "fuente": "Tasha 2020 p. 39-40",
+      "descripcion": "Dominio de los dioses de la ley y la disciplina. Sus clérigos creen que las leyes justas sostienen el mundo, obedecen a quien manda por derecho y exigen que se sustituya a quien no protege la ley.",
+      "perfil": {
+        "fe": 2,
+        "carisma": 2,
+        "combate": 1,
+        "proteccion": 1
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "competencia",
+            "categoria": "armadura",
+            "id": "armaduras_pesadas"
+          },
+          {
+            "tipo": "eleccion",
+            "id": "competencias_orden",
+            "nombre": "Competencias Adicionales: habilidad",
+            "fuente": "habilidades",
+            "opciones": [
+              "intimidacion",
+              "persuasion"
+            ],
+            "aplicar": [
+              {
+                "tipo": "competencia",
+                "categoria": "habilidad",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Competencias Adicionales",
+            "resumen": "competencia con armaduras pesadas y en Intimidación o Persuasión",
+            "descripcion": "Al escoger este dominio pasas a ser competente con las armaduras pesadas y en una habilidad, a tu elección: Intimidación o Persuasión."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Voz de Autoridad",
+            "resumen": "al lanzar un conjuro de nivel 1 o más sobre un aliado, este puede usar su reacción para hacer un ataque con arma contra una criatura que elijas y veas",
+            "descripcion": "Si lanzas un conjuro con un espacio de nivel 1 o superior y uno de sus objetivos es un aliado, ese aliado puede usar su reacción justo después para hacer un ataque con arma contra una criatura de tu elección que puedas ver. Si el conjuro afecta a varios aliados, eliges cuál ataca."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "heroismo",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "orden_imperiosa",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Exigencia del Orden",
+            "resumen": "acción: cada criatura que elijas a 30 pies que pueda verte u oírte hace una salvación de SAB CD {8+competencia+mod_sab} o queda hechizada por ti hasta el final de tu siguiente turno (o hasta recibir daño) y, si quieres, suelta lo que sostiene",
+            "descripcion": "Como acción presentas tu símbolo sagrado: cada criatura que elijas a 30 pies o menos que pueda verte u oírte debe superar una salvación de Sabiduría o queda hechizada por ti hasta el final de tu siguiente turno o hasta que reciba daño. Puedes hacer que las que fallen suelten lo que sostienen."
+          }
+        ],
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "inmovilizar_persona",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "zona_de_la_verdad",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "palabra_de_curacion_en_masa",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "ralentizar",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Encarnación de la Ley",
+            "resumen": "un conjuro de encantamiento de nivel 1 o más que se lance con 1 acción puedes lanzarlo como acción adicional",
+            "descripcion": "Cuando lanzas un conjuro de la escuela de encantamiento con un espacio de nivel 1 o superior y su tiempo de lanzamiento es de 1 acción, puedes lanzarlo como acción adicional. Usos: tu modificador por Sabiduría (mínimo uno) por descanso largo.",
+            "usos": "max(1,mod_sab)",
+            "recarga": "largo"
+          }
+        ],
+        "7": [
+          {
+            "tipo": "conjuro",
+            "id": "compulsion",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "localizar_criatura",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "8": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Golpe Divino",
+            "resumen": "una vez en cada uno de tus turnos, al impactar con un ataque con arma, +{escala} de daño psíquico",
+            "descripcion": "Una vez en cada uno de tus turnos, cuando impactas a una criatura con un ataque con arma, puedes hacer que cause 1d8 de daño psíquico adicional; a nivel 14 son 2d8.",
+            "escala": {
+              "8": "1d8",
+              "14": "2d8"
+            }
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "comunion",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "dominar_persona",
+            "clase": "clerigo",
+            "siempre_preparado": true
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Ira del Orden",
+            "resumen": "al causar el daño de tu Golpe Divino, maldices al objetivo hasta tu siguiente turno: el próximo aliado que lo impacte le causa 2d8 de daño psíquico más (una vez por turno)",
+            "descripcion": "Si causas el daño de tu Golpe Divino a una criatura en tu turno, puedes maldecirla hasta el comienzo de tu siguiente turno. La próxima vez que uno de tus aliados la impacte con un ataque, sufre 2d8 de daño psíquico adicional y la maldición termina. Solo puedes maldecir así una vez por turno."
+          }
+        ]
+      }
     }
   ]
 }

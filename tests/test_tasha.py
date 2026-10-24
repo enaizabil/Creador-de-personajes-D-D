@@ -149,3 +149,16 @@ def test_el_genio_amplia_la_lista_segun_su_tipo(entorno):
     assert {"santuario", "detectar_el_bien_y_el_mal", "crecimiento_espinoso"} <= disponibles
     assert "manos_ardientes" not in disponibles  # es del ifrit, y no está en la lista del brujo
     assert "contundente" in sistema.calcular(pj, catalogo).resistencias
+
+
+def test_dominios_de_tasha(entorno):
+    sistema, catalogo = entorno
+    crepusculo = sistema.calcular(_con_subclase(entorno, "dominio_del_crepusculo", 3).personaje, catalogo)
+    assert crepusculo.sentidos["Visión en la Oscuridad"] == 300
+    # Los conjuros de dominio van siempre preparados, aunque no sean de la lista del clérigo (Heroísmo).
+    paz = _con_subclase(entorno, "dominio_de_la_paz", 5)
+    plan = next(p for p in paz.asistente.planes_conjuros() if p.clase_id == "clerigo")
+    assert "heroismo" not in {i for ids in plan.disponibles.values() for i, _ in ids}
+    preparados = sistema.calcular(paz.personaje, catalogo).lanzadores[0].siempre_preparados
+    nombres = {catalogo.obtener("conjuros", i)["nombre"] for i in ("heroismo", "santuario", "recado", "senal_de_esperanza")}
+    assert nombres <= {n for lista in preparados.values() for n in lista}
