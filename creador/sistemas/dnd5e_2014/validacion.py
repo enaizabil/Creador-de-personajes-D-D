@@ -69,6 +69,7 @@ CAMPOS_EFECTO: dict[str, tuple[str, ...]] = {
     "pasiva": ("habilidad", "valor"),
     "max_des_armadura_media": ("valor",),
     "sin_desventaja_sigilo": (),
+    "lista_ampliada": ("clase", "conjuros"),
     "ataque_des": ("armas",),
     "ataque_desarmado": ("dano",),
     "rasgo": ("nombre",),

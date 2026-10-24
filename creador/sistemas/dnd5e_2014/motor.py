@@ -160,7 +160,8 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
     pg_maximos, dados_golpe = _puntos_golpe(personaje, catalogo, mods["con"], de_tipo("pg_maximos"), avisos)
     libro_extra = libro_por_efectos(de_tipo("conjuro"))
     espacios, pacto, lanzadores = _magia(personaje, catalogo, mods, competencia, avisos,
-                                         conocidos_por_efectos(de_tipo("conjuro")), libro_extra)
+                                         conocidos_por_efectos(de_tipo("conjuro")), libro_extra,
+                                         listas_por_efectos(de_tipo("lista_ampliada")))
     _avisos_en_libro(aplicables, personaje, catalogo, libro_extra, avisos)
     conjuros_innatos = _repartir_conjuros_de_efectos(de_tipo("conjuro"), lanzadores, catalogo, avisos)
     niveles_clase = _niveles_por_clase(personaje, catalogo)
@@ -520,6 +521,16 @@ def _avisos_en_libro(aplicables: list[EfectoAplicado], personaje: Personaje, cat
             avisos.append(f"{efecto['nombre']}: {nombre} no está en tu libro de conjuros")
 
 
+def listas_por_efectos(efectos: list[dict]) -> dict[str, set[str]]:
+    """Efectos «lista_ampliada»: conjuros que se suman a la lista de una clase según lo elegido (el tipo de genio
+    del brujo Genio, p. ej.). Son elegibles como los de la lista, pero no se dan solos."""
+    listas: dict[str, set[str]] = defaultdict(set)
+    for efecto in efectos:
+        if efecto.get("tipo") == "lista_ampliada":
+            listas[efecto["clase"]].update(efecto["conjuros"])
+    return dict(listas)
+
+
 def conocidos_por_efectos(efectos: list[dict]) -> dict[str, int]:
     """Conjuros que llegan por efectos pero cuentan para los conocidos de su clase (Secretos Mágicos del bardo)."""
     resultado: dict[str, int] = defaultdict(int)
@@ -727,14 +738,16 @@ def avisos_libro(config: dict, nivel: int, niveles: list[int], clase: str) -> li
     return avisos
 
 
-def _listas_validas(clase: dict, subclase: dict | None, config: dict) -> tuple[set[str], set[str]]:
-    """(listas de conjuros de la clase, ids adicionales de la subclase)."""
+def _listas_validas(clase: dict, subclase: dict | None, config: dict,
+                    extra: set[str] | None = None) -> tuple[set[str], set[str]]:
+    """(listas de conjuros de la clase, ids adicionales de la subclase y de efectos «lista_ampliada»)."""
     listas = {clase["id"], *config.get("listas", [])} | ({subclase["id"]} if subclase else set())
-    return listas, set((subclase or {}).get("conjuros_adicionales", []))
+    return listas, set((subclase or {}).get("conjuros_adicionales", [])) | (extra or set())
 
 
 def planes_de_conjuros(personaje: Personaje, catalogo: Catalogo, mods: dict[str, int],
-                       conocidos_extra: dict[str, int] | None = None) -> list[PlanConjuros]:
+                       conocidos_extra: dict[str, int] | None = None,
+                       listas_extra: dict[str, set[str]] | None = None) -> list[PlanConjuros]:
     """Para cada clase que ya lanza conjuros: límites y conjuros elegibles hasta su nivel máximo.
 
     «conocidos_extra»: conjuros por clase que ya ocupan plazas de conocidos (ver conocidos_por_efectos).
@@ -748,7 +761,7 @@ def planes_de_conjuros(personaje: Personaje, catalogo: Catalogo, mods: dict[str,
         nivel_maximo = _nivel_maximo_conjuro(config, entrada.nivel)
         trucos, conjuros = _limites(config, entrada.nivel, mods[config["caracteristica"]],
                                     (conocidos_extra or {}).get(clase["id"], 0))
-        listas, adicionales = _listas_validas(clase, subclase, config)
+        listas, adicionales = _listas_validas(clase, subclase, config, (listas_extra or {}).get(clase["id"]))
         disponibles: dict[int, list[tuple[str, str]]] = {}
         for conjuro in catalogo.listar("conjuros"):
             if conjuro["nivel"] <= nivel_maximo and (listas & set(conjuro["listas"]) or conjuro["id"] in adicionales):
@@ -763,8 +776,8 @@ def planes_de_conjuros(personaje: Personaje, catalogo: Catalogo, mods: dict[str,
 
 
 def _magia(personaje: Personaje, catalogo: Catalogo, mods: dict[str, int], competencia: int,
-           avisos: list[str], conocidos_extra: dict[str, int], libro_extra: dict[str, list[str]] | None = None
-           ) -> tuple[dict[int, int], dict[str, int] | None, list[Lanzador]]:
+           avisos: list[str], conocidos_extra: dict[str, int], libro_extra: dict[str, list[str]] | None = None,
+           listas_extra: dict[str, set[str]] | None = None) -> tuple[dict[int, int], dict[str, int] | None, list[Lanzador]]:
     lanzadores: list[Lanzador] = []
     niveles_espacios: list[tuple[int, dict]] = []  # (nivel de clase, configuración) sin magia de pacto
     pacto = None
@@ -786,7 +799,8 @@ def _magia(personaje: Personaje, catalogo: Catalogo, mods: dict[str, int], compe
         lanzador = Lanzador(clase["id"], clase["nombre"], car, 8 + competencia + mods[car], competencia + mods[car],
                             nivel_maximo)
         _conjuros_elegidos(lanzador, entrada, clase, subclase, config, personaje, catalogo, mods[car], avisos,
-                           conocidos_extra.get(clase["id"], 0), (libro_extra or {}).get(clase["id"], []))
+                           conocidos_extra.get(clase["id"], 0), (libro_extra or {}).get(clase["id"], []),
+                           (listas_extra or {}).get(clase["id"]))
         lanzadores.append(lanzador)
 
     if len(niveles_espacios) == 1:
@@ -808,8 +822,9 @@ def _nivel_multiclase(nivel: int, config: dict) -> int:
 
 def _conjuros_elegidos(lanzador: Lanzador, entrada: EntradaClase, clase: dict, subclase: dict | None, config: dict,
                        personaje: Personaje, catalogo: Catalogo, mod: int, avisos: list[str],
-                       conocidos_extra: int = 0, libro_extra: list[str] | None = None) -> None:
-    listas, adicionales = _listas_validas(clase, subclase, config)
+                       conocidos_extra: int = 0, libro_extra: list[str] | None = None,
+                       listas_extra: set[str] | None = None) -> None:
+    listas, adicionales = _listas_validas(clase, subclase, config, listas_extra)
     trucos = conjuros = 0
     vistos: set[str] = set()
     niveles_libro: list[int] = []

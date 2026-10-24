@@ -1,0 +1,494 @@
+{
+  "subclases": [
+    {
+      "id": "senda_de_la_bestia",
+      "nombre": "Senda de la Bestia",
+      "clase": "barbaro",
+      "fuente": "Tasha 2020 p. 24-25",
+      "descripcion": "Tu furia nace de una chispa bestial (un licántropo en la familia, un archidruida, un espíritu feérico o animal) que transforma tu cuerpo cuando te enfureces.",
+      "perfil": {
+        "combate": 2,
+        "naturaleza": 2,
+        "aguante": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Forma de la Bestia",
+            "resumen": "al enfurecerte, un arma natural sencilla (FUE): mordisco 1d8 perforante (una vez por turno, si tienes menos de la mitad de PG, recuperas {competencia} PG), garras 1d6 cortante (un ataque de garra extra al atacar con ellas) o cola 1d8 perforante con gran alcance (reacción: +1d8 a la CA ante un ataque)",
+            "descripcion": "Al enfurecerte manifiestas un arma natural hasta que termine la furia; eliges la forma cada vez. Mordisco: 1d8 de daño perforante y, una vez en cada uno de tus turnos, si tienes menos de la mitad de tus PG, recuperas tantos como tu bonificador por competencia. Garras: 1d6 de daño cortante con cada mano libre y, una vez por turno, un ataque de garra adicional al atacar con ellas. Cola: 1d8 de daño perforante con gran alcance; si te impacta una criatura que ves a 10 pies, puedes usar tu reacción para sumar 1d8 a tu CA contra ese ataque."
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Alma Bestial",
+            "resumen": "tus armas naturales son mágicas; tras cada descanso: nadar y respirar bajo el agua, trepar por paredes y techos, o saltos más largos (FUE (Atletismo))",
+            "descripcion": "Las armas naturales de tu Forma de la Bestia cuentan como mágicas. Al terminar un descanso corto o largo eliges un beneficio hasta el siguiente: velocidad nadando igual a la tuya y respirar bajo el agua; velocidad trepando igual a la tuya y trepar superficies difíciles, incluso techos, sin pruebas; o, una vez por turno al saltar, una prueba de Fuerza (Atletismo) que alarga el salto en tantos pies como el resultado."
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Furia Infecciosa",
+            "resumen": "al impactar con armas naturales en furia: salvación de SAB CD {8+competencia+mod_con} o ataca con su reacción a quien elijas, o recibe 2d12 de daño psíquico (a tu elección)",
+            "descripcion": "Cuando impactas con tus armas naturales mientras estás enfurecido, el objetivo hace una salvación de Sabiduría (CD 8 + tu competencia + tu modificador por Constitución) o sufre uno de estos efectos, a tu elección: usa su reacción para atacar cuerpo a cuerpo a otra criatura que elijas, o recibe 2d12 de daño psíquico. Usos: tu bonificador por competencia por descanso largo.",
+            "usos": "competencia",
+            "recarga": "largo"
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Llamada de la Cacería",
+            "resumen": "al enfurecerte, hasta {max(1,mod_con)} criaturas voluntarias a 30 pies: ganas 5 PG temporales por cada una y, hasta que acabe la furia, suman 1d6 al daño una vez por turno",
+            "descripcion": "Al enfurecerte eliges criaturas voluntarias que veas a 30 pies o menos, hasta tu modificador por Constitución (mínimo una). Ganas 5 PG temporales por cada una y, hasta que acabe la furia, una vez en cada uno de sus turnos pueden sumar 1d6 al daño de un ataque que impacte. Usos: tu bonificador por competencia por descanso largo.",
+            "usos": "competencia",
+            "recarga": "largo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "senda_de_la_magia_salvaje",
+      "nombre": "Senda de la Magia Salvaje",
+      "clase": "barbaro",
+      "fuente": "Tasha 2020 p. 25-26",
+      "descripcion": "La magia de otros planos (el Feywild, los Planos Superiores) te ha tocado y estalla en tu furia de formas imprevisibles.",
+      "perfil": {
+        "arcano": 2,
+        "combate": 2,
+        "aguante": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Percepción Mágica",
+            "resumen": "acción: hasta el final de tu siguiente turno sabes dónde hay conjuros y objetos mágicos a 60 pies (sin cobertura completa) y la escuela de los conjuros",
+            "descripcion": "Como acción abres tus sentidos a la magia: hasta el final de tu siguiente turno conoces la ubicación de cualquier conjuro u objeto mágico a 60 pies o menos que no esté tras cobertura completa, y la escuela de los conjuros. Usos: tu bonificador por competencia por descanso largo.",
+            "usos": "competencia",
+            "recarga": "largo"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Oleada Salvaje",
+            "resumen": "al enfurecerte tiras 1d8 en la tabla de magia salvaje (salvaciones CD {8+competencia+mod_con})",
+            "descripcion": "Cada vez que te enfureces tiras en la tabla de magia salvaje; si un efecto pide salvación, la CD es 8 + tu competencia + tu modificador por Constitución. 1: zarcillos de sombra (salvación de CON o 1d12 necrótico a quien elijas a 30 pies; ganas 1d12 PG temporales). 2: te teletransportas 30 pies (repetible como acción adicional). 3: un espíritu explota junto a una criatura (salvación de DES o 1d6 de fuerza a 5 pies; repetible). 4: tu arma pasa a causar daño de fuerza, ligera y arrojadiza (20/60) y vuelve a tu mano. 5: quien te impacte recibe 1d6 de fuerza. 6: luces protectoras: +1 a la CA para ti y tus aliados a 10 pies. 7: flores y enredaderas: terreno difícil para tus enemigos a 15 pies. 8: un rayo de luz (salvación de CON o 1d6 radiante y cegada; repetible)."
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Magia Fortalecedora",
+            "resumen": "acción: tocas a una criatura: 10 minutos sumando 1d3 a ataques y pruebas, o recupera un espacio de conjuro de nivel 1d3 o menos (una vez por descanso largo cada criatura)",
+            "descripcion": "Como acción tocas a una criatura (puedes ser tú) y le das uno de estos beneficios: durante 10 minutos suma 1d3 a sus tiradas de ataque y pruebas de característica; o tira 1d3 y recupera un espacio de conjuro gastado de ese nivel o inferior (cada criatura, una vez por descanso largo). Usos: tu bonificador por competencia por descanso largo.",
+            "usos": "competencia",
+            "recarga": "largo"
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Reacción Inestable",
+            "resumen": "reacción tras recibir daño o fallar una salvación en furia: vuelves a tirar en la tabla de magia salvaje y el nuevo efecto sustituye al actual",
+            "descripcion": "Justo después de recibir daño o fallar una tirada de salvación mientras estás enfurecido, puedes usar tu reacción para tirar en la tabla de magia salvaje; el efecto sustituye al que tenías."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Oleada Controlada",
+            "resumen": "en la tabla de magia salvaje tiras dos veces y eliges; con dobles, eliges cualquier efecto",
+            "descripcion": "Cada vez que tiras en la tabla de magia salvaje, tiras dos veces y eliges cuál de los dos efectos se produce. Si sacas el mismo número, puedes elegir cualquier efecto de la tabla."
+          }
+        ]
+      }
+    },
+    {
+      "id": "colegio_de_la_creacion",
+      "nombre": "Colegio de la Creación",
+      "clase": "bardo",
+      "fuente": "Tasha 2020 p. 28-29",
+      "descripcion": "Bardos que cantan la Canción de la Creación, la melodía primordial que despertó el primer amanecer y dio voz a piedras y árboles.",
+      "perfil": {
+        "carisma": 2,
+        "arcano": 2,
+        "saber": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Mota de Potencial",
+            "resumen": "al dar Inspiración Bárdica, una mota orbita a la criatura: en una prueba, puede repetir el dado; en un ataque, el objetivo y quien elijas a 5 pies hacen una salvación de CON o reciben el dado en daño de trueno; en una salvación, gana el dado + {max(1,mod_car)} PG temporales",
+            "descripcion": "Cada vez que das un dado de Inspiración Bárdica, aparece una mota de potencial (intangible) junto a la criatura hasta que lo use. Si lo usa en una prueba de característica, puede repetir el dado y quedarse con el mejor. En una tirada de ataque, el objetivo y las criaturas que elijas a 5 pies de él hacen una salvación de Constitución contra tu CD de conjuros o reciben daño de trueno igual al dado. En una salvación, gana PG temporales iguales al dado más tu modificador por Carisma (mínimo 1)."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Interpretación de la Creación",
+            "resumen": "acción: creas un objeto no mágico de hasta {20*nivel_clase} po y tamaño {escala} a 10 pies; dura {competencia} horas (uno a la vez); otra vez gastando un espacio de nivel 2 o más",
+            "descripcion": "Como acción creas un objeto no mágico en un espacio libre a 10 pies o menos que pueda sostenerlo. Su valor no puede pasar de 20 veces tu nivel de bardo y su tamaño máximo es Mediano (Grande a nivel 6, Enorme a nivel 14). Brilla un poco y suena una música leve al tocarlo; dura tantas horas como tu bonificador por competencia. Solo puedes tener uno: crear otro hace desaparecer el anterior. Una vez por descanso largo, o gastando un espacio de nivel 2 o superior.",
+            "usos": 1,
+            "recarga": "largo",
+            "escala": {
+              "3": "Mediano",
+              "6": "Grande",
+              "14": "Enorme"
+            }
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Interpretación Animadora",
+            "resumen": "acción: animas un objeto no mágico Grande o menor a 30 pies durante 1 hora (perfil Objeto Bailarín: CA 16, {10+5*nivel_clase} PG, embestida de 1d10+{competencia} de fuerza); lo mandas con una acción adicional o con tu Inspiración Bárdica",
+            "descripcion": "Como acción animas un objeto no mágico Grande o menor que veas a 30 pies o menos. Usa el perfil Objeto Bailarín del libro (CA 16, PG 10 + 5 × tu nivel de bardo, vuelo 30 pies, embestida de 1d10 + tu competencia de fuerza con tu ataque de conjuros) y dura 1 hora, hasta 0 PG o hasta que mueras. Actúa justo después de ti; solo esquiva salvo que lo mandes con una acción adicional (o con la misma acción adicional de tu Inspiración Bárdica). Una vez por descanso largo, o gastando un espacio de nivel 3 o superior; solo uno a la vez.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Crescendo Creativo",
+            "resumen": "Interpretación de la Creación crea hasta {max(2,mod_car)} objetos (solo uno del tamaño máximo; el resto, Pequeños o Diminutos) y sin límite de valor",
+            "descripcion": "Con Interpretación de la Creación puedes crear varios objetos a la vez, tantos como tu modificador por Carisma (mínimo dos); si te pasas, eliges cuál desaparece. Solo uno puede tener el tamaño máximo; los demás, Pequeños o Diminutos. Ya no hay límite de valor en po."
+          }
+        ]
+      }
+    },
+    {
+      "id": "colegio_de_la_elocuencia",
+      "nombre": "Colegio de la Elocuencia",
+      "clase": "bardo",
+      "fuente": "Tasha 2020 p. 29-30",
+      "descripcion": "Maestros de la oratoria que mezclan lógica y juegos de palabras teatrales para ganarse a escépticos y detractores.",
+      "perfil": {
+        "carisma": 3,
+        "astucia": 1,
+        "saber": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Lengua de Plata",
+            "resumen": "en las pruebas de CAR (Persuasión) y CAR (Engaño), un 9 o menos en el d20 cuenta como 10",
+            "descripcion": "Cuando haces una prueba de Carisma (Persuasión) o Carisma (Engaño), puedes tratar un resultado de 9 o menos en el d20 como un 10."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Palabras Inquietantes",
+            "resumen": "acción adicional: gastas una Inspiración Bárdica; una criatura a 60 pies resta el dado de su siguiente salvación antes de tu próximo turno",
+            "descripcion": "Como acción adicional gastas un uso de Inspiración Bárdica y eliges a una criatura que veas a 60 pies o menos: tiras el dado y la criatura lo resta de la siguiente tirada de salvación que haga antes del comienzo de tu siguiente turno."
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Inspiración Inagotable",
+            "resumen": "si una criatura suma tu Inspiración Bárdica y aun así falla, conserva el dado",
+            "descripcion": "Cuando una criatura suma uno de tus dados de Inspiración Bárdica a una prueba, ataque o salvación y falla, puede quedarse con el dado."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Discurso Universal",
+            "resumen": "acción: hasta {max(1,mod_car)} criaturas a 60 pies te entienden durante 1 hora, hables el idioma que hables (otra vez gastando un espacio de conjuro)",
+            "descripcion": "Como acción eliges criaturas a 60 pies o menos, tantas como tu modificador por Carisma (mínimo una): te entienden mágicamente durante 1 hora sea cual sea el idioma. Una vez por descanso largo, o gastando un espacio de conjuro.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Inspiración Contagiosa",
+            "resumen": "reacción: si alguien a 60 pies tiene éxito con tu Inspiración Bárdica, das un dado a otra criatura que te oiga sin gastar usos",
+            "descripcion": "Cuando una criatura a 60 pies o menos suma uno de tus dados de Inspiración Bárdica y tiene éxito, puedes usar tu reacción para dar un dado de Inspiración Bárdica a otra criatura (no tú) que te oiga a 60 pies o menos, sin gastar usos. Usos: tu modificador por Carisma (mínimo 1) por descanso largo.",
+            "usos": "max(1,mod_car)",
+            "recarga": "largo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "el_genio",
+      "nombre": "El Genio",
+      "clase": "brujo",
+      "fuente": "Tasha 2020 p. 32-34",
+      "descripcion": "Tu patrón es un noble genio (dao, djinn, ifrit o marid) que te presta una parte de su poder elemental a cambio de servirle.",
+      "perfil": {
+        "arcano": 2,
+        "carisma": 2,
+        "astucia": 1
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "eleccion",
+            "id": "tipo_de_genio",
+            "nombre": "Tipo de genio de tu patrón",
+            "opciones": [
+              {
+                "id": "dao",
+                "nombre": "Dao",
+                "efectos": [
+                  {
+                    "tipo": "lista_ampliada",
+                    "clase": "brujo",
+                    "conjuros": [
+                      "santuario",
+                      "crecimiento_espinoso",
+                      "fundirse_con_la_piedra",
+                      "moldear_la_piedra",
+                      "muro_de_piedra"
+                    ]
+                  },
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Ira del Genio (Dao)",
+                    "resumen": "una vez por turno, al impactar con un ataque, +{competencia} de daño contundente",
+                    "descripcion": "Una vez en cada uno de tus turnos, cuando impactas con una tirada de ataque, causas daño contundente adicional igual a tu bonificador por competencia."
+                  },
+                  {
+                    "tipo": "resistencia",
+                    "dano": "contundente",
+                    "nivel_clase_minimo": 6,
+                    "clase": "brujo"
+                  }
+                ]
+              },
+              {
+                "id": "djinn",
+                "nombre": "Djinn",
+                "efectos": [
+                  {
+                    "tipo": "lista_ampliada",
+                    "clase": "brujo",
+                    "conjuros": [
+                      "ola_atronadora",
+                      "rafaga_de_viento",
+                      "muro_de_viento",
+                      "invisibilidad_mejorada",
+                      "apariencia"
+                    ]
+                  },
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Ira del Genio (Djinn)",
+                    "resumen": "una vez por turno, al impactar con un ataque, +{competencia} de daño de trueno",
+                    "descripcion": "Una vez en cada uno de tus turnos, cuando impactas con una tirada de ataque, causas daño de trueno adicional igual a tu bonificador por competencia."
+                  },
+                  {
+                    "tipo": "resistencia",
+                    "dano": "trueno",
+                    "nivel_clase_minimo": 6,
+                    "clase": "brujo"
+                  }
+                ]
+              },
+              {
+                "id": "ifrit",
+                "nombre": "Ifrit",
+                "efectos": [
+                  {
+                    "tipo": "lista_ampliada",
+                    "clase": "brujo",
+                    "conjuros": [
+                      "manos_ardientes",
+                      "rayo_abrasador",
+                      "bola_de_fuego",
+                      "escudo_de_fuego",
+                      "golpe_flamigero"
+                    ]
+                  },
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Ira del Genio (Ifrit)",
+                    "resumen": "una vez por turno, al impactar con un ataque, +{competencia} de daño de fuego",
+                    "descripcion": "Una vez en cada uno de tus turnos, cuando impactas con una tirada de ataque, causas daño de fuego adicional igual a tu bonificador por competencia."
+                  },
+                  {
+                    "tipo": "resistencia",
+                    "dano": "fuego",
+                    "nivel_clase_minimo": 6,
+                    "clase": "brujo"
+                  }
+                ]
+              },
+              {
+                "id": "marid",
+                "nombre": "Marid",
+                "efectos": [
+                  {
+                    "tipo": "lista_ampliada",
+                    "clase": "brujo",
+                    "conjuros": [
+                      "nube_de_oscurecimiento",
+                      "contorno_borroso",
+                      "tormenta_de_aguanieve",
+                      "controlar_agua",
+                      "cono_de_frio"
+                    ]
+                  },
+                  {
+                    "tipo": "rasgo",
+                    "nombre": "Ira del Genio (Marid)",
+                    "resumen": "una vez por turno, al impactar con un ataque, +{competencia} de daño de frío",
+                    "descripcion": "Una vez en cada uno de tus turnos, cuando impactas con una tirada de ataque, causas daño de frío adicional igual a tu bonificador por competencia."
+                  },
+                  {
+                    "tipo": "resistencia",
+                    "dano": "frio",
+                    "nivel_clase_minimo": 6,
+                    "clase": "brujo"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Recipiente del Genio",
+            "resumen": "un recipiente diminuto (canalizador; CA = tu CD de conjuros, {nivel_clase+competencia} PG): acción, entras en él hasta {2*competencia} horas una vez por descanso largo (Descanso Embotellado)",
+            "descripcion": "Tu patrón te da un recipiente diminuto (lámpara, urna, anillo, botella, estatuilla o linterna) que te sirve de canalizador. Su CA es tu CD de salvación de conjuros, tiene tu nivel de brujo + tu competencia en PG y es inmune al veneno y al daño psíquico. Descanso Embotellado: como acción entras en él (un espacio cómodo de 20 pies de radio y alto) y oyes lo de fuera; puedes quedarte hasta el doble de tu bonificador por competencia en horas y sales con una acción adicional. Una vez por descanso largo. Si se pierde, una ceremonia de 1 hora en un descanso te da otro.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Don Elemental",
+            "resumen": "resistencia al daño de tu tipo de genio; acción adicional: vuelo 30 pies (levitar) durante 10 minutos",
+            "descripcion": "Tienes resistencia al tipo de daño de tu genio (contundente, trueno, fuego o frío). Como acción adicional ganas una velocidad volando de 30 pies durante 10 minutos, y puedes levitar. Usos: tu bonificador por competencia por descanso largo.",
+            "usos": "competencia",
+            "recarga": "largo"
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Recipiente Santificado",
+            "resumen": "al entrar en tu recipiente llevas contigo hasta 5 criaturas voluntarias a 30 pies; 10 minutos dentro cuentan como descanso corto (+{competencia} PG por cada Dado de Golpe gastado)",
+            "descripcion": "Al usar Descanso Embotellado puedes llevar contigo hasta cinco criaturas voluntarias que veas a 30 pies o menos; las expulsas con una acción adicional y salen todas si tú sales, mueres o se destruye el recipiente. Quien pase al menos 10 minutos dentro obtiene los beneficios de un descanso corto y suma tu bonificador por competencia a cada Dado de Golpe que gaste allí."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Deseo Limitado",
+            "resumen": "acción: pides el efecto de un conjuro de nivel 6 o menos (de cualquier lista) con tiempo de lanzamiento de 1 acción, sin requisitos; luego 1d4 descansos largos",
+            "descripcion": "Como acción pides a tu patrón el efecto de un conjuro de nivel 6 o inferior, de cualquier clase, cuyo tiempo de lanzamiento sea 1 acción, sin necesidad de cumplir sus requisitos (ni componentes costosos). No puedes volver a hacerlo hasta terminar 1d4 descansos largos.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ]
+      },
+      "conjuros_adicionales": [
+        "detectar_el_bien_y_el_mal",
+        "fuerza_fantasmal",
+        "crear_comida_y_agua",
+        "asesino_fantasmal",
+        "creacion",
+        "deseo"
+      ]
+    },
+    {
+      "id": "el_insondable",
+      "nombre": "El Insondable",
+      "clase": "brujo",
+      "fuente": "Tasha 2020 p. 34-35",
+      "descripcion": "Tu patrón es una entidad de las profundidades (un kraken, un antiguo elemental del agua, un semidiós tritón, un aquelarre de sagas del mar…) y el mar te llama.",
+      "perfil": {
+        "naturaleza": 2,
+        "arcano": 2,
+        "aguante": 1
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Tentáculo de las Profundidades",
+            "resumen": "acción adicional: un tentáculo de 10 pies a 60 pies durante 1 minuto; ataque de conjuro cuerpo a cuerpo: {escala} de frío y −10 pies de velocidad; acción adicional: lo mueves 30 pies y repites",
+            "descripcion": "Como acción adicional creas un tentáculo espectral de 10 pies en un punto que veas a 60 pies o menos; dura 1 minuto o hasta que crees otro. Al crearlo haces un ataque de conjuro cuerpo a cuerpo contra una criatura a 10 pies de él: 1d8 de daño de frío (2d8 a nivel 10) y su velocidad baja 10 pies hasta el comienzo de tu siguiente turno. Como acción adicional puedes moverlo 30 pies y repetir el ataque. Usos: tu bonificador por competencia por descanso largo.",
+            "usos": "competencia",
+            "recarga": "largo",
+            "escala": {
+              "1": "1d8",
+              "10": "2d8"
+            }
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Don del Mar",
+            "resumen": "velocidad nadando de 40 pies y respiras bajo el agua",
+            "descripcion": "Ganas una velocidad nadando de 40 pies y puedes respirar bajo el agua."
+          }
+        ],
+        "6": [
+          {
+            "tipo": "resistencia",
+            "dano": "frio"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Alma Oceánica",
+            "resumen": "resistencia al frío; sumergido del todo, te entiendes con cualquier criatura también sumergida",
+            "descripcion": "Tienes resistencia al daño de frío. Cuando estás totalmente sumergido, cualquier criatura que también lo esté entiende lo que dices y tú a ella."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Espiral Protectora",
+            "resumen": "reacción: cuando tú o alguien que veas a 10 pies de tu tentáculo recibe daño, lo reduces en {escala}",
+            "descripcion": "Cuando tú o una criatura que puedas ver recibís daño estando a 10 pies o menos de tu Tentáculo de las Profundidades, puedes usar tu reacción para reducir ese daño en 1d8 (2d8 a nivel 10).",
+            "escala": {
+              "6": "1d8",
+              "10": "2d8"
+            }
+          }
+        ],
+        "10": [
+          {
+            "tipo": "conjuro",
+            "id": "tentaculos_negros",
+            "clase": "brujo",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Tentáculos Agarradores",
+            "resumen": "tentáculos negros de Evard siempre conocido; 1 vez gratis por descanso largo; al lanzarlo ganas {nivel_clase} PG temporales y el daño no rompe tu concentración en él",
+            "descripcion": "Aprendes tentáculos negros de Evard, que no cuenta para tus conjuros conocidos. Puedes lanzarlo una vez sin espacio de conjuro (se recupera con un descanso largo). Cada vez que lo lanzas ganas tantos PG temporales como tu nivel de brujo, y el daño no rompe tu concentración en él.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Zambullida Insondable",
+            "resumen": "acción: tú y hasta 5 criaturas voluntarias a 30 pies os teletransportáis hasta 1 milla, a una masa de agua que hayas visto (estanque o mayor) o a 30 pies de ella",
+            "descripcion": "Como acción te teletransportas con hasta otras cinco criaturas voluntarias que veas a 30 pies o menos, en un remolino de tentáculos, hasta 1 milla de distancia: a una masa de agua que hayáis visto (del tamaño de un estanque o mayor) o a 30 pies o menos de ella. Una vez por descanso corto o largo.",
+            "usos": 1,
+            "recarga": "corto"
+          }
+        ]
+      },
+      "conjuros_adicionales": [
+        "crear_o_destruir_agua",
+        "ola_atronadora",
+        "rafaga_de_viento",
+        "silencio",
+        "relampago",
+        "tormenta_de_aguanieve",
+        "controlar_agua",
+        "invocar_elemental",
+        "mano_arcana",
+        "cono_de_frio"
+      ]
+    }
+  ]
+}

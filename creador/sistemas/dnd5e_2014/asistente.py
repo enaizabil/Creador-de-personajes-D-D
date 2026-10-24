@@ -711,8 +711,10 @@ class Asistente5e:
 
     def planes_conjuros(self) -> list[PlanConjuros]:
         mods = {c: v.modificador for c, v in self.ficha().caracteristicas.items()}
-        efectos = [a.efecto for a in self._resolucion().aplicados if a.tipo == "conjuro"]
-        return motor.planes_de_conjuros(self.personaje, self.catalogo, mods, motor.conocidos_por_efectos(efectos))
+        aplicados = self._resolucion().aplicados
+        efectos = [a.efecto for a in aplicados if a.tipo == "conjuro"]
+        listas = motor.listas_por_efectos([a.efecto for a in aplicados if a.tipo == "lista_ampliada"])
+        return motor.planes_de_conjuros(self.personaje, self.catalogo, mods, motor.conocidos_por_efectos(efectos), listas)
 
     def elegir_conjuros(self, clase_id: str, ids: list[str]) -> None:
         """Trucos y conjuros conocidos o preparados; en modo libro, los trucos y los conjuros del libro."""

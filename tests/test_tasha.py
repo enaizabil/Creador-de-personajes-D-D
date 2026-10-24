@@ -111,3 +111,41 @@ def test_al_subir_de_nivel_puede_salir_una_dote_de_tasha(entorno):
     dote = next(v[0] for c, v in q.personaje.elecciones.items() if c.endswith("mejora=dote/dote"))
     assert catalogo.origen("dotes", dote) == "tasha-2020", dote
     assert not q.asistente.ficha().avisos
+
+
+def _con_subclase(entorno, subclase, nivel, semilla="sub"):
+    sistema, catalogo = entorno
+    clase = catalogo.obtener("subclases", subclase)["clase"]
+    q = sistema.crear_cuestionario(Personaje(sistema="dnd5e-2014", paquetes=PAQUETES), catalogo)
+    rng = random.Random(f"{semilla}{subclase}")
+    for pregunta in q.preguntas():
+        q.responder(pregunta.id, rng.choice(pregunta.respuestas).id)
+    q._mejor_subclase = lambda _clase=None: subclase
+    q.generar(nivel=nivel, raza="humano", subraza="humano_estandar", clase=clase)
+    return q
+
+
+def test_subclases_de_tasha_sin_avisos_a_cualquier_nivel(entorno):
+    _, catalogo = entorno
+    subclases = [s["id"] for s in catalogo.listar("subclases") if catalogo.origen("subclases", s["id"]) == "tasha-2020"]
+    assert subclases
+    for subclase in subclases:
+        for nivel in (3, 6, 10, 14, 20):
+            q = _con_subclase(entorno, subclase, nivel)
+            a = q.asistente
+            assert a.personaje.clases[0].subclase == subclase
+            faltan = [f for p in a.pasos() if p.id not in ("resumen", "detalles") for f in a.faltan(p.id)]
+            assert not faltan and not a.ficha().avisos, (subclase, nivel, faltan, a.ficha().avisos)
+
+
+def test_el_genio_amplia_la_lista_segun_su_tipo(entorno):
+    sistema, catalogo = entorno
+    q = _con_subclase(entorno, "el_genio", 6)
+    pj = q.personaje
+    clave = next(c for c in pj.elecciones if c.endswith("tipo_de_genio"))
+    pj.elecciones[clave] = ["dao"]
+    plan = next(p for p in q.asistente.planes_conjuros() if p.clase_id == "brujo")
+    disponibles = {i for ids in plan.disponibles.values() for i, _ in ids}
+    assert {"santuario", "detectar_el_bien_y_el_mal", "crecimiento_espinoso"} <= disponibles
+    assert "manos_ardientes" not in disponibles  # es del ifrit, y no está en la lista del brujo
+    assert "contundente" in sistema.calcular(pj, catalogo).resistencias
