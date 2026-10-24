@@ -954,6 +954,349 @@
           }
         ]
       }
+    },
+    {
+      "id": "circulo_de_esporas",
+      "nombre": "Círculo de Esporas",
+      "clase": "druida",
+      "fuente": "Tasha 2020 p. 41-43",
+      "descripcion": "Druidas que ven belleza en la descomposición: los hongos convierten lo muerto en vida nueva. Para ellos la muerte es un cambio de estado dentro de un ciclo, y solo combaten a los muertos vivientes que quieren romperlo.",
+      "perfil": {
+        "naturaleza": 2,
+        "combate": 1,
+        "aguante": 1,
+        "arcano": 1
+      },
+      "niveles": {
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Conjuros del Círculo",
+            "resumen": "conjuros del círculo siempre preparados (no cuentan para el límite y son de druida para ti)",
+            "descripcion": "Al llegar a ciertos niveles de druida ganas acceso a los conjuros de tu círculo. Los tienes siempre preparados, no cuentan para el número de conjuros que puedes preparar y, aunque no estén en la lista del druida, son conjuros de druida para ti."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Halo de Esporas",
+            "resumen": "reacción: cuando una criatura que ves llega a 10 pies o menos de ti o empieza allí su turno, hace una salvación de CON CD {8+competencia+mod_sab} o sufre {escala} de daño necrótico",
+            "descripcion": "Te rodean esporas necróticas invisibles. Cuando una criatura que puedes ver entra en un espacio a 10 pies o menos de ti o empieza allí su turno, puedes usar tu reacción para causarle 1d4 de daño necrótico salvo que supere una salvación de Constitución contra tu CD de conjuros. El daño sube a 1d6 a nivel 6, 1d8 a nivel 10 y 1d10 a nivel 14.",
+            "escala": {
+              "2": "1d4",
+              "6": "1d6",
+              "10": "1d8",
+              "14": "1d10"
+            }
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Entidad Simbiótica",
+            "resumen": "acción, gastando un uso de Forma Salvaje: {4*nivel_clase} PG temporales durante 10 minutos; el Halo de Esporas tira el dado dos veces y tus ataques cuerpo a cuerpo con arma causan 1d6 necrótico más",
+            "descripcion": "Como acción gastas un uso de Forma Salvaje para despertar tus esporas en vez de transformarte: ganas 4 puntos de golpe temporales por cada nivel de druida. Mientras dure (10 minutos, hasta que pierdas esos PG temporales o vuelvas a usar Forma Salvaje), el daño de tu Halo de Esporas tira el dado una segunda vez y lo suma, y tus ataques cuerpo a cuerpo con arma causan 1d6 de daño necrótico adicional."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "toque_helado",
+            "clase": "druida",
+            "siempre_preparado": true
+          }
+        ],
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "sordera_ceguera",
+            "clase": "druida",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "dulce_descanso",
+            "clase": "druida",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "animar_a_los_muertos",
+            "clase": "druida",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "forma_gaseosa",
+            "clase": "druida",
+            "siempre_preparado": true
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Infestación Fúngica",
+            "resumen": "reacción: si una bestia o humanoide Pequeño o Mediano muere a 10 pies, se levanta como zombi con 1 PG durante 1 hora; actúa tras de ti y solo ataca cuerpo a cuerpo",
+            "descripcion": "Si una bestia o un humanoide Pequeño o Mediano muere a 10 pies o menos de ti, puedes usar tu reacción para animarlo: se levanta al momento con 1 punto de golpe y el perfil de zombi del Manual de Monstruos durante 1 hora; luego se desploma. En combate actúa justo después de ti, obedece tus órdenes mentales y solo puede usar la acción de Atacar con un ataque cuerpo a cuerpo. Usos: tu modificador por Sabiduría (mínimo uno) por descanso largo.",
+            "usos": "max(1,mod_sab)",
+            "recarga": "largo"
+          }
+        ],
+        "7": [
+          {
+            "tipo": "conjuro",
+            "id": "confusion",
+            "clase": "druida",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "marchitar",
+            "clase": "druida",
+            "siempre_preparado": true
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "contagio",
+            "clase": "druida",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "nube_aniquiladora",
+            "clase": "druida",
+            "siempre_preparado": true
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Propagación de Esporas",
+            "resumen": "acción adicional, con Entidad Simbiótica activa: cubo de esporas de 10 pies a 30 pies durante 1 minuto; quien entre o empiece allí su turno sufre el daño del Halo de Esporas (salvación de CON); mientras, no usas la reacción del Halo",
+            "descripcion": "Como acción adicional, mientras tu Entidad Simbiótica está activa, lanzas esporas hasta 30 pies: forman un cubo de 10 pies durante 1 minuto (o hasta que repitas el rasgo, las disipes como acción adicional o termine la Entidad Simbiótica). Una criatura que entre en el cubo o empiece allí su turno sufre el daño de tu Halo de Esporas salvo que supere una salvación de Constitución contra tu CD de conjuros, como mucho una vez por turno. Mientras el cubo exista, no puedes usar la reacción del Halo de Esporas."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "inmunidad",
+            "id": "cegado"
+          },
+          {
+            "tipo": "inmunidad",
+            "id": "ensordecido"
+          },
+          {
+            "tipo": "inmunidad",
+            "id": "asustado"
+          },
+          {
+            "tipo": "inmunidad",
+            "id": "envenenado"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Cuerpo Fúngico",
+            "resumen": "no puedes quedar cegado, ensordecido, asustado ni envenenado; los críticos contra ti son impactos normales salvo que estés incapacitado",
+            "descripcion": "Las esporas te transforman: no puedes quedar cegado, ensordecido, asustado ni envenenado, y cualquier impacto crítico contra ti cuenta como un impacto normal, salvo que estés incapacitado."
+          }
+        ]
+      }
+    },
+    {
+      "id": "circulo_de_las_estrellas",
+      "nombre": "Círculo de las Estrellas",
+      "clase": "druida",
+      "fuente": "Tasha 2020 p. 43-44",
+      "descripcion": "Druidas que siguen los patrones del cielo desde tiempos antiguos y guardan sus secretos en círculos de piedra, pirámides y templos. Con un mapa estelar en la mano, toman forma de constelación.",
+      "perfil": {
+        "naturaleza": 2,
+        "saber": 2,
+        "arcano": 1,
+        "curacion": 1
+      },
+      "niveles": {
+        "2": [
+          {
+            "tipo": "conjuro",
+            "id": "guia",
+            "clase": "druida",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "saeta_guia",
+            "clase": "druida",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Mapa Estelar",
+            "resumen": "un mapa estelar diminuto que sirve de canalizador; con él conoces guía, tienes saeta guía preparada y la lanzas sin espacio {competencia} veces por descanso largo",
+            "descripcion": "Has hecho una carta de las estrellas (un pergamino, una tablilla de piedra, una piel labrada, mapas encuadernados, un cristal o discos de vidrio): es un objeto diminuto que te sirve de canalizador para tus conjuros de druida. Mientras lo sostienes conoces el truco guía y tienes preparado saeta guía, que cuenta como conjuro de druida y no ocupa preparación; puedes lanzarla sin gastar espacio tantas veces como tu bonificador por competencia por descanso largo. Si lo pierdes, una ceremonia de 1 hora durante un descanso crea otro.",
+            "usos": "competencia",
+            "recarga": "largo"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Forma Estrellada",
+            "resumen": "acción adicional, gastando un uso de Forma Salvaje: 10 minutos luminoso, con una constelación: Arquero (ataque de conjuro a 60 pies, {escala}+{mod_sab} radiante; repetible como acción adicional), Cáliz (al curar con un espacio, tú u otro a 30 pies recuperáis {escala}+{mod_sab}) o Dragón (en pruebas de INT o SAB y salvaciones de concentración, un 9 o menos cuenta como 10)",
+            "descripcion": "Como acción adicional gastas un uso de Forma Salvaje para tomar forma estrellada en lugar de transformarte: conservas tus estadísticas, emites luz brillante a 10 pies y tenue 10 más, durante 10 minutos (termina antes si la descartas, quedas incapacitado, mueres o la repites). Eliges una constelación. Arquero: al tomarla y como acción adicional en tus turnos, ataque de conjuro a distancia contra una criatura a 60 pies: 1d8 + tu modificador por Sabiduría de daño radiante. Cáliz: cuando lanzas un conjuro con espacio que cura, tú u otra criatura a 30 pies recuperáis 1d8 + tu modificador por Sabiduría. Dragón: en las pruebas de Inteligencia o Sabiduría y en las salvaciones de Constitución para mantener la concentración, un 9 o menos en el d20 cuenta como un 10.",
+            "escala": {
+              "2": "1d8",
+              "10": "2d8"
+            }
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Presagio Cósmico",
+            "resumen": "tras cada descanso largo tiras un dado: reacción, cuando una criatura a 30 pies va a atacar, salvar o hacer una prueba, le sumas 1d6 (par: Dicha) o se lo restas (impar: Pena)",
+            "descripcion": "Al terminar un descanso largo consultas tu mapa y tiras un dado. Hasta el siguiente descanso largo, cuando una criatura que puedes ver a 30 pies o menos va a hacer una tirada de ataque, una salvación o una prueba de característica, puedes usar tu reacción para tirar un d6 y sumarlo (si sacaste par: Dicha) o restarlo (si sacaste impar: Pena). Usos: tu bonificador por competencia por descanso largo.",
+            "usos": "competencia",
+            "recarga": "largo"
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Constelaciones Titilantes",
+            "resumen": "Forma Estrellada mejor: el arquero y el cáliz pasan a 2d8, el dragón da vuelo 20 pies (levitar) y puedes cambiar de constelación al empezar cada turno",
+            "descripcion": "El 1d8 del Arquero y del Cáliz pasa a ser 2d8; con el Dragón tienes velocidad volando de 20 pies y puedes levitar. Además, al comienzo de cada uno de tus turnos en forma estrellada puedes cambiar de constelación."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Lleno de Estrellas",
+            "resumen": "en forma estrellada, resistencia al daño contundente, perforante y cortante",
+            "descripcion": "Mientras estás en forma estrellada te vuelves en parte incorpóreo: tienes resistencia al daño contundente, perforante y cortante."
+          }
+        ]
+      }
+    },
+    {
+      "id": "circulo_del_fuego_salvaje",
+      "nombre": "Círculo del Fuego Salvaje",
+      "clase": "druida",
+      "fuente": "Tasha 2020 p. 44-46",
+      "descripcion": "Druidas que saben que la destrucción a veces abre paso a la creación, como el incendio que hace rebrotar el bosque. Su alma está unida a un espíritu primigenio de fuego que quema y da vida.",
+      "perfil": {
+        "naturaleza": 2,
+        "curacion": 2,
+        "arcano": 1,
+        "combate": 1
+      },
+      "niveles": {
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Conjuros del Círculo",
+            "resumen": "conjuros del círculo siempre preparados (no cuentan para el límite y son de druida para ti)",
+            "descripcion": "Al llegar a ciertos niveles de druida ganas acceso a los conjuros de tu círculo. Los tienes siempre preparados, no cuentan para el número de conjuros que puedes preparar y, aunque no estén en la lista del druida, son conjuros de druida para ti."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Invocar Espíritu de Fuego Salvaje",
+            "resumen": "acción, gastando un uso de Forma Salvaje: invocas tu espíritu de fuego a 30 pies (quien esté a 10 pies de él salva DES CD {8+competencia+mod_sab} o 2d6 de fuego); dura 1 hora, CA 13, {5+5*nivel_clase} PG, vuela 30 pies",
+            "descripcion": "Como acción gastas un uso de Forma Salvaje para invocar a tu espíritu de fuego salvaje en un espacio libre que veas a 30 pies o menos; cada criatura a 10 pies de él (salvo tú) supera una salvación de Destreza contra tu CD de conjuros o sufre 2d6 de daño de fuego. Es amistoso, actúa justo después de ti y solo Esquiva salvo que gastes una acción adicional para ordenarle otra acción. Dura 1 hora, hasta llegar a 0 PG, hasta que lo vuelvas a invocar o hasta que mueras. Perfil: CA 13, PG 5 + cinco veces tu nivel de druida, velocidad 30 y volar 30 (levitar); FUE 10, DES 14, CON 14, INT 13, SAB 15, CAR 11; inmune al fuego, asustado, hechizado, agarrado, derribado y apresado; visión en la oscuridad 60 pies; usa tu bonificador por competencia (BC). Semilla de Llamas: ataque a distancia (60 pies) con tu modificador de ataque de conjuros, 1d6 + BC de daño de fuego. Teletransporte Ardiente: él y las criaturas voluntarias a 5 pies se teletransportan hasta 15 pies; quien quede a 5 pies del punto de partida salva DES o sufre 1d6 + BC de fuego."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "curar_heridas",
+            "clase": "druida",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "manos_ardientes",
+            "clase": "druida",
+            "siempre_preparado": true
+          }
+        ],
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "esfera_de_llamas",
+            "clase": "druida",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "rayo_abrasador",
+            "clase": "druida",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "crecimiento_vegetal",
+            "clase": "druida",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "revivir",
+            "clase": "druida",
+            "siempre_preparado": true
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Vínculo Mejorado",
+            "resumen": "con el espíritu invocado, tus conjuros de fuego o de curación suman 1d8 a una tirada de daño o curación, y tus conjuros pueden salir de ti o de él",
+            "descripcion": "Mientras tu espíritu de fuego salvaje está invocado, cuando lanzas un conjuro que causa daño de fuego o que cura, tiras un d8 y lo sumas a una tirada de daño o de curación del conjuro. Además, un conjuro con alcance distinto de «personal» puede originarse en ti o en tu espíritu."
+          }
+        ],
+        "7": [
+          {
+            "tipo": "conjuro",
+            "id": "aura_de_vida",
+            "clase": "druida",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "escudo_de_fuego",
+            "clase": "druida",
+            "siempre_preparado": true
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "curar_heridas_en_masa",
+            "clase": "druida",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "golpe_flamigero",
+            "clase": "druida",
+            "siempre_preparado": true
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Llamas Cauterizantes",
+            "resumen": "cuando muere una criatura Pequeña o mayor a 30 pies de ti o de tu espíritu, deja una llama 1 minuto; reacción: quien entre en ese espacio recupera o sufre 2d10+{mod_sab} de fuego",
+            "descripcion": "Cuando una criatura Pequeña o mayor muere a 30 pies o menos de ti o de tu espíritu, brota en su espacio una llama espectral inofensiva durante 1 minuto. Cuando una criatura que ves entra en ese espacio, puedes usar tu reacción para apagar la llama y curarla o causarle daño de fuego: 2d10 + tu modificador por Sabiduría. Usos: tu bonificador por competencia por descanso largo.",
+            "usos": "competencia",
+            "recarga": "largo"
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Renacer Ardiente",
+            "resumen": "si caes a 0 PG con tu espíritu a 120 pies, él cae a 0 PG y tú recuperas la mitad de tus PG y te levantas",
+            "descripcion": "Si tu espíritu está a 120 pies o menos cuando caes a 0 puntos de golpe y quedas inconsciente, puedes hacer que sea él quien caiga a 0 PG: recuperas la mitad de tus puntos de golpe y te pones en pie al momento. Una vez por descanso largo.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ]
+      }
     }
   ]
 }

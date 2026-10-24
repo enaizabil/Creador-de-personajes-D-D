@@ -162,3 +162,13 @@ def test_dominios_de_tasha(entorno):
     preparados = sistema.calcular(paz.personaje, catalogo).lanzadores[0].siempre_preparados
     nombres = {catalogo.obtener("conjuros", i)["nombre"] for i in ("heroismo", "santuario", "recado", "senal_de_esperanza")}
     assert nombres <= {n for lista in preparados.values() for n in lista}
+
+
+def test_circulos_del_druida_de_tasha(entorno):
+    sistema, catalogo = entorno
+    esporas = sistema.calcular(_con_subclase(entorno, "circulo_de_esporas", 14).personaje, catalogo)
+    assert {"cegado", "ensordecido", "asustado", "envenenado"} <= set(esporas.inmunidades)
+    estrellas = sistema.calcular(_con_subclase(entorno, "circulo_de_las_estrellas", 2).personaje, catalogo)
+    preparados = {n for lista in estrellas.lanzadores[0].siempre_preparados.values() for n in lista}
+    assert {catalogo.obtener("conjuros", i)["nombre"] for i in ("guia", "saeta_guia")} <= preparados
+    assert not estrellas.avisos
