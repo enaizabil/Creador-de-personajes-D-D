@@ -356,23 +356,141 @@ def test_subir_de_nivel_con_tiradas_de_pg(entorno):
     assert all(1 <= t <= 10 for t in entrada.tiradas_pg)
 
 
-def test_preguntas_de_subida_aparte_y_segun_lo_que_traen_los_niveles(entorno):
+def subida(entorno, clase, nivel, semilla="concretas"):
+    q = nuevo(entorno)
+    responder_al_azar(q, semilla)
+    q.generar(nivel=nivel, raza="humano", subraza="humano_estandar", clase=clase)
+    return q
+
+
+def concretas(preguntas):
+    return {p.id: p for p in preguntas if p.concreta}
+
+
+def test_preguntas_de_subida_segun_lo_que_traen_los_niveles(entorno):
     q = nuevo(entorno)
     assert not any(p.id.startswith("subida_") for p in q.preguntas())
-    responder_al_azar(q, "decisiones")
-    q.generar(nivel=3, raza="humano", subraza="humano_estandar", clase="guerrero")
+    q = subida(entorno, "guerrero", 3, semilla="decisiones")
     assert q.decisiones_de_subida(1) == {"mejora"}
+    preguntas = q.preguntas_de_subida(1)
     assert q.personaje.nivel_total == 3  # se prueba sobre una copia
-    preguntas = q.preguntas_subida({"mejora"})
-    assert len(preguntas) == 1 and preguntas[0].id == "subida_entrenamiento"
-    q2 = nuevo(entorno)
-    responder_al_azar(q2, "mago")
-    q2.generar(nivel=1, raza="humano", subraza="humano_estandar", clase="mago")
-    assert q2.decisiones_de_subida(1) == {"subclase", "conjuros"}
-    preguntas = q2.preguntas_subida({"subclase", "conjuros"})
-    assert len({p.id for p in preguntas}) == 2  # una distinta por decisión
-    decide = [set(q2.catalogo.obtener("preguntas", p.id)["decide"]) for p in preguntas]
-    assert "subclase" in decide[0] and "conjuros" in decide[1]
+    hitos = [p for p in preguntas if not p.concreta]
+    # Un hito (no el de entrenar: la mejora ya se pregunta en concreto) y la mejora, con más de 4 respuestas.
+    assert len(hitos) == 1 and hitos[0].id != "subida_entrenamiento"
+    mejora = concretas(preguntas)["c:clase:guerrero:4/mejora"]
+    assert len(mejora.respuestas) > 4 and sum(r.propuesta for r in mejora.respuestas) == 1
+    puntuaciones = {c: v.puntuacion for c, v in q.asistente.ficha().caracteristicas.items()}
+    reparto = next(r for r in mejora.respuestas if r.id.startswith("car:"))
+    car = reparto.id.removeprefix("car:").split("+")[0]
+    assert f"{puntuaciones[car]} → " in reparto.texto  # con las puntuaciones de ahora
+    assert any(r.id.startswith("dote:") for r in mejora.respuestas)
+    # Sin decisiones (guerrero 5: Ataque Extra), ninguna pregunta.
+    q.subir_nivel(1)
+    assert q.preguntas_de_subida(1) == []
+    # Mago 1 → 2: la escuela de magia (8 subclases) y los conjuros nuevos, con ejemplos de su lista.
+    q2 = subida(entorno, "mago", 1)
+    preguntas = concretas(q2.preguntas_de_subida(1))
+    assert set(preguntas) == {"c:subclase_de:mago", "c:escuela:mago"}
+    assert len(preguntas["c:subclase_de:mago"].respuestas) >= 8
+    assert all("(" in r.detalle for r in preguntas["c:escuela:mago"].respuestas)
+
+
+def test_las_respuestas_concretas_deciden_la_subida(entorno):
+    sistema, catalogo = entorno
+    q = subida(entorno, "guerrero", 3)
+    mejora = concretas(q.preguntas_de_subida(1))["c:clase:guerrero:4/mejora"]
+    dote = next(r.id for r in mejora.respuestas if r.id.startswith("dote:") and not r.propuesta)
+    q.responder_subida(mejora.id, [dote])
+    q.subir_nivel(1)
+    assert q.personaje.elecciones["clase:guerrero:4/mejora"] == ["dote"]
+    assert q.personaje.elecciones["clase:guerrero:4/mejora=dote/dote"] == [dote.removeprefix("dote:")]
+    assert q.subidas_anteriores[-1]["respuestas"] == {mejora.id: [dote]}
+
+    q = subida(entorno, "guerrero", 3)
+    q.responder_subida("c:clase:guerrero:4/mejora", ["car:con+con"])
+    q.subir_nivel(1)
+    assert q.personaje.elecciones["clase:guerrero:4/mejora=caracteristicas/puntos"] == ["con", "con"]
+
+    q = subida(entorno, "mago", 1)
+    subclase = next(r.id for r in concretas(q.preguntas_de_subida(1))["c:subclase_de:mago"].respuestas if not r.propuesta)
+    q.responder_subida("c:subclase_de:mago", subclase)
+    q.subir_nivel(1)
+    assert q.personaje.clases[0].subclase == subclase
+
+    # Una respuesta que ya no vale (de otra versión de los datos, p. ej.) se ignora: decide el perfil.
+    q = subida(entorno, "guerrero", 3)
+    q.responder_subida("c:clase:guerrero:4/mejora", ["dote:no_existe"])
+    q.subir_nivel(1)
+    assert q.personaje.elecciones["clase:guerrero:4/mejora"]
+    assert not [a for a in sistema.calcular(q.personaje, catalogo).avisos if "pendiente" in a or "faltan" in a]
+
+
+def test_huecos_iguales_de_varios_niveles_en_una_pregunta(entorno):
+    sistema, catalogo = entorno
+    q = subida(entorno, "brujo", 1)
+    q.responder_subida("c:clase:brujo:3/beneficio_pacto", ["pacto_del_filo"])
+    preguntas = concretas(q.preguntas_de_subida(4))
+    invocaciones = preguntas["c:clase:brujo:2/invocaciones"]
+    assert invocaciones.elegir == 3  # 2 a nivel 2 y 1 a nivel 5
+    ofrecidas = {r.id for r in invocaciones.respuestas}
+    # Prerrequisitos leídos: Filo Sediento (nivel 5 y Pacto del Filo) sí; los de nivel 12 o de otro pacto, no.
+    assert "filo_sediento" in ofrecidas
+    assert not ofrecidas & {"devorador_de_vida", "cadenas_de_carceri", "voz_del_amo_de_la_cadena"}
+    elegidas = [r.id for r in invocaciones.respuestas if not r.propuesta][:3]
+    q.responder_subida(invocaciones.id, elegidas)
+    q.subir_nivel(4)
+    pj = q.personaje.elecciones
+    assert pj["clase:brujo:3/beneficio_pacto"] == ["pacto_del_filo"]
+    assert sorted(pj["clase:brujo:2/invocaciones"] + pj["clase:brujo:5/invocacion_nivel_5"]) == sorted(elegidas)
+    assert not [a for a in sistema.calcular(q.personaje, catalogo).avisos if "pendiente" in a or "faltan" in a]
+
+
+def test_la_escuela_concreta_ordena_los_conjuros_nuevos(entorno):
+    q = subida(entorno, "mago", 6, semilla="escuela concreta")
+    antes = set(q.personaje.conjuros["mago"])
+    escuelas = concretas(q.preguntas_de_subida(1))["c:escuela:mago"]
+    assert len(escuelas.respuestas) > 4
+    q.responder_subida(escuelas.id, ["nigromancia"])
+    plan = next(p for p in q.asistente.planes_conjuros() if p.clase_id == "mago")
+    q.subir_nivel(1)
+    nuevos = set(q.personaje.conjuros["mago"]) - antes
+    # Van primero los de nigromancia del nivel nuevo (aunque la clase recomiende otros); si no llegan, el resto.
+    nigromancia = [i for i, _ in plan.disponibles.get(4, []) + q.asistente.planes_conjuros()[0].disponibles.get(4, [])
+                   if q.catalogo.obtener("conjuros", i)["escuela"] == "nigromancia" and i not in antes]
+    assert nigromancia and set(nigromancia[:len(nuevos)]) <= nuevos, (nigromancia, nuevos)
+
+
+def test_historia_al_crear_a_nivel_alto(entorno):
+    sistema, catalogo = entorno
+    q = nuevo(entorno)
+    responder_al_azar(q, "historia")
+    eleccion = {"raza": "humano", "subraza": "humano_estandar", "clase": "guerrero", "trasfondo": "soldado"}
+    assert q.preguntas_de_historia(1, **eleccion) == []
+    preguntas = q.preguntas_de_historia(12, **eleccion)
+    hitos = [p for p in preguntas if not p.concreta]
+    assert len(hitos) == 3  # 11 niveles de historia: tres hitos
+    ids = list(concretas(preguntas))
+    mejoras = [i for i in ids if i.endswith("/mejora")]
+    assert ids[0] == "c:subclase_de:guerrero" and mejoras == [f"c:clase:guerrero:{n}/mejora" for n in (4, 6, 8, 12)]
+    assert not any(":1/" in i for i in ids)  # lo de nivel 1 sale del perfil, como siempre
+    subclase = next(r.id for r in concretas(preguntas)["c:subclase_de:guerrero"].respuestas if not r.propuesta)
+    q.responder_subida("c:subclase_de:guerrero", [subclase])
+    q.responder_subida("c:clase:guerrero:8/mejora", ["car:con+con"])
+    q.generar(nivel=12, **eleccion)
+    assert q.personaje.clases[0].subclase == subclase
+    assert q.personaje.elecciones["clase:guerrero:8/mejora=caracteristicas/puntos"] == ["con", "con"]
+    assert q.respuestas_subida == {} and q.subidas_anteriores[-1]["hasta"] == 12
+    assert not [a for a in sistema.calcular(q.personaje, catalogo).avisos if "pendiente" in a or "faltan" in a]
+
+
+def test_conservar_solo_las_respuestas_vigentes(entorno):
+    q = nuevo(entorno)
+    q.responder_subida("c:subclase_de:mago", ["escuela_de_evocacion"])
+    q.responder_subida("subida_objetivo", "plan")
+    q.conservar_respuestas_subida({"subida_objetivo"})
+    assert q.respuestas_subida == {"subida_objetivo": "plan"}
+    with pytest.raises(ValueError):
+        q.responder_subida("c:clase:guerrero:4/mejora", [""])
 
 
 @pytest.mark.parametrize("entreno, esperado", [("maestro", "dote"), ("pulir", "caracteristicas")])
@@ -405,6 +523,26 @@ def test_la_escuela_de_magia_elegida_al_subir_ordena_los_conjuros_nuevos(entorno
     q.subir_nivel(1)
     nuevos = set(q.personaje.conjuros["mago"]) - antes
     assert nuevos and all(catalogo.obtener("conjuros", i)["escuela"] == "evocacion" for i in nuevos), nuevos
+
+
+def test_sin_bastantes_opciones_nuevas_repite_antes_que_dejarla_a_medias(entorno):
+    sistema, catalogo = entorno
+    q = nuevo(entorno)
+    responder_al_azar(q, "rituales")
+    q.generar(nivel=4, raza="humano", subraza="humano_estandar", clase="brujo")
+    pj = q.personaje
+    for clave in [c for c in pj.elecciones if c.startswith("clase:brujo:4/mejora")]:
+        del pj.elecciones[clave]
+    # Conoce dos de los tres rituales de nivel 1 de su lista: solo queda uno nuevo.
+    resto = [i for i in pj.conjuros["brujo"] if i not in ("entender_idiomas", "texto_ilusorio", "sirviente_invisible")]
+    pj.conjuros["brujo"] = resto[:-2] + ["entender_idiomas", "texto_ilusorio"]
+    pj.elecciones["clase:brujo:4/mejora"] = ["dote"]
+    pj.elecciones["clase:brujo:4/mejora=dote/dote"] = ["lanzador_ritual"]
+    pj.elecciones["clase:brujo:4/mejora=dote/dote=lanzador_ritual>dote:lanzador_ritual/clase"] = ["brujo"]
+    q._completar_elecciones()
+    rituales = next(v for k, v in pj.elecciones.items() if k.endswith("/rituales"))
+    assert len(rituales) == 2  # los dos rituales de nivel 1 del brujo, aunque ya conozca uno
+    assert not [a for a in sistema.calcular(pj, catalogo).avisos if "pendiente" in a or "faltan" in a]
 
 
 def test_resiliente_no_repite_una_salvacion_que_ya_tiene(entorno):
@@ -451,7 +589,7 @@ def test_entrenamiento_de_la_guia_del_dm_al_subir(entorno):
     assert sistema.calcular(q.personaje, catalogo).entrenamiento == []
 
 
-def test_historia_al_crear_a_nivel_alto(entorno):
+def test_hitos_sin_respuestas_concretas_al_crear_a_nivel_alto(entorno):
     q = nuevo(entorno)
     responder_al_azar(q, "historia")
     q.responder_subida("subida_entrenamiento", "maestro")

@@ -331,8 +331,10 @@ Un error de contenido no impide cargar el resto del paquete.
 
 **Preguntas** (`preguntas.json`, `preguntas_subida.json`)
 
-- `momento`: `"creacion"` (por defecto) o `"subida"`. Las de subida solo salen al subir de nivel o, al crear por encima de nivel 1, en «Tu historia hasta ahora».
-- `decide`: lista con `mejora`, `subclase`, `opciones` o `conjuros`. Se hace una pregunta distinta por cada decisión que traen los niveles nuevos.
+- `momento`: `"creacion"` (por defecto) o `"subida"`. Las de subida son hitos de la aventura y salen al subir de nivel o, al crear por encima de nivel 1, en «Su historia», después de elegir raza y clase.
+- `decide`: lista con `mejora`, `subclase`, `opciones` o `conjuros`. Salen los hitos que tocan alguna decisión de esos niveles: uno si se suben menos de 5 niveles, dos hasta 9 y tres a partir de 10. Se salta el hito de un solo propósito cuya decisión ya tiene pregunta concreta (p. ej., entrenar para la mejora).
+- Preguntas concretas: no se escriben en los datos. El programa hace una por cada elección real de esos niveles, con lo que el personaje tiene: la subclase (todas las disponibles), cada mejora de característica (repartos con las puntuaciones de ese momento y las dotes cuyo prerrequisito cumple), las opciones de clase, las pericias y competencias, los conjuros de rasgos como Secretos Mágicos o Arcanum Místico, y la escuela de los conjuros nuevos (con ejemplos de su lista). Los huecos iguales de varios niveles (invocaciones, metamagia, terrenos…) van en una sola pregunta de varias respuestas. Las listas largas se acortan a las 16 que mejor encajan. Lo que no se responde lo decide el perfil, y la respuesta que se elegiría va marcada como «★ Propuesta».
+- Los prerrequisitos de las opciones de clase son texto: el programa lee «nivel N de <clase>», «Pacto de…» y «truco <conjuro>». Si un homebrew usa otra fórmula, la opción se ofrece igualmente: detrás de las demás, salvo que esté entre las recomendadas.
 - En cada respuesta:
   - `mejora`: `"caracteristicas"` o `"dote"`.
   - `escuelas`: `{"evocacion": 2}`, con valores de -3 a 3.

@@ -6,7 +6,7 @@ from collections.abc import Callable
 import customtkinter as ctk
 
 from ..sistemas.dnd5e_2014.cuestionario import (MINIMO_RESPUESTAS, NIVEL_MINIMO_MULTICLASE, UMBRAL_ALINEAMIENTO, Cuestionario5e,
-                                                Recomendacion)
+                                                Pregunta, Recomendacion)
 from .asistente_5e import NOMBRES_PERFIL
 from .componentes import fuente, texto_ajustado, titulo
 
@@ -14,23 +14,75 @@ ANCHO = 820
 COLOR_TARJETA = ("gray86", "gray20")
 COLOR_TARJETA_ENCIMA = ("gray78", "gray28")
 COLOR_TARJETA_ELEGIDA = ("#bfdbfe", "#1e3a5f")
+COLOR_NOTA = ("gray35", "gray68")
+MARCA_PROPUESTA = "★ Propuesta."
+RESPUESTAS_EN_UNA_COLUMNA = 6  # con más, en dos columnas para no hacer la lista eterna
+AYUDA_SUBIDA = ("Cada pregunta concreta trae las opciones reales de tu personaje; «★ Propuesta» marca lo que se elegiría "
+                "según su forma de ser si no respondes. Puedes dejar preguntas sin responder.")
 CUANTAS_RECOMENDACIONES = 3
 
 
 class TarjetaRespuesta(ctk.CTkFrame):
-    """Respuesta pulsable con el texto ajustado (un CTkButton no parte líneas)."""
+    """Respuesta pulsable con el texto ajustado (un CTkButton no parte líneas) y, debajo, su detalle en gris."""
 
-    def __init__(self, master, texto: str, elegida: bool, al_pulsar: Callable[[], None]):
+    def __init__(self, master, texto: str, elegida: bool, al_pulsar: Callable[[], None], detalle: str = "",
+                 propuesta: bool = False, ancho: int = ANCHO):
         super().__init__(master, fg_color=COLOR_TARJETA_ELEGIDA if elegida else COLOR_TARJETA, corner_radius=10,
                          cursor="hand2")
         self.color = COLOR_TARJETA_ELEGIDA if elegida else COLOR_TARJETA
-        self.etiqueta = ctk.CTkLabel(self, text=texto, font=fuente(15), wraplength=ANCHO - 60, justify="left",
+        nota = ((MARCA_PROPUESTA + " ") if propuesta else "") + detalle
+        self.etiqueta = ctk.CTkLabel(self, text=texto, font=fuente(15), wraplength=ancho - 60, justify="left",
                                      anchor="w", cursor="hand2")
-        self.etiqueta.pack(fill="x", padx=18, pady=14)
-        for widget in (self, self.etiqueta):
+        self.etiqueta.pack(fill="x", padx=18, pady=(14, 0 if nota else 14))
+        widgets = [self, self.etiqueta]
+        if nota:
+            self.nota = ctk.CTkLabel(self, text=nota, font=fuente(12), text_color=COLOR_NOTA, wraplength=ancho - 60,
+                                     justify="left", anchor="w", cursor="hand2")
+            self.nota.pack(fill="x", padx=18, pady=(2, 12))
+            widgets.append(self.nota)
+        for widget in widgets:
             widget.bind("<Button-1>", lambda _e: al_pulsar())
             widget.bind("<Enter>", lambda _e: self.configure(fg_color=COLOR_TARJETA_ENCIMA))
             widget.bind("<Leave>", lambda _e: self.configure(fg_color=self.color))
+
+
+def pintar_preguntas_subida(columna, cuestionario: Cuestionario5e, preguntas: list[Pregunta],
+                            al_cambiar: Callable[[], None]) -> None:
+    """Hitos y preguntas concretas de subida. Pulsar una respuesta elegida la quita; en las que piden varias se
+    marcan hasta las que tocan (al pasarse, sale la primera marcada). Con muchas respuestas, en dos columnas."""
+
+    def alternar(pregunta: Pregunta, respuesta: str) -> None:
+        actual = cuestionario.respuestas_subida.get(pregunta.id)
+        if not pregunta.concreta:
+            cuestionario.responder_subida(pregunta.id, None if respuesta == actual else respuesta)
+        else:
+            lista = list(actual or [])
+            lista = [v for v in lista if v != respuesta] if respuesta in lista else (lista + [respuesta])[-pregunta.elegir:]
+            cuestionario.responder_subida(pregunta.id, lista)
+        al_cambiar()
+
+    for pregunta in preguntas:
+        ctk.CTkLabel(columna, text=pregunta.titulo, text_color="gray", anchor="w").pack(anchor="w", pady=(16, 0))
+        texto_ajustado(columna, pregunta.texto, ANCHO, font=fuente(19, True)).pack(anchor="w", pady=(2, 8))
+        actual = cuestionario.respuestas_subida.get(pregunta.id)
+        elegidas = set(actual) if isinstance(actual, list) else {actual}
+        if pregunta.elegir > 1:
+            marcadas = len(elegidas & {r.id for r in pregunta.respuestas})
+            ctk.CTkLabel(columna, text=f"Llevas {marcadas} de {pregunta.elegir}; las que falten se eligen solas.",
+                         text_color="gray").pack(anchor="w", pady=(0, 4))
+        dos_columnas = len(pregunta.respuestas) > RESPUESTAS_EN_UNA_COLUMNA
+        rejilla = ctk.CTkFrame(columna, fg_color="transparent")
+        rejilla.pack(fill="x")
+        if dos_columnas:
+            rejilla.grid_columnconfigure((0, 1), weight=1, uniform="respuestas")
+        for i, respuesta in enumerate(pregunta.respuestas):
+            tarjeta = TarjetaRespuesta(rejilla, respuesta.texto, respuesta.id in elegidas,
+                                       lambda p=pregunta, r=respuesta.id: alternar(p, r), respuesta.detalle,
+                                       respuesta.propuesta, (ANCHO - 12) // 2 if dos_columnas else ANCHO)
+            if dos_columnas:
+                tarjeta.grid(row=i // 2, column=i % 2, sticky="nsew", padx=3, pady=3)
+            else:
+                tarjeta.pack(fill="x", pady=4)
 
 
 class VistaCuestionario5e(ctk.CTkFrame):
@@ -45,6 +97,7 @@ class VistaCuestionario5e(ctk.CTkFrame):
         self.eleccion: dict[str, Recomendacion] = {}
         self.reparto: list[tuple[str, int]] = []  # el que se usará al crear (propuesto o retocado)
         self.marco_reparto = None
+        self.nombre = ""  # se guarda al pasar del resultado a la historia
         self.cuerpo = ctk.CTkScrollableFrame(self, fg_color="transparent")
         self.cuerpo.pack(fill="both", expand=True)
         self.pantalla_inicio()
@@ -134,11 +187,7 @@ class VistaCuestionario5e(ctk.CTkFrame):
 
     def pantalla_pregunta(self, indice: int) -> None:
         if indice >= len(self.preguntas):
-            # A nivel alto, antes del resultado: lo vivido hasta ahora decide mejoras, dotes, opciones y conjuros.
-            if self.nivel > 1 and self.q.preguntas_subida():
-                self.pantalla_historia()
-            else:
-                self.pantalla_resultado()
+            self.pantalla_resultado()
             return
         self.indice = indice
         pregunta = self.preguntas[indice]
@@ -167,28 +216,25 @@ class VistaCuestionario5e(ctk.CTkFrame):
         else:
             ctk.CTkLabel(pie, text=f"{respondidas} respondidas", text_color="gray").pack(side="right")
 
-    def pantalla_historia(self) -> None:
-        """Preguntas de subida al crear por encima de nivel 1: la historia del personaje hasta hoy."""
-        desplazamiento = self.cuerpo._parent_canvas.yview()[0]
+    def pantalla_historia(self, repintar: bool = False) -> None:
+        """Al crear por encima de nivel 1, tras elegir raza y clase: su historia hasta hoy, con un hito o varios y una
+        pregunta concreta por cada elección de los niveles 2 en adelante. Al repintar tras una respuesta se queda
+        donde estaba; al entrar, arriba."""
+        desplazamiento = self.cuerpo._parent_canvas.yview()[0] if repintar else 0.0
         columna = self._limpiar()
-        titulo(columna, f"Tu historia hasta el nivel {self.nivel}", 26).pack(anchor="w")
-        texto_ajustado(columna, "Tu personaje ya ha vivido aventuras. Cuéntanos cómo le han cambiado y con eso decidimos "
-                                "sus mejoras, dotes, opciones de clase y conjuros. Puedes dejar preguntas sin responder.",
-                       ANCHO, font=fuente(15)).pack(anchor="w", pady=(10, 18))
-        for pregunta in self.q.preguntas_subida({"mejora", "subclase", "opciones", "conjuros"}):
-            ctk.CTkLabel(columna, text=pregunta.titulo, text_color="gray", anchor="w").pack(anchor="w", pady=(10, 0))
-            texto_ajustado(columna, pregunta.texto, ANCHO, font=fuente(19, True)).pack(anchor="w", pady=(2, 10))
-            actual = self.q.respuestas_subida.get(pregunta.id)
-            for respuesta in pregunta.respuestas:
-                TarjetaRespuesta(columna, respuesta.texto, respuesta.id == actual,
-                                 lambda p=pregunta.id, r=respuesta.id, act=actual: (
-                                     self.q.responder_subida(p, None if r == act else r), self.pantalla_historia())
-                                 ).pack(fill="x", pady=4)
+        clase = self.eleccion["clase"].nombre
+        titulo(columna, f"Su historia hasta el nivel {self.nivel}", 26).pack(anchor="w")
+        texto_ajustado(columna, f"Tu {clase.lower()} ya ha vivido aventuras. Cuéntanos cómo le han cambiado y con eso "
+                                f"decidimos su subclase, mejoras, dotes, opciones de clase y conjuros. {AYUDA_SUBIDA}",
+                       ANCHO, font=fuente(15)).pack(anchor="w", pady=(10, 8))
+        preguntas = self.q.preguntas_de_historia(self.nivel, **self._eleccion_generar())
+        pintar_preguntas_subida(columna, self.q, preguntas, lambda: self.pantalla_historia(repintar=True))
         pie = ctk.CTkFrame(columna, fg_color="transparent")
         pie.pack(fill="x", pady=(24, 0))
-        ctk.CTkButton(pie, text="← Anterior", width=120,
-                      command=lambda: self.pantalla_pregunta(len(self.preguntas) - 1)).pack(side="left")
-        ctk.CTkButton(pie, text="Ver mi personaje →", width=180, command=self.pantalla_resultado).pack(side="right")
+        ctk.CTkButton(pie, text="← Volver al resultado", width=170, height=40, fg_color="transparent", border_width=1,
+                      text_color=("gray10", "gray90"), command=self.pantalla_resultado).pack(side="left")
+        ctk.CTkButton(pie, text="Crear personaje", width=200, height=40, font=fuente(15, True),
+                      command=self._crear).pack(side="right")
         self.update_idletasks()
         self.cuerpo._parent_canvas.yview_moveto(desplazamiento)
 
@@ -237,12 +283,13 @@ class VistaCuestionario5e(ctk.CTkFrame):
         fila.pack(anchor="w", pady=(20, 6))
         ctk.CTkLabel(fila, text="Nombre:", font=fuente(14, True)).pack(side="left", padx=(0, 10))
         self.entrada_nombre = ctk.CTkEntry(fila, width=300, placeholder_text="Cómo se llama tu personaje")
-        self.entrada_nombre.insert(0, self.q.personaje.nombre)
+        self.entrada_nombre.insert(0, self.nombre or self.q.personaje.nombre)
         self.entrada_nombre.pack(side="left")
         botones = ctk.CTkFrame(columna, fg_color="transparent")
         botones.pack(anchor="w", pady=14)
-        ctk.CTkButton(botones, text="Crear personaje", width=200, height=40, font=fuente(15, True),
-                      command=self._crear).pack(side="left")
+        siguiente = "Crear personaje" if self.nivel == 1 else f"Su historia hasta nivel {self.nivel} →"
+        ctk.CTkButton(botones, text=siguiente, width=230, height=40, font=fuente(15, True),
+                      command=self._siguiente).pack(side="left")
         ctk.CTkButton(botones, text="Repasar las preguntas", width=180, height=40, fg_color="transparent", border_width=1,
                       text_color=("gray10", "gray90"), command=lambda: self.pantalla_pregunta(0)).pack(side="left", padx=12)
 
@@ -349,14 +396,26 @@ class VistaCuestionario5e(ctk.CTkFrame):
         menu.configure(command=cambiar)
         niveles.configure(command=cambiar)
 
-    def _crear(self) -> None:
+    def _eleccion_generar(self) -> dict:
+        """Lo elegido en el resultado, como lo recibe «generar» (y las preguntas de su historia)."""
         raza, clase, trasfondo = (self.eleccion[c] for c in ("raza", "clase", "trasfondo"))
         reparto = self.reparto if self.q.acepta_multiclase and self.reparto and self.reparto[0][0] == clase.id else None
-        self.q.generar(nivel=self.nivel, raza=raza.id, subraza=raza.subraza, clase=clase.id, trasfondo=trasfondo.id,
-                       reparto=reparto)
-        nombre = self.entrada_nombre.get().strip()
-        if nombre:
-            self.q.asistente.establecer_detalle("nombre", nombre)
+        return {"raza": raza.id, "subraza": raza.subraza, "clase": clase.id, "trasfondo": trasfondo.id, "reparto": reparto}
+
+    def _siguiente(self) -> None:
+        self.nombre = self.entrada_nombre.get().strip()
+        if self.nivel > 1 and self.q.preguntas_de_historia(self.nivel, **self._eleccion_generar()):
+            self.pantalla_historia()
+        else:
+            self._crear()
+
+    def _crear(self) -> None:
+        eleccion = self._eleccion_generar()
+        # Fuera las respuestas a preguntas que ya no se plantean (de otra clase elegida antes, p. ej.).
+        self.q.conservar_respuestas_subida({p.id for p in self.q.preguntas_de_historia(self.nivel, **eleccion)})
+        self.q.generar(nivel=self.nivel, **eleccion)
+        if self.nombre:
+            self.q.asistente.establecer_detalle("nombre", self.nombre)
         self.al_terminar()
 
 
@@ -376,7 +435,6 @@ class VistaSubida5e(ctk.CTkFrame):
         self.al_terminar = al_terminar
         self.al_cancelar = al_cancelar
         self.decisiones = cuestionario.decisiones_de_subida(niveles, clase)
-        self.preguntas = cuestionario.preguntas_subida(self.decisiones)
         self.cuerpo = ctk.CTkScrollableFrame(self, fg_color="transparent")
         self.cuerpo.pack(fill="both", expand=True)
         self._pintar()
@@ -389,21 +447,20 @@ class VistaSubida5e(ctk.CTkFrame):
         columna.pack(pady=24, padx=20)
         a = self.q.asistente
         titulo(columna, f"Subir de nivel: de {a.nivel} a {a.nivel + self.niveles}", 26).pack(anchor="w")
-        if self.decisiones:
-            que = ", ".join(NOMBRES_DECISION[d] for d in ("mejora", "subclase", "opciones", "conjuros") if d in self.decisiones)
+        # Se rehacen en cada respuesta: lo respondido cambia lo siguiente (la subclase trae sus opciones; una
+        # mejora, las puntuaciones de la próxima).
+        self.preguntas = self.q.preguntas_de_subida(self.niveles, self.clase)
+        que = ", ".join(NOMBRES_DECISION[d] for d in ("mejora", "subclase", "opciones", "conjuros") if d in self.decisiones)
+        if self.preguntas:
             texto = (f"Estos niveles traen decisiones: {que}. Cuéntanos qué ha vivido tu personaje desde el último hito "
-                     "de la aventura y lo decidimos con eso. Puedes dejar preguntas sin responder.")
+                     f"de la aventura y lo decidimos con eso. {AYUDA_SUBIDA}")
+        elif self.decisiones:
+            texto = (f"Estos niveles solo traen elecciones menores ({que}), que se deciden con su forma de ser: no hace "
+                     "falta preguntar nada.")
         else:
             texto = "Estos niveles no traen decisiones: solo rasgos y puntos de golpe, que se suman solos."
-        texto_ajustado(columna, texto, ANCHO, font=fuente(15)).pack(anchor="w", pady=(10, 18))
-        for pregunta in self.preguntas:
-            ctk.CTkLabel(columna, text=pregunta.titulo, text_color="gray", anchor="w").pack(anchor="w", pady=(10, 0))
-            texto_ajustado(columna, pregunta.texto, ANCHO, font=fuente(19, True)).pack(anchor="w", pady=(2, 10))
-            actual = self.q.respuestas_subida.get(pregunta.id)
-            for respuesta in pregunta.respuestas:
-                TarjetaRespuesta(columna, respuesta.texto, respuesta.id == actual,
-                                 lambda p=pregunta.id, r=respuesta.id, act=actual: self._responder(p, None if r == act else r)
-                                 ).pack(fill="x", pady=4)
+        texto_ajustado(columna, texto, ANCHO, font=fuente(15)).pack(anchor="w", pady=(10, 8))
+        pintar_preguntas_subida(columna, self.q, self.preguntas, self._pintar)
         pie = ctk.CTkFrame(columna, fg_color="transparent")
         pie.pack(fill="x", pady=(24, 0))
         ctk.CTkButton(pie, text="Subir de nivel →", width=180, height=40, font=fuente(15, True),
@@ -413,11 +470,6 @@ class VistaSubida5e(ctk.CTkFrame):
         self.update_idletasks()
         self.cuerpo._parent_canvas.yview_moveto(desplazamiento)
 
-    def _responder(self, pregunta: str, respuesta: str | None) -> None:
-        # Pulsar otra vez la respuesta elegida la quita.
-        self.q.responder_subida(pregunta, respuesta)
-        self._pintar()
-
     def _cancelar(self) -> None:
         self.q.respuestas_subida.clear()
         self.al_cancelar()
@@ -425,5 +477,6 @@ class VistaSubida5e(ctk.CTkFrame):
     def _subir(self) -> None:
         a = self.q.asistente
         antes = a.instantanea()
+        self.q.conservar_respuestas_subida({p.id for p in self.q.preguntas_de_subida(self.niveles, self.clase)})
         self.q.subir_nivel(self.niveles, self.clase)
         self.al_terminar(a.novedades(antes))

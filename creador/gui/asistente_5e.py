@@ -661,8 +661,9 @@ class VistaAsistente5e(ctk.CTkFrame):
                       command=lambda: subir(True)).pack(side="left", padx=(10, 0))
         ctk.CTkButton(fila, text="Elijo yo", width=100, fg_color="transparent", border_width=1,
                       text_color=("gray10", "gray90"), command=lambda: subir(False)).pack(side="left", padx=10)
-        ayuda = ("Con preguntas: lo que ha vivido tu personaje desde el último hito (Guía del DM) decide mejoras o dotes, "
-                 "subclase, opciones y conjuros nuevos. Elijo yo: sube el nivel y te lleva a lo que hay que decidir.")
+        ayuda = ("Con preguntas: un hito de la aventura (Guía del DM) y una pregunta por cada decisión de esos niveles, con "
+                 "las opciones reales de tu personaje (subclases, mejoras con sus puntuaciones, dotes, opciones de clase, "
+                 "conjuros). Elijo yo: sube el nivel y te lleva a lo que hay que decidir.")
         if not hay_preguntas:
             ayuda += " (Para las preguntas, carga el paquete «Cuestionario de situaciones».)"
         texto_ajustado(caja, ayuda, 760, text_color="gray").pack(anchor="w", padx=12, pady=(0, 10))
