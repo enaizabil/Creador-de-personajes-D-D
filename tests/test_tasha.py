@@ -206,3 +206,17 @@ def test_arquetipos_del_guerrero_de_tasha(entorno):
     assert preguntas["c:subclase:caballero_runico:3/runas"].elegir == 5
     psionico = sistema.calcular(_con_subclase(entorno, "guerrero_psionico", 10).personaje, catalogo)
     assert "psíquico" in psionico.resistencias
+
+
+def test_origenes_del_hechicero_de_tasha(entorno):
+    sistema, catalogo = entorno
+    q = _con_subclase(entorno, "mente_aberrante", 6)
+    ficha = sistema.calcular(q.personaje, catalogo)
+    assert "psíquico" in ficha.resistencias
+    preparados = {n for lista in ficha.lanzadores[0].siempre_preparados.values() for n in lista}
+    assert {catalogo.obtener("conjuros", i)["nombre"] for i in ("astilla_mental", "brazos_de_hadar", "recado")} <= preparados
+    # No cuentan para los conocidos: el hechicero 6 sigue eligiendo sus 7 conjuros y 5 trucos.
+    plan = next(p for p in q.asistente.planes_conjuros() if p.clase_id == "hechicero")
+    conocidos = q.personaje.conjuros["hechicero"]
+    trucos = [i for i in conocidos if catalogo.obtener("conjuros", i)["nivel"] == 0]
+    assert len(trucos) == plan.limite_trucos and len(conocidos) - len(trucos) == plan.limite_conjuros

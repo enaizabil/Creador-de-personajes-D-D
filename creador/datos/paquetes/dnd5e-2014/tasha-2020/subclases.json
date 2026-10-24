@@ -1785,6 +1785,278 @@
           }
         ]
       }
+    },
+    {
+      "id": "alma_mecanica",
+      "nombre": "Alma Mecánica",
+      "clase": "hechicero",
+      "fuente": "Tasha 2020 p. 61-62",
+      "descripcion": "Tu magia viene del orden absoluto de Mechanus, el plano de los engranajes y los modrones: quizá tú o un antepasado os enredasteis en sus maquinaciones. Para ti es parte de un sistema vasto y glorioso.",
+      "perfil": {
+        "arcano": 2,
+        "proteccion": 2,
+        "saber": 1,
+        "curacion": 1
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Magia Mecánica",
+            "resumen": "conjuros de tu origen: de hechicero y sin contar para los conocidos; al subir de nivel puedes cambiar uno por otro del mismo nivel de abjuración o transmutación (listas de brujo, hechicero o mago)",
+            "descripcion": "Al llegar a ciertos niveles de hechicero aprendes los conjuros de tu origen. Son conjuros de hechicero para ti, pero no cuentan para el número de conjuros de hechicero que conoces. Cada vez que subes de nivel de hechicero puedes cambiar uno de ellos por otro del mismo nivel que sea de abjuración o transmutación y esté en la lista del brujo, del hechicero o del mago."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Manifestación del Orden",
+            "resumen": "al lanzar conjuros de hechicero se nota tu vínculo con el orden (engranajes espectrales, manecillas en los ojos, piel cobriza…)",
+            "descripcion": "Eliges o tiras cómo se manifiesta tu conexión con el orden al lanzar conjuros de hechicero: engranajes espectrales a tu espalda, manecillas de reloj girando en tus ojos, piel con brillo cobrizo, ecuaciones y figuras geométricas sobre tu cuerpo, un canalizador que se vuelve un mecanismo diminuto, o un tictac que oyen tú y quienes sufren tu magia."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Restablecer el Equilibrio",
+            "resumen": "reacción: cuando una criatura que ves a 60 pies va a tirar un d20 con ventaja o desventaja, anulas ambas",
+            "descripcion": "Cuando una criatura que puedes ver a 60 pies o menos va a tirar un d20 con ventaja o desventaja, puedes usar tu reacción para que la tirada no se vea afectada por ninguna de las dos. Usos: tu bonificador por competencia por descanso largo.",
+            "usos": "competencia",
+            "recarga": "largo"
+          },
+          {
+            "tipo": "conjuro",
+            "id": "alarma",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "proteccion_contra_el_bien_y_el_mal",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          }
+        ],
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "auxilio",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "restablecimiento_menor",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "disipar_magia",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "proteccion_contra_energia",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Bastión de la Ley",
+            "resumen": "acción: gastas 1-5 puntos de hechicería y das a ti o a otro a 30 pies una custodia de tantos d8; al recibir daño, gasta los dados que quiera y reduce el daño en lo que saquen",
+            "descripcion": "Como acción gastas de 1 a 5 puntos de hechicería para crear una custodia sobre ti o sobre otra criatura que veas a 30 pies o menos, que dura hasta que termines un descanso largo o vuelvas a usar el rasgo. La custodia tiene tantos d8 como puntos gastaste; cuando la criatura protegida recibe daño, puede gastar los dados que quiera, tirarlos y reducir el daño en el total."
+          }
+        ],
+        "7": [
+          {
+            "tipo": "conjuro",
+            "id": "invocar_automata",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "libertad_de_movimiento",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "muro_de_fuerza",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "restablecimiento_mayor",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Trance del Orden",
+            "resumen": "acción adicional, 1 minuto: los ataques contra ti no tienen ventaja y en tus ataques, pruebas y salvaciones un 9 o menos en el d20 cuenta como 10; una vez por descanso largo o 5 puntos de hechicería",
+            "descripcion": "Como acción adicional entras durante 1 minuto en sintonía con los cálculos de Mechanus: las tiradas de ataque contra ti no pueden tener ventaja, y en tus tiradas de ataque, pruebas de característica y salvaciones puedes tratar un 9 o menos en el d20 como un 10. Una vez por descanso largo, o gastando 5 puntos de hechicería.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ],
+        "18": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Cabalgata Mecánica",
+            "resumen": "acción: cubo de 30 pies desde ti: repartes hasta 100 PG de curación, reparas los objetos dañados y terminas los conjuros de nivel 6 o menos que elijas; una vez por descanso largo o 7 puntos de hechicería",
+            "descripcion": "Como acción llamas a espíritus del orden (modrones u otros autómatas) en un cubo de 30 pies que parte de ti. Antes de desaparecer restauran hasta 100 puntos de golpe repartidos como quieras entre criaturas del cubo, reparan por completo los objetos dañados que estén enteros dentro y terminan cada conjuro de nivel 6 o inferior que elijas sobre criaturas y objetos del cubo. Una vez por descanso largo, o gastando 7 puntos de hechicería.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mente_aberrante",
+      "nombre": "Mente Aberrante",
+      "clase": "hechicero",
+      "fuente": "Tasha 2020 p. 62-63",
+      "descripcion": "Una influencia ajena (el Reino Lejano, un aboleth, un renacuajo de azotamentes que no completó su obra…) ha despertado en ti poder psiónico: tocas otras mentes y doblas el mundo con ellas.",
+      "perfil": {
+        "arcano": 2,
+        "astucia": 2,
+        "saber": 1,
+        "carisma": 1
+      },
+      "niveles": {
+        "1": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Conjuros Psiónicos",
+            "resumen": "conjuros de tu origen: de hechicero y sin contar para los conocidos; al subir de nivel puedes cambiar uno por otro del mismo nivel de adivinación o encantamiento (listas de brujo, hechicero o mago)",
+            "descripcion": "Al llegar a ciertos niveles de hechicero aprendes los conjuros de tu origen. Son conjuros de hechicero para ti, pero no cuentan para el número de conjuros de hechicero que conoces. Cada vez que subes de nivel de hechicero puedes cambiar uno de ellos por otro del mismo nivel que sea de adivinación o encantamiento y esté en la lista del brujo, del hechicero o del mago."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Habla Telepática",
+            "resumen": "acción adicional: enlace telepático con una criatura a 30 pies durante {nivel_clase} minutos, a {max(1,mod_car)} millas como máximo (si compartís idioma)",
+            "descripcion": "Como acción adicional eliges una criatura que veas a 30 pies o menos: podéis hablaros telepáticamente mientras estéis a tantas millas como tu modificador por Carisma (mínimo 1), si compartís un idioma. Dura tantos minutos como tu nivel de hechicero, o hasta que quedes incapacitado, mueras o enlaces a otra criatura."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "astilla_mental",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "brazos_de_hadar",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "susurros_discordantes",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          }
+        ],
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "calmar_emociones",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "detectar_pensamientos",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "hambre_de_hadar",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "recado",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          }
+        ],
+        "6": [
+          {
+            "tipo": "resistencia",
+            "dano": "psiquico"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Defensas Psiónicas",
+            "resumen": "resistencia al daño psíquico y ventaja en salvaciones contra hechizado y asustado",
+            "descripcion": "Tienes resistencia al daño psíquico y ventaja en las salvaciones para no quedar hechizado o asustado."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Hechicería Psiónica",
+            "resumen": "tus Conjuros Psiónicos de nivel 1 o más puedes lanzarlos con tantos puntos de hechicería como su nivel, y entonces sin componentes verbales ni somáticos (ni materiales, salvo los que se consumen)",
+            "descripcion": "Cuando lanzas un conjuro de nivel 1 o superior de tus Conjuros Psiónicos, puedes gastar un espacio de conjuro o tantos puntos de hechicería como su nivel. Si usas puntos, no necesita componentes verbales ni somáticos, ni materiales salvo que el conjuro los consuma."
+          }
+        ],
+        "7": [
+          {
+            "tipo": "conjuro",
+            "id": "invocar_aberracion",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "tentaculos_negros",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "enlace_telepatico",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "telequinesis",
+            "clase": "hechicero",
+            "siempre_preparado": true
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Revelación en la Carne",
+            "resumen": "acción adicional: gastas puntos de hechicería y tu cuerpo cambia 10 minutos; por cada punto, un beneficio: ver lo invisible a 60 pies, volar a tu velocidad, nadar al doble y respirar bajo el agua, o pasar por huecos de 1 pulgada",
+            "descripcion": "Como acción adicional gastas 1 o más puntos de hechicería para transformar tu cuerpo durante 10 minutos. Por cada punto eliges un beneficio: ves a las criaturas invisibles a 60 pies o menos que no tengan cobertura completa; ganas velocidad volando igual a la de caminar y puedes levitar; ganas velocidad nadando igual al doble de la de caminar y respiras bajo el agua; o tu cuerpo y tu equipo se vuelven viscosos y flexibles: pasas por espacios de 1 pulgada y escapas de ataduras no mágicas o de un agarre con 5 pies de movimiento."
+          }
+        ],
+        "18": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Implosión Distorsionante",
+            "resumen": "acción: te teletransportas a 120 pies; quien esté a 30 pies del punto que dejas salva FUE CD {8+competencia+mod_car} o sufre 3d10 de fuerza y es arrastrado hacia allí (mitad sin moverse si salva); una vez por descanso largo o 5 puntos de hechicería",
+            "descripcion": "Como acción te teletransportas a un espacio libre que veas a 120 pies o menos. Justo después, cada criatura a 30 pies o menos del espacio que dejaste hace una salvación de Fuerza: si falla, sufre 3d10 de daño de fuerza y es arrastrada hasta quedar lo más cerca posible de ese espacio; si la supera, sufre la mitad y no se mueve. Una vez por descanso largo, o gastando 5 puntos de hechicería.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ]
+      }
     }
   ]
 }
