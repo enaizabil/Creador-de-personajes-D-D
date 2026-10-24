@@ -2629,6 +2629,136 @@
           }
         ]
       }
+    },
+    {
+      "id": "fantasma",
+      "nombre": "Fantasma",
+      "clase": "picaro",
+      "fuente": "Tasha 2020 p. 76-77",
+      "descripcion": "Pícaros que, caminando entre la vida y la muerte, descubren un vínculo con la muerte misma y se empapan de energía negativa. Los gremios los valoran como espías; los nigromantes y los templos de la muerte, como agentes.",
+      "perfil": {
+        "sigilo": 2,
+        "astucia": 1,
+        "arcano": 1,
+        "saber": 1,
+        "agilidad": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Susurros de los Muertos",
+            "resumen": "tras cada descanso corto o largo, ganas una competencia en una habilidad o herramienta que no tengas (sustituye a la anterior de este rasgo)",
+            "descripcion": "Los ecos de los muertos se te pegan. Al terminar un descanso corto o largo puedes elegir una habilidad o una herramienta en la que no seas competente y serlo; la pierdes cuando vuelves a usar este rasgo para elegir otra."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Lamentos de la Tumba",
+            "resumen": "justo tras causar tu Ataque Furtivo en tu turno, otra criatura a 30 pies de la primera sufre {escala} de daño necrótico",
+            "descripcion": "Inmediatamente después de causar el daño de tu Ataque Furtivo a una criatura en tu turno, puedes elegir una segunda criatura que veas a 30 pies o menos de la primera: tiras la mitad de los dados de Ataque Furtivo de tu nivel (redondeando hacia arriba) y sufre ese daño necrótico. Usos: tu bonificador por competencia por descanso largo.",
+            "usos": "competencia",
+            "recarga": "largo",
+            "escala": {
+              "3": "1d6",
+              "5": "2d6",
+              "9": "3d6",
+              "13": "4d6",
+              "17": "5d6"
+            }
+          }
+        ],
+        "9": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Recuerdos de los Difuntos",
+            "resumen": "reacción: cuando muere una criatura que ves a 30 pies, creas una baratija del alma (máximo {competencia}); con una, ventaja en salvaciones de muerte y de CON; puedes romperla para Lamentos de la Tumba sin gastar uso o para hacerle una pregunta a su espíritu",
+            "descripcion": "Cuando una criatura que puedes ver muere a 30 pies o menos, puedes usar tu reacción para que aparezca en tu mano libre una baratija del alma, una astilla de su esencia. Puedes tener tantas como tu bonificador por competencia. Con una encima tienes ventaja en las salvaciones contra la muerte y en las de Constitución. Al causar tu Ataque Furtivo puedes romper una para usar Lamentos de la Tumba sin gastar uso. Y como acción puedes romper una, esté donde esté, para hacerle una pregunta a su espíritu, que responde breve y sin obligación de decir la verdad."
+          }
+        ],
+        "13": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Paso Fantasma",
+            "resumen": "acción adicional, 10 minutos: vuelas 10 pies (levitar), los ataques contra ti tienen desventaja y atraviesas criaturas y objetos como terreno difícil (1d10 de fuerza si acabas dentro); una vez por descanso largo o rompiendo una baratija",
+            "descripcion": "Como acción adicional tomas forma espectral durante 10 minutos (o hasta que la termines con otra acción adicional): tienes una velocidad volando de 10 pies y puedes levitar, las tiradas de ataque contra ti tienen desventaja y te mueves a través de criaturas y objetos como si fueran terreno difícil, aunque sufres 1d10 de daño de fuerza si terminas tu turno dentro de uno. Una vez por descanso largo, o rompiendo una baratija del alma al activarlo.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Amigo de la Muerte",
+            "resumen": "Lamentos de la Tumba daña también a la primera criatura; al terminar un descanso largo sin baratijas, te aparece una",
+            "descripcion": "Cuando usas Lamentos de la Tumba puedes causar el daño necrótico tanto a la primera criatura como a la segunda. Además, si al terminar un descanso largo no tienes ninguna baratija del alma, te aparece una en la mano."
+          }
+        ]
+      }
+    },
+    {
+      "id": "cuchillo_del_alma",
+      "nombre": "Cuchillo del Alma",
+      "clase": "picaro",
+      "fuente": "Tasha 2020 p. 77-79",
+      "descripcion": "Pícaros que atacan y se infiltran con la mente: hojas de energía psíquica y telepatía para trabajar en silencio. Espías codiciados, guardianes élficos del bosque o githzerai en guerra con los githyanki.",
+      "perfil": {
+        "sigilo": 2,
+        "astucia": 2,
+        "arcano": 1,
+        "agilidad": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Poder Psiónico",
+            "resumen": "{2*competencia} dados de energía psiónica ({escala}); recuperas uno como acción adicional (una vez por descanso). Destreza Reforzada por Psiónica (si fallas una prueba con competencia, sumas el dado; solo se gasta si aciertas) y Susurros Psíquicos (acción: telepatía con hasta {competencia} criaturas durante tantas horas como saques; la primera vez tras el descanso largo, gratis)",
+            "descripcion": "Tienes tantos dados de energía psiónica como el doble de tu bonificador por competencia: son d6 y pasan a d8 a nivel 5, d10 a nivel 11 y d12 a nivel 17. Los recuperas tras un descanso largo, y como acción adicional recuperas uno (una vez por descanso corto o largo). Destreza Reforzada por Psiónica: si fallas una prueba con una habilidad o herramienta en la que eres competente, tiras un dado y lo sumas; solo lo gastas si así aciertas. Susurros Psíquicos: como acción eliges hasta tantas criaturas que veas como tu bonificador por competencia y tiras un dado: durante esas horas podéis hablaros por telepatía a 1 milla o menos, aunque no compartáis idioma. La primera vez tras cada descanso largo no gastas el dado.",
+            "usos": "2*competencia",
+            "recarga": "largo",
+            "escala": {
+              "3": "d6",
+              "5": "d8",
+              "11": "d10",
+              "17": "d12"
+            }
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Espadas Psíquicas",
+            "resumen": "al usar la acción de Atacar, una hoja psíquica (cuerpo a cuerpo sencilla, sutil y arrojadiza a 60 pies): 1d6 + el modificador usado de daño psíquico; luego, una segunda como acción adicional (1d4)",
+            "descripcion": "Cuando usas la acción de Atacar puedes crear en tu mano libre una hoja de energía psíquica y atacar con ella: es un arma cuerpo a cuerpo sencilla con las propiedades sutil y arrojadiza (alcance 60 pies, sin alcance largo) que causa 1d6 + el modificador que usaste para el ataque de daño psíquico, y desaparece tras el ataque sin dejar marca. Después puedes hacer un ataque con una segunda hoja como acción adicional, si tienes la otra mano libre; su dado de daño es 1d4."
+          }
+        ],
+        "9": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Hojas del Alma",
+            "resumen": "Impactos Dirigidos (si fallas con una Espada Psíquica, sumas un dado al ataque; solo se gasta si impacta) y Teletransporte Psíquico (acción adicional: gastas y tiras un dado y te teletransportas hasta 10 veces lo que saques en pies)",
+            "descripcion": "Impactos Dirigidos: si fallas una tirada de ataque con tus Espadas Psíquicas, puedes tirar un dado de energía psiónica y sumarlo; si así impactas, gastas el dado. Teletransporte Psíquico: como acción adicional manifiestas una Espada Psíquica, gastas y tiras un dado y la lanzas a un espacio libre que veas a tantos pies como 10 veces el resultado; te teletransportas allí y la hoja desaparece."
+          }
+        ],
+        "13": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Velo Psíquico",
+            "resumen": "acción: te vuelves invisible 1 hora (termina al dañar u obligar a una salvación); una vez por descanso largo o gastando un dado",
+            "descripcion": "Como acción te vuelves invisible, con lo que lleves, durante 1 hora o hasta que lo descartes. Termina justo después de que causes daño a una criatura o la obligues a hacer una salvación. Una vez por descanso largo, o gastando un dado de energía psiónica.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Desgarrar la Mente",
+            "resumen": "al causar Ataque Furtivo con tus Espadas Psíquicas, salvación de SAB CD {8+competencia+mod_des} o aturdido 1 minuto; una vez por descanso largo o gastando tres dados",
+            "descripcion": "Cuando causas daño de Ataque Furtivo con tus Espadas Psíquicas, puedes obligar al objetivo a una salvación de Sabiduría (CD 8 + tu competencia + tu modificador por Destreza): si falla, queda aturdido durante 1 minuto y repite la salvación al final de cada uno de sus turnos. Una vez por descanso largo, o gastando tres dados de energía psiónica.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ]
+      }
     }
   ]
 }

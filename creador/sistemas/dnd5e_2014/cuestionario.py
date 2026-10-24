@@ -696,6 +696,7 @@ class Cuestionario5e:
             if entrada.subclase is None:
                 self._decidir_subclase(entrada.clase)
         self._completar_elecciones()
+        self._corregir_repetidas()
         self._registrar_escuelas(limites)
         self._conjuros(conservar=True)
         self._ajustar_al_libro()
@@ -763,6 +764,20 @@ class Cuestionario5e:
                     grupo = self._grupo(eleccion, pendientes)
                     hechas |= {e.clave for e in grupo}
                     self._decidir(grupo, vuelta)
+
+    def _corregir_repetidas(self) -> None:
+        """Competencias elegidas antes que ahora llegan por otra vía (la subclase nueva da Perspicacia y el monje la
+        eligió a nivel 1): se cambia la repetida por otra, como pide la ficha. De una en una, para que de dos
+        elecciones que repiten lo mismo solo cambie una."""
+        for eleccion in self.asistente.sistema.resolver(self.personaje, self.catalogo).elecciones:
+            efectos = [e for o in eleccion.opciones for e in eleccion.efectos_de(o.id)]
+            if not eleccion.seleccion or not efectos or any(e.get("tipo") != "competencia" for e in efectos):
+                continue
+            conocidas = self.asistente.conocidas(eleccion)
+            quedan = [v for v in eleccion.seleccion if v not in conocidas]
+            if len(quedan) < len(eleccion.seleccion):
+                nuevas = self._elegir(replace(eleccion, seleccion=quedan), self._rng(f"{eleccion.clave}/repetidas"))
+                self.asistente.elegir(eleccion.clave, quedan + nuevas)
 
     @staticmethod
     def _es_mejora(eleccion: EleccionPendiente) -> bool:

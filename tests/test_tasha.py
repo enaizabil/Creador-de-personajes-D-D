@@ -253,3 +253,27 @@ def test_juramentos_del_paladin_de_tasha(entorno):
     assert vigilante.iniciativa == vigilante.caracteristicas["des"].modificador + 3
     gloria = _con_subclase(entorno, "juramento_de_gloria", 7)
     assert sistema.calcular(gloria.personaje, catalogo).velocidades["caminar"] == 40  # Aura de Presteza: 30 + 10
+
+
+def test_arquetipos_del_picaro_de_tasha(entorno):
+    sistema, catalogo = entorno
+    fantasma = {r.nombre: r for r in sistema.calcular(_con_subclase(entorno, "fantasma", 9).personaje, catalogo).rasgos}
+    assert "3d6" in fantasma["Lamentos de la Tumba"].resumen  # mitad de los 5d6 de Ataque Furtivo, hacia arriba
+    cuchillo = {r.nombre: r for r in sistema.calcular(_con_subclase(entorno, "cuchillo_del_alma", 5).personaje,
+                                                      catalogo).rasgos}
+    assert cuchillo["Poder Psiónico"].usos == 6 and "(d8)" in cuchillo["Poder Psiónico"].resumen
+
+
+def test_al_subir_cambia_la_competencia_que_la_subclase_repite(entorno):
+    sistema, catalogo = entorno
+    q = sistema.crear_cuestionario(Personaje(sistema="dnd5e-2014", paquetes=PAQUETES), catalogo)
+    for pregunta in q.preguntas():
+        q.responder(pregunta.id, pregunta.respuestas[0].id)
+    q.generar(nivel=2, raza="humano", subraza="humano_estandar", clase="monje")
+    clave = "clase:monje:inicial/habilidades"
+    if "perspicacia" not in q.personaje.elecciones[clave]:  # el caso: eligió Perspicacia a nivel 1
+        q.personaje.elecciones[clave] = q.personaje.elecciones[clave][:-1] + ["perspicacia"]
+    q.responder_subida("c:subclase_de:monje", ["camino_de_la_misericordia"])
+    q.subir_nivel(1)
+    assert "perspicacia" not in q.personaje.elecciones[clave]
+    assert not [a for a in sistema.calcular(q.personaje, catalogo).avisos if "repetida" in a]

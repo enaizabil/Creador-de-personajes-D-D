@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "tipo": "oficial",
   "licencia": "Uso privado. Contenido protegido por derechos de autor; redactado con palabras propias.",
-  "descripcion": "Guía de Tasha: dotes, conjuros, Linaje personalizado y la regla «Personalizar tu origen». Primera fase; subclases, rasgos opcionales y artífice, más adelante.",
+  "descripcion": "Guía de Tasha: dotes, conjuros, Linaje personalizado, la regla «Personalizar tu origen» y las 26 subclases de las clases del Manual del Jugador. Rasgos de clase opcionales y artífice, más adelante.",
   "depende_de": [
     "phb-2014"
   ],
