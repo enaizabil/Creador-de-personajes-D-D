@@ -209,6 +209,7 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
         monedas=dict(personaje.monedas),
         detalles=dict(personaje.detalles),
         avisos=avisos,
+        entrenamiento=[dict(e) for e in personaje.extra.get("entrenamiento", []) if e.get("pendiente")],
     )
 
 

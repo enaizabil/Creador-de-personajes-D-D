@@ -106,6 +106,8 @@ class Ficha:
     monedas: dict[str, int]
     detalles: dict[str, str]
     avisos: list[str]
+    # Regla de entrenamiento de la Guía del DM: [{nivel, dias, coste_po, pendiente}] aún por hacer.
+    entrenamiento: list[dict] = field(default_factory=list)
 
     def a_dict(self) -> dict:
         return asdict(self)

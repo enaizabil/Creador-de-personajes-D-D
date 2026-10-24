@@ -433,3 +433,19 @@ def test_novedades_de_una_subida(entorno):
     assert novedades[0].startswith("Guerrero 4") and "→ Guerrero 5" in novedades[0]
     assert any(n.startswith("Puntos de golpe máximos:") for n in novedades)
     assert any("Ataque Adicional" in n for n in novedades)
+
+
+def test_entrenamiento_de_la_guia_del_dm_al_subir(entorno):
+    from creador.sistemas.dnd5e_2014.salidas.nota import nota_obsidian
+    from creador.sistemas.dnd5e_2014.texto import resumen_ficha
+    sistema, catalogo = entorno
+    q = nuevo(entorno, reglas_opcionales={"entrenamiento": True})
+    responder_al_azar(q, "entrenar")
+    q.generar(nivel=4, raza="humano", subraza="humano_estandar", clase="guerrero")
+    q.subir_nivel(2)
+    ficha = sistema.calcular(q.personaje, catalogo)
+    assert [(e["nivel"], e["dias"], e["coste_po"]) for e in ficha.entrenamiento] == [(5, 20, 40), (6, 20, 40)]
+    assert "ENTRENAMIENTO PENDIENTE" in resumen_ficha(ficha)
+    assert "Entrenamiento pendiente" in nota_obsidian(q.asistente)
+    q.asistente.entrenamiento_hecho()
+    assert sistema.calcular(q.personaje, catalogo).entrenamiento == []

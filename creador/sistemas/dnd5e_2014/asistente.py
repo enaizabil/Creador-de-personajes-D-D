@@ -40,6 +40,8 @@ METODOS_CARACTERISTICAS = {
 CAMPOS_DETALLES = ("nombre", "jugador", "alineamiento", "rasgos_personalidad", "ideales", "vinculos", "defectos",
                    "edad", "altura", "peso", "ojos", "piel", "pelo", "apariencia", "historia")
 # Guía del DM 2014, tabla «Equipo inicial» (p. 38), campaña estándar: oro extra por nivel inicial.
+# Guía del DM, p. 131, «Entrenarse para subir de nivel»: (desde, hasta, días, coste en po) del nivel alcanzado.
+ENTRENAMIENTO_POR_NIVEL = ((2, 4, 10, 20), (5, 10, 20, 40), (11, 16, 30, 60), (17, 20, 40, 80))
 ORO_EXTRA_POR_NIVEL = ((5, 10, "500 + 1d10x25"), (11, 16, "5000 + 1d10x250"), (17, 20, "20000 + 1d10x250"))
 # Nombres de las líneas de equipo «a elegir» (si el dato no trae su propio «nombre»).
 NOMBRES_FOCO = {"arcano": "Canalizador arcano", "druidico": "Canalizador druídico", "sagrado": "Símbolo sagrado"}
@@ -215,9 +217,23 @@ class Asistente5e:
             esperadas = entrada.nivel - 1 if indice == 0 else entrada.nivel
             entrada.tiradas_pg += [dado // 2 + 1] * max(0, esperadas - len(entrada.tiradas_pg))
             entrada.tiradas_pg += [self.rng.randint(1, dado) for _ in range(niveles)]
+        desde = self.nivel
         entrada.nivel += niveles
         self.extra["nivel_inicial"] = self.nivel
+        if self.personaje.reglas_opcionales.get("entrenamiento", False):
+            # Regla de la Guía del DM: los rasgos del nivel nuevo llegan tras entrenar esos días y pagar el coste.
+            for nivel in range(desde + 1, self.nivel + 1):
+                dias, coste = next((d, c) for a, b, d, c in ENTRENAMIENTO_POR_NIVEL if a <= nivel <= b)
+                self.extra.setdefault("entrenamiento", []).append(
+                    {"nivel": nivel, "dias": dias, "coste_po": coste, "pendiente": True})
         self._limpiar()
+
+    def entrenamiento_pendiente(self) -> list[dict]:
+        return [e for e in self.extra.get("entrenamiento", []) if e.get("pendiente")]
+
+    def entrenamiento_hecho(self) -> None:
+        for entrada in self.extra.get("entrenamiento", []):
+            entrada["pendiente"] = False
 
     def instantanea(self) -> dict:
         """Lo que se compara antes y después de subir de nivel para enseñar las novedades."""

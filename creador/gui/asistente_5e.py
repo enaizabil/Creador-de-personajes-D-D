@@ -199,6 +199,8 @@ class VistaAsistente5e(ctk.CTkFrame):
                          ("opciones_dm", "Opciones de la Guía del DM que requieren su permiso (aasimar, eladrín…)", False)]
         if any(p.id == "dmg-2014" for p in self.a.catalogo.paquetes):
             interruptores.append(("equipo_por_nivel", "Oro extra al empezar por encima de nivel 4 (Guía del DM)", False))
+            interruptores.append(("entrenamiento", "Entrenarse para subir de nivel: días y coste por nivel (Guía del DM)",
+                                  False))
         for regla, texto, defecto in interruptores:
             activa = self.a.multiclase_activa() if regla == "multiclase" else reglas.get(regla, defecto)
             variable = ctk.BooleanVar(value=activa)
@@ -682,6 +684,15 @@ class VistaAsistente5e(ctk.CTkFrame):
             ListaAvisos(master, self.novedades, "Novedades de la subida de nivel", completo=True).pack(fill="x", padx=10,
                                                                                                     pady=(0, 6))
         self._faltan(master, "resumen")
+        pendiente = self.a.entrenamiento_pendiente()
+        if pendiente:
+            caja = ctk.CTkFrame(master)
+            caja.pack(fill="x", padx=10, pady=(0, 8))
+            texto = "; ".join(f"nivel {e['nivel']}: {e['dias']} días y {e['coste_po']} po" for e in pendiente)
+            texto_ajustado(caja, f"Entrenamiento pendiente (Guía del DM, p. 131): {texto}. Los rasgos nuevos llegan al "
+                                 "terminarlo.", 620).pack(side="left", padx=12, pady=10)
+            ctk.CTkButton(caja, text="Hecho", width=90, command=lambda: (self.a.entrenamiento_hecho(), self._redibujar())
+                          ).pack(side="right", padx=12)
         self._subir_nivel(master)
         ficha = self.a.ficha()
         if ficha.avisos:

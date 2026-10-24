@@ -87,6 +87,9 @@ def resumen_ficha(ficha: Ficha) -> str:
         if ficha.monedas:
             lineas.append("Dinero: " + ", ".join(f"{v} {m}" for m, v in ficha.monedas.items() if v))
 
+    if ficha.entrenamiento:
+        lineas += ["", "ENTRENAMIENTO PENDIENTE (Guía del DM)"] + [
+            f"- Nivel {e['nivel']}: {e['dias']} días y {e['coste_po']} po" for e in ficha.entrenamiento]
     if ficha.avisos:
         lineas += ["", "AVISOS"] + [f"- {a}" for a in ficha.avisos]
     return "\n".join(lineas)

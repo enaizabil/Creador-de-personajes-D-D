@@ -242,6 +242,9 @@ def _guia(a: Asistente5e, ficha: Ficha) -> list[str]:
                "> - El abisal aparece como «Demoníaco».",
                "> - Si el trasfondo da «herramientas de artesano» o un instrumento, marca solo el elegido.",
                "> - Los conjuros preparados hay que marcarlos; si no, no salen en la hoja."]
+    if ficha.entrenamiento:
+        lineas += ["", "> [!note] Entrenamiento pendiente (Guía del DM, p. 131)",
+                   *(f"> - Nivel {e['nivel']}: {e['dias']} días y {e['coste_po']} po" for e in ficha.entrenamiento)]
     if ficha.avisos:
         lineas += ["", "> [!question] Revisar antes de jugar", *(f"> - {aviso}" for aviso in ficha.avisos)]
     return lineas
