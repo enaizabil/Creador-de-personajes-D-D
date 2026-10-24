@@ -82,6 +82,15 @@ class Pregunta:
 
 
 @dataclass(frozen=True)
+class Motivo:
+    """Una respuesta y cuánto pesó en una recomendación (puntos de afinidad o pasos en un eje de alineamiento)."""
+    pregunta: str
+    respuesta: str
+    puntos: float
+    detalle: str = ""
+
+
+@dataclass(frozen=True)
 class Recomendacion:
     id: str
     nombre: str
@@ -186,6 +195,63 @@ class Cuestionario5e:
             datos = self.catalogo.obtener("preguntas", pregunta) or {}
             elegidas += [r for r in datos.get("respuestas", []) if r["id"] == respuesta]
         return elegidas
+
+    def _respondidas(self) -> list[tuple[dict, dict]]:
+        """(pregunta, respuesta) de las preguntas de creación respondidas."""
+        pares = []
+        for pregunta, respuesta in self.respuestas.items():
+            datos = self.catalogo.obtener("preguntas", pregunta) or {}
+            pares += [(datos, r) for r in datos.get("respuestas", []) if r["id"] == respuesta]
+        return pares
+
+    def _perfil_de(self, categoria: str, id_: str, subraza: str | None = None) -> tuple[dict, list[str]]:
+        entrada = self.catalogo.obtener(categoria, id_) or {}
+        perfil = dict(entrada.get("perfil", {}))
+        referencias = [f"{categoria}:{id_}"]
+        if subraza:
+            for rasgo, valor in (self.catalogo.obtener("subrazas", subraza) or {}).get("perfil", {}).items():
+                perfil[rasgo] = perfil.get(rasgo, 0) + valor
+            referencias.append(f"subrazas:{subraza}")
+        return perfil, referencias
+
+    def explicar(self, categoria: str, id_: str, subraza: str | None = None) -> list[Motivo]:
+        """Qué respuestas han pesado en la afinidad con una raza, clase o trasfondo, de más a menos.
+
+        Los puntos son lo que bajaría (o subiría, si son negativos) la afinidad si esa pregunta no se hubiera
+        respondido: así se ve qué preguntas han decidido y en qué medida.
+        """
+        perfil_entrada, referencias = self._perfil_de(categoria, id_, subraza)
+        respondidas = self._respondidas()
+
+        def puntuacion(pares) -> float:
+            respuestas = [r for _, r in pares]
+            pesos = self._sumar(respuestas, "pesos")
+            return 100 * afinidad(perfil_entrada, self._sumar(respuestas, "perfil")) + \
+                PUNTOS_POR_PESO * sum(pesos.get(r, 0) for r in referencias)
+
+        total = puntuacion(respondidas)
+        motivos = []
+        for n, (pregunta, respuesta) in enumerate(respondidas):
+            puntos = total - puntuacion(respondidas[:n] + respondidas[n + 1:])
+            if abs(puntos) >= 0.5:
+                rasgos = [f"{r} {v:+d}" for r, v in respuesta.get("perfil", {}).items() if perfil_entrada.get(r)]
+                directos = [f"{v:+d} directo" for r, v in respuesta.get("pesos", {}).items() if r in referencias]
+                motivos.append(Motivo(pregunta["nombre"], respuesta["texto"], round(puntos, 1), ", ".join(rasgos + directos)))
+        return sorted(motivos, key=lambda m: -abs(m.puntos))
+
+    def explicar_alineamiento(self) -> list[Motivo]:
+        """Respuestas que han movido el alineamiento: puntos de orden (+ legal, − caótico) y de moral (+ bueno, − malo)."""
+        motivos = []
+        for pregunta, respuesta in self._respondidas():
+            eje = respuesta.get("eje", {})
+            if eje:
+                partes = [f"{'orden' if k == 'orden' else 'moral'} {v:+d}" for k, v in eje.items()]
+                motivos.append(Motivo(pregunta["nombre"], respuesta["texto"], sum(abs(v) for v in eje.values()),
+                                      ", ".join(partes)))
+        return sorted(motivos, key=lambda m: -m.puntos)
+
+    def totales_alineamiento(self) -> dict[str, int]:
+        return {k: v for k, v in self._sumar([r for _, r in self._respondidas()], "eje").items()}
 
     def _todas_las_elegidas(self) -> list[dict]:
         """Las de la creación y las de todas las subidas de nivel (las ya aplicadas y la que está en curso)."""

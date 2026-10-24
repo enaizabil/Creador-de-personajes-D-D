@@ -510,3 +510,22 @@ def test_respuestas_coherentes_recomiendan_su_clase(entorno, estilo, cantidad):
                         + 3 * r.get("pesos", {}).get(f"clases:{c}", 0))
             q.responder(pregunta.id, mejor["id"])
         assert clase["id"] in [r.id for r in q.recomendar_clases()[:2]], clase["id"]
+
+
+def test_explicar_la_raza_la_clase_y_el_alineamiento(entorno):
+    _, catalogo = entorno
+    q = nuevo(entorno)
+    q.responder("experiencia", "nunca")  # +3 directo al guerrero
+    q.responder("pelea_bar", "unirse")  # combate 3, orden −1
+    q.responder("lapiz", "clavar")  # combate 2, astucia 1; moral −2, orden −1
+    q.responder("templo", "vela")  # fe 3
+    motivos = q.explicar("clases", "guerrero")
+    assert motivos[0].pregunta in ("Antes de empezar", "Pelea en el bar")
+    assert all(m.puntos != 0 for m in motivos)
+    directo = next(m for m in motivos if m.pregunta == "Antes de empezar")
+    assert directo.puntos == pytest.approx(15) and "+3 directo" in directo.detalle
+    fe = next(m for m in q.explicar("clases", "guerrero") if m.pregunta == "El templo")
+    assert fe.puntos < 0  # la fe no le pega a un guerrero: baja la afinidad
+    assert {m.pregunta for m in q.explicar_alineamiento()} == {"Pelea en el bar", "El lápiz"}
+    assert q.totales_alineamiento() == {"orden": -2, "moral": -2}
+    assert q.alineamiento() == "Caótico malvado"

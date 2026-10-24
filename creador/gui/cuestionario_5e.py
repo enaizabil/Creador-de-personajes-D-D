@@ -5,7 +5,8 @@ from collections.abc import Callable
 
 import customtkinter as ctk
 
-from ..sistemas.dnd5e_2014.cuestionario import MINIMO_RESPUESTAS, NIVEL_MINIMO_MULTICLASE, Cuestionario5e, Recomendacion
+from ..sistemas.dnd5e_2014.cuestionario import (MINIMO_RESPUESTAS, NIVEL_MINIMO_MULTICLASE, UMBRAL_ALINEAMIENTO, Cuestionario5e,
+                                                Recomendacion)
 from .asistente_5e import NOMBRES_PERFIL
 from .componentes import fuente, texto_ajustado, titulo
 
@@ -223,6 +224,9 @@ class VistaCuestionario5e(ctk.CTkFrame):
                 ("trasfondo", "Trasfondo", self.q.recomendar_trasfondos()))):
             rejilla.grid_columnconfigure(col, weight=1, uniform="col")
             self._columna_recomendaciones(rejilla, col, clave, nombre, recomendaciones[:CUANTAS_RECOMENDACIONES])
+        self.marco_porque = ctk.CTkFrame(columna)
+        self.marco_porque.pack(fill="x", pady=(14, 0))
+        self._pintar_porque()
         if self.q.acepta_multiclase:
             self.marco_reparto = ctk.CTkFrame(columna)
             self.marco_reparto.pack(fill="x", pady=(14, 0))
@@ -257,6 +261,8 @@ class VistaCuestionario5e(ctk.CTkFrame):
         def elegir(i=None):
             self.eleccion[clave] = recomendaciones[variable.get()]
             descripcion.configure(text=self.eleccion[clave].descripcion)
+            if getattr(self, "marco_porque", None) is not None and self.marco_porque.winfo_exists():
+                self._pintar_porque()
             if clave == "clase" and self.marco_reparto is not None:
                 self.reparto = self.q.proponer_reparto(self.nivel, self.eleccion["clase"].id)
                 self._pintar_reparto()
@@ -272,6 +278,36 @@ class VistaCuestionario5e(ctk.CTkFrame):
             ctk.CTkLabel(fila, text=f"afinidad {recomendacion.afinidad}%", text_color="gray",
                          font=fuente(11)).pack(anchor="e")
         descripcion.pack(anchor="w", padx=12, pady=(6, 12))
+
+    def _pintar_porque(self) -> None:
+        """Por qué esa raza, esa clase y ese alineamiento: las respuestas que más han pesado y cuánto."""
+        for hijo in self.marco_porque.winfo_children():
+            hijo.destroy()
+        titulo(self.marco_porque, "¿Por qué este resultado?", 16).pack(anchor="w", padx=12, pady=(10, 2))
+        texto_ajustado(self.marco_porque, "Puntos: cuánto bajaría la afinidad si no hubieras respondido esa pregunta "
+                                          "(negativos: cuánto la ha bajado).", ANCHO - 40,
+                       text_color="gray").pack(anchor="w", padx=12)
+        raza, clase = self.eleccion.get("raza"), self.eleccion.get("clase")
+        bloques = []
+        if raza is not None:
+            bloques.append((f"Raza: {raza.nombre_completo} ({raza.afinidad}%)", self.q.explicar("razas", raza.id, raza.subraza)))
+        if clase is not None:
+            bloques.append((f"Clase: {clase.nombre} ({clase.afinidad}%)", self.q.explicar("clases", clase.id)))
+        totales = self.q.totales_alineamiento()
+        ejes = f"orden {totales.get('orden', 0):+d}, moral {totales.get('moral', 0):+d}; desde ±{UMBRAL_ALINEAMIENTO} se inclina"
+        bloques.append((f"Alineamiento: {self.q.alineamiento()} ({ejes})", self.q.explicar_alineamiento()))
+        for cabecera, motivos in bloques:
+            ctk.CTkLabel(self.marco_porque, text=cabecera, font=fuente(13, True), anchor="w").pack(anchor="w", padx=12,
+                                                                                                  pady=(8, 0))
+            if not motivos:
+                ctk.CTkLabel(self.marco_porque, text="Ninguna respuesta ha influido.", text_color="gray").pack(anchor="w",
+                                                                                                             padx=24)
+            for motivo in motivos[:5]:
+                puntos = f"{motivo.puntos:+.0f}" if cabecera.startswith(("Raza", "Clase")) else motivo.detalle
+                detalle = f" ({motivo.detalle})" if motivo.detalle and cabecera.startswith(("Raza", "Clase")) else ""
+                texto_ajustado(self.marco_porque, f"• «{motivo.pregunta}»: {motivo.respuesta} → {puntos}{detalle}",
+                               ANCHO - 60).pack(anchor="w", padx=24)
+        ctk.CTkFrame(self.marco_porque, height=8, fg_color="transparent").pack()
 
     def _pintar_reparto(self) -> None:
         """Multiclase: el reparto propuesto, con la segunda clase y sus niveles a elegir."""
