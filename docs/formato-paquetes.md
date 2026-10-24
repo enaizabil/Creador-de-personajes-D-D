@@ -315,3 +315,30 @@ Al cargar, el programa informa de cada error con su ruta exacta, por ejemplo:
 ```
 
 Un error de contenido no impide cargar el resto del paquete.
+
+## Campos añadidos para niveles altos, multiclase y subida de nivel
+
+**Efectos y rasgos**
+
+- `no_acumula` (rasgo): `true` deja solo el mejor de los rasgos con ese nombre (Ataque Adicional, Evasión…), según el primer número de su resumen. En `ca_alternativa`, una clave de texto (p. ej. `"defensa_sin_armadura"`) hace que solo cuente la primera fórmula con esa clave.
+- `usos_compartidos` (rasgo): clave común. Varias clases con el mismo rasgo (Canalizar Divinidad) comparten una reserva y no suman usos.
+- `usos` y `recarga` admiten una tabla por nivel: `{"1": "largo", "5": "corto"}`. Un `null` en `usos` significa ilimitado.
+- `al_libro` (efecto `conjuro`): el conjuro va gratis al libro del mago y se puede preparar (Siervos No Muertos, Cambiaformas).
+- `en_libro` (rasgo): el conjuro elegido debe estar en el libro de esa clase; si no está, se avisa (Maestría sobre Conjuros, Conjuros Característicos).
+- `sin_desventaja_sigilo` (efecto): quita la desventaja en Sigilo de la armadura; `tipo_armadura` opcional (`"media"`).
+- `bonificador_salvacion` (efecto): `valor` (número o expresión) y `caracteristicas` opcional.
+- `cuenta_como_conocido` (efecto `conjuro`, con `clase`): ocupa plaza de conjuro conocido.
+
+**Preguntas** (`preguntas.json`, `preguntas_subida.json`)
+
+- `momento`: `"creacion"` (por defecto) o `"subida"`. Las de subida solo salen al subir de nivel o, al crear por encima de nivel 1, en «Tu historia hasta ahora».
+- `decide`: lista con `mejora`, `subclase`, `opciones` o `conjuros`. Se hace una pregunta distinta por cada decisión que traen los niveles nuevos.
+- En cada respuesta:
+  - `mejora`: `"caracteristicas"` o `"dote"`.
+  - `escuelas`: `{"evocacion": 2}`, con valores de -3 a 3.
+  - `pesos` admite también `dotes:`, `opciones:` y `conjuros:`.
+
+**Recomendaciones**
+
+- Las entradas con `rasgo` (p. ej. `rasgo_combate`) forman la tabla rasgo del perfil → `dotes`, `opciones`, `escuelas` y `conjuros` que encajan con él.
+- Solo se usan cuando hay respuestas de subida: el perfil (con lo vivido en esa subida reforzado) ordena las dotes, las opciones y los conjuros nuevos.

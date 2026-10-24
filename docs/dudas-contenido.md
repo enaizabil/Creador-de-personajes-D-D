@@ -384,3 +384,19 @@ Los ids no cambian aunque cambien los nombres.
 - **Canalizar Divinidad** de clérigo y paladín: se muestran los dos rasgos con sus usos; el reglamento dice que al ganarla otra vez se ganan sus opciones, pero no usos adicionales. Revísalo a mano en la ficha.
 - **Equipo inicial y salvaciones**: solo los de la clase inicial; de las demás, las competencias de multiclase.
 - **Reparto propuesto por el cuestionario**: heurística propia (no es una regla): desde nivel 4, la clase más afín y la siguiente compatible (no más de tres características clave entre las dos) con un tercio de los niveles (1-5), sin dejar a la principal por debajo de su subclase.
+
+## Resuelto después (octubre de 2026)
+
+- **Rasgos solo hasta nivel 5:** todas las clases y subclases llegan a nivel 20.
+- **Furia y Forma Salvaje a nivel 20:** `usos` admite tabla por nivel, con `null` = ilimitado.
+- **Inspiración Bárdica:** `recarga` por nivel (largo y, desde nivel 5, corto).
+- **Pericia sin competencia:** el asistente bloquea esas opciones («sin competencia»).
+- **Competencia, idioma o dote repetidos:** los selectores marcan «ya la tienes» y el cuestionario no los elige. Adepto Elemental sí se puede repetir.
+- **Conjuros de nivel 4 y 5 de los patrones del brujo:** existen y se dan como efectos.
+- **Canalizar Divinidad en multiclase:** reserva compartida (`usos_compartidos`); no se suman usos.
+- **Defensa sin Armadura en multiclase:** solo cuenta la de la primera clase que la dio.
+- **Maestría sobre Conjuros y Conjuros Característicos:** se avisa si el conjuro no está en el libro. El cuestionario los mete en el libro sin desplazar los recomendados.
+- **Siervos No Muertos y Cambiaformas:** añaden su conjuro gratis al libro (`al_libro`).
+- **Equipo inicial por encima de nivel 1 (Guía del DM, p. 38):** regla opcional «Oro extra».
+- **Entrenarse para subir de nivel (Guía del DM, p. 131):** regla opcional con días y coste por nivel.
+- **Multiclase:** regla apagada de serie; nunca a nivel 1.

@@ -96,7 +96,11 @@ class VistaCuestionario5e(ctk.CTkFrame):
 
     def pantalla_pregunta(self, indice: int) -> None:
         if indice >= len(self.preguntas):
-            self.pantalla_resultado()
+            # A nivel alto, antes del resultado: lo vivido hasta ahora decide mejoras, dotes, opciones y conjuros.
+            if self.nivel > 1 and self.q.preguntas_subida():
+                self.pantalla_historia()
+            else:
+                self.pantalla_resultado()
             return
         self.indice = indice
         pregunta = self.preguntas[indice]
@@ -124,6 +128,31 @@ class VistaCuestionario5e(ctk.CTkFrame):
                           command=self.pantalla_resultado).pack(side="right")
         else:
             ctk.CTkLabel(pie, text=f"{respondidas} respondidas", text_color="gray").pack(side="right")
+
+    def pantalla_historia(self) -> None:
+        """Preguntas de subida al crear por encima de nivel 1: la historia del personaje hasta hoy."""
+        desplazamiento = self.cuerpo._parent_canvas.yview()[0]
+        columna = self._limpiar()
+        titulo(columna, f"Tu historia hasta el nivel {self.nivel}", 26).pack(anchor="w")
+        texto_ajustado(columna, "Tu personaje ya ha vivido aventuras. Cuéntanos cómo le han cambiado y con eso decidimos "
+                                "sus mejoras, dotes, opciones de clase y conjuros. Puedes dejar preguntas sin responder.",
+                       ANCHO, font=fuente(15)).pack(anchor="w", pady=(10, 18))
+        for pregunta in self.q.preguntas_subida({"mejora", "subclase", "opciones", "conjuros"}):
+            ctk.CTkLabel(columna, text=pregunta.titulo, text_color="gray", anchor="w").pack(anchor="w", pady=(10, 0))
+            texto_ajustado(columna, pregunta.texto, ANCHO, font=fuente(19, True)).pack(anchor="w", pady=(2, 10))
+            actual = self.q.respuestas_subida.get(pregunta.id)
+            for respuesta in pregunta.respuestas:
+                TarjetaRespuesta(columna, respuesta.texto, respuesta.id == actual,
+                                 lambda p=pregunta.id, r=respuesta.id, act=actual: (
+                                     self.q.responder_subida(p, None if r == act else r), self.pantalla_historia())
+                                 ).pack(fill="x", pady=4)
+        pie = ctk.CTkFrame(columna, fg_color="transparent")
+        pie.pack(fill="x", pady=(24, 0))
+        ctk.CTkButton(pie, text="← Anterior", width=120,
+                      command=lambda: self.pantalla_pregunta(len(self.preguntas) - 1)).pack(side="left")
+        ctk.CTkButton(pie, text="Ver mi personaje →", width=180, command=self.pantalla_resultado).pack(side="right")
+        self.update_idletasks()
+        self.cuerpo._parent_canvas.yview_moveto(desplazamiento)
 
     def _responder(self, pregunta: str, respuesta: str) -> None:
         self.q.responder(pregunta, respuesta)

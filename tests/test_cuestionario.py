@@ -449,3 +449,14 @@ def test_entrenamiento_de_la_guia_del_dm_al_subir(entorno):
     assert "Entrenamiento pendiente" in nota_obsidian(q.asistente)
     q.asistente.entrenamiento_hecho()
     assert sistema.calcular(q.personaje, catalogo).entrenamiento == []
+
+
+def test_historia_al_crear_a_nivel_alto(entorno):
+    q = nuevo(entorno)
+    responder_al_azar(q, "historia")
+    q.responder_subida("subida_entrenamiento", "maestro")
+    q.responder_subida("subida_objetivo", "primera_linea")
+    q.generar(nivel=8, raza="humano", subraza="humano_estandar", clase="guerrero")
+    assert q.personaje.elecciones["clase:guerrero:4/mejora"] == ["dote"]
+    assert q.subidas_anteriores[-1]["desde"] == 1 and q.subidas_anteriores[-1]["hasta"] == 8
+    assert q.respuestas_subida == {}

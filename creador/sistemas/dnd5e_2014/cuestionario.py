@@ -443,6 +443,10 @@ class Cuestionario5e:
         self._ajustar_al_libro()
         self._detalles()
         self.personaje.extra.setdefault("cuestionario", {})["generado"] = True
+        # Al crear por encima de nivel 1, las preguntas de «tu historia hasta ahora» cuentan como una subida.
+        if self.respuestas_subida:
+            self.subidas_anteriores.append({"desde": 1, "hasta": a.nivel, "respuestas": dict(self.respuestas_subida)})
+            self.respuestas_subida.clear()
 
     def subir_nivel(self, niveles: int = 1, clase: str | None = None) -> None:
         """Sube al personaje conservando lo elegido; solo se decide lo nuevo: subclase, mejoras, opciones de clase y
