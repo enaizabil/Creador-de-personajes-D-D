@@ -28,7 +28,7 @@ def test_la_edicion_libre_no_lleva_contenido_privado(tmp_path):
 def test_la_edicion_completa_lleva_todo(tmp_path):
     datos = cargar_compilar().preparar_datos("completa", tmp_path / "completa")
     paquetes = {p.name for p in (datos / "paquetes" / "dnd5e-2014").iterdir()}
-    assert {"srd-5.1", "phb-2014", "dmg-2014", "cuestionario-basico"} == paquetes
+    assert {"srd-5.1", "phb-2014", "dmg-2014", "tasha-2020", "cuestionario-basico"} == paquetes
     assert (datos / "plantillas" / "dnd5e-2014" / "hoja_editable_es.pdf").is_file()
 
 

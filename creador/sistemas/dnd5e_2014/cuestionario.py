@@ -570,7 +570,11 @@ class Cuestionario5e:
         conocidas = self.asistente.conocidas(eleccion)
         if set(ids) <= set(CARACTERISTICAS):
             # Resiliente: no en una salvación que ya tiene (si las tiene todas, como el monje 14, da igual).
-            return self._mejoras(eleccion, n, evitar=conocidas if len(conocidas) < len(ids) else set())
+            evitar = set(conocidas) if len(conocidas) < len(ids) else set()
+            if "/origen_" in eleccion.clave:  # Personalizar tu origen: cada mejora de raza a una característica distinta
+                evitar |= {v for clave, valores in self.personaje.elecciones.items()
+                           if "/origen_" in clave and clave != eleccion.clave for v in valores}
+            return self._mejoras(eleccion, n, evitar=evitar)
         libres = [i for i in ids if i not in conocidas and (eleccion.repetible or i not in eleccion.seleccion)]
         sin_competencia = self.asistente.sin_competencia(eleccion)  # pericia: solo donde ya hay competencia
         libres = [i for i in libres if i not in sin_competencia]

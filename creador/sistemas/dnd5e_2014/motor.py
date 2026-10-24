@@ -51,7 +51,10 @@ def _fuentes(personaje: Personaje, catalogo: Catalogo, errores: list[str]) -> It
         if entrada is None:
             errores.append(f"No existe {campo} «{id_}» en los paquetes activos")
             continue
-        yield entrada.get("efectos", []), f"{campo}:{id_}", entrada["nombre"]
+        personalizado = personaje.reglas_opcionales.get("origen_personalizado", False)
+        efectos = entrada.get("efectos", [])
+        yield _origen_personalizado(efectos) if personalizado and campo == "raza" else efectos, f"{campo}:{id_}", \
+            entrada["nombre"]
         if campo == "raza" and personaje.subraza:
             subraza = catalogo.obtener("subrazas", personaje.subraza)
             if subraza is None:
@@ -59,7 +62,9 @@ def _fuentes(personaje: Personaje, catalogo: Catalogo, errores: list[str]) -> It
             elif subraza["raza"] != id_:
                 errores.append(f"La subraza «{subraza['nombre']}» no pertenece a {entrada['nombre']}")
             else:
-                yield subraza.get("efectos", []), f"subraza:{subraza['id']}", subraza["nombre"]
+                efectos = subraza.get("efectos", [])
+                yield _origen_personalizado(efectos) if personalizado else efectos, f"subraza:{subraza['id']}", \
+                    subraza["nombre"]
 
     if personaje.subraza and not personaje.raza:
         errores.append("Hay subraza elegida pero no raza")
@@ -162,6 +167,8 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
     _avisos_requisitos(personaje, catalogo, aplicables, puntuaciones, competencias,
                        bool(lanzadores or conjuros_innatos), avisos)
     _avisos_repeticiones(aplicables, catalogo, avisos)
+    if personaje.reglas_opcionales.get("origen_personalizado", False):
+        _avisos_origen_personalizado(personaje, avisos)
     _avisos_reglas_opcionales(personaje, catalogo, avisos)
     _avisos_niveles_sin_datos(personaje, catalogo, avisos)
     raza = catalogo.obtener("razas", personaje.raza) if personaje.raza else None
@@ -328,6 +335,28 @@ def _por_nivel(valor, nivel: int):
         if umbral <= nivel:
             resultado = dato
     return resultado
+
+
+def _origen_personalizado(efectos: list) -> list:
+    """Tasha, «Personalizar tu origen»: cada mejora fija de característica de la raza pasa a elegirse."""
+    nuevos = []
+    for n, efecto in enumerate(efectos):
+        fija = isinstance(efecto, dict) and efecto.get("tipo") == "caracteristica" and not str(efecto.get("car", "$"))\
+            .startswith("$")
+        if fija:
+            nombre = f"Mejora de raza +{efecto['valor']} (Personalizar tu origen; antes {efecto['car'].upper()})"
+            nuevos.append({"tipo": "eleccion", "id": f"origen_{n}", "nombre": nombre, "opciones": {"desde": "caracteristicas"},
+                           "aplicar": [{**efecto, "car": "$opcion"}]})
+        else:
+            nuevos.append(efecto)
+    return nuevos
+
+
+def _avisos_origen_personalizado(personaje: Personaje, avisos: list[str]) -> None:
+    """Las mejoras de raza movidas no pueden ir dos a la misma característica."""
+    elegidas = [v for clave, valores in personaje.elecciones.items() if "/origen_" in clave for v in valores]
+    for car in sorted({c for c in elegidas if elegidas.count(c) > 1}):
+        avisos.append(f"Personalizar tu origen: dos mejoras de raza en {car.upper()}; deben ir a características distintas")
 
 
 def _avisos_repeticiones(aplicables: list[EfectoAplicado], catalogo: Catalogo, avisos: list[str]) -> None:

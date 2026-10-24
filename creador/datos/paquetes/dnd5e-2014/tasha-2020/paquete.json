@@ -1,0 +1,19 @@
+{
+  "id": "tasha-2020",
+  "nombre": "Caldero de Tasha para todo (2020)",
+  "sistema": "dnd5e-2014",
+  "version": "0.1.0",
+  "tipo": "oficial",
+  "licencia": "Uso privado. Contenido protegido por derechos de autor; redactado con palabras propias.",
+  "descripcion": "Guía de Tasha: dotes, conjuros, Linaje personalizado y la regla «Personalizar tu origen». Primera fase; subclases, rasgos opcionales y artífice, más adelante.",
+  "depende_de": [
+    "phb-2014"
+  ],
+  "archivos": [
+    "razas.json",
+    "dotes.json",
+    "conjuros.json",
+    "preguntas.json",
+    "recomendaciones.json"
+  ]
+}

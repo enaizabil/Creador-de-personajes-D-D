@@ -1,0 +1,41 @@
+{
+  "preguntas": [
+    {
+      "id": "t_familia",
+      "nombre": "Igualito que el abuelo",
+      "estilo": "cotidiana",
+      "detalle": 2,
+      "texto": "En una comida familiar alguien suelta: «Eres igualito que tu abuelo».",
+      "sustituye": "lluvia",
+      "requiere": ["razas:linaje_personalizado"],
+      "respuestas": [
+        {"id": "orgullo", "texto": "Me encanta: llevo con orgullo de dónde vengo.",
+         "perfil": {"fe": 1, "aguante": 1}, "pesos": {"razas:linaje_personalizado": -2}},
+        {"id": "nadie", "texto": "No me parezco a nadie de mi familia; me he hecho yo solo.",
+         "perfil": {"agilidad": 2, "astucia": 1}, "pesos": {"razas:linaje_personalizado": 3}},
+        {"id": "historias", "texto": "Aprovecho para contar las historias de magia del abuelo.",
+         "perfil": {"carisma": 2, "arcano": 1}},
+        {"id": "jardin", "texto": "Me escapo al jardín antes de que empiecen las comparaciones.",
+         "perfil": {"sigilo": 2, "naturaleza": 1}, "pesos": {"razas:linaje_personalizado": 1}}
+      ]
+    },
+    {
+      "id": "t_espejo",
+      "nombre": "El espejo de otro destino",
+      "estilo": "fantasia",
+      "detalle": 2,
+      "texto": "Un espejo mágico te enseña quién habrías sido si hubieras nacido en otra parte.",
+      "sustituye": "f_trol",
+      "requiere": ["razas:linaje_personalizado"],
+      "respuestas": [
+        {"id": "romper", "texto": "Lo rompo: soy quien he decidido ser.",
+         "perfil": {"combate": 2, "aguante": 1}, "pesos": {"razas:linaje_personalizado": 2}},
+        {"id": "estudiar", "texto": "Me quedo horas estudiando a ese otro yo.", "perfil": {"saber": 2, "astucia": 1}},
+        {"id": "charlar", "texto": "Charlo con mi reflejo; nos caemos bien.",
+         "perfil": {"carisma": 2}, "pesos": {"razas:linaje_personalizado": 1}},
+        {"id": "viajar", "texto": "Busco ese lugar en el mapa y me pongo en camino.",
+         "perfil": {"naturaleza": 2, "aguante": 1}}
+      ]
+    }
+  ]
+}

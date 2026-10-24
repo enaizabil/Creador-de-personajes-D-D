@@ -5,7 +5,7 @@
     python herramientas/compilar.py --edicion libre    # solo una
 
 Ediciones:
-- **completa**: SRD 5.1, Manual del Jugador, Guía del DM, cuestionario y hoja oficial editable. Lleva contenido
+- **completa**: SRD 5.1, Manual del Jugador, Guía del DM, Tasha, cuestionario y hoja oficial editable. Lleva contenido
   con derechos de autor: solo para tu grupo de juego, no se comparte.
 - **libre**: SRD 5.1 y cuestionario (sin hoja oficial). Se puede pasar a quien quieras.
 
@@ -33,7 +33,7 @@ from creador import __version__  # noqa: E402
 
 NOMBRE = "CreadorPersonajes"
 PAQUETES = {
-    "completa": ["srd-5.1", "phb-2014", "dmg-2014", "cuestionario-basico"],
+    "completa": ["srd-5.1", "phb-2014", "dmg-2014", "tasha-2020", "cuestionario-basico"],
     "libre": ["srd-5.1", "cuestionario-basico"],
 }
 PLANTILLAS = {"completa": True, "libre": False}
@@ -68,9 +68,10 @@ Línea de órdenes (desde una terminal en esta carpeta)
 {licencia}
 """
 LICENCIAS = {
-    "completa": "EDICIÓN COMPLETA - USO PERSONAL\nIncluye contenido del Manual del Jugador y de la Guía del Dungeon Master "
-                "(redactado con palabras propias) y la hoja de personaje oficial editable, todos con derechos de autor de "
-                "Wizards of the Coast. Úsala solo en tu grupo de juego: no la compartas ni la publiques.",
+    "completa": "EDICIÓN COMPLETA - USO PERSONAL\nIncluye contenido del Manual del Jugador, la Guía del Dungeon Master y la "
+                "Guía de Tasha (redactado con palabras propias) y la hoja de personaje oficial editable, todos con "
+                "derechos de autor de Wizards of the Coast. Úsala solo en tu grupo de juego: no la compartas ni la "
+                "publiques.",
     "libre": "EDICIÓN LIBRE\nIncluye el SRD 5.1 en español (Wizards of the Coast, licencia CC BY 4.0) y contenido propio del "
              "programa. Se puede compartir. Para el Manual del Jugador, cada mesa puede añadir sus propios paquetes.",
 }

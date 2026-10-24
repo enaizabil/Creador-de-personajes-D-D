@@ -1,0 +1,115 @@
+{
+  "razas": [
+    {
+      "id": "linaje_personalizado",
+      "nombre": "Linaje personalizado",
+      "fuente": "Tasha 2020 p. 7-8",
+      "tamano": "mediano",
+      "velocidad": 30,
+      "descripcion": "En lugar de una raza del juego, un origen a tu medida: humanoide Pequeño o Mediano (el programa lo trata como Mediano), +2 a una característica, una dote, visión en la oscuridad o una habilidad, y Común más otro idioma.",
+      "perfil": {
+        "carisma": 1,
+        "astucia": 1,
+        "saber": 1,
+        "combate": 1
+      },
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "caracteristica",
+          "nombre": "Mejora de Característica (+2)",
+          "opciones": {
+            "desde": "caracteristicas"
+          },
+          "aplicar": [
+            {
+              "tipo": "caracteristica",
+              "car": "$opcion",
+              "valor": 2
+            }
+          ]
+        },
+        {
+          "tipo": "eleccion",
+          "id": "dote",
+          "nombre": "Dote",
+          "opciones": {
+            "desde": "dotes"
+          },
+          "aplicar": [
+            {
+              "tipo": "dote",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "eleccion",
+          "id": "variante",
+          "nombre": "Rasgo variante",
+          "opciones": [
+            {
+              "id": "vision",
+              "nombre": "Visión en la oscuridad (60 pies)",
+              "efectos": [
+                {
+                  "tipo": "sentido",
+                  "id": "vision_en_la_oscuridad",
+                  "nombre": "Visión en la Oscuridad",
+                  "alcance": 60
+                }
+              ]
+            },
+            {
+              "id": "habilidad",
+              "nombre": "Competencia en una habilidad",
+              "efectos": [
+                {
+                  "tipo": "eleccion",
+                  "id": "habilidad",
+                  "nombre": "Habilidad",
+                  "opciones": {
+                    "desde": "habilidades"
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "competencia",
+                      "categoria": "habilidad",
+                      "id": "$opcion"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "idioma",
+          "id": "comun"
+        },
+        {
+          "tipo": "eleccion",
+          "id": "idioma",
+          "nombre": "Idioma adicional",
+          "opciones": {
+            "desde": "idiomas",
+            "filtro": {
+              "tipo": [
+                "estandar",
+                "exotico"
+              ]
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "idioma",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,404 @@
+{
+  "conjuros": [
+    {
+      "id": "astilla_mental",
+      "nombre": "Astilla mental",
+      "nivel": 0,
+      "escuela": "encantamiento",
+      "listas": [
+        "hechicero",
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "60 pies",
+      "componentes": "V",
+      "duracion": "1 asalto",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Salvación de INT o 1d6 de daño psíquico y resta 1d4 a su siguiente salvación antes del final de tu siguiente turno. El daño sube a 2d6, 3d6 y 4d6 a niveles 5, 11 y 17.",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "atraccion_del_relampago",
+      "nombre": "Atracción del relámpago",
+      "nivel": 0,
+      "escuela": "evocacion",
+      "listas": [
+        "artifice",
+        "hechicero",
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Lanzador (radio de 15 pies)",
+      "componentes": "V",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Un látigo de relámpago atrae a una criatura que veas a 15 pies: salvación de FUE o es arrastrada hasta 10 pies hacia ti y, si acaba a 5 pies, recibe 1d8 de daño de relámpago (2d8, 3d8 y 4d8 a niveles 5, 11 y 17).",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "estallido_de_espadas",
+      "nombre": "Estallido de espadas",
+      "nivel": 0,
+      "escuela": "conjuracion",
+      "listas": [
+        "artifice",
+        "hechicero",
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Lanzador (radio de 5 pies)",
+      "componentes": "V",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Un círculo de espadas espectrales: cada otra criatura a 5 pies hace una salvación de DES o recibe 1d6 de daño de fuerza (2d6, 3d6 y 4d6 a niveles 5, 11 y 17).",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "filo_atronador",
+      "nombre": "Filo atronador",
+      "nivel": 0,
+      "escuela": "evocacion",
+      "listas": [
+        "artifice",
+        "hechicero",
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Lanzador (radio de 5 pies)",
+      "componentes": "S, M (un arma cuerpo a cuerpo de al menos 1 pp)",
+      "duracion": "1 asalto",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Ataque cuerpo a cuerpo con el arma; si impactas, además del golpe normal, si el objetivo se mueve voluntariamente 5 pies o más antes de tu siguiente turno recibe 1d8 de daño de trueno. A nivel 5 el impacto añade 1d8 de trueno y el movimiento 2d8; ambos suben 1d8 a niveles 11 y 17.",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "filo_de_llamas_verdes",
+      "nombre": "Filo de llamas verdes",
+      "nivel": 0,
+      "escuela": "evocacion",
+      "listas": [
+        "artifice",
+        "hechicero",
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Lanzador (radio de 5 pies)",
+      "componentes": "S, M (un arma cuerpo a cuerpo de al menos 1 pp)",
+      "duracion": "Instantáneo",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Ataque cuerpo a cuerpo con el arma; si impactas, el fuego salta a otra criatura a 5 pies del objetivo y le causa tu modificador de lanzamiento en daño de fuego. A nivel 5, +1d8 de fuego al objetivo y 1d8 + modificador al segundo; ambos suben 1d8 a niveles 11 y 17.",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "brebaje_caustico_de_tasha",
+      "nombre": "Brebaje cáustico de Tasha",
+      "nivel": 1,
+      "escuela": "evocacion",
+      "listas": [
+        "artifice",
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "Lanzador (línea de 30 pies)",
+      "componentes": "V, S, M (un poco de comida podrida)",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Línea de ácido de 30 × 5 pies: salvación de DES o queda cubierta y recibe 2d4 de daño de ácido al inicio de cada turno hasta que alguien gaste una acción en limpiarla. +2d4 por cada nivel de espacio por encima de 1.",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "invocar_bestia",
+      "nombre": "Invocar bestia",
+      "nivel": 2,
+      "escuela": "conjuracion",
+      "listas": [
+        "druida",
+        "explorador"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "90 pies",
+      "componentes": "V, S, M (una pluma, un mechón de pelo y una cola de pez en una bellota dorada de al menos 200 po)",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Aparece un espíritu bestial en un espacio libre a la vista; elige Aire, Tierra o Agua. Usa el perfil del libro (CA, PG y daño crecen con el nivel del conjuro), es tu aliado, actúa justo después de ti y obedece tus órdenes; si no le das ninguna, esquiva. Desaparece a 0 PG o al acabar el conjuro.",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "latigo_mental_de_tasha",
+      "nombre": "Látigo mental de Tasha",
+      "nivel": 2,
+      "escuela": "encantamiento",
+      "listas": [
+        "hechicero",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "90 pies",
+      "componentes": "V",
+      "duracion": "1 asalto",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Salvación de INT: si falla, 3d6 de daño psíquico, sin reacciones hasta el final de su siguiente turno y en ese turno solo puede usar su movimiento, su acción o su acción adicional; si la supera, la mitad del daño. Una criatura más por cada nivel de espacio por encima de 2 (todas a 30 pies entre sí).",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "fortaleza_intelectual",
+      "nombre": "Fortaleza intelectual",
+      "nivel": 3,
+      "escuela": "abjuracion",
+      "listas": [
+        "artifice",
+        "bardo",
+        "hechicero",
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "30 pies",
+      "componentes": "V",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Tú o una criatura voluntaria tenéis resistencia al daño psíquico y ventaja en las salvaciones de INT, SAB y CAR. Una criatura más por cada nivel de espacio por encima de 3 (todas a 30 pies entre sí).",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "invocar_engendro_sombrio",
+      "nombre": "Invocar engendro sombrío",
+      "nivel": 3,
+      "escuela": "conjuracion",
+      "listas": [
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "90 pies",
+      "componentes": "V, S, M (lágrimas en una gema de al menos 300 po)",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Aparece un espíritu sombrío en un espacio libre a la vista; elige Furia, Desesperación o Miedo. Usa el perfil del libro (CA, PG y daño crecen con el nivel del conjuro), es tu aliado, actúa justo después de ti y obedece tus órdenes; si no le das ninguna, esquiva. Desaparece a 0 PG o al acabar el conjuro.",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "invocar_feerico",
+      "nombre": "Invocar feérico",
+      "nivel": 3,
+      "escuela": "conjuracion",
+      "listas": [
+        "druida",
+        "explorador",
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "90 pies",
+      "componentes": "V, S, M (una flor dorada de al menos 300 po)",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Aparece un espíritu feérico en un espacio libre a la vista; elige Furioso, Alborozado o Engañoso. Usa el perfil del libro (CA, PG y daño crecen con el nivel del conjuro), es tu aliado, actúa justo después de ti y obedece tus órdenes; si no le das ninguna, esquiva. Desaparece a 0 PG o al acabar el conjuro.",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "invocar_muerto_viviente",
+      "nombre": "Invocar muerto viviente",
+      "nivel": 3,
+      "escuela": "nigromancia",
+      "listas": [
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "90 pies",
+      "componentes": "V, S, M (una calavera dorada de al menos 300 po)",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Aparece un espíritu muerto viviente en un espacio libre a la vista; elige Fantasmal, Pútrido o Esquelético. Usa el perfil del libro (CA, PG y daño crecen con el nivel del conjuro), es tu aliado, actúa justo después de ti y obedece tus órdenes; si no le das ninguna, esquiva. Desaparece a 0 PG o al acabar el conjuro.",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "sudario_espiritual",
+      "nombre": "Sudario espiritual",
+      "nivel": 3,
+      "escuela": "nigromancia",
+      "listas": [
+        "clerigo",
+        "paladin",
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "Lanzador",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Espíritus a tu alrededor: tus ataques que impactan a criaturas a 10 pies o menos causan 1d8 más de daño radiante, necrótico o de frío (eliges al lanzarlo) y la víctima no recupera PG hasta tu siguiente turno; las criaturas que elijas que empiecen su turno a 10 pies pierden 10 pies de velocidad. +1d8 por cada dos niveles de espacio por encima de 3.",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "invocar_aberracion",
+      "nombre": "Invocar aberración",
+      "nivel": 4,
+      "escuela": "conjuracion",
+      "listas": [
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "90 pies",
+      "componentes": "V, S, M (un tentáculo encurtido y un ojo en un vial con incrustaciones de platino de al menos 400 po)",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Aparece un espíritu aberrante en un espacio libre a la vista; elige Contemplador, Slaad o Engendro estelar. Usa el perfil del libro (CA, PG y daño crecen con el nivel del conjuro), es tu aliado, actúa justo después de ti y obedece tus órdenes; si no le das ninguna, esquiva. Desaparece a 0 PG o al acabar el conjuro.",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "invocar_automata",
+      "nombre": "Invocar autómata",
+      "nivel": 4,
+      "escuela": "conjuracion",
+      "listas": [
+        "artifice",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "90 pies",
+      "componentes": "V, S, M (un cofre ornamentado de piedra y metal de al menos 400 po)",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Aparece un espíritu autómata en un espacio libre a la vista; elige Arcilla, Metal o Piedra. Usa el perfil del libro (CA, PG y daño crecen con el nivel del conjuro), es tu aliado, actúa justo después de ti y obedece tus órdenes; si no le das ninguna, esquiva. Desaparece a 0 PG o al acabar el conjuro.",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "invocar_elemental",
+      "nombre": "Invocar elemental",
+      "nivel": 4,
+      "escuela": "conjuracion",
+      "listas": [
+        "druida",
+        "explorador",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "90 pies",
+      "componentes": "V, S, M (aire, un guijarro, ceniza y agua en un vial con incrustaciones de oro de al menos 400 po)",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Aparece un espíritu elemental en un espacio libre a la vista; elige Aire, Tierra, Fuego o Agua. Usa el perfil del libro (CA, PG y daño crecen con el nivel del conjuro), es tu aliado, actúa justo después de ti y obedece tus órdenes; si no le das ninguna, esquiva. Desaparece a 0 PG o al acabar el conjuro.",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "invocar_celestial",
+      "nombre": "Invocar celestial",
+      "nivel": 5,
+      "escuela": "conjuracion",
+      "listas": [
+        "clerigo",
+        "paladin"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "90 pies",
+      "componentes": "V, S, M (un relicario de oro de al menos 500 po)",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Aparece un espíritu celestial en un espacio libre a la vista; elige Vengador o Defensor. Usa el perfil del libro (CA, PG y daño crecen con el nivel del conjuro), es tu aliado, actúa justo después de ti y obedece tus órdenes; si no le das ninguna, esquiva. Desaparece a 0 PG o al acabar el conjuro.",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "invocar_infernal",
+      "nombre": "Invocar infernal",
+      "nivel": 6,
+      "escuela": "conjuracion",
+      "listas": [
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 acción",
+      "alcance": "90 pies",
+      "componentes": "V, S, M (sangre humanoide en un vial de rubí de al menos 600 po)",
+      "duracion": "Concentración, hasta 1 hora",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Aparece un espíritu infernal en un espacio libre a la vista; elige Demonio, Diablo o Yugoloth. Usa el perfil del libro (CA, PG y daño crecen con el nivel del conjuro), es tu aliado, actúa justo después de ti y obedece tus órdenes; si no le das ninguna, esquiva. Desaparece a 0 PG o al acabar el conjuro.",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "apariencia_sobrenatural_de_tasha",
+      "nombre": "Apariencia sobrenatural de Tasha",
+      "nivel": 6,
+      "escuela": "transmutacion",
+      "listas": [
+        "hechicero",
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "Lanzador",
+      "componentes": "V, S, M (un objeto grabado con un símbolo de los Planos Exteriores de al menos 500 po)",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Te transformas con magia de los Planos Inferiores (inmunidad a fuego, veneno y envenenado) o Superiores (radiante, necrótico y hechizado): alas con vuelo 40 pies, +2 a la CA, ataques con arma mágicos y con tu característica de lanzamiento, y dos ataques por acción de Atacar (salvo que ya tengas Ataque Adicional).",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "sueno_del_velo_azul",
+      "nombre": "Sueño del velo azul",
+      "nivel": 7,
+      "escuela": "conjuracion",
+      "listas": [
+        "bardo",
+        "hechicero",
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "10 minutos",
+      "alcance": "20 pies",
+      "componentes": "V, S, M (un objeto mágico o una criatura voluntaria del mundo de destino)",
+      "duracion": "6 horas",
+      "ritual": false,
+      "concentracion": false,
+      "resumen": "Tú y hasta ocho criaturas voluntarias caéis inconscientes con visiones de otro mundo del Plano Material; si dura las 6 horas, despertáis allí, en un lugar seguro a 1 milla de donde se creó el objeto (o de donde nació la criatura). Si alguien recibe daño, el conjuro termina para él; si eres tú, para todos.",
+      "fuente": "Tasha 2020 p. 105-114"
+    },
+    {
+      "id": "hoja_del_desastre",
+      "nombre": "Hoja del desastre",
+      "nivel": 9,
+      "escuela": "conjuracion",
+      "listas": [
+        "hechicero",
+        "brujo",
+        "mago"
+      ],
+      "tiempo": "1 acción adicional",
+      "alcance": "60 pies",
+      "componentes": "V, S",
+      "duracion": "Concentración, hasta 1 minuto",
+      "ritual": false,
+      "concentracion": true,
+      "resumen": "Una grieta planar con forma de espada: al lanzarla y como acción adicional (tras moverla hasta 30 pies) hace dos ataques cuerpo a cuerpo de conjuro de 4d12 de daño de fuerza; crítico con 18-20 (12d12 en total). Atraviesa cualquier barrera, incluido un muro de fuerza.",
+      "fuente": "Tasha 2020 p. 105-114"
+    }
+  ]
+}

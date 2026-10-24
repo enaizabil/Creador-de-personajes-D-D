@@ -1,0 +1,140 @@
+{
+  "recomendaciones": [
+    {
+      "id": "rasgo_combate_tasha",
+      "nombre": "Perfil: combate (Tasha)",
+      "rasgo": "combate",
+      "dotes": [
+        "aplastador",
+        "cortador",
+        "iniciado_en_combate"
+      ],
+      "conjuros": [
+        "filo_atronador",
+        "filo_de_llamas_verdes",
+        "sudario_espiritual"
+      ]
+    },
+    {
+      "id": "rasgo_agilidad_tasha",
+      "nombre": "Perfil: agilidad (Tasha)",
+      "rasgo": "agilidad",
+      "dotes": [
+        "perforador",
+        "pistolero"
+      ]
+    },
+    {
+      "id": "rasgo_aguante_tasha",
+      "nombre": "Perfil: aguante (Tasha)",
+      "rasgo": "aguante",
+      "dotes": [
+        "chef"
+      ]
+    },
+    {
+      "id": "rasgo_proteccion_tasha",
+      "nombre": "Perfil: protección (Tasha)",
+      "rasgo": "proteccion",
+      "dotes": [
+        "iniciado_en_combate",
+        "chef"
+      ],
+      "conjuros": [
+        "fortaleza_intelectual"
+      ]
+    },
+    {
+      "id": "rasgo_sigilo_tasha",
+      "nombre": "Perfil: sigilo (Tasha)",
+      "rasgo": "sigilo",
+      "dotes": [
+        "tocado_por_las_sombras"
+      ]
+    },
+    {
+      "id": "rasgo_astucia_tasha",
+      "nombre": "Perfil: astucia (Tasha)",
+      "rasgo": "astucia",
+      "dotes": [
+        "envenenador",
+        "experto_en_habilidades",
+        "tocado_por_las_sombras"
+      ],
+      "conjuros": [
+        "astilla_mental"
+      ]
+    },
+    {
+      "id": "rasgo_carisma_tasha",
+      "nombre": "Perfil: carisma (Tasha)",
+      "rasgo": "carisma",
+      "dotes": [
+        "telepata",
+        "tocado_por_las_hadas"
+      ],
+      "conjuros": [
+        "latigo_mental_de_tasha"
+      ]
+    },
+    {
+      "id": "rasgo_saber_tasha",
+      "nombre": "Perfil: saber (Tasha)",
+      "rasgo": "saber",
+      "dotes": [
+        "experto_en_habilidades",
+        "telepata",
+        "iniciado_artifice"
+      ],
+      "conjuros": [
+        "fortaleza_intelectual"
+      ]
+    },
+    {
+      "id": "rasgo_naturaleza_tasha",
+      "nombre": "Perfil: naturaleza (Tasha)",
+      "rasgo": "naturaleza",
+      "dotes": [
+        "chef"
+      ],
+      "conjuros": [
+        "invocar_bestia",
+        "invocar_feerico"
+      ]
+    },
+    {
+      "id": "rasgo_fe_tasha",
+      "nombre": "Perfil: fe (Tasha)",
+      "rasgo": "fe",
+      "dotes": [
+        "tocado_por_las_hadas"
+      ],
+      "conjuros": [
+        "invocar_celestial",
+        "sudario_espiritual"
+      ]
+    },
+    {
+      "id": "rasgo_arcano_tasha",
+      "nombre": "Perfil: arcano (Tasha)",
+      "rasgo": "arcano",
+      "dotes": [
+        "tocado_por_las_hadas",
+        "adepto_metamagico",
+        "adepto_sobrenatural"
+      ],
+      "conjuros": [
+        "astilla_mental",
+        "latigo_mental_de_tasha"
+      ]
+    },
+    {
+      "id": "rasgo_curacion_tasha",
+      "nombre": "Perfil: curación (Tasha)",
+      "rasgo": "curacion",
+      "dotes": [
+        "chef"
+      ]
+    }
+  ]
+}

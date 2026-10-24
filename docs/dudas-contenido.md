@@ -400,3 +400,19 @@ Los ids no cambian aunque cambien los nombres.
 - **Equipo inicial por encima de nivel 1 (Guía del DM, p. 38):** regla opcional «Oro extra».
 - **Entrenarse para subir de nivel (Guía del DM, p. 131):** regla opcional con días y coste por nivel.
 - **Multiclase:** regla apagada de serie; nunca a nivel 1.
+
+## Guía de Tasha (paquete `tasha-2020`), fase 1
+
+Escrito desde la traducción de Alvaro1555 que aportó el usuario, con palabras propias.
+
+- **Nombres de las 15 dotes**: en el texto se perdieron los títulos (solo queda la descripción). Los nombres son míos, a partir del inglés y de lo que hace cada una: Adepto Metamágico, Adepto Sobrenatural, Iniciado Artífice, Chef, Cortador (Slasher), Envenenador, Experto en Habilidades, Perforador (Piercer), Pistolero (Gunner), Iniciado en Combate, Telequinético, Telépata, Tocado por las Sombras, Tocado por las Hadas y Aplastador (Crusher). Los ids no cambian si se corrigen.
+- **Erratas de la traducción corregidas según el original** (revisar con el libro oficial):
+  - Brebaje cáustico de Tasha: a niveles superiores, el daño aumenta 2d4 por nivel; la traducción dice «la sanación aumenta en 1d8».
+  - Látigo mental de Tasha: una criatura más por cada nivel por encima de 2; la traducción dice «por encima de 1».
+  - Fortaleza intelectual: una criatura más por cada nivel por encima de 3; la traducción dice «nivel 3 o más… por encima de 4».
+  - Invocar autómata: el componente es un cofre ornamentado de piedra y metal de 400 po; la traducción repite el relicario de oro de 500 po de Invocar celestial.
+- **Perfiles de criatura de los conjuros de invocar**: no se modelan (el resumen remite al libro).
+- **Pistolero**: la competencia con armas de fuego va en el texto; no hay armas de fuego en el catálogo.
+- **Linaje personalizado**: el programa lo trata como Mediano (el libro deja elegir Pequeño o Mediano).
+- **Personalizar tu origen**: solo se modela el cambio de las mejoras de característica de la raza (regla opcional). El cambio de idiomas y de competencias de la raza aún no.
+- **Iniciado Artífice**: hasta que exista el artífice (fase 4), su lista de conjuros solo tiene los conjuros de Tasha que la incluyen.

@@ -197,6 +197,9 @@ class VistaAsistente5e(ctk.CTkFrame):
         interruptores = [("dotes", "Dotes (regla opcional del Manual del Jugador)", True),
                          ("multiclase", "Multiclase (regla opcional del Manual del Jugador)", False),
                          ("opciones_dm", "Opciones de la Guía del DM que requieren su permiso (aasimar, eladrín…)", False)]
+        if any(p.id == "tasha-2020" for p in self.a.catalogo.paquetes):
+            interruptores.append(("origen_personalizado", "Personalizar tu origen: mover las mejoras de raza a otras "
+                                                          "características (Tasha)", False))
         if any(p.id == "dmg-2014" for p in self.a.catalogo.paquetes):
             interruptores.append(("equipo_por_nivel", "Oro extra al empezar por encima de nivel 4 (Guía del DM)", False))
             interruptores.append(("entrenamiento", "Entrenarse para subir de nivel: días y coste por nivel (Guía del DM)",

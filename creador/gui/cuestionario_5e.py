@@ -124,6 +124,12 @@ class VistaCuestionario5e(ctk.CTkFrame):
         variable = ctk.BooleanVar(value=conf["sensible"])
         ctk.CTkSwitch(columna, text="Incluir preguntas de contenido sensible o bizarro (muerte, crueldad, situaciones absurdas)",
                       variable=variable, command=lambda: cambiar(sensible=variable.get())).pack(anchor="w", pady=(2, 0))
+        if any(p.id == "tasha-2020" for p in self.q.catalogo.paquetes):
+            reglas = self.q.personaje.reglas_opcionales
+            origen = ctk.BooleanVar(value=reglas.get("origen_personalizado", False))
+            ctk.CTkSwitch(columna, variable=origen,
+                          text="Personalizar tu origen (Tasha): las mejoras de raza van donde más le sirven a tu clase",
+                          command=lambda: reglas.__setitem__("origen_personalizado", origen.get())).pack(anchor="w", pady=(6, 0))
 
     def pantalla_pregunta(self, indice: int) -> None:
         if indice >= len(self.preguntas):

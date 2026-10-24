@@ -1,0 +1,763 @@
+{
+  "dotes": [
+    {
+      "id": "adepto_metamagico",
+      "nombre": "Adepto Metamágico",
+      "prerrequisito": {
+        "lanzador": true
+      },
+      "resumen": "2 opciones de Metamagia y 2 puntos de hechicería solo para Metamagia (se recuperan con descanso largo)",
+      "descripcion": "Aprendes dos opciones de Metamagia del hechicero (solo una por conjuro, salvo que diga lo contrario) y ganas 2 puntos de hechicería que solo sirven para Metamagia; se suman a los que tengas y se recuperan con un descanso largo. Al ganar una Mejora de Característica puedes cambiar una de las opciones.",
+      "usos": 2,
+      "recarga": "largo",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "metamagia",
+          "nombre": "Metamagia",
+          "elegir": 2,
+          "opciones": {
+            "desde": "opciones",
+            "filtro": {
+              "grupo": "metamagia"
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "opcion",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "fuente": "Tasha 2020 p. 79-83"
+    },
+    {
+      "id": "adepto_sobrenatural",
+      "nombre": "Adepto Sobrenatural",
+      "prerrequisito": {
+        "lanzador": true
+      },
+      "resumen": "1 invocación sobrenatural del brujo (si tiene requisitos, solo si eres un brujo que los cumple)",
+      "descripcion": "Aprendes una Invocación Sobrenatural del brujo. Si la invocación tiene algún requisito, solo puedes elegirla si eres un brujo que lo cumple. Cada vez que subes de nivel puedes cambiarla por otra.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "invocacion",
+          "nombre": "Invocación sobrenatural",
+          "opciones": {
+            "desde": "opciones",
+            "filtro": {
+              "grupo": "invocacion"
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "opcion",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "fuente": "Tasha 2020 p. 79-83"
+    },
+    {
+      "id": "iniciado_artifice",
+      "nombre": "Iniciado Artífice",
+      "resumen": "1 truco y 1 conjuro de nivel 1 de artífice (con INT; el de nivel 1, una vez gratis por descanso largo) y unas herramientas de artesano como canalizador",
+      "descripcion": "Aprendes un truco y un conjuro de nivel 1 de la lista del artífice; los lanzas con Inteligencia. Puedes lanzar el de nivel 1 una vez sin gastar espacio (se recupera con un descanso largo) o con tus espacios. Ganas competencia con un tipo de herramientas de artesano y puedes usarlas como canalizador de los conjuros que lanzas con Inteligencia.",
+      "usos": 1,
+      "recarga": "largo",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "truco",
+          "nombre": "Truco de artífice",
+          "opciones": {
+            "desde": "conjuros",
+            "filtro": {
+              "listas": "artifice",
+              "nivel": 0
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "conjuro",
+              "id": "$opcion",
+              "caracteristica": "int"
+            }
+          ]
+        },
+        {
+          "tipo": "eleccion",
+          "id": "conjuro",
+          "nombre": "Conjuro de artífice de nivel 1",
+          "opciones": {
+            "desde": "conjuros",
+            "filtro": {
+              "listas": "artifice",
+              "nivel": 1
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "conjuro",
+              "id": "$opcion",
+              "caracteristica": "int"
+            }
+          ]
+        },
+        {
+          "tipo": "eleccion",
+          "id": "herramientas",
+          "nombre": "Herramientas de artesano",
+          "opciones": {
+            "desde": "herramientas",
+            "filtro": {
+              "subcategoria": "artesano"
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "herramienta",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "fuente": "Tasha 2020 p. 79-83"
+    },
+    {
+      "id": "chef",
+      "nombre": "Chef",
+      "resumen": "útiles de cocinero; comida en un descanso corto (+1d8 PG al gastar Dados de Golpe, para 4 + competencia criaturas) y {competencia} golosinas al día (acción adicional: {competencia} PG temporales)",
+      "descripcion": "+1 a Constitución o Sabiduría y competencia con útiles de cocinero. En un descanso corto, con ingredientes y útiles, cocinas para 4 + tu bonificador por competencia criaturas: quien coma y gaste Dados de Golpe recupera 1d8 PG más. Con una hora de trabajo o al acabar un descanso largo preparas tantas golosinas como tu bonificador por competencia (duran 8 horas); comer una es una acción adicional y da PG temporales iguales a tu bonificador por competencia.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "caracteristica",
+          "nombre": "Característica (+1)",
+          "fuente": "caracteristicas",
+          "opciones": [
+            "con",
+            "sab"
+          ],
+          "aplicar": [
+            {
+              "tipo": "caracteristica",
+              "car": "$opcion",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "utiles_de_cocinero"
+        }
+      ],
+      "fuente": "Tasha 2020 p. 79-83"
+    },
+    {
+      "id": "cortador",
+      "nombre": "Cortador",
+      "resumen": "una vez por turno, al impactar con daño cortante: −10 pies de velocidad al objetivo; con un crítico cortante, desventaja en sus ataques hasta tu siguiente turno",
+      "descripcion": "+1 a Fuerza o Destreza. Una vez en cada uno de tus turnos, cuando impactas a una criatura con un ataque que causa daño cortante, reduces su velocidad en 10 pies hasta el comienzo de tu siguiente turno. Cuando haces un crítico con daño cortante, el objetivo tiene desventaja en sus tiradas de ataque hasta el comienzo de tu siguiente turno.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "caracteristica",
+          "nombre": "Característica (+1)",
+          "fuente": "caracteristicas",
+          "opciones": [
+            "fue",
+            "des"
+          ],
+          "aplicar": [
+            {
+              "tipo": "caracteristica",
+              "car": "$opcion",
+              "valor": 1
+            }
+          ]
+        }
+      ],
+      "fuente": "Tasha 2020 p. 79-83"
+    },
+    {
+      "id": "envenenador",
+      "nombre": "Envenenador",
+      "resumen": "ignoras la resistencia al veneno; aplicas veneno como acción adicional; útiles de envenenador y {competencia} dosis de veneno potente (CD 14 CON: 2d8 de veneno y envenenado) por 50 po y 1 hora",
+      "descripcion": "Tus tiradas de daño de veneno ignoran la resistencia al veneno. Aplicar veneno a un arma o munición es una acción adicional. Ganas competencia con útiles de envenenador; con una hora de trabajo y 50 po de materiales creas tantas dosis de veneno potente como tu bonificador por competencia. Aplicado, dura 1 minuto o hasta que impactas: el objetivo hace una salvación de Constitución CD 14 o recibe 2d8 de daño de veneno y queda envenenado hasta el final de tu siguiente turno.",
+      "efectos": [
+        {
+          "tipo": "competencia",
+          "categoria": "herramienta",
+          "id": "utiles_de_envenenador"
+        }
+      ],
+      "fuente": "Tasha 2020 p. 79-83"
+    },
+    {
+      "id": "experto_en_habilidades",
+      "nombre": "Experto en Habilidades",
+      "resumen": "+1 a una característica, una habilidad nueva y pericia en una habilidad con competencia",
+      "descripcion": "+1 a una característica a tu elección, competencia en una habilidad y pericia en una habilidad en la que ya seas competente y que no tenga ya pericia por otra vía.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "caracteristica",
+          "nombre": "Característica (+1)",
+          "opciones": {
+            "desde": "caracteristicas"
+          },
+          "aplicar": [
+            {
+              "tipo": "caracteristica",
+              "car": "$opcion",
+              "valor": 1
+            }
+          ]
+        },
+        {
+          "tipo": "eleccion",
+          "id": "habilidad",
+          "nombre": "Habilidad",
+          "opciones": {
+            "desde": "habilidades"
+          },
+          "aplicar": [
+            {
+              "tipo": "competencia",
+              "categoria": "habilidad",
+              "id": "$opcion"
+            }
+          ]
+        },
+        {
+          "tipo": "eleccion",
+          "id": "pericia",
+          "nombre": "Pericia (habilidad con competencia)",
+          "opciones": {
+            "desde": "habilidades"
+          },
+          "aplicar": [
+            {
+              "tipo": "pericia",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "fuente": "Tasha 2020 p. 79-83"
+    },
+    {
+      "id": "perforador",
+      "nombre": "Perforador",
+      "resumen": "una vez por turno, al impactar con daño perforante, repites un dado de daño; con un crítico perforante, un dado de daño más",
+      "descripcion": "+1 a Fuerza o Destreza. Una vez en cada uno de tus turnos, cuando impactas con un ataque que causa daño perforante, puedes repetir uno de sus dados de daño y quedarte con el nuevo resultado. Cuando haces un crítico con daño perforante, tiras un dado de daño adicional.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "caracteristica",
+          "nombre": "Característica (+1)",
+          "fuente": "caracteristicas",
+          "opciones": [
+            "fue",
+            "des"
+          ],
+          "aplicar": [
+            {
+              "tipo": "caracteristica",
+              "car": "$opcion",
+              "valor": 1
+            }
+          ]
+        }
+      ],
+      "fuente": "Tasha 2020 p. 79-83"
+    },
+    {
+      "id": "pistolero",
+      "nombre": "Pistolero",
+      "resumen": "competencia con armas de fuego (Guía del DM); ignoras su propiedad de recarga; sin desventaja a distancia con enemigos a 5 pies",
+      "descripcion": "+1 a Destreza. Ganas competencia con armas de fuego (ver «Armas de fuego» en la Guía del DM), ignoras su propiedad de recarga y estar a 5 pies de una criatura hostil no te impone desventaja en los ataques a distancia.",
+      "efectos": [
+        {
+          "tipo": "caracteristica",
+          "car": "des",
+          "valor": 1
+        }
+      ],
+      "fuente": "Tasha 2020 p. 79-83"
+    },
+    {
+      "id": "iniciado_en_combate",
+      "nombre": "Iniciado en Combate",
+      "prerrequisito": {
+        "competencia": "armas_marciales"
+      },
+      "resumen": "un estilo de combate del guerrero que no tengas",
+      "descripcion": "Aprendes un Estilo de Combate del guerrero distinto de los que ya tengas. Al ganar una Mejora de Característica puedes cambiarlo por otro que no tengas.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "estilo",
+          "nombre": "Estilo de combate",
+          "opciones": {
+            "desde": "opciones",
+            "filtro": {
+              "grupo": "estilo_combate"
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "opcion",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "fuente": "Tasha 2020 p. 79-83"
+    },
+    {
+      "id": "telequinetico",
+      "nombre": "Telequinético",
+      "resumen": "mano de mago sin componentes e invisible (+30 pies si ya la conocías); acción adicional: empujas 5 pies a una criatura a 30 pies (salvación de FUE)",
+      "descripcion": "+1 a Inteligencia, Sabiduría o Carisma. Aprendes mano de mago, que puedes lanzar sin componentes verbales ni somáticos y con la mano invisible; si ya la conocías, su alcance aumenta en 30 pies. Como acción adicional puedes empujar telequinéticamente a una criatura que veas a 30 pies o menos: salvación de Fuerza (CD 8 + competencia + el modificador de la característica aumentada) o se mueve 5 pies hacia ti o alejándose. La característica aumentada es la de lanzamiento.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "caracteristica",
+          "nombre": "Característica (+1, y la de lanzamiento de sus conjuros)",
+          "opciones": [
+            {
+              "id": "int",
+              "nombre": "Inteligencia",
+              "efectos": [
+                {
+                  "tipo": "caracteristica",
+                  "car": "int",
+                  "valor": 1
+                },
+                {
+                  "tipo": "conjuro",
+                  "id": "mano_de_mago",
+                  "caracteristica": "int"
+                },
+                {
+                  "tipo": "rasgo",
+                  "nombre": "Empujón Telequinético",
+                  "resumen": "acción adicional: salvación de FUE CD {8+competencia+mod_int} o la criatura se mueve 5 pies hacia ti o lejos de ti",
+                  "descripcion": "Como acción adicional, empujas telequinéticamente a una criatura que veas a 30 pies o menos. Puede fallar la salvación a propósito."
+                }
+              ]
+            },
+            {
+              "id": "sab",
+              "nombre": "Sabiduría",
+              "efectos": [
+                {
+                  "tipo": "caracteristica",
+                  "car": "sab",
+                  "valor": 1
+                },
+                {
+                  "tipo": "conjuro",
+                  "id": "mano_de_mago",
+                  "caracteristica": "sab"
+                },
+                {
+                  "tipo": "rasgo",
+                  "nombre": "Empujón Telequinético",
+                  "resumen": "acción adicional: salvación de FUE CD {8+competencia+mod_sab} o la criatura se mueve 5 pies hacia ti o lejos de ti",
+                  "descripcion": "Como acción adicional, empujas telequinéticamente a una criatura que veas a 30 pies o menos. Puede fallar la salvación a propósito."
+                }
+              ]
+            },
+            {
+              "id": "car",
+              "nombre": "Carisma",
+              "efectos": [
+                {
+                  "tipo": "caracteristica",
+                  "car": "car",
+                  "valor": 1
+                },
+                {
+                  "tipo": "conjuro",
+                  "id": "mano_de_mago",
+                  "caracteristica": "car"
+                },
+                {
+                  "tipo": "rasgo",
+                  "nombre": "Empujón Telequinético",
+                  "resumen": "acción adicional: salvación de FUE CD {8+competencia+mod_car} o la criatura se mueve 5 pies hacia ti o lejos de ti",
+                  "descripcion": "Como acción adicional, empujas telequinéticamente a una criatura que veas a 30 pies o menos. Puede fallar la salvación a propósito."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "fuente": "Tasha 2020 p. 79-83"
+    },
+    {
+      "id": "telepata",
+      "nombre": "Telépata",
+      "resumen": "telepatía con criaturas que veas a 60 pies (en un idioma que conozcan); detectar pensamientos 1 vez por descanso largo sin espacio",
+      "descripcion": "+1 a Inteligencia, Sabiduría o Carisma. Hablas telepáticamente con cualquier criatura que veas a 60 pies o menos, en un idioma que conozcas (solo te entiende si lo conoce, y no puede responderte así). Puedes lanzar detectar pensamientos sin espacio ni componentes una vez por descanso largo, o con tus espacios de nivel 2 o más. La característica aumentada es la de lanzamiento.",
+      "usos": 1,
+      "recarga": "largo",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "caracteristica",
+          "nombre": "Característica (+1, y la de lanzamiento de sus conjuros)",
+          "opciones": [
+            {
+              "id": "int",
+              "nombre": "Inteligencia",
+              "efectos": [
+                {
+                  "tipo": "caracteristica",
+                  "car": "int",
+                  "valor": 1
+                },
+                {
+                  "tipo": "conjuro",
+                  "id": "detectar_pensamientos",
+                  "caracteristica": "int"
+                }
+              ]
+            },
+            {
+              "id": "sab",
+              "nombre": "Sabiduría",
+              "efectos": [
+                {
+                  "tipo": "caracteristica",
+                  "car": "sab",
+                  "valor": 1
+                },
+                {
+                  "tipo": "conjuro",
+                  "id": "detectar_pensamientos",
+                  "caracteristica": "sab"
+                }
+              ]
+            },
+            {
+              "id": "car",
+              "nombre": "Carisma",
+              "efectos": [
+                {
+                  "tipo": "caracteristica",
+                  "car": "car",
+                  "valor": 1
+                },
+                {
+                  "tipo": "conjuro",
+                  "id": "detectar_pensamientos",
+                  "caracteristica": "car"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "fuente": "Tasha 2020 p. 79-83"
+    },
+    {
+      "id": "tocado_por_las_sombras",
+      "nombre": "Tocado por las Sombras",
+      "resumen": "invisibilidad y un conjuro de nivel 1 de ilusionismo o nigromancia, cada uno 1 vez gratis por descanso largo",
+      "descripcion": "+1 a Inteligencia, Sabiduría o Carisma. La magia del Páramo Sombrío te ha cambiado: aprendes invisibilidad y un conjuro de nivel 1 de ilusionismo o nigromancia. Lanzas cada uno una vez sin espacio (se recupera con un descanso largo) o con tus espacios. La característica aumentada es la de lanzamiento.",
+      "usos": 1,
+      "recarga": "largo",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "caracteristica",
+          "nombre": "Característica (+1, y la de lanzamiento de sus conjuros)",
+          "opciones": [
+            {
+              "id": "int",
+              "nombre": "Inteligencia",
+              "efectos": [
+                {
+                  "tipo": "caracteristica",
+                  "car": "int",
+                  "valor": 1
+                },
+                {
+                  "tipo": "conjuro",
+                  "id": "invisibilidad",
+                  "caracteristica": "int"
+                },
+                {
+                  "tipo": "eleccion",
+                  "id": "conjuro",
+                  "nombre": "Conjuro de nivel 1 (ilusionismo o nigromancia)",
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "nivel": 1,
+                      "escuela": [
+                        "ilusion",
+                        "nigromancia"
+                      ]
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "int"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "sab",
+              "nombre": "Sabiduría",
+              "efectos": [
+                {
+                  "tipo": "caracteristica",
+                  "car": "sab",
+                  "valor": 1
+                },
+                {
+                  "tipo": "conjuro",
+                  "id": "invisibilidad",
+                  "caracteristica": "sab"
+                },
+                {
+                  "tipo": "eleccion",
+                  "id": "conjuro",
+                  "nombre": "Conjuro de nivel 1 (ilusionismo o nigromancia)",
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "nivel": 1,
+                      "escuela": [
+                        "ilusion",
+                        "nigromancia"
+                      ]
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "sab"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "car",
+              "nombre": "Carisma",
+              "efectos": [
+                {
+                  "tipo": "caracteristica",
+                  "car": "car",
+                  "valor": 1
+                },
+                {
+                  "tipo": "conjuro",
+                  "id": "invisibilidad",
+                  "caracteristica": "car"
+                },
+                {
+                  "tipo": "eleccion",
+                  "id": "conjuro",
+                  "nombre": "Conjuro de nivel 1 (ilusionismo o nigromancia)",
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "nivel": 1,
+                      "escuela": [
+                        "ilusion",
+                        "nigromancia"
+                      ]
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "car"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "fuente": "Tasha 2020 p. 79-83"
+    },
+    {
+      "id": "tocado_por_las_hadas",
+      "nombre": "Tocado por las Hadas",
+      "resumen": "paso brumoso y un conjuro de nivel 1 de adivinación o encantamiento, cada uno 1 vez gratis por descanso largo",
+      "descripcion": "+1 a Inteligencia, Sabiduría o Carisma. La magia del Feywild te ha cambiado: aprendes paso brumoso y un conjuro de nivel 1 de adivinación o encantamiento. Lanzas cada uno una vez sin espacio (se recupera con un descanso largo) o con tus espacios. La característica aumentada es la de lanzamiento.",
+      "usos": 1,
+      "recarga": "largo",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "caracteristica",
+          "nombre": "Característica (+1, y la de lanzamiento de sus conjuros)",
+          "opciones": [
+            {
+              "id": "int",
+              "nombre": "Inteligencia",
+              "efectos": [
+                {
+                  "tipo": "caracteristica",
+                  "car": "int",
+                  "valor": 1
+                },
+                {
+                  "tipo": "conjuro",
+                  "id": "paso_brumoso",
+                  "caracteristica": "int"
+                },
+                {
+                  "tipo": "eleccion",
+                  "id": "conjuro",
+                  "nombre": "Conjuro de nivel 1 (adivinación o encantamiento)",
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "nivel": 1,
+                      "escuela": [
+                        "adivinacion",
+                        "encantamiento"
+                      ]
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "int"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "sab",
+              "nombre": "Sabiduría",
+              "efectos": [
+                {
+                  "tipo": "caracteristica",
+                  "car": "sab",
+                  "valor": 1
+                },
+                {
+                  "tipo": "conjuro",
+                  "id": "paso_brumoso",
+                  "caracteristica": "sab"
+                },
+                {
+                  "tipo": "eleccion",
+                  "id": "conjuro",
+                  "nombre": "Conjuro de nivel 1 (adivinación o encantamiento)",
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "nivel": 1,
+                      "escuela": [
+                        "adivinacion",
+                        "encantamiento"
+                      ]
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "sab"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "car",
+              "nombre": "Carisma",
+              "efectos": [
+                {
+                  "tipo": "caracteristica",
+                  "car": "car",
+                  "valor": 1
+                },
+                {
+                  "tipo": "conjuro",
+                  "id": "paso_brumoso",
+                  "caracteristica": "car"
+                },
+                {
+                  "tipo": "eleccion",
+                  "id": "conjuro",
+                  "nombre": "Conjuro de nivel 1 (adivinación o encantamiento)",
+                  "opciones": {
+                    "desde": "conjuros",
+                    "filtro": {
+                      "nivel": 1,
+                      "escuela": [
+                        "adivinacion",
+                        "encantamiento"
+                      ]
+                    }
+                  },
+                  "aplicar": [
+                    {
+                      "tipo": "conjuro",
+                      "id": "$opcion",
+                      "caracteristica": "car"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "fuente": "Tasha 2020 p. 79-83"
+    },
+    {
+      "id": "aplastador",
+      "nombre": "Aplastador",
+      "resumen": "una vez por turno, al impactar con daño contundente, mueves 5 pies al objetivo; con un crítico contundente, ventaja en los ataques contra él hasta tu siguiente turno",
+      "descripcion": "+1 a Fuerza o Constitución. Una vez en cada uno de tus turnos, cuando impactas con un ataque que causa daño contundente, puedes mover al objetivo 5 pies a un espacio libre (si no es más de una categoría de tamaño mayor que tú). Cuando haces un crítico con daño contundente, los ataques contra esa criatura tienen ventaja hasta el comienzo de tu siguiente turno.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "caracteristica",
+          "nombre": "Característica (+1)",
+          "fuente": "caracteristicas",
+          "opciones": [
+            "fue",
+            "con"
+          ],
+          "aplicar": [
+            {
+              "tipo": "caracteristica",
+              "car": "$opcion",
+              "valor": 1
+            }
+          ]
+        }
+      ],
+      "fuente": "Tasha 2020 p. 79-83"
+    }
+  ]
+}
