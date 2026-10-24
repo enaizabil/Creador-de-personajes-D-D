@@ -220,3 +220,16 @@ def test_origenes_del_hechicero_de_tasha(entorno):
     conocidos = q.personaje.conjuros["hechicero"]
     trucos = [i for i in conocidos if catalogo.obtener("conjuros", i)["nivel"] == 0]
     assert len(trucos) == plan.limite_trucos and len(conocidos) - len(trucos) == plan.limite_conjuros
+
+
+def test_tradiciones_del_mago_de_tasha(entorno):
+    sistema, catalogo = entorno
+    q = _con_subclase(entorno, "canto_de_la_hoja", 6)
+    pj = q.personaje
+    arma = next(v for k, v in pj.elecciones.items() if k.endswith("arma_de_la_cancion"))[0]
+    assert "a_dos_manos" not in catalogo.obtener("objetos", arma)["arma"].get("propiedades", [])
+    ficha = sistema.calcular(pj, catalogo)
+    assert "Interpretación" in [h.nombre for h in ficha.habilidades.values() if h.competente]
+    # El Ataque Adicional del Canto de la Hoja no se acumula con otro (multiclase): aquí, uno.
+    assert [r.nombre for r in ficha.rasgos].count("Ataque Adicional") == 1
+    assert not sistema.calcular(_con_subclase(entorno, "orden_de_los_escribas", 14).personaje, catalogo).avisos

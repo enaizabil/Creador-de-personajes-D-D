@@ -2057,6 +2057,165 @@
           }
         ]
       }
+    },
+    {
+      "id": "canto_de_la_hoja",
+      "nombre": "Canto de la Hoja",
+      "clase": "mago",
+      "fuente": "Tasha 2020 p. 64-65",
+      "descripcion": "Tradición élfica que une la magia con la espada y la danza. En combate, el hojacantante esquiva con maniobras elegantes y canaliza su magia en ataques y defensas: quien lo ve no lo olvida.",
+      "perfil": {
+        "arcano": 2,
+        "agilidad": 2,
+        "combate": 1,
+        "carisma": 1
+      },
+      "niveles": {
+        "2": [
+          {
+            "tipo": "competencia",
+            "categoria": "armadura",
+            "id": "armaduras_ligeras"
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "habilidad",
+            "id": "interpretacion"
+          },
+          {
+            "tipo": "eleccion",
+            "id": "arma_de_la_cancion",
+            "nombre": "Entrenamiento en Guerra y Canción: arma",
+            "fuente": "armas",
+            "opciones": [
+              "baston",
+              "daga",
+              "garrote",
+              "hacha_de_mano",
+              "hoz",
+              "jabalina",
+              "lanza",
+              "martillo_ligero",
+              "maza",
+              "cimitarra",
+              "espada_corta",
+              "espada_larga",
+              "estoque",
+              "hacha_de_guerra",
+              "latigo",
+              "lucero_del_alba",
+              "mangual",
+              "martillo_de_guerra",
+              "pico_de_guerra",
+              "tridente"
+            ],
+            "aplicar": [
+              {
+                "tipo": "competencia",
+                "categoria": "arma",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Entrenamiento en Guerra y Canción",
+            "resumen": "competencia con armaduras ligeras, con un arma cuerpo a cuerpo de una mano y en Interpretación",
+            "descripcion": "Ganas competencia con las armaduras ligeras y con un tipo de arma cuerpo a cuerpo de una mano que elijas, y en la habilidad Interpretación si no la tenías."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Canción de Espadas",
+            "resumen": "acción adicional, 1 minuto, sin armadura media o pesada ni escudo: +{max(1,mod_int)} a la CA, +10 pies de velocidad, ventaja en Acrobacias y +{max(1,mod_int)} a las salvaciones de concentración",
+            "descripcion": "Como acción adicional, si no llevas armadura media o pesada ni escudo, empiezas la Canción de Espadas durante 1 minuto. Termina antes si quedas incapacitado, te pones armadura media o pesada o un escudo, o atacas con un arma a dos manos; también puedes darla por terminada cuando quieras. Mientras dura, sumas tu modificador por Inteligencia (mínimo +1) a tu CA y a las salvaciones de Constitución para mantener la concentración, tu velocidad caminando aumenta en 10 pies y tienes ventaja en las pruebas de Destreza (Acrobacias). Usos: tu bonificador por competencia por descanso largo.",
+            "usos": "competencia",
+            "recarga": "largo"
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Ataque Adicional",
+            "resumen": "2 ataques al usar la acción de Atacar; puedes cambiar uno por un truco",
+            "descripcion": "Cuando realizas la acción de Atacar en tu turno, puedes atacar dos veces en lugar de una, y puedes lanzar uno de tus trucos en lugar de uno de esos ataques.",
+            "no_acumula": true
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canción de Defensa",
+            "resumen": "con la Canción de Espadas activa, reacción al recibir daño: gastas un espacio de conjuro y reduces el daño en 5 por su nivel",
+            "descripcion": "Mientras tu Canción de Espadas está activa, cuando recibes daño puedes usar tu reacción para gastar un espacio de conjuro y reducir ese daño en cinco veces el nivel del espacio."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canción de Victoria",
+            "resumen": "con la Canción de Espadas activa, +{max(1,mod_int)} al daño de tus ataques cuerpo a cuerpo con arma",
+            "descripcion": "Mientras tu Canción de Espadas está activa, sumas tu modificador por Inteligencia (mínimo +1) al daño de tus ataques cuerpo a cuerpo con arma."
+          }
+        ]
+      }
+    },
+    {
+      "id": "orden_de_los_escribas",
+      "nombre": "Orden de los Escribas",
+      "clase": "mago",
+      "fuente": "Tasha 2020 p. 65-67",
+      "descripcion": "La orden más libresca de los magos: su misión es registrar los descubrimientos mágicos para que la magia florezca. Sus magos despiertan su libro de conjuros y lo convierten en un compañero que habla.",
+      "perfil": {
+        "saber": 3,
+        "arcano": 2,
+        "astucia": 1
+      },
+      "niveles": {
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Pluma de Mago",
+            "resumen": "acción adicional: creas una pluma diminuta sin tinta; copiar un conjuro al libro te lleva 2 minutos por nivel y borras lo escrito con ella a 5 pies",
+            "descripcion": "Como acción adicional creas en tu mano libre una pluma diminuta que escribe sin tinta, del color que quieras. Con ella, copiar un conjuro en tu libro te lleva 2 minutos por nivel del conjuro, y puedes borrar lo que hayas escrito con ella a 5 pies o menos como acción adicional. Desaparece si creas otra o si mueres."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Libro de Conjuros Despertado",
+            "resumen": "tu libro es un canalizador; al lanzar con espacio, puedes cambiar el tipo de daño por el de otro conjuro del libro del mismo nivel; una vez por descanso largo, un ritual en su tiempo normal",
+            "descripcion": "Has despertado una inteligencia arcana en tu libro de conjuros. Mientras lo sostienes, te sirve de canalizador; cuando lanzas un conjuro de mago con un espacio, puedes cambiar su tipo de daño por uno que aparezca en otro conjuro de tu libro del mismo nivel que el espacio; y una vez por descanso largo puedes lanzar un ritual con su tiempo normal, sin los 10 minutos de más. Si lo pierdes, en un descanso corto pasas su conciencia a un libro en blanco (y desaparecen los conjuros del viejo).",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Mente Manifestada",
+            "resumen": "acción adicional: la mente de tu libro aparece a 60 pies (ve y oye, visión en la oscuridad 60 pies); {competencia} veces por descanso largo lanzas un conjuro de mago desde su espacio",
+            "descripcion": "Como acción adicional, con el libro encima, haces que su mente aparezca como un objeto espectral diminuto e intangible en un espacio a 60 pies o menos (luz tenue a 10 pies; un tomo fantasmal, una cascada de texto o un erudito del pasado). Ve y oye, tiene visión en la oscuridad a 60 pies y te comparte lo que percibe. Cuando lanzas un conjuro de mago en tu turno, puedes hacerlo como si estuvieras en su espacio, usando sus sentidos, tantas veces como tu bonificador por competencia por descanso largo. Como acción adicional la mueves hasta 30 pies. Desaparece si se aleja más de 300 pies, si le lanzan disipar magia, si se destruye el libro, si mueres o si la despides. Invocarla: una vez por descanso largo, o gastando un espacio de conjuro.",
+            "usos": "competencia",
+            "recarga": "largo"
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Maestro Escriba",
+            "resumen": "tras cada descanso largo creas un pergamino con un conjuro de nivel 1 o 2 de tu libro (de 1 acción), que se lanza un nivel más alto; los pergaminos de conjuro te cuestan la mitad",
+            "descripcion": "Al terminar un descanso largo puedes crear un pergamino mágico con tu Pluma de Mago copiando un conjuro de nivel 1 o 2 de tu libro con tiempo de lanzamiento de 1 acción. En el pergamino cuenta como si fuera un nivel más alto; lo lanzas leyéndolo como acción, nadie más lo entiende y se borra al lanzarlo o al terminar tu siguiente descanso largo. Además, hacer pergaminos de conjuro (Guía del DM) te cuesta la mitad de oro y de tiempo con la pluma."
+          }
+        ],
+        "14": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Uno con la Palabra",
+            "resumen": "ventaja en Conocimiento Arcano con el libro encima; reacción: si te dañan con la mente manifestada, la despides y evitas el daño, pero tu libro pierde conjuros por 3d6 niveles durante 1d6 descansos largos",
+            "descripcion": "Mientras llevas el libro tienes ventaja en las pruebas de Inteligencia (Conocimiento Arcano). Si recibes daño con la mente del libro manifestada, puedes usar tu reacción para despedirla y evitar todo ese daño: tiras 3d6 y del libro desaparecen conjuros que elijas cuyos niveles sumen al menos esa cifra (si no llegan, caes a 0 PG). No puedes lanzarlos, ni desde otro libro o pergamino, hasta terminar 1d6 descansos largos; luego reaparecen. Una vez por descanso largo.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ]
+      }
     }
   ]
 }
