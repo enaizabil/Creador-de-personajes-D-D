@@ -183,7 +183,8 @@ class ResolutorEfectos:
     def _opciones(self, efecto: dict, etiqueta: str) -> tuple[list[Opcion], dict[str, list]]:
         crudas = efecto.get("opciones", [])
         if isinstance(crudas, dict):
-            return self.sistema.opciones_desde(crudas.get("desde", ""), crudas.get("filtro"), self.catalogo), {}
+            return self.sistema.opciones_desde(crudas.get("desde", ""), crudas.get("filtro"), self.catalogo,
+                                               self.personaje), {}
 
         fuente = efecto.get("fuente")
         conocidas = {o.id: o for o in self.sistema.opciones_desde(fuente, None, self.catalogo)} if fuente else {}

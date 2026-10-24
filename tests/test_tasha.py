@@ -277,3 +277,49 @@ def test_al_subir_cambia_la_competencia_que_la_subclase_repite(entorno):
     q.subir_nivel(1)
     assert "perspicacia" not in q.personaje.elecciones[clave]
     assert not [a for a in sistema.calcular(q.personaje, catalogo).avisos if "repetida" in a]
+
+
+def _con_rasgos_opcionales(entorno, clase, nivel, subclase=None, **desactivados):
+    sistema, catalogo = entorno
+    pj = Personaje(sistema="dnd5e-2014", paquetes=PAQUETES)
+    pj.reglas_opcionales["rasgos_opcionales"] = True
+    pj.reglas_opcionales.update({f"opcional:{r}": False for r in desactivados})
+    q = sistema.crear_cuestionario(pj, catalogo)
+    for pregunta in q.preguntas():
+        q.responder(pregunta.id, pregunta.respuestas[0].id)
+    if subclase:
+        q._mejor_subclase = lambda _clase=None: subclase
+    q.generar(nivel=nivel, raza="humano", subraza="humano_estandar", clase=clase)
+    return q
+
+
+def test_rasgos_opcionales_sustituyen_y_se_desactivan_uno_a_uno(entorno):
+    sistema, catalogo = entorno
+    q = _con_rasgos_opcionales(entorno, "explorador", 6)
+    elecciones = {e.clave.split("/")[-1] for e in sistema.resolver(q.personaje, catalogo).elecciones}
+    assert not elecciones & {"terreno_predilecto", "enemigo_predilecto", "terreno_predilecto_nivel_6"}
+    assert {"astuto_pericia", "astuto_idiomas"} <= elecciones
+    ficha = sistema.calcular(q.personaje, catalogo)
+    assert ficha.velocidades == {"caminar": 35, "trepar": 35, "nadar": 35}
+    assert {"Enemigo Favorecido", "Explorador Hábil: Errante"} <= {r.nombre for r in ficha.rasgos}
+    assert not ficha.avisos, ficha.avisos
+    # Desactivado Explorador Hábil, vuelve Explorador Nato (y Enemigo Favorecido sigue).
+    q = _con_rasgos_opcionales(entorno, "explorador", 6, explorador_habil=True)
+    elecciones = {e.clave.split("/")[-1] for e in sistema.resolver(q.personaje, catalogo).elecciones}
+    assert "terreno_predilecto" in elecciones and "enemigo_predilecto" not in elecciones
+    # Golpes Bendecidos en lugar del Golpe Divino del dominio.
+    q = _con_rasgos_opcionales(entorno, "clerigo", 8, "dominio_de_la_vida")
+    nombres = {r.nombre for r in sistema.calcular(q.personaje, catalogo).rasgos}
+    assert "Golpes Bendecidos" in nombres and "Golpe Divino" not in nombres
+
+
+def test_opciones_de_tasha_solo_con_su_rasgo_opcional(entorno):
+    sistema, catalogo = entorno
+    sin = Personaje(sistema="dnd5e-2014", paquetes=PAQUETES)
+    con = Personaje(sistema="dnd5e-2014", paquetes=PAQUETES, reglas_opcionales={"rasgos_opcionales": True})
+    for clase, esperado in (("guerrero", "lucha_a_ciegas"), ("brujo", "pacto_del_talisman")):
+        sin.clases = [EntradaClase(clase, 5)]
+        con.clases = [EntradaClase(clase, 5)]
+        filtro = {"grupo": "estilo_combate" if clase == "guerrero" else "pacto", "clases": clase}
+        assert esperado not in {o.id for o in sistema.opciones_desde("opciones", filtro, catalogo, sin)}
+        assert esperado in {o.id for o in sistema.opciones_desde("opciones", filtro, catalogo, con)}

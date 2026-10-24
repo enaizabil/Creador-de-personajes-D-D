@@ -1,0 +1,1056 @@
+{
+  "rasgos_opcionales": [
+    {
+      "id": "conocimiento_primigenio",
+      "nombre": "Conocimiento Primigenio",
+      "clase": "barbaro",
+      "fuente": "Tasha 2020 p. 24",
+      "descripcion": "A niveles 3 y 10 ganas competencia en una habilidad de la lista del bárbaro.",
+      "niveles": {
+        "3": [
+          {
+            "tipo": "eleccion",
+            "id": "conocimiento_primigenio",
+            "nombre": "Conocimiento Primigenio: habilidad",
+            "fuente": "habilidades",
+            "opciones": [
+              "trato_con_animales",
+              "atletismo",
+              "intimidacion",
+              "naturaleza",
+              "percepcion",
+              "supervivencia"
+            ],
+            "aplicar": [
+              {
+                "tipo": "competencia",
+                "categoria": "habilidad",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Conocimiento Primigenio",
+            "resumen": "una competencia más en habilidades del bárbaro (otra a nivel 10)",
+            "descripcion": "A nivel 3, y de nuevo a nivel 10, ganas competencia en una habilidad de la lista que el bárbaro puede elegir a nivel 1."
+          }
+        ],
+        "10": [
+          {
+            "tipo": "eleccion",
+            "id": "conocimiento_primigenio_10",
+            "nombre": "Conocimiento Primigenio: habilidad (nivel 10)",
+            "fuente": "habilidades",
+            "opciones": [
+              "trato_con_animales",
+              "atletismo",
+              "intimidacion",
+              "naturaleza",
+              "percepcion",
+              "supervivencia"
+            ],
+            "aplicar": [
+              {
+                "tipo": "competencia",
+                "categoria": "habilidad",
+                "id": "$opcion"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "abalanzarse_instintivo",
+      "nombre": "Abalanzarse Instintivo",
+      "clase": "barbaro",
+      "fuente": "Tasha 2020 p. 24",
+      "descripcion": "Al enfurecerte, te mueves hasta la mitad de tu velocidad.",
+      "niveles": {
+        "7": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Abalanzarse Instintivo",
+            "resumen": "con la acción adicional de enfurecerte, te mueves hasta la mitad de tu velocidad",
+            "descripcion": "Como parte de la acción adicional con la que te enfureces, puedes moverte hasta la mitad de tu velocidad."
+          }
+        ]
+      }
+    },
+    {
+      "id": "conjuros_adicionales_bardo",
+      "nombre": "Conjuros adicionales",
+      "clase": "bardo",
+      "fuente": "Tasha 2020 p. 27",
+      "descripcion": "Estos conjuros se añaden a la lista de conjuros de tu clase.",
+      "niveles": {
+        "1": [
+          {
+            "tipo": "lista_ampliada",
+            "clase": "bardo",
+            "conjuros": [
+              "orden_imperiosa",
+              "rociada_de_color",
+              "agrandar_reducir",
+              "auxilio",
+              "imagen_multiple",
+              "fortaleza_intelectual",
+              "palabra_de_curacion_en_masa",
+              "ralentizar",
+              "asesino_fantasmal",
+              "enlace_telepatico",
+              "festin_de_heroes",
+              "rociada_prismatica",
+              "sueno_del_velo_azul",
+              "antipatia_simpatia",
+              "muro_prismatico"
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Conjuros Adicionales",
+            "resumen": "tu lista de conjuros incluye los conjuros adicionales de Tasha",
+            "descripcion": "Los conjuros adicionales de la Guía de Tasha se añaden a tu lista de conjuros de clase."
+          }
+        ]
+      }
+    },
+    {
+      "id": "inspiracion_magica",
+      "nombre": "Inspiración Mágica",
+      "clase": "bardo",
+      "fuente": "Tasha 2020 p. 27",
+      "descripcion": "Quien tiene tu Inspiración Bárdica puede sumarla a la curación o al daño de un conjuro.",
+      "niveles": {
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Inspiración Mágica",
+            "resumen": "quien tiene un dado de tu Inspiración Bárdica puede sumarlo a la curación o al daño de un conjuro que lance, en un objetivo",
+            "descripcion": "Si una criatura tiene un dado de tu Inspiración Bárdica y lanza un conjuro que cura o causa daño, puede tirar ese dado y sumarlo a la curación o al daño de un objetivo del conjuro; el dado se pierde."
+          }
+        ]
+      }
+    },
+    {
+      "id": "versatilidad_bardica",
+      "nombre": "Versatilidad Bárdica",
+      "clase": "bardo",
+      "fuente": "Tasha 2020 p. 27",
+      "descripcion": "Al ganar una Mejora de Característica, puedes cambiar una pericia o un truco de bardo.",
+      "niveles": {
+        "4": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Versatilidad Bárdica",
+            "resumen": "al ganar una Mejora de Característica, puedes cambiar una pericia o un truco de bardo",
+            "descripcion": "Cada vez que alcanzas un nivel de bardo con Mejora de Característica, puedes cambiar una habilidad de tu Pericia por otra en la que seas competente sin pericia, o un truco de bardo por otro de su lista."
+          }
+        ]
+      }
+    },
+    {
+      "id": "conjuros_adicionales_brujo",
+      "nombre": "Conjuros adicionales",
+      "clase": "brujo",
+      "fuente": "Tasha 2020 p. 30-31",
+      "descripcion": "Estos conjuros se añaden a la lista de conjuros de tu clase.",
+      "niveles": {
+        "1": [
+          {
+            "tipo": "lista_ampliada",
+            "clase": "brujo",
+            "conjuros": [
+              "atraccion_del_relampago",
+              "astilla_mental",
+              "estallido_de_espadas",
+              "filo_atronador",
+              "filo_de_llamas_verdes",
+              "fortaleza_intelectual",
+              "invocar_engendro_sombrio",
+              "invocar_feerico",
+              "invocar_muerto_viviente",
+              "sudario_espiritual",
+              "invocar_aberracion",
+              "atadura_planar",
+              "circulo_de_teletransportacion",
+              "enganar",
+              "apariencia_sobrenatural_de_tasha",
+              "invocar_infernal",
+              "sueno_del_velo_azul",
+              "hoja_del_desastre",
+              "portal",
+              "terror_abyecto"
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Conjuros Adicionales",
+            "resumen": "tu lista de conjuros incluye los conjuros adicionales de Tasha",
+            "descripcion": "Los conjuros adicionales de la Guía de Tasha se añaden a tu lista de conjuros de clase."
+          }
+        ]
+      }
+    },
+    {
+      "id": "invocaciones_adicionales",
+      "nombre": "Invocaciones adicionales",
+      "clase": "brujo",
+      "fuente": "Tasha 2020 p. 30-31",
+      "descripcion": "Nuevas Invocaciones Sobrenaturales para elegir.",
+      "niveles": {}
+    },
+    {
+      "id": "pacto_del_talisman",
+      "nombre": "Pacto del Talismán",
+      "clase": "brujo",
+      "fuente": "Tasha 2020 p. 30-31",
+      "descripcion": "Nueva opción para el Beneficio del Pacto.",
+      "niveles": {}
+    },
+    {
+      "id": "versatilidad_sobrenatural",
+      "nombre": "Versatilidad Sobrenatural",
+      "clase": "brujo",
+      "fuente": "Tasha 2020 p. 30-31",
+      "descripcion": "Al ganar una Mejora de Característica, puedes cambiar un truco, tu Beneficio del Pacto o (desde nivel 12) un conjuro del Arcanum Místico.",
+      "niveles": {
+        "4": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Versatilidad Sobrenatural",
+            "resumen": "al ganar una Mejora de Característica, puedes cambiar un truco, tu Beneficio del Pacto o (desde nivel 12) un conjuro del Arcanum Místico",
+            "descripcion": "Cada vez que alcanzas un nivel de brujo con Mejora de Característica, puedes cambiar un truco de brujo por otro de su lista, tu Beneficio del Pacto por otro o, desde nivel 12, un conjuro de tu Arcanum Místico por otro de brujo del mismo nivel. Si así dejas de cumplir el requisito de una invocación, la cambias también."
+          }
+        ]
+      }
+    },
+    {
+      "id": "conjuros_adicionales_clerigo",
+      "nombre": "Conjuros adicionales",
+      "clase": "clerigo",
+      "fuente": "Tasha 2020 p. 36",
+      "descripcion": "Estos conjuros se añaden a la lista de conjuros de tu clase.",
+      "niveles": {
+        "1": [
+          {
+            "tipo": "lista_ampliada",
+            "clase": "clerigo",
+            "conjuros": [
+              "aura_de_vitalidad",
+              "sudario_espiritual",
+              "aura_de_pureza",
+              "aura_de_vida",
+              "invocar_celestial",
+              "rayo_solar",
+              "explosion_solar",
+              "palabra_de_poder_sanar"
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Conjuros Adicionales",
+            "resumen": "tu lista de conjuros incluye los conjuros adicionales de Tasha",
+            "descripcion": "Los conjuros adicionales de la Guía de Tasha se añaden a tu lista de conjuros de clase."
+          }
+        ]
+      }
+    },
+    {
+      "id": "armonizar_poder_divino_clerigo",
+      "nombre": "Armonizar Poder Divino",
+      "clase": "clerigo",
+      "fuente": "Tasha 2020 p. 36",
+      "descripcion": "Gastas un uso de Canalizar Divinidad para recuperar un espacio de conjuro.",
+      "niveles": {
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Armonizar Poder Divino",
+            "resumen": "acción adicional, gastando un uso de Canalizar Divinidad: recuperas un espacio de conjuro gastado de nivel {(competencia+1)//2} como máximo",
+            "descripcion": "Como acción adicional tocas tu símbolo sagrado, rezas y gastas un uso de Canalizar Divinidad para recuperar un espacio de conjuro gastado de nivel no superior a la mitad de tu bonificador por competencia (hacia arriba). Usos por descanso largo: nivel 2: 1, nivel 6: 2, nivel 18: 3.",
+            "usos": {
+              "2": 1,
+              "6": 2,
+              "18": 3
+            },
+            "recarga": "largo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "versatilidad_de_truco_clerigo",
+      "nombre": "Versatilidad de Truco",
+      "clase": "clerigo",
+      "fuente": "Tasha 2020 p. 36",
+      "descripcion": "Al ganar una Mejora de Característica, puedes cambiar un truco de tu clase por otro de su lista.",
+      "niveles": {
+        "4": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Versatilidad de Truco",
+            "resumen": "al ganar una Mejora de Característica, puedes cambiar un truco de tu clase por otro de su lista",
+            "descripcion": "Cada vez que alcanzas un nivel de esta clase con Mejora de Característica, puedes cambiar un truco aprendido con el lanzamiento de conjuros de esta clase por otro de su lista."
+          }
+        ]
+      }
+    },
+    {
+      "id": "golpes_bendecidos",
+      "nombre": "Golpes Bendecidos",
+      "clase": "clerigo",
+      "fuente": "Tasha 2020 p. 36",
+      "descripcion": "Sustituye al Golpe Divino o al Lanzamiento Potente de tu dominio.",
+      "niveles": {
+        "8": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Golpes Bendecidos",
+            "resumen": "una vez por turno, cuando una criatura sufre daño de uno de tus trucos o ataques con arma, +1d8 de daño radiante",
+            "descripcion": "Cuando una criatura recibe daño de uno de tus trucos o de un ataque con arma tuyo, también puedes causarle 1d8 de daño radiante; una vez por turno."
+          }
+        ]
+      },
+      "sustituye": [
+        "Golpe Divino",
+        "Lanzamiento Potente"
+      ]
+    },
+    {
+      "id": "conjuros_adicionales_druida",
+      "nombre": "Conjuros adicionales",
+      "clase": "druida",
+      "fuente": "Tasha 2020 p. 41",
+      "descripcion": "Estos conjuros se añaden a la lista de conjuros de tu clase.",
+      "niveles": {
+        "1": [
+          {
+            "tipo": "lista_ampliada",
+            "clase": "druida",
+            "conjuros": [
+              "proteccion_contra_el_bien_y_el_mal",
+              "agrandar_reducir",
+              "augurio",
+              "invocar_bestia",
+              "llama_permanente",
+              "aura_de_vitalidad",
+              "arma_elemental",
+              "invocar_feerico",
+              "revivir",
+              "adivinacion",
+              "escudo_de_fuego",
+              "invocar_elemental",
+              "cono_de_frio",
+              "de_la_carne_a_la_piedra",
+              "simbolo",
+              "nube_incendiaria"
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Conjuros Adicionales",
+            "resumen": "tu lista de conjuros incluye los conjuros adicionales de Tasha",
+            "descripcion": "Los conjuros adicionales de la Guía de Tasha se añaden a tu lista de conjuros de clase."
+          }
+        ]
+      }
+    },
+    {
+      "id": "companero_salvaje",
+      "nombre": "Compañero Salvaje",
+      "clase": "druida",
+      "fuente": "Tasha 2020 p. 41",
+      "descripcion": "Gastas un uso de Forma Salvaje para lanzar encontrar familiar.",
+      "niveles": {
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Compañero Salvaje",
+            "resumen": "acción, gastando un uso de Forma Salvaje: lanzas encontrar familiar sin componentes materiales; es un feérico y dura {nivel_clase//2} horas",
+            "descripcion": "Como acción gastas un uso de Forma Salvaje para lanzar encontrar familiar sin componentes materiales. El familiar es un feérico en vez de una bestia y desaparece tras tantas horas como la mitad de tu nivel de druida."
+          }
+        ]
+      }
+    },
+    {
+      "id": "versatilidad_de_truco_druida",
+      "nombre": "Versatilidad de Truco",
+      "clase": "druida",
+      "fuente": "Tasha 2020 p. 41",
+      "descripcion": "Al ganar una Mejora de Característica, puedes cambiar un truco de tu clase por otro de su lista.",
+      "niveles": {
+        "4": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Versatilidad de Truco",
+            "resumen": "al ganar una Mejora de Característica, puedes cambiar un truco de tu clase por otro de su lista",
+            "descripcion": "Cada vez que alcanzas un nivel de esta clase con Mejora de Característica, puedes cambiar un truco aprendido con el lanzamiento de conjuros de esta clase por otro de su lista."
+          }
+        ]
+      }
+    },
+    {
+      "id": "explorador_habil",
+      "nombre": "Explorador Hábil",
+      "clase": "explorador",
+      "fuente": "Tasha 2020 p. 46-48",
+      "descripcion": "Sustituye a Explorador Nato: Astuto (nivel 1), Errante (6) e Incansable (10).",
+      "niveles": {
+        "1": [
+          {
+            "tipo": "eleccion",
+            "id": "astuto_pericia",
+            "nombre": "Explorador Hábil (Astuto): pericia",
+            "fuente": "habilidades",
+            "opciones": [
+              "acrobacias",
+              "atletismo",
+              "conocimiento_arcano",
+              "engano",
+              "historia",
+              "interpretacion",
+              "intimidacion",
+              "investigacion",
+              "juego_de_manos",
+              "medicina",
+              "naturaleza",
+              "percepcion",
+              "perspicacia",
+              "persuasion",
+              "religion",
+              "sigilo",
+              "supervivencia",
+              "trato_con_animales"
+            ],
+            "aplicar": [
+              {
+                "tipo": "pericia",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "eleccion",
+            "id": "astuto_idiomas",
+            "nombre": "Explorador Hábil (Astuto): idiomas",
+            "elegir": 2,
+            "opciones": {
+              "desde": "idiomas"
+            },
+            "aplicar": [
+              {
+                "tipo": "competencia",
+                "categoria": "idioma",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Explorador Hábil: Astuto",
+            "resumen": "pericia en una habilidad en la que eres competente y dos idiomas",
+            "descripcion": "Eliges una habilidad en la que seas competente: tu bonificador por competencia se duplica en sus pruebas. Además hablas, lees y escribes dos idiomas más a tu elección."
+          }
+        ],
+        "6": [
+          {
+            "tipo": "velocidad",
+            "modo": "caminar",
+            "bonificador": 5
+          },
+          {
+            "tipo": "velocidad",
+            "modo": "trepar",
+            "igual_a": "caminar"
+          },
+          {
+            "tipo": "velocidad",
+            "modo": "nadar",
+            "igual_a": "caminar"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Explorador Hábil: Errante",
+            "resumen": "+5 pies de velocidad caminando; trepas y nadas a esa velocidad",
+            "descripcion": "Tu velocidad caminando aumenta en 5 pies, y ganas velocidades trepando y nadando iguales a tu velocidad caminando."
+          }
+        ],
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Explorador Hábil: Incansable",
+            "resumen": "acción: 1d8+{mod_sab} PG temporales (mínimo 1); al terminar un descanso corto, -1 nivel de cansancio",
+            "descripcion": "Como acción ganas 1d8 + tu modificador por Sabiduría puntos de golpe temporales (mínimo 1). Usos: tu bonificador por competencia por descanso largo. Además, cada vez que terminas un descanso corto, tu cansancio baja un nivel.",
+            "usos": "competencia",
+            "recarga": "largo"
+          }
+        ]
+      },
+      "sustituye": [
+        "terreno_predilecto",
+        "terreno_predilecto_nivel_6",
+        "terreno_predilecto_nivel_10"
+      ]
+    },
+    {
+      "id": "enemigo_favorecido",
+      "nombre": "Enemigo Favorecido",
+      "clase": "explorador",
+      "fuente": "Tasha 2020 p. 46-48",
+      "descripcion": "Sustituye a Enemigo Predilecto (y funciona con Azote de Enemigos).",
+      "niveles": {
+        "1": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Enemigo Favorecido",
+            "resumen": "al impactar, marcas al objetivo 1 minuto (concentración): la primera vez en cada turno que lo dañas, +{escala}",
+            "descripcion": "Cuando impactas a una criatura con una tirada de ataque, puedes marcarla como tu enemigo favorecido durante 1 minuto o hasta que pierdas la concentración (como con un conjuro). La primera vez en cada uno de tus turnos que la impactas y dañas, incluida la del marcado, sumas 1d4 al daño; sube a 1d6 a nivel 6 y a 1d8 a nivel 14. Usos: tu bonificador por competencia por descanso largo.",
+            "usos": "competencia",
+            "recarga": "largo",
+            "escala": {
+              "1": "1d4",
+              "6": "1d6",
+              "14": "1d8"
+            }
+          }
+        ]
+      },
+      "sustituye": [
+        "enemigo_predilecto",
+        "enemigo_predilecto_nivel_6",
+        "enemigo_predilecto_nivel_14"
+      ]
+    },
+    {
+      "id": "conjuros_adicionales_explorador",
+      "nombre": "Conjuros adicionales",
+      "clase": "explorador",
+      "fuente": "Tasha 2020 p. 46-48",
+      "descripcion": "Estos conjuros se añaden a la lista de conjuros de tu clase.",
+      "niveles": {
+        "2": [
+          {
+            "tipo": "lista_ampliada",
+            "clase": "explorador",
+            "conjuros": [
+              "castigo_abrasador",
+              "enmaranar",
+              "arma_magica",
+              "auxilio",
+              "invocar_bestia",
+              "potenciar_caracteristica",
+              "rafaga_de_viento",
+              "arma_elemental",
+              "fundirse_con_la_piedra",
+              "invocar_feerico",
+              "revivir",
+              "dominar_bestia",
+              "invocar_elemental",
+              "restablecimiento_mayor"
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Conjuros Adicionales",
+            "resumen": "tu lista de conjuros incluye los conjuros adicionales de Tasha",
+            "descripcion": "Los conjuros adicionales de la Guía de Tasha se añaden a tu lista de conjuros de clase."
+          }
+        ]
+      }
+    },
+    {
+      "id": "estilos_de_combate_explorador",
+      "nombre": "Estilos de combate adicionales",
+      "clase": "explorador",
+      "fuente": "Tasha 2020 p. 46-48",
+      "descripcion": "Lucha a Ciegas, Guerrero Druídico y Combate con Armas Arrojadizas se añaden a tus estilos.",
+      "niveles": {}
+    },
+    {
+      "id": "canalizador_druidico",
+      "nombre": "Canalizador Druídico",
+      "clase": "explorador",
+      "fuente": "Tasha 2020 p. 46-48",
+      "descripcion": "Puedes usar un canalizador druídico para tus conjuros de explorador.",
+      "niveles": {
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizador Druídico",
+            "resumen": "puedes usar un canalizador druídico para tus conjuros de explorador",
+            "descripcion": "Puedes usar un canalizador druídico (muérdago, una vara de tejo, un bastón de un árbol vivo, plumas o huesos de animales sagrados…) como canalizador de tus conjuros de explorador."
+          }
+        ]
+      }
+    },
+    {
+      "id": "conciencia_primigenia",
+      "nombre": "Conciencia Primigenia",
+      "clase": "explorador",
+      "fuente": "Tasha 2020 p. 46-48",
+      "descripcion": "Sustituye a Percepción Primigenia: conjuros que no cuentan como conocidos.",
+      "niveles": {
+        "3": [
+          {
+            "tipo": "conjuro",
+            "id": "hablar_con_los_animales",
+            "clase": "explorador",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Conciencia Primigenia",
+            "resumen": "conjuros que no cuentan como conocidos (hablar con los animales, sentidos de bestia, hablar con las plantas, localizar criatura, comunión con la naturaleza); cada uno una vez por descanso largo sin espacio",
+            "descripcion": "Aprendes estos conjuros a los niveles indicados, si no los conocías, y no cuentan para los que conoces: hablar con los animales (3), sentidos de bestia (5), hablar con las plantas (9), localizar criatura (13) y comunión con la naturaleza (17). Puedes lanzar cada uno una vez sin gastar espacio por descanso largo."
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "sentidos_de_bestia",
+            "clase": "explorador",
+            "siempre_preparado": true
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "hablar_con_las_plantas",
+            "clase": "explorador",
+            "siempre_preparado": true
+          }
+        ],
+        "13": [
+          {
+            "tipo": "conjuro",
+            "id": "localizar_criatura",
+            "clase": "explorador",
+            "siempre_preparado": true
+          }
+        ],
+        "17": [
+          {
+            "tipo": "conjuro",
+            "id": "comunion_con_la_naturaleza",
+            "clase": "explorador",
+            "siempre_preparado": true
+          }
+        ]
+      },
+      "sustituye": [
+        "Percepción Primigenia"
+      ]
+    },
+    {
+      "id": "versatilidad_marcial_explorador",
+      "nombre": "Versatilidad Marcial",
+      "clase": "explorador",
+      "fuente": "Tasha 2020 p. 46-48",
+      "descripcion": "Al ganar una Mejora de Característica, puedes cambiar un estilo de combate por otro de tu clase.",
+      "niveles": {
+        "4": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Versatilidad Marcial",
+            "resumen": "al ganar una Mejora de Característica, puedes cambiar un estilo de combate por otro de tu clase",
+            "descripcion": "Cada vez que alcanzas un nivel de esta clase con Mejora de Característica, puedes cambiar un estilo de combate que conozcas por otro disponible para tu clase."
+          }
+        ]
+      }
+    },
+    {
+      "id": "velo_de_la_naturaleza",
+      "nombre": "Velo de la Naturaleza",
+      "clase": "explorador",
+      "fuente": "Tasha 2020 p. 46-48",
+      "descripcion": "Sustituye a Esconderse a Plena Vista.",
+      "niveles": {
+        "10": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Velo de la Naturaleza",
+            "resumen": "acción adicional: invisible hasta el comienzo de tu siguiente turno",
+            "descripcion": "Como acción adicional te vuelves mágicamente invisible, con lo que lleves, hasta el comienzo de tu siguiente turno. Usos: tu bonificador por competencia por descanso largo.",
+            "usos": "competencia",
+            "recarga": "largo"
+          }
+        ]
+      },
+      "sustituye": [
+        "Esconderse a Plena Vista"
+      ]
+    },
+    {
+      "id": "companero_primigenio",
+      "nombre": "Compañero Primigenio",
+      "clase": "explorador",
+      "fuente": "Tasha 2020 p. 46-48",
+      "descripcion": "Sustituye al Compañero del Explorador del Señor de las Bestias.",
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Compañero Primigenio",
+            "resumen": "invocas una bestia primigenia (de la tierra, del mar o del cielo) que usa tu bonificador por competencia; actúa en tu turno y solo Esquiva salvo que le ordenes otra cosa con una acción adicional (o sacrificando un ataque desde nivel 5)",
+            "descripcion": "Invocas mágicamente una bestia primigenia, amistosa y obediente, con uno de tres perfiles (de la tierra, del mar o del cielo) que usan tu bonificador por competencia, y eliges qué animal es; tiene marcas primigenias. En combate actúa en tu turno: se mueve y usa su reacción sola, pero solo Esquiva salvo que uses una acción adicional para ordenarle otra acción, o sacrifiques uno de tus ataques al usar Atacar. Si muere, puedes devolverla a la vida gastando un espacio de conjuro; tras un descanso largo puedes invocar otra. Los perfiles van en el libro."
+          }
+        ]
+      },
+      "sustituye": [
+        "Compañero del Explorador"
+      ],
+      "subclase": "senor_de_las_bestias"
+    },
+    {
+      "id": "estilos_de_combate_guerrero",
+      "nombre": "Estilos de combate adicionales",
+      "clase": "guerrero",
+      "fuente": "Tasha 2020 p. 53-54",
+      "descripcion": "Lucha a Ciegas, Intercepción, Técnica Superior, Combate con Armas Arrojadizas y Combate sin Armas se añaden a tus estilos.",
+      "niveles": {}
+    },
+    {
+      "id": "versatilidad_marcial_guerrero",
+      "nombre": "Versatilidad Marcial",
+      "clase": "guerrero",
+      "fuente": "Tasha 2020 p. 53-54",
+      "descripcion": "Al ganar una Mejora de Característica, puedes cambiar un estilo de combate o una maniobra.",
+      "niveles": {
+        "4": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Versatilidad Marcial",
+            "resumen": "al ganar una Mejora de Característica, puedes cambiar un estilo de combate o una maniobra",
+            "descripcion": "Cada vez que alcanzas un nivel de guerrero con Mejora de Característica, puedes cambiar un estilo de combate que conozcas por otro de guerrero o, si conoces maniobras, una maniobra por otra."
+          }
+        ]
+      }
+    },
+    {
+      "id": "maniobras_adicionales",
+      "nombre": "Maniobras adicionales",
+      "clase": "guerrero",
+      "fuente": "Tasha 2020 p. 53-54",
+      "descripcion": "Nuevas maniobras para quien las conozca (Maestro del Combate, Técnica Superior).",
+      "niveles": {}
+    },
+    {
+      "id": "conjuros_adicionales_hechicero",
+      "nombre": "Conjuros adicionales",
+      "clase": "hechicero",
+      "fuente": "Tasha 2020 p. 60",
+      "descripcion": "Estos conjuros se añaden a la lista de conjuros de tu clase.",
+      "niveles": {
+        "1": [
+          {
+            "tipo": "lista_ampliada",
+            "clase": "hechicero",
+            "conjuros": [
+              "filo_atronador",
+              "filo_de_llamas_verdes",
+              "atraccion_del_relampago",
+              "astilla_mental",
+              "estallido_de_espadas",
+              "brebaje_caustico_de_tasha",
+              "grasa",
+              "arma_magica",
+              "esfera_de_llamas",
+              "hoja_de_fuego",
+              "latigo_mental_de_tasha",
+              "fortaleza_intelectual",
+              "toque_vampirico",
+              "escudo_de_fuego",
+              "mano_arcana",
+              "apariencia_sobrenatural_de_tasha",
+              "de_la_carne_a_la_piedra",
+              "esfera_congelante",
+              "sueno_del_velo_azul",
+              "semiplano",
+              "hoja_del_desastre"
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Conjuros Adicionales",
+            "resumen": "tu lista de conjuros incluye los conjuros adicionales de Tasha",
+            "descripcion": "Los conjuros adicionales de la Guía de Tasha se añaden a tu lista de conjuros de clase."
+          }
+        ]
+      }
+    },
+    {
+      "id": "metamagias_adicionales",
+      "nombre": "Metamagias adicionales",
+      "clase": "hechicero",
+      "fuente": "Tasha 2020 p. 60",
+      "descripcion": "Conjuro Buscador y Conjuro Transmutado.",
+      "niveles": {}
+    },
+    {
+      "id": "versatilidad_hechicera",
+      "nombre": "Versatilidad Hechicera",
+      "clase": "hechicero",
+      "fuente": "Tasha 2020 p. 60",
+      "descripcion": "Al ganar una Mejora de Característica, puedes cambiar una metamagia o un truco de hechicero.",
+      "niveles": {
+        "4": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Versatilidad Hechicera",
+            "resumen": "al ganar una Mejora de Característica, puedes cambiar una metamagia o un truco de hechicero",
+            "descripcion": "Cada vez que alcanzas un nivel de hechicero con Mejora de Característica, puedes cambiar una opción de Metamagia por otra, o un truco de hechicero por otro de su lista."
+          }
+        ]
+      }
+    },
+    {
+      "id": "guia_magica",
+      "nombre": "Guía Mágica",
+      "clase": "hechicero",
+      "fuente": "Tasha 2020 p. 60",
+      "descripcion": "Repites una prueba fallada con 1 punto de hechicería.",
+      "niveles": {
+        "5": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Guía Mágica",
+            "resumen": "cuando fallas una prueba de característica, 1 punto de hechicería: repites el d20",
+            "descripcion": "Cuando fallas una prueba de característica, puedes gastar 1 punto de hechicería para repetir el d20 y quedarte con el nuevo resultado."
+          }
+        ]
+      }
+    },
+    {
+      "id": "conjuros_adicionales_mago",
+      "nombre": "Conjuros adicionales",
+      "clase": "mago",
+      "fuente": "Tasha 2020 p. 64",
+      "descripcion": "Estos conjuros se añaden a la lista de conjuros de tu clase.",
+      "niveles": {
+        "1": [
+          {
+            "tipo": "lista_ampliada",
+            "clase": "mago",
+            "conjuros": [
+              "atraccion_del_relampago",
+              "astilla_mental",
+              "estallido_de_espadas",
+              "filo_atronador",
+              "filo_de_llamas_verdes",
+              "brebaje_caustico_de_tasha",
+              "augurio",
+              "latigo_mental_de_tasha",
+              "potenciar_caracteristica",
+              "fortaleza_intelectual",
+              "hablar_con_los_muertos",
+              "invocar_engendro_sombrio",
+              "invocar_feerico",
+              "invocar_muerto_viviente",
+              "sudario_espiritual",
+              "adivinacion",
+              "invocar_aberracion",
+              "invocar_automata",
+              "invocar_elemental",
+              "apariencia_sobrenatural_de_tasha",
+              "invocar_infernal",
+              "sueno_del_velo_azul",
+              "hoja_del_desastre"
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Conjuros Adicionales",
+            "resumen": "tu lista de conjuros incluye los conjuros adicionales de Tasha",
+            "descripcion": "Los conjuros adicionales de la Guía de Tasha se añaden a tu lista de conjuros de clase."
+          }
+        ]
+      }
+    },
+    {
+      "id": "formulas_de_truco",
+      "nombre": "Fórmulas de Truco",
+      "clase": "mago",
+      "fuente": "Tasha 2020 p. 64",
+      "descripcion": "Cambias un truco tras cada descanso largo.",
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Fórmulas de Truco",
+            "resumen": "tras cada descanso largo, consultando tu libro, puedes cambiar un truco de mago por otro",
+            "descripcion": "Has anotado en tu libro unas fórmulas arcanas: al terminar un descanso largo y consultarlas, puedes cambiar un truco de mago que conozcas por otro de la lista del mago."
+          }
+        ]
+      }
+    },
+    {
+      "id": "arma_dedicada",
+      "nombre": "Arma Dedicada",
+      "clase": "monje",
+      "fuente": "Tasha 2020 p. 69",
+      "descripcion": "Un arma más cuenta como arma de monje.",
+      "niveles": {
+        "2": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Arma Dedicada",
+            "resumen": "tras cada descanso, un arma sencilla o marcial con la que seas competente (sin las propiedades pesada ni especial) cuenta como arma de monje",
+            "descripcion": "Al terminar un descanso corto o largo puedes tocar un arma y concentrar en ella tu ki: cuenta como arma de monje hasta que vuelvas a usar el rasgo. Debe ser sencilla o marcial, debes ser competente con ella y no puede tener las propiedades pesada ni especial."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ataque_con_ki",
+      "nombre": "Ataque Alimentado por Ki",
+      "clase": "monje",
+      "fuente": "Tasha 2020 p. 69",
+      "descripcion": "Tras gastar ki en tu acción, un ataque como acción adicional.",
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Ataque Alimentado por Ki",
+            "resumen": "si gastas 1 ki o más en tu acción, un ataque sin armas o con arma de monje como acción adicional",
+            "descripcion": "Si gastas 1 o más puntos de ki como parte de tu acción en tu turno, puedes hacer un ataque sin armas o con un arma de monje como acción adicional antes de que termine el turno."
+          }
+        ]
+      }
+    },
+    {
+      "id": "curacion_acelerada",
+      "nombre": "Curación Acelerada",
+      "clase": "monje",
+      "fuente": "Tasha 2020 p. 69",
+      "descripcion": "Gastas ki para curarte.",
+      "niveles": {
+        "4": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Curación Acelerada",
+            "resumen": "acción y 2 ki: recuperas {escala}+{competencia} PG",
+            "descripcion": "Como acción gastas 2 puntos de ki y tiras tu dado de Artes Marciales: recuperas lo que saques más tu bonificador por competencia en puntos de golpe.",
+            "escala": {
+              "4": "1d4",
+              "5": "1d6",
+              "11": "1d8",
+              "17": "1d10"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "punteria_enfocada",
+      "nombre": "Puntería Enfocada",
+      "clase": "monje",
+      "fuente": "Tasha 2020 p. 69",
+      "descripcion": "Gastas ki para convertir un fallo en impacto.",
+      "niveles": {
+        "5": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Puntería Enfocada",
+            "resumen": "al fallar un ataque, gastas 1-3 ki: +2 al ataque por punto",
+            "descripcion": "Cuando fallas una tirada de ataque, puedes gastar de 1 a 3 puntos de ki para sumar 2 a la tirada por cada punto, lo que puede convertir el fallo en un impacto."
+          }
+        ]
+      }
+    },
+    {
+      "id": "conjuros_adicionales_paladin",
+      "nombre": "Conjuros adicionales",
+      "clase": "paladin",
+      "fuente": "Tasha 2020 p. 72-73",
+      "descripcion": "Estos conjuros se añaden a la lista de conjuros de tu clase.",
+      "niveles": {
+        "2": [
+          {
+            "tipo": "lista_ampliada",
+            "clase": "paladin",
+            "conjuros": [
+              "dulce_descanso",
+              "plegaria_de_curacion",
+              "vinculo_protector",
+              "sudario_espiritual",
+              "invocar_celestial"
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Conjuros Adicionales",
+            "resumen": "tu lista de conjuros incluye los conjuros adicionales de Tasha",
+            "descripcion": "Los conjuros adicionales de la Guía de Tasha se añaden a tu lista de conjuros de clase."
+          }
+        ]
+      }
+    },
+    {
+      "id": "estilos_de_combate_paladin",
+      "nombre": "Estilos de combate adicionales",
+      "clase": "paladin",
+      "fuente": "Tasha 2020 p. 72-73",
+      "descripcion": "Guerrero Bendito, Lucha a Ciegas e Intercepción se añaden a tus estilos.",
+      "niveles": {}
+    },
+    {
+      "id": "armonizar_poder_divino_paladin",
+      "nombre": "Armonizar Poder Divino",
+      "clase": "paladin",
+      "fuente": "Tasha 2020 p. 72-73",
+      "descripcion": "Gastas un uso de Canalizar Divinidad para recuperar un espacio de conjuro.",
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Armonizar Poder Divino",
+            "resumen": "acción adicional, gastando un uso de Canalizar Divinidad: recuperas un espacio de conjuro gastado de nivel {(competencia+1)//2} como máximo",
+            "descripcion": "Como acción adicional tocas tu símbolo sagrado, rezas y gastas un uso de Canalizar Divinidad para recuperar un espacio de conjuro gastado de nivel no superior a la mitad de tu bonificador por competencia (hacia arriba). Usos por descanso largo: nivel 3: 1, nivel 7: 2, nivel 15: 3.",
+            "usos": {
+              "3": 1,
+              "7": 2,
+              "15": 3
+            },
+            "recarga": "largo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "versatilidad_marcial_paladin",
+      "nombre": "Versatilidad Marcial",
+      "clase": "paladin",
+      "fuente": "Tasha 2020 p. 72-73",
+      "descripcion": "Al ganar una Mejora de Característica, puedes cambiar un estilo de combate por otro de tu clase.",
+      "niveles": {
+        "4": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Versatilidad Marcial",
+            "resumen": "al ganar una Mejora de Característica, puedes cambiar un estilo de combate por otro de tu clase",
+            "descripcion": "Cada vez que alcanzas un nivel de esta clase con Mejora de Característica, puedes cambiar un estilo de combate que conozcas por otro disponible para tu clase."
+          }
+        ]
+      }
+    },
+    {
+      "id": "punteria_firme",
+      "nombre": "Puntería Firme",
+      "clase": "picaro",
+      "fuente": "Tasha 2020 p. 76",
+      "descripcion": "Ventaja en tu próximo ataque si no te mueves.",
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Puntería Firme",
+            "resumen": "acción adicional, si no te has movido este turno: ventaja en tu próximo ataque este turno; tu velocidad pasa a 0 hasta el final del turno",
+            "descripcion": "Como acción adicional te das ventaja en tu siguiente tirada de ataque de este turno. Solo si no te has movido en el turno, y después tu velocidad es 0 hasta que termine."
+          }
+        ]
+      }
+    }
+  ]
+}

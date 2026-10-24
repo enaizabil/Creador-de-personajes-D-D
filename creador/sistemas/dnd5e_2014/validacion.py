@@ -32,7 +32,7 @@ if TYPE_CHECKING:
 
 CATEGORIAS = (
     "razas", "subrazas", "clases", "subclases", "trasfondos", "dotes", "opciones", "conjuros", "objetos", "idiomas",
-    "preguntas", "recomendaciones",
+    "preguntas", "recomendaciones", "rasgos_opcionales",
 )
 # Lo que el cuestionario puede recomendar o pesar directamente («clases:guerrero»).
 CATEGORIAS_RECOMENDABLES = ("razas", "subrazas", "clases", "subclases", "trasfondos", "dotes", "opciones", "conjuros")
@@ -85,6 +85,7 @@ CAMPOS_ENTRADA: dict[str, dict[str, type]] = {
     "subrazas": {"nombre": str, "raza": str},
     "clases": {"nombre": str, "dado_golpe": int, "salvaciones": list},
     "subclases": {"nombre": str, "clase": str},
+    "rasgos_opcionales": {"nombre": str, "clase": str},
     "trasfondos": {"nombre": str},
     "dotes": {"nombre": str},
     "opciones": {"nombre": str, "grupo": str},
@@ -297,6 +298,16 @@ def validar_entrada(categoria: str, entrada: dict) -> list[str]:
             errores.extend(_validar_lanzamiento(entrada["lanzamiento"]))
         if not isinstance(entrada.get("conjuros_adicionales", []), list):
             errores.append("«conjuros_adicionales» debe ser una lista de ids")
+    elif categoria == "rasgos_opcionales":
+        sustituye = entrada.get("sustituye", [])
+        if not isinstance(sustituye, list) or not all(isinstance(r, str) for r in sustituye):
+            errores.append("«sustituye» debe ser una lista de ids de elección o nombres de rasgo")
+        if "subclase" in entrada and not isinstance(entrada["subclase"], str):
+            errores.append("«subclase» debe ser un id")
+    elif categoria == "opciones" and "rasgo_opcional" in entrada:
+        valor = entrada["rasgo_opcional"]
+        if not isinstance(valor, str) and not (isinstance(valor, list) and all(isinstance(v, str) for v in valor)):
+            errores.append("«rasgo_opcional» debe ser un id de rasgo opcional o una lista de ellos")
     elif categoria == "dotes" and "prerrequisito" in entrada:
         errores.extend(_validar_requisito(entrada["prerrequisito"], "prerrequisito"))
     elif categoria == "preguntas":
@@ -529,6 +540,17 @@ def validar_catalogo(catalogo: Catalogo) -> list[str]:
     for subclase in catalogo.listar("subclases"):
         if catalogo.obtener("clases", subclase.get("clase", "")) is None:
             errores.append(f"subclases/{subclase['id']}: la clase «{subclase.get('clase')}» no existe")
+
+    for rasgo in catalogo.listar("rasgos_opcionales"):
+        if catalogo.obtener("clases", rasgo.get("clase", "")) is None:
+            errores.append(f"rasgos_opcionales/{rasgo['id']}: la clase «{rasgo.get('clase')}» no existe")
+        if rasgo.get("subclase") and catalogo.obtener("subclases", rasgo["subclase"]) is None:
+            errores.append(f"rasgos_opcionales/{rasgo['id']}: la subclase «{rasgo['subclase']}» no existe")
+    for opcion in catalogo.listar("opciones"):
+        valor = opcion.get("rasgo_opcional", [])
+        for id_ in [valor] if isinstance(valor, str) else valor:
+            if catalogo.obtener("rasgos_opcionales", id_) is None:
+                errores.append(f"opciones/{opcion['id']}: el rasgo opcional «{id_}» no existe")
 
     for subclase in catalogo.listar("subclases"):
         for id_ in subclase.get("conjuros_adicionales", []):

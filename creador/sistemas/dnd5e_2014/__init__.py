@@ -33,7 +33,8 @@ class Sistema5e2014(SistemaReglas):
     def validar_catalogo(self, catalogo: Catalogo) -> list[str]:
         return validacion.validar_catalogo(catalogo)
 
-    def opciones_desde(self, fuente: str, filtro: dict | None, catalogo: Catalogo) -> list[Opcion]:
+    def opciones_desde(self, fuente: str, filtro: dict | None, catalogo: Catalogo,
+                       personaje: Personaje | None = None) -> list[Opcion]:
         if fuente == "caracteristicas":
             return [Opcion(c, n) for c, n in CARACTERISTICAS.items()]
         if fuente == "habilidades":
@@ -44,7 +45,13 @@ class Sistema5e2014(SistemaReglas):
             fuente = "objetos"
         if fuente not in self.categorias:
             return []
-        opciones = [Opcion(e["id"], e["nombre"]) for e in catalogo.listar(fuente, filtro)]
+        entradas = catalogo.listar(fuente, filtro)
+        if fuente == "opciones":
+            # Las de un rasgo de clase opcional (estilos, invocaciones y maniobras de Tasha), solo con él activo.
+            activos = {r["id"] for r in motor.rasgos_opcionales_activos(personaje, catalogo)} if personaje else set()
+            entradas = [e for e in entradas if not e.get("rasgo_opcional") or activos & set(
+                [e["rasgo_opcional"]] if isinstance(e["rasgo_opcional"], str) else e["rasgo_opcional"])]
+        opciones = [Opcion(e["id"], e["nombre"]) for e in entradas]
         return sorted(opciones, key=lambda o: clave_alfabetica(o.nombre))
 
     def efecto_activo(self, efecto: dict, personaje: Personaje) -> bool:

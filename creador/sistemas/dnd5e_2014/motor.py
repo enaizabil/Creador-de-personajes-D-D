@@ -82,6 +82,14 @@ def _fuentes(personaje: Personaje, catalogo: Catalogo, errores: list[str]) -> It
             errores.append(f"{clase['nombre']}: el nivel debe estar entre 1 y {NIVEL_MAXIMO}")
             continue
         nombre, id_clase = clase["nombre"], clase["id"]
+        opcionales = [r for r in rasgos_opcionales_activos(personaje, catalogo) if r["clase"] == id_clase]
+        reemplazados = {r for rasgo in opcionales for r in rasgo.get("sustituye", [])}
+
+        def sin_reemplazados(efectos: list, reemplazados=reemplazados) -> list:
+            # Rasgos de clase opcionales que sustituyen a otros (Explorador Hábil en lugar de Explorador Nato).
+            return [e for e in efectos if not isinstance(e, dict) or (e.get("id") not in reemplazados
+                                                                      and e.get("nombre") not in reemplazados)]
+
         if indice == 0:
             salvaciones = [{"tipo": "competencia", "categoria": "salvacion", "id": c} for c in clase["salvaciones"]]
             yield salvaciones + clase.get("competencias", []), f"clase:{id_clase}:inicial", nombre
@@ -89,7 +97,12 @@ def _fuentes(personaje: Personaje, catalogo: Catalogo, errores: list[str]) -> It
             yield clase.get("competencias_multiclase", []), f"clase:{id_clase}:multiclase", nombre
         niveles = clase.get("niveles", {})
         for nivel in range(1, entrada.nivel + 1):
-            yield niveles.get(str(nivel), []), f"clase:{id_clase}:{nivel}", f"{nombre} {nivel}"
+            yield sin_reemplazados(niveles.get(str(nivel), [])), f"clase:{id_clase}:{nivel}", f"{nombre} {nivel}"
+        for rasgo in opcionales:
+            if rasgo.get("subclase") and rasgo["subclase"] != entrada.subclase:
+                continue
+            for nivel in range(1, entrada.nivel + 1):
+                yield rasgo.get("niveles", {}).get(str(nivel), []), f"opcional:{rasgo['id']}:{nivel}", rasgo["nombre"]
 
         if not entrada.subclase:
             continue
@@ -105,7 +118,7 @@ def _fuentes(personaje: Personaje, catalogo: Catalogo, errores: list[str]) -> It
             sub_niveles = subclase.get("niveles", {})
             for nivel in range(1, entrada.nivel + 1):
                 yield (
-                    sub_niveles.get(str(nivel), []),
+                    sin_reemplazados(sub_niveles.get(str(nivel), [])),
                     f"subclase:{subclase['id']}:{nivel}",
                     f"{subclase['nombre']} {nivel}",
                 )
@@ -233,10 +246,20 @@ def _clase_de_origen(efecto: dict, origen: str, catalogo: Catalogo) -> str | Non
     id_ = resto.split(":")[0]
     if tipo == "clase":
         return id_
-    if tipo == "subclase":
-        subclase = catalogo.obtener("subclases", id_)
-        return subclase["clase"] if subclase else None
+    if tipo in ("subclase", "opcional"):
+        entrada = catalogo.obtener("subclases" if tipo == "subclase" else "rasgos_opcionales", id_)
+        return entrada["clase"] if entrada else None
     return None
+
+
+def rasgos_opcionales_activos(personaje: Personaje, catalogo: Catalogo) -> list[dict]:
+    """Rasgos de clase opcionales (Tasha) que se aplican: con la regla activa, de una clase del personaje (y de su
+    subclase, si el rasgo es de una) y sin desactivar uno a uno («opcional:<id>»: false)."""
+    if not personaje.reglas_opcionales.get("rasgos_opcionales", False):
+        return []
+    clases = {e.clase: e.subclase for e in personaje.clases}
+    return [r for r in catalogo.listar("rasgos_opcionales")
+            if r["clase"] in clases and personaje.reglas_opcionales.get(f"opcional:{r['id']}", True)]
 
 
 def _contexto_efecto(efecto: dict, origen: str, catalogo: Catalogo, niveles_clase: dict[str, int],
@@ -628,6 +651,10 @@ def _velocidades(raza: dict | None, efectos: list[dict], fuerza: int, armadura: 
         modo = efecto.get("modo", "caminar")
         if efecto.get("bonificador") and modo in velocidades:
             velocidades[modo] += efecto["bonificador"]
+    for efecto in efectos:  # «igual_a»: trepar o nadar a la velocidad de caminar (Explorador Hábil)
+        if efecto.get("igual_a") in velocidades:
+            modo = efecto.get("modo", "caminar")
+            velocidades[modo] = max(velocidades.get(modo, 0), velocidades[efecto["igual_a"]])
     if armadura and fuerza < armadura["armadura"].get("fuerza_minima", 0) and not ignora_armadura:
         velocidades["caminar"] = max(0, velocidades["caminar"] - 10)
     return velocidades

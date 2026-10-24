@@ -47,7 +47,7 @@ ORO_EXTRA_POR_NIVEL = ((5, 10, "500 + 1d10x25"), (11, 16, "5000 + 1d10x250"), (1
 NOMBRES_FOCO = {"arcano": "Canalizador arcano", "druidico": "Canalizador druídico", "sagrado": "Símbolo sagrado"}
 NOMBRES_HERRAMIENTA = {"instrumento": "Instrumento musical", "artesano": "Herramientas de artesano"}
 # Elecciones que se muestran en cada paso, según el origen de su clave.
-PREFIJOS_PASO = {"raza": ("raza:", "subraza:"), "clase": ("clase:", "subclase:"), "trasfondo": ("trasfondo:",)}
+PREFIJOS_PASO = {"raza": ("raza:", "subraza:"), "clase": ("clase:", "subclase:", "opcional:"), "trasfondo": ("trasfondo:",)}
 
 
 @dataclass(frozen=True)
@@ -273,8 +273,25 @@ class Asistente5e:
         entrada.tiradas_pg = entrada.tiradas_pg[: max(0, nivel - 1 if indice == 0 else nivel)]
 
     def establecer_regla(self, regla: str, activa: bool) -> None:
-        """dotes, multiclase, opciones_dm (opciones de la Guía del DM que requieren permiso)."""
+        """dotes, multiclase, opciones_dm (opciones de la Guía del DM que requieren permiso), rasgos_opcionales…"""
         self.personaje.reglas_opcionales[regla] = activa
+        self._limpiar()
+
+    def rasgos_opcionales(self) -> list[tuple[dict, bool]]:
+        """Rasgos de clase opcionales (Tasha) de las clases del personaje y si están en uso. Vacío sin la regla."""
+        if not self.personaje.reglas_opcionales.get("rasgos_opcionales", False):
+            return []
+        clases = {e.clase: e.subclase for e in self.personaje.clases}
+        return [(r, self.personaje.reglas_opcionales.get(f"opcional:{r['id']}", True))
+                for r in self.catalogo.listar("rasgos_opcionales")
+                if r["clase"] in clases and (not r.get("subclase") or r["subclase"] == clases[r["clase"]])]
+
+    def usar_rasgo_opcional(self, id_: str, usar: bool) -> None:
+        """Cada rasgo opcional se toma o se deja por separado (con el DM); de serie, todos."""
+        if usar:
+            self.personaje.reglas_opcionales.pop(f"opcional:{id_}", None)
+        else:
+            self.personaje.reglas_opcionales[f"opcional:{id_}"] = False
         self._limpiar()
 
     # ── raza ───────────────────────────────────────────────────────────────

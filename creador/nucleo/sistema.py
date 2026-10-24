@@ -40,8 +40,10 @@ class SistemaReglas(ABC):
         return []
 
     @abstractmethod
-    def opciones_desde(self, fuente: str, filtro: dict | None, catalogo: Catalogo) -> list[Opcion]:
-        """Opciones de una elección declarada como ``{"desde": fuente, "filtro": ...}``."""
+    def opciones_desde(self, fuente: str, filtro: dict | None, catalogo: Catalogo,
+                       personaje: Personaje | None = None) -> list[Opcion]:
+        """Opciones de una elección declarada como ``{"desde": fuente, "filtro": ...}``; con el personaje, solo las que
+        sus reglas opcionales permiten."""
 
     def efecto_activo(self, efecto: dict, personaje: Personaje) -> bool:
         """Si el efecto (o la elección) se aplica ya; p. ej. rasgos que llegan a cierto nivel."""

@@ -115,6 +115,441 @@
         "15": 2
       },
       "recarga": "corto"
+    },
+    {
+      "id": "lucha_a_ciegas",
+      "nombre": "Estilo de Combate: Lucha a Ciegas",
+      "grupo": "estilo_combate",
+      "clases": [
+        "guerrero",
+        "explorador",
+        "paladin"
+      ],
+      "fuente": "Tasha 2020 p. 53",
+      "resumen": "visión ciega a 10 pies: ves lo que no tiene cobertura completa, aunque estés cegado o a oscuras, y lo invisible que no se esconda de ti",
+      "descripcion": "Tienes visión ciega a 10 pies: dentro de ese alcance ves lo que no esté tras cobertura completa aunque estés cegado o a oscuras, y ves a las criaturas invisibles salvo que se escondan de ti con éxito.",
+      "efectos": [
+        {
+          "tipo": "sentido",
+          "id": "vision_ciega",
+          "nombre": "Visión Ciega",
+          "alcance": 10
+        }
+      ],
+      "rasgo_opcional": [
+        "estilos_de_combate_guerrero",
+        "estilos_de_combate_explorador",
+        "estilos_de_combate_paladin"
+      ]
+    },
+    {
+      "id": "intercepcion",
+      "nombre": "Estilo de Combate: Intercepción",
+      "grupo": "estilo_combate",
+      "clases": [
+        "guerrero",
+        "paladin"
+      ],
+      "fuente": "Tasha 2020 p. 53",
+      "resumen": "reacción, con escudo o arma sencilla o marcial: cuando impactan a otro a 5 pies, reduces el daño en 1d10+{competencia}",
+      "descripcion": "Cuando una criatura que ves impacta a otro objetivo (no a ti) a 5 pies o menos de ti, puedes usar tu reacción para reducir el daño en 1d10 + tu bonificador por competencia (hasta 0). Necesitas empuñar un escudo o un arma sencilla o marcial.",
+      "rasgo_opcional": [
+        "estilos_de_combate_guerrero",
+        "estilos_de_combate_paladin"
+      ]
+    },
+    {
+      "id": "tecnica_superior",
+      "nombre": "Estilo de Combate: Técnica Superior",
+      "grupo": "estilo_combate",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "Tasha 2020 p. 53",
+      "resumen": "aprendes una maniobra y ganas un dado de superioridad d6 (por descanso corto o largo); CD de sus salvaciones {8+competencia+max(mod_fue,mod_des)}",
+      "descripcion": "Aprendes una maniobra del Maestro del Combate. Si pide una salvación, su CD es 8 + tu competencia + tu modificador por Fuerza o Destreza (a tu elección). Ganas un dado de superioridad d6, que se suma a los que tengas por otra vía y se recupera tras un descanso corto o largo.",
+      "usos": 1,
+      "recarga": "corto",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "maniobra",
+          "nombre": "Técnica Superior: maniobra",
+          "opciones": {
+            "desde": "opciones",
+            "filtro": {
+              "grupo": "maniobra",
+              "clases": "guerrero"
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "opcion",
+              "id": "$opcion"
+            }
+          ]
+        }
+      ],
+      "rasgo_opcional": [
+        "estilos_de_combate_guerrero"
+      ]
+    },
+    {
+      "id": "combate_con_armas_arrojadizas",
+      "nombre": "Estilo de Combate: Combate con Armas Arrojadizas",
+      "grupo": "estilo_combate",
+      "clases": [
+        "guerrero",
+        "explorador"
+      ],
+      "fuente": "Tasha 2020 p. 53",
+      "resumen": "desenvainas un arma arrojadiza como parte del ataque; +2 al daño de los ataques a distancia con armas arrojadizas",
+      "descripcion": "Puedes desenvainar un arma con la propiedad arrojadiza como parte del ataque que haces con ella. Además, cuando impactas con un ataque a distancia usando un arma arrojadiza, sumas +2 a la tirada de daño.",
+      "rasgo_opcional": [
+        "estilos_de_combate_guerrero",
+        "estilos_de_combate_explorador"
+      ]
+    },
+    {
+      "id": "combate_sin_armas",
+      "nombre": "Estilo de Combate: Combate sin Armas",
+      "grupo": "estilo_combate",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "Tasha 2020 p. 53",
+      "resumen": "tus golpes sin armas causan 1d6+{mod_fue} contundente (1d8 sin armas ni escudo); al empezar tu turno, 1d4 contundente a quien tengas agarrado",
+      "descripcion": "Tus ataques sin armas causan 1d6 + tu modificador por Fuerza de daño contundente al impactar, o 1d8 si no empuñas armas ni escudo al atacar. Al comienzo de cada uno de tus turnos puedes causar 1d4 de daño contundente a una criatura que tengas agarrada.",
+      "efectos": [
+        {
+          "tipo": "ataque_desarmado",
+          "nombre": "Ataque sin armas (Combate sin Armas)",
+          "dano": "1d8",
+          "caracteristicas": [
+            "fue"
+          ]
+        }
+      ],
+      "rasgo_opcional": [
+        "estilos_de_combate_guerrero"
+      ]
+    },
+    {
+      "id": "guerrero_druidico",
+      "nombre": "Estilo de Combate: Guerrero Druídico",
+      "grupo": "estilo_combate",
+      "clases": [
+        "explorador"
+      ],
+      "fuente": "Tasha 2020 p. 53",
+      "resumen": "dos trucos de druida, con Sabiduría; al subir de nivel puedes cambiar uno",
+      "descripcion": "Aprendes dos trucos de la lista del druida, que cuentan como conjuros de explorador y usan la Sabiduría. Cada vez que subes de nivel de explorador puedes cambiar uno por otro truco de druida.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "trucos",
+          "nombre": "Guerrero Druídico: trucos",
+          "elegir": 2,
+          "opciones": {
+            "desde": "conjuros",
+            "filtro": {
+              "listas": "druida",
+              "nivel": 0
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "conjuro",
+              "id": "$opcion",
+              "caracteristica": "sab"
+            }
+          ]
+        }
+      ],
+      "rasgo_opcional": [
+        "estilos_de_combate_explorador"
+      ]
+    },
+    {
+      "id": "guerrero_bendito",
+      "nombre": "Estilo de Combate: Guerrero Bendito",
+      "grupo": "estilo_combate",
+      "clases": [
+        "paladin"
+      ],
+      "fuente": "Tasha 2020 p. 53",
+      "resumen": "dos trucos de clérigo, con Carisma; al subir de nivel puedes cambiar uno",
+      "descripcion": "Aprendes dos trucos de la lista del clérigo, que cuentan como conjuros de paladín y usan el Carisma. Cada vez que subes de nivel de paladín puedes cambiar uno por otro truco de clérigo.",
+      "efectos": [
+        {
+          "tipo": "eleccion",
+          "id": "trucos",
+          "nombre": "Guerrero Bendito: trucos",
+          "elegir": 2,
+          "opciones": {
+            "desde": "conjuros",
+            "filtro": {
+              "listas": "clerigo",
+              "nivel": 0
+            }
+          },
+          "aplicar": [
+            {
+              "tipo": "conjuro",
+              "id": "$opcion",
+              "caracteristica": "car"
+            }
+          ]
+        }
+      ],
+      "rasgo_opcional": [
+        "estilos_de_combate_paladin"
+      ]
+    },
+    {
+      "id": "emboscada",
+      "nombre": "Maniobra: Emboscada",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "Tasha 2020 p. 54",
+      "resumen": "en una prueba de Sigilo o en la iniciativa, sumas un dado de superioridad (si no estás incapacitado)",
+      "descripcion": "Cuando haces una prueba de Destreza (Sigilo) o una tirada de iniciativa, puedes gastar un dado de superioridad y sumarlo, siempre que no estés incapacitado.",
+      "rasgo_opcional": "maniobras_adicionales"
+    },
+    {
+      "id": "cambio_de_lugar",
+      "nombre": "Maniobra: Cambio de Lugar",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "Tasha 2020 p. 54",
+      "resumen": "intercambias tu sitio con una criatura voluntaria a 5 pies (5 pies de movimiento, sin ataques de oportunidad); tú o ella sumáis el dado a la CA hasta tu siguiente turno",
+      "descripcion": "Cuando estás a 5 pies de una criatura en tu turno, puedes gastar un dado de superioridad e intercambiar tu posición con ella, gastando al menos 5 pies de movimiento, si está dispuesta y no incapacitada; no provoca ataques de oportunidad. Tiras el dado: hasta el comienzo de tu siguiente turno, tú o ella (a tu elección) sumáis el resultado a la CA.",
+      "rasgo_opcional": "maniobras_adicionales"
+    },
+    {
+      "id": "contraataque_preparado",
+      "nombre": "Maniobra: Contraataque Preparado",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "Tasha 2020 p. 54",
+      "resumen": "reacción: cuando una criatura entra en el alcance de tu arma cuerpo a cuerpo, la atacas y sumas el dado al daño",
+      "descripcion": "Cuando una criatura que ves entra en el alcance del arma cuerpo a cuerpo que empuñas, puedes usar tu reacción para gastar un dado de superioridad y atacarla con esa arma; si impactas, sumas el dado al daño.",
+      "rasgo_opcional": "maniobras_adicionales"
+    },
+    {
+      "id": "presencia_imponente",
+      "nombre": "Maniobra: Presencia Imponente",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "Tasha 2020 p. 54",
+      "resumen": "en una prueba de Intimidación, Interpretación o Persuasión, sumas un dado de superioridad",
+      "descripcion": "Cuando haces una prueba de Carisma (Intimidación, Interpretación o Persuasión), puedes gastar un dado de superioridad y sumarlo a la prueba.",
+      "rasgo_opcional": "maniobras_adicionales"
+    },
+    {
+      "id": "golpe_apresador",
+      "nombre": "Maniobra: Golpe Apresador",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "Tasha 2020 p. 54",
+      "resumen": "tras impactar cuerpo a cuerpo en tu turno, acción adicional: intentas agarrar sumando el dado a tu Atletismo",
+      "descripcion": "Justo después de impactar a una criatura con un ataque cuerpo a cuerpo en tu turno, puedes gastar un dado de superioridad e intentar agarrarla como acción adicional, sumando el dado a tu prueba de Fuerza (Atletismo).",
+      "rasgo_opcional": "maniobras_adicionales"
+    },
+    {
+      "id": "lanzamiento_rapido",
+      "nombre": "Maniobra: Lanzamiento Rápido",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "Tasha 2020 p. 54",
+      "resumen": "acción adicional: un ataque a distancia con un arma arrojadiza (la desenvainas al lanzarla), sumando el dado al daño",
+      "descripcion": "Como acción adicional puedes gastar un dado de superioridad y hacer un ataque a distancia con un arma arrojadiza, que puedes desenvainar como parte del ataque; si impactas, sumas el dado al daño.",
+      "rasgo_opcional": "maniobras_adicionales"
+    },
+    {
+      "id": "evaluacion_tactica",
+      "nombre": "Maniobra: Evaluación Táctica",
+      "grupo": "maniobra",
+      "clases": [
+        "guerrero"
+      ],
+      "fuente": "Tasha 2020 p. 54",
+      "resumen": "en una prueba de Investigación, Historia o Perspicacia, sumas un dado de superioridad",
+      "descripcion": "Cuando haces una prueba de Inteligencia (Investigación o Historia) o de Sabiduría (Perspicacia), puedes gastar un dado de superioridad y sumarlo a la prueba.",
+      "rasgo_opcional": "maniobras_adicionales"
+    },
+    {
+      "id": "conjuro_buscador",
+      "nombre": "Metamagia: Conjuro Buscador",
+      "grupo": "metamagia",
+      "clases": [
+        "hechicero"
+      ],
+      "fuente": "Tasha 2020 p. 60",
+      "resumen": "2 puntos de hechicería: si fallas una tirada de ataque de conjuro, la repites (aunque ya uses otra metamagia)",
+      "descripcion": "Si haces una tirada de ataque de un conjuro y fallas, puedes gastar 2 puntos de hechicería para repetir el d20 y quedarte con el nuevo resultado. Puedes usarla aunque ya hayas usado otra metamagia en ese conjuro.",
+      "rasgo_opcional": "metamagias_adicionales"
+    },
+    {
+      "id": "conjuro_transmutado",
+      "nombre": "Metamagia: Conjuro Transmutado",
+      "grupo": "metamagia",
+      "clases": [
+        "hechicero"
+      ],
+      "fuente": "Tasha 2020 p. 60",
+      "resumen": "1 punto de hechicería: cambias el daño de ácido, frío, fuego, relámpago, veneno o trueno de un conjuro por otro de esa lista",
+      "descripcion": "Cuando lanzas un conjuro que causa daño de ácido, frío, fuego, relámpago, veneno o trueno, puedes gastar 1 punto de hechicería para cambiar ese tipo de daño por otro de esa lista.",
+      "rasgo_opcional": "metamagias_adicionales"
+    },
+    {
+      "id": "pacto_del_talisman",
+      "nombre": "Pacto del Talismán",
+      "grupo": "pacto",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "Tasha 2020 p. 30-31",
+      "resumen": "un talismán: quien lo lleve suma 1d4 a una prueba de característica fallada, {competencia} veces por descanso largo",
+      "descripcion": "Tu patrón te da un amuleto. Quien lo lleve, cuando falla una prueba de característica, puede sumar un d4 a la tirada, lo que puede convertirla en un éxito; tantas veces como tu bonificador por competencia por descanso largo. Si lo pierdes, una ceremonia de 1 hora durante un descanso te da otro (y destruye el anterior); se vuelve ceniza si mueres.",
+      "usos": "competencia",
+      "recarga": "largo",
+      "rasgo_opcional": "pacto_del_talisman"
+    },
+    {
+      "id": "mente_sobrenatural",
+      "nombre": "Invocación: Mente Sobrenatural",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "Tasha 2020 p. 31",
+      "resumen": "ventaja en las salvaciones de Constitución para mantener la concentración",
+      "descripcion": "Tienes ventaja en las tiradas de salvación de Constitución para mantener la concentración en un conjuro.",
+      "rasgo_opcional": "invocaciones_adicionales"
+    },
+    {
+      "id": "escriba_lejano",
+      "nombre": "Invocación: Escriba Lejano",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "Tasha 2020 p. 31",
+      "resumen": "una página de tu Libro de las Sombras con {competencia} nombres: lanzas recado a ellos sin espacio ni componentes, escribiendo el mensaje",
+      "descripcion": "Requisito: nivel 5 de brujo y Pacto del Grimorio. Aparece una página nueva en tu Libro de las Sombras donde, con tu permiso, una criatura puede escribir su nombre como acción (caben tantos como tu bonificador por competencia). Puedes lanzar recado a una de ellas sin espacio ni componentes materiales, escribiendo el mensaje en la página; la respuesta aparece escrita y se borra al minuto. Como acción borras un nombre tocándolo.",
+      "prerrequisito": {
+        "texto": "nivel 5 de brujo y Pacto del Grimorio"
+      },
+      "rasgo_opcional": "invocaciones_adicionales"
+    },
+    {
+      "id": "don_de_los_protectores",
+      "nombre": "Invocación: Don de los Protectores",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "Tasha 2020 p. 31",
+      "resumen": "una página con {competencia} nombres: quien esté en ella y caiga a 0 PG sin morir se queda a 1 PG (una vez por descanso largo, para todos)",
+      "descripcion": "Requisito: nivel 9 de brujo y Pacto del Grimorio. Aparece una página nueva en tu Libro de las Sombras donde, con tu permiso, una criatura puede escribir su nombre como acción (caben tantos como tu bonificador por competencia). Cuando una de ellas cae a 0 puntos de golpe sin morir en el acto, queda a 1 PG; después ninguna puede beneficiarse hasta que termines un descanso largo. Como acción borras un nombre tocándolo.",
+      "prerrequisito": {
+        "texto": "nivel 9 de brujo y Pacto del Grimorio"
+      },
+      "rasgo_opcional": "invocaciones_adicionales"
+    },
+    {
+      "id": "investidura_del_amo_de_la_cadena",
+      "nombre": "Invocación: Investidura del Amo de la Cadena",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "Tasha 2020 p. 31",
+      "resumen": "tu familiar vuela o nada 40 pies, ataca como acción adicional tuya, sus ataques son mágicos, usa tu CD y puedes darle resistencia con tu reacción",
+      "descripcion": "Requisito: Pacto de la Cadena. Al lanzar encontrar familiar, tu familiar gana velocidad volando o nadando (a tu elección) de 40 pies; como acción adicional puedes ordenarle que Ataque; sus ataques con arma cuentan como mágicos; si obliga a una salvación, usa tu CD de conjuros; y cuando recibe daño puedes usar tu reacción para darle resistencia a ese daño.",
+      "prerrequisito": {
+        "texto": "Pacto de la Cadena"
+      },
+      "rasgo_opcional": "invocaciones_adicionales"
+    },
+    {
+      "id": "proteccion_del_talisman",
+      "nombre": "Invocación: Protección del Talismán",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "Tasha 2020 p. 31",
+      "resumen": "quien lleve tu talismán suma 1d4 a una salvación fallada, {competencia} veces por descanso largo",
+      "descripcion": "Requisito: nivel 7 de brujo y Pacto del Talismán. Cuando quien lleva tu talismán falla una tirada de salvación, puede sumar un d4 a la tirada, lo que puede convertirla en un éxito; tantas veces como tu bonificador por competencia por descanso largo.",
+      "usos": "competencia",
+      "recarga": "largo",
+      "prerrequisito": {
+        "texto": "nivel 7 de brujo y Pacto del Talismán"
+      },
+      "rasgo_opcional": "invocaciones_adicionales"
+    },
+    {
+      "id": "reprension_del_talisman",
+      "nombre": "Invocación: Reprensión del Talismán",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "Tasha 2020 p. 31",
+      "resumen": "reacción: cuando impactan a quien lleva tu talismán y ves al atacante a 30 pies, le causas {competencia} de daño psíquico y lo empujas 10 pies",
+      "descripcion": "Requisito: Pacto del Talismán. Cuando quien lleva tu talismán recibe un impacto de un atacante que ves a 30 pies o menos, puedes usar tu reacción para causarle tanto daño psíquico como tu bonificador por competencia y apartarlo hasta 10 pies del portador.",
+      "prerrequisito": {
+        "texto": "Pacto del Talismán"
+      },
+      "rasgo_opcional": "invocaciones_adicionales"
+    },
+    {
+      "id": "servidumbre_imperecedera",
+      "nombre": "Invocación: Servidumbre Imperecedera",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "Tasha 2020 p. 31",
+      "resumen": "lanzas animar a los muertos sin espacio de conjuro, una vez por descanso largo",
+      "descripcion": "Requisito: nivel 5 de brujo. Puedes lanzar animar a los muertos sin gastar espacio de conjuro, una vez por descanso largo.",
+      "usos": 1,
+      "recarga": "largo",
+      "prerrequisito": {
+        "texto": "nivel 5 de brujo"
+      },
+      "rasgo_opcional": "invocaciones_adicionales"
+    },
+    {
+      "id": "vinculo_del_talisman",
+      "nombre": "Invocación: Vínculo del Talismán",
+      "grupo": "invocacion",
+      "clases": [
+        "brujo"
+      ],
+      "fuente": "Tasha 2020 p. 31",
+      "resumen": "acción: tú te teletransportas junto a quien lleve tu talismán (o él junto a ti), {competencia} veces por descanso largo",
+      "descripcion": "Requisito: nivel 12 de brujo y Pacto del Talismán. Mientras otra criatura lleva tu talismán, puedes usar tu acción para teletransportarte al espacio libre más cercano a ella, si estáis en el mismo plano; el portador puede hacer lo mismo para llegar a ti. Tantas veces como tu bonificador por competencia por descanso largo.",
+      "usos": "competencia",
+      "recarga": "largo",
+      "prerrequisito": {
+        "texto": "nivel 12 de brujo y Pacto del Talismán"
+      },
+      "rasgo_opcional": "invocaciones_adicionales"
     }
   ]
 }

@@ -184,6 +184,12 @@ class VistaCuestionario5e(ctk.CTkFrame):
             ctk.CTkSwitch(columna, variable=origen,
                           text="Personalizar tu origen (Tasha): las mejoras de raza van donde más le sirven a tu clase",
                           command=lambda: reglas.__setitem__("origen_personalizado", origen.get())).pack(anchor="w", pady=(6, 0))
+            opcionales = ctk.BooleanVar(value=reglas.get("rasgos_opcionales", False))
+            ctk.CTkSwitch(columna, variable=opcionales,
+                          text="Rasgos de clase opcionales (Tasha): más conjuros, estilos e invocaciones, y versiones nuevas "
+                               "de algunos rasgos",
+                          command=lambda: reglas.__setitem__("rasgos_opcionales", opcionales.get())).pack(anchor="w",
+                                                                                                          pady=(6, 0))
 
     def pantalla_pregunta(self, indice: int) -> None:
         if indice >= len(self.preguntas):

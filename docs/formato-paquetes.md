@@ -352,3 +352,16 @@ Un error de contenido no impide cargar el resto del paquete.
 - `detalle`: 1, 2 o 3. La pregunta entra en «Rápido» (1), «Recomendado» (1 y 2) o «Preciso» (todas). En el paquete del programa salen 10, 20 y 32 por estilo.
 - `sensible`: `true` si el contenido es sensible o bizarro. Solo sale con el interruptor activado, y entonces se suma a las demás de su nivel.
 - `sustituye`: id de otra pregunta. Si sus requisitos (`requiere`) están cargados, ocupa el sitio de esa pregunta (así un paquete como Tasha cambia preguntas sin alterar el total).
+
+## Rasgos de clase opcionales (Guía de Tasha)
+
+Con la regla opcional `rasgos_opcionales` activa (interruptor «Rasgos de clase opcionales» en «Edición y reglas» o en la pantalla de opciones del modo sencillo), se aplican las entradas de la categoría `rasgos_opcionales` de las clases del personaje. De serie se usan todas; cada una se puede dejar con `"opcional:<id>": false` en las reglas del personaje (el paso «Clase» tiene una casilla por rasgo).
+
+**Entrada** (`rasgos_opcionales.json`): `id`, `nombre`, `clase` (id) · `descripcion` · `niveles` (como en las subclases: `{"nivel": [efectos]}`, por nivel de esa clase) · `subclase` opcional (solo con esa subclase, p. ej. el Compañero Primigenio del Señor de las Bestias) · `sustituye` opcional: lista de ids de elección o nombres de rasgo de esa clase o de su subclase que dejan de aplicarse (Explorador Hábil: `["terreno_predilecto", …]`; Golpes Bendecidos: `["Golpe Divino", "Lanzamiento Potente"]`). Ojo: no se llama `reemplaza`, que es una palabra reservada del formato (sustituye entradas enteras del catálogo).
+
+**Opciones de un rasgo opcional** (`opciones.json`): con `"rasgo_opcional": "<id>"` (o una lista de ids), la opción solo aparece en las elecciones si ese rasgo está activo para el personaje. Así entran los estilos de combate, las invocaciones, las maniobras, las metamagias y el Pacto del Talismán de Tasha.
+
+**Velocidad igual a otra**: el efecto `velocidad` admite `"igual_a": "caminar"` (con `modo`, p. ej. `"trepar"`): esa velocidad vale lo que la de caminar, ya con sus bonificadores.
+
+Los orígenes de las elecciones de estos rasgos empiezan por `opcional:<id>:<nivel>/`; el asistente los muestra en el paso «Clase».
+

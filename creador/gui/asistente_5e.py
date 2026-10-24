@@ -16,6 +16,7 @@ PERSONALIDAD = (("rasgos_personalidad", "Rasgos de personalidad"), ("ideales", "
                 ("vinculos", "Vínculos"), ("defectos", "Defectos"))
 FISICO = (("edad", "Edad"), ("altura", "Altura"), ("peso", "Peso"), ("ojos", "Ojos"), ("piel", "Piel"), ("pelo", "Pelo"))
 NOMBRES_PERFIL = {r: r.capitalize() for r in RASGOS_PERFIL} | {"proteccion": "Protección", "curacion": "Curación"}
+LARGO_DESCRIPCION_OPCIONAL = 95
 
 
 class VistaAsistente5e(ctk.CTkFrame):
@@ -200,6 +201,8 @@ class VistaAsistente5e(ctk.CTkFrame):
         if any(p.id == "tasha-2020" for p in self.a.catalogo.paquetes):
             interruptores.append(("origen_personalizado", "Personalizar tu origen: mover las mejoras de raza a otras "
                                                           "características (Tasha)", False))
+            interruptores.append(("rasgos_opcionales", "Rasgos de clase opcionales (Tasha): listas de conjuros ampliadas, "
+                                                       "estilos, invocaciones… y rasgos que sustituyen a otros", False))
         if any(p.id == "dmg-2014" for p in self.a.catalogo.paquetes):
             interruptores.append(("equipo_por_nivel", "Oro extra al empezar por encima de nivel 4 (Guía del DM)", False))
             interruptores.append(("entrenamiento", "Entrenarse para subir de nivel: días y coste por nivel (Guía del DM)",
@@ -253,8 +256,31 @@ class VistaAsistente5e(ctk.CTkFrame):
         # Solo desde nivel 2 con la regla activa; si ya hay secundarias, siempre, para poder quitarlas.
         if p.clases and (self.a.puede_anadir_clase() or len(p.clases) > 1):
             self._multiclase(master)
+        if self.a.rasgos_opcionales():
+            self._rasgos_opcionales(master)
         self._elecciones(master, "clase")
         self._faltan(master, "clase")
+
+    def _rasgos_opcionales(self, master) -> None:
+        """Rasgos de clase opcionales de Tasha: de serie todos; cada uno se puede dejar (con el DM)."""
+        caja = ctk.CTkFrame(master)
+        caja.pack(fill="x", padx=10, pady=(14, 0))
+        titulo(caja, "Rasgos de clase opcionales (Tasha)", 15).pack(anchor="w", padx=12, pady=(10, 0))
+        texto_ajustado(caja, "Cada uno se toma o se deja por separado, de acuerdo con el DM. Los que dicen «sustituye» "
+                             "quitan el rasgo del Manual que nombran.", 760, text_color="gray").pack(anchor="w", padx=12,
+                                                                                                 pady=(2, 6))
+        nombres = {o.id: o.nombre for o in self.a.clases()}
+        for rasgo, activo in self.a.rasgos_opcionales():
+            variable = ctk.BooleanVar(value=activo)
+            descripcion = rasgo.get("descripcion", "")
+            if len(descripcion) > LARGO_DESCRIPCION_OPCIONAL:  # una casilla no parte líneas
+                descripcion = descripcion[:LARGO_DESCRIPCION_OPCIONAL].rsplit(" ", 1)[0] + "…"
+            texto = f"{nombres.get(rasgo['clase'], rasgo['clase'])}: {rasgo['nombre']}. {descripcion}"
+            ctk.CTkCheckBox(caja, text=texto, variable=variable,
+                            command=lambda r=rasgo["id"], v=variable: (self.a.usar_rasgo_opcional(r, v.get()),
+                                                                        self._redibujar())
+                            ).pack(anchor="w", padx=12, pady=2)
+        ctk.CTkFrame(caja, height=8, fg_color="transparent").pack()
 
     def _multiclase(self, master) -> None:
         """Clases secundarias: niveles (los quitan a la principal), requisito, subclase y añadir otra."""

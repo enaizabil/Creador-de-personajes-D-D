@@ -16,7 +16,7 @@ if TYPE_CHECKING:
     from ...dnd5e_2014.asistente import Asistente5e
     from ..ficha import Ficha
 
-ORIGENES_PASO = (("raza", ("raza:", "subraza:")), ("clase", ("clase:", "subclase:")), ("trasfondo", ("trasfondo:",)))
+ORIGENES_PASO = (("raza", ("raza:", "subraza:")), ("clase", ("clase:", "subclase:", "opcional:")), ("trasfondo", ("trasfondo:",)))
 NOMBRES_METODO = {"estandar": "array estándar", "compra": "compra por puntos", "tirada": "tiradas", "manual": "a mano"}
 # Diferencias de nombre ya comprobadas en Nivel20 (notas de Villaprincipio).
 NOMBRES_NIVEL20 = {"Abisal": "Demoníaco"}

@@ -133,8 +133,9 @@ def afinidad(perfil_entrada: dict, perfil_jugador: dict) -> float:
 
 
 def _nivel_de(clave: str) -> int:
-    """Nivel de clase de una elección de clase o subclase («clase:brujo:5/invocacion_nivel_5» → 5); 0 si no lo es."""
-    coincidencia = re.match(r"(?:clase|subclase):[^:/]+:(\d+)/", clave)
+    """Nivel de clase de una elección de clase, subclase o rasgo opcional («clase:brujo:5/invocacion_nivel_5» → 5); 0
+    si no lo es."""
+    coincidencia = re.match(r"(?:clase|subclase|opcional):[^:/]+:(\d+)/", clave)
     return int(coincidencia[1]) if coincidencia else 0
 
 
@@ -894,11 +895,11 @@ class Cuestionario5e:
     # ── preguntas concretas (las de cada elección real) ───────────────────
 
     def _origen(self, clave: str) -> str:
-        """Nombre de la clase o subclase que da la elección («clase:brujo:2/…» → «Brujo»)."""
-        coincidencia = re.match(r"(clase|subclase):([^:/]+):", clave)
+        """Nombre de la clase, subclase o rasgo opcional que da la elección («clase:brujo:2/…» → «Brujo»)."""
+        coincidencia = re.match(r"(clase|subclase|opcional):([^:/]+):", clave)
         if not coincidencia:
             return ""
-        categoria = "clases" if coincidencia[1] == "clase" else "subclases"
+        categoria = {"clase": "clases", "subclase": "subclases", "opcional": "rasgos_opcionales"}[coincidencia[1]]
         return (self.catalogo.obtener(categoria, coincidencia[2]) or {}).get("nombre", coincidencia[2])
 
     @staticmethod
