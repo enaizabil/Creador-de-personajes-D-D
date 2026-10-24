@@ -233,3 +233,14 @@ def test_tradiciones_del_mago_de_tasha(entorno):
     # El Ataque Adicional del Canto de la Hoja no se acumula con otro (multiclase): aquí, uno.
     assert [r.nombre for r in ficha.rasgos].count("Ataque Adicional") == 1
     assert not sistema.calcular(_con_subclase(entorno, "orden_de_los_escribas", 14).personaje, catalogo).avisos
+
+
+def test_tradiciones_del_monje_de_tasha(entorno):
+    sistema, catalogo = entorno
+    ficha = sistema.calcular(_con_subclase(entorno, "camino_de_la_misericordia", 5).personaje, catalogo)
+    competentes = {h.nombre for h in ficha.habilidades.values() if h.competente}
+    assert {"Perspicacia", "Medicina"} <= competentes
+    rasgos = {r.nombre: r for r in ficha.rasgos}
+    assert "1d6" in rasgos["Mano de Sanación"].resumen  # el dado de Artes Marciales a nivel 5
+    astral = sistema.calcular(_con_subclase(entorno, "camino_del_yo_astral", 11).personaje, catalogo)
+    assert "1d8" in {r.nombre: r for r in astral.rasgos}["Cuerpo del Yo Astral"].resumen

@@ -2216,6 +2216,154 @@
           }
         ]
       }
+    },
+    {
+      "id": "camino_de_la_misericordia",
+      "nombre": "Camino de la Misericordia",
+      "clase": "monje",
+      "fuente": "Tasha 2020 p. 69-70",
+      "descripcion": "Monjes que manejan la fuerza vital ajena: médicos errantes de pobres y heridos y, para quien ya no tiene remedio, un final rápido. Suelen ir encapuchados y con máscara, portadores sin rostro de vida y muerte.",
+      "perfil": {
+        "curacion": 3,
+        "combate": 1,
+        "agilidad": 1,
+        "sigilo": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "competencia",
+            "categoria": "habilidad",
+            "id": "perspicacia"
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "habilidad",
+            "id": "medicina"
+          },
+          {
+            "tipo": "competencia",
+            "categoria": "herramienta",
+            "id": "utiles_de_herborista"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Implementos de Misericordia",
+            "resumen": "competencia en Perspicacia, Medicina y útiles de herborista; una máscara de misericordia",
+            "descripcion": "Ganas competencia en Perspicacia, en Medicina y con los útiles de herborista. Además tienes una máscara especial que sueles llevar al usar estos rasgos: un cuervo, blanca y negra, un rostro que llora, uno que ríe, una calavera o una mariposa."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Mano de Sanación",
+            "resumen": "acción y 1 ki: tocas a una criatura y recupera {escala}+{mod_sab} PG; en la Ráfaga de Golpes puedes cambiar un ataque por esta curación sin gastar ki",
+            "descripcion": "Como acción gastas 1 punto de ki y tocas a una criatura: recupera tantos puntos de golpe como una tirada de tu dado de Artes Marciales + tu modificador por Sabiduría. Al usar Ráfaga de Golpes puedes cambiar uno de sus ataques sin armas por un uso de este rasgo sin gastar ki en la curación.",
+            "escala": {
+              "3": "1d4",
+              "5": "1d6",
+              "11": "1d8",
+              "17": "1d10"
+            }
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Mano de Daño",
+            "resumen": "una vez por turno, al impactar sin armas, 1 ki: +{escala}+{mod_sab} de daño necrótico",
+            "descripcion": "Cuando impactas a una criatura con un ataque sin armas, puedes gastar 1 punto de ki para causarle tanto daño necrótico adicional como una tirada de tu dado de Artes Marciales + tu modificador por Sabiduría. Solo una vez por turno.",
+            "escala": {
+              "3": "1d4",
+              "5": "1d6",
+              "11": "1d8",
+              "17": "1d10"
+            }
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Toque del Médico",
+            "resumen": "Mano de Sanación también termina una enfermedad o un estado (cegado, ensordecido, paralizado, envenenado o aturdido); Mano de Daño deja envenenado hasta el final de tu siguiente turno",
+            "descripcion": "Cuando usas Mano de Sanación, además puedes terminar una enfermedad o uno de estos estados en la criatura: cegado, ensordecido, paralizado, envenenado o aturdido. Cuando usas Mano de Daño, puedes dejar a la criatura envenenada hasta el final de tu siguiente turno."
+          }
+        ],
+        "11": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Ráfaga de Curación y Daño",
+            "resumen": "en la Ráfaga de Golpes puedes cambiar cada ataque por Mano de Sanación sin ki, y usar Mano de Daño con uno de sus ataques sin gastar ki (una vez por turno)",
+            "descripcion": "Al usar Ráfaga de Golpes puedes cambiar cada uno de sus ataques sin armas por un uso de Mano de Sanación, sin gastar ki en la curación. Además, cuando haces un ataque sin armas de la Ráfaga, puedes usar Mano de Daño sin gastar su punto de ki (sigue siendo una vez por turno)."
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Mano de la Misericordia Suprema",
+            "resumen": "acción y 5 ki: devuelves la vida a una criatura muerta hace menos de 24 horas con 4d10+{mod_sab} PG y sin los estados que tuviera; una vez por descanso largo",
+            "descripcion": "Como acción tocas el cadáver de una criatura que murió en las últimas 24 horas y gastas 5 puntos de ki: vuelve a la vida con 4d10 + tu modificador por Sabiduría puntos de golpe, y sin los estados cegado, ensordecido, paralizado, envenenado o aturdido que tuviera al morir. Una vez por descanso largo.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "camino_del_yo_astral",
+      "nombre": "Camino del Yo Astral",
+      "clase": "monje",
+      "fuente": "Tasha 2020 p. 70-71",
+      "descripcion": "Monjes que creen que su cuerpo es una ilusión y que su ki es su forma verdadera: un yo astral que pueden manifestar a trozos, brazos, rostro y cuerpo, al servicio del orden o del desorden.",
+      "perfil": {
+        "combate": 2,
+        "fe": 1,
+        "carisma": 1,
+        "arcano": 1,
+        "aguante": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Brazos del Yo Astral",
+            "resumen": "acción adicional y 1 ki: brazos espectrales 10 minutos; quien elijas a 10 pies salva DES CD {8+competencia+mod_sab} o sufre 2 tiradas de {escala} de fuerza; con ellos usas SAB para FUE y atacas sin armas con +5 pies de alcance, SAB al ataque y al daño y daño de fuerza",
+            "descripcion": "Como acción adicional gastas 1 punto de ki para manifestar los brazos de tu yo astral: cada criatura que elijas y veas a 10 pies o menos supera una salvación de Destreza o sufre daño de fuerza igual a dos tiradas de tu dado de Artes Marciales. Durante 10 minutos (o hasta que quedes incapacitado o mueras) puedes usar tu modificador por Sabiduría en lugar del de Fuerza en las pruebas y salvaciones de Fuerza, y atacar sin armas con los brazos: en tu turno tienen 5 pies más de alcance, pueden usar Sabiduría en lugar de Fuerza o Destreza para atacar y dañar, y causan daño de fuerza.",
+            "escala": {
+              "3": "1d4",
+              "5": "1d6",
+              "11": "1d8",
+              "17": "1d10"
+            }
+          }
+        ],
+        "6": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Rostro del Yo Astral",
+            "resumen": "acción adicional y 1 ki: rostro espectral 10 minutos: ves en la oscuridad (también mágica) a 120 pies, ventaja en Perspicacia e Intimidación y hablas solo a una criatura a 60 pies o a todas a 600",
+            "descripcion": "Como acción adicional, o como parte de la que usas para los Brazos del Yo Astral, gastas 1 punto de ki para cubrir tu cara con el rostro de tu yo astral durante 10 minutos. Visión Astral: ves con normalidad en la oscuridad, mágica o no, a 120 pies. Sabiduría del Espíritu: ventaja en las pruebas de Sabiduría (Perspicacia) y Carisma (Intimidación). Palabra del Espíritu: puedes hablar de modo que solo te oiga una criatura que veas a 60 pies, o hacer que te oigan todas en 600 pies."
+          }
+        ],
+        "11": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Cuerpo del Yo Astral",
+            "resumen": "con brazos y rostro manifestados, el cuerpo astral te cubre: reacción para reducir 1d10+{mod_sab} el daño de ácido, frío, fuego, fuerza, relámpago o trueno, y una vez por turno +{escala} con los brazos",
+            "descripcion": "Con los brazos y el rostro manifestados, puedes hacer aparecer el cuerpo de tu yo astral sin gastar acción. Desviar Energía: cuando recibes daño de ácido, frío, fuego, fuerza, relámpago o trueno, puedes usar tu reacción para reducirlo en 1d10 + tu modificador por Sabiduría (mínimo 1). Brazos Potenciados: una vez en cada uno de tus turnos, al impactar con los brazos, causas daño adicional igual a tu dado de Artes Marciales.",
+            "escala": {
+              "3": "1d4",
+              "5": "1d6",
+              "11": "1d8",
+              "17": "1d10"
+            }
+          }
+        ],
+        "17": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Despertar del Yo Astral",
+            "resumen": "acción adicional y 5 ki: brazos, rostro y cuerpo 10 minutos con +2 a la CA y, con Ataque Adicional, 3 ataques si todos son con los brazos",
+            "descripcion": "Como acción adicional gastas 5 puntos de ki para manifestar a la vez los brazos, el rostro y el cuerpo de tu yo astral y despertarlo durante 10 minutos (o hasta que quedes incapacitado o mueras). Armadura del Espíritu: +2 a la CA. Bombardeo Astral: cuando usas Ataque Adicional para atacar dos veces, puedes atacar tres si todos los ataques son con los brazos astrales."
+          }
+        ]
+      }
     }
   ]
 }
