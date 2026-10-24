@@ -2364,6 +2364,271 @@
           }
         ]
       }
+    },
+    {
+      "id": "juramento_de_gloria",
+      "nombre": "Juramento de Gloria",
+      "clase": "paladin",
+      "fuente": "Tasha 2020 p. 73-74",
+      "descripcion": "Paladines convencidos de que ellos y sus compañeros están destinados a la gloria por sus hazañas. Entrenan sin descanso y animan a los suyos. Principios: hechos antes que palabras, los desafíos son pruebas, perfeccionar el cuerpo y disciplinar el alma.",
+      "perfil": {
+        "combate": 2,
+        "carisma": 2,
+        "agilidad": 1,
+        "fe": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Atleta Incomparable",
+            "resumen": "acción adicional, 10 minutos: ventaja en Atletismo y Acrobacias, cargas el doble y saltas 10 pies más",
+            "descripcion": "Como acción adicional usas Canalizar Divinidad: durante 10 minutos tienes ventaja en las pruebas de Fuerza (Atletismo) y Destreza (Acrobacias), puedes cargar, empujar, arrastrar y levantar el doble de lo normal, y tus saltos largos y altos llegan 10 pies más lejos (pagando el movimiento)."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Castigo Inspirador",
+            "resumen": "justo tras dañar con Castigo Divino, acción adicional: repartes 2d8+{nivel_clase} PG temporales entre las criaturas que elijas a 30 pies (tú incluido)",
+            "descripcion": "Justo después de causar daño con tu Castigo Divino puedes usar Canalizar Divinidad como acción adicional para repartir 2d8 + tu nivel de paladín puntos de golpe temporales como quieras entre las criaturas que elijas a 30 pies o menos, tú incluido."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "heroismo",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "saeta_guia",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "arma_magica",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "potenciar_caracteristica",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "7": [
+          {
+            "tipo": "velocidad",
+            "modo": "caminar",
+            "bonificador": 10
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Aura de Presteza",
+            "resumen": "+10 pies de velocidad caminando; los aliados que empiezan su turno a {escala} pies o menos de ti también ganan 10 pies ese turno",
+            "descripcion": "Tu velocidad caminando aumenta en 10 pies. Además, si no estás incapacitado, la velocidad caminando de cada aliado que empiece su turno a 5 pies o menos de ti aumenta en 10 pies hasta el final de ese turno. A nivel 18, el aura llega a 10 pies.",
+            "escala": {
+              "7": "5",
+              "18": "10"
+            }
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "acelerar",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "proteccion_contra_energia",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "13": [
+          {
+            "tipo": "conjuro",
+            "id": "compulsion",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "libertad_de_movimiento",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "15": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Defensa Gloriosa",
+            "resumen": "reacción: cuando tú u otro a 10 pies recibe un impacto, +{max(1,mod_car)} a su CA contra ese ataque y, si falla, atacas al atacante con un arma",
+            "descripcion": "Cuando tú u otra criatura que veas a 10 pies o menos recibe el impacto de una tirada de ataque, puedes usar tu reacción para sumar tu modificador por Carisma (mínimo +1) a la CA del objetivo contra ese ataque. Si falla, como parte de la reacción puedes hacer un ataque con arma contra el atacante si está a tu alcance. Usos: tu modificador por Carisma (mínimo uno) por descanso largo.",
+            "usos": "max(1,mod_car)",
+            "recarga": "largo"
+          }
+        ],
+        "17": [
+          {
+            "tipo": "conjuro",
+            "id": "comunion",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "golpe_flamigero",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "20": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Leyenda Viviente",
+            "resumen": "acción adicional, 1 minuto: ventaja en pruebas de Carisma, una vez por turno un ataque con arma fallado impacta y, con tu reacción, repites una salvación fallada; una vez por descanso largo o un espacio de nivel 5",
+            "descripcion": "Como acción adicional te inviste la leyenda de tus hazañas durante 1 minuto: tienes ventaja en todas las pruebas de Carisma; una vez en cada uno de tus turnos, si fallas un ataque con arma, puedes hacer que impacte; y si fallas una salvación, puedes usar tu reacción para repetirla y quedarte con el nuevo resultado. Una vez por descanso largo, o gastando un espacio de conjuro de nivel 5.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "juramento_de_los_vigilantes",
+      "nombre": "Juramento de los Vigilantes",
+      "clase": "paladin",
+      "fuente": "Tasha 2020 p. 74-75",
+      "descripcion": "Paladines que protegen los mundos mortales de las criaturas de otros planos. Siempre alerta, tejen redes de espías e informantes contra los cultos. Principios: vigilancia, lealtad (ningún trato con infernales) y disciplina.",
+      "perfil": {
+        "proteccion": 2,
+        "fe": 2,
+        "astucia": 1,
+        "combate": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Voluntad del Vigilante",
+            "resumen": "acción: tú y hasta {max(1,mod_car)} criaturas a 30 pies tenéis ventaja en salvaciones de INT, SAB y CAR durante 1 minuto",
+            "descripcion": "Como acción usas Canalizar Divinidad y eliges tantas criaturas que veas a 30 pies o menos como tu modificador por Carisma (mínimo una): durante 1 minuto, ellas y tú tenéis ventaja en las salvaciones de Inteligencia, Sabiduría y Carisma."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Canalizar Divinidad: Abjurar lo Extraplanar",
+            "resumen": "acción: cada aberración, celestial, elemental, feérico o infernal a 30 pies que te oiga salva SAB CD {8+competencia+mod_car} o queda expulsado 1 minuto (o hasta recibir daño)",
+            "descripcion": "Como acción presentas tu símbolo sagrado: cada aberración, celestial, elemental, feérico o infernal a 30 pies o menos que pueda oírte hace una salvación de Sabiduría; si falla, queda expulsado durante 1 minuto o hasta que reciba daño. Un expulsado se aleja de ti todo lo que puede, no puede acabar su movimiento a 30 pies de ti y solo puede Correr o intentar librarse de lo que le impida moverse (o Esquivar si no tiene adónde ir)."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "alarma",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "detectar_magia",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "rayo_de_luna",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "ver_invisibilidad",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "7": [
+          {
+            "tipo": "iniciativa",
+            "valor": "competencia"
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Aura del Centinela",
+            "resumen": "tú y las criaturas que elijas a {escala} pies sumáis +{competencia} a la iniciativa",
+            "descripcion": "Mientras no estés incapacitado emites un aura de alerta: cuando tú y las criaturas que elijas a 10 pies o menos tiráis iniciativa, todos sumáis tu bonificador por competencia. A nivel 18, el aura llega a 30 pies.",
+            "escala": {
+              "7": "10",
+              "18": "30"
+            }
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "contrahechizo",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "indetectable",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "13": [
+          {
+            "tipo": "conjuro",
+            "id": "aura_de_pureza",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "destierro",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "15": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Reprensión Vigilante",
+            "resumen": "reacción: cuando tú u otro a 30 pies supera una salvación de INT, SAB o CAR, quien la provocó sufre 2d8+{mod_car} de fuerza",
+            "descripcion": "Cuando tú o una criatura que veas a 30 pies o menos supera una salvación de Inteligencia, Sabiduría o Carisma, puedes usar tu reacción para causar 2d8 + tu modificador por Carisma de daño de fuerza a la criatura que la provocó."
+          }
+        ],
+        "17": [
+          {
+            "tipo": "conjuro",
+            "id": "escudrinar",
+            "clase": "paladin",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "inmovilizar_monstruo",
+            "clase": "paladin",
+            "siempre_preparado": true
+          }
+        ],
+        "20": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Baluarte Mortal",
+            "resumen": "acción adicional, 1 minuto: visión verdadera a 120 pies, ventaja contra aberraciones, celestiales, elementales, feéricos e infernales y, al dañar, salvación de CAR CD {8+competencia+mod_car} o lo destierras a su plano; una vez por descanso largo o un espacio de nivel 5",
+            "descripcion": "Como acción adicional, durante 1 minuto: tienes visión verdadera a 120 pies; ventaja en las tiradas de ataque contra aberraciones, celestiales, elementales, feéricos e infernales; y cuando impactas y dañas a una criatura, puedes obligarla a una salvación de Carisma contra tu CD de conjuros: si falla y no está en su plano natal, queda desterrada a él; si la supera, este rasgo no puede desterrarla en 24 horas. Una vez por descanso largo, o gastando un espacio de conjuro de nivel 5.",
+            "usos": 1,
+            "recarga": "largo"
+          }
+        ]
+      }
     }
   ]
 }

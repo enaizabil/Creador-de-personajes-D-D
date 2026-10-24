@@ -244,3 +244,12 @@ def test_tradiciones_del_monje_de_tasha(entorno):
     assert "1d6" in rasgos["Mano de Sanación"].resumen  # el dado de Artes Marciales a nivel 5
     astral = sistema.calcular(_con_subclase(entorno, "camino_del_yo_astral", 11).personaje, catalogo)
     assert "1d8" in {r.nombre: r for r in astral.rasgos}["Cuerpo del Yo Astral"].resumen
+
+
+def test_juramentos_del_paladin_de_tasha(entorno):
+    sistema, catalogo = entorno
+    vigilante = sistema.calcular(_con_subclase(entorno, "juramento_de_los_vigilantes", 7).personaje, catalogo)
+    # Aura del Centinela: la iniciativa suma el bonificador por competencia (+3 a nivel 7).
+    assert vigilante.iniciativa == vigilante.caracteristicas["des"].modificador + 3
+    gloria = _con_subclase(entorno, "juramento_de_gloria", 7)
+    assert sistema.calcular(gloria.personaje, catalogo).velocidades["caminar"] == 40  # Aura de Presteza: 30 + 10

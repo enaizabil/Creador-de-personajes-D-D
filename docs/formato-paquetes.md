@@ -327,6 +327,7 @@ Un error de contenido no impide cargar el resto del paquete.
 - `en_libro` (rasgo): el conjuro elegido debe estar en el libro de esa clase; si no está, se avisa (Maestría sobre Conjuros, Conjuros Característicos).
 - `sin_desventaja_sigilo` (efecto): quita la desventaja en Sigilo de la armadura; `tipo_armadura` opcional (`"media"`).
 - `bonificador_salvacion` (efecto): `valor` (número o expresión) y `caracteristicas` opcional.
+- `iniciativa` (efecto): `valor` puede ser un número o una expresión (p. ej. `"competencia"`).
 - `cuenta_como_conocido` (efecto `conjuro`, con `clase`): ocupa plaza de conjuro conocido.
 
 **Preguntas** (`preguntas.json`, `preguntas_subida.json`)

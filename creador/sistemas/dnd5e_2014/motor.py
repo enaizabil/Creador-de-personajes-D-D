@@ -195,7 +195,7 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
         pasivas=pasivas,
         ca=_clase_armadura(mods, armadura, escudo, _primera_de_cada(de_tipo("ca_alternativa")), de_tipo("bonificador_ca"),
                            de_tipo("max_des_armadura_media")),
-        iniciativa=mods["des"] + medio.get("des", 0) + sum(e["valor"] for e in de_tipo("iniciativa")),
+        iniciativa=mods["des"] + medio.get("des", 0) + _bonificador_iniciativa(de_tipo("iniciativa"), contexto, avisos),
         velocidades=_velocidades(raza, de_tipo("velocidad"), puntuaciones["fue"], armadura,
                                  bool(de_tipo("ignora_penalizacion_armadura"))),
         pg_maximos=pg_maximos,
@@ -497,6 +497,17 @@ def _bonificadores_salvacion(efectos: list[dict], contexto: dict, avisos: list[s
         for car in CARACTERISTICAS if cars == "todas" else cars:
             resultado[car] += valor
     return resultado
+
+
+def _bonificador_iniciativa(efectos: list[dict], contexto: dict, avisos: list[str]) -> int:
+    """Bonificadores a la iniciativa (Alerta: 5; Aura del Centinela: «competencia»); «valor» puede ser una expresión."""
+    total = 0
+    for efecto in efectos:
+        try:
+            total += int(evaluar(efecto["valor"], contexto)) if isinstance(efecto["valor"], str) else efecto["valor"]
+        except (ErrorExpresion, TypeError, ValueError) as exc:
+            avisos.append(f"Bonificador a la iniciativa: {exc}")
+    return total
 
 
 def libro_por_efectos(efectos: list[dict]) -> dict[str, list[str]]:
