@@ -172,3 +172,17 @@ def test_circulos_del_druida_de_tasha(entorno):
     preparados = {n for lista in estrellas.lanzadores[0].siempre_preparados.values() for n in lista}
     assert {catalogo.obtener("conjuros", i)["nombre"] for i in ("guia", "saeta_guia")} <= preparados
     assert not estrellas.avisos
+
+
+def test_arquetipos_del_explorador_de_tasha(entorno):
+    sistema, catalogo = entorno
+    q = _con_subclase(entorno, "guardian_del_enjambre", 5)
+    ficha = sistema.calcular(q.personaje, catalogo)
+    preparados = {n for lista in ficha.lanzadores[0].siempre_preparados.values() for n in lista}
+    assert {catalogo.obtener("conjuros", i)["nombre"] for i in ("mano_de_mago", "fuego_feerico", "telarana")} <= preparados
+    # Los del arquetipo no cuentan para los conocidos: el explorador 5 sigue eligiendo sus 4.
+    plan = next(p for p in q.asistente.planes_conjuros() if p.clase_id == "explorador")
+    assert plan.limite_conjuros == 4 and len(q.personaje.conjuros["explorador"]) == 4
+    vagabundo = _con_subclase(entorno, "vagabundo_feerico", 3).personaje
+    assert next(v for k, v in vagabundo.elecciones.items() if k.endswith("encanto_sobrenatural"))[0] in (
+        "engano", "interpretacion", "persuasion")

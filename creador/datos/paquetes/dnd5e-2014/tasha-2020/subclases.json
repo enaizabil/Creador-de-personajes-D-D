@@ -1297,6 +1297,254 @@
           }
         ]
       }
+    },
+    {
+      "id": "guardian_del_enjambre",
+      "nombre": "Guardián del Enjambre",
+      "clase": "explorador",
+      "fuente": "Tasha 2020 p. 49-50",
+      "descripcion": "Exploradores unidos a un enjambre de espíritus de la naturaleza (insectos, ramitas, pájaros o pixies) que vive en su espacio, les ayuda en combate y les acompaña siempre.",
+      "perfil": {
+        "naturaleza": 2,
+        "agilidad": 1,
+        "sigilo": 1,
+        "combate": 1,
+        "arcano": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Enjambre Reunido",
+            "resumen": "una vez por turno, tras impactar con un ataque: el enjambre causa {escala} perforante, o empuja al objetivo 15 pies (salvación de FUE CD {8+competencia+mod_sab}), o te mueve 5 pies",
+            "descripcion": "Un enjambre de espíritus de la naturaleza intangibles vive en tu espacio hasta que mueras. Una vez en cada uno de tus turnos, justo después de impactar a una criatura con un ataque, el enjambre te ayuda de una de estas formas: el objetivo sufre 1d6 de daño perforante; el objetivo supera una salvación de Fuerza contra tu CD de conjuros o el enjambre lo mueve hasta 15 pies en horizontal en la dirección que elijas; o el enjambre te mueve 5 pies en horizontal.",
+            "escala": {
+              "3": "1d6",
+              "11": "1d8"
+            }
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Magia del Guardián del Enjambre",
+            "resumen": "conjuros adicionales de tu arquetipo: son de explorador y no cuentan para los que conoces",
+            "descripcion": "Al llegar a ciertos niveles de explorador aprendes un conjuro adicional de tu arquetipo. Cuenta como conjuro de explorador para ti, pero no para el número de conjuros de explorador que conoces."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Mano de Enjambre",
+            "resumen": "conoces el truco mano de mago (la mano es tu enjambre)",
+            "descripcion": "Aprendes el truco mano de mago si no lo conocías; al lanzarlo, la mano toma la forma de tu enjambre."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "mano_de_mago",
+            "clase": "explorador",
+            "siempre_preparado": true
+          },
+          {
+            "tipo": "conjuro",
+            "id": "fuego_feerico",
+            "clase": "explorador",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "telarana",
+            "clase": "explorador",
+            "siempre_preparado": true
+          }
+        ],
+        "7": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Marea Retorciente",
+            "resumen": "acción adicional: el enjambre te eleva, vuelo 10 pies (levitar) durante 1 minuto",
+            "descripcion": "Como acción adicional concentras parte del enjambre bajo ti: ganas una velocidad volando de 10 pies y puedes levitar durante 1 minuto o hasta que quedes incapacitado. Usos: tu bonificador por competencia por descanso largo.",
+            "usos": "competencia",
+            "recarga": "largo"
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "forma_gaseosa",
+            "clase": "explorador",
+            "siempre_preparado": true
+          }
+        ],
+        "11": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Enjambre Poderoso",
+            "resumen": "Enjambre Reunido mejora: 1d8 de daño, puede derribar a quien falle la salvación al empujarlo y, cuando te mueve, te da cobertura media hasta tu siguiente turno",
+            "descripcion": "El daño de tu Enjambre Reunido sube a 1d8. Si una criatura falla la salvación al ser movida por el enjambre, también puedes derribarla. Y cuando el enjambre te mueve, te da cobertura media hasta el comienzo de tu siguiente turno."
+          }
+        ],
+        "13": [
+          {
+            "tipo": "conjuro",
+            "id": "ojo_arcano",
+            "clase": "explorador",
+            "siempre_preparado": true
+          }
+        ],
+        "15": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Dispersión del Enjambre",
+            "resumen": "reacción al recibir daño: resistencia a ese daño y te teletransportas con el enjambre a 30 pies",
+            "descripcion": "Cuando recibes daño, puedes usar tu reacción para tener resistencia a ese daño: te disuelves en tu enjambre y reapareces en un espacio libre que veas a 30 pies o menos. Usos: tu bonificador por competencia por descanso largo.",
+            "usos": "competencia",
+            "recarga": "largo"
+          }
+        ],
+        "17": [
+          {
+            "tipo": "conjuro",
+            "id": "plaga_de_insectos",
+            "clase": "explorador",
+            "siempre_preparado": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "vagabundo_feerico",
+      "nombre": "Vagabundo Feérico",
+      "clase": "explorador",
+      "fuente": "Tasha 2020 p. 50-51",
+      "descripcion": "Exploradores tocados por el reino feérico (la bendición de un señor de las hadas, un fruto de un árbol parlante, un manantial mágico) que caminan entre los dos mundos con alegría temible.",
+      "perfil": {
+        "carisma": 2,
+        "naturaleza": 1,
+        "arcano": 1,
+        "combate": 1,
+        "agilidad": 1
+      },
+      "niveles": {
+        "3": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Golpes Terribles",
+            "resumen": "una vez por turno por criatura, al impactarla con un arma: +{escala} de daño psíquico",
+            "descripcion": "Cuando impactas a una criatura con un arma puedes causarle 1d4 de daño psíquico adicional; cada criatura solo puede recibir este daño una vez por turno. Sube a 1d6 a nivel 11.",
+            "escala": {
+              "3": "1d4",
+              "11": "1d6"
+            }
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Magia del Vagabundo Feérico",
+            "resumen": "conjuros adicionales de tu arquetipo: son de explorador y no cuentan para los que conoces",
+            "descripcion": "Al llegar a ciertos niveles de explorador aprendes un conjuro adicional de tu arquetipo. Cuenta como conjuro de explorador para ti, pero no para el número de conjuros de explorador que conoces."
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Regalo Feérico",
+            "resumen": "un rasgo feérico a tu gusto (mariposas al descansar, flores en el pelo, cuernos, una sombra que baila…)",
+            "descripcion": "Tienes una bendición sobrenatural de un aliado o un lugar feérico, a elegir o al azar: mariposas ilusorias revolotean a tu alrededor al descansar; te brotan flores de temporada en el pelo cada amanecer; hueles a canela, lavanda u otra especia; tu sombra baila cuando nadie la mira; te salen cuernos o astas; o tu piel y tu pelo cambian de color con la estación."
+          },
+          {
+            "tipo": "eleccion",
+            "id": "encanto_sobrenatural",
+            "nombre": "Encanto Sobrenatural: habilidad",
+            "fuente": "habilidades",
+            "opciones": [
+              "engano",
+              "interpretacion",
+              "persuasion"
+            ],
+            "aplicar": [
+              {
+                "tipo": "competencia",
+                "categoria": "habilidad",
+                "id": "$opcion"
+              }
+            ]
+          },
+          {
+            "tipo": "rasgo",
+            "nombre": "Encanto Sobrenatural",
+            "resumen": "+{max(1,mod_sab)} a tus pruebas de Carisma; competencia en Engaño, Interpretación o Persuasión",
+            "descripcion": "Sumas tu modificador por Sabiduría (mínimo +1) a todas tus pruebas de Carisma. Además, ganas competencia en una de estas habilidades: Engaño, Interpretación o Persuasión."
+          },
+          {
+            "tipo": "conjuro",
+            "id": "hechizar_persona",
+            "clase": "explorador",
+            "siempre_preparado": true
+          }
+        ],
+        "5": [
+          {
+            "tipo": "conjuro",
+            "id": "paso_brumoso",
+            "clase": "explorador",
+            "siempre_preparado": true
+          }
+        ],
+        "7": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Giro Seductor",
+            "resumen": "ventaja en salvaciones contra hechizado y asustado; reacción: cuando tú u otro a 120 pies supera una de esas salvaciones, otra criatura salva SAB CD {8+competencia+mod_sab} o queda hechizada o asustada por ti 1 minuto",
+            "descripcion": "Tienes ventaja en las salvaciones para no quedar hechizado o asustado. Además, cuando tú o una criatura que veas a 120 pies supera una de esas salvaciones, puedes usar tu reacción para que otra criatura que veas a 120 pies haga una salvación de Sabiduría contra tu CD de conjuros: si falla, queda hechizada o asustada por ti (a tu elección) durante 1 minuto y repite la salvación al final de cada uno de sus turnos."
+          }
+        ],
+        "9": [
+          {
+            "tipo": "conjuro",
+            "id": "disipar_magia",
+            "clase": "explorador",
+            "siempre_preparado": true
+          }
+        ],
+        "11": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Refuerzos Feéricos",
+            "resumen": "conoces invocar feérico (sin componente material, no cuenta como conocido); una vez por descanso largo sin espacio; puedes lanzarlo sin concentración, con duración de 1 minuto",
+            "descripcion": "Conoces el conjuro invocar feérico, que no cuenta para los conjuros de explorador que conoces, y lo lanzas sin componente material. Puedes lanzarlo una vez sin gastar espacio de conjuro por descanso largo. Al lanzarlo puedes hacer que no requiera concentración; entonces dura 1 minuto.",
+            "usos": 1,
+            "recarga": "largo"
+          },
+          {
+            "tipo": "conjuro",
+            "id": "invocar_feerico",
+            "clase": "explorador",
+            "siempre_preparado": true
+          }
+        ],
+        "13": [
+          {
+            "tipo": "conjuro",
+            "id": "puerta_dimensional",
+            "clase": "explorador",
+            "siempre_preparado": true
+          }
+        ],
+        "15": [
+          {
+            "tipo": "rasgo",
+            "nombre": "Caminante de la Niebla",
+            "resumen": "lanzas paso brumoso sin espacio {max(1,mod_sab)} veces por descanso largo y puedes llevarte a una criatura voluntaria a 5 pies",
+            "descripcion": "Puedes lanzar paso brumoso sin gastar espacio de conjuro tantas veces como tu modificador por Sabiduría (mínimo una) por descanso largo. Siempre que lo lances, puedes llevarte a una criatura voluntaria que veas a 5 pies o menos: aparece en un espacio libre a 5 pies de tu destino.",
+            "usos": "max(1,mod_sab)",
+            "recarga": "largo"
+          }
+        ],
+        "17": [
+          {
+            "tipo": "conjuro",
+            "id": "enganar",
+            "clase": "explorador",
+            "siempre_preparado": true
+          }
+        ]
+      }
     }
   ]
 }
