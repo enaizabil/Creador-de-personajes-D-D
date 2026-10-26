@@ -432,3 +432,19 @@ def test_perfiles_de_criaturas_calculados_en_el_rasgo(entorno):
     assert "CA 17" in texto and f"+{5 + mod_int}, 1d8+5" in texto
     texto, _ = resumen("artillero", 9, "Cañón Sobrenatural")
     assert "45 PG" in texto and "3d8 de fuego" in texto  # Cañón Explosivo
+
+
+def test_listo_para_la_batalla_ataca_con_inteligencia_con_armas_magicas(entorno):
+    sistema, catalogo = entorno
+    q = _con_subclase(entorno, "herrero_de_batalla", 3)
+    a = q.asistente
+    ficha = a.ficha()
+    mods = {c: v.modificador for c, v in ficha.caracteristicas.items()}
+    assert mods["int"] > max(mods["fue"], mods["des"])  # el modo sencillo sube la INT del artífice
+    arma = next(o.id for o in a.personaje.equipo if catalogo.obtener("objetos", o.id)["categoria"] == "arma")
+    nombre = catalogo.obtener("objetos", arma)["nombre"]
+    normal = next(at for at in ficha.ataques if at.nombre == nombre)
+    a.anadir_objeto_magico(arma, 0)
+    a.aplicar_equipo()
+    magica = next(at for at in a.ficha().ataques if at.nombre == f"{nombre} (mágica)")
+    assert magica.bonificador == normal.bonificador - max(mods["fue"], mods["des"]) + mods["int"]

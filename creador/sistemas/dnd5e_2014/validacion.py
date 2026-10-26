@@ -73,6 +73,7 @@ CAMPOS_EFECTO: dict[str, tuple[str, ...]] = {
     "ataque_des": ("armas",),
     "ataque_desarmado": ("dano",),
     "ataque": ("nombre", "dano"),
+    "ataque_caracteristica": ("caracteristica",),
     "rasgo": ("nombre",),
     "conjuro": ("id",),
     "dote": ("id",),
@@ -185,6 +186,9 @@ def _validar_efecto(tipo: str, efecto: dict) -> list[str]:
             errores.append(f"«habilidad» debe ser una de {', '.join(PASIVAS)}")
     elif tipo == "rasgo":
         errores.extend(_validar_rasgo(efecto))
+    elif tipo == "ataque_caracteristica":
+        if efecto.get("caracteristica") not in CARACTERISTICAS:
+            errores.append("«caracteristica» debe ser fue, des, con, int, sab o car")
     elif tipo in ("ataque_desarmado", "ataque"):
         errores.extend(_validar_escala(efecto))
         if isinstance(efecto.get("dano"), str):

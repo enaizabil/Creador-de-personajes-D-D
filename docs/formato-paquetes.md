@@ -234,6 +234,7 @@ Una lista de objetos con `tipo`. Cualquier efecto admite `condicion` (`sin_armad
 | `ataque_des` | `armas` (ids o grupos), `excluir_propiedades`, `tipo_arma` | Armas de monje: pueden usar DES. |
 | `ataque_desarmado` | `dano` (admite `{escala}`), `escala`, `caracteristicas`, `nombre`, `tipo_dano`, `notas` | Artes Marciales. |
 | `ataque` | `nombre`, `dano` (admite `{escala}`), `escala`, `caracteristicas` (usa la mejor), `tipo_dano`, `notas` | Arma que da un rasgo y no es un objeto: Espadas Psíquicas, Guanteletes de Trueno. Siempre con competencia. |
+| `ataque_caracteristica` | `caracteristica`, `solo_magicas` | Las armas atacan y dañan con esa característica si es mejor. Listo para la Batalla: `{"caracteristica": "int", "solo_magicas": true}` (solo con armas mágicas, que se marcan en el paso Equipo). |
 | `rasgo` | `nombre`, `descripcion`, `resumen`, `usos`, `recarga`, `escala`, `clase` | Rasgo que aparece en la ficha (ver §5.1). |
 | `conjuro` | `id`, `caracteristica`; o `clase` + `siempre_preparado`; `cuenta_como_conocido` | Conjuro racial o innato; o de dominio/juramento (siempre preparado). Con `cuenta_como_conocido` (Secretos Mágicos del bardo) ocupa una plaza de los conjuros conocidos de esa clase. |
 | `dote` | `id` | Concede una dote (aplica sus efectos). |

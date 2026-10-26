@@ -464,6 +464,7 @@ class VistaAsistente5e(ctk.CTkFrame):
                 if n == bloque.elegida:
                     self._huecos(caja, bloque, n, alternativa)
             ctk.CTkFrame(caja, height=4, fg_color="transparent").pack()
+        self._objetos_magicos(master)
         self.a.aplicar_equipo()
         ficha = self.a.ficha()
         if ficha.equipo or ficha.monedas:
@@ -473,6 +474,39 @@ class VistaAsistente5e(ctk.CTkFrame):
             if dinero:
                 ctk.CTkLabel(master, text=f"Dinero: {dinero}", anchor="w").pack(anchor="w", padx=10, pady=4)
         self._faltan(master, "equipo")
+
+    def _objetos_magicos(self, master) -> None:
+        """Armas, armaduras y escudos +0 a +3: encontrados en la partida o con una infusión."""
+        caja = ctk.CTkFrame(master)
+        caja.pack(fill="x", padx=10, pady=(10, 4))
+        ctk.CTkLabel(caja, text="Objetos mágicos", font=fuente(13, True), anchor="w").pack(anchor="w", padx=10, pady=(6, 0))
+        texto_ajustado(caja, "Armas, armaduras y escudos de +0 a +3. Si tu equipo ya tiene uno igual, ese pasa a ser el "
+                             "mágico; si no, se añade.", 740, text_color="gray").pack(anchor="w", padx=10)
+        posibles = self.a.objetos_que_pueden_ser_magicos()
+        nombres = dict(posibles)
+        for n, magico in enumerate(self.a.objetos_magicos()):
+            fila = ctk.CTkFrame(caja, fg_color="transparent")
+            fila.pack(anchor="w", padx=16, pady=2)
+            ctk.CTkLabel(fila, text=f"{nombres.get(magico['id'], magico['id'])} +{magico['bonificador']}", width=260,
+                         anchor="w").pack(side="left")
+            ctk.CTkButton(fila, text="Quitar", width=70,
+                          command=lambda n=n: (self.a.quitar_objeto_magico(n), self._redibujar())).pack(side="left", padx=6)
+        fila = ctk.CTkFrame(caja, fg_color="transparent")
+        fila.pack(anchor="w", padx=16, pady=(4, 8))
+        ids = {nombre: id_ for id_, nombre in posibles}
+        objeto = ctk.CTkOptionMenu(fila, values=[NINGUNA, *ids], width=260, dynamic_resizing=False)
+        objeto.set(NINGUNA)
+        objeto.pack(side="left")
+        bonificador = ctk.CTkOptionMenu(fila, values=["+0", "+1", "+2", "+3"], width=70)
+        bonificador.set("+1")
+        bonificador.pack(side="left", padx=6)
+
+        def anadir() -> None:
+            if objeto.get() in ids:
+                self.a.anadir_objeto_magico(ids[objeto.get()], int(bonificador.get()))
+                self._redibujar()
+
+        ctk.CTkButton(fila, text="Añadir", width=80, command=anadir).pack(side="left")
 
     def _huecos(self, caja, bloque, alternativa: int, lineas) -> None:
         for n, linea in enumerate(lineas):

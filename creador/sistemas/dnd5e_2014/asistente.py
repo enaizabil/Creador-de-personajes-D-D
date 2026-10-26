@@ -46,6 +46,7 @@ ORO_EXTRA_POR_NIVEL = ((5, 10, "500 + 1d10x25"), (11, 16, "5000 + 1d10x250"), (1
 # Nombres de las líneas de equipo «a elegir» (si el dato no trae su propio «nombre»).
 NOMBRES_FOCO = {"arcano": "Canalizador arcano", "druidico": "Canalizador druídico", "sagrado": "Símbolo sagrado"}
 NOMBRES_HERRAMIENTA = {"instrumento": "Instrumento musical", "artesano": "Herramientas de artesano"}
+CATEGORIAS_MAGICAS = ("arma", "armadura", "escudo")  # las que admiten un bonificador mágico de +0 a +3
 # Elecciones que se muestran en cada paso, según el origen de su clave.
 PREFIJOS_PASO = {"raza": ("raza:", "subraza:"), "clase": ("clase:", "subclase:", "opcional:"), "trasfondo": ("trasfondo:",)}
 
@@ -659,6 +660,25 @@ class Asistente5e:
     def usar_oro_en_vez_de_equipo(self, usar: bool) -> None:
         self._seleccion_equipo()["oro"] = usar
 
+    def objetos_magicos(self) -> list[dict]:
+        """Armas, armaduras y escudos mágicos ({"id", "bonificador"} de +0 a +3). Si el equipo inicial ya tiene uno
+        igual, ese pasa a ser el mágico; si no, se añade."""
+        return self._seleccion_equipo().setdefault("magicos", [])
+
+    def objetos_que_pueden_ser_magicos(self) -> list[tuple[str, str]]:
+        return sorted(((o["id"], o["nombre"]) for o in self.catalogo.listar("objetos")
+                       if o.get("categoria") in CATEGORIAS_MAGICAS), key=lambda par: par[1])
+
+    def anadir_objeto_magico(self, id_: str, bonificador: int) -> None:
+        if (self.catalogo.obtener("objetos", id_) or {}).get("categoria") not in CATEGORIAS_MAGICAS:
+            raise ValueError("Solo armas, armaduras y escudos pueden tener bonificador mágico")
+        if not 0 <= bonificador <= 3:
+            raise ValueError("El bonificador mágico va de +0 a +3")
+        self.objetos_magicos().append({"id": id_, "bonificador": bonificador})
+
+    def quitar_objeto_magico(self, indice: int) -> None:
+        del self.objetos_magicos()[indice]
+
     def oro_extra_por_nivel(self) -> str | None:
         if not self.personaje.reglas_opcionales.get("equipo_por_nivel", False):
             return None
@@ -713,14 +733,21 @@ class Asistente5e:
             seleccion.setdefault("oro_extra_tirado", tirar_dados(extra, self.rng))
             monedas["po"] = monedas.get("po", 0) + seleccion["oro_extra_tirado"]
 
+        for magico in self.objetos_magicos():
+            if inventario.get(magico["id"], 0) > 0:  # el del equipo inicial pasa a ser el mágico
+                inventario[magico["id"]] -= 1
+
+        # Los mágicos van primero: son la armadura y el escudo que se equipan.
+        lineas = [(m["id"], 1, m["bonificador"]) for m in self.objetos_magicos()]
+        lineas += [(id_, cantidad, None) for id_, cantidad in inventario.items() if cantidad > 0]
         armadura_equipada = escudo_equipado = False
         equipo = []
-        for id_, cantidad in inventario.items():
+        for id_, cantidad, bonificador in lineas:
             categoria = (self.catalogo.obtener("objetos", id_) or {}).get("categoria")
             equipar = (categoria == "armadura" and not armadura_equipada) or (categoria == "escudo" and not escudo_equipado)
             armadura_equipada |= equipar and categoria == "armadura"
             escudo_equipado |= equipar and categoria == "escudo"
-            equipo.append(ObjetoInventario(id_, cantidad=cantidad, equipado=equipar))
+            equipo.append(ObjetoInventario(id_, cantidad=cantidad, equipado=equipar, bonificador=bonificador))
         self.personaje.equipo = equipo
         self.personaje.monedas = monedas
 

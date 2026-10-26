@@ -944,6 +944,11 @@
             "id": "armas_marciales"
           },
           {
+            "tipo": "ataque_caracteristica",
+            "caracteristica": "int",
+            "solo_magicas": true
+          },
+          {
             "tipo": "rasgo",
             "nombre": "Listo para la Batalla",
             "resumen": "competencia con armas marciales; con armas mágicas atacas y dañas con INT",

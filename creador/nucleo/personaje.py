@@ -9,7 +9,7 @@ import json
 from dataclasses import asdict, dataclass, field, fields
 from pathlib import Path
 
-VERSION_FORMATO = 2  # 2: campo «preparados»
+VERSION_FORMATO = 3  # 2: campo «preparados»; 3: «bonificador» de los objetos mágicos
 
 
 @dataclass
@@ -27,6 +27,7 @@ class ObjetoInventario:
     nombre: str = ""
     cantidad: int = 1
     equipado: bool = False
+    bonificador: int | None = None  # objeto mágico: +0 a +3 (None si no es mágico)
 
 
 @dataclass

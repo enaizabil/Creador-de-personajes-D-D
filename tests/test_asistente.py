@@ -474,3 +474,39 @@ def test_personaje_guardado_con_varias_clases_conserva_la_multiclase(asistente):
     del a.personaje.reglas_opcionales["multiclase"]  # como en un archivo anterior a la regla apagada de serie
     assert a.multiclase_activa()
     assert not [e for e in a.ficha().avisos if "regla opcional de multiclase" in e]
+
+
+def test_objetos_magicos(asistente, entorno_real):
+    sistema, catalogo = entorno_real
+    a = asistente
+    a.elegir_clase("guerrero")
+    a.elegir_trasfondo("soldado")
+    completar_equipo(a)
+    antes = a.ficha()
+    arma = next(o.id for o in a.personaje.equipo if catalogo.obtener("objetos", o.id)["categoria"] == "arma")
+    armadura = next(o.id for o in a.personaje.equipo
+                    if o.equipado and catalogo.obtener("objetos", o.id)["categoria"] == "armadura")
+    unidades = sum(o.cantidad for o in a.personaje.equipo if o.id == arma)
+    a.anadir_objeto_magico(arma, 1)
+    a.anadir_objeto_magico(armadura, 2)
+    a.aplicar_equipo()
+    ficha = a.ficha()
+    assert ficha.ca == antes.ca + 2
+    normal = next(at for at in antes.ataques if at.nombre == catalogo.obtener("objetos", arma)["nombre"])
+    magica = next(at for at in ficha.ataques if at.nombre.endswith("+1"))
+    assert magica.bonificador == normal.bonificador + 1
+    # La del equipo inicial pasa a ser la mágica: no hay una de más.
+    assert sum(o.cantidad for o in a.personaje.equipo if o.id == arma) == unidades
+    # Se guarda y se vuelve a cargar igual; un personaje del formato anterior, sin «bonificador», también carga.
+    copia = Personaje.desde_dict(a.personaje.a_dict())
+    assert sistema.calcular(copia, catalogo).ca == ficha.ca
+    viejo = a.personaje.a_dict()
+    viejo["version_formato"] = 2
+    for objeto in viejo["equipo"]:
+        objeto.pop("bonificador")
+    assert Personaje.desde_dict(viejo).equipo[0].bonificador is None
+    with pytest.raises(ValueError):
+        a.anadir_objeto_magico("cuerda_de_canamo", 1)
+    a.quitar_objeto_magico(1)
+    a.aplicar_equipo()
+    assert a.ficha().ca == antes.ca

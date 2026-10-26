@@ -132,7 +132,7 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
 
     nivel = personaje.nivel_total
     competencia = bonificador_competencia(nivel)
-    armadura, escudo, objetos = _equipo(personaje, catalogo, avisos)
+    armadura, escudo, objetos, bonificador_ca = _equipo(personaje, catalogo, avisos)
     aplicables = [a for a in resolucion.aplicados if _cumple_condicion(a.efecto.get("condicion"), armadura, escudo)]
 
     def de_tipo(tipo: str) -> list[dict]:
@@ -207,7 +207,7 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
         percepcion_pasiva=pasivas["percepcion"],
         pasivas=pasivas,
         ca=_clase_armadura(mods, armadura, escudo, _primera_de_cada(de_tipo("ca_alternativa")), de_tipo("bonificador_ca"),
-                           de_tipo("max_des_armadura_media")),
+                           de_tipo("max_des_armadura_media")) + bonificador_ca,
         iniciativa=mods["des"] + medio.get("des", 0) + _bonificador_iniciativa(de_tipo("iniciativa"), contexto, avisos),
         velocidades=_velocidades(raza, de_tipo("velocidad"), puntuaciones["fue"], armadura,
                                  bool(de_tipo("ignora_penalizacion_armadura"))),
@@ -216,7 +216,7 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
         tamano=TAMANOS.get((raza or {}).get("tamano", ""), ""),
         competencias=_nombres_competencias(competencias, catalogo),
         ataques=_ataques(objetos, mods, competencia, competencias["arma"], de_tipo("bonificador_ataque"),
-                         de_tipo("ataque_des"), (raza or {}).get("tamano") == "pequeno")
+                         de_tipo("ataque_des"), (raza or {}).get("tamano") == "pequeno", de_tipo("ataque_caracteristica"))
                 + _ataques_de_rasgos(aplicables, catalogo, mods, competencia, niveles_clase, contexto, avisos),
         rasgos=_rasgos(aplicables, catalogo, niveles_clase, contexto, avisos),
         sentidos=_sentidos(de_tipo("sentido")),
@@ -587,8 +587,10 @@ def _medio_competencia(efectos: list[dict], competencia: int) -> dict[str, int]:
 
 def _equipo(
     personaje: Personaje, catalogo: Catalogo, avisos: list[str]
-) -> tuple[dict | None, dict | None, list[tuple[ObjetoInventario, dict | None]]]:
+) -> tuple[dict | None, dict | None, list[tuple[ObjetoInventario, dict | None]], int]:
+    """Armadura y escudo equipados, todos los objetos y lo que suman a la CA si son mágicos (+1 a +3)."""
     armadura = escudo = None
+    bonificador_ca = 0
     objetos = []
     for item in personaje.equipo:
         entrada = catalogo.obtener("objetos", item.id) if item.id else None
@@ -602,12 +604,14 @@ def _equipo(
                 avisos.append(f"Hay más de una armadura equipada; se usa {armadura['nombre']}")
             else:
                 armadura = entrada
+                bonificador_ca += item.bonificador or 0
         elif entrada["categoria"] == "escudo":
             if escudo:
                 avisos.append("Hay más de un escudo equipado; solo cuenta uno")
             else:
                 escudo = entrada
-    return armadura, escudo, objetos
+                bonificador_ca += item.bonificador or 0
+    return armadura, escudo, objetos, bonificador_ca
 
 
 def _avisos_competencia_armadura(armadura: dict | None, escudo: dict | None, competentes: set[str], avisos: list[str]) -> None:
@@ -962,12 +966,14 @@ def _admite_destreza(entrada: dict, efectos_des: list[dict]) -> bool:
 
 def _ataques(objetos: list[tuple[ObjetoInventario, dict | None]], mods: dict[str, int], competencia: int,
              competentes: set[str], bonificadores: list[dict], efectos_des: list[dict],
-             pequeno: bool = False) -> list[Ataque]:
+             pequeno: bool = False, otras_caracteristicas: list[dict] | None = None) -> list[Ataque]:
+    """Un ataque por arma distinta (la misma arma +1 cuenta aparte). «otras_caracteristicas»: rasgos que dejan atacar
+    con otra característica si es mejor (Listo para la Batalla: Inteligencia con armas mágicas)."""
     ataques, vistos = [], set()
-    for _, entrada in objetos:
-        if not entrada or entrada["categoria"] != "arma" or entrada["id"] in vistos:
+    for item, entrada in objetos:
+        if not entrada or entrada["categoria"] != "arma" or (entrada["id"], item.bonificador) in vistos:
             continue
-        vistos.add(entrada["id"])
+        vistos.add((entrada["id"], item.bonificador))
         arma = entrada["arma"]
         propiedades = arma.get("propiedades", [])
         if "sutil" in propiedades or _admite_destreza(entrada, efectos_des):
@@ -976,21 +982,25 @@ def _ataques(objetos: list[tuple[ObjetoInventario, dict | None]], mods: dict[str
             car = "des"
         else:
             car = "fue"
+        for efecto in otras_caracteristicas or []:
+            if (item.bonificador is not None or not efecto.get("solo_magicas")) and mods[efecto["caracteristica"]] > mods[car]:
+                car = efecto["caracteristica"]
+        magia = item.bonificador or 0
         competente = bool({entrada["id"], GRUPO_ARMA[arma["categoria"]]} & competentes)
-        bono = mods[car] + (competencia if competente else 0)
+        bono = mods[car] + (competencia if competente else 0) + magia
         bono += sum(b["valor"] for b in bonificadores if b.get("tipo_arma") in (None, arma["tipo"]))
         notas = []
         if arma.get("dano_versatil"):
-            notas.append(f"A dos manos: {_formula_dano(arma['dano_versatil'], mods[car])}")
+            notas.append(f"A dos manos: {_formula_dano(arma['dano_versatil'], mods[car] + magia)}")
         if arma.get("alcance"):
             notas.append(f"Alcance {arma['alcance']} pies")
         if not competente:
             notas.append("Sin competencia")
         if pequeno and "pesada" in propiedades:
             notas.append("Desventaja (arma pesada y criatura Pequeña)")
-        dano = _formula_dano(arma["dano"], mods[car])
-        ataques.append(Ataque(entrada["nombre"], bono, dano, TIPOS_DANO.get(arma["tipo_dano"], arma["tipo_dano"]),
-                              "; ".join(notas)))
+        dano = _formula_dano(arma["dano"], mods[car] + magia)
+        ataques.append(Ataque(_nombre_magico(entrada["nombre"], item.bonificador), bono, dano,
+                              TIPOS_DANO.get(arma["tipo_dano"], arma["tipo_dano"]), "; ".join(notas)))
     return ataques
 
 
@@ -1051,8 +1061,15 @@ def _nombres_competencias(competencias: dict[str, set[str]], catalogo: Catalogo)
             "herramientas": nombres("herramienta"), "idiomas": nombres("idioma")}
 
 
+def _nombre_magico(nombre: str, bonificador: int | None) -> str:
+    """«Espada larga +1»; con +0, «Espada larga (mágica)»."""
+    if bonificador is None:
+        return nombre
+    return f"{nombre} +{bonificador}" if bonificador else f"{nombre} (mágica)"
+
+
 def _describir_objeto(item: ObjetoInventario, entrada: dict | None) -> str:
-    nombre = item.nombre or (entrada or {}).get("nombre") or item.id or "?"
+    nombre = _nombre_magico(item.nombre or (entrada or {}).get("nombre") or item.id or "?", item.bonificador)
     return f"{nombre} (x{item.cantidad})" if item.cantidad != 1 else nombre
 
 
