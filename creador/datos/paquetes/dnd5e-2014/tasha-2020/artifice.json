@@ -807,10 +807,14 @@
           {
             "tipo": "rasgo",
             "nombre": "Cañón Sobrenatural",
-            "resumen": "acción, con herramientas de ebanista o de herrero: creas un cañón Pequeño o Diminuto a 5 pies (CA 18, {5*nivel_clase} PG, 1 hora); acción adicional: lo activas a 60 pies: Lanzallamas (cono de 15 pies, salvación de DES, 2d8 de fuego), Balista de Fuerza (ataque de conjuro a 120 pies, 2d8 de fuerza y empuje) o Protector (1d8+{mod_int} PG temporales a 10 pies); una vez por descanso largo o un espacio",
-            "descripcion": "Como acción, con herramientas de ebanista o de herrero, creas un cañón sobrenatural Pequeño o Diminuto en una superficie a 5 pies. Es un objeto mágico: CA 18, tantos PG como cinco veces tu nivel de artífice, inmune al veneno y al daño psíquico, características a 10; reparar le cura 2d6. Dura 1 hora o hasta llegar a 0 PG (o lo despides como acción). Solo puedes tener uno; crear otro te pide un descanso largo o gastar un espacio de conjuro. En cada turno, como acción adicional y a 60 pies o menos, lo activas (y, si tiene patas, lo mueves 15 pies): Lanzallamas, cono de 15 pies, salvación de Destreza contra tu CD o 2d8 de fuego (la mitad si salva); Balista de Fuerza, ataque de conjuro a distancia a 120 pies, 2d8 de fuerza y empuja 5 pies; Protector, él y las criaturas que elijas a 10 pies ganan 1d8 + tu modificador por Inteligencia PG temporales.",
+            "resumen": "acción, con herramientas de ebanista o de herrero: creas un cañón Pequeño o Diminuto a 5 pies (CA 18, {5*nivel_clase} PG, 1 hora); acción adicional: lo activas a 60 pies: Lanzallamas (cono de 15 pies, salvación de DES CD {8+competencia+mod_int}, {escala} de fuego), Balista de Fuerza (+{competencia+mod_int} a 120 pies, {escala} de fuerza y empuja 5 pies) o Protector (1d8+{max(1,mod_int)} PG temporales a 10 pies); una vez por descanso largo o un espacio",
+            "descripcion": "Como acción, con herramientas de ebanista o de herrero, creas un cañón sobrenatural Pequeño o Diminuto en una superficie a 5 pies. Es un objeto mágico: CA 18, tantos PG como cinco veces tu nivel de artífice, inmune al veneno y al daño psíquico, características a 10; reparar le cura 2d6. Dura 1 hora o hasta llegar a 0 PG (o lo despides como acción). Solo puedes tener uno; crear otro te pide un descanso largo o gastar un espacio de conjuro. En cada turno, como acción adicional y a 60 pies o menos, lo activas (y, si tiene patas, lo mueves 15 pies): Lanzallamas, cono de 15 pies, salvación de Destreza contra tu CD o 2d8 de fuego (la mitad si salva); Balista de Fuerza, ataque de conjuro a distancia a 120 pies, 2d8 de fuerza y empuja 5 pies; Protector, él y las criaturas que elijas a 10 pies ganan 1d8 + tu modificador por Inteligencia (mínimo +1) PG temporales. El daño sube a 3d8 a nivel 9 (Cañón Explosivo).",
             "usos": 1,
-            "recarga": "largo"
+            "recarga": "largo",
+            "escala": {
+              "3": "2d8",
+              "9": "3d8"
+            }
           },
           {
             "tipo": "conjuro",
@@ -948,8 +952,12 @@
           {
             "tipo": "rasgo",
             "nombre": "Defensor de Acero",
-            "resumen": "un defensor de acero amistoso (CA 15, {2+mod_int+5*nivel_clase} PG, 40 pies) que actúa tras de ti y solo Esquiva salvo que le ordenes otra acción con una acción adicional",
-            "descripcion": "Construyes un compañero leal, el defensor de acero (autómata Mediano, con dos o cuatro patas): CA 15, PG 2 + tu modificador por Inteligencia + cinco veces tu nivel de artífice, velocidad 40 pies, inmune al veneno, a hechizado, cansancio y envenenado, visión en la oscuridad 60 pies, no puede ser sorprendido; usa tu bonificador por competencia (BC). Desgarro con Fuerza: ataque cuerpo a cuerpo con tu modificador de ataque de conjuros, 1d8 + BC de fuerza. Reparar (3 al día): 2d8 + BC PG a sí mismo o a un constructo u objeto a 5 pies. Desviar Ataque (reacción): desventaja a un ataque contra otra criatura a 5 pies de él. Actúa justo después de ti; solo Esquiva salvo que uses una acción adicional para ordenarle otra acción. Reparar le cura 2d6; si murió hace menos de 1 hora, lo revives con herramientas de herrero y un espacio de conjuro. Tras un descanso largo puedes construir otro."
+            "resumen": "un defensor de acero amistoso (CA {escala}, {2+mod_int+5*nivel_clase} PG, 40 pies; Desgarro con Fuerza +{competencia+mod_int}, 1d8+{competencia} de fuerza; Reparar 3/día, 2d8+{competencia}) que actúa tras de ti y solo Esquiva salvo que le ordenes otra acción con una acción adicional",
+            "descripcion": "Construyes un compañero leal, el defensor de acero (autómata Mediano, con dos o cuatro patas): CA 15, PG 2 + tu modificador por Inteligencia + cinco veces tu nivel de artífice, velocidad 40 pies, inmune al veneno, a hechizado, cansancio y envenenado, visión en la oscuridad 60 pies, no puede ser sorprendido; usa tu bonificador por competencia (BC). Desgarro con Fuerza: ataque cuerpo a cuerpo con tu modificador de ataque de conjuros, 1d8 + BC de fuerza. Reparar (3 al día): 2d8 + BC PG a sí mismo o a un constructo u objeto a 5 pies. Desviar Ataque (reacción): desventaja a un ataque contra otra criatura a 5 pies de él. Actúa justo después de ti; solo Esquiva salvo que uses una acción adicional para ordenarle otra acción. Reparar le cura 2d6; si murió hace menos de 1 hora, lo revives con herramientas de herrero y un espacio de conjuro. Tras un descanso largo puedes construir otro. A nivel 15 (Defensor Mejorado) su CA sube a 17.",
+            "escala": {
+              "3": "15",
+              "15": "17"
+            }
           },
           {
             "tipo": "conjuro",

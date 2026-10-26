@@ -416,3 +416,19 @@ def test_el_artifice_no_quita_el_mago_a_quien_busca_saber(entorno):
     assert recomendada("saber") == "mago"
     assert recomendada("saber", "arcano") == "mago"
     assert recomendada("saber", "astucia") == "artifice"
+
+
+def test_perfiles_de_criaturas_calculados_en_el_rasgo(entorno):
+    sistema, catalogo = entorno
+
+    def resumen(subclase, nivel, rasgo):
+        ficha = sistema.calcular(_con_subclase(entorno, subclase, nivel).personaje, catalogo)
+        mod_int = ficha.caracteristicas["int"].modificador
+        return {r.nombre: r.resumen for r in ficha.rasgos}[rasgo], mod_int
+
+    texto, mod_int = resumen("herrero_de_batalla", 3, "Defensor de Acero")
+    assert f"CA 15, {2 + mod_int + 15} PG" in texto and f"Desgarro con Fuerza +{2 + mod_int}, 1d8+2" in texto
+    texto, mod_int = resumen("herrero_de_batalla", 15, "Defensor de Acero")
+    assert "CA 17" in texto and f"+{5 + mod_int}, 1d8+5" in texto
+    texto, _ = resumen("artillero", 9, "Cañón Sobrenatural")
+    assert "45 PG" in texto and "3d8 de fuego" in texto  # Cañón Explosivo

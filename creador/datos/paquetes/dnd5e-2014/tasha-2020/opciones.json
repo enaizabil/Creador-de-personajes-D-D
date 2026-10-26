@@ -732,7 +732,7 @@
         "artifice"
       ],
       "fuente": "Tasha 2020 p. 20-23",
-      "resumen": "una gema de 100 po se vuelve el corazón de un homúnculo (autómata diminuto, CA 13, {1+mod_int+nivel_clase} PG, vuela 30 pies) que actúa tras de ti y canaliza tus conjuros de toque",
+      "resumen": "una gema de 100 po se vuelve el corazón de un homúnculo (autómata diminuto, CA 13, {1+mod_int+nivel_clase} PG, vuela 30 pies; Impacto de Fuerza +{competencia+mod_int} a 30 pies, 1d4+{competencia} de fuerza) que actúa tras de ti y canaliza tus conjuros de toque",
       "descripcion": "Objeto: una gema o un cristal de al menos 100 po. Creas un homúnculo a tu servicio, amistoso y obediente: autómata diminuto, CA 13, PG 1 + tu modificador por Inteligencia + tu nivel de artífice, velocidad 20 pies y volar 30, inmune al veneno, cansancio y envenenado, visión en la oscuridad 60 pies, Evasión; usa tu bonificador por competencia (BC). Impacto de Fuerza: ataque a distancia con tu modificador de ataque de conjuros, 30 pies, 1d4 + BC de fuerza. Canalizar Magia (reacción): lanza a través de él un conjuro tuyo de toque, a 120 pies o menos. Actúa justo después de ti; solo Esquiva salvo que le ordenes otra acción con una acción adicional. Reparar le cura 2d6."
     },
     {
