@@ -74,6 +74,7 @@ CAMPOS_EFECTO: dict[str, tuple[str, ...]] = {
     "ataque_desarmado": ("dano",),
     "ataque": ("nombre", "dano"),
     "ataque_caracteristica": ("caracteristica",),
+    "bonificador_ataque_conjuros": ("valor",),
     "rasgo": ("nombre",),
     "conjuro": ("id",),
     "dote": ("id",),
@@ -283,6 +284,8 @@ def validar_entrada(categoria: str, entrada: dict) -> list[str]:
 
     for ruta, efectos in listas_de_efectos(entrada):
         errores.extend(validar_efectos(efectos, ruta))
+    if categoria == "opciones" and "propia" in entrada:
+        errores.extend(_validar_propia(entrada["propia"]))
     if "perfil" in entrada:
         errores.extend(_validar_perfil(entrada["perfil"]))
     requeridas = entrada.get("requiere_reglas", [])
@@ -336,6 +339,26 @@ def validar_entrada(categoria: str, entrada: dict) -> list[str]:
             errores.append(f"escuela desconocida «{entrada['escuela']}»")
     elif categoria == "objetos":
         errores.extend(_validar_objeto(entrada))
+    return errores
+
+
+def _validar_propia(propia) -> list[str]:
+    """Infusión que puede llevar el propio personaje: «objeto» (categorías y propiedad del objeto que se infunde),
+    «bonificador» ({nivel: valor} de la clase), «efectos» (con "$bonificador" como valor) y «elige_dano»."""
+    if not isinstance(propia, dict):
+        return ["«propia» debe ser un objeto"]
+    errores = []
+    objeto = propia.get("objeto")
+    if objeto is not None and (not isinstance(objeto, dict)
+                               or not set(objeto.get("categorias", [])) <= {"arma", "armadura", "escudo"}
+                               or not objeto.get("categorias")):
+        errores.append("«propia.objeto» debe tener «categorias» entre arma, armadura y escudo")
+    escala = propia.get("bonificador", {})
+    if not isinstance(escala, dict) or not all(str(n).isdigit() and isinstance(v, int) for n, v in escala.items()):
+        errores.append("«propia.bonificador» debe ser {nivel: valor entero}")
+    efectos = [{k: 0 if v == "$bonificador" else v for k, v in e.items()} if isinstance(e, dict) else e
+               for e in propia.get("efectos", [])]
+    errores.extend(validar_efectos(efectos, "propia.efectos"))
     return errores
 
 

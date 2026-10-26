@@ -17,7 +17,7 @@ from ...nucleo.personaje import EntradaClase, ObjetoInventario
 from ...nucleo.texto import clave_alfabetica
 from . import motor
 from .caracteristicas import asignar_por_prioridad, coste_compra, modificador, tirar_4d6, validar_base
-from .constantes import ARRAY_ESTANDAR, CARACTERISTICAS, COSTE_COMPRA, NIVEL_MAXIMO, PUNTOS_COMPRA
+from .constantes import ARRAY_ESTANDAR, CARACTERISTICAS, COSTE_COMPRA, NIVEL_MAXIMO, PUNTOS_COMPRA, TIPOS_DANO
 from .ficha import Ficha, PlanConjuros
 
 if TYPE_CHECKING:
@@ -95,6 +95,20 @@ class BloqueEquipo:
     indice: int
     alternativas: list[list[LineaEquipo]]
     elegida: int | None
+
+
+@dataclass
+class InfusionPropia:
+    """Una infusión conocida que cambia la ficha si la lleva el propio personaje («la llevo yo»)."""
+    id: str
+    nombre: str
+    resumen: str
+    necesita_objeto: bool
+    objetos: list[tuple[str, str]]  # (id, nombre) del equipo en que se puede poner
+    elige_dano: bool
+    llevada: bool
+    objeto: str | None = None
+    dano: str | None = None
 
 
 def tirar_dados(expresion: str, rng: random.Random) -> int:
@@ -678,6 +692,43 @@ class Asistente5e:
 
     def quitar_objeto_magico(self, indice: int) -> None:
         del self.objetos_magicos()[indice]
+
+    def infusiones_propias(self) -> list[InfusionPropia]:
+        """Infusiones conocidas con efecto en la ficha si las lleva el propio personaje, con los objetos del equipo
+        (corrientes) en que se pueden poner."""
+        marcadas = self.extra.get("infusiones_propias", {})
+        conocidas = dict.fromkeys(a.efecto["opcion"] for a in self._resolucion().aplicados
+                                  if a.tipo == "rasgo" and a.efecto.get("opcion"))
+        resultado = []
+        for id_ in conocidas:
+            opcion = self.catalogo.obtener("opciones", id_) or {}
+            propia = opcion.get("propia")
+            if not propia:
+                continue
+            requisito = propia.get("objeto") or {}
+            objetos = {}
+            for item in self.personaje.equipo if requisito else []:
+                entrada = self.catalogo.obtener("objetos", item.id) if item.id else None
+                if not entrada or item.bonificador is not None or entrada["categoria"] not in requisito["categorias"]:
+                    continue
+                if requisito.get("propiedad") not in (None, *entrada.get("arma", {}).get("propiedades", [])):
+                    continue
+                objetos[item.id] = entrada["nombre"]
+            seleccion = marcadas.get(id_) or {}
+            resultado.append(InfusionPropia(id_, opcion["nombre"].removeprefix("Infusión: "), opcion.get("resumen", ""),
+                                            bool(requisito), list(objetos.items()), bool(propia.get("elige_dano")),
+                                            id_ in marcadas, seleccion.get("objeto"), seleccion.get("dano")))
+        return resultado
+
+    def llevar_infusion(self, id_: str, llevar: bool, objeto: str | None = None, dano: str | None = None) -> None:
+        """Marca (o desmarca) una infusión como llevada por el propio personaje, en el objeto indicado."""
+        marcadas = self.extra.setdefault("infusiones_propias", {})
+        if not llevar:
+            marcadas.pop(id_, None)
+            return
+        if dano is not None and dano not in TIPOS_DANO:
+            raise ValueError(f"Tipo de daño desconocido «{dano}»")
+        marcadas[id_] = {"objeto": objeto, "dano": dano}
 
     def oro_extra_por_nivel(self) -> str | None:
         if not self.personaje.reglas_opcionales.get("equipo_por_nivel", False):

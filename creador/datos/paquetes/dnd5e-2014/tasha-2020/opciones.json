@@ -585,7 +585,18 @@
       ],
       "fuente": "Tasha 2020 p. 20-23",
       "resumen": "arma sencilla o marcial +1 al ataque y al daño (+2 desde nivel 10)",
-      "descripcion": "Objeto: un arma sencilla o marcial. Da +1 a las tiradas de ataque y de daño; +2 cuando llegas a nivel 10 de artífice."
+      "descripcion": "Objeto: un arma sencilla o marcial. Da +1 a las tiradas de ataque y de daño; +2 cuando llegas a nivel 10 de artífice.",
+      "propia": {
+        "objeto": {
+          "categorias": [
+            "arma"
+          ]
+        },
+        "bonificador": {
+          "2": 1,
+          "10": 2
+        }
+      }
     },
     {
       "id": "arma_radiante",
@@ -599,6 +610,16 @@
       "descripcion": "Requisito: nivel 6 de artífice. Objeto: un arma sencilla o marcial (requiere sintonización). Da +1 a las tiradas de ataque y de daño. Con una acción adicional emite luz brillante a 30 pies y tenue 30 más, o la apaga. Tiene 4 cargas: como reacción justo después de que le golpee un ataque, el portador gasta 1 y el atacante queda cegado hasta el final de su siguiente turno salvo que supere una salvación de Constitución contra tu CD de conjuros. Recupera 1d4 cargas cada amanecer.",
       "prerrequisito": {
         "texto": "nivel 6 de artífice"
+      },
+      "propia": {
+        "objeto": {
+          "categorias": [
+            "arma"
+          ]
+        },
+        "bonificador": {
+          "2": 1
+        }
       }
     },
     {
@@ -610,7 +631,18 @@
       ],
       "fuente": "Tasha 2020 p. 20-23",
       "resumen": "arma arrojadiza +1 al ataque y al daño que vuelve a la mano tras un ataque a distancia",
-      "descripcion": "Objeto: un arma sencilla o marcial con la propiedad arrojadiza. Da +1 a las tiradas de ataque y de daño y vuelve a la mano de quien la empuña justo después de un ataque a distancia."
+      "descripcion": "Objeto: un arma sencilla o marcial con la propiedad arrojadiza. Da +1 a las tiradas de ataque y de daño y vuelve a la mano de quien la empuña justo después de un ataque a distancia.",
+      "propia": {
+        "objeto": {
+          "categorias": [
+            "arma"
+          ],
+          "propiedad": "arrojadiza"
+        },
+        "bonificador": {
+          "2": 1
+        }
+      }
     },
     {
       "id": "armadura_de_fuerza_magica",
@@ -621,7 +653,14 @@
       ],
       "fuente": "Tasha 2020 p. 20-23",
       "resumen": "armadura (sintonización) con 6 cargas: +INT a una prueba o salvación de FUE, o evitar caer derribado",
-      "descripcion": "Objeto: una armadura (requiere sintonización). Tiene 6 cargas: al hacer una prueba o una salvación de Fuerza, quien la lleva puede gastar 1 para sumar tu modificador por Inteligencia; y si fuera a caer derribado, puede usar su reacción y gastar 1 para evitarlo. Recupera 1d6 cargas cada amanecer."
+      "descripcion": "Objeto: una armadura (requiere sintonización). Tiene 6 cargas: al hacer una prueba o una salvación de Fuerza, quien la lleva puede gastar 1 para sumar tu modificador por Inteligencia; y si fuera a caer derribado, puede usar su reacción y gastar 1 para evitarlo. Recupera 1d6 cargas cada amanecer.",
+      "propia": {
+        "objeto": {
+          "categorias": [
+            "armadura"
+          ]
+        }
+      }
     },
     {
       "id": "armadura_de_propulsion_arcana",
@@ -635,6 +674,30 @@
       "descripcion": "Requisito: nivel 14 de artífice. Objeto: una armadura (requiere sintonización). Quien la lleva gana +5 pies de velocidad caminando; la armadura tiene guanteletes que son armas mágicas cuerpo a cuerpo con la mano vacía (competente, 1d8 de daño de fuerza, arrojadizos 20/60 pies, vuelven solos); no se la pueden quitar contra su voluntad; y sustituye manos, brazos, pies o piernas que le falten.",
       "prerrequisito": {
         "texto": "nivel 14 de artífice"
+      },
+      "propia": {
+        "objeto": {
+          "categorias": [
+            "armadura"
+          ]
+        },
+        "efectos": [
+          {
+            "tipo": "velocidad",
+            "modo": "caminar",
+            "bonificador": 5
+          },
+          {
+            "tipo": "ataque",
+            "nombre": "Guanteletes de la Armadura de Propulsión",
+            "dano": "1d8",
+            "tipo_dano": "fuerza",
+            "caracteristicas": [
+              "fue"
+            ],
+            "notas": "Con la mano vacía; arrojadizos 20/60 pies y vuelven solos"
+          }
+        ]
       }
     },
     {
@@ -649,6 +712,14 @@
       "descripcion": "Requisito: nivel 6 de artífice. Objeto: una armadura (requiere sintonización). Quien la lleva tiene resistencia a un tipo de daño que eliges al imbuirla: ácido, frío, fuego, fuerza, relámpago, necrótico, veneno, psíquico, radiante o trueno.",
       "prerrequisito": {
         "texto": "nivel 6 de artífice"
+      },
+      "propia": {
+        "objeto": {
+          "categorias": [
+            "armadura"
+          ]
+        },
+        "elige_dano": true
       }
     },
     {
@@ -674,7 +745,19 @@
       ],
       "fuente": "Tasha 2020 p. 20-23",
       "resumen": "cetro, bastón o varita (sintonización): +1 a los ataques de conjuro (+2 desde nivel 10) e ignora la cobertura media",
-      "descripcion": "Objeto: un cetro, un bastón o una varita (requiere sintonización). Quien lo sostiene gana +1 a las tiradas de ataque de conjuro (+2 cuando llegas a nivel 10 de artífice) e ignora la cobertura media en sus ataques de conjuro."
+      "descripcion": "Objeto: un cetro, un bastón o una varita (requiere sintonización). Quien lo sostiene gana +1 a las tiradas de ataque de conjuro (+2 cuando llegas a nivel 10 de artífice) e ignora la cobertura media en sus ataques de conjuro.",
+      "propia": {
+        "bonificador": {
+          "2": 1,
+          "10": 2
+        },
+        "efectos": [
+          {
+            "tipo": "bonificador_ataque_conjuros",
+            "valor": "$bonificador"
+          }
+        ]
+      }
     },
     {
       "id": "defensa_mejorada",
@@ -685,7 +768,19 @@
       ],
       "fuente": "Tasha 2020 p. 20-23",
       "resumen": "armadura o escudo: +1 a la CA (+2 desde nivel 10)",
-      "descripcion": "Objeto: una armadura o un escudo. Quien lo viste o empuña gana +1 a la CA; +2 cuando llegas a nivel 10 de artífice."
+      "descripcion": "Objeto: una armadura o un escudo. Quien lo viste o empuña gana +1 a la CA; +2 cuando llegas a nivel 10 de artífice.",
+      "propia": {
+        "objeto": {
+          "categorias": [
+            "armadura",
+            "escudo"
+          ]
+        },
+        "bonificador": {
+          "2": 1,
+          "10": 2
+        }
+      }
     },
     {
       "id": "disparo_repetido",
@@ -696,7 +791,18 @@
       ],
       "fuente": "Tasha 2020 p. 20-23",
       "resumen": "arma con munición (sintonización): +1 a los ataques y al daño a distancia, ignora recarga y crea su propia munición",
-      "descripcion": "Objeto: un arma sencilla o marcial con la propiedad munición (requiere sintonización). Da +1 a las tiradas de ataque y de daño a distancia e ignora la propiedad recarga. Si no está cargada, crea su propia munición mágica, que desaparece tras impactar o fallar."
+      "descripcion": "Objeto: un arma sencilla o marcial con la propiedad munición (requiere sintonización). Da +1 a las tiradas de ataque y de daño a distancia e ignora la propiedad recarga. Si no está cargada, crea su propia munición mágica, que desaparece tras impactar o fallar.",
+      "propia": {
+        "objeto": {
+          "categorias": [
+            "arma"
+          ],
+          "propiedad": "municion"
+        },
+        "bonificador": {
+          "2": 1
+        }
+      }
     },
     {
       "id": "escudo_de_repulsion",
@@ -710,6 +816,16 @@
       "descripcion": "Requisito: nivel 6 de artífice. Objeto: un escudo (requiere sintonización). Da +1 a la CA. Tiene 4 cargas: como reacción justo después de que le golpee un ataque cuerpo a cuerpo, el portador gasta 1 y empuja al atacante hasta 15 pies. Recupera 1d4 cargas cada amanecer.",
       "prerrequisito": {
         "texto": "nivel 6 de artífice"
+      },
+      "propia": {
+        "objeto": {
+          "categorias": [
+            "escudo"
+          ]
+        },
+        "bonificador": {
+          "2": 1
+        }
       }
     },
     {

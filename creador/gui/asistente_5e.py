@@ -8,7 +8,7 @@ from tkinter import filedialog, messagebox
 import customtkinter as ctk
 
 from ..sistemas.dnd5e_2014.asistente import ALINEAMIENTOS, METODOS_CARACTERISTICAS, Asistente5e
-from ..sistemas.dnd5e_2014.constantes import CARACTERISTICAS, COSTE_COMPRA, RASGOS_PERFIL
+from ..sistemas.dnd5e_2014.constantes import CARACTERISTICAS, COSTE_COMPRA, RASGOS_PERFIL, TIPOS_DANO
 from ..sistemas.dnd5e_2014.texto import resumen_ficha
 from .componentes import NINGUNA, ListaAvisos, ListaOpciones, SelectorEleccion, fuente, texto_ajustado, titulo
 
@@ -465,6 +465,7 @@ class VistaAsistente5e(ctk.CTkFrame):
                     self._huecos(caja, bloque, n, alternativa)
             ctk.CTkFrame(caja, height=4, fg_color="transparent").pack()
         self._objetos_magicos(master)
+        self._infusiones_propias(master)
         self.a.aplicar_equipo()
         ficha = self.a.ficha()
         if ficha.equipo or ficha.monedas:
@@ -507,6 +508,54 @@ class VistaAsistente5e(ctk.CTkFrame):
                 self._redibujar()
 
         ctk.CTkButton(fila, text="Añadir", width=80, command=anadir).pack(side="left")
+
+    def _infusiones_propias(self, master) -> None:
+        """Infusiones conocidas que lleva el propio personaje: el objeto pasa a ser mágico en la ficha."""
+        infusiones = self.a.infusiones_propias()
+        if not infusiones:
+            return
+        caja = ctk.CTkFrame(master)
+        caja.pack(fill="x", padx=10, pady=(6, 4))
+        ctk.CTkLabel(caja, text="Infusiones que llevas tú", font=fuente(13, True),
+                     anchor="w").pack(anchor="w", padx=10, pady=(6, 0))
+        texto_ajustado(caja, "Marca las que llevas tú y en qué objeto, y la ficha sumará su efecto. Las que pones en "
+                             "objetos de tus compañeros no se marcan. Cada objeto admite una sola infusión.", 740,
+                       text_color="gray").pack(anchor="w", padx=10)
+        danos = {nombre: id_ for id_, nombre in TIPOS_DANO.items() if id_ not in ("contundente", "cortante", "perforante")}
+        for infusion in infusiones:
+            fila = ctk.CTkFrame(caja, fg_color="transparent")
+            fila.pack(anchor="w", padx=16, pady=2)
+            variable = ctk.BooleanVar(value=infusion.llevada)
+
+            def marcar(inf=infusion, var=variable) -> None:
+                objeto = (inf.objeto or (inf.objetos[0][0] if inf.objetos else None)) if inf.necesita_objeto else None
+                self.a.llevar_infusion(inf.id, var.get(), objeto, inf.dano or ("fuego" if inf.elige_dano else None))
+                self._redibujar()
+
+            casilla = ctk.CTkCheckBox(fila, text=infusion.nombre, variable=variable, command=marcar, width=280)
+            casilla.pack(side="left")
+            if infusion.necesita_objeto and not infusion.objetos:
+                if not infusion.llevada:
+                    casilla.configure(state="disabled")
+                ctk.CTkLabel(fila, text="no llevas ningún objeto adecuado", text_color="gray").pack(side="left", padx=6)
+                continue
+            if not infusion.llevada:
+                continue
+            if infusion.necesita_objeto:
+                ids = {nombre: id_ for id_, nombre in infusion.objetos}
+                objeto = ctk.CTkOptionMenu(
+                    fila, values=list(ids), width=220, dynamic_resizing=False,
+                    command=lambda v, inf=infusion, ids=ids: (self.a.llevar_infusion(inf.id, True, ids[v], inf.dano),
+                                                              self._redibujar()))
+                objeto.set(dict(infusion.objetos).get(infusion.objeto, NINGUNA))
+                objeto.pack(side="left", padx=6)
+            if infusion.elige_dano:
+                dano = ctk.CTkOptionMenu(
+                    fila, values=list(danos), width=130,
+                    command=lambda v, inf=infusion: (self.a.llevar_infusion(inf.id, True, inf.objeto, danos[v]),
+                                                     self._redibujar()))
+                dano.set(TIPOS_DANO.get(infusion.dano or "", NINGUNA))
+                dano.pack(side="left", padx=6)
 
     def _huecos(self, caja, bloque, alternativa: int, lineas) -> None:
         for n, linea in enumerate(lineas):

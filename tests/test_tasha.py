@@ -448,3 +448,32 @@ def test_listo_para_la_batalla_ataca_con_inteligencia_con_armas_magicas(entorno)
     a.aplicar_equipo()
     magica = next(at for at in a.ficha().ataques if at.nombre == f"{nombre} (mágica)")
     assert magica.bonificador == normal.bonificador - max(mods["fue"], mods["des"]) + mods["int"]
+
+
+def test_infusiones_que_lleva_el_propio_artifice(entorno):
+    sistema, catalogo = entorno
+    q = _con_subclase(entorno, "artillero", 10)
+    a = q.asistente
+    deseadas = ["defensa_mejorada", "armadura_resistente", "canalizador_arcano_mejorado", "arma_mejorada",
+                "sirviente_homunculo", "afilador_mental", "arma_retornante", "yelmo_de_la_alerta"]
+    for clave in sorted(c for c in a.personaje.elecciones if "/infusiones" in c):
+        n = len(a.personaje.elecciones[clave])
+        a.personaje.elecciones[clave], deseadas = deseadas[:n], deseadas[n:]
+    a.aplicar_equipo()
+    antes = a.ficha()
+    propias = {i.id: i for i in a.infusiones_propias()}
+    assert "sirviente_homunculo" not in propias  # no cambia la ficha
+    armadura = propias["defensa_mejorada"].objetos[0][0]
+    a.llevar_infusion("defensa_mejorada", True, armadura)
+    a.llevar_infusion("canalizador_arcano_mejorado", True)
+    ficha = a.ficha()
+    assert ficha.ca == antes.ca + 2  # +2 desde nivel 10
+    assert ficha.lanzadores[0].ataque == antes.lanzadores[0].ataque + 2
+    assert any(o.endswith("+2 (Defensa Mejorada)") for o in ficha.equipo)
+    # La misma armadura no admite otra infusión: avisa y la segunda no se aplica.
+    a.llevar_infusion("armadura_resistente", True, armadura, "fuego")
+    ficha = a.ficha()
+    assert "fuego" not in ficha.resistencias and any("Armadura Resistente" in av for av in ficha.avisos)
+    a.llevar_infusion("defensa_mejorada", False)
+    ficha = a.ficha()
+    assert "fuego" in ficha.resistencias and ficha.ca == antes.ca and not ficha.avisos

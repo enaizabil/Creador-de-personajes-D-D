@@ -5,10 +5,12 @@ import math
 import re
 from collections import defaultdict
 from collections.abc import Iterator
+from dataclasses import replace
 from typing import TYPE_CHECKING
 
 from ...nucleo.efectos import EfectoAplicado, Resolucion, ResolutorEfectos
 from ...nucleo.expresiones import ErrorExpresion, evaluar, rellenar
+from ...nucleo.personaje import ObjetoInventario
 from ...nucleo.texto import clave_alfabetica
 from .caracteristicas import bonificador_competencia, modificador, validar_base
 from .constantes import (
@@ -31,7 +33,7 @@ from .ficha import Ataque, Ficha, Lanzador, PlanConjuros, Rasgo, Tirada, ValorCa
 
 if TYPE_CHECKING:
     from ...nucleo.paquetes import Catalogo
-    from ...nucleo.personaje import EntradaClase, ObjetoInventario, Personaje
+    from ...nucleo.personaje import EntradaClase, Personaje
     from ...nucleo.sistema import SistemaReglas
 
 
@@ -132,8 +134,10 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
 
     nivel = personaje.nivel_total
     competencia = bonificador_competencia(nivel)
-    armadura, escudo, objetos, bonificador_ca = _equipo(personaje, catalogo, avisos)
-    aplicables = [a for a in resolucion.aplicados if _cumple_condicion(a.efecto.get("condicion"), armadura, escudo)]
+    infundidos, efectos_infusion = _infusiones_propias(personaje, catalogo, resolucion, avisos)
+    armadura, escudo, objetos, bonificador_ca = _equipo(personaje, catalogo, avisos, infundidos)
+    aplicables = [a for a in [*resolucion.aplicados, *efectos_infusion]
+                  if _cumple_condicion(a.efecto.get("condicion"), armadura, escudo)]
 
     def de_tipo(tipo: str) -> list[dict]:
         return [a.efecto for a in aplicables if a.tipo == tipo]
@@ -175,6 +179,8 @@ def calcular(sistema: SistemaReglas, personaje: Personaje, catalogo: Catalogo) -
     espacios, pacto, lanzadores = _magia(personaje, catalogo, mods, competencia, avisos,
                                          conocidos_por_efectos(de_tipo("conjuro")), libro_extra,
                                          listas_por_efectos(de_tipo("lista_ampliada")))
+    for lanzador in lanzadores:  # Canalizador Arcano Mejorado y similares
+        lanzador.ataque += sum(e["valor"] for e in de_tipo("bonificador_ataque_conjuros"))
     _avisos_en_libro(aplicables, personaje, catalogo, libro_extra, avisos)
     conjuros_innatos = _repartir_conjuros_de_efectos(de_tipo("conjuro"), lanzadores, catalogo, avisos)
     niveles_clase = _niveles_por_clase(personaje, catalogo)
@@ -585,14 +591,68 @@ def _medio_competencia(efectos: list[dict], competencia: int) -> dict[str, int]:
     return resultado
 
 
+def _infusiones_propias(personaje: Personaje, catalogo: Catalogo, resolucion: Resolucion,
+                        avisos: list[str]) -> tuple[list[tuple[str, int, str]], list[EfectoAplicado]]:
+    """Infusiones que lleva el propio personaje («la llevo yo», en extra["infusiones_propias"]): los objetos que
+    vuelven mágicos (id, bonificador según el nivel de la clase, nombre de la infusión) y sus demás efectos."""
+    marcadas = personaje.extra.get("infusiones_propias", {})
+    if not marcadas:
+        return [], []
+    conocidas = {a.efecto["opcion"] for a in resolucion.aplicados if a.tipo == "rasgo" and a.efecto.get("opcion")}
+    niveles = _niveles_por_clase(personaje, catalogo)
+    libres: dict[str, int] = defaultdict(int)  # unidades corrientes de cada objeto: cada una admite una infusión
+    for item in personaje.equipo:
+        if item.id and item.bonificador is None:
+            libres[item.id] += item.cantidad
+    infundidos: list[tuple[str, int, str]] = []
+    efectos: list[EfectoAplicado] = []
+    for id_, seleccion in marcadas.items():
+        opcion = catalogo.obtener("opciones", id_) or {}
+        propia = opcion.get("propia")
+        if id_ not in conocidas or not propia:
+            continue
+        nombre = opcion["nombre"].removeprefix("Infusión: ")
+        nivel = niveles.get(opcion.get("clases", [""])[0], 0)
+        bonificador = 0
+        for umbral, valor in sorted((int(n), v) for n, v in propia.get("bonificador", {}).items()):
+            if umbral <= nivel:
+                bonificador = valor
+        if propia.get("objeto"):
+            objeto = seleccion.get("objeto")
+            if not objeto:
+                avisos.append(f"Infusión {nombre}: elige el objeto que llevas con ella")
+                continue
+            if libres[objeto] < 1:
+                nombre_objeto = (catalogo.obtener("objetos", objeto) or {}).get("nombre", objeto)
+                avisos.append(f"Infusión {nombre}: no queda ningún objeto «{nombre_objeto}» corriente en el equipo "
+                              "(cada objeto admite una sola infusión y ninguna si ya es mágico)")
+                continue
+            libres[objeto] -= 1
+            infundidos.append((objeto, bonificador, nombre))
+        for efecto in propia.get("efectos", []):
+            efecto = {k: bonificador if v == "$bonificador" else v for k, v in efecto.items()}
+            efectos.append(EfectoAplicado(efecto, f"infusion:{id_}", nombre))
+        if propia.get("elige_dano") and seleccion.get("dano"):
+            efectos.append(EfectoAplicado({"tipo": "resistencia", "dano": seleccion["dano"]}, f"infusion:{id_}", nombre))
+    return infundidos, efectos
+
+
 def _equipo(
-    personaje: Personaje, catalogo: Catalogo, avisos: list[str]
+    personaje: Personaje, catalogo: Catalogo, avisos: list[str], infundidos: list[tuple[str, int, str]] | None = None
 ) -> tuple[dict | None, dict | None, list[tuple[ObjetoInventario, dict | None]], int]:
-    """Armadura y escudo equipados, todos los objetos y lo que suman a la CA si son mágicos (+1 a +3)."""
+    """Armadura y escudo equipados, todos los objetos y lo que suman a la CA si son mágicos (+1 a +3). Cada objeto
+    infundido toma una unidad corriente del inventario, que pasa a ser mágica."""
+    equipo = [replace(item) for item in personaje.equipo]
+    for id_, bonificador, infusion in infundidos or []:
+        # Hay unidad libre: lo ha comprobado _infusiones_propias.
+        item = next(i for i in equipo if i.id == id_ and i.bonificador is None and i.cantidad > 0)
+        item.cantidad -= 1
+        nombre = (catalogo.obtener("objetos", id_) or {}).get("nombre", id_) + (f" +{bonificador}" if bonificador else "")
+        equipo.insert(equipo.index(item), ObjetoInventario(id_, f"{nombre} ({infusion})", 1, item.equipado, bonificador))
     armadura = escudo = None
     bonificador_ca = 0
     objetos = []
-    for item in personaje.equipo:
+    for item in [i for i in equipo if i.cantidad > 0]:
         entrada = catalogo.obtener("objetos", item.id) if item.id else None
         if item.id and entrada is None:
             avisos.append(f"Objeto desconocido «{item.id}»")
@@ -971,9 +1031,9 @@ def _ataques(objetos: list[tuple[ObjetoInventario, dict | None]], mods: dict[str
     con otra característica si es mejor (Listo para la Batalla: Inteligencia con armas mágicas)."""
     ataques, vistos = [], set()
     for item, entrada in objetos:
-        if not entrada or entrada["categoria"] != "arma" or (entrada["id"], item.bonificador) in vistos:
+        if not entrada or entrada["categoria"] != "arma" or (entrada["id"], item.bonificador, item.nombre) in vistos:
             continue
-        vistos.add((entrada["id"], item.bonificador))
+        vistos.add((entrada["id"], item.bonificador, item.nombre))
         arma = entrada["arma"]
         propiedades = arma.get("propiedades", [])
         if "sutil" in propiedades or _admite_destreza(entrada, efectos_des):
@@ -999,7 +1059,7 @@ def _ataques(objetos: list[tuple[ObjetoInventario, dict | None]], mods: dict[str
         if pequeno and "pesada" in propiedades:
             notas.append("Desventaja (arma pesada y criatura Pequeña)")
         dano = _formula_dano(arma["dano"], mods[car] + magia)
-        ataques.append(Ataque(_nombre_magico(entrada["nombre"], item.bonificador), bono, dano,
+        ataques.append(Ataque(item.nombre or _nombre_magico(entrada["nombre"], item.bonificador), bono, dano,
                               TIPOS_DANO.get(arma["tipo_dano"], arma["tipo_dano"]), "; ".join(notas)))
     return ataques
 
@@ -1069,7 +1129,7 @@ def _nombre_magico(nombre: str, bonificador: int | None) -> str:
 
 
 def _describir_objeto(item: ObjetoInventario, entrada: dict | None) -> str:
-    nombre = _nombre_magico(item.nombre or (entrada or {}).get("nombre") or item.id or "?", item.bonificador)
+    nombre = item.nombre or _nombre_magico((entrada or {}).get("nombre") or item.id or "?", item.bonificador)
     return f"{nombre} (x{item.cantidad})" if item.cantidad != 1 else nombre
 
 
