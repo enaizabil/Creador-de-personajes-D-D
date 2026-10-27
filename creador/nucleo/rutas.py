@@ -16,6 +16,13 @@ def directorio_datos_integrados() -> Path:
     return Path(__file__).resolve().parent.parent / "datos"
 
 
+def directorio_recursos_gui() -> Path:
+    """Tema, tipografías e iconos de la interfaz."""
+    if _congelado():
+        return Path(sys._MEIPASS) / "creador" / "gui" / "recursos"  # type: ignore[attr-defined]
+    return Path(__file__).resolve().parent.parent / "gui" / "recursos"
+
+
 def directorio_portable() -> Path:
     """Carpeta junto al ejecutable (o raíz del proyecto al ejecutar desde el código).
 

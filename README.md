@@ -87,3 +87,4 @@ Principios:
 
 - El contenido del **SRD 5.1** se distribuye bajo [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode). La atribución obligatoria se añadirá junto con los datos (fase 2).
 - El contenido del PHB que no está en el SRD está protegido por derechos de autor. **Este repositorio debe ser privado** antes de incluirlo.
+- Iconos de la interfaz: [game-icons.net](https://game-icons.net) (Lorc, Delapouite, Cathelineau), [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/). Tipografía de los títulos: Cinzel, [SIL Open Font License 1.1](creador/gui/recursos/fuentes/OFL.txt). Detalle en [CREDITOS.md](creador/gui/recursos/CREDITOS.md).

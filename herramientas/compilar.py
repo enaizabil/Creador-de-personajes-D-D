@@ -54,7 +54,8 @@ Es portable: no se instala. Copia la carpeta entera donde quieras (también a un
 Cómo desinstalarlo
 - Windows: doble clic en Desinstalar.bat (con el programa cerrado). Borra esta carpeta y
   %USERPROFILE%\\.creador-personajes; lo que hayas guardado en otras carpetas no se toca.
-- macOS y Linux: borra esta carpeta y ~/.creador-personajes.
+- macOS y Linux: borra esta carpeta y ~/.creador-personajes. En Linux, las tipografías del programa se copian a
+  ~/.fonts (Cinzel y las Roboto de la interfaz): bórralas también si quieres.
 - El programa no crea accesos directos ni escribe en el registro: no queda nada más.
 
 Homebrew y expansiones
@@ -64,6 +65,11 @@ Homebrew y expansiones
 
 Línea de órdenes (desde una terminal en esta carpeta)
   {nombre} paquetes | validar | ficha personaje.json | exportar personaje.json | instalar paquete.zip | quitar id
+
+Créditos
+- Iconos de game-icons.net (Lorc, Delapouite, Cathelineau), licencia CC BY 3.0.
+- Tipografía Cinzel (The Cinzel Project Authors), licencia SIL Open Font License 1.1.
+- Detalle en CREDITOS.md, junto a este archivo.
 
 {licencia}
 """
@@ -115,6 +121,7 @@ def compilar(edicion: str) -> Path:
         "--paths", str(RAIZ),
         "--add-data", f"{datos}{os.pathsep}creador/datos",
         "--add-data", f"{ctk}{os.pathsep}customtkinter",
+        "--add-data", f"{RAIZ / 'creador' / 'gui' / 'recursos'}{os.pathsep}creador/gui/recursos",
         "--collect-submodules", "reportlab.pdfbase",
         "--collect-submodules", "creador",
     ])
@@ -130,6 +137,7 @@ def compilar(edicion: str) -> Path:
         encoding="utf-8")
     (carpeta / "LEEME.txt").write_text(LEEME.format(version=__version__, edicion=edicion, nombre=NOMBRE,
                                                     licencia=LICENCIAS[edicion]), encoding="utf-8")
+    shutil.copy(RAIZ / "creador" / "gui" / "recursos" / "CREDITOS.md", carpeta / "CREDITOS.md")
     if sys.platform == "win32":
         # Con saltos de línea CRLF: cmd.exe falla con «goto» en archivos con LF.
         desinstalar = (RAIZ / "herramientas" / "desinstalar_windows.bat").read_text(encoding="ascii")

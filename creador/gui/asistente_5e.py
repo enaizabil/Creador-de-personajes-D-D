@@ -11,6 +11,7 @@ from ..sistemas.dnd5e_2014.asistente import ALINEAMIENTOS, METODOS_CARACTERISTIC
 from ..sistemas.dnd5e_2014.constantes import CARACTERISTICAS, COSTE_COMPRA, RASGOS_PERFIL, TIPOS_DANO
 from ..sistemas.dnd5e_2014.texto import resumen_ficha
 from .componentes import NINGUNA, ListaAvisos, ListaOpciones, SelectorEleccion, fuente, texto_ajustado, titulo
+from .estilo import fuente_titulo, icono_de
 
 PERSONALIDAD = (("rasgos_personalidad", "Rasgos de personalidad"), ("ideales", "Ideales"),
                 ("vinculos", "Vínculos"), ("defectos", "Defectos"))
@@ -82,12 +83,12 @@ class VistaAsistente5e(ctk.CTkFrame):
         self._pintar_avisos()
         for hijo in self.lateral.winfo_children():
             hijo.destroy()
-        ctk.CTkLabel(self.lateral, text="Creación", font=fuente(16, True)).pack(anchor="w", padx=16, pady=(18, 10))
+        ctk.CTkLabel(self.lateral, text="Creación", font=fuente_titulo(19)).pack(anchor="w", padx=16, pady=(18, 10))
         for paso in self.a.pasos():
             completo = not self.a.faltan(paso.id)
-            marca = "✓" if completo else "•"
             actual = paso.id == self.paso_actual
-            ctk.CTkButton(self.lateral, text=f"{marca}  {paso.titulo}", anchor="w", width=180,
+            ctk.CTkButton(self.lateral, text=f"  {paso.titulo}{'  ✓' if completo else ''}", anchor="w", width=180,
+                          image=icono_de("pasos", paso.id, 18, "claro" if actual else "acento"), compound="left",
                           fg_color=None if actual else "transparent",
                           text_color=None if actual else (("gray10", "gray90") if completo else ("#b45309", "#fbbf24")),
                           command=lambda p=paso.id: self.mostrar(p)).pack(padx=12, pady=2)
@@ -95,14 +96,16 @@ class VistaAsistente5e(ctk.CTkFrame):
         partes = [ficha.nombre or "Personaje sin nombre", ficha.raza, ficha.clase_y_nivel]
         if self.a.personaje.clases:
             partes.append(f"PG {ficha.pg_maximos} · CA {ficha.ca}")
-        self.cabecera.configure(text="  ·  ".join(p for p in partes if p))
+        clase = self.a.personaje.clases[0].clase if self.a.personaje.clases else None
+        self.cabecera.configure(text=("  " if clase else "") + "  ·  ".join(p for p in partes if p),
+                                image=icono_de("clases", clase, 26) if clase else None, compound="left")
         ids = self._ids_pasos()
         self.boton_anterior.configure(state="normal" if self.paso_actual != ids[0] else "disabled")
         self.boton_siguiente.configure(state="normal" if self.paso_actual != ids[-1] else "disabled")
 
     def _cabecera_paso(self, master, paso: str) -> None:
         datos = next(p for p in self.a.pasos() if p.id == paso)
-        titulo(master, datos.titulo, 22).pack(anchor="w", padx=10, pady=(6, 0))
+        titulo(master, datos.titulo, 24, icono_de("pasos", paso, 30)).pack(anchor="w", padx=10, pady=(6, 0))
         ctk.CTkLabel(master, text=datos.ayuda, text_color="gray", anchor="w").pack(anchor="w", padx=10, pady=(0, 10))
 
     def _elecciones(self, master, paso: str) -> None:
@@ -232,11 +235,13 @@ class VistaAsistente5e(ctk.CTkFrame):
         self._cabecera_paso(master, "raza")
         p = self.a.personaje
         ListaOpciones(master, "Raza", self.a.razas(), p.raza, lambda i: (self.a.elegir_raza(i), self._redibujar()),
-                      self.nombres_paquetes, nombres_perfil=NOMBRES_PERFIL).pack(fill="x", padx=10)
+                      self.nombres_paquetes, nombres_perfil=NOMBRES_PERFIL,
+                      icono=lambda i: icono_de("razas", i, 56)).pack(fill="x", padx=10)
         subrazas = self.a.subrazas()
         if subrazas:
             ListaOpciones(master, "Subraza", subrazas, p.subraza, lambda i: (self.a.elegir_subraza(i), self._redibujar()),
-                          self.nombres_paquetes, alto=140, nombres_perfil=NOMBRES_PERFIL).pack(fill="x", padx=10, pady=(14, 0))
+                          self.nombres_paquetes, alto=140, nombres_perfil=NOMBRES_PERFIL,
+                          icono=lambda _i: icono_de("razas", p.raza, 56)).pack(fill="x", padx=10, pady=(14, 0))
         self._elecciones(master, "raza")
         self._faltan(master, "raza")
 
@@ -247,12 +252,14 @@ class VistaAsistente5e(ctk.CTkFrame):
         varias = len(p.clases) > 1
         ListaOpciones(master, "Clase principal" if varias else "Clase", self.a.clases(), actual,
                       lambda i: (self.a.elegir_clase(i), self._redibujar()),
-                      self.nombres_paquetes, nombres_perfil=NOMBRES_PERFIL).pack(fill="x", padx=10)
+                      self.nombres_paquetes, nombres_perfil=NOMBRES_PERFIL,
+                      icono=lambda i: icono_de("clases", i, 56)).pack(fill="x", padx=10)
         subclases = self.a.subclases()
         if subclases:
             ListaOpciones(master, "Subclase", subclases, p.clases[0].subclase,
                           lambda i: (self.a.elegir_subclase(i), self._redibujar()), self.nombres_paquetes,
-                          alto=180, nombres_perfil=NOMBRES_PERFIL).pack(fill="x", padx=10, pady=(14, 0))
+                          alto=180, nombres_perfil=NOMBRES_PERFIL,
+                          icono=lambda _i: icono_de("clases", actual, 56)).pack(fill="x", padx=10, pady=(14, 0))
         # Solo desde nivel 2 con la regla activa; si ya hay secundarias, siempre, para poder quitarlas.
         if p.clases and (self.a.puede_anadir_clase() or len(p.clases) > 1):
             self._multiclase(master)
@@ -343,7 +350,8 @@ class VistaAsistente5e(ctk.CTkFrame):
         if subclases:
             ListaOpciones(marco, f"Subclase de {nombres.get(entrada.clase, entrada.clase)}", subclases, entrada.subclase,
                           lambda i, c=entrada.clase: (self.a.elegir_subclase(i, c), self._redibujar()),
-                          self.nombres_paquetes, alto=140, nombres_perfil=NOMBRES_PERFIL).pack(fill="x", pady=(6, 0))
+                          self.nombres_paquetes, alto=140, nombres_perfil=NOMBRES_PERFIL,
+                          icono=lambda _i, c=entrada.clase: icono_de("clases", c, 56)).pack(fill="x", pady=(6, 0))
 
     def _paso_caracteristicas(self, master) -> None:
         self._cabecera_paso(master, "caracteristicas")
@@ -432,7 +440,7 @@ class VistaAsistente5e(ctk.CTkFrame):
         self._cabecera_paso(master, "trasfondo")
         ListaOpciones(master, "Trasfondo", self.a.trasfondos(), self.a.personaje.trasfondo,
                       lambda i: (self.a.elegir_trasfondo(i), self._redibujar()), self.nombres_paquetes,
-                      nombres_perfil=NOMBRES_PERFIL).pack(fill="x", padx=10)
+                      nombres_perfil=NOMBRES_PERFIL, icono=lambda i: icono_de("trasfondos", i, 56)).pack(fill="x", padx=10)
         self._elecciones(master, "trasfondo")
         self._faltan(master, "trasfondo")
 

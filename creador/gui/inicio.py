@@ -8,6 +8,7 @@ import customtkinter as ctk
 from ..entorno import paquetes_instalados
 from ..sistemas import listar_sistemas
 from .componentes import fuente, texto_ajustado, titulo
+from .estilo import ICONO_GENERICO, icono
 
 
 class PantallaInicio(ctk.CTkFrame):
@@ -19,7 +20,8 @@ class PantallaInicio(ctk.CTkFrame):
         self.sistemas = {s.nombre: s.id for s in listar_sistemas()}
         self.casillas: dict[str, ctk.BooleanVar] = {}
 
-        titulo(self, "Creador de personajes de rol", 26).pack(anchor="w", padx=30, pady=(30, 4))
+        titulo(self, "Creador de personajes de rol", 30, icono(ICONO_GENERICO, 64)).pack(anchor="w", padx=26,
+                                                                                         pady=(26, 6))
         texto_ajustado(self, "Elige la edición y los libros o homebrew que se usan en tu mesa. "
                              "Solo aparecerá lo que aporten los paquetes marcados. «Crear con preguntas» decide el "
                              "personaje por ti a partir de situaciones cotidianas; «paso a paso» te deja elegirlo todo.",
@@ -49,6 +51,9 @@ class PantallaInicio(ctk.CTkFrame):
         if self.avisos:
             texto_ajustado(self, "Avisos al buscar paquetes: " + "; ".join(self.avisos), 760,
                            text_color=("#b45309", "#fbbf24")).pack(anchor="w", padx=30)
+        ctk.CTkLabel(self, text="Iconos: game-icons.net (Lorc, Delapouite, Cathelineau), CC BY 3.0  ·  Tipografía: "
+                                "Cinzel, SIL Open Font License 1.1  ·  Detalle en CREDITOS.md", font=fuente(11),
+                     text_color="gray").pack(side="bottom", anchor="w", padx=30, pady=10)
         if self.sistemas:
             self._mostrar_paquetes(next(iter(self.sistemas)))
 

@@ -7,6 +7,7 @@ import customtkinter as ctk
 
 from ..nucleo.efectos import EleccionPendiente
 from ..nucleo.texto import clave_alfabetica
+from .estilo import fuente_titulo
 
 NINGUNA = "— elige —"
 MAX_CASILLAS = 10  # con más opciones se usan desplegables
@@ -20,8 +21,10 @@ def fuente(tamano: int = 13, negrita: bool = False) -> ctk.CTkFont:
     return ctk.CTkFont(size=tamano, weight="bold" if negrita else "normal")
 
 
-def titulo(master, texto: str, tamano: int = 18) -> ctk.CTkLabel:
-    return ctk.CTkLabel(master, text=texto, font=fuente(tamano, True), anchor="w")
+def titulo(master, texto: str, tamano: int = 18, imagen: ctk.CTkImage | None = None) -> ctk.CTkLabel:
+    """Título en Cinzel; con «imagen», el icono a su izquierda."""
+    return ctk.CTkLabel(master, text=f"  {texto}" if imagen else texto, font=fuente_titulo(tamano), anchor="w",
+                        image=imagen, compound="left")
 
 
 def texto_ajustado(master, texto: str, ancho: int = 520, **opciones) -> ctk.CTkLabel:
@@ -43,9 +46,11 @@ class ListaOpciones(ctk.CTkFrame):
 
     def __init__(self, master, titulo_lista: str, opciones: list, seleccion: str | None,
                  al_elegir: Callable[[str], None], nombres_paquetes: dict[str, str] | None = None, alto: int = 300,
-                 nombres_perfil: dict[str, str] | None = None):
+                 nombres_perfil: dict[str, str] | None = None,
+                 icono: Callable[[str], ctk.CTkImage | None] | None = None):
         super().__init__(master, fg_color="transparent")
         self.opciones = {o.id: o for o in opciones}
+        self.icono = icono  # id de la opción -> icono grande junto a su nombre en el panel de detalle
         self.nombres_paquetes = nombres_paquetes or {}
         self.nombres_perfil = nombres_perfil
         self.variable = ctk.StringVar(value=seleccion or "")
@@ -76,7 +81,8 @@ class ListaOpciones(ctk.CTkFrame):
             texto_ajustado(self.detalle, "Elige una opción de la lista para ver su descripción.",
                            text_color="gray").pack(padx=12, pady=12, anchor="w")
             return
-        titulo(self.detalle, opcion.nombre, 16).pack(padx=12, pady=(12, 2), anchor="w")
+        titulo(self.detalle, opcion.nombre, 18, self.icono(opcion.id) if self.icono else None).pack(
+            padx=12, pady=(12, 2), anchor="w")
         origen = self.nombres_paquetes.get(opcion.paquete, opcion.paquete)
         if opcion.permiso_dm:
             origen += " · requiere permiso del DM"
@@ -227,8 +233,8 @@ class ListaAvisos(ctk.CTkFrame):
 
     def __init__(self, master, mensajes: list[str], titulo_lista: str = "Falta por decidir", completo: bool = False):
         # «completo»: los mensajes son buenas noticias (novedades de una subida), en verde.
-        verde = ("#dcfce7", "#14321f")
-        super().__init__(master, fg_color=verde if completo or not mensajes else ("#fef3c7", "#3b2f12"))
+        verde = ("#dde8cc", "#1f2e1a")
+        super().__init__(master, fg_color=verde if completo or not mensajes else ("#f3e0b0", "#3b2f12"))
         if not mensajes:
             ctk.CTkLabel(self, text="✓ Paso completo", anchor="w").pack(anchor="w", padx=10, pady=6)
             return

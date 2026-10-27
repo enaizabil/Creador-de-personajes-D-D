@@ -13,6 +13,7 @@ from ..nucleo.personaje import Personaje
 from ..nucleo.rutas import edicion
 from .asistente_5e import VistaAsistente5e
 from .cuestionario_5e import VistaCuestionario5e
+from .estilo import aplicar_tema
 from .inicio import PantallaInicio
 from .paquetes import PantallaPaquetes
 
@@ -22,9 +23,9 @@ VISTAS = {"dnd5e-2014": {"normal": VistaAsistente5e, "sencillo": VistaCuestionar
 
 class Aplicacion(ctk.CTk):
     def __init__(self):
+        aplicar_tema()  # antes de crear la ventana: el tema decide sus colores
         super().__init__()
         ctk.set_appearance_mode("system")
-        ctk.set_default_color_theme("blue")
         version = __version__ if edicion() == "desarrollo" else f"{__version__} · edición {edicion()}"
         self.title(f"Creador de personajes de rol {version}")
         self.geometry("1200x780")

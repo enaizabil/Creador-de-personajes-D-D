@@ -9,12 +9,13 @@ from ..sistemas.dnd5e_2014.cuestionario import (MINIMO_RESPUESTAS, NIVEL_MINIMO_
                                                 Pregunta, Recomendacion)
 from .asistente_5e import NOMBRES_PERFIL
 from .componentes import fuente, texto_ajustado, titulo
+from .estilo import ICONO_GENERICO, icono, icono_de
 
 ANCHO = 820
-COLOR_TARJETA = ("gray86", "gray20")
-COLOR_TARJETA_ENCIMA = ("gray78", "gray28")
-COLOR_TARJETA_ELEGIDA = ("#bfdbfe", "#1e3a5f")
-COLOR_NOTA = ("gray35", "gray68")
+COLOR_TARJETA = ("#e7d9bc", "#27201b")
+COLOR_TARJETA_ENCIMA = ("#dccaa6", "#332a24")
+COLOR_TARJETA_ELEGIDA = ("#e6c39b", "#5a2a24")
+COLOR_NOTA = ("#6b5a45", "#b8a68c")
 MARCA_PROPUESTA = "★ Propuesta."
 RESPUESTAS_EN_UNA_COLUMNA = 6  # con más, en dos columnas para no hacer la lista eterna
 AYUDA_SUBIDA = ("Cada pregunta concreta trae las opciones reales de tu personaje; «★ Propuesta» marca lo que se elegiría "
@@ -114,7 +115,7 @@ class VistaCuestionario5e(ctk.CTkFrame):
 
     def pantalla_inicio(self) -> None:
         columna = self._limpiar()
-        titulo(columna, "Crea tu personaje respondiendo preguntas", 26).pack(anchor="w")
+        titulo(columna, "Crea tu personaje respondiendo preguntas", 26, icono(ICONO_GENERICO, 48)).pack(anchor="w")
         texto_ajustado(columna, "No hace falta saber nada de reglas. Te contaremos situaciones (de la vida cotidiana o de "
                                 "fantasía) y tú dices qué haría tu personaje. Con eso proponemos raza, clase, trasfondo, "
                                 "características y todo lo demás. Al final podrás cambiar lo que quieras.", ANCHO,
@@ -198,8 +199,9 @@ class VistaCuestionario5e(ctk.CTkFrame):
         self.indice = indice
         pregunta = self.preguntas[indice]
         columna = self._limpiar()
-        ctk.CTkLabel(columna, text=f"Pregunta {indice + 1} de {len(self.preguntas)}  ·  {pregunta.titulo}",
-                     text_color="gray", anchor="w").pack(anchor="w")
+        ctk.CTkLabel(columna, text=f"  Pregunta {indice + 1} de {len(self.preguntas)}  ·  {pregunta.titulo}",
+                     text_color="gray", anchor="w", image=icono(ICONO_GENERICO, 18, "suave"),
+                     compound="left").pack(anchor="w")
         barra = ctk.CTkProgressBar(columna, width=ANCHO)
         barra.set(indice / len(self.preguntas))
         barra.pack(anchor="w", pady=(6, 22))
@@ -261,7 +263,7 @@ class VistaCuestionario5e(ctk.CTkFrame):
             ctk.CTkButton(columna, text="Volver a las preguntas",
                           command=lambda: self.pantalla_pregunta(0)).pack(anchor="w")
             return
-        titulo(columna, "Así es tu personaje", 26).pack(anchor="w")
+        titulo(columna, "Así es tu personaje", 26, icono(ICONO_GENERICO, 48)).pack(anchor="w")
         perfil = sorted(self.q.perfil().items(), key=lambda x: -x[1])[:3]
         rasgos = ", ".join(NOMBRES_PERFIL.get(r, r).lower() for r, _ in perfil)
         texto_ajustado(columna, f"Lo que más le define: {rasgos}. Alineamiento: {self.q.alineamiento()}. "
@@ -303,17 +305,20 @@ class VistaCuestionario5e(ctk.CTkFrame):
                                  recomendaciones: list[Recomendacion]) -> None:
         caja = ctk.CTkFrame(rejilla)
         caja.grid(row=0, column=col, sticky="nsew", padx=6)
-        titulo(caja, nombre, 16).pack(anchor="w", padx=12, pady=(10, 4))
         actual = self.eleccion.get(clave)
         if actual not in recomendaciones:
             actual = recomendaciones[0]
         self.eleccion[clave] = actual
+        categoria = {"raza": "razas", "clase": "clases", "trasfondo": "trasfondos"}[clave]
+        cabecera = titulo(caja, nombre, 18, icono_de(categoria, actual.id, 44))
+        cabecera.pack(anchor="w", padx=12, pady=(10, 4))
         variable = ctk.IntVar(value=recomendaciones.index(actual))
         descripcion = texto_ajustado(caja, actual.descripcion, 230, text_color="gray")
 
         def elegir(i=None):
             self.eleccion[clave] = recomendaciones[variable.get()]
             descripcion.configure(text=self.eleccion[clave].descripcion)
+            cabecera.configure(image=icono_de(categoria, self.eleccion[clave].id, 44))
             if getattr(self, "marco_porque", None) is not None and self.marco_porque.winfo_exists():
                 self._pintar_porque()
             if clave == "clase" and self.marco_reparto is not None:
