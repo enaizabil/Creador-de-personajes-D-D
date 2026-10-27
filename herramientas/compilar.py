@@ -122,6 +122,8 @@ def compilar(edicion: str) -> Path:
         "--add-data", f"{datos}{os.pathsep}creador/datos",
         "--add-data", f"{ctk}{os.pathsep}customtkinter",
         "--add-data", f"{RAIZ / 'creador' / 'gui' / 'recursos'}{os.pathsep}creador/gui/recursos",
+        # CustomTkinter va como datos (sin analizar): lo que importa para las imágenes hay que pedirlo.
+        "--hidden-import", "PIL.ImageTk",
         "--collect-submodules", "reportlab.pdfbase",
         "--collect-submodules", "creador",
     ])
