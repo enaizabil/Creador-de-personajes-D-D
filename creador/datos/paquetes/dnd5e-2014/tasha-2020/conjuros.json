@@ -115,7 +115,7 @@
       "duracion": "Concentración, hasta 1 minuto",
       "ritual": false,
       "concentracion": true,
-      "resumen": "Línea de ácido de 30 × 5 pies: salvación de DES o queda cubierta y recibe 2d4 de daño de ácido al inicio de cada turno hasta que alguien gaste una acción en limpiarla. +2d4 por cada nivel de espacio por encima de 1.",
+      "resumen": "Línea de ácido de 30 × 5 pies: salvación de DES o queda cubierta y recibe 2d4 de daño de ácido al inicio de cada turno hasta que alguien gaste una acción en limpiarla. A niveles superiores, «la sanación aumenta en 1d8» por cada nivel de espacio por encima de 1 (así en el texto; el original inglés dice +2d4 de daño de ácido).",
       "fuente": "Tasha 2020 p. 105-114"
     },
     {
@@ -151,7 +151,7 @@
       "duracion": "1 asalto",
       "ritual": false,
       "concentracion": false,
-      "resumen": "Salvación de INT: si falla, 3d6 de daño psíquico, sin reacciones hasta el final de su siguiente turno y en ese turno solo puede usar su movimiento, su acción o su acción adicional; si la supera, la mitad del daño. Una criatura más por cada nivel de espacio por encima de 2 (todas a 30 pies entre sí).",
+      "resumen": "Salvación de INT: si falla, 3d6 de daño psíquico, sin reacciones hasta el final de su siguiente turno y en ese turno solo puede usar su movimiento, su acción o su acción adicional; si la supera, la mitad del daño. Con un espacio de nivel 3 o más, una criatura más por cada nivel por encima de 1 (todas a 30 pies entre sí; el original inglés dice por encima de 2).",
       "fuente": "Tasha 2020 p. 105-114"
     },
     {
@@ -172,7 +172,7 @@
       "duracion": "Concentración, hasta 1 hora",
       "ritual": false,
       "concentracion": true,
-      "resumen": "Tú o una criatura voluntaria tenéis resistencia al daño psíquico y ventaja en las salvaciones de INT, SAB y CAR. Una criatura más por cada nivel de espacio por encima de 3 (todas a 30 pies entre sí).",
+      "resumen": "Tú o una criatura voluntaria tenéis resistencia al daño psíquico y ventaja en las salvaciones de INT, SAB y CAR. Con un espacio de nivel 3 o más, una criatura más por cada nivel por encima de 4 (todas a 30 pies entre sí; el original inglés dice nivel 4 o más y por encima de 3).",
       "fuente": "Tasha 2020 p. 105-114"
     },
     {
@@ -280,11 +280,11 @@
       ],
       "tiempo": "1 acción",
       "alcance": "90 pies",
-      "componentes": "V, S, M (un cofre ornamentado de piedra y metal de al menos 400 po)",
+      "componentes": "V, S, M (un relicario de oro de al menos 500 po)",
       "duracion": "Concentración, hasta 1 hora",
       "ritual": false,
       "concentracion": true,
-      "resumen": "Aparece un espíritu autómata en un espacio libre a la vista; elige Arcilla, Metal o Piedra. Usa el perfil del libro (CA, PG y daño crecen con el nivel del conjuro), es tu aliado, actúa justo después de ti y obedece tus órdenes; si no le das ninguna, esquiva. Desaparece a 0 PG o al acabar el conjuro.",
+      "resumen": "Aparece un espíritu autómata en un espacio libre a la vista; elige Arcilla, Metal o Piedra. Usa el perfil del libro (CA, PG y daño crecen con el nivel del conjuro), es tu aliado, actúa justo después de ti y obedece tus órdenes; si no le das ninguna, esquiva. Desaparece a 0 PG o al acabar el conjuro. (Componente según el texto; el original inglés pide un cofre ornamentado de piedra y metal de 400 po.)",
       "fuente": "Tasha 2020 p. 105-114"
     },
     {

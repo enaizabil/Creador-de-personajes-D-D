@@ -307,9 +307,9 @@
             "tipo": "rasgo",
             "nombre": "Destello de Ingenio",
             "resumen": "reacción: cuando tú u otro a 30 pies hace una prueba o una salvación, sumas +{mod_int}",
-            "descripcion": "Cuando tú u otra criatura que veas a 30 pies o menos hace una prueba de característica o una salvación, puedes usar tu reacción para sumar tu modificador por Inteligencia a la tirada. Usos: tu modificador por Inteligencia (mínimo uno) por descanso largo.",
+            "descripcion": "Cuando tú u otra criatura que veas a 30 pies o menos hace una prueba de característica o una salvación, puedes usar tu reacción para sumar tu modificador por Inteligencia a la tirada. Usos: tu modificador por Inteligencia (mínimo uno) por descanso corto o largo (el original inglés: solo descanso largo).",
             "usos": "max(1,mod_int)",
-            "recarga": "largo"
+            "recarga": "corto"
           }
         ],
         "8": [
@@ -1002,10 +1002,10 @@
           {
             "tipo": "rasgo",
             "nombre": "Sacudida Arcana",
-            "resumen": "una vez por turno, al impactar con un arma mágica (o tu defensor): +{escala} de fuerza, o curas {escala} a alguien a 30 pies; {max(1,mod_int)} veces por descanso largo",
-            "descripcion": "Cuando impactas a un objetivo con un arma mágica, o lo impacta tu defensor de acero, puedes canalizar energía: el objetivo sufre 2d6 de daño de fuerza adicional, o una criatura u objeto que veas a 30 pies del objetivo recupera 2d6 PG. No más de una vez por turno. Usos: tu modificador por Inteligencia (mínimo uno) por descanso largo.",
+            "resumen": "una vez por turno, al impactar con un arma mágica (o tu defensor): +{escala} de fuerza, o curas {escala} a alguien a 30 pies; {max(1,mod_int)} veces por descanso corto o largo",
+            "descripcion": "Cuando impactas a un objetivo con un arma mágica, o lo impacta tu defensor de acero, puedes canalizar energía: el objetivo sufre 2d6 de daño de fuerza adicional, o una criatura u objeto que veas a 30 pies del objetivo recupera 2d6 PG. No más de una vez por turno. Usos: tu modificador por Inteligencia (mínimo uno) por descanso corto o largo (el original inglés: solo descanso largo).",
             "usos": "max(1,mod_int)",
-            "recarga": "largo",
+            "recarga": "corto",
             "escala": {
               "9": "2d6",
               "15": "4d6"

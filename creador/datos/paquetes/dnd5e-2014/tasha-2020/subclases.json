@@ -1196,8 +1196,8 @@
           {
             "tipo": "rasgo",
             "nombre": "Invocar Espíritu de Fuego Salvaje",
-            "resumen": "acción, gastando un uso de Forma Salvaje: invocas tu espíritu de fuego a 30 pies (quien esté a 10 pies de él salva DES CD {8+competencia+mod_sab} o 2d6 de fuego); dura 1 hora, CA 13, {5+5*nivel_clase} PG, vuela 30 pies; Semilla de Llamas +{competencia+mod_sab} a 60 pies, 1d6+{competencia} de fuego; Teletransporte Ardiente, CD {8+competencia+mod_sab}, 1d6+{competencia} de fuego",
-            "descripcion": "Como acción gastas un uso de Forma Salvaje para invocar a tu espíritu de fuego salvaje en un espacio libre que veas a 30 pies o menos; cada criatura a 10 pies de él (salvo tú) supera una salvación de Destreza contra tu CD de conjuros o sufre 2d6 de daño de fuego. Es amistoso, actúa justo después de ti y solo Esquiva salvo que gastes una acción adicional para ordenarle otra acción. Dura 1 hora, hasta llegar a 0 PG, hasta que lo vuelvas a invocar o hasta que mueras. Perfil: CA 13, PG 5 + cinco veces tu nivel de druida, velocidad 30 y volar 30 (levitar); FUE 10, DES 14, CON 14, INT 13, SAB 15, CAR 11; inmune al fuego, asustado, hechizado, agarrado, derribado y apresado; visión en la oscuridad 60 pies; usa tu bonificador por competencia (BC). Semilla de Llamas: ataque a distancia (60 pies) con tu modificador de ataque de conjuros, 1d6 + BC de daño de fuego. Teletransporte Ardiente: él y las criaturas voluntarias a 5 pies se teletransportan hasta 15 pies; quien quede a 5 pies del punto de partida salva DES o sufre 1d6 + BC de fuego."
+            "resumen": "acción, gastando un uso de Forma Salvaje: invocas tu espíritu de fuego a 30 pies (quien esté a 10 pies de él salva DES CD {8+competencia+mod_sab} o 2d6 de fuego); dura 1 hora, CA 13, {5+5*nivel_clase} PG, vuela 30 pies; Semilla de Llamas +{competencia+mod_sab} a 60 pies, 1d6+{competencia} de fuerza; Teletransportación Ardiente, CD {8+competencia+mod_sab}, 1d6+{competencia} de fuego",
+            "descripcion": "Como acción gastas un uso de Forma Salvaje para invocar a tu espíritu de fuego salvaje en un espacio libre que veas a 30 pies o menos; cada criatura a 10 pies de él (salvo tú) supera una salvación de Destreza contra tu CD de conjuros o sufre 2d6 de daño de fuego. Es amistoso, actúa justo después de ti y solo Esquiva salvo que gastes una acción adicional para ordenarle otra acción. Dura 1 hora, hasta llegar a 0 PG, hasta que lo vuelvas a invocar o hasta que mueras. Perfil: CA 13, PG 5 + cinco veces tu nivel de druida, velocidad 30 y volar 30 (levitar); FUE 10, DES 14, CON 14, INT 13, SAB 15, CAR 11; inmune al veneno y al daño psíquico, asustado, hechizado, agarrado, derribado y apresado; visión en la oscuridad 60 pies; usa tu bonificador por competencia (BC). Semilla de Llamas: ataque a distancia (60 pies) con tu modificador de ataque de conjuros, 1d6 + BC de daño de fuerza. Teletransportación Ardiente: él y las criaturas voluntarias a 5 pies se teletransportan hasta 15 pies; quien quede a 5 pies del punto de partida salva DES o sufre 1d6 + BC de fuego. (El original inglés: inmune al daño de fuego, y la Semilla de Llamas hace daño de fuego.)"
           },
           {
             "tipo": "conjuro",
@@ -1937,19 +1937,13 @@
             "tipo": "rasgo",
             "nombre": "Conjuros Psiónicos",
             "resumen": "conjuros de tu origen: de hechicero y sin contar para los conocidos; al subir de nivel puedes cambiar uno por otro del mismo nivel de adivinación o encantamiento (listas de brujo, hechicero o mago)",
-            "descripcion": "Al llegar a ciertos niveles de hechicero aprendes los conjuros de tu origen. Son conjuros de hechicero para ti, pero no cuentan para el número de conjuros de hechicero que conoces. Cada vez que subes de nivel de hechicero puedes cambiar uno de ellos por otro del mismo nivel que sea de adivinación o encantamiento y esté en la lista del brujo, del hechicero o del mago."
+            "descripcion": "Al llegar a ciertos niveles de hechicero aprendes los conjuros de tu origen. Son conjuros de hechicero para ti, pero no cuentan para el número de conjuros de hechicero que conoces. Cada vez que subes de nivel de hechicero puedes cambiar uno de ellos por otro del mismo nivel que sea de adivinación o encantamiento y esté en la lista del brujo, del hechicero o del mago. A nivel 1, brazos de Hadar y susurros discordantes (el original inglés añade el truco astilla mental)."
           },
           {
             "tipo": "rasgo",
             "nombre": "Habla Telepática",
             "resumen": "acción adicional: enlace telepático con una criatura a 30 pies durante {nivel_clase} minutos, a {max(1,mod_car)} millas como máximo (si compartís idioma)",
             "descripcion": "Como acción adicional eliges una criatura que veas a 30 pies o menos: podéis hablaros telepáticamente mientras estéis a tantas millas como tu modificador por Carisma (mínimo 1), si compartís un idioma. Dura tantos minutos como tu nivel de hechicero, o hasta que quedes incapacitado, mueras o enlaces a otra criatura."
-          },
-          {
-            "tipo": "conjuro",
-            "id": "astilla_mental",
-            "clase": "hechicero",
-            "siempre_preparado": true
           },
           {
             "tipo": "conjuro",

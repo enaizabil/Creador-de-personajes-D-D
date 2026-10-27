@@ -215,7 +215,8 @@ def test_origenes_del_hechicero_de_tasha(entorno):
     ficha = sistema.calcular(q.personaje, catalogo)
     assert "psíquico" in ficha.resistencias
     preparados = {n for lista in ficha.lanzadores[0].siempre_preparados.values() for n in lista}
-    assert {catalogo.obtener("conjuros", i)["nombre"] for i in ("astilla_mental", "brazos_de_hadar", "recado")} <= preparados
+    assert {catalogo.obtener("conjuros", i)["nombre"] for i in ("brazos_de_hadar", "recado")} <= preparados
+    assert catalogo.obtener("conjuros", "astilla_mental")["nombre"] not in preparados  # así en el texto de Tasha
     # No cuentan para los conocidos: el hechicero 6 sigue eligiendo sus 7 conjuros y 5 trucos.
     plan = next(p for p in q.asistente.planes_conjuros() if p.clase_id == "hechicero")
     conocidos = q.personaje.conjuros["hechicero"]
