@@ -11,7 +11,11 @@
         {"id": "maestro", "texto": "Busco a alguien que me enseñe algo que no sepa nadie más.", "mejora": "dote"},
         {"id": "cuerpo", "texto": "A ponerme en forma: correr, cargar peso, aguantar el frío.",
          "mejora": "caracteristicas", "perfil": {"aguante": 2}},
-        {"id": "libros", "texto": "A leer, estudiar mapas y preguntar a los sabios.", "mejora": "dote", "perfil": {"saber": 2}}
+        {"id": "libros", "texto": "A leer, estudiar mapas y preguntar a los sabios.", "mejora": "dote", "perfil": {"saber": 2}},
+        {"id": "armas", "texto": "A practicar con armas nuevas hasta dominarlas.",
+         "mejora": "dote", "perfil": {"combate": 2}},
+        {"id": "meditar", "texto": "A meditar y rezar; vuelvo con la cabeza más clara.",
+         "mejora": "caracteristicas", "perfil": {"fe": 2}}
       ]
     },
     {
@@ -25,7 +29,10 @@
          "perfil": {"combate": 2, "aguante": 1}},
         {"id": "proteger", "texto": "Me puse delante para que nadie de los míos cayera.", "perfil": {"proteccion": 2, "curacion": 1}},
         {"id": "plan", "texto": "Pensé el plan y vi la trampa antes que nadie.", "perfil": {"astucia": 2, "saber": 1}},
-        {"id": "convencer", "texto": "Hablé con quien había que hablar y conseguí lo que necesitábamos.", "perfil": {"carisma": 2}}
+        {"id": "convencer", "texto": "Hablé con quien había que hablar y conseguí lo que necesitábamos.", "perfil": {"carisma": 2}},
+        {"id": "dentro", "texto": "Me colé por donde nadie podía y abrí la puerta desde dentro.",
+         "perfil": {"sigilo": 2, "agilidad": 1}},
+        {"id": "magia", "texto": "Mi magia inclinó la balanza en el momento justo.", "perfil": {"arcano": 2, "carisma": 1}}
       ]
     },
     {
@@ -38,7 +45,10 @@
         {"id": "tomo", "texto": "Un libro de magia que nadie más entiende.", "perfil": {"arcano": 2, "saber": 1}},
         {"id": "reliquia", "texto": "Una reliquia sagrada que me habla en sueños.", "perfil": {"fe": 2}},
         {"id": "mapa", "texto": "Un mapa de sendas olvidadas y de guaridas de bestias.", "perfil": {"naturaleza": 2}},
-        {"id": "llave", "texto": "Una llave que abre cualquier puerta y un frasco sin etiqueta.", "perfil": {"astucia": 2, "sigilo": 1}}
+        {"id": "llave", "texto": "Una llave que abre cualquier puerta y un frasco sin etiqueta.", "perfil": {"astucia": 2, "sigilo": 1}},
+        {"id": "arma", "texto": "Un arma antigua que parece hecha para mi mano.", "perfil": {"combate": 2, "proteccion": 1}},
+        {"id": "herbario", "texto": "Un herbario con remedios que se creían perdidos.",
+         "perfil": {"curacion": 2, "naturaleza": 1}}
       ]
     },
     {
@@ -51,7 +61,9 @@
         {"id": "rapido", "texto": "Que sobrevive el más rápido.", "perfil": {"agilidad": 2}},
         {"id": "sin_ser_visto", "texto": "Que es mejor que no te vean llegar.", "perfil": {"sigilo": 2}},
         {"id": "cuidar", "texto": "Que hay que cuidar de los compañeros cuando flaquean.", "perfil": {"curacion": 2}},
-        {"id": "voluntad", "texto": "Que con fe y voluntad se cruza cualquier frontera.", "perfil": {"fe": 1, "aguante": 1}}
+        {"id": "voluntad", "texto": "Que con fe y voluntad se cruza cualquier frontera.", "perfil": {"fe": 1, "aguante": 1}},
+        {"id": "historias", "texto": "Que cada lugar guarda historias que merece la pena conocer.", "perfil": {"saber": 2}},
+        {"id": "palabra", "texto": "Que una buena palabra abre más puertas que una espada.", "perfil": {"carisma": 2}}
       ]
     },
     {
@@ -64,7 +76,9 @@
         {"id": "no_caer", "texto": "A aguantar en pie pase lo que pase.", "perfil": {"aguante": 2}, "pesos": {"dotes:duro": 2}},
         {"id": "golpear_antes", "texto": "A golpear antes y más fuerte.", "perfil": {"combate": 2}},
         {"id": "distancia", "texto": "A mantener las distancias y apuntar bien.", "perfil": {"agilidad": 2}},
-        {"id": "magia", "texto": "Que la magia decide las batallas.", "perfil": {"arcano": 2}}
+        {"id": "magia", "texto": "Que la magia decide las batallas.", "perfil": {"arcano": 2}},
+        {"id": "nadie_atras", "texto": "A no volver a dejar a nadie atrás.", "perfil": {"proteccion": 2, "curacion": 1}},
+        {"id": "dioses", "texto": "Que los dioses me guardan, y que hay que darles las gracias.", "perfil": {"fe": 2}}
       ]
     },
     {
@@ -80,7 +94,9 @@
         {"id": "amparo", "texto": "Protejo y curo mejor a los míos.", "escuelas": {"abjuracion": 2},
          "perfil": {"curacion": 1, "proteccion": 1}},
         {"id": "cambio", "texto": "Cambio las cosas: formas, terreno, el propio cuerpo.", "escuelas": {"transmutacion": 2, "conjuracion": 1}},
-        {"id": "vision", "texto": "Veo lo oculto, lo lejano y lo que vendrá.", "escuelas": {"adivinacion": 2}}
+        {"id": "vision", "texto": "Veo lo oculto, lo lejano y lo que vendrá.", "escuelas": {"adivinacion": 2}},
+        {"id": "frontera", "texto": "Siento la frontera entre la vida y la muerte, y puedo cruzarla un poco.",
+         "escuelas": {"nigromancia": 2}, "perfil": {"arcano": 1}}
       ]
     },
     {
@@ -93,7 +109,228 @@
         {"id": "valor", "texto": "Por mi valor.", "perfil": {"combate": 1, "proteccion": 1}},
         {"id": "ingenio", "texto": "Por mi ingenio.", "perfil": {"saber": 1, "astucia": 1}},
         {"id": "encanto", "texto": "Por mi encanto.", "perfil": {"carisma": 2}},
-        {"id": "misterio", "texto": "Por misterioso: nadie sabe bien qué hago.", "perfil": {"sigilo": 1, "arcano": 1}}
+        {"id": "misterio", "texto": "Por misterioso: nadie sabe bien qué hago.", "perfil": {"sigilo": 1, "arcano": 1}},
+        {"id": "bondad", "texto": "Por cómo trato a la gente: siempre echo una mano.", "perfil": {"curacion": 2, "fe": 1}},
+        {"id": "devocion", "texto": "Por mi devoción: dicen que los dioses me escuchan.",
+         "perfil": {"fe": 2, "proteccion": 1}}
+      ]
+    },
+    {
+      "id": "subida_rival",
+      "nombre": "El rival",
+      "momento": "subida",
+      "decide": ["mejora", "opciones"],
+      "texto": "Un rival os ha ganado la partida esta vez. ¿Cómo te lo tomas?",
+      "respuestas": [
+        {"id": "revancha", "texto": "Entreno el doble para la revancha.",
+         "mejora": "caracteristicas", "perfil": {"combate": 2, "aguante": 1}},
+        {"id": "estudiar", "texto": "Estudio cómo lo hizo para que no vuelva a pasar.",
+         "mejora": "dote", "perfil": {"saber": 2, "astucia": 1}},
+        {"id": "aliados", "texto": "Busco aliados que me ayuden a vencerle.", "perfil": {"carisma": 2}},
+        {"id": "pista", "texto": "Le sigo la pista en secreto.", "perfil": {"sigilo": 2, "astucia": 1}},
+        {"id": "suerte", "texto": "Le deseo suerte: hay sitio para todos.", "perfil": {"fe": 2, "curacion": 1}},
+        {"id": "encerrona", "texto": "Le preparo una encerrona para la próxima.", "perfil": {"astucia": 2}}
+      ]
+    },
+    {
+      "id": "subida_mentor",
+      "nombre": "Un maestro",
+      "momento": "subida",
+      "decide": ["subclase", "opciones"],
+      "texto": "Conoces a alguien que podría ser tu maestro. ¿Quién es?",
+      "respuestas": [
+        {"id": "veterano", "texto": "Un viejo soldado lleno de cicatrices.", "perfil": {"combate": 2, "proteccion": 1}},
+        {"id": "maga", "texto": "Una maga que vive entre libros.", "perfil": {"saber": 2, "arcano": 1}},
+        {"id": "sacerdotisa", "texto": "Una sacerdotisa que cura sin preguntar a quién.", "perfil": {"fe": 2, "curacion": 1}},
+        {"id": "ladron", "texto": "Un ladrón retirado que aún guarda buenos trucos.", "perfil": {"astucia": 2, "sigilo": 1}},
+        {"id": "eremita", "texto": "Un eremita del bosque que habla con los animales.",
+         "perfil": {"naturaleza": 2, "arcano": 1}},
+        {"id": "bardo", "texto": "Un bardo que conoce a medio reino.", "perfil": {"carisma": 2, "arcano": 1}}
+      ]
+    },
+    {
+      "id": "subida_botin",
+      "nombre": "El botín",
+      "momento": "subida",
+      "decide": ["mejora", "opciones"],
+      "texto": "Os repartís un buen botín. ¿En qué gastas tu parte?",
+      "respuestas": [
+        {"id": "armadura", "texto": "En armas y una armadura nueva.", "perfil": {"proteccion": 2, "combate": 1}},
+        {"id": "instrumentos", "texto": "En libros, mapas e instrumentos.", "mejora": "dote", "perfil": {"saber": 2}},
+        {"id": "templo", "texto": "Lo dono al templo.", "perfil": {"fe": 2, "curacion": 1}},
+        {"id": "fiesta", "texto": "Invito a todo el pueblo a una fiesta.", "perfil": {"carisma": 2, "aguante": 1}},
+        {"id": "esconder", "texto": "Lo escondo. Nunca se sabe.", "perfil": {"astucia": 2, "sigilo": 1}},
+        {"id": "huerfanos", "texto": "Se lo doy a los huérfanos de la ciudad.", "perfil": {"curacion": 2, "proteccion": 1}}
+      ]
+    },
+    {
+      "id": "subida_perdida",
+      "nombre": "Alguien que no volvió",
+      "momento": "subida",
+      "decide": ["mejora", "subclase"],
+      "texto": "En la última aventura perdisteis a un compañero. ¿Cómo lo llevas?",
+      "respuestas": [
+        {"id": "vengarle", "texto": "Juro vengarle.", "perfil": {"combate": 2, "aguante": 1}},
+        {"id": "alma", "texto": "Rezo por su alma cada noche.", "perfil": {"fe": 2}},
+        {"id": "nunca_mas", "texto": "Me prometo que no volverá a pasar.", "perfil": {"proteccion": 2, "aguante": 1}},
+        {"id": "traerle", "texto": "Busco la forma de traerle de vuelta.", "perfil": {"arcano": 2, "saber": 1}},
+        {"id": "cancion", "texto": "Canto su historia en cada taberna.", "perfil": {"carisma": 2, "fe": 1}},
+        {"id": "solo", "texto": "Me lo guardo dentro y sigo adelante, sin hablar de ello.",
+         "perfil": {"sigilo": 2, "aguante": 1}}
+      ]
+    },
+    {
+      "id": "subida_bestia",
+      "nombre": "La bestia legendaria",
+      "momento": "subida",
+      "decide": ["opciones", "conjuros"],
+      "texto": "Os habéis enfrentado a una bestia legendaria. ¿Qué te llevas del encuentro?",
+      "respuestas": [
+        {"id": "colmillo", "texto": "Un colmillo como trofeo.", "perfil": {"combate": 2, "naturaleza": 1}},
+        {"id": "respeto", "texto": "Respeto por la naturaleza salvaje.", "perfil": {"naturaleza": 2, "fe": 1}},
+        {"id": "notas", "texto": "Notas sobre cómo vive y cómo pelea.", "perfil": {"saber": 2, "naturaleza": 1}},
+        {"id": "aguanto", "texto": "Una cicatriz, y la certeza de que aguanto lo que sea.", "perfil": {"aguante": 2}},
+        {"id": "vinculo", "texto": "Un extraño vínculo con ella: a veces la siento cerca.",
+         "perfil": {"arcano": 2, "naturaleza": 1}},
+        {"id": "rapido", "texto": "La certeza de que la próxima vez seré más rápido.",
+         "perfil": {"agilidad": 2, "combate": 1}}
+      ]
+    },
+    {
+      "id": "subida_capital",
+      "nombre": "Una temporada en la capital",
+      "momento": "subida",
+      "decide": ["subclase", "opciones"],
+      "texto": "Pasáis una temporada en la capital entre una aventura y otra. ¿Qué haces tú?",
+      "respuestas": [
+        {"id": "gremio", "texto": "Me hago un nombre en el gremio de ladrones.", "perfil": {"astucia": 2, "sigilo": 1}},
+        {"id": "academia", "texto": "Asisto a clases en la academia.", "perfil": {"saber": 2, "arcano": 1}},
+        {"id": "corte", "texto": "Frecuento la corte y sus fiestas.", "perfil": {"carisma": 2}},
+        {"id": "guardia", "texto": "Me enrolo unos meses en la guardia.", "perfil": {"proteccion": 2, "combate": 1}},
+        {"id": "hospital", "texto": "Ayudo en el hospital de los pobres.", "perfil": {"curacion": 2, "fe": 1}},
+        {"id": "arena", "texto": "Peleo en la arena por dinero.", "perfil": {"combate": 2, "agilidad": 1}}
+      ]
+    },
+    {
+      "id": "subida_sueno",
+      "nombre": "El mismo sueño",
+      "momento": "subida",
+      "decide": ["conjuros", "subclase"],
+      "texto": "Desde hace noches tienes el mismo sueño. ¿Qué ves?",
+      "respuestas": [
+        {"id": "fuego", "texto": "Un fuego que me obedece.", "escuelas": {"evocacion": 2}, "perfil": {"arcano": 2}},
+        {"id": "luz", "texto": "Una figura luminosa que me llama por mi nombre.",
+         "escuelas": {"abjuracion": 1, "adivinacion": 1}, "perfil": {"fe": 2}},
+        {"id": "bosque", "texto": "Un bosque que respira.",
+         "escuelas": {"transmutacion": 1, "conjuracion": 1}, "perfil": {"naturaleza": 2}},
+        {"id": "sombras", "texto": "Sombras que me susurran secretos.",
+         "escuelas": {"ilusion": 2}, "perfil": {"sigilo": 2, "arcano": 1}},
+        {"id": "muertos", "texto": "Muertos que me cuentan cómo murieron.",
+         "escuelas": {"nigromancia": 2}, "perfil": {"saber": 2, "arcano": 1}},
+        {"id": "deseos", "texto": "Las caras de la gente, y lo que desean de verdad.",
+         "escuelas": {"encantamiento": 2}, "perfil": {"carisma": 2}}
+      ]
+    },
+    {
+      "id": "subida_traicion",
+      "nombre": "La traición",
+      "momento": "subida",
+      "decide": ["mejora", "opciones"],
+      "texto": "Alguien en quien confiabais os ha traicionado. ¿Qué haces?",
+      "respuestas": [
+        {"id": "perseguir", "texto": "Lo persigo hasta el fin del mundo.", "perfil": {"aguante": 2, "combate": 1}},
+        {"id": "perdonar", "texto": "Le perdono: todos nos equivocamos.", "perfil": {"fe": 2, "curacion": 1}},
+        {"id": "desconfiar", "texto": "Aprendo la lección: no volveré a fiarme a la primera.",
+         "perfil": {"astucia": 2, "saber": 1}},
+        {"id": "nadie_mas", "texto": "Me aseguro de que no haga daño a nadie más.", "perfil": {"proteccion": 2}},
+        {"id": "porque", "texto": "Averiguo por qué lo hizo.", "perfil": {"saber": 2, "carisma": 1}},
+        {"id": "intereses", "texto": "Le devuelvo la jugada, con intereses.", "perfil": {"sigilo": 2, "astucia": 1}}
+      ]
+    },
+    {
+      "id": "subida_fiesta",
+      "nombre": "La fiesta en vuestro honor",
+      "momento": "subida",
+      "decide": ["mejora", "subclase"],
+      "texto": "El pueblo que salvasteis celebra una fiesta en vuestro honor. ¿Dónde estás tú?",
+      "respuestas": [
+        {"id": "centro", "texto": "En el centro, contando nuestras hazañas.", "perfil": {"carisma": 2}},
+        {"id": "torneo", "texto": "En el torneo de lucha de la fiesta.", "perfil": {"combate": 2, "agilidad": 1}},
+        {"id": "gracias", "texto": "En el templo, dando gracias.", "perfil": {"fe": 2}},
+        {"id": "convalecientes", "texto": "Con los que aún se recuperan.", "perfil": {"curacion": 2}},
+        {"id": "afueras", "texto": "Paseando por las afueras: la fiesta me agobia.",
+         "perfil": {"naturaleza": 2, "sigilo": 1}},
+        {"id": "vigilando", "texto": "Vigilando por si acaso: la última vez atacaron de noche.",
+         "perfil": {"proteccion": 2, "sigilo": 1}}
+      ]
+    },
+    {
+      "id": "subida_magia_salvaje",
+      "nombre": "Magia salvaje",
+      "momento": "subida",
+      "decide": ["conjuros", "subclase"],
+      "texto": "Una explosión de magia salvaje te alcanza en plena aventura. ¿Qué te ha dejado?",
+      "respuestas": [
+        {"id": "chispas", "texto": "Ahora me salen chispas de las manos.",
+         "escuelas": {"evocacion": 2}, "perfil": {"arcano": 1}},
+        {"id": "cuerpo", "texto": "Mi cuerpo cambia a ratos: el pelo, los ojos, la piel.",
+         "escuelas": {"transmutacion": 2}, "perfil": {"aguante": 1}},
+        {"id": "destellos", "texto": "Veo destellos de lo que va a pasar.",
+         "escuelas": {"adivinacion": 2}, "perfil": {"saber": 1}},
+        {"id": "disciplina", "texto": "He aprendido a contenerla con disciplina.",
+         "escuelas": {"abjuracion": 2}, "perfil": {"fe": 1}},
+        {"id": "pensamientos", "texto": "Oigo lo que piensan los demás.",
+         "escuelas": {"encantamiento": 2}, "perfil": {"carisma": 1}},
+        {"id": "criaturas", "texto": "A veces aparecen criaturas a mi lado.",
+         "escuelas": {"conjuracion": 2}, "perfil": {"naturaleza": 1}}
+      ]
+    },
+    {
+      "id": "subida_convalecencia",
+      "nombre": "Semanas en cama",
+      "momento": "subida",
+      "decide": ["mejora", "opciones"],
+      "texto": "Pasas semanas en cama recuperándote de una herida. ¿Qué haces mientras tanto?",
+      "respuestas": [
+        {"id": "leer", "texto": "Leo todo lo que cae en mis manos.", "mejora": "dote", "perfil": {"saber": 2}},
+        {"id": "ejercicios", "texto": "Hago ejercicios en cuanto me dejan moverme.",
+         "mejora": "caracteristicas", "perfil": {"aguante": 2}},
+        {"id": "planes", "texto": "Planeo la próxima aventura al detalle.", "perfil": {"astucia": 2, "saber": 1}},
+        {"id": "visitas", "texto": "Recibo visitas y me hago amigo de medio pueblo.", "perfil": {"carisma": 2}},
+        {"id": "vivo", "texto": "Rezo y doy gracias por seguir vivo.", "perfil": {"fe": 2}},
+        {"id": "sanadores", "texto": "Aprendo a curar viendo trabajar a los sanadores.",
+         "mejora": "dote", "perfil": {"curacion": 2, "saber": 1}}
+      ]
+    },
+    {
+      "id": "subida_senor",
+      "nombre": "La oferta del señor",
+      "momento": "subida",
+      "decide": ["subclase", "opciones"],
+      "texto": "Un señor poderoso os ofrece trabajar para él. ¿Qué dices tú?",
+      "respuestas": [
+        {"id": "lealtad", "texto": "Acepto, y le sirvo con lealtad.", "perfil": {"proteccion": 2, "fe": 1}},
+        {"id": "libre", "texto": "No: prefiero seguir libre.", "perfil": {"agilidad": 2, "naturaleza": 1}},
+        {"id": "espiar", "texto": "Acepto, para espiarle desde dentro.", "perfil": {"sigilo": 2, "astucia": 1}},
+        {"id": "precio", "texto": "Depende del precio.", "perfil": {"astucia": 2, "carisma": 1}},
+        {"id": "condiciones", "texto": "Negocio condiciones para todo el grupo.", "perfil": {"carisma": 2, "saber": 1}},
+        {"id": "mis_dioses", "texto": "Solo sirvo a mis dioses.", "perfil": {"fe": 2, "aguante": 1}}
+      ]
+    },
+    {
+      "id": "subida_tierras",
+      "nombre": "Tierras sin mapa",
+      "momento": "subida",
+      "decide": ["opciones", "conjuros"],
+      "texto": "Atravesáis tierras que nadie ha cartografiado. ¿Qué haces tú?",
+      "respuestas": [
+        {"id": "guiar", "texto": "Abro camino y guío al grupo.", "perfil": {"naturaleza": 2, "agilidad": 1}},
+        {"id": "dibujar", "texto": "Dibujo el mapa y lo apunto todo.", "perfil": {"saber": 2, "naturaleza": 1}},
+        {"id": "cazar", "texto": "Cazo y cocino para todos.", "perfil": {"agilidad": 2, "naturaleza": 1}},
+        {"id": "guardia", "texto": "Hago guardia mientras los demás duermen.", "perfil": {"proteccion": 2, "aguante": 1}},
+        {"id": "animo", "texto": "Mantengo el ánimo con canciones e historias.", "perfil": {"carisma": 2}},
+        {"id": "corrientes", "texto": "Siento las corrientes de magia de esas tierras.",
+         "perfil": {"arcano": 2, "naturaleza": 1}}
       ]
     }
   ]

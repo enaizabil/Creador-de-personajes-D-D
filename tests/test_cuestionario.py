@@ -745,3 +745,23 @@ def test_la_respuesta_elegida_se_ve_siempre(entorno):
     q.responder(larga.id, oculta)
     vista = next(p for p in q.preguntas() if p.id == larga.id)
     assert oculta in [r.id for r in vista.respuestas] and len(vista.respuestas) == 4
+
+
+def test_los_hitos_cambian_de_una_partida_a_otra(entorno, monkeypatch):
+    from creador.sistemas.dnd5e_2014 import cuestionario
+    vistos = set()
+    for semilla in ("a", "b", "c", "d", "e", "f"):
+        monkeypatch.setattr(cuestionario, "nueva_semilla", lambda semilla=semilla: semilla)
+        q = subida(entorno, "guerrero", 3, semilla="decisiones")
+        for cuantas in (4, 6):
+            q.configurar(respuestas=cuantas)
+            hitos = [p for p in q.preguntas_de_subida(1) if not p.concreta]
+            assert len(hitos) == 1 and all(len(p.respuestas) == cuantas for p in hitos)
+        vistos.add(hitos[0].id)
+    assert len(vistos) >= 3, vistos  # nueve hitos tocan la mejora del guerrero 4
+
+
+def test_todas_las_preguntas_del_programa_tienen_seis_respuestas(entorno):
+    _, catalogo = entorno
+    cortas = [p["id"] for p in catalogo.listar("preguntas") if len(p["respuestas"]) < 6 and not p.get("ordenadas")]
+    assert cortas == []
