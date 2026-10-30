@@ -77,3 +77,17 @@ def test_las_mascaras_de_los_iconos_pasan_a_canal_alfa(tmp_path):
     web.mascara_a_alfa(web.RECURSOS / "iconos" / "elf-ear.png", tmp_path / "icono.png")
     imagen = Image.open(tmp_path / "icono.png")
     assert imagen.mode == "RGBA" and imagen.getextrema()[3] == (0, 255)
+
+
+def test_la_pagina_de_creditos_enlaza_licencias_y_autores(tmp_path):
+    web = cargar_compilar_web()
+    (tmp_path / "recursos" / "fuentes").mkdir(parents=True)
+    (tmp_path / "recursos" / "fuentes" / "OFL.txt").write_text("licencia", encoding="utf-8")
+    texto = ("# Título\n\nVer https://ejemplo.org/a. Y [esto](https://b.org) en *cursiva*; texto en `fuentes/OFL.txt`.\n\n"
+             "| Archivo | Autor |\n|---|---|\n| `x.png` | Lorc <b> |")
+    pagina = web.markdown_basico(texto, tmp_path)
+    assert '<h2 class="titulo">Título</h2>' in pagina
+    assert '<a href="https://ejemplo.org/a">https://ejemplo.org/a</a>.' in pagina  # el punto no entra en el enlace
+    assert '<a href="https://b.org">esto</a>' in pagina and "<em>cursiva</em>" in pagina
+    assert '<a href="recursos/fuentes/OFL.txt"><code>fuentes/OFL.txt</code></a>' in pagina
+    assert "<td><code>x.png</code></td><td>Lorc &lt;b&gt;</td>" in pagina and "---" not in pagina

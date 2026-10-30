@@ -17,7 +17,9 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import html
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -40,6 +42,24 @@ RECURSOS = RAIZ / "creador" / "gui" / "recursos"
 CACHE_RUEDAS = RAIZ / "build" / "ruedas-web"
 FECHA_ZIP = (1980, 1, 1, 0, 0, 0)  # fija: el mismo código da el mismo zip y la misma huella
 COLOR_FAVICON = (125, 31, 31)  # el granate del tema
+ATRIBUCION_SRD = RAIZ / "creador" / "datos" / "paquetes" / "dnd5e-2014" / "srd-5.1" / "ATRIBUCION.md"
+PAGINA_CREDITOS = """<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Créditos y licencias</title>
+  <link rel="icon" type="image/png" href="recursos/favicon.png">
+  <link rel="stylesheet" href="estilo.css?h={huella}">
+</head>
+<body>
+<main class="pantalla creditos-pagina">
+<p><a class="boton secundario" href="./">← Volver al creador</a></p>
+{cuerpo}
+</main>
+</body>
+</html>
+"""
 
 
 def archivos_codigo() -> list[tuple[str, Path]]:
@@ -101,11 +121,63 @@ def copiar_recursos(salida: Path) -> None:
         mascara_a_alfa(origen, iconos / origen.name)
     shutil.copy2(RECURSOS / "iconos" / "LICENCIA-game-icons.txt", iconos)
     shutil.copytree(RECURSOS / "fuentes", salida / "recursos" / "fuentes")
-    shutil.copy2(RECURSOS / "CREDITOS.md", salida / "CREDITOS.md")
     favicon = Image.open(RECURSOS / "iconos" / "dice-twenty-faces-twenty.png").convert("L").resize((64, 64), Image.LANCZOS)
     icono = Image.new("RGBA", favicon.size, (*COLOR_FAVICON, 255))
     icono.putalpha(favicon)
     icono.save(salida / "recursos" / "favicon.png", optimize=True)
+
+
+def _en_linea(texto: str, salida: Path) -> str:
+    """Enlaces, cursiva, código (enlazado si es un archivo de recursos/) y direcciones sueltas."""
+    partes = re.split(r"(`[^`]+`|\[[^\]]+\]\([^)]+\)|https?://[^\s)]*[^\s).,;:])", texto)
+    trozos = []
+    for parte in partes:
+        if parte.startswith("`") and parte.endswith("`"):
+            codigo = parte[1:-1]
+            ruta = salida / "recursos" / codigo
+            enlace = html.escape(f"recursos/{codigo}") if ruta.is_file() else None
+            trozos.append(f'<a href="{enlace}"><code>{html.escape(codigo)}</code></a>' if enlace
+                          else f"<code>{html.escape(codigo)}</code>")
+        elif enlace := re.fullmatch(r"\[([^\]]+)\]\(([^)]+)\)", parte):
+            trozos.append(f'<a href="{html.escape(enlace[2])}">{html.escape(enlace[1])}</a>')
+        elif re.fullmatch(r"https?://\S+", parte):
+            trozos.append(f'<a href="{html.escape(parte)}">{html.escape(parte)}</a>')
+        else:
+            trozos.append(re.sub(r"\*([^*]+)\*", r"<em>\1</em>", html.escape(parte, quote=False)))
+    return "".join(trozos)
+
+
+def markdown_basico(texto: str, salida: Path) -> str:
+    """Lo poco de Markdown que usan CREDITOS.md y ATRIBUCION.md: títulos, párrafos y tablas."""
+    bloques = []
+    for bloque in re.split(r"\n\s*\n", texto.strip()):
+        lineas = bloque.strip().splitlines()
+        if lineas[0].startswith("#"):
+            nivel = min(len(lineas[0]) - len(lineas[0].lstrip("#")) + 1, 4)
+            bloques.append(f'<h{nivel} class="titulo">{_en_linea(lineas[0].lstrip("# "), salida)}</h{nivel}>')
+            lineas = lineas[1:]
+            if not lineas:
+                continue
+        if lineas[0].startswith("|"):
+            filas = [[_en_linea(c.strip(), salida) for c in linea.strip().strip("|").split("|")] for linea in lineas
+                     if not re.fullmatch(r"\|[\s|:-]+\|", linea.strip())]
+            cabecera = "".join(f"<th>{c}</th>" for c in filas[0])
+            cuerpo = "".join("<tr>" + "".join(f"<td>{c}</td>" for c in fila) + "</tr>" for fila in filas[1:])
+            bloques.append(f'<div class="tabla-marco"><table class="tabla"><thead><tr>{cabecera}</tr></thead>'
+                           f"<tbody>{cuerpo}</tbody></table></div>")
+        else:
+            bloques.append(f'<p class="texto">{_en_linea(" ".join(lineas), salida)}</p>')
+    return "\n".join(bloques)
+
+
+def pagina_creditos(salida: Path, marca: str) -> None:
+    """creditos.html: los iconos y la tipografía (CC BY y OFL piden reconocerlos) y la atribución del SRD 5.1."""
+    cuerpo = "\n".join([
+        '<h1 class="titulo">Créditos y licencias</h1>',
+        markdown_basico(ATRIBUCION_SRD.read_text(encoding="utf-8").replace("# Atribución", "# Reglas: SRD 5.1", 1), salida),
+        markdown_basico((RECURSOS / "CREDITOS.md").read_text(encoding="utf-8"), salida),
+    ])
+    (salida / "creditos.html").write_text(PAGINA_CREDITOS.format(huella=marca, cuerpo=cuerpo), encoding="utf-8")
 
 
 def huella(*rutas: Path) -> str:
@@ -129,6 +201,7 @@ def compilar(salida: Path) -> Path:
     marca = huella(salida / "creador.zip", *ruedas, *fuentes_pagina)
     for origen in fuentes_pagina:
         (salida / origen.name).write_text(origen.read_text(encoding="utf-8").replace("__HASH__", marca), encoding="utf-8")
+    pagina_creditos(salida, marca)
     manifiesto = {"version": __version__, "edicion": EDICION, "huella": marca, "ruedas": [r.name for r in ruedas]}
     (salida / "version.json").write_text(json.dumps(manifiesto, ensure_ascii=False, indent=2), encoding="utf-8")
     (salida / ".nojekyll").write_text("", encoding="utf-8")  # GitHub Pages: servir los archivos tal cual

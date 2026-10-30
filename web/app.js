@@ -567,11 +567,13 @@ function pintar(vista) {
       el("main", { class: "principal" },
          el("header", { class: "cabecera" }, icono(vista.cabecera.icono, "grande"), el("span", {}, vista.cabecera.texto)),
          contenido,
+         pintarCreditos(),
          el("footer", { class: "pie" }, vista.pie.map(pintarComponente)))));
   } else {
     $app.replaceChildren(el("main", { class: `pantalla ${vista.pantalla}` }, contenido), pintarCreditos());
   }
   document.body.dataset.pantalla = vista.pantalla;
+  document.title = vista.cabecera ? `${vista.cabecera.texto.split("  ·  ")[0]} · Creador de personajes` : "Creador de personajes";
   document.body.dataset.pintado = String(Number(document.body.dataset.pintado || 0) + 1); // para las pruebas
 
   if (mismaPantalla) window.scrollTo(0, desplazamiento);
@@ -605,7 +607,8 @@ function pintarLateral(pasos) {
 }
 
 function pintarCreditos() {
-  return el("footer", { class: "creditos" }, botonTema());
+  return el("footer", { class: "creditos" }, el("a", { class: "boton enlace", href: "creditos.html" }, "Créditos y licencias"),
+            botonTema());
 }
 
 // ── tema claro u oscuro ─────────────────────────────────────────────────

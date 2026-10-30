@@ -25,9 +25,11 @@
   --acento: #7d1f1f;
   --acento-hover: #5f1616;
   --sobre-acento: #fbf3e2;
+  --peligro: #7d1f1f;
+  --enlace: #7d1f1f;
   --color-icono: #6b1d1d;
-  --segmento: #86704d;
-  --segmento-hover: #735f40;
+  --segmento: #7a6444;
+  --segmento-hover: #6a5639;
   --aviso-fondo: #f3e0b0;
   --aviso-texto: #8a4b08;
   --exito-fondo: #dde8cc;
@@ -52,6 +54,9 @@
     --acento: #9e2b2b;
     --acento-hover: #7d2121;
     --sobre-acento: #fbf3e2;
+    --peligro: #f0a59a;
+  --enlace: #e6cf9f;
+    --enlace: #e6cf9f;
     --color-icono: #e6cf9f;
     --segmento: #3a2f27;
     --segmento-hover: #4a3d33;
@@ -76,6 +81,8 @@
   --acento: #9e2b2b;
   --acento-hover: #7d2121;
   --sobre-acento: #fbf3e2;
+  --peligro: #f0a59a;
+  --enlace: #e6cf9f;
   --color-icono: #e6cf9f;
   --segmento: #3a2f27;
   --segmento-hover: #4a3d33;
@@ -240,12 +247,8 @@ h4.titulo {
 
 .boton.peligro {
   background: transparent;
-  color: var(--acento);
-  border-color: var(--acento);
-}
-
-[data-theme="dark"] .boton.peligro {
-  color: #f0a59a;
+  color: var(--peligro);
+  border-color: var(--peligro);
 }
 
 .boton.peligro:hover:not(:disabled) {
@@ -318,6 +321,10 @@ textarea {
 .entrada .campo,
 .entrada input {
   width: 100%;
+}
+
+.entrada .campo {
+  margin-right: 0;
 }
 
 .entrada.corto {
@@ -766,7 +773,31 @@ progress::-moz-progress-bar {
   margin: 0 auto;
   padding: 0 16px 1.5em;
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
+  gap: 0.5em;
+}
+
+.principal > .creditos {
+  margin: 0;
+  max-width: 1000px;
+  padding: 0 24px 1em;
+}
+
+.creditos-pagina .tabla {
+  font-size: 0.9rem;
+}
+
+a {
+  color: var(--enlace);
+}
+
+a.boton {
+  text-decoration: none;
+}
+
+a.boton.enlace {
+  text-decoration: underline;
 }
 
 .recientes .lista-recientes {
@@ -960,6 +991,17 @@ body.ocupado::after {
 @keyframes girar {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.ocupado::after {
+    animation-duration: 3s;
+  }
+
+  .deslizador,
+  .deslizador::after {
+    transition: none;
   }
 }
 
