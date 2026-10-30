@@ -594,6 +594,11 @@ progress::-moz-progress-bar {
   flex-wrap: nowrap;
 }
 
+.tabla .fila > .texto {
+  min-width: 2.2ch;
+  text-align: center;
+}
+
 .preformateado {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
@@ -1060,5 +1065,23 @@ body.ocupado::after {
 
   .interruptor .ayuda {
     margin-left: 0;
+  }
+
+  .tabla {
+    font-size: 0.88rem;
+  }
+
+  .tabla th,
+  .tabla td {
+    padding: 0.3em;
+  }
+
+  .tabla .fila {
+    gap: 0.3em;
+  }
+
+  .tabla .boton {
+    min-height: 32px;
+    padding: 0.2em 0.55em;
   }
 }
