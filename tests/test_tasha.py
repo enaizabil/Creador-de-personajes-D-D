@@ -82,10 +82,19 @@ def test_las_preguntas_de_tasha_sustituyen_a_otras_sin_cambiar_el_total(entorno)
         "dnd5e-2014", [p for p in PAQUETES if p != "tasha-2020"], [directorio_datos_integrados() / "paquetes"])
     q_sin = sin_tasha_sistema.crear_cuestionario(Personaje(sistema="dnd5e-2014", paquetes=PAQUETES), sin_tasha)
     for estilo, nueva, vieja in (("cotidiana", "t_familia", "lluvia"), ("fantasia", "t_espejo", "f_trol")):
-        con = [p.id for p in q.preguntas(estilo=estilo)]
-        sin = [p.id for p in q_sin.preguntas(estilo=estilo)]
-        assert len(con) == len(sin) and nueva in con and vieja not in con and vieja in sin
-        assert nueva not in [p.id for p in q.preguntas(estilo=estilo, cantidad="rapido")]  # es de detalle 2
+        # Cada partida saca otras preguntas: en ninguna sale la sustituida (ni, sin Tasha, la nueva), y el total
+        # no cambia; en alguna sale la nueva, y nunca en «Rápido», porque es de detalle 2.
+        vistas_con, vistas_sin = set(), set()
+        for n in range(12):
+            for cuestionario in (q, q_sin):
+                cuestionario.personaje.extra.setdefault("cuestionario", {})["semilla"] = f"t{n}"
+            con = [p.id for p in q.preguntas(estilo=estilo, cantidad="preciso")]
+            sin = [p.id for p in q_sin.preguntas(estilo=estilo, cantidad="preciso")]
+            assert len(con) == len(sin) and vieja not in con and nueva not in sin
+            assert nueva not in [p.id for p in q.preguntas(estilo=estilo, cantidad="rapido")]
+            vistas_con |= set(con)
+            vistas_sin |= set(sin)
+        assert nueva in vistas_con and vieja in vistas_sin
 
 
 def test_la_tabla_de_rasgos_de_tasha_apunta_a_contenido_que_existe(entorno):

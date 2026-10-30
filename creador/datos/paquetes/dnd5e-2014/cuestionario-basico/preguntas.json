@@ -721,6 +721,765 @@
         {"id": "vivo", "texto": "Respiro hondo y doy gracias: estoy vivo, que no es poco.",
          "perfil": {"fe": 2, "aguante": 1}}
       ]
+    },
+    {
+      "id": "tren",
+      "nombre": "El último tren",
+      "estilo": "cotidiana",
+      "detalle": 1,
+      "texto": "Pierdes el último tren y estás a treinta kilómetros de casa.",
+      "respuestas": [
+        {"id": "andar", "texto": "Me pongo a andar. Treinta kilómetros no son nada.",
+         "perfil": {"aguante": 2, "naturaleza": 1}},
+        {"id": "autostop", "texto": "Hago autostop y convenzo al primero que para.",
+         "perfil": {"carisma": 2, "astucia": 1}},
+        {"id": "mercancias", "texto": "Me cuelo en el tren de mercancías que está saliendo.",
+         "perfil": {"sigilo": 2, "agilidad": 1}, "eje": {"orden": -1}},
+        {"id": "parque", "texto": "Duermo al raso en el parque de al lado, bajo las estrellas.",
+         "perfil": {"naturaleza": 2, "aguante": 1}},
+        {"id": "senora", "texto": "Me quedo con la señora mayor que también lo ha perdido hasta que la recojan.",
+         "perfil": {"proteccion": 2, "curacion": 1}, "eje": {"moral": 1}},
+        {"id": "horarios", "texto": "Me sé de memoria los horarios de los autobuses nocturnos.", "perfil": {"saber": 2}}
+      ]
+    },
+    {
+      "id": "incendio",
+      "nombre": "Huele a quemado",
+      "estilo": "cotidiana",
+      "detalle": 1,
+      "texto": "Huele a quemado en tu edificio, de madrugada.",
+      "respuestas": [
+        {"id": "puertas", "texto": "Aporreo todas las puertas hasta despertar a los vecinos.",
+         "perfil": {"proteccion": 2, "aguante": 1}, "eje": {"moral": 1}},
+        {"id": "humo", "texto": "Me meto en el humo a buscar de dónde sale.", "perfil": {"aguante": 2, "combate": 1}},
+        {"id": "balcon", "texto": "Bajo por los balcones de un salto en otro.", "perfil": {"agilidad": 2, "sigilo": 1}},
+        {"id": "cartel", "texto": "Hago lo que dice el cartel: nada de ascensor, por las escaleras, y llamo a los bomberos.",
+         "perfil": {"saber": 2}, "eje": {"orden": 1}},
+        {"id": "animales", "texto": "Lo primero, sacar a los perros y al loro del tercero.",
+         "perfil": {"naturaleza": 2, "curacion": 1}, "eje": {"moral": 1}},
+        {"id": "tos", "texto": "Ya en la calle, atiendo a los que salen tosiendo.",
+         "perfil": {"curacion": 2, "proteccion": 1}}
+      ]
+    },
+    {
+      "id": "gato_arbol",
+      "nombre": "El gato del árbol",
+      "estilo": "cotidiana",
+      "detalle": 1,
+      "texto": "Un gato lleva horas maullando en lo alto de un árbol.",
+      "respuestas": [
+        {"id": "trepar", "texto": "Trepo a por él.", "perfil": {"agilidad": 2, "proteccion": 1}},
+        {"id": "comida", "texto": "Le dejo comida al pie del árbol y espero a que baje solo.",
+         "perfil": {"naturaleza": 2, "aguante": 1}},
+        {"id": "manta", "texto": "Junto a los vecinos con una manta para que salte.",
+         "perfil": {"proteccion": 2, "carisma": 1}},
+        {"id": "susurro", "texto": "Le susurro algo y, no sé cómo, baja.", "perfil": {"arcano": 2, "naturaleza": 1}},
+        {"id": "sacudir", "texto": "Sacudo el árbol hasta que caiga. Los gatos siempre caen de pie.",
+         "perfil": {"combate": 2}, "eje": {"moral": -1}},
+        {"id": "patas", "texto": "Cuando baja, le miro las patas y le doy agua.",
+         "perfil": {"curacion": 2, "naturaleza": 1}}
+      ]
+    },
+    {
+      "id": "trabajo_grupo",
+      "nombre": "El trabajo en grupo",
+      "estilo": "cotidiana",
+      "detalle": 1,
+      "texto": "En un trabajo en grupo nadie hace nada y el plazo acaba mañana.",
+      "respuestas": [
+        {"id": "todo", "texto": "Lo hago todo yo esta noche, aunque no duerma.", "perfil": {"aguante": 2, "saber": 1}},
+        {"id": "repartir", "texto": "Reparto las tareas y persigo a cada uno hasta que cumple.",
+         "perfil": {"carisma": 2, "proteccion": 1}, "eje": {"orden": 1}},
+        {"id": "nombre", "texto": "Lo entrego con solo mi nombre.", "perfil": {"astucia": 2}, "eje": {"moral": -1}},
+        {"id": "anterior", "texto": "Encuentro uno del año pasado y lo retoco sin que se note.",
+         "perfil": {"sigilo": 2, "astucia": 1}, "eje": {"orden": -1}},
+        {"id": "explicar", "texto": "Me empollo el tema y se lo explico a los demás.",
+         "perfil": {"saber": 2, "curacion": 1}},
+        {"id": "amenaza", "texto": "Les dejo claro lo que pasará si mañana no aparecen.",
+         "perfil": {"combate": 2, "carisma": 1}}
+      ]
+    },
+    {
+      "id": "vacaciones",
+      "nombre": "Vacaciones",
+      "estilo": "cotidiana",
+      "detalle": 1,
+      "texto": "Tienes una semana de vacaciones y dinero para ir donde quieras.",
+      "respuestas": [
+        {"id": "montana", "texto": "A la montaña, con una tienda y sin cobertura.", "perfil": {"naturaleza": 3}},
+        {"id": "ciudad", "texto": "A una ciudad antigua, de museos y bibliotecas.", "perfil": {"saber": 2, "arcano": 1}},
+        {"id": "fiesta", "texto": "A la playa con más fiesta del país.", "perfil": {"carisma": 2, "agilidad": 1}},
+        {"id": "camino", "texto": "Hago el Camino de Santiago.", "perfil": {"fe": 2, "aguante": 1}},
+        {"id": "aventura", "texto": "Rafting, escalada y paracaídas.", "perfil": {"agilidad": 2, "aguante": 1}},
+        {"id": "voluntario", "texto": "De voluntario a un hospital de campaña.",
+         "perfil": {"curacion": 2, "proteccion": 1}, "eje": {"moral": 1}}
+      ]
+    },
+    {
+      "id": "herencia",
+      "nombre": "La herencia",
+      "estilo": "cotidiana",
+      "detalle": 1,
+      "texto": "Heredas una casa vieja en un pueblo del que nunca habías oído hablar.",
+      "respuestas": [
+        {"id": "reformar", "texto": "Me arremango y la reformo con mis propias manos.",
+         "perfil": {"aguante": 2, "saber": 1}},
+        {"id": "vender", "texto": "La vendo al mejor postor.", "perfil": {"astucia": 2, "carisma": 1}},
+        {"id": "quien", "texto": "Investigo quién vivió allí y por qué me la dejó a mí.",
+         "perfil": {"saber": 2, "arcano": 1}},
+        {"id": "fantasmas", "texto": "Paso allí la primera noche, a ver si hay fantasmas.",
+         "perfil": {"arcano": 2, "fe": 1}},
+        {"id": "gallinas", "texto": "Me mudo y monto un huerto con gallinas.",
+         "perfil": {"naturaleza": 2, "curacion": 1}},
+        {"id": "fiesta_mayor", "texto": "Me presento a todo el pueblo en la fiesta mayor.",
+         "perfil": {"carisma": 2, "fe": 1}}
+      ]
+    },
+    {
+      "id": "ruido_cocina",
+      "nombre": "Ruido en la cocina",
+      "estilo": "cotidiana",
+      "detalle": 1,
+      "texto": "A las tres de la mañana oyes ruido en la cocina.",
+      "respuestas": [
+        {"id": "sarten", "texto": "Cojo una sartén y bajo.", "perfil": {"combate": 2, "proteccion": 1}},
+        {"id": "escalera", "texto": "Me quedo en la escalera, muy quieto, escuchando.", "perfil": {"sigilo": 3}},
+        {"id": "gato", "texto": "Rezo para que sea el gato.", "perfil": {"fe": 2}},
+        {"id": "luces", "texto": "Enciendo todas las luces y grito: «¡Sé que estás ahí!».",
+         "perfil": {"carisma": 2, "aguante": 1}},
+        {"id": "canicas", "texto": "Pongo canicas en la escalera y espero.", "perfil": {"astucia": 2, "sigilo": 1}},
+        {"id": "abuela", "texto": "Seguro que es el fantasma de la abuela. Bajo a saludarla.",
+         "perfil": {"arcano": 2, "fe": 1}}
+      ]
+    },
+    {
+      "id": "entrevista",
+      "nombre": "La entrevista",
+      "estilo": "cotidiana",
+      "detalle": 1,
+      "texto": "En una entrevista de trabajo te preguntan cuál es tu mayor defecto.",
+      "respuestas": [
+        {"id": "verdad", "texto": "Digo la verdad, aunque me cueste el puesto.",
+         "perfil": {"fe": 2, "aguante": 1}, "eje": {"orden": 1}},
+        {"id": "perfeccionista", "texto": "«Soy demasiado perfeccionista». Funciona siempre.",
+         "perfil": {"astucia": 2, "carisma": 1}},
+        {"id": "broma", "texto": "Hago una broma y acabamos los dos riéndonos.", "perfil": {"carisma": 2}},
+        {"id": "datos", "texto": "Lo llevaba preparado, con datos y ejemplos.",
+         "perfil": {"saber": 2}, "eje": {"orden": 1}},
+        {"id": "equipo", "texto": "Le cuento que me desvivo por mi equipo, aunque a veces me pase.",
+         "perfil": {"proteccion": 2, "curacion": 1}},
+        {"id": "leer", "texto": "Le leo la cara y le digo justo lo que quiere oír.",
+         "perfil": {"arcano": 2, "astucia": 1}}
+      ]
+    },
+    {
+      "id": "playa",
+      "nombre": "Bandera roja",
+      "estilo": "cotidiana",
+      "detalle": 1,
+      "texto": "En la playa, con bandera roja, alguien se mete en el agua y no puede volver.",
+      "respuestas": [
+        {"id": "lanzarse", "texto": "Me lanzo a por él antes de que sea tarde.",
+         "perfil": {"proteccion": 2, "aguante": 1}, "eje": {"moral": 1}},
+        {"id": "socorrista", "texto": "Corro a avisar al socorrista.", "perfil": {"agilidad": 2, "proteccion": 1}},
+        {"id": "corriente", "texto": "Conozco esta corriente: le grito hacia dónde nadar.",
+         "perfil": {"naturaleza": 2, "saber": 1}},
+        {"id": "sombrilla", "texto": "Aprovecho que todos miran al agua para quedarme la mejor sombra.",
+         "perfil": {"astucia": 2}, "eje": {"moral": -1}},
+        {"id": "orilla", "texto": "Preparo toallas en la orilla para reanimarle cuando salga.",
+         "perfil": {"curacion": 3}},
+        {"id": "mar", "texto": "Le pido al mar que lo devuelva.", "perfil": {"fe": 2, "naturaleza": 1}}
+      ]
+    },
+    {
+      "id": "mensaje",
+      "nombre": "El mensaje equivocado",
+      "estilo": "cotidiana",
+      "detalle": 1,
+      "texto": "Te llega por error un mensaje con un secreto de alguien que conoces.",
+      "respuestas": [
+        {"id": "borrar", "texto": "Lo borro y hago como si nada, por respeto.",
+         "perfil": {"fe": 2, "sigilo": 1}, "eje": {"moral": 1}},
+        {"id": "avisar", "texto": "Le aviso de que se ha equivocado de persona.",
+         "perfil": {"proteccion": 2, "carisma": 1}, "eje": {"moral": 1, "orden": 1}},
+        {"id": "guardar", "texto": "Me lo guardo. Nunca se sabe.",
+         "perfil": {"astucia": 2, "sigilo": 1}, "eje": {"moral": -1}},
+        {"id": "contarlo", "texto": "Lo cuento: es demasiado bueno para callárselo.",
+         "perfil": {"carisma": 2}, "eje": {"moral": -1}},
+        {"id": "releer", "texto": "Lo leo diez veces para entender qué está pasando.", "perfil": {"saber": 2}},
+        {"id": "ayudar", "texto": "Si tiene un problema, le ayudo sin decirle que lo sé.",
+         "perfil": {"curacion": 2, "sigilo": 1}, "eje": {"moral": 1}}
+      ]
+    },
+    {
+      "id": "puente",
+      "nombre": "El puente roto",
+      "estilo": "cotidiana",
+      "detalle": 1,
+      "texto": "De excursión, el puente colgante sobre el barranco está medio roto.",
+      "respuestas": [
+        {"id": "cruzar", "texto": "Cruzo igual, rápido y ligero.",
+         "perfil": {"agilidad": 2, "aguante": 1}, "eje": {"orden": -1}},
+        {"id": "rodeo", "texto": "Busco otro paso río abajo, aunque tarde horas.",
+         "perfil": {"naturaleza": 2, "aguante": 1}},
+        {"id": "reparar", "texto": "Lo apaño con cuerdas y ramas antes de cruzar.",
+         "perfil": {"saber": 2, "naturaleza": 1}},
+        {"id": "cuerda", "texto": "Ato a todo el grupo y paso el primero.", "perfil": {"proteccion": 2, "combate": 1}},
+        {"id": "aguantara", "texto": "Rezo y paso: si tiene que aguantar, aguantará.",
+         "perfil": {"fe": 2, "aguante": 1}},
+        {"id": "mano", "texto": "Le cojo la mano al que tiene miedo y cruzamos juntos.",
+         "perfil": {"curacion": 2, "carisma": 1}}
+      ]
+    },
+    {
+      "id": "hurto",
+      "nombre": "El hurto",
+      "estilo": "cotidiana",
+      "detalle": 1,
+      "texto": "Ves a un chaval robar comida en una tienda.",
+      "respuestas": [
+        {"id": "pagar", "texto": "Le pago la comida al dependiente sin decir nada.",
+         "perfil": {"curacion": 2, "fe": 1}, "eje": {"moral": 1}},
+        {"id": "devolver", "texto": "Le cojo del brazo y lo devuelvo a la tienda.",
+         "perfil": {"proteccion": 2, "combate": 1}, "eje": {"orden": 2}},
+        {"id": "seguir", "texto": "Le sigo para ver si de verdad no tiene qué comer.",
+         "perfil": {"sigilo": 2, "astucia": 1}},
+        {"id": "colarse", "texto": "Aprovecho que el dependiente sale tras él para colarme en la caja.",
+         "perfil": {"astucia": 2}, "eje": {"moral": -1}},
+        {"id": "correr", "texto": "Echo a correr tras él.",
+         "perfil": {"agilidad": 2, "combate": 1}, "eje": {"orden": 1}},
+        {"id": "invitar", "texto": "Le invito a comer y le pregunto qué le pasa.",
+         "perfil": {"carisma": 2, "curacion": 1}, "eje": {"moral": 1}}
+      ]
+    },
+    {
+      "id": "cola_super",
+      "nombre": "La cola del súper",
+      "estilo": "cotidiana",
+      "detalle": 1,
+      "texto": "Alguien se te cuela en la cola del súper.",
+      "respuestas": [
+        {"id": "decir", "texto": "Le digo, alto y claro, que la cola empieza atrás.",
+         "perfil": {"carisma": 2, "proteccion": 1}, "eje": {"orden": 1}},
+        {"id": "apartar", "texto": "Le aparto el carro sin decir nada.", "perfil": {"combate": 2}, "eje": {"orden": -1}},
+        {"id": "paciencia", "texto": "Respiro y le dejo pasar: la paciencia es una virtud.",
+         "perfil": {"fe": 2, "curacion": 1}},
+        {"id": "cambiar", "texto": "Le cambio un producto del carro sin que se dé cuenta.",
+         "perfil": {"sigilo": 2, "astucia": 1}, "eje": {"moral": -1}},
+        {"id": "otra_caja", "texto": "Me paso a la otra caja, que ya veo que va a ir más rápida.",
+         "perfil": {"astucia": 2, "saber": 1}},
+        {"id": "rumiar", "texto": "Me aguanto, pero me paso la tarde rumiándolo.", "perfil": {"aguante": 2}}
+      ]
+    },
+    {
+      "id": "autobus",
+      "nombre": "Bronca en el autobús",
+      "estilo": "cotidiana",
+      "detalle": 1,
+      "texto": "Dos pasajeros discuten a gritos en el autobús.",
+      "respuestas": [
+        {"id": "calma", "texto": "Me levanto y les hablo con calma.",
+         "perfil": {"carisma": 2, "fe": 1}, "eje": {"orden": 1}},
+        {"id": "medio", "texto": "Me pongo en medio antes de que lleguen a las manos.",
+         "perfil": {"proteccion": 2, "combate": 1}},
+        {"id": "cascos", "texto": "Me pongo los cascos y miro por la ventana.", "perfil": {"sigilo": 2}},
+        {"id": "grabar", "texto": "Lo grabo todo, por si acaso.", "perfil": {"astucia": 2, "saber": 1}},
+        {"id": "nino", "texto": "Me siento junto al niño que se ha asustado.",
+         "perfil": {"curacion": 2, "proteccion": 1}, "eje": {"moral": 1}},
+        {"id": "bajarlos", "texto": "Le pido al conductor que pare y los bajo yo mismo.",
+         "perfil": {"combate": 2, "aguante": 1}, "eje": {"orden": 1}}
+      ]
+    },
+    {
+      "id": "fiesta_sorpresa",
+      "nombre": "La fiesta sorpresa",
+      "estilo": "cotidiana",
+      "detalle": 2,
+      "texto": "Descubres por casualidad que tus amigos te preparan una fiesta sorpresa.",
+      "respuestas": [
+        {"id": "fingir", "texto": "Pongo una cara de sorpresa perfecta cuando llega el momento.",
+         "perfil": {"astucia": 2, "carisma": 1}},
+        {"id": "ayudar", "texto": "Les ayudo a escondidas para que salga todo bien.",
+         "perfil": {"sigilo": 2, "curacion": 1}},
+        {"id": "adelantarse", "texto": "Llego antes y les doy yo una sorpresa a ellos.",
+         "perfil": {"carisma": 2, "agilidad": 1}},
+        {"id": "timido", "texto": "Me encargo de que el más tímido del grupo no se quede solo.",
+         "perfil": {"curacion": 2, "proteccion": 1}},
+        {"id": "barbacoa", "texto": "Les convenzo de hacerla en el campo, con barbacoa.",
+         "perfil": {"naturaleza": 2, "carisma": 1}},
+        {"id": "amanecer", "texto": "Aguanto la fiesta hasta el amanecer, sea lo que sea.",
+         "perfil": {"aguante": 2, "carisma": 1}}
+      ]
+    },
+    {
+      "id": "boda",
+      "nombre": "La boda",
+      "estilo": "cotidiana",
+      "detalle": 2,
+      "texto": "En una boda, el novio no aparece.",
+      "respuestas": [
+        {"id": "consolar", "texto": "Me quedo con la novia y la consuelo.",
+         "perfil": {"curacion": 2, "proteccion": 1}, "eje": {"moral": 1}},
+        {"id": "banquete", "texto": "Que no se pierda el banquete: animo a todos a celebrarlo igual.",
+         "perfil": {"carisma": 2, "aguante": 1}},
+        {"id": "rastro", "texto": "Sigo su rastro: el coche, el móvil, quién lo vio por última vez.",
+         "perfil": {"saber": 2, "astucia": 1}},
+        {"id": "rezar", "texto": "Rezo para que llegue; ya estamos en el altar.", "perfil": {"fe": 2}},
+        {"id": "traerlo", "texto": "Voy a buscarlo y lo traigo, aunque sea a rastras.",
+         "perfil": {"combate": 2, "aguante": 1}, "eje": {"orden": 1}},
+        {"id": "botella", "texto": "Aprovecho el lío para llevarme una botella del bueno.",
+         "perfil": {"sigilo": 2, "astucia": 1}, "eje": {"moral": -1}}
+      ]
+    },
+    {
+      "id": "atasco",
+      "nombre": "El atasco",
+      "estilo": "cotidiana",
+      "detalle": 2,
+      "texto": "Llevas una hora parado en un atasco en la autopista.",
+      "respuestas": [
+        {"id": "arcen", "texto": "Me meto por el arcén. Que no me vean.",
+         "perfil": {"sigilo": 2, "astucia": 1}, "eje": {"orden": -2}},
+        {"id": "musica", "texto": "Pongo música y espero lo que haga falta.", "perfil": {"aguante": 2, "fe": 1}},
+        {"id": "organizar", "texto": "Bajo del coche y organizo a todo el mundo para despejar.",
+         "perfil": {"carisma": 2, "proteccion": 1}, "eje": {"orden": 1}},
+        {"id": "pueblos", "texto": "Me sé un camino por los pueblos; salgo en la próxima.",
+         "perfil": {"saber": 2, "naturaleza": 1}},
+        {"id": "bebe", "texto": "Llevo agua al coche de al lado, donde llora un bebé.",
+         "perfil": {"curacion": 2}, "eje": {"moral": 1}},
+        {"id": "meditar", "texto": "Medito. El atasco es una prueba.", "perfil": {"fe": 2, "aguante": 1}}
+      ]
+    },
+    {
+      "id": "nevada",
+      "nombre": "La nevada",
+      "estilo": "cotidiana",
+      "detalle": 2,
+      "texto": "Una nevada deja el pueblo incomunicado tres días.",
+      "respuestas": [
+        {"id": "pala", "texto": "Cojo la pala y abro camino hasta el centro de salud.",
+         "perfil": {"aguante": 2, "proteccion": 1}},
+        {"id": "mayores", "texto": "Voy casa por casa a ver cómo están los mayores.",
+         "perfil": {"curacion": 2, "proteccion": 1}, "eje": {"moral": 1}},
+        {"id": "esquis", "texto": "Saco los esquís y bajo a la ciudad a por provisiones.",
+         "perfil": {"agilidad": 2, "naturaleza": 1}},
+        {"id": "chimenea", "texto": "Enciendo la chimenea y cuento historias a los niños.",
+         "perfil": {"carisma": 2, "curacion": 1}},
+        {"id": "huellas", "texto": "Salgo a seguir las huellas de los animales en la nieve.",
+         "perfil": {"naturaleza": 2, "sigilo": 1}},
+        {"id": "racionar", "texto": "Organizo las provisiones de todo el pueblo.",
+         "perfil": {"saber": 2, "proteccion": 1}, "eje": {"orden": 1}}
+      ]
+    },
+    {
+      "id": "cumple",
+      "nombre": "El cumpleaños infantil",
+      "estilo": "cotidiana",
+      "detalle": 2,
+      "texto": "Te toca animar el cumpleaños de un niño de seis años.",
+      "respuestas": [
+        {"id": "magia", "texto": "Hago trucos de magia… y alguno me sale de verdad.",
+         "perfil": {"arcano": 2, "carisma": 1}},
+        {"id": "gincana", "texto": "Organizo carreras y una gincana por el parque.",
+         "perfil": {"agilidad": 2, "carisma": 1}},
+        {"id": "cuento", "texto": "Les cuento la historia de un dragón que se comía las tartas.",
+         "perfil": {"carisma": 2, "saber": 1}},
+        {"id": "tiritas", "texto": "Me ocupo de que nadie se haga daño, y de las tiritas.",
+         "perfil": {"proteccion": 2, "curacion": 1}},
+        {"id": "conejo", "texto": "Traigo a mi perro y a mi conejo: éxito asegurado.",
+         "perfil": {"naturaleza": 2, "curacion": 1}},
+        {"id": "gritos", "texto": "Aguanto cuatro horas de gritos sin despeinarme.", "perfil": {"aguante": 2, "fe": 1}}
+      ]
+    },
+    {
+      "id": "desvan",
+      "nombre": "La foto del desván",
+      "estilo": "cotidiana",
+      "detalle": 2,
+      "texto": "En el desván encuentras una foto de hace cien años de alguien idéntico a ti.",
+      "respuestas": [
+        {"id": "archivos", "texto": "Busco en archivos y registros quién era.", "perfil": {"saber": 2, "arcano": 1}},
+        {"id": "otra_vida", "texto": "Está claro: fui yo, en otra vida.", "perfil": {"arcano": 2, "fe": 1}},
+        {"id": "redes", "texto": "La subo a las redes a ver quién sabe algo.", "perfil": {"carisma": 2, "astucia": 1}},
+        {"id": "esconder", "texto": "La guardo donde nadie la vea. Por si acaso.",
+         "perfil": {"sigilo": 2, "proteccion": 1}},
+        {"id": "abuela", "texto": "Se la llevo a la abuela y le pido que me cuente la historia de la familia.",
+         "perfil": {"fe": 2, "carisma": 1}},
+        {"id": "coleccionista", "texto": "La vendo a un coleccionista de rarezas.", "perfil": {"astucia": 2}}
+      ]
+    },
+    {
+      "id": "futbol",
+      "nombre": "Falta uno",
+      "estilo": "cotidiana",
+      "detalle": 2,
+      "texto": "En el partido del barrio, a tu equipo le falta un jugador.",
+      "respuestas": [
+        {"id": "portero", "texto": "Me pongo de portero: por aquí no pasa nada.",
+         "perfil": {"proteccion": 2, "agilidad": 1}},
+        {"id": "delantero", "texto": "Juego de delantero y meto tres goles.", "perfil": {"agilidad": 2, "combate": 1}},
+        {"id": "banda", "texto": "Me pongo de entrenador y grito tácticas desde la banda.",
+         "perfil": {"carisma": 2, "saber": 1}},
+        {"id": "defensa", "texto": "Juego de defensa duro. Muy duro.",
+         "perfil": {"combate": 2, "aguante": 1}, "eje": {"orden": -1}},
+        {"id": "spray", "texto": "Me quedo de fisio, con el spray de frío.", "perfil": {"curacion": 2}},
+        {"id": "noventa", "texto": "Corro los noventa minutos sin parar.", "perfil": {"aguante": 2, "agilidad": 1}}
+      ]
+    },
+    {
+      "id": "concurso",
+      "nombre": "El concurso",
+      "estilo": "cotidiana",
+      "detalle": 2,
+      "texto": "Te llaman para un concurso de preguntas en la tele.",
+      "respuestas": [
+        {"id": "ganar", "texto": "Voy a ganar: llevo toda la vida preparándome sin saberlo.", "perfil": {"saber": 3}},
+        {"id": "plato", "texto": "Me tiemblan las piernas, pero aguanto el plató.", "perfil": {"aguante": 2, "fe": 1}},
+        {"id": "presentador", "texto": "Me hago amigo del presentador en la primera pausa.",
+         "perfil": {"carisma": 2, "astucia": 1}},
+        {"id": "corazonada", "texto": "Respondo por corazonada; tengo un sexto sentido.",
+         "perfil": {"arcano": 2, "fe": 1}},
+        {"id": "respuestas", "texto": "Busco la forma de saber las respuestas antes.",
+         "perfil": {"astucia": 2, "sigilo": 1}, "eje": {"orden": -1}},
+        {"id": "pulsador", "texto": "Soy el más rápido con el pulsador.", "perfil": {"agilidad": 2, "saber": 1}}
+      ]
+    },
+    {
+      "id": "voluntariado",
+      "nombre": "El comedor social",
+      "estilo": "cotidiana",
+      "detalle": 2,
+      "texto": "El comedor social de tu barrio busca voluntarios.",
+      "respuestas": [
+        {"id": "cocina", "texto": "Me pongo en la cocina: puedo dar de comer a cien.",
+         "perfil": {"aguante": 2, "curacion": 1}},
+        {"id": "servir", "texto": "Sirvo los platos y charlo con cada uno.",
+         "perfil": {"carisma": 2, "curacion": 1}, "eje": {"moral": 1}},
+        {"id": "botiquin", "texto": "Me ocupo del botiquín y de las curas.",
+         "perfil": {"curacion": 3}, "eje": {"moral": 1}},
+        {"id": "puerta", "texto": "Me pongo en la puerta para que no haya problemas.",
+         "perfil": {"proteccion": 2, "combate": 1}},
+        {"id": "turnos", "texto": "Les monto un sistema de turnos y donaciones.",
+         "perfil": {"saber": 2, "proteccion": 1}, "eje": {"orden": 1}},
+        {"id": "impuestos", "texto": "Que lo haga el ayuntamiento, que para eso pago impuestos.",
+         "perfil": {"astucia": 2}, "eje": {"moral": -1}}
+      ]
+    },
+    {
+      "id": "insomnio",
+      "nombre": "Insomnio",
+      "estilo": "cotidiana",
+      "detalle": 2,
+      "texto": "Son las cuatro de la mañana y no puedes dormir.",
+      "respuestas": [
+        {"id": "leer", "texto": "Me pongo a leer hasta el amanecer.", "perfil": {"saber": 2}},
+        {"id": "pasear", "texto": "Salgo a pasear por el barrio dormido.", "perfil": {"sigilo": 2, "naturaleza": 1}},
+        {"id": "flexiones", "texto": "Hago flexiones hasta caer rendido.", "perfil": {"aguante": 2, "combate": 1}},
+        {"id": "rezar", "texto": "Rezo hasta que me entra el sueño.", "perfil": {"fe": 2}},
+        {"id": "azotea", "texto": "Subo a la azotea a mirar las estrellas.", "perfil": {"naturaleza": 2, "arcano": 1}},
+        {"id": "sonar", "texto": "Intento soñar a propósito con lo que quiero.", "perfil": {"arcano": 2, "astucia": 1}}
+      ]
+    },
+    {
+      "id": "wifi",
+      "nombre": "El wifi del vecino",
+      "estilo": "cotidiana",
+      "detalle": 3,
+      "texto": "Descubres la contraseña del wifi del vecino apuntada en su buzón.",
+      "respuestas": [
+        {"id": "usarla", "texto": "La uso, claro. Si no quería, que no la hubiera dejado ahí.",
+         "perfil": {"astucia": 2}, "eje": {"moral": -1}},
+        {"id": "avisar", "texto": "Le aviso de que cualquiera puede verla.",
+         "perfil": {"proteccion": 2, "saber": 1}, "eje": {"orden": 1}},
+        {"id": "router", "texto": "Le enseño a poner una contraseña segura.", "perfil": {"saber": 2, "curacion": 1}},
+        {"id": "nota", "texto": "Le dejo una nota graciosa: «Tu wifi es mío».", "perfil": {"carisma": 2, "astucia": 1}},
+        {"id": "cobertura", "texto": "¿Wifi? Prefiero el monte sin cobertura.",
+         "perfil": {"naturaleza": 2, "aguante": 1}},
+        {"id": "noches", "texto": "La uso solo de noche, sin que se note.",
+         "perfil": {"sigilo": 2, "astucia": 1}, "eje": {"moral": -1}}
+      ]
+    },
+    {
+      "id": "rebajas",
+      "nombre": "Rebajas",
+      "estilo": "cotidiana",
+      "detalle": 3,
+      "texto": "Primer día de rebajas: la gente se pelea por la última chaqueta.",
+      "respuestas": [
+        {"id": "tirar", "texto": "Tiro de la chaqueta más fuerte que nadie.", "perfil": {"combate": 2, "aguante": 1}},
+        {"id": "almacen", "texto": "Me cuelo por el almacén y la cojo antes.",
+         "perfil": {"sigilo": 2, "astucia": 1}, "eje": {"orden": -1}},
+        {"id": "parque", "texto": "Me voy a dar un paseo por el parque.", "perfil": {"naturaleza": 2}},
+        {"id": "sorteo", "texto": "Propongo sortearla entre los que la quieren.",
+         "perfil": {"carisma": 2, "proteccion": 1}, "eje": {"orden": 1}},
+        {"id": "coser", "texto": "Me la hago yo: sé coser.", "perfil": {"agilidad": 2, "saber": 1}},
+        {"id": "senora", "texto": "Ayudo a levantarse a la señora a la que han tirado al suelo.",
+         "perfil": {"curacion": 2, "proteccion": 1}, "eje": {"moral": 1}}
+      ]
+    },
+    {
+      "id": "pelota",
+      "nombre": "La pelota",
+      "estilo": "cotidiana",
+      "detalle": 3,
+      "texto": "La pelota cae en el jardín del vecino, que tiene un perro enorme.",
+      "respuestas": [
+        {"id": "valla", "texto": "Salto la valla, cojo la pelota y vuelvo antes de que el perro se entere.",
+         "perfil": {"agilidad": 2, "sigilo": 1}},
+        {"id": "amigo", "texto": "Me hago amigo del perro.", "perfil": {"naturaleza": 2, "carisma": 1}},
+        {"id": "timbre", "texto": "Llamo al timbre y la pido con educación.",
+         "perfil": {"carisma": 2}, "eje": {"orden": 1}},
+        {"id": "palo", "texto": "Con un palo y un poco de maña la saco por la valla.",
+         "perfil": {"astucia": 2, "agilidad": 1}},
+        {"id": "salchicha", "texto": "Le tiro una salchicha al perro por el otro lado y entro.",
+         "perfil": {"sigilo": 2, "astucia": 1}},
+        {"id": "que_venga", "texto": "Entro, y si el perro viene, que venga.", "perfil": {"combate": 2, "aguante": 1}}
+      ]
+    },
+    {
+      "id": "anticuario",
+      "nombre": "El espejo maldito",
+      "estilo": "cotidiana",
+      "detalle": 3,
+      "texto": "En una tienda de antigüedades, el dueño te dice que un espejo está maldito.",
+      "respuestas": [
+        {"id": "comprar", "texto": "Me lo llevo. Quiero comprobarlo.", "perfil": {"arcano": 2, "aguante": 1}},
+        {"id": "origen", "texto": "Le pregunto de dónde viene y lo apunto todo.", "perfil": {"saber": 2, "arcano": 1}},
+        {"id": "regatear", "texto": "Uso lo de la maldición para regatear el precio.",
+         "perfil": {"astucia": 2, "carisma": 1}},
+        {"id": "romper", "texto": "Lo rompo antes de que haga daño a alguien.",
+         "perfil": {"combate": 2, "proteccion": 1}},
+        {"id": "agua_bendita", "texto": "Le echo agua bendita, por si acaso.", "perfil": {"fe": 2}},
+        {"id": "espalda", "texto": "Salgo de la tienda sin darle la espalda.", "perfil": {"sigilo": 2, "agilidad": 1}}
+      ]
+    },
+    {
+      "id": "toro",
+      "nombre": "El toro mecánico",
+      "estilo": "cotidiana",
+      "detalle": 3,
+      "texto": "En las fiestas hay un toro mecánico y un premio para quien aguante un minuto.",
+      "respuestas": [
+        {"id": "aguantar", "texto": "Me subo y aguanto lo que haga falta.", "perfil": {"aguante": 2, "agilidad": 1}},
+        {"id": "calado", "texto": "Me fijo antes en cómo se mueve: lo tengo calado.",
+         "perfil": {"agilidad": 2, "saber": 1}},
+        {"id": "propina", "texto": "Le doy una propina al encargado para que lo ponga suave.",
+         "perfil": {"astucia": 2, "carisma": 1}, "eje": {"orden": -1}},
+        {"id": "microfono", "texto": "Mejor animo a los demás con el micrófono.", "perfil": {"carisma": 2}},
+        {"id": "patada", "texto": "Si me tira, le doy una patada al toro.",
+         "perfil": {"combate": 2}, "eje": {"orden": -1}},
+        {"id": "hielo", "texto": "Me pongo al lado con hielo para los que se caen.",
+         "perfil": {"curacion": 2, "proteccion": 1}}
+      ]
+    },
+    {
+      "id": "actuacion",
+      "nombre": "Sin voz",
+      "estilo": "cotidiana",
+      "detalle": 3,
+      "texto": "Tu grupo de música da su primer concierto y el cantante se queda afónico.",
+      "respuestas": [
+        {"id": "cantar", "texto": "Canto yo, aunque no me sepa las letras.", "perfil": {"carisma": 2, "aguante": 1}},
+        {"id": "infusion", "texto": "Le preparo una infusión de miel y jengibre.",
+         "perfil": {"curacion": 2, "naturaleza": 1}},
+        {"id": "instrumental", "texto": "Lo convertimos en un concierto instrumental y nadie nota nada.",
+         "perfil": {"astucia": 2, "saber": 1}},
+        {"id": "escenario", "texto": "Me encargo de que el público no se suba al escenario.",
+         "perfil": {"proteccion": 2, "combate": 1}},
+        {"id": "ritual", "texto": "Hago mi ritual de la suerte antes de salir.", "perfil": {"fe": 2, "arcano": 1}},
+        {"id": "solo", "texto": "Toco un solo de diez minutos hasta que me sangran los dedos.",
+         "perfil": {"agilidad": 2, "aguante": 1}}
+      ]
+    },
+    {
+      "id": "invitados",
+      "nombre": "Invitados por sorpresa",
+      "estilo": "cotidiana",
+      "detalle": 3,
+      "texto": "Llegan diez invitados por sorpresa y la nevera está vacía.",
+      "respuestas": [
+        {"id": "gallinero", "texto": "Bajo al huerto y al gallinero: comida hay.",
+         "perfil": {"naturaleza": 2, "aguante": 1}},
+        {"id": "mercado", "texto": "Corro al mercado antes de que cierre.", "perfil": {"agilidad": 2}},
+        {"id": "banquete", "texto": "Con tres huevos y un poco de arroz improviso un banquete.",
+         "perfil": {"astucia": 2, "saber": 1}},
+        {"id": "pizza", "texto": "Les entretengo con historias mientras llegan las pizzas.", "perfil": {"carisma": 2}},
+        {"id": "carino", "texto": "Les ofrezco lo poco que hay con todo el cariño del mundo.",
+         "perfil": {"curacion": 2, "fe": 1}},
+        {"id": "ayuno", "texto": "Propongo un ayuno colectivo. Muy sano.", "perfil": {"fe": 2, "aguante": 1}}
+      ]
+    },
+    {
+      "id": "biblioteca",
+      "nombre": "La biblioteca",
+      "estilo": "cotidiana",
+      "detalle": 3,
+      "texto": "La biblioteca del barrio va a cerrar por falta de dinero.",
+      "respuestas": [
+        {"id": "firmas", "texto": "Organizo una recogida de firmas y una manifestación.",
+         "perfil": {"carisma": 2, "proteccion": 1}},
+        {"id": "encierro", "texto": "Me encierro dentro hasta que se echen atrás.",
+         "perfil": {"aguante": 2, "fe": 1}, "eje": {"orden": -1}},
+        {"id": "salvar", "texto": "Me llevo los libros más valiosos antes de que los tiren.",
+         "perfil": {"sigilo": 2, "saber": 1}, "eje": {"orden": -1}},
+        {"id": "presupuesto", "texto": "Busco en el presupuesto municipal de dónde sacar el dinero.",
+         "perfil": {"saber": 2, "astucia": 1}},
+        {"id": "parque", "texto": "Propongo hacer lecturas en el parque mientras tanto.",
+         "perfil": {"naturaleza": 2, "carisma": 1}},
+        {"id": "libros_viejos", "texto": "Juraría que los libros viejos piden que no los dejen solos. Les hago caso.",
+         "perfil": {"arcano": 2, "saber": 1}}
+      ]
+    },
+    {
+      "id": "moto",
+      "nombre": "Averiado en el campo",
+      "estilo": "cotidiana",
+      "detalle": 3,
+      "texto": "Se te estropea la moto en mitad del campo, sin cobertura.",
+      "respuestas": [
+        {"id": "arreglar", "texto": "La abro y la arreglo con lo que llevo.", "perfil": {"saber": 2, "agilidad": 1}},
+        {"id": "campo_traves", "texto": "Echo a andar campo a través hacia el pueblo.",
+         "perfil": {"aguante": 2, "naturaleza": 1}},
+        {"id": "empujar", "texto": "La empujo a pulso los kilómetros que hagan falta.",
+         "perfil": {"combate": 2, "aguante": 1}},
+        {"id": "rio", "texto": "Me oriento por el sol y busco un río que me lleve a algún sitio.",
+         "perfil": {"naturaleza": 2, "saber": 1}},
+        {"id": "tractor", "texto": "Paro al primer tractor y me gano al granjero.",
+         "perfil": {"carisma": 2, "astucia": 1}},
+        {"id": "sombra", "texto": "Me siento a la sombra y espero: algo pasará.", "perfil": {"fe": 2, "aguante": 1}}
+      ]
+    },
+    {
+      "id": "colmena",
+      "nombre": "El enjambre",
+      "estilo": "cotidiana",
+      "detalle": 3,
+      "texto": "Un enjambre de abejas se instala en tu balcón.",
+      "respuestas": [
+        {"id": "apicultor", "texto": "Me hago apicultor. Miel gratis.", "perfil": {"naturaleza": 2, "saber": 1}},
+        {"id": "caja", "texto": "Me acerco despacio y me las llevo en una caja al campo.",
+         "perfil": {"sigilo": 2, "naturaleza": 1}},
+        {"id": "insecticida", "texto": "Insecticida y listo.", "perfil": {"combate": 2}, "eje": {"moral": -1}},
+        {"id": "alergicos", "texto": "Aviso antes que nada a los vecinos alérgicos.",
+         "perfil": {"proteccion": 2, "curacion": 1}},
+        {"id": "hablarles", "texto": "Les hablo; dicen que las abejas escuchan.",
+         "perfil": {"arcano": 2, "naturaleza": 1}},
+        {"id": "convivir", "texto": "Convivo con ellas: ya me picarán menos.", "perfil": {"aguante": 2}}
+      ]
+    },
+    {
+      "id": "testamento",
+      "nombre": "La confesión del abuelo",
+      "estilo": "cotidiana",
+      "detalle": 1,
+      "sensible": true,
+      "texto": "Tu abuelo, en su lecho de muerte, te confiesa un crimen de juventud.",
+      "respuestas": [
+        {"id": "perdonar", "texto": "Le cojo la mano y le perdono.",
+         "perfil": {"curacion": 2, "fe": 1}, "eje": {"moral": 1}},
+        {"id": "confesarlo", "texto": "Le pido que lo confiese a quien corresponda; aún está a tiempo.",
+         "perfil": {"fe": 2, "proteccion": 1}, "eje": {"orden": 1}},
+        {"id": "reparar", "texto": "Busco a sus víctimas por si puedo reparar algo.",
+         "perfil": {"saber": 2, "proteccion": 1}, "eje": {"moral": 1}},
+        {"id": "tumba", "texto": "Me lo llevo a la tumba, como él.", "perfil": {"sigilo": 2, "aguante": 1}},
+        {"id": "botin", "texto": "Le pregunto si queda algo escondido de aquel golpe.",
+         "perfil": {"astucia": 2}, "eje": {"moral": -2}},
+        {"id": "portazo", "texto": "Me levanto y me voy dando un portazo.", "perfil": {"combate": 2}}
+      ]
+    },
+    {
+      "id": "ciervo",
+      "nombre": "El ciervo",
+      "estilo": "cotidiana",
+      "detalle": 1,
+      "sensible": true,
+      "texto": "Atropellas a un ciervo en una carretera de noche. Sigue vivo.",
+      "respuestas": [
+        {"id": "curarle", "texto": "Intento curarle con lo que llevo en el coche.",
+         "perfil": {"curacion": 2, "naturaleza": 1}, "eje": {"moral": 1}},
+        {"id": "rematar", "texto": "Le ahorro el sufrimiento. Rápido.", "perfil": {"combate": 2, "aguante": 1}},
+        {"id": "forestales", "texto": "Llamo a los agentes forestales y espero con él.",
+         "perfil": {"naturaleza": 2, "proteccion": 1}, "eje": {"orden": 1}},
+        {"id": "irme", "texto": "Me voy. Nadie me ha visto.", "perfil": {"sigilo": 2}, "eje": {"moral": -2}},
+        {"id": "perdon", "texto": "Me arrodillo a su lado y le pido perdón.", "perfil": {"fe": 2, "curacion": 1}},
+        {"id": "carne", "texto": "Me lo llevo: carne para un mes.",
+         "perfil": {"astucia": 2, "aguante": 1}, "eje": {"moral": -1}}
+      ]
+    },
+    {
+      "id": "ouija",
+      "nombre": "La ouija",
+      "estilo": "cotidiana",
+      "detalle": 2,
+      "sensible": true,
+      "texto": "En una fiesta, el vaso de la ouija se mueve solo y escribe tu nombre.",
+      "respuestas": [
+        {"id": "preguntar", "texto": "Le pregunto qué quiere de mí.", "perfil": {"arcano": 2, "carisma": 1}},
+        {"id": "tablero", "texto": "Rompo el tablero y se acabó la fiesta.", "perfil": {"combate": 2, "proteccion": 1}},
+        {"id": "gracioso", "texto": "Busco al gracioso que mueve el vaso.", "perfil": {"astucia": 2, "saber": 1}},
+        {"id": "rezar", "texto": "Rezo en voz alta hasta que se calme.", "perfil": {"fe": 3}},
+        {"id": "ventana", "texto": "Salgo por la ventana del baño.", "perfil": {"agilidad": 2, "sigilo": 1}},
+        {"id": "presentarse", "texto": "Me quedo: si es un espíritu, que se presente.",
+         "perfil": {"aguante": 2, "arcano": 1}}
+      ]
+    },
+    {
+      "id": "maniqui",
+      "nombre": "El maniquí",
+      "estilo": "cotidiana",
+      "detalle": 2,
+      "sensible": true,
+      "texto": "Un maniquí del escaparate te guiña un ojo.",
+      "respuestas": [
+        {"id": "guino", "texto": "Le devuelvo el guiño.", "perfil": {"carisma": 2, "arcano": 1}},
+        {"id": "investigar", "texto": "Entro en la tienda a investigar.", "perfil": {"saber": 2, "arcano": 1}},
+        {"id": "correr", "texto": "Me voy corriendo y no vuelvo a pasar por esa calle.",
+         "perfil": {"agilidad": 2, "sigilo": 1}},
+        {"id": "patada", "texto": "Le doy una patada al escaparate, por si acaso.",
+         "perfil": {"combate": 2}, "eje": {"orden": -1}},
+        {"id": "santiguarse", "texto": "Me santiguo tres veces.", "perfil": {"fe": 2}},
+        {"id": "esperar", "texto": "Me quedo una hora mirándolo, a ver si lo repite.",
+         "perfil": {"aguante": 2, "sigilo": 1}}
+      ]
+    },
+    {
+      "id": "chantaje",
+      "nombre": "El chantaje",
+      "estilo": "cotidiana",
+      "detalle": 3,
+      "sensible": true,
+      "texto": "Alguien te chantajea con una foto comprometida.",
+      "respuestas": [
+        {"id": "pagar", "texto": "Pago y rezo para que no vuelva a pedir más.", "perfil": {"aguante": 2, "fe": 1}},
+        {"id": "la_vuelta", "texto": "Averiguo quién es y le doy la vuelta al chantaje.",
+         "perfil": {"astucia": 3}, "eje": {"moral": -1}},
+        {"id": "publicar", "texto": "La publico yo primero. Problema resuelto.", "perfil": {"carisma": 2, "aguante": 1}},
+        {"id": "denunciar", "texto": "Lo denuncio todo.", "perfil": {"fe": 2, "proteccion": 1}, "eje": {"orden": 2}},
+        {"id": "visita", "texto": "Le hago una visita para dejarle las cosas claras.",
+         "perfil": {"combate": 2, "sigilo": 1}, "eje": {"orden": -2}},
+        {"id": "rastro", "texto": "Sigo el rastro del dinero hasta su casa.", "perfil": {"sigilo": 2, "saber": 1}}
+      ]
+    },
+    {
+      "id": "hamster",
+      "nombre": "El hámster",
+      "estilo": "cotidiana",
+      "detalle": 3,
+      "sensible": true,
+      "texto": "El hámster de tu sobrino se muere mientras lo cuidas.",
+      "respuestas": [
+        {"id": "identico", "texto": "Compro uno idéntico antes de que vuelva.", "perfil": {"astucia": 2, "sigilo": 1}},
+        {"id": "verdad", "texto": "Se lo cuento con cariño y le ayudo a despedirse.",
+         "perfil": {"curacion": 2, "carisma": 1}, "eje": {"moral": 1}},
+        {"id": "funeral", "texto": "Le organizo un funeral por todo lo alto en el jardín.",
+         "perfil": {"fe": 2, "carisma": 1}},
+        {"id": "masaje", "texto": "Intento reanimarlo con un masaje cardiaco diminuto.",
+         "perfil": {"agilidad": 2, "curacion": 1}},
+        {"id": "autopsia", "texto": "Le hago la autopsia para saber de qué ha muerto.",
+         "perfil": {"saber": 2, "naturaleza": 1}},
+        {"id": "traerlo", "texto": "Busco en internet cómo traer de vuelta a un hámster.",
+         "perfil": {"arcano": 2, "astucia": 1}}
+      ]
     }
   ]
 }
