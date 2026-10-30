@@ -8,7 +8,8 @@ import customtkinter as ctk
 from ..entorno import paquetes_instalados
 from ..sistemas import listar_sistemas
 from .componentes import fuente, texto_ajustado, titulo
-from .estilo import ICONO_GENERICO, icono
+from ..sistemas.dnd5e_2014.interfaz import ICONO_GENERICO
+from .estilo import icono
 
 
 class PantallaInicio(ctk.CTkFrame):

@@ -7,12 +7,10 @@ import customtkinter as ctk
 
 from ..nucleo.efectos import EleccionPendiente
 from ..nucleo.texto import clave_alfabetica
+from ..sistemas.dnd5e_2014.interfaz import MAX_CASILLAS, MAX_DESPLEGABLE, MAX_RESULTADOS, perfil_en_puntos
 from .estilo import fuente_titulo
 
 NINGUNA = "— elige —"
-MAX_CASILLAS = 10  # con más opciones se usan desplegables
-MAX_DESPLEGABLE = 40  # con más aún (Secretos Mágicos: cualquier conjuro), un buscador
-MAX_RESULTADOS = 20  # casillas que muestra el buscador a la vez (cada una cuesta ~5 ms de dibujo)
 ESPERA_BUSQUEDA = 250  # ms sin teclear antes de repintar los resultados
 _BUSQUEDAS: dict[str, str] = {}  # texto buscado por elección: el paso se redibuja tras cada clic
 
@@ -29,16 +27,6 @@ def titulo(master, texto: str, tamano: int = 18, imagen: ctk.CTkImage | None = N
 
 def texto_ajustado(master, texto: str, ancho: int = 520, **opciones) -> ctk.CTkLabel:
     return ctk.CTkLabel(master, text=texto, wraplength=ancho, justify="left", anchor="w", **opciones)
-
-
-def perfil_en_puntos(perfil: dict, nombres: dict[str, str] | None = None) -> str:
-    """{"sigilo": 3, "astucia": 2} -> «Sigilo ●●● · Astucia ●●○»."""
-    partes = []
-    for rasgo, valor in sorted(perfil.items(), key=lambda x: -x[1]):
-        if valor:
-            nombre = (nombres or {}).get(rasgo, rasgo.capitalize())
-            partes.append(f"{nombre} {'●' * valor}{'○' * (3 - valor)}")
-    return " · ".join(partes)
 
 
 class ListaOpciones(ctk.CTkFrame):

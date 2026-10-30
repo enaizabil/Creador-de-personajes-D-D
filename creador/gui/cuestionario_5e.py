@@ -7,20 +7,16 @@ import customtkinter as ctk
 
 from ..sistemas.dnd5e_2014.cuestionario import (MINIMO_RESPUESTAS, NIVEL_MINIMO_MULTICLASE, UMBRAL_ALINEAMIENTO, Cuestionario5e,
                                                 Pregunta, Recomendacion)
-from .asistente_5e import NOMBRES_PERFIL
 from .componentes import fuente, texto_ajustado, titulo
-from .estilo import ICONO_GENERICO, icono, icono_de
+from ..sistemas.dnd5e_2014.interfaz import (AYUDA_SUBIDA, CUANTAS_RECOMENDACIONES, ICONO_GENERICO, MARCA_PROPUESTA,
+                                            NOMBRES_DECISION, NOMBRES_PERFIL, RESPUESTAS_EN_UNA_COLUMNA)
+from .estilo import icono, icono_de
 
 ANCHO = 820
 COLOR_TARJETA = ("#e7d9bc", "#27201b")
 COLOR_TARJETA_ENCIMA = ("#dccaa6", "#332a24")
 COLOR_TARJETA_ELEGIDA = ("#e6c39b", "#5a2a24")
 COLOR_NOTA = ("#6b5a45", "#b8a68c")
-MARCA_PROPUESTA = "★ Propuesta."
-RESPUESTAS_EN_UNA_COLUMNA = 6  # con más, en dos columnas para no hacer la lista eterna
-AYUDA_SUBIDA = ("Cada pregunta concreta trae las opciones reales de tu personaje; «★ Propuesta» marca lo que se elegiría "
-                "según su forma de ser si no respondes. Puedes dejar preguntas sin responder.")
-CUANTAS_RECOMENDACIONES = 3
 
 
 class TarjetaRespuesta(ctk.CTkFrame):
@@ -428,10 +424,6 @@ class VistaCuestionario5e(ctk.CTkFrame):
         if self.nombre:
             self.q.asistente.establecer_detalle("nombre", self.nombre)
         self.al_terminar()
-
-
-NOMBRES_DECISION = {"mejora": "mejora de característica o dote", "subclase": "subclase",
-                    "opciones": "opciones de clase", "conjuros": "conjuros nuevos"}
 
 
 class VistaSubida5e(ctk.CTkFrame):

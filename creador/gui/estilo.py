@@ -9,23 +9,11 @@ import customtkinter as ctk
 from PIL import Image
 
 from ..nucleo.rutas import directorio_recursos_gui
+from ..sistemas.dnd5e_2014.interfaz import nombre_icono
 
 FUENTE_TITULOS = "Cinzel"
 # Color de los iconos: [modo claro, modo oscuro]. «acento» va sobre el fondo; «claro», sobre un botón granate.
 COLORES_ICONO = {"acento": ("#6b1d1d", "#e6cf9f"), "claro": ("#fbf3e2", "#fbf3e2"), "suave": ("#8c7552", "#a8927a")}
-
-ICONOS_PASO = {"inicio": "dice-twenty-faces-twenty", "raza": "elf-ear", "clase": "crossed-swords",
-               "caracteristicas": "muscle-up", "trasfondo": "scroll-unfurled", "equipo": "knapsack",
-               "conjuros": "spell-book", "detalles": "quill-ink", "resumen": "checklist"}
-ICONOS_CLASE = {"barbaro": "barbarian", "bardo": "lyre", "brujo": "warlock-eye", "clerigo": "holy-symbol",
-                "druida": "oak-leaf", "explorador": "high-shot", "guerrero": "broadsword", "hechicero": "magic-swirl",
-                "mago": "pointy-hat", "monje": "fist", "paladin": "templar-shield", "picaro": "cloak-dagger",
-                "artifice": "gears"}
-ICONOS_RAZA = {"humano": "person", "elfo": "woman-elf-face", "enano": "dwarf-face", "mediano": "smoking-pipe",
-               "draconido": "dragon-head", "gnomo": "bad-gnome", "semielfo": "elf-ear", "semiorco": "orc-head",
-               "tiefling": "devil-mask", "aasimar": "angel-wings", "linaje_personalizado": "dna1"}
-ICONO_TRASFONDO = "scroll-unfurled"
-ICONO_GENERICO = "dice-twenty-faces-twenty"  # clases y razas de homebrew sin icono propio
 
 _cache: dict[tuple[str, int, str], ctk.CTkImage] = {}
 _mascaras: dict[str, Image.Image] = {}
@@ -70,6 +58,4 @@ def icono(nombre: str | None, tamano: int = 24, color: str = "acento") -> ctk.CT
 def icono_de(categoria: str, id_: str | None, tamano: int = 24, color: str = "acento",
              generico: bool = True) -> ctk.CTkImage | None:
     """Icono de una clase, raza (o subraza: la de su raza), paso o trasfondo."""
-    tabla = {"clases": ICONOS_CLASE, "razas": ICONOS_RAZA, "pasos": ICONOS_PASO}.get(categoria, {})
-    nombre = ICONO_TRASFONDO if categoria == "trasfondos" else tabla.get(id_ or "")
-    return icono(nombre or (ICONO_GENERICO if generico else None), tamano, color)
+    return icono(nombre_icono(categoria, id_, generico), tamano, color)

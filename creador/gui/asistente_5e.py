@@ -8,16 +8,12 @@ from tkinter import filedialog, messagebox
 import customtkinter as ctk
 
 from ..sistemas.dnd5e_2014.asistente import ALINEAMIENTOS, METODOS_CARACTERISTICAS, Asistente5e
-from ..sistemas.dnd5e_2014.constantes import CARACTERISTICAS, COSTE_COMPRA, RASGOS_PERFIL, TIPOS_DANO
+from ..sistemas.dnd5e_2014.constantes import CARACTERISTICAS, COSTE_COMPRA, TIPOS_DANO
+from ..sistemas.dnd5e_2014.interfaz import (FISICO, LARGO_DESCRIPCION_OPCIONAL, NOMBRES_PERFIL, PERSONALIDAD,
+                                            interruptores_reglas)
 from ..sistemas.dnd5e_2014.texto import resumen_ficha
 from .componentes import NINGUNA, ListaAvisos, ListaOpciones, SelectorEleccion, fuente, texto_ajustado, titulo
 from .estilo import fuente_titulo, icono_de
-
-PERSONALIDAD = (("rasgos_personalidad", "Rasgos de personalidad"), ("ideales", "Ideales"),
-                ("vinculos", "Vínculos"), ("defectos", "Defectos"))
-FISICO = (("edad", "Edad"), ("altura", "Altura"), ("peso", "Peso"), ("ojos", "Ojos"), ("piel", "Piel"), ("pelo", "Pelo"))
-NOMBRES_PERFIL = {r: r.capitalize() for r in RASGOS_PERFIL} | {"proteccion": "Protección", "curacion": "Curación"}
-LARGO_DESCRIPCION_OPCIONAL = 95
 
 
 class VistaAsistente5e(ctk.CTkFrame):
@@ -198,28 +194,14 @@ class VistaAsistente5e(ctk.CTkFrame):
             ctk.CTkLabel(fila, text=f"(los datos de clase llegan, por ahora, hasta nivel {maximo})",
                          text_color="gray").pack(side="left", padx=10)
 
-        interruptores = [("dotes", "Dotes (regla opcional del Manual del Jugador)", True),
-                         ("multiclase", "Multiclase (regla opcional del Manual del Jugador)", False),
-                         ("opciones_dm", "Opciones de la Guía del DM que requieren su permiso (aasimar, eladrín…)", False)]
-        if any(p.id == "tasha-2020" for p in self.a.catalogo.paquetes):
-            interruptores.append(("origen_personalizado", "Personalizar tu origen: mover las mejoras de raza a otras "
-                                                          "características (Tasha)", False))
-            interruptores.append(("rasgos_opcionales", "Rasgos de clase opcionales (Tasha): listas de conjuros ampliadas, "
-                                                       "estilos, invocaciones… y rasgos que sustituyen a otros", False))
-        if any(p.id == "dmg-2014" for p in self.a.catalogo.paquetes):
-            interruptores.append(("equipo_por_nivel", "Oro extra al empezar por encima de nivel 4 (Guía del DM)", False))
-            interruptores.append(("entrenamiento", "Entrenarse para subir de nivel: días y coste por nivel (Guía del DM)",
-                                  False))
-        for regla, texto, defecto in interruptores:
+        for regla, texto, defecto, ayuda in interruptores_reglas({p.id for p in self.a.catalogo.paquetes}):
             activa = self.a.multiclase_activa() if regla == "multiclase" else reglas.get(regla, defecto)
             variable = ctk.BooleanVar(value=activa)
             ctk.CTkSwitch(caja, text=texto, variable=variable,
                           command=lambda r=regla, v=variable: (self.a.establecer_regla(r, v.get()), self._refrescar())
                           ).pack(anchor="w", padx=12, pady=4)
-            if regla == "multiclase":
-                texto_ajustado(caja, "Reparte los niveles entre varias clases (desde nivel 2, en el paso «Clase»). Es para "
-                                     "jugadores con experiencia: si no sabes qué es, déjala apagada.", 700,
-                               text_color="gray").pack(anchor="w", padx=60, pady=(0, 4))
+            if ayuda:
+                texto_ajustado(caja, ayuda, 700, text_color="gray").pack(anchor="w", padx=60, pady=(0, 4))
         fila_pg = ctk.CTkFrame(caja, fg_color="transparent")
         fila_pg.pack(anchor="w", padx=12, pady=(8, 12))
         ctk.CTkLabel(fila_pg, text="Puntos de golpe al subir de nivel:").pack(side="left", padx=(0, 10))
