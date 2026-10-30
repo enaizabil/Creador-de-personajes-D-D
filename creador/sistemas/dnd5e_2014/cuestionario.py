@@ -1072,7 +1072,7 @@ class Cuestionario5e:
                         ejemplos[escuela].append(f"{nombre} ({nivel})")
             if len(ejemplos) < 2:
                 continue
-            puntos = self._escuelas_de(plan.clase_id)
+            puntos = self._escuelas_sin_responder(plan.clase_id)
             escuelas = sorted(ejemplos, key=lambda e: (-puntos.get(e, 0), -len(ejemplos[e])))
             propuesta = escuelas[0] if puntos.get(escuelas[0], 0) > 0 else None
             respuestas = tuple(Respuesta(e, ESCUELAS_MAGIA.get(e, e), "Por ejemplo: " + ", ".join(
@@ -1081,6 +1081,17 @@ class Cuestionario5e:
                 f"{PREFIJO_CONCRETA}escuela:{plan.clase_id}", f"{plan.clase} · Conjuros nuevos",
                 "¿Qué clase de magia ha estudiado o descubierto? Sus conjuros nuevos irán por ahí (los de nivel más alto "
                 "entre paréntesis).", respuestas))
+
+    def _escuelas_sin_responder(self, clase_id: str) -> dict[str, float]:
+        """Las escuelas preferidas sin contar la respuesta a su pregunta concreta: así la propuesta es lo que se elegiría
+        si no se responde, y el orden no cambia al pulsar una (la pulsada no salta arriba)."""
+        respuestas = dict(self.respuestas_subida)
+        self.respuestas_subida.pop(f"{PREFIJO_CONCRETA}escuela:{clase_id}", None)
+        try:
+            return self._escuelas_de(clase_id)
+        finally:
+            self.respuestas_subida.clear()
+            self.respuestas_subida.update(respuestas)
 
     def _escuelas_de(self, clase_id: str) -> dict[str, float]:
         """Escuelas preferidas para los conjuros de esa clase: las del perfil y los hitos, más la elegida en su

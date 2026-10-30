@@ -296,8 +296,13 @@ textarea {
   display: inline-flex;
   flex-direction: column;
   gap: 0.25em;
-  margin: 0.35em 0;
+  margin: 0.35em 1.2em 0.35em 0;
   max-width: 100%;
+  vertical-align: top;
+}
+
+.fila > .campo {
+  margin-right: 0;
 }
 
 .campo > .etiqueta {
@@ -1012,12 +1017,31 @@ body.ocupado::after {
   }
 
   .pie {
-    padding: 0.6em 16px;
+    padding: 0.5em 16px;
+    gap: 0.4em;
+    flex-wrap: nowrap;
   }
 
   .pie .boton {
-    flex: 1 1 auto;
+    flex: 1 1 0;
     justify-content: center;
+    text-align: center;
+    padding: 0.4em 0.5em;
+    min-height: 38px;
+    font-size: 0.85rem;
+  }
+
+  .pie .boton.enlace {
+    flex: 0 0 auto;
+    margin-left: 0;
+  }
+
+  .segmentado {
+    display: flex;
+  }
+
+  .segmentado button {
+    flex: 1 1 auto;
   }
 
   .lista-cuerpo,

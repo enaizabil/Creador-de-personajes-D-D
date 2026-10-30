@@ -460,6 +460,17 @@ def test_la_escuela_concreta_ordena_los_conjuros_nuevos(entorno):
     assert nigromancia and set(nigromancia[:len(nuevos)]) <= nuevos, (nigromancia, nuevos)
 
 
+def test_responder_la_escuela_no_cambia_su_orden_ni_su_propuesta(entorno):
+    """La propuesta es lo que se elegiría sin responder; si contara la propia respuesta, la pulsada saltaría arriba."""
+    q = subida(entorno, "mago", 6, semilla="escuela concreta")
+    antes = concretas(q.preguntas_de_subida(1))["c:escuela:mago"].respuestas
+    ultima = antes[-1].id
+    q.responder_subida("c:escuela:mago", [ultima])
+    despues = concretas(q.preguntas_de_subida(1))["c:escuela:mago"].respuestas
+    assert [(r.id, r.propuesta) for r in despues] == [(r.id, r.propuesta) for r in antes]
+    assert not despues[-1].propuesta
+
+
 def test_historia_al_crear_a_nivel_alto(entorno):
     sistema, catalogo = entorno
     q = nuevo(entorno)

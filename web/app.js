@@ -572,6 +572,7 @@ function pintar(vista) {
     $app.replaceChildren(el("main", { class: `pantalla ${vista.pantalla}` }, contenido), pintarCreditos());
   }
   document.body.dataset.pantalla = vista.pantalla;
+  document.body.dataset.pintado = String(Number(document.body.dataset.pintado || 0) + 1); // para las pruebas
 
   if (mismaPantalla) window.scrollTo(0, desplazamiento);
   else window.scrollTo(0, 0);
