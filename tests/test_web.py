@@ -521,6 +521,17 @@ def test_volver_al_inicio_olvida_el_personaje(mago):
     assert respuesta["vista"]["pantalla"] == "portada" and respuesta["estado"] is None
 
 
+def test_en_el_navegador_los_paquetes_van_a_la_carpeta_personal(monkeypatch):
+    from creador.nucleo import rutas
+    monkeypatch.setattr(rutas.sys, "platform", "emscripten")
+    assert rutas.directorios_paquetes() == [directorio_datos_integrados() / "paquetes",
+                                            Path.home() / ".creador-personajes" / "paquetes"]
+
+
+def test_portada_deja_sitio_a_los_recientes(s):
+    assert [x for x in llamar(s, "ir", pantalla="portada")["vista"]["contenido"] if x["t"] == "recientes"]
+
+
 def test_sin_tkinter():
     """La web no puede depender de la interfaz de escritorio."""
     fuente = Path(modulo_sesion.__file__).read_text(encoding="utf-8")

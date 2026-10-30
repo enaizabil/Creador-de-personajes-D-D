@@ -44,10 +44,17 @@ def edicion() -> str:
         return "desarrollo"
 
 
+def directorio_personal() -> Path:
+    """Carpeta del usuario; en la versión web, la que la página guarda en el navegador (IndexedDB)."""
+    return Path.home() / ".creador-personajes"
+
+
 def directorios_paquetes() -> list[Path]:
     """Dónde se buscan paquetes, de mayor a menor prioridad."""
+    if sys.platform == "emscripten":  # versión web: no hay carpeta junto al programa
+        return [directorio_datos_integrados() / "paquetes", directorio_personal() / "paquetes"]
     return [
         directorio_datos_integrados() / "paquetes",
         directorio_portable() / "paquetes",
-        Path.home() / ".creador-personajes" / "paquetes",
+        directorio_personal() / "paquetes",
     ]

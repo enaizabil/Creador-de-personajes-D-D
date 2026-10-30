@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es" data-hash="__HASH__">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Creador de personajes</title>
+  <meta name="description" content="Crea personajes de D&amp;D 5e (2014) respondiendo preguntas o paso a paso, y llévate la ficha en PDF.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" type="image/png" href="recursos/favicon.png">
+  <link rel="preload" href="recursos/fuentes/Cinzel-Bold.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="estilo.css?h=__HASH__">
+  <script type="module" src="app.js?h=__HASH__"></script>
+</head>
+<body>
+  <div id="carga" class="carga">
+    <span class="icono enorme" style="--icono: url('recursos/iconos/dice-twenty-faces-twenty.png')" aria-hidden="true"></span>
+    <h1 class="titulo">Creador de personajes</h1>
+    <p id="carga-texto" class="texto" role="status">Cargando…</p>
+    <progress id="carga-barra" max="4" value="0" aria-label="Carga"></progress>
+    <p class="texto gris pequeno">La primera vez descarga unos 20 MB (Python y los libros); luego el navegador lo guarda y
+      arranca antes. Todo funciona en tu dispositivo: no se envía nada a ningún servidor.</p>
+    <p class="texto gris pequeno">Versión <span id="version">…</span></p>
+    <noscript><p class="texto aviso">Esta página necesita JavaScript.</p></noscript>
+  </div>
+  <div id="app" hidden></div>
+  <div id="avisos" class="avisos-flotantes" aria-live="polite"></div>
+</body>
+</html>

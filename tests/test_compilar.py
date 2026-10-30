@@ -46,3 +46,34 @@ def test_carpeta_portable_congelado(monkeypatch, tmp_path):
     monkeypatch.setattr(sys, "executable", str(app))
     monkeypatch.setattr(sys, "platform", "darwin")
     assert rutas.directorio_portable() == tmp_path / "CreadorPersonajes"  # junto a la .app, donde se ve
+
+
+def cargar_compilar_web():
+    sys.path.insert(0, str(RAIZ / "herramientas"))
+    spec = importlib.util.spec_from_file_location("compilar_web", RAIZ / "herramientas" / "compilar_web.py")
+    modulo = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(modulo)
+    return modulo
+
+
+def test_la_web_lleva_el_motor_sin_la_interfaz_de_escritorio(tmp_path):
+    import zipfile
+
+    web = cargar_compilar_web()
+    web.crear_zip(tmp_path / "a.zip", tmp_path / "a")
+    nombres = zipfile.ZipFile(tmp_path / "a.zip").namelist()
+    assert "creador/web/sesion.py" in nombres and "creador/datos/edicion.json" in nombres
+    assert not [n for n in nombres if n.startswith("creador/gui/") or "__pycache__" in n]
+    paquetes = {n.split("/")[4] for n in nombres if n.startswith("creador/datos/paquetes/dnd5e-2014/")}
+    assert paquetes == {"srd-5.1", "phb-2014", "dmg-2014", "tasha-2020", "cuestionario-basico"}
+    web.crear_zip(tmp_path / "b.zip", tmp_path / "b")
+    assert (tmp_path / "a.zip").read_bytes() == (tmp_path / "b.zip").read_bytes()  # misma huella si no cambia nada
+
+
+def test_las_mascaras_de_los_iconos_pasan_a_canal_alfa(tmp_path):
+    from PIL import Image
+
+    web = cargar_compilar_web()
+    web.mascara_a_alfa(web.RECURSOS / "iconos" / "elf-ear.png", tmp_path / "icono.png")
+    imagen = Image.open(tmp_path / "icono.png")
+    assert imagen.mode == "RGBA" and imagen.getextrema()[3] == (0, 255)

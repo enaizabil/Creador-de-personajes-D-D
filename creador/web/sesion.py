@@ -22,8 +22,9 @@ from ..sistemas.dnd5e_2014.constantes import CARACTERISTICAS, COSTE_COMPRA, TIPO
 from ..sistemas.dnd5e_2014.cuestionario import MINIMO_RESPUESTAS, NIVEL_MINIMO_MULTICLASE, UMBRAL_ALINEAMIENTO
 from ..sistemas.dnd5e_2014.interfaz import (AYUDA_SUBIDA, CUANTAS_RECOMENDACIONES, FISICO, ICONO_GENERICO,
                                             LARGO_DESCRIPCION_OPCIONAL, MARCA_PROPUESTA, MAX_CASILLAS, MAX_DESPLEGABLE,
-                                            NOMBRES_DECISION, NOMBRES_PERFIL, PERSONALIDAD, RESPUESTAS_EN_UNA_COLUMNA,
-                                            interruptores_reglas, nombre_icono, perfil_en_puntos)
+                                            MAX_RESULTADOS, NOMBRES_DECISION, NOMBRES_PERFIL, PERSONALIDAD,
+                                            RESPUESTAS_EN_UNA_COLUMNA, interruptores_reglas, nombre_icono,
+                                            perfil_en_puntos)
 from ..sistemas.dnd5e_2014.texto import resumen_ficha
 from . import componentes as c
 
@@ -154,6 +155,7 @@ class Sesion:
                    c.archivo("Abrir personaje (.json)…", "abrir_personaje", ".json"),
                    c.boton("Paquetes…", "ir", {"pantalla": "paquetes"}, "secundario")),
             c.texto("Avisos al buscar paquetes: " + "; ".join(avisos), "aviso") if avisos else None,
+            {"t": "recientes"},  # los personajes guardados en el navegador: los pinta la página
             c.texto(f"Versión {__version__}. Iconos: game-icons.net (Lorc, Delapouite, Cathelineau), CC BY 3.0 · "
                     "Tipografía: Cinzel, SIL Open Font License 1.1.", "pequeno"),
         ]
@@ -576,7 +578,8 @@ class Sesion:
         return {"t": "eleccion", "clave": eleccion.clave, "nombre": eleccion.nombre, "etiqueta": eleccion.etiqueta,
                 "elegir": eleccion.elegir, "completa": eleccion.faltan <= 0, "modo": modo, "repetible": eleccion.repetible,
                 "opciones": [{"id": o.id, "nombre": o.nombre, "motivo": bloqueadas.get(o.id, "")} for o in eleccion.opciones],
-                "seleccion": list(eleccion.seleccion), "accion": "elegir", "args": {"clave": eleccion.clave}}
+                "seleccion": list(eleccion.seleccion), "max_resultados": MAX_RESULTADOS, "accion": "elegir",
+                "args": {"clave": eleccion.clave}}
 
     def accion_elegir(self, clave: str, valores: list[str]) -> None:
         self.a.elegir(clave, valores)
