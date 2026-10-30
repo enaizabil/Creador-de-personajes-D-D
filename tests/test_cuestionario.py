@@ -624,9 +624,10 @@ def test_cantidad_estilo_y_contenido_sensible(entorno, estilo):
         assert normales[0].id == "experiencia"  # la común va siempre la primera
         estilos = {catalogo.obtener("preguntas", p.id)["estilo"] for p in normales[1:]}
         assert estilos == ({"cotidiana", "fantasia"} if estilo == "mezcla" else {estilo})
-        # Cada nivel cubre todos los rasgos del perfil al menos dos veces.
+        # Cada nivel cubre todos los rasgos del perfil al menos dos veces, con las respuestas que se ven.
+        vistas = {(p.id, r.id) for p in normales for r in p.respuestas}
         apariciones = Counter(r for p in normales for resp in catalogo.obtener("preguntas", p.id)["respuestas"]
-                              for r in resp.get("perfil", {}))
+                              if (p.id, resp["id"]) in vistas for r in resp.get("perfil", {}))
         assert set(apariciones) == set(RASGOS_PERFIL) and min(apariciones.values()) >= 2, (cantidad, apariciones)
         tamanos.append(len(normales))
     assert tamanos == [10, 20, 32]
@@ -634,13 +635,15 @@ def test_cantidad_estilo_y_contenido_sensible(entorno, estilo):
 
 def test_la_configuracion_se_guarda_en_el_personaje(entorno):
     q = nuevo(entorno)
-    assert q.configuracion == {"cantidad": "recomendado", "estilo": "cotidiana", "sensible": False}
-    q.configurar(cantidad="rapido", estilo="fantasia", sensible=True)
+    assert q.configuracion == {"cantidad": "recomendado", "estilo": "cotidiana", "sensible": False, "respuestas": 4}
+    q.configurar(cantidad="rapido", estilo="fantasia", sensible=True, respuestas=6)
     assert q.personaje.extra["cuestionario"]["configuracion"] == {"cantidad": "rapido", "estilo": "fantasia",
-                                                                  "sensible": True}
+                                                                  "sensible": True, "respuestas": 6}
     assert len(q.preguntas()) == 12
     with pytest.raises(ValueError):
         q.configurar(estilo="terror")
+    with pytest.raises(ValueError):
+        q.configurar(respuestas=5)
 
 
 @pytest.mark.parametrize("estilo", ["cotidiana", "fantasia", "mezcla"])
@@ -653,7 +656,8 @@ def test_respuestas_coherentes_recomiendan_su_clase(entorno, estilo, cantidad):
         q = nuevo(entorno)
         q.configurar(cantidad=cantidad, estilo=estilo)
         for pregunta in q.preguntas():
-            respuestas = catalogo.obtener("preguntas", pregunta.id)["respuestas"]
+            vistas = {r.id for r in pregunta.respuestas}  # entre las que ve el jugador
+            respuestas = [r for r in catalogo.obtener("preguntas", pregunta.id)["respuestas"] if r["id"] in vistas]
             mejor = max(respuestas, key=lambda r, p=perfil, c=clase["id"]: sum(p.get(k, 0) * v for k, v in
                                                                                r.get("perfil", {}).items())
                         + 3 * r.get("pesos", {}).get(f"clases:{c}", 0))
@@ -678,3 +682,54 @@ def test_explicar_la_raza_la_clase_y_el_alineamiento(entorno):
     assert {m.pregunta for m in q.explicar_alineamiento()} == {"Pelea en el bar", "El lápiz"}
     assert q.totales_alineamiento() == {"orden": -2, "moral": -2}
     assert q.alineamiento() == "Caótico malvado"
+
+
+def test_cada_partida_baraja_distinto_y_cada_una_es_estable(entorno, monkeypatch):
+    from creador.sistemas.dnd5e_2014 import cuestionario
+    ordenes = []
+    for semilla in ("una", "otra", "una"):
+        monkeypatch.setattr(cuestionario, "nueva_semilla", lambda semilla=semilla: semilla)
+        q = nuevo(entorno)
+        ordenes.append([(p.id, tuple(r.id for r in p.respuestas)) for p in q.preguntas()])
+        assert ordenes[-1] == [(p.id, tuple(r.id for r in p.respuestas)) for p in q.preguntas()]  # la misma partida
+    assert ordenes[0] == ordenes[2] and ordenes[0] != ordenes[1]
+    assert ordenes[0][0][0] == "experiencia"  # la común, siempre la primera
+
+
+def test_rapido_esta_dentro_de_recomendado_y_este_de_preciso(entorno):
+    _, catalogo = entorno
+    q = nuevo(entorno)
+    for estilo in ("cotidiana", "fantasia", "mezcla"):
+        rapido, recomendado, preciso = ([p.id for p in q.preguntas(cantidad=c, estilo=estilo)]
+                                        for c in ("rapido", "recomendado", "preciso"))
+        assert recomendado[:len(rapido)] == rapido and preciso[:len(recomendado)] == recomendado
+        assert all(catalogo.obtener("preguntas", i).get("detalle", 1) == 1 for i in rapido)  # las que más distinguen
+
+
+def test_cuatro_o_seis_respuestas(entorno):
+    _, catalogo = entorno
+    q = nuevo(entorno)
+    for cuantas in (4, 6):
+        q.configurar(respuestas=cuantas, cantidad="preciso")
+        for pregunta in q.preguntas():
+            todas = catalogo.obtener("preguntas", pregunta.id)["respuestas"]
+            assert len(pregunta.respuestas) == min(cuantas, len(todas))
+            if cuantas == 4 and len(todas) > 4:  # las que se ven, con rasgos principales distintos
+                principales = [max(r["perfil"], key=r["perfil"].get) for r in todas
+                               if r["id"] in {x.id for x in pregunta.respuestas} and r.get("perfil")]
+                assert len(set(principales)) == len(principales)
+    experiencia = catalogo.obtener("preguntas", "experiencia")
+    assert [r.id for r in q.preguntas()[0].respuestas] == [r["id"] for r in experiencia["respuestas"]]  # escala
+
+
+def test_la_respuesta_elegida_se_ve_siempre(entorno):
+    _, catalogo = entorno
+    q = nuevo(entorno)
+    q.configurar(respuestas=6, cantidad="preciso")
+    larga = next(p for p in q.preguntas() if len(p.respuestas) > 4)
+    q.configurar(respuestas=4)
+    oculta = next(r["id"] for r in catalogo.obtener("preguntas", larga.id)["respuestas"]
+                  if r["id"] not in {x.id for x in next(p for p in q.preguntas() if p.id == larga.id).respuestas})
+    q.responder(larga.id, oculta)
+    vista = next(p for p in q.preguntas() if p.id == larga.id)
+    assert oculta in [r.id for r in vista.respuestas] and len(vista.respuestas) == 4

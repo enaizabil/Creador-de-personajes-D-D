@@ -336,7 +336,7 @@ Un error de contenido no impide cargar el resto del paquete.
 **Preguntas** (`preguntas.json`, `preguntas_subida.json`)
 
 - `momento`: `"creacion"` (por defecto) o `"subida"`. Las de subida son hitos de la aventura y salen al subir de nivel o, al crear por encima de nivel 1, en «Su historia», después de elegir raza y clase.
-- `decide`: lista con `mejora`, `subclase`, `opciones` o `conjuros`. Salen los hitos que tocan alguna decisión de esos niveles: uno si se suben menos de 5 niveles, dos hasta 9 y tres a partir de 10. Se salta el hito de un solo propósito cuya decisión ya tiene pregunta concreta (p. ej., entrenar para la mejora).
+- `decide`: lista con `mejora`, `subclase`, `opciones` o `conjuros`. Salen los hitos que tocan alguna decisión de esos niveles: uno si se suben menos de 5 niveles, dos hasta 9 y tres a partir de 10, al azar (distintos en cada subida) y primero los que no salieron en subidas anteriores. Sus respuestas se ven como las de creación (4 o 6, barajadas). Se salta el hito de un solo propósito cuya decisión ya tiene pregunta concreta (p. ej., entrenar para la mejora).
 - Preguntas concretas: no se escriben en los datos. El programa hace una por cada elección real de esos niveles, con lo que el personaje tiene: la subclase (todas las disponibles), cada mejora de característica (repartos con las puntuaciones de ese momento y las dotes cuyo prerrequisito cumple), las opciones de clase, las pericias y competencias, los conjuros de rasgos como Secretos Mágicos o Arcanum Místico, y la escuela de los conjuros nuevos (con ejemplos de su lista). Los huecos iguales de varios niveles (invocaciones, metamagia, terrenos…) van en una sola pregunta de varias respuestas. Las listas largas se acortan a las 16 que mejor encajan. Lo que no se responde lo decide el perfil, y la respuesta que se elegiría va marcada como «★ Propuesta».
 - Los prerrequisitos de las opciones de clase son texto: el programa lee «nivel N de <clase>», «Pacto de…» y «truco <conjuro>». Si un homebrew usa otra fórmula, la opción se ofrece igualmente: detrás de las demás, salvo que esté entre las recomendadas.
 - En cada respuesta:
@@ -351,9 +351,12 @@ Un error de contenido no impide cargar el resto del paquete.
 
 **Configuración del cuestionario** (campos de cada pregunta de creación)
 
-- `estilo`: `"cotidiana"` (por defecto), `"fantasia"` o `"comun"` (sale en los dos estilos, p. ej. «¿Has jugado antes a rol?»). Con «Mezcla» se alternan las de los dos estilos hasta el tamaño de uno solo.
-- `detalle`: 1, 2 o 3. La pregunta entra en «Rápido» (1), «Recomendado» (1 y 2) o «Preciso» (todas). En el paquete del programa salen 10, 20 y 32 por estilo.
-- `sensible`: `true` si el contenido es sensible o bizarro. Solo sale con el interruptor activado, y entonces se suma a las demás de su nivel.
+- `estilo`: `"cotidiana"` (por defecto), `"fantasia"` o `"comun"` (sale en los dos estilos y siempre la primera, p. ej. «¿Has jugado antes a rol?»). Con «Mezcla» se alternan las de los dos estilos.
+- Cada partida saca las preguntas al azar de la batería, con una semilla que se guarda en el personaje (repasar o volver a abrir el cuestionario no cambia nada; otro cuestionario sale distinto). El orden reparte los rasgos: mientras a alguno le falten apariciones (dos, contando las respuestas que se ven con «4»), se elige entre las preguntas que más le aportan. Salen 9, 19 o 31 más las comunes (10, 20 y 32 en el paquete del programa); «Rápido» son las primeras de «Recomendado», y estas, de «Preciso».
+- `detalle`: 1, 2 o 3 (por defecto, 1). «Rápido» sale de las de detalle 1, las que más distinguen; lo que añade «Recomendado», de las de 1 y 2; lo que añade «Preciso», de todas. Conviene que haya bastantes de detalle 1 para que «Rápido» no salga siempre igual.
+- `sensible`: `true` si el contenido es sensible o bizarro. Solo sale con el interruptor activado, y entonces se suman 2, 4 o 6 (según la cantidad), repartidas entre las demás.
+- Respuestas: el jugador elige ver 4 o 6 por pregunta. Escribe 6 (o más): con «4» se ven, al azar, 4 con rasgos principales distintos (el de más puntos de su `perfil`); con «6», todas hasta 6. Se barajan, salvo con `ordenadas`, y la ya elegida se ve siempre.
+- `ordenadas`: `true` si las respuestas son una escala («Nunca», «Alguna vez», «Sí») y no deben barajarse.
 - `sustituye`: id de otra pregunta. Si sus requisitos (`requiere`) están cargados, ocupa el sitio de esa pregunta (así un paquete como Tasha cambia preguntas sin alterar el total).
 
 ## Rasgos de clase opcionales (Guía de Tasha)

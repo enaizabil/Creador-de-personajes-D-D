@@ -196,6 +196,11 @@ def test_cuestionario_a_nivel_1(s):
     assert not [x for x in de_tipo(respuesta, "interruptor") if "Tasha" in x["texto"]]  # sin Tasha, sin sus reglas
     llamar(s, "configurar", campo="cantidad", valor="rapido")
     assert s.q.configuracion["cantidad"] == "rapido"
+    respuestas = next(x for x in de_tipo(llamar(s, "pregunta", indice=-1), "segmentado") if x["args"] == {"campo": "respuestas"})
+    assert respuestas["actual"] == "4" and [v for v, _ in respuestas["valores"]] == ["4", "6"]
+    pulsar(s, respuestas, valor="6")
+    assert s.q.configuracion["respuestas"] == 6
+    pulsar(s, respuestas, valor="4")
     primera = llamar(s, "pregunta", indice=0)
     acciones_conocidas(primera)
     assert textos(primera).count("Pregunta 1 de") == 1 and not [x for x in de_tipo(primera, "boton")
@@ -276,7 +281,7 @@ def test_las_respuestas_concretas_de_varias_se_alternan(s):
     marcadas = s.q.respuestas_subida[pregunta]
     assert len(marcadas) == min(elegir, len(tarjetas["opciones"])) and marcadas[-1] == tarjetas["opciones"][-1]["id"]
     pulsar(s, tarjetas, respuesta=marcadas[-1])
-    assert marcadas[-1] not in s.q.respuestas_subida[pregunta]
+    assert marcadas[-1] not in s.q.respuestas_subida.get(pregunta, [])
 
 
 # ── asistente ────────────────────────────────────────────────────────────

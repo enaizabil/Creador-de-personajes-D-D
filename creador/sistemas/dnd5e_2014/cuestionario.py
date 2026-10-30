@@ -24,11 +24,11 @@ import json
 import math
 import random
 import re
+import secrets
 import unicodedata
-from collections import defaultdict
+from collections import Counter, defaultdict
 from collections.abc import Callable
 from dataclasses import dataclass, replace
-from itertools import zip_longest
 from typing import TYPE_CHECKING
 
 from ...nucleo.efectos import EleccionPendiente
@@ -50,10 +50,14 @@ BONO_CONSTITUCION = 4  # todo aventurero agradece la Constitución
 NIVEL_MINIMO_MULTICLASE = 4  # antes, repartir deja a la clase principal sin lo básico (p. ej., su subclase)
 MAXIMO_NIVELES_SECUNDARIA = 5
 CANDIDATAS_SECUNDARIA = 4  # la secundaria sale de las clases más afines tras la principal
-# Cuántas preguntas: cada pregunta tiene un «detalle» (1-3) y entra en ese nivel y en los siguientes.
-CANTIDADES = {"rapido": 1, "recomendado": 2, "preciso": 3}
+# Cuántas preguntas salen, sin contar las comunes («¿Has jugado antes a rol?»), y cuántas de contenido sensible se
+# suman si se piden. Cada partida las saca al azar de la batería (ver «preguntas»).
+CANTIDADES = {"rapido": 9, "recomendado": 19, "preciso": 31}
+SENSIBLES_POR_CANTIDAD = {"rapido": 2, "recomendado": 4, "preciso": 6}
 ESTILOS = ("cotidiana", "fantasia", "mezcla")
-CONFIGURACION_INICIAL = {"cantidad": "recomendado", "estilo": "cotidiana", "sensible": False}
+RESPUESTAS_MOSTRADAS = (4, 6)  # respuestas por pregunta: con 4, las 4 más variadas de las que tenga
+CONFIGURACION_INICIAL = {"cantidad": "recomendado", "estilo": "cotidiana", "sensible": False, "respuestas": 4}
+COBERTURA_MINIMA = 2  # al elegir preguntas, cada rasgo del perfil tiene que salir al menos en dos respuestas
 PESO_SUBIDA_ACTUAL = 2  # las respuestas de esta subida pesan más que las antiguas en lo que se decide ahora
 # Preguntas concretas de subida: sus ids empiezan así y su respuesta es la lista de lo elegido.
 PREFIJO_CONCRETA = "c:"
@@ -125,6 +129,16 @@ class Recomendacion:
         return self.subraza_nombre or self.nombre
 
 
+def nueva_semilla() -> str:
+    """La de cada cuestionario nuevo: baraja las preguntas y las respuestas (los tests la fijan)."""
+    return secrets.token_hex(8)
+
+
+def _rasgo_principal(respuesta: dict) -> str | None:
+    perfil = respuesta.get("perfil") or {}
+    return max(sorted(perfil), key=perfil.get) if perfil else None
+
+
 def afinidad(perfil_entrada: dict, perfil_jugador: dict) -> float:
     """Coseno entre los dos perfiles (0 = nada que ver, 1 = idénticos en proporción)."""
     producto = sum(v * perfil_jugador.get(r, 0) for r, v in perfil_entrada.items())
@@ -185,50 +199,136 @@ class Cuestionario5e:
 
     @property
     def configuracion(self) -> dict:
-        """Cantidad («rapido», «recomendado», «preciso»), estilo («cotidiana», «fantasia», «mezcla») y si se
-        incluyen las preguntas de contenido sensible o bizarro."""
+        """Cantidad («rapido», «recomendado», «preciso»), estilo («cotidiana», «fantasia», «mezcla»), si se
+        incluyen las preguntas de contenido sensible o bizarro y cuántas respuestas se ven por pregunta (4 o 6)."""
         guardada = self.personaje.extra.setdefault("cuestionario", {}).setdefault("configuracion", {})
         return {**CONFIGURACION_INICIAL, **guardada}
 
-    def configurar(self, cantidad: str | None = None, estilo: str | None = None, sensible: bool | None = None) -> None:
+    def configurar(self, cantidad: str | None = None, estilo: str | None = None, sensible: bool | None = None,
+                   respuestas: int | None = None) -> None:
         if cantidad is not None and cantidad not in CANTIDADES:
             raise ValueError(f"Cantidad desconocida «{cantidad}»")
         if estilo is not None and estilo not in ESTILOS:
             raise ValueError(f"Estilo desconocido «{estilo}»")
+        if respuestas is not None and respuestas not in RESPUESTAS_MOSTRADAS:
+            raise ValueError(f"Respuestas por pregunta: {' o '.join(map(str, RESPUESTAS_MOSTRADAS))}")
         guardada = self.personaje.extra.setdefault("cuestionario", {}).setdefault("configuracion", {})
-        for clave, valor in (("cantidad", cantidad), ("estilo", estilo), ("sensible", sensible)):
+        for clave, valor in (("cantidad", cantidad), ("estilo", estilo), ("sensible", sensible), ("respuestas", respuestas)):
             if valor is not None:
                 guardada[clave] = valor
+
+    @property
+    def semilla(self) -> str:
+        """La de esta partida: decide el orden de las preguntas y qué respuestas se ven. Se guarda en el personaje, así
+        que repasar o volver a abrir el cuestionario no lo cambia; otro cuestionario sale distinto."""
+        datos = self.personaje.extra.setdefault("cuestionario", {})
+        if not datos.get("semilla"):
+            datos["semilla"] = nueva_semilla()
+        return datos["semilla"]
+
+    def _azar(self, *sal: object) -> random.Random:
+        return random.Random("/".join(map(str, (self.semilla, *sal))))
 
     def preguntas(self, **configuracion) -> list[Pregunta]:
         """Las preguntas de creación según la configuración (o la que se pase para contarlas).
 
         Solo las de paquetes cargados cuyos requisitos («requiere») también lo están; una pregunta con
-        «sustituye» (p. ej. de Tasha) ocupa el sitio de la que nombra. Con «mezcla», se alternan los dos estilos
-        hasta el tamaño de uno solo; las de detalle 1 van primero porque son las que más distinguen.
+        «sustituye» (p. ej. de Tasha) ocupa el sitio de la que nombra. Las comunes van primero; las demás salen al
+        azar de la batería de su estilo (con «mezcla», alternando los dos), en un orden propio de esta partida que
+        reparte los rasgos del perfil. «Rápido» son las primeras de «Recomendado», y estas, de «Preciso»: cambiar
+        la cantidad no tira lo respondido. «Rápido» sale de las de «detalle» 1 (las que más distinguen); lo que
+        añade «Recomendado», de las de 1 y 2; lo de «Preciso», de todas. Las de contenido sensible, si se piden,
+        se suman repartidas entre ellas.
         """
         conf = {**self.configuracion, **configuracion}
-        tope = CANTIDADES[conf["cantidad"]]
         validas = [p for p in self.catalogo.listar("preguntas")
-                   if p.get("momento", "creacion") == "creacion" and all(self._existe(r) for r in p.get("requiere", []))
-                   and p.get("detalle", 1) <= tope and (conf["sensible"] or not p.get("sensible"))]
+                   if p.get("momento", "creacion") == "creacion" and all(self._existe(r) for r in p.get("requiere", []))]
         sustitutas = {p["sustituye"]: p for p in validas if p.get("sustituye")}
         validas = [sustitutas.get(p["id"], p) for p in validas if not p.get("sustituye")]
-        comunes = [p for p in validas if p.get("estilo") == "comun"]
-        por_estilo = {e: sorted((p for p in validas if p.get("estilo", "cotidiana") == e), key=lambda p: p.get("detalle", 1))
-                      for e in ("cotidiana", "fantasia")}
-        if conf["estilo"] == "mezcla":
-            largo = max(len(lista) for lista in por_estilo.values())
-            elegidas = [p for par in zip_longest(por_estilo["cotidiana"], por_estilo["fantasia"]) for p in par if p][:largo]
-        else:
-            # Un paquete sin preguntas de ese estilo (homebrew) usa las que tenga.
-            elegidas = por_estilo[conf["estilo"]] or por_estilo["cotidiana"] or por_estilo["fantasia"]
-        return [self._pregunta(p) for p in comunes + elegidas]
+        comunes = [p for p in validas if p.get("estilo") == "comun" and (conf["sensible"] or not p.get("sensible"))]
+        por_estilo = {e: [p for p in validas if p.get("estilo", "cotidiana") == e] for e in ("cotidiana", "fantasia")}
+        estilos = [e for e in (("cotidiana", "fantasia") if conf["estilo"] == "mezcla" else (conf["estilo"],))
+                   if por_estilo[e]]
+        # Un paquete sin preguntas de ese estilo (homebrew) usa las que tenga.
+        estilos = estilos or [e for e in ("cotidiana", "fantasia") if por_estilo[e]][:1]
+        orden = self._ordenar_preguntas({e: [p for p in por_estilo[e] if not p.get("sensible")] for e in estilos},
+                                        "creacion", conf["estilo"])
+        elegidas = orden[:CANTIDADES[conf["cantidad"]]]
+        if conf["sensible"]:
+            sensibles = sorted((p for e in estilos for p in por_estilo[e] if p.get("sensible")), key=lambda p: p["id"])
+            self._azar("sensibles", conf["estilo"]).shuffle(sensibles)
+            elegidas = self._intercalar(elegidas, sensibles[:SENSIBLES_POR_CANTIDAD[conf["cantidad"]]])
+        return [self._pregunta(p, self.respuestas.get(p["id"]), conf["respuestas"]) for p in comunes + elegidas]
 
     @staticmethod
-    def _pregunta(datos: dict) -> Pregunta:
+    def _intercalar(base: list[dict], extra: list[dict]) -> list[dict]:
+        """«extra» repartidas a lo largo de «base» (nunca la primera)."""
+        resultado = list(base)
+        for n, pregunta in enumerate(extra):
+            resultado.insert(min(len(resultado), (n + 1) * len(base) // (len(extra) + 1) + n + 1), pregunta)
+        return resultado
+
+    def _ordenar_preguntas(self, por_estilo: dict[str, list[dict]], *sal: object) -> list[dict]:
+        """Todas las preguntas de esos estilos en el orden de esta partida, alternando estilos. Cada puesto admite
+        las de «detalle» hasta el de su tramo (1 para las de «Rápido», 2 hasta «Recomendado», 3 después). Entre ellas,
+        mientras a algún rasgo le falten apariciones (COBERTURA_MINIMA, contando las respuestas que salen con 4),
+        se elige al azar entre las que más le aportan; luego, al azar sin más."""
+        rng = self._azar("orden", *sal)
+        restantes = {}
+        for estilo, lista in por_estilo.items():
+            restantes[estilo] = sorted(lista, key=lambda p: p["id"])
+            rng.shuffle(restantes[estilo])
+        rasgos = {p["id"]: Counter(r for resp in self._respuestas_variadas(p)[:min(RESPUESTAS_MOSTRADAS)]
+                                   for r in resp.get("perfil", {})) for lista in restantes.values() for p in lista}
+        cuenta: Counter = Counter()
+        orden: list[dict] = []
+        estilos = [e for e, lista in restantes.items() if lista]
+        turno = 0
+        while any(restantes.values()):
+            lista = restantes[estilos[turno % len(estilos)]]
+            turno += 1
+            if not lista:
+                continue
+
+            def aporte(pregunta: dict) -> int:
+                return sum(min(n, max(0, COBERTURA_MINIMA - cuenta[r])) for r, n in rasgos[pregunta["id"]].items())
+
+            tramo = 1 + sum(len(orden) >= n for n in sorted(CANTIDADES.values())[:2])
+            admitidas = [p for p in lista if p.get("detalle", 1) <= tramo] or lista
+            mejor = max(aporte(p) for p in admitidas)
+            elegida = rng.choice([p for p in admitidas if aporte(p) == mejor])
+            lista.remove(elegida)
+            orden.append(elegida)
+            cuenta.update(rasgos[elegida["id"]])
+        return orden
+
+    def _respuestas_variadas(self, datos: dict) -> list[dict]:
+        """Las respuestas en el orden de esta partida, con delante las más variadas: cada una con un rasgo principal
+        distinto mientras se pueda. Las de una pregunta con «ordenadas» (una escala) no se barajan."""
+        respuestas = list(datos["respuestas"])
+        if datos.get("ordenadas"):
+            return respuestas
+        self._azar("respuestas", datos["id"]).shuffle(respuestas)
+        variadas, resto, vistos = [], [], set()
+        for respuesta in respuestas:
+            principal = _rasgo_principal(respuesta)
+            (resto if principal in vistos else variadas).append(respuesta)
+            vistos.add(principal)
+        return variadas + resto
+
+    def _pregunta(self, datos: dict, actual: str | None = None, cuantas: int | None = None) -> Pregunta:
+        """La pregunta con las respuestas que se ven: «cuantas» de las más variadas (todas si tiene menos), en el
+        orden barajado de la partida; la ya elegida se ve siempre."""
+        cuantas = cuantas or self.configuracion["respuestas"]
+        variadas = self._respuestas_variadas(datos)
+        mostradas = {r["id"] for r in variadas[:cuantas]}
+        if actual and actual not in mostradas and any(r["id"] == actual for r in variadas):
+            mostradas = {r["id"] for r in variadas[:cuantas - 1]} | {actual}
+        orden = list(datos["respuestas"])
+        if not datos.get("ordenadas"):
+            self._azar("respuestas", datos["id"]).shuffle(orden)
         return Pregunta(datos["id"], datos["nombre"], datos["texto"],
-                        tuple(Respuesta(r["id"], r["texto"]) for r in datos["respuestas"]))
+                        tuple(Respuesta(r["id"], r["texto"]) for r in orden if r["id"] in mostradas))
 
     def responder(self, pregunta: str, respuesta: str | None) -> None:
         if respuesta is None:
@@ -408,9 +508,12 @@ class Cuestionario5e:
                       if p.get("momento") == "subida" and all(self._existe(r) for r in p.get("requiere", []))
                       and set(p.get("decide", [])) & decisiones
                       and not (len(p.get("decide", [])) == 1 and p["decide"][0] in decisiones)]
+        # Al azar (distinto en cada subida), primero los que no salieron antes.
+        candidatas.sort(key=lambda p: p["id"])
+        self._azar("hitos", self.asistente.nivel).shuffle(candidatas)
         candidatas.sort(key=lambda p: p["id"] in hechas)
         concretas = [pregunta for _, _, pregunta in sorted(registro, key=lambda r: r[0])]
-        return [self._pregunta(p) for p in candidatas[:cuantos]] + concretas
+        return [self._pregunta(p, self.respuestas_subida.get(p["id"])) for p in candidatas[:cuantos]] + concretas
 
     def responder_subida(self, pregunta: str, respuesta: str | list[str] | None) -> None:
         """Un hito se responde con el id de la respuesta; una concreta («c:…»), con la lista de lo elegido. Si lo
@@ -673,7 +776,9 @@ class Cuestionario5e:
             self._decidir_subclase(entrada.clase)
         a.elegir_trasfondo(trasfondo)
         self._caracteristicas()
+        self._nivel_minimo_registro = 2  # como en «Su historia»: lo de nivel 1 sale del perfil
         self._completar_elecciones()
+        self._corregir_repetidas()
         self._equipo()
         if a.nivel > 1:
             self._registrar_escuelas(None)
@@ -772,12 +877,15 @@ class Cuestionario5e:
         elecciones que repiten lo mismo solo cambie una."""
         for eleccion in self.asistente.sistema.resolver(self.personaje, self.catalogo).elecciones:
             efectos = [e for o in eleccion.opciones for e in eleccion.efectos_de(o.id)]
-            if not eleccion.seleccion or not efectos or any(e.get("tipo") != "competencia" for e in efectos):
+            if not eleccion.seleccion or not efectos or any(e.get("tipo") not in ("competencia", "pericia") for e in efectos):
                 continue
             conocidas = self.asistente.conocidas(eleccion)
             quedan = [v for v in eleccion.seleccion if v not in conocidas]
-            if len(quedan) < len(eleccion.seleccion):
-                nuevas = self._elegir(replace(eleccion, seleccion=quedan), self._rng(f"{eleccion.clave}/repetidas"))
+            sin_repetir = replace(eleccion, seleccion=quedan)
+            # Solo si hay por qué cambiarla: si no le quedan opciones libres (la del clérigo, cuando el dominio y el
+            # trasfondo ya le dan casi todas), se cambia la otra, que sí las tiene.
+            if len(quedan) < len(eleccion.seleccion) and len(self._libres(sin_repetir)) >= sin_repetir.faltan:
+                nuevas = self._elegir(sin_repetir, self._rng(f"{eleccion.clave}/repetidas"))
                 self.asistente.elegir(eleccion.clave, quedan + nuevas)
 
     @staticmethod
@@ -823,12 +931,15 @@ class Cuestionario5e:
         """Una elección (o varios huecos iguales): lo respondido en su pregunta concreta, mientras siga valiendo, y
         lo que falte con el perfil."""
         primera = grupo[0]
-        if self._registro is not None and self._firma(primera) and \
-                max(_nivel_de(e.clave) for e in grupo) >= self._nivel_minimo_registro:
-            self._registrar_eleccion(grupo, vuelta)
-        respuesta = self._respuesta_concreta(PREFIJO_CONCRETA + primera.clave)
+        # Al crear, los huecos de nivel 1 salen del perfil: la pregunta (y su respuesta) es la de los demás (el estilo
+        # de combate del guerrero 1 no entra en la del Campeón 10).
+        preguntables = [e for e in grupo if _nivel_de(e.clave) >= self._nivel_minimo_registro]
+        if self._registro is not None and self._firma(primera) and preguntables:
+            self._registrar_eleccion(preguntables, vuelta)
+        respuesta = self._respuesta_concreta(PREFIJO_CONCRETA + preguntables[0].clave) if preguntables else []
+        claves_preguntables = {e.clave for e in preguntables}
         for eleccion in grupo:
-            libres = self._libres(eleccion) if respuesta else []
+            libres = self._libres(eleccion) if respuesta and eleccion.clave in claves_preguntables else []
             toma = [v for v in respuesta if v in libres][: eleccion.faltan]
             respuesta = [v for v in respuesta if v not in toma]
             resto = replace(eleccion, seleccion=eleccion.seleccion + toma)

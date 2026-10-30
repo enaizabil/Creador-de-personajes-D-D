@@ -85,7 +85,6 @@ def test_las_preguntas_de_tasha_sustituyen_a_otras_sin_cambiar_el_total(entorno)
         con = [p.id for p in q.preguntas(estilo=estilo)]
         sin = [p.id for p in q_sin.preguntas(estilo=estilo)]
         assert len(con) == len(sin) and nueva in con and vieja not in con and vieja in sin
-        assert con.index(nueva) == sin.index(vieja)  # en el mismo sitio
         assert nueva not in [p.id for p in q.preguntas(estilo=estilo, cantidad="rapido")]  # es de detalle 2
 
 

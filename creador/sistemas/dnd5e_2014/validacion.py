@@ -470,6 +470,8 @@ def _validar_pregunta(pregunta: dict) -> list[str]:
         errores.append("«detalle» debe ser 1 (rápido), 2 (recomendado) o 3 (preciso)")
     if not isinstance(pregunta.get("sensible", False), bool):
         errores.append("«sensible» debe ser true o false")
+    if not isinstance(pregunta.get("ordenadas", False), bool):
+        errores.append("«ordenadas» debe ser true o false")
     if not isinstance(pregunta.get("sustituye", ""), str):
         errores.append("«sustituye» debe ser el id de otra pregunta")
     decide = pregunta.get("decide", [])

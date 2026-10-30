@@ -2,6 +2,7 @@
   "preguntas": [
     {
       "id": "experiencia",
+      "ordenadas": true,
       "nombre": "Antes de empezar",
       "estilo": "comun",
       "detalle": 1,

@@ -20,11 +20,11 @@ from ..nucleo.personaje import Personaje
 from ..sistemas.dnd5e_2014.asistente import ALINEAMIENTOS, METODOS_CARACTERISTICAS
 from ..sistemas.dnd5e_2014.constantes import CARACTERISTICAS, COSTE_COMPRA, TIPOS_DANO
 from ..sistemas.dnd5e_2014.cuestionario import MINIMO_RESPUESTAS, NIVEL_MINIMO_MULTICLASE, UMBRAL_ALINEAMIENTO
-from ..sistemas.dnd5e_2014.interfaz import (AYUDA_SUBIDA, CUANTAS_RECOMENDACIONES, FISICO, ICONO_GENERICO,
-                                            LARGO_DESCRIPCION_OPCIONAL, MARCA_PROPUESTA, MAX_CASILLAS, MAX_DESPLEGABLE,
-                                            MAX_RESULTADOS, NOMBRES_DECISION, NOMBRES_PERFIL, PERSONALIDAD,
-                                            RESPUESTAS_EN_UNA_COLUMNA, interruptores_reglas, nombre_icono,
-                                            perfil_en_puntos)
+from ..sistemas.dnd5e_2014.interfaz import (AYUDA_RESPUESTAS, AYUDA_SUBIDA, CUANTAS_RECOMENDACIONES, FISICO,
+                                            ICONO_GENERICO, LARGO_DESCRIPCION_OPCIONAL, MARCA_PROPUESTA, MAX_CASILLAS,
+                                            MAX_DESPLEGABLE, MAX_RESULTADOS, NOMBRES_DECISION, NOMBRES_PERFIL,
+                                            OPCIONES_RESPUESTAS, PERSONALIDAD, RESPUESTAS_EN_UNA_COLUMNA,
+                                            interruptores_reglas, nombre_icono, perfil_en_puntos)
 from ..sistemas.dnd5e_2014.texto import resumen_ficha
 from . import componentes as c
 
@@ -266,6 +266,8 @@ class Sesion:
             c.segmentado(cantidades, conf["cantidad"], "configurar", {"campo": "cantidad"}, "Preguntas"),
             c.segmentado([("cotidiana", "Vida cotidiana"), ("fantasia", "Fantasía"), ("mezcla", "Mezcla")], conf["estilo"],
                          "configurar", {"campo": "estilo"}, "Estilo"),
+            c.segmentado([(str(n), texto) for n, texto in OPCIONES_RESPUESTAS], str(conf["respuestas"]), "configurar",
+                         {"campo": "respuestas"}, f"Respuestas ({AYUDA_RESPUESTAS})"),
             c.interruptor("Incluir preguntas de contenido sensible o bizarro (muerte, crueldad, situaciones absurdas)",
                           conf["sensible"], "configurar", {"campo": "sensible"}),
         ]
@@ -292,7 +294,7 @@ class Sesion:
         return bloques
 
     def accion_configurar(self, campo: str, valor) -> None:
-        self.q.configurar(**{campo: valor})
+        self.q.configurar(**{campo: int(valor) if campo == "respuestas" else valor})
         self.indice = 0
 
     def accion_regla(self, regla: str, valor: bool) -> None:

@@ -2,6 +2,13 @@ import pytest
 
 from ayudas import DIRECTORIO_PAQUETES
 from creador.entorno import abrir_catalogo
+from creador.sistemas.dnd5e_2014 import cuestionario
+
+
+@pytest.fixture(autouse=True)
+def semilla_fija(monkeypatch):
+    """El cuestionario baraja con una semilla nueva en cada partida; en los tests, siempre la misma."""
+    monkeypatch.setattr(cuestionario, "nueva_semilla", lambda: "pruebas")
 
 
 @pytest.fixture(scope="session")

@@ -8,8 +8,9 @@ import customtkinter as ctk
 from ..sistemas.dnd5e_2014.cuestionario import (MINIMO_RESPUESTAS, NIVEL_MINIMO_MULTICLASE, UMBRAL_ALINEAMIENTO, Cuestionario5e,
                                                 Pregunta, Recomendacion)
 from .componentes import fuente, texto_ajustado, titulo
-from ..sistemas.dnd5e_2014.interfaz import (AYUDA_SUBIDA, CUANTAS_RECOMENDACIONES, ICONO_GENERICO, MARCA_PROPUESTA,
-                                            NOMBRES_DECISION, NOMBRES_PERFIL, RESPUESTAS_EN_UNA_COLUMNA)
+from ..sistemas.dnd5e_2014.interfaz import (AYUDA_RESPUESTAS, AYUDA_SUBIDA, CUANTAS_RECOMENDACIONES, ICONO_GENERICO,
+                                            MARCA_PROPUESTA, NOMBRES_DECISION, NOMBRES_PERFIL, OPCIONES_RESPUESTAS,
+                                            RESPUESTAS_EN_UNA_COLUMNA)
 from .estilo import icono, icono_de
 
 ANCHO = 820
@@ -158,7 +159,7 @@ class VistaCuestionario5e(ctk.CTkFrame):
 
         fila = ctk.CTkFrame(columna, fg_color="transparent")
         fila.pack(anchor="w", pady=(0, 6))
-        ctk.CTkLabel(fila, text="Preguntas:", font=fuente(14, True), width=90, anchor="w").pack(side="left")
+        ctk.CTkLabel(fila, text="Preguntas:", font=fuente(14, True), width=100, anchor="w").pack(side="left")
         cantidades = {f"{nombre} ({len(self.q.preguntas(cantidad=clave))})": clave for clave, nombre in
                       (("rapido", "Rápido"), ("recomendado", "Recomendado"), ("preciso", "Preciso"))}
         selector = ctk.CTkSegmentedButton(fila, values=list(cantidades), command=lambda v: cambiar(cantidad=cantidades[v]))
@@ -167,11 +168,20 @@ class VistaCuestionario5e(ctk.CTkFrame):
         ctk.CTkLabel(fila, text="(más preguntas, más precisión)", text_color="gray").pack(side="left", padx=10)
         fila = ctk.CTkFrame(columna, fg_color="transparent")
         fila.pack(anchor="w", pady=(0, 6))
-        ctk.CTkLabel(fila, text="Estilo:", font=fuente(14, True), width=90, anchor="w").pack(side="left")
+        ctk.CTkLabel(fila, text="Estilo:", font=fuente(14, True), width=100, anchor="w").pack(side="left")
         estilos = {"Vida cotidiana": "cotidiana", "Fantasía": "fantasia", "Mezcla": "mezcla"}
         selector = ctk.CTkSegmentedButton(fila, values=list(estilos), command=lambda v: cambiar(estilo=estilos[v]))
         selector.set(next(n for n, e in estilos.items() if e == conf["estilo"]))
         selector.pack(side="left")
+        fila = ctk.CTkFrame(columna, fg_color="transparent")
+        fila.pack(anchor="w", pady=(0, 6))
+        ctk.CTkLabel(fila, text="Respuestas:", font=fuente(14, True), width=100, anchor="w").pack(side="left")
+        respuestas = {texto: n for n, texto in OPCIONES_RESPUESTAS}
+        selector = ctk.CTkSegmentedButton(fila, values=list(respuestas),
+                                          command=lambda v: cambiar(respuestas=respuestas[v]))
+        selector.set(next(t for t, n in respuestas.items() if n == conf["respuestas"]))
+        selector.pack(side="left")
+        ctk.CTkLabel(fila, text=f"({AYUDA_RESPUESTAS})", text_color="gray").pack(side="left", padx=10)
         variable = ctk.BooleanVar(value=conf["sensible"])
         ctk.CTkSwitch(columna, text="Incluir preguntas de contenido sensible o bizarro (muerte, crueldad, situaciones absurdas)",
                       variable=variable, command=lambda: cambiar(sensible=variable.get())).pack(anchor="w", pady=(2, 0))

@@ -18,6 +18,8 @@ RESPUESTAS_EN_UNA_COLUMNA = 6  # con más, en dos columnas para no hacer la list
 AYUDA_SUBIDA = ("Cada pregunta concreta trae las opciones reales de tu personaje; «★ Propuesta» marca lo que se elegiría "
                 "según su forma de ser si no respondes. Puedes dejar preguntas sin responder.")
 CUANTAS_RECOMENDACIONES = 3
+OPCIONES_RESPUESTAS = ((4, "4 por pregunta"), (6, "6 por pregunta"))  # respuestas que se ven en el cuestionario
+AYUDA_RESPUESTAS = "con 6, más matices entre los que elegir"
 NOMBRES_DECISION = {"mejora": "mejora de característica o dote", "subclase": "subclase",
                     "opciones": "opciones de clase", "conjuros": "conjuros nuevos"}
 
