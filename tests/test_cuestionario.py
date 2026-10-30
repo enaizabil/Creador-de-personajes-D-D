@@ -427,7 +427,9 @@ def test_las_respuestas_concretas_deciden_la_subida(entorno):
 
 def test_huecos_iguales_de_varios_niveles_en_una_pregunta(entorno):
     sistema, catalogo = entorno
-    q = subida(entorno, "brujo", 1)
+    q = nuevo(entorno)
+    responder_hacia(q, catalogo, "combate")  # a un brujo de combate el Pacto del Filo le encaja: sus invocaciones salen
+    q.generar(nivel=1, raza="humano", subraza="humano_estandar", clase="brujo")
     q.responder_subida("c:clase:brujo:3/beneficio_pacto", ["pacto_del_filo"])
     preguntas = concretas(q.preguntas_de_subida(4))
     invocaciones = preguntas["c:clase:brujo:2/invocaciones"]
