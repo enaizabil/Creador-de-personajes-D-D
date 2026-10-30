@@ -16,7 +16,10 @@
         {"id": "historias", "texto": "Aprovecho para contar las historias de magia del abuelo.",
          "perfil": {"carisma": 2, "arcano": 1}},
         {"id": "jardin", "texto": "Me escapo al jardín antes de que empiecen las comparaciones.",
-         "perfil": {"sigilo": 2, "naturaleza": 1}, "pesos": {"razas:linaje_personalizado": 1}}
+         "perfil": {"sigilo": 2, "naturaleza": 1}, "pesos": {"razas:linaje_personalizado": 1}},
+        {"id": "arbol", "texto": "Saco el álbum de fotos y el árbol genealógico de la familia.",
+         "perfil": {"saber": 2, "fe": 1}},
+        {"id": "plato", "texto": "Le preparo al abuelo su plato preferido.", "perfil": {"curacion": 2, "proteccion": 1}}
       ]
     },
     {
@@ -34,7 +37,10 @@
         {"id": "charlar", "texto": "Charlo con mi reflejo; nos caemos bien.",
          "perfil": {"carisma": 2}, "pesos": {"razas:linaje_personalizado": 1}},
         {"id": "viajar", "texto": "Busco ese lugar en el mapa y me pongo en camino.",
-         "perfil": {"naturaleza": 2, "aguante": 1}}
+         "perfil": {"naturaleza": 2, "aguante": 1}},
+        {"id": "magia", "texto": "Le pregunto al espejo cómo funciona su magia.", "perfil": {"arcano": 2, "saber": 1}},
+        {"id": "sabana", "texto": "Lo tapo con una sábana: hay cosas que es mejor no saber.",
+         "perfil": {"sigilo": 2, "fe": 1}}
       ]
     }
   ]

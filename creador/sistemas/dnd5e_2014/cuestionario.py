@@ -57,7 +57,7 @@ SENSIBLES_POR_CANTIDAD = {"rapido": 2, "recomendado": 4, "preciso": 6}
 ESTILOS = ("cotidiana", "fantasia", "mezcla")
 RESPUESTAS_MOSTRADAS = (4, 6)  # respuestas por pregunta: con 4, las 4 más variadas de las que tenga
 CONFIGURACION_INICIAL = {"cantidad": "recomendado", "estilo": "cotidiana", "sensible": False, "respuestas": 4}
-COBERTURA_MINIMA = 2  # al elegir preguntas, cada rasgo del perfil tiene que salir al menos en dos respuestas
+COBERTURA_MINIMA = 2  # al elegir preguntas, cada rasgo del perfil tiene que ser el principal de dos respuestas
 PESO_SUBIDA_ACTUAL = 2  # las respuestas de esta subida pesan más que las antiguas en lo que se decide ahora
 # Preguntas concretas de subida: sus ids empiezan así y su respuesta es la lista de lo elegido.
 PREFIJO_CONCRETA = "c:"
@@ -271,15 +271,16 @@ class Cuestionario5e:
     def _ordenar_preguntas(self, por_estilo: dict[str, list[dict]], *sal: object) -> list[dict]:
         """Todas las preguntas de esos estilos en el orden de esta partida, alternando estilos. Cada puesto admite
         las de «detalle» hasta el de su tramo (1 para las de «Rápido», 2 hasta «Recomendado», 3 después). Entre ellas,
-        mientras a algún rasgo le falten apariciones (COBERTURA_MINIMA, contando las respuestas que salen con 4),
-        se elige al azar entre las que más le aportan; luego, al azar sin más."""
+        mientras algún rasgo no sea el principal de bastantes respuestas (COBERTURA_MINIMA, contando las que salen
+        con 4), se elige al azar entre las que más le aportan; luego, al azar sin más. Así, quien responde como un
+        monje encuentra respuestas de agilidad, y no solo de combate."""
         rng = self._azar("orden", *sal)
         restantes = {}
         for estilo, lista in por_estilo.items():
             restantes[estilo] = sorted(lista, key=lambda p: p["id"])
             rng.shuffle(restantes[estilo])
-        rasgos = {p["id"]: Counter(r for resp in self._respuestas_variadas(p)[:min(RESPUESTAS_MOSTRADAS)]
-                                   for r in resp.get("perfil", {})) for lista in restantes.values() for p in lista}
+        rasgos = {p["id"]: Counter(_rasgo_principal(resp) for resp in self._respuestas_variadas(p)[:min(RESPUESTAS_MOSTRADAS)]
+                                   if resp.get("perfil")) for lista in restantes.values() for p in lista}
         cuenta: Counter = Counter()
         orden: list[dict] = []
         estilos = [e for e, lista in restantes.items() if lista]
@@ -304,17 +305,24 @@ class Cuestionario5e:
 
     def _respuestas_variadas(self, datos: dict) -> list[dict]:
         """Las respuestas en el orden de esta partida, con delante las más variadas: cada una con un rasgo principal
-        distinto mientras se pueda. Las de una pregunta con «ordenadas» (una escala) no se barajan."""
-        respuestas = list(datos["respuestas"])
+        distinto mientras se pueda y, entre esas, la que más rasgos nuevos aporta. Así, con 4, las que se ven cubren
+        el máximo de rasgos y quien busca una combinación (fe y curación, arcano y carisma) la encuentra. Las de una
+        pregunta con «ordenadas» (una escala) no se barajan."""
+        restantes = list(datos["respuestas"])
         if datos.get("ordenadas"):
-            return respuestas
-        self._azar("respuestas", datos["id"]).shuffle(respuestas)
-        variadas, resto, vistos = [], [], set()
-        for respuesta in respuestas:
-            principal = _rasgo_principal(respuesta)
-            (resto if principal in vistos else variadas).append(respuesta)
-            vistos.add(principal)
-        return variadas + resto
+            return restantes
+        self._azar("respuestas", datos["id"]).shuffle(restantes)
+        variadas: list[dict] = []
+        principales: set[str | None] = set()
+        cubiertos: set[str] = set()
+        while restantes:
+            mejor = max(restantes, key=lambda r: (_rasgo_principal(r) not in principales,
+                                                   len(set(r.get("perfil", {})) - cubiertos)))
+            restantes.remove(mejor)
+            variadas.append(mejor)
+            principales.add(_rasgo_principal(mejor))
+            cubiertos |= set(mejor.get("perfil", {}))
+        return variadas
 
     def _pregunta(self, datos: dict, actual: str | None = None, cuantas: int | None = None) -> Pregunta:
         """La pregunta con las respuestas que se ven: «cuantas» de las más variadas (todas si tiene menos), en el

@@ -400,14 +400,26 @@ def test_especialistas_del_artifice(entorno):
                                             if a.tipo == "competencia"}
 
 
-def test_el_artifice_no_quita_el_mago_a_quien_busca_saber(entorno):
+def test_el_artifice_no_quita_el_mago_a_quien_busca_saber(entorno, monkeypatch):
+    """Cada partida saca otras preguntas y respuestas: se mide en varias y cuenta lo que pasa en la mayoría."""
+    from collections import Counter
+
+    from creador.sistemas.dnd5e_2014 import cuestionario
     sistema, catalogo = entorno
 
     def recomendada(*rasgos):
+        resultados = Counter()
+        for n in range(9):
+            monkeypatch.setattr(cuestionario, "nueva_semilla", lambda n=n: f"saber{n}")
+            resultados[recomendada_en_una(*rasgos)] += 1
+        return resultados.most_common(1)[0][0]
+
+    def recomendada_en_una(*rasgos):
         q = sistema.crear_cuestionario(Personaje(sistema="dnd5e-2014", paquetes=PAQUETES), catalogo)
         for i, pregunta in enumerate(q.preguntas()):
             rasgo = rasgos[i % len(rasgos)]
-            respuestas = catalogo.obtener("preguntas", pregunta.id)["respuestas"]
+            vistas = {r.id for r in pregunta.respuestas}  # entre las que ve el jugador
+            respuestas = [r for r in catalogo.obtener("preguntas", pregunta.id)["respuestas"] if r["id"] in vistas]
             mejor = max(respuestas, key=lambda r: r.get("perfil", {}).get(rasgo, 0))
             if mejor.get("perfil", {}).get(rasgo):
                 q.responder(pregunta.id, mejor["id"])

@@ -12,7 +12,11 @@
          "perfil": {"astucia": 2, "sigilo": 1}, "eje": {"moral": -1}},
         {"id": "cancion", "texto": "Le dedico una canción a su barba y acaba invitándome.", "perfil": {"carisma": 3}},
         {"id": "remedio", "texto": "Le preparo un remedio para la borrachera que lleva encima.",
-         "perfil": {"curacion": 2, "naturaleza": 1}}
+         "perfil": {"curacion": 2, "naturaleza": 1}},
+        {"id": "arbitro", "texto": "Hago de árbitro para que nadie haga trampas.",
+         "perfil": {"proteccion": 2, "saber": 1}, "eje": {"orden": 1}},
+        {"id": "tecnica", "texto": "Me fijo en cómo apoya el codo y le gano por técnica.",
+         "perfil": {"agilidad": 2, "saber": 1}}
       ]
     },
     {
@@ -28,7 +32,10 @@
          "perfil": {"agilidad": 1, "saber": 1, "astucia": 1}},
         {"id": "avisar", "texto": "Corro a avisar a la aldea.",
          "perfil": {"proteccion": 2, "agilidad": 1}, "eje": {"moral": 1}},
-        {"id": "saludar", "texto": "Le grito un saludo en dracónico.", "perfil": {"arcano": 2, "carisma": 1}}
+        {"id": "saludar", "texto": "Le grito un saludo en dracónico.", "perfil": {"arcano": 2, "carisma": 1}},
+        {"id": "dibujar", "texto": "Lo dibujo y anoto su color, su tamaño y hacia dónde vuela.",
+         "perfil": {"saber": 2, "naturaleza": 1}},
+        {"id": "arco", "texto": "Tenso el arco y espero, por si baja.", "perfil": {"combate": 2, "aguante": 1}}
       ]
     },
     {
@@ -43,7 +50,10 @@
         {"id": "huesos", "texto": "Entierro los huesos y rezo por ellos.",
          "perfil": {"fe": 2, "curacion": 1}, "eje": {"moral": 1}},
         {"id": "mapa", "texto": "Vendo el mapa del lugar a otro y que se la juegue él.",
-         "perfil": {"astucia": 2, "carisma": 1}, "eje": {"moral": -1}}
+         "perfil": {"astucia": 2, "carisma": 1}, "eje": {"moral": -1}},
+        {"id": "llamada", "texto": "La espada me llama por mi nombre. Le contesto.", "perfil": {"arcano": 2, "carisma": 1}},
+        {"id": "guardia", "texto": "Monto guardia: quien la dejó ahí volverá a por ella.",
+         "perfil": {"proteccion": 2, "aguante": 1}}
       ]
     },
     {
@@ -57,7 +67,10 @@
         {"id": "seguir", "texto": "Finjo dormir y le sigo cuando salga.", "perfil": {"sigilo": 3}},
         {"id": "trato", "texto": "Le pregunto qué busca; quizá podamos llegar a un trato.",
          "perfil": {"carisma": 2, "astucia": 1}},
-        {"id": "dormir", "texto": "Murmuro una palabra y se queda dormido de pie.", "perfil": {"arcano": 3}}
+        {"id": "dormir", "texto": "Murmuro una palabra y se queda dormido de pie.", "perfil": {"arcano": 3}},
+        {"id": "jarra", "texto": "Le estampo la jarra en la cabeza.", "perfil": {"combate": 2}, "eje": {"orden": -1}},
+        {"id": "piedras", "texto": "La bolsa solo tiene piedras: el oro duerme conmigo.",
+         "perfil": {"astucia": 2, "saber": 1}}
       ]
     },
     {
@@ -72,7 +85,10 @@
          "perfil": {"saber": 2, "naturaleza": 1}},
         {"id": "vigilia", "texto": "Bendigo el agua y organizo una vigilia.", "perfil": {"fe": 3}},
         {"id": "cuarentena", "texto": "Pongo guardias para que nadie entre ni salga.",
-         "perfil": {"proteccion": 2}, "eje": {"orden": 2}}
+         "perfil": {"proteccion": 2}, "eje": {"orden": 2}},
+        {"id": "hierbas", "texto": "Busco en el bosque las hierbas que cortan esta fiebre.",
+         "perfil": {"naturaleza": 2, "curacion": 1}},
+        {"id": "maldicion", "texto": "Rastreo la magia: esto huele a maldición.", "perfil": {"arcano": 2, "saber": 1}}
       ]
     },
     {
@@ -87,7 +103,11 @@
         {"id": "rodeo", "texto": "Doy un rodeo y entro por donde no miran.",
          "perfil": {"sigilo": 2, "naturaleza": 1}, "eje": {"orden": -1}},
         {"id": "flor", "texto": "Les ofrezco una flor que encontré en el camino.", "perfil": {"naturaleza": 2, "fe": 1}},
-        {"id": "duelo", "texto": "Reto a su mejor arquero a un duelo de puntería.", "perfil": {"agilidad": 3}}
+        {"id": "duelo", "texto": "Reto a su mejor arquero a un duelo de puntería.", "perfil": {"agilidad": 3}},
+        {"id": "paciencia", "texto": "Me siento en el camino y espero lo que haga falta.",
+         "perfil": {"aguante": 2, "fe": 1}, "eje": {"orden": 1}},
+        {"id": "luz", "texto": "Les muestro una luz mágica en la palma como señal de paz.",
+         "perfil": {"arcano": 2, "saber": 1}}
       ]
     },
     {
@@ -103,7 +123,11 @@
          "perfil": {"arcano": 2, "carisma": 1}},
         {"id": "biblioteca", "texto": "Me cuelo en la biblioteca prohibida esa misma noche.",
          "perfil": {"sigilo": 2, "astucia": 1}, "eje": {"orden": -2}},
-        {"id": "espada", "texto": "La magia no es de fiar. Me quedo con mi espada.", "perfil": {"combate": 2, "aguante": 1}}
+        {"id": "espada", "texto": "La magia no es de fiar. Me quedo con mi espada.", "perfil": {"combate": 2, "aguante": 1}},
+        {"id": "sanacion", "texto": "Me apunto a la escuela de sanación, que es la que más falta hace.",
+         "perfil": {"curacion": 2, "saber": 1}},
+        {"id": "conserje", "texto": "Me hago amigo del conserje, que se entera de todo.",
+         "perfil": {"astucia": 2, "carisma": 1}}
       ]
     },
     {
@@ -117,7 +141,11 @@
         {"id": "escudo", "texto": "Me pongo delante de los mercaderes con el escudo en alto.", "perfil": {"proteccion": 3}},
         {"id": "peaje", "texto": "Les ofrezco un peaje justo para evitar la sangre.",
          "perfil": {"carisma": 2, "astucia": 1}},
-        {"id": "arco", "texto": "Desde lo alto de un carro, flecha tras flecha.", "perfil": {"agilidad": 2, "aguante": 1}}
+        {"id": "arco", "texto": "Desde lo alto de un carro, flecha tras flecha.", "perfil": {"agilidad": 2, "aguante": 1}},
+        {"id": "espalda", "texto": "Me escabullo entre los carros y les ataco por la espalda.",
+         "perfil": {"sigilo": 2, "combate": 1}},
+        {"id": "heridos", "texto": "Me quedo con los heridos y los mantengo con vida.",
+         "perfil": {"curacion": 2, "aguante": 1}, "eje": {"moral": 1}}
       ]
     },
     {
@@ -132,7 +160,10 @@
         {"id": "gemas", "texto": "Me llevo las gemas de los ojos de la estatua.",
          "perfil": {"astucia": 2, "sigilo": 1}, "eje": {"moral": -1}},
         {"id": "pacto", "texto": "Le ofrezco mi lealtad a cambio de poder.",
-         "perfil": {"arcano": 2, "carisma": 1}, "eje": {"moral": -1}}
+         "perfil": {"arcano": 2, "carisma": 1}, "eje": {"moral": -1}},
+        {"id": "sellar", "texto": "Sello la cueva para que nadie lo profane.", "perfil": {"proteccion": 2, "aguante": 1}},
+        {"id": "vida", "texto": "Me fijo en las plantas y los animales que viven alrededor del altar.",
+         "perfil": {"naturaleza": 2, "saber": 1}}
       ]
     },
     {
@@ -147,7 +178,10 @@
         {"id": "hablar", "texto": "Le hablo en su idioma; sé hacerlo.", "perfil": {"naturaleza": 2, "arcano": 1}},
         {"id": "hacha", "texto": "Levanto el hacha: o él o yo.", "perfil": {"combate": 2, "aguante": 1}},
         {"id": "comida", "texto": "Le dejo comida lejos del camino y paso mientras come.",
-         "perfil": {"astucia": 2, "sigilo": 1}}
+         "perfil": {"astucia": 2, "sigilo": 1}},
+        {"id": "arbol", "texto": "Trepo a un árbol y espero a que se vaya.", "perfil": {"agilidad": 2, "sigilo": 1}},
+        {"id": "escudo", "texto": "Me pongo delante de mis compañeros, escudo en alto.",
+         "perfil": {"proteccion": 2, "aguante": 1}}
       ]
     },
     {
@@ -162,7 +196,10 @@
         {"id": "arqueria", "texto": "Me apunto al concurso de tiro con arco.", "perfil": {"agilidad": 3}},
         {"id": "apuestas", "texto": "Llevo las apuestas… y sé quién va a perder.",
          "perfil": {"astucia": 3}, "eje": {"orden": -1, "moral": -1}},
-        {"id": "gestas", "texto": "Canto las gestas de los campeones.", "perfil": {"carisma": 3}}
+        {"id": "gestas", "texto": "Canto las gestas de los campeones.", "perfil": {"carisma": 3}},
+        {"id": "sanadores", "texto": "Me ofrezco en la tienda de los sanadores.",
+         "perfil": {"curacion": 2, "fe": 1}, "eje": {"moral": 1}},
+        {"id": "bendecir", "texto": "Bendigo a los campeones antes de cada justa.", "perfil": {"fe": 2, "carisma": 1}}
       ]
     },
     {
@@ -177,7 +214,11 @@
         {"id": "descanso", "texto": "Le ayudo a descansar en paz con un ritual.", "perfil": {"fe": 2, "arcano": 1}},
         {"id": "preguntar", "texto": "Le pregunto cómo murió; hay algo que no cuadra.",
          "perfil": {"saber": 2, "astucia": 1}},
-        {"id": "huir", "texto": "Me voy por donde he venido.", "perfil": {"agilidad": 2, "sigilo": 1}}
+        {"id": "huir", "texto": "Me voy por donde he venido.", "perfil": {"agilidad": 2, "sigilo": 1}},
+        {"id": "compania", "texto": "Me siento con ella y le pregunto por su vida; está muy sola.",
+         "perfil": {"carisma": 2, "curacion": 1}},
+        {"id": "mechon", "texto": "Hago un hechizo de localización con un mechón de su pelo.",
+         "perfil": {"arcano": 2, "saber": 1}}
       ]
     },
     {
@@ -192,7 +233,11 @@
         {"id": "analizar", "texto": "Las analizo para saber qué llevan.", "perfil": {"saber": 2, "curacion": 1}},
         {"id": "reventa", "texto": "Las compro baratas y las revendo en la ciudad.", "perfil": {"astucia": 2, "carisma": 1}},
         {"id": "guardia", "texto": "Aviso a la guardia: eso es veneno.",
-         "perfil": {"proteccion": 1, "fe": 1}, "eje": {"orden": 2}}
+         "perfil": {"proteccion": 1, "fe": 1}, "eje": {"orden": 2}},
+        {"id": "mezclar", "texto": "Las mezclo a ver si sale algo mejor.",
+         "perfil": {"arcano": 2, "saber": 1}, "eje": {"orden": -1}},
+        {"id": "birlar", "texto": "Me llevo un par cuando el vendedor no mira.",
+         "perfil": {"sigilo": 2, "agilidad": 1}, "eje": {"moral": -1}}
       ]
     },
     {
@@ -206,7 +251,9 @@
          "perfil": {"aguante": 1, "carisma": 1}, "eje": {"orden": 1}},
         {"id": "acertijos", "texto": "Le reto a un duelo de acertijos.", "perfil": {"saber": 2, "astucia": 1}},
         {"id": "nadar", "texto": "Cruzo el río a nado, más abajo.", "perfil": {"aguante": 2, "naturaleza": 1}},
-        {"id": "rio", "texto": "Le tiro al río.", "perfil": {"combate": 3}}
+        {"id": "rio", "texto": "Le tiro al río.", "perfil": {"combate": 3}},
+        {"id": "cena", "texto": "Le ofrezco mi cena; a lo mejor solo tiene hambre.", "perfil": {"carisma": 2, "curacion": 1}},
+        {"id": "puntillas", "texto": "Espero a que se duerma y cruzo de puntillas.", "perfil": {"sigilo": 2, "agilidad": 1}}
       ]
     },
     {
@@ -221,7 +268,9 @@
          "perfil": {"astucia": 2, "saber": 1}},
         {"id": "puerta", "texto": "Me pongo junto a la puerta, por si acaso.", "perfil": {"proteccion": 2, "aguante": 1}},
         {"id": "pobres", "texto": "Le pido ayuda para los pobres de la ciudad.",
-         "perfil": {"curacion": 2, "fe": 1}, "eje": {"moral": 2}}
+         "perfil": {"curacion": 2, "fe": 1}, "eje": {"moral": 2}},
+        {"id": "halcon", "texto": "Le llevo de regalo un halcón amaestrado.", "perfil": {"naturaleza": 2, "carisma": 1}},
+        {"id": "lealtad", "texto": "Le juro lealtad de rodillas.", "perfil": {"fe": 2, "proteccion": 1}, "eje": {"orden": 2}}
       ]
     },
     {
@@ -234,7 +283,11 @@
         {"id": "timon", "texto": "Tomo el timón y aguanto la embestida.", "perfil": {"aguante": 2, "combate": 1}},
         {"id": "mastil", "texto": "Trepo al mástil para recoger la vela.", "perfil": {"agilidad": 3}},
         {"id": "ofrenda", "texto": "Hago una ofrenda al dios del mar.", "perfil": {"fe": 2, "naturaleza": 1}},
-        {"id": "viento", "texto": "Le ordeno al viento que amaine.", "perfil": {"arcano": 3}}
+        {"id": "viento", "texto": "Le ordeno al viento que amaine.", "perfil": {"arcano": 3}},
+        {"id": "atar", "texto": "Ato a los pasajeros a los mástiles para que no caigan al agua.",
+         "perfil": {"proteccion": 2, "curacion": 1}},
+        {"id": "estrellas", "texto": "Busco las estrellas entre las nubes y saco el rumbo a la costa.",
+         "perfil": {"saber": 2, "naturaleza": 1}}
       ]
     },
     {
@@ -249,7 +302,9 @@
         {"id": "desactivar", "texto": "Me agacho a desactivarla antes de que salte.", "perfil": {"astucia": 2, "saber": 1}},
         {"id": "aguantar", "texto": "Levanto el escudo y aguanto lo que venga.", "perfil": {"aguante": 2, "proteccion": 1}},
         {"id": "apartarse", "texto": "Ya la había visto; me aparto.",
-         "perfil": {"sigilo": 2, "astucia": 1}, "eje": {"moral": -1}}
+         "perfil": {"sigilo": 2, "astucia": 1}, "eje": {"moral": -1}},
+        {"id": "salto", "texto": "Salto hacia delante antes de que se cierre el pasillo.", "perfil": {"agilidad": 3}},
+        {"id": "detectar", "texto": "Lanzo un conjuro para ver qué hace la trampa.", "perfil": {"arcano": 2, "saber": 1}}
       ]
     },
     {
@@ -262,7 +317,9 @@
         {"id": "aceptar", "texto": "Acepto: ¿qué puede pasar?", "perfil": {"arcano": 1, "carisma": 1}, "eje": {"orden": -1}},
         {"id": "falso", "texto": "Le doy un nombre falso.", "perfil": {"astucia": 3}, "eje": {"moral": -1}},
         {"id": "oracion", "texto": "Me niego y recito una oración protectora.", "perfil": {"fe": 2, "proteccion": 1}},
-        {"id": "frasco", "texto": "Lo atrapo en un frasco para estudiarlo.", "perfil": {"saber": 2, "agilidad": 1}}
+        {"id": "frasco", "texto": "Lo atrapo en un frasco para estudiarlo.", "perfil": {"saber": 2, "agilidad": 1}},
+        {"id": "baile", "texto": "Le reto a un baile: si gano, deseo gratis.", "perfil": {"carisma": 2, "agilidad": 1}},
+        {"id": "huir", "texto": "Salgo corriendo; con los duendes no se trata.", "perfil": {"agilidad": 2, "sigilo": 1}}
       ]
     },
     {
@@ -276,7 +333,9 @@
          "perfil": {"proteccion": 2, "saber": 1}, "eje": {"orden": 1}},
         {"id": "grito", "texto": "Salgo a su encuentro con un grito de guerra.", "perfil": {"combate": 2, "aguante": 1}},
         {"id": "emboscada", "texto": "Les tiendo una emboscada en el bosque.", "perfil": {"sigilo": 2, "naturaleza": 1}},
-        {"id": "heridos", "texto": "Atiendo a los heridos en el templo.", "perfil": {"curacion": 2, "fe": 1}}
+        {"id": "heridos", "texto": "Atiendo a los heridos en el templo.", "perfil": {"curacion": 2, "fe": 1}},
+        {"id": "parlamentar", "texto": "Salgo a parlamentar con su jefe.", "perfil": {"carisma": 2, "aguante": 1}},
+        {"id": "torre", "texto": "Desde la torre, flecha tras flecha.", "perfil": {"agilidad": 2, "combate": 1}}
       ]
     },
     {
@@ -291,7 +350,10 @@
         {"id": "coleccionista", "texto": "Conozco a un coleccionista que pagaría una fortuna.",
          "perfil": {"astucia": 2, "carisma": 1}},
         {"id": "enterrar", "texto": "Le pongo más cadenas y lo entierro lejos.",
-         "perfil": {"aguante": 1, "proteccion": 1, "saber": 1}}
+         "perfil": {"aguante": 1, "proteccion": 1, "saber": 1}},
+        {"id": "guantes", "texto": "Lo estudio con guantes y desde lejos: primero, saber qué es.",
+         "perfil": {"saber": 2, "proteccion": 1}},
+        {"id": "nombre", "texto": "Le pregunto por qué sabe mi nombre.", "perfil": {"carisma": 2, "arcano": 1}}
       ]
     },
     {
@@ -305,7 +367,10 @@
          "perfil": {"carisma": 2, "naturaleza": 1}},
         {"id": "asustar", "texto": "Les asusto con ruidos y sombras.", "perfil": {"astucia": 1, "sigilo": 1, "arcano": 1}},
         {"id": "hachas", "texto": "Les quito las hachas a la fuerza.", "perfil": {"combate": 2}, "eje": {"orden": -1}},
-        {"id": "sanar", "texto": "Curo las heridas del árbol con mis manos.", "perfil": {"curacion": 2, "naturaleza": 1}}
+        {"id": "sanar", "texto": "Curo las heridas del árbol con mis manos.", "perfil": {"curacion": 2, "naturaleza": 1}},
+        {"id": "plantar", "texto": "Planto diez árboles en otra ladera para los leñadores.",
+         "perfil": {"naturaleza": 2, "aguante": 1}},
+        {"id": "vigilar", "texto": "Duermo junto al árbol hasta que se vayan.", "perfil": {"proteccion": 2, "fe": 1}}
       ]
     },
     {
@@ -318,7 +383,10 @@
         {"id": "barrotes", "texto": "Doblo los barrotes.", "perfil": {"combate": 2, "aguante": 1}},
         {"id": "ganzua", "texto": "Saco una ganzúa de la bota.", "perfil": {"agilidad": 1, "astucia": 1, "sigilo": 1}},
         {"id": "carcelero", "texto": "Convenzo al carcelero de que se ha equivocado de preso.", "perfil": {"carisma": 3}},
-        {"id": "piedra", "texto": "Estudio la celda: siempre hay una piedra suelta.", "perfil": {"saber": 2, "aguante": 1}}
+        {"id": "piedra", "texto": "Estudio la celda: siempre hay una piedra suelta.", "perfil": {"saber": 2, "aguante": 1}},
+        {"id": "esperar", "texto": "Espero tranquilo: alguien vendrá a sacarnos.", "perfil": {"fe": 2, "aguante": 1}},
+        {"id": "cerradura", "texto": "Murmuro un conjuro y la cerradura cede.",
+         "perfil": {"arcano": 2, "sigilo": 1}, "eje": {"orden": -1}}
       ]
     },
     {
@@ -332,7 +400,10 @@
         {"id": "confianza", "texto": "Paso días ganándome su confianza.", "perfil": {"naturaleza": 3}},
         {"id": "dibujar", "texto": "Lo dibujo y apunto todo lo que hace.", "perfil": {"saber": 2}},
         {"id": "libre", "texto": "Lo dejo en paz: lo que es libre debe seguir libre.",
-         "perfil": {"fe": 1, "naturaleza": 1}, "eje": {"moral": 1}}
+         "perfil": {"fe": 1, "naturaleza": 1}, "eje": {"moral": 1}},
+        {"id": "cazadores", "texto": "Vigilo que ningún cazador se le acerque.", "perfil": {"proteccion": 2, "sigilo": 1}},
+        {"id": "ala", "texto": "Tiene un ala herida; me acerco despacio a curársela.",
+         "perfil": {"curacion": 2, "naturaleza": 1}}
       ]
     },
     {
@@ -345,7 +416,11 @@
         {"id": "aceptar", "texto": "Acepto. Lo que haga falta.", "perfil": {"arcano": 2}, "eje": {"moral": -1}},
         {"id": "rechazar", "texto": "Me niego: los muertos deben descansar.", "perfil": {"fe": 3}},
         {"id": "guarida", "texto": "Finjo aceptar para descubrir su guarida.", "perfil": {"astucia": 2, "sigilo": 1}},
-        {"id": "espada", "texto": "Le atravieso con la espada.", "perfil": {"combate": 2, "proteccion": 1}}
+        {"id": "espada", "texto": "Le atravieso con la espada.", "perfil": {"combate": 2, "proteccion": 1}},
+        {"id": "despedida", "texto": "Le pido hablar con mi amigo una última vez, solo para despedirme.",
+         "perfil": {"curacion": 2, "carisma": 1}},
+        {"id": "templo", "texto": "Me alejo sin darle la espalda y aviso al templo.",
+         "perfil": {"sigilo": 2, "proteccion": 1}, "eje": {"orden": 1}}
       ]
     },
     {
@@ -360,7 +435,11 @@
         {"id": "denunciar", "texto": "Los denuncio a la guardia.",
          "perfil": {"proteccion": 1, "fe": 1}, "eje": {"orden": 2}},
         {"id": "infiltrarse", "texto": "Acepto para destaparlos desde dentro.", "perfil": {"sigilo": 2, "astucia": 1}},
-        {"id": "territorio", "texto": "Les dejo claro que esta ciudad es mía.", "perfil": {"combate": 2}}
+        {"id": "territorio", "texto": "Les dejo claro que esta ciudad es mía.", "perfil": {"combate": 2}},
+        {"id": "aprender", "texto": "Acepto si me enseñan sus trucos: siempre viene bien aprender.",
+         "perfil": {"saber": 2, "agilidad": 1}, "eje": {"orden": -1}},
+        {"id": "ronda", "texto": "Les digo que no con una sonrisa y les invito a una ronda.",
+         "perfil": {"carisma": 2, "aguante": 1}}
       ]
     },
     {
@@ -374,7 +453,11 @@
         {"id": "camino", "texto": "Prefiero aprender en el camino.",
          "perfil": {"naturaleza": 1, "agilidad": 1, "aguante": 1}},
         {"id": "magia", "texto": "Solo si me enseña magia de verdad.", "perfil": {"arcano": 2}},
-        {"id": "cuidar", "texto": "Acepto, y de paso le cuido, que está mayor.", "perfil": {"curacion": 2}}
+        {"id": "cuidar", "texto": "Acepto, y de paso le cuido, que está mayor.", "perfil": {"curacion": 2}},
+        {"id": "oraciones", "texto": "Acepto si me deja seguir con mis oraciones de cada mañana.",
+         "perfil": {"fe": 2, "saber": 1}, "eje": {"orden": 1}},
+        {"id": "escolta", "texto": "Acepto, y de paso le protejo de los que buscan sus secretos.",
+         "perfil": {"proteccion": 2, "combate": 1}}
       ]
     },
     {
@@ -387,7 +470,11 @@
         {"id": "presagio", "texto": "Es un presagio de los dioses.", "perfil": {"fe": 2}},
         {"id": "bullir", "texto": "Siento la magia bullir en la oscuridad.", "perfil": {"arcano": 2}},
         {"id": "desenvainar", "texto": "Desenvaino y vigilo: algo va a pasar.", "perfil": {"proteccion": 1, "combate": 1}},
-        {"id": "silencio", "texto": "Escucho el silencio: sé leer el bosque.", "perfil": {"naturaleza": 2, "sigilo": 1}}
+        {"id": "silencio", "texto": "Escucho el silencio: sé leer el bosque.", "perfil": {"naturaleza": 2, "sigilo": 1}},
+        {"id": "refugio", "texto": "Llevo a los niños de la aldea a un sitio seguro.",
+         "perfil": {"proteccion": 2, "curacion": 1}, "eje": {"moral": 1}},
+        {"id": "anotar", "texto": "Anoto la hora y la posición del sol: esto ya ha pasado antes.",
+         "perfil": {"saber": 2, "arcano": 1}}
       ]
     },
     {
@@ -401,7 +488,10 @@
          "perfil": {"combate": 2, "agilidad": 1}, "eje": {"orden": 1}},
         {"id": "disculpa", "texto": "Me disculpo con tanta gracia que acaba invitándome a cenar.", "perfil": {"carisma": 3}},
         {"id": "campeon", "texto": "Busco un campeón que luche por mí.", "perfil": {"astucia": 2}},
-        {"id": "irse", "texto": "Esa misma noche me voy de la ciudad.", "perfil": {"sigilo": 2}}
+        {"id": "irse", "texto": "Esa misma noche me voy de la ciudad.", "perfil": {"sigilo": 2}},
+        {"id": "varitas", "texto": "Acepto, pero con varitas.", "perfil": {"arcano": 2, "agilidad": 1}},
+        {"id": "razones", "texto": "Le explico punto por punto por qué no hay ofensa posible.",
+         "perfil": {"saber": 2, "fe": 1}, "eje": {"orden": 1}}
       ]
     },
     {
@@ -415,7 +505,9 @@
         {"id": "botes", "texto": "Pongo a salvo a los pasajeros en los botes.", "perfil": {"proteccion": 2, "curacion": 1}},
         {"id": "calmar", "texto": "Intento calmar a la bestia; quizá solo tiene miedo.",
          "perfil": {"naturaleza": 2, "carisma": 1}},
-        {"id": "rayo", "texto": "Le lanzo un rayo desde la proa.", "perfil": {"arcano": 2, "agilidad": 1}}
+        {"id": "rayo", "texto": "Le lanzo un rayo desde la proa.", "perfil": {"arcano": 2, "agilidad": 1}},
+        {"id": "ojo", "texto": "Trepo por un tentáculo hasta su ojo.", "perfil": {"agilidad": 2, "aguante": 1}},
+        {"id": "dios_mar", "texto": "Rezo al dios del mar con todas mis fuerzas.", "perfil": {"fe": 2, "aguante": 1}}
       ]
     },
     {
@@ -428,7 +520,11 @@
         {"id": "creer", "texto": "Acepto y me tomo en serio cada palabra.", "perfil": {"fe": 2, "arcano": 1}},
         {"id": "truco", "texto": "Descubro el truco antes de que acabe.", "perfil": {"astucia": 2, "saber": 1}},
         {"id": "al_reves", "texto": "Acabo leyéndole yo el destino a ella.", "perfil": {"carisma": 2, "arcano": 1}},
-        {"id": "pasar", "texto": "No creo en esas cosas; sigo a lo mío.", "perfil": {"aguante": 2}}
+        {"id": "pasar", "texto": "No creo en esas cosas; sigo a lo mío.", "perfil": {"aguante": 2}},
+        {"id": "aves", "texto": "Prefiero que me lean el destino las aves, como hacía mi abuela.",
+         "perfil": {"naturaleza": 2, "arcano": 1}},
+        {"id": "carta", "texto": "Le robo una carta de la baraja para estudiarla luego.",
+         "perfil": {"sigilo": 2, "saber": 1}, "eje": {"moral": -1}}
       ]
     },
     {
@@ -441,7 +537,9 @@
         {"id": "martillo", "texto": "Le doy al martillo todo el día.", "perfil": {"aguante": 2, "combate": 1}},
         {"id": "runas", "texto": "Le enseño a grabar runas en el acero.", "perfil": {"arcano": 2, "saber": 1}},
         {"id": "vender", "texto": "Me encargo de vender lo que forja.", "perfil": {"carisma": 2, "astucia": 1}},
-        {"id": "quemaduras", "texto": "Le curo las quemaduras de las manos.", "perfil": {"curacion": 2}}
+        {"id": "quemaduras", "texto": "Le curo las quemaduras de las manos.", "perfil": {"curacion": 2}},
+        {"id": "poste", "texto": "Pruebo cada espada que sale contra un poste.", "perfil": {"combate": 2, "agilidad": 1}},
+        {"id": "aleacion", "texto": "Le explico cómo mejorar la mezcla del metal.", "perfil": {"saber": 2, "naturaleza": 1}}
       ]
     },
     {
@@ -459,7 +557,11 @@
         {"id": "inocentes", "texto": "Acepto, y a los inocentes los dejo escapar.",
          "perfil": {"astucia": 2, "sigilo": 1}, "eje": {"orden": -2, "moral": 1}},
         {"id": "cuerpos", "texto": "Acepto: los cuerpos tienen mucho que enseñar.",
-         "perfil": {"saber": 2, "arcano": 1}, "eje": {"moral": -1}}
+         "perfil": {"saber": 2, "arcano": 1}, "eje": {"moral": -1}},
+        {"id": "juez", "texto": "Rechazo el puesto y le digo al juez lo que pienso de sus sentencias.",
+         "perfil": {"carisma": 2, "proteccion": 1}, "eje": {"orden": -1, "moral": 1}},
+        {"id": "rezar", "texto": "Acepto, pero rezo por cada condenado antes de la ejecución.",
+         "perfil": {"fe": 2, "aguante": 1}, "eje": {"orden": 1}}
       ]
     },
     {
@@ -474,7 +576,11 @@
         {"id": "investigar", "texto": "Investigo qué está pasando en esa aldea.", "perfil": {"saber": 2, "proteccion": 1}},
         {"id": "repetir", "texto": "Pido otro plato. Estaba bueno.", "perfil": {"aguante": 3}, "eje": {"moral": -2}},
         {"id": "purificar", "texto": "Purifico la aldea con fuego sagrado.",
-         "perfil": {"fe": 2, "combate": 1}, "eje": {"orden": -1}}
+         "perfil": {"fe": 2, "combate": 1}, "eje": {"orden": -1}},
+        {"id": "maldicion", "texto": "Busco la maldición que obliga a esa gente a comer eso.",
+         "perfil": {"arcano": 2, "curacion": 1}, "eje": {"moral": 1}},
+        {"id": "noche", "texto": "Esa noche me voy sin hacer ruido, antes de ser el siguiente plato.",
+         "perfil": {"sigilo": 2, "naturaleza": 1}}
       ]
     },
     {
@@ -489,7 +595,10 @@
          "perfil": {"proteccion": 2, "arcano": 1}, "eje": {"orden": -1, "moral": 1}},
         {"id": "letra_pequena", "texto": "Firmo con una trampa escondida en la letra pequeña.", "perfil": {"astucia": 3}},
         {"id": "desterrar", "texto": "Le destierro con agua bendita.", "perfil": {"fe": 3}},
-        {"id": "otra_forma", "texto": "Me niego y busco otra forma de salvarlos.", "perfil": {"aguante": 2, "saber": 1}}
+        {"id": "otra_forma", "texto": "Me niego y busco otra forma de salvarlos.", "perfil": {"aguante": 2, "saber": 1}},
+        {"id": "sangra", "texto": "Le atravieso con la espada a ver si sangra.",
+         "perfil": {"combate": 2, "aguante": 1}, "eje": {"orden": -1}},
+        {"id": "contrahechizo", "texto": "Le planto cara con mi propia magia.", "perfil": {"arcano": 2, "saber": 1}}
       ]
     },
     {
@@ -504,7 +613,9 @@
         {"id": "mascota", "texto": "Le doy de comer: quiero una silla mascota.", "perfil": {"naturaleza": 2, "carisma": 1}},
         {"id": "cuaderno", "texto": "Saco el cuaderno: esto hay que documentarlo.", "perfil": {"saber": 2, "arcano": 1}},
         {"id": "vender", "texto": "Se la vendo a otro aventurero.",
-         "perfil": {"astucia": 2, "carisma": 1}, "eje": {"moral": -1}}
+         "perfil": {"astucia": 2, "carisma": 1}, "eje": {"moral": -1}},
+        {"id": "gato", "texto": "Salto de la silla como un gato.", "perfil": {"agilidad": 3}},
+        {"id": "agua_bendita", "texto": "Le echo agua bendita a la silla.", "perfil": {"fe": 2, "proteccion": 1}}
       ]
     },
     {
@@ -520,7 +631,11 @@
          "perfil": {"astucia": 1, "aguante": 1}, "eje": {"moral": -2}},
         {"id": "buscar", "texto": "Me niego: busco otra forma, aunque se acabe el tiempo.",
          "perfil": {"saber": 2, "arcano": 1}},
-        {"id": "dioses", "texto": "Rezo para que elijan los dioses.", "perfil": {"fe": 3}}
+        {"id": "dioses", "texto": "Rezo para que elijan los dioses.", "perfil": {"fe": 3}},
+        {"id": "honor", "texto": "Busco a alguien que se ofrezca y le convenzo de que es un honor.",
+         "perfil": {"carisma": 2, "astucia": 1}, "eje": {"moral": -1}},
+        {"id": "sellarlo", "texto": "Lo sello con toda mi magia, aunque me deje sin fuerzas.",
+         "perfil": {"arcano": 2, "aguante": 1}}
       ]
     },
     {
@@ -535,7 +650,10 @@
         {"id": "interrogar", "texto": "Le pregunto quién le hizo eso.", "perfil": {"saber": 1, "astucia": 1, "carisma": 1}},
         {"id": "enterrar", "texto": "La entierro como es debido.", "perfil": {"fe": 2}},
         {"id": "companera", "texto": "Me la llevo de compañera de viaje.",
-         "perfil": {"arcano": 2, "carisma": 1}, "eje": {"orden": -1}}
+         "perfil": {"arcano": 2, "carisma": 1}, "eje": {"orden": -1}},
+        {"id": "venganza", "texto": "Le prometo vengarle y me pongo a buscar al culpable.",
+         "perfil": {"combate": 2, "proteccion": 1}},
+        {"id": "despacio", "texto": "Me alejo despacio sin hacer ruido.", "perfil": {"sigilo": 2, "aguante": 1}}
       ]
     }
   ]
