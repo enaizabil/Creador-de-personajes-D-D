@@ -1,0 +1,48 @@
+# Publica la versión web en GitHub Pages en cada push a la rama: pasa los tests, la compila
+# (herramientas/compilar_web.py) y la sube. Solo en el repositorio público: en el privado no hace nada.
+# Requisito, una vez: Settings → Pages → Source: «GitHub Actions».
+name: Publicar la web
+
+on:
+  push:
+    branches: [claude/dnd-character-generator-nbt5bm]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false  # una publicación empezada se termina
+
+jobs:
+  compilar:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"  # la misma que Pyodide 0.29
+      - name: Dependencias
+        run: python -m pip install -r requirements.txt pytest
+      - name: Tests
+        run: python -m pytest -q
+      - name: Compilar la web
+        run: python herramientas/compilar_web.py --salida _site
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  publicar:
+    needs: compilar
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.publicacion.outputs.page_url }}
+    steps:
+      - id: publicacion
+        uses: actions/deploy-pages@v5
