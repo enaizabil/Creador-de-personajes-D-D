@@ -655,6 +655,688 @@
          "perfil": {"combate": 2, "proteccion": 1}},
         {"id": "despacio", "texto": "Me alejo despacio sin hacer ruido.", "perfil": {"sigilo": 2, "aguante": 1}}
       ]
+    },
+    {
+      "id": "f_monasterio",
+      "nombre": "El monasterio",
+      "estilo": "fantasia",
+      "detalle": 1,
+      "texto": "Llegas a un monasterio en lo alto de la montaña; los monjes entrenan en el patio.",
+      "respuestas": [
+        {"id": "entrenar", "texto": "Me uno a su entrenamiento: patadas, saltos y equilibrio sobre postes.",
+         "perfil": {"agilidad": 2, "combate": 1}},
+        {"id": "meditar", "texto": "Me siento con los que meditan.", "perfil": {"fe": 2, "aguante": 1}},
+        {"id": "pergaminos", "texto": "Pido ver su biblioteca de pergaminos.", "perfil": {"saber": 2, "arcano": 1}},
+        {"id": "cabras", "texto": "Ayudo en el huerto y con las cabras.", "perfil": {"naturaleza": 2, "curacion": 1}},
+        {"id": "maestro", "texto": "Reto al maestro a un combate.", "perfil": {"combate": 2, "agilidad": 1}},
+        {"id": "enfermeria", "texto": "Echo una mano en la enfermería.", "perfil": {"curacion": 2, "fe": 1}}
+      ]
+    },
+    {
+      "id": "f_emboscada",
+      "nombre": "La emboscada",
+      "estilo": "fantasia",
+      "detalle": 1,
+      "texto": "Unos goblins os tienden una emboscada en el camino.",
+      "respuestas": [
+        {"id": "centro", "texto": "Me lanzo al centro con el hacha, gritando.", "perfil": {"combate": 2, "aguante": 1}},
+        {"id": "muro", "texto": "Formo un muro con el escudo delante de los demás.",
+         "perfil": {"proteccion": 2, "combate": 1}},
+        {"id": "roca", "texto": "Me subo a una roca y disparo flecha tras flecha.",
+         "perfil": {"agilidad": 2, "naturaleza": 1}},
+        {"id": "flanco", "texto": "Me escabullo por el flanco y los ataco por detrás.",
+         "perfil": {"sigilo": 2, "astucia": 1}},
+        {"id": "fuego", "texto": "Les lanzo fuego con las manos; me sale solo.", "perfil": {"arcano": 2, "carisma": 1}},
+        {"id": "bendicion", "texto": "Bendigo a mis compañeros y curo al que cae.", "perfil": {"fe": 2, "curacion": 1}}
+      ]
+    },
+    {
+      "id": "f_bosque_encantado",
+      "nombre": "El bosque encantado",
+      "estilo": "fantasia",
+      "detalle": 1,
+      "texto": "En el bosque encantado, los senderos cambian de sitio cada noche.",
+      "respuestas": [
+        {"id": "huellas", "texto": "Sigo las huellas de los animales: ellos saben salir.",
+         "perfil": {"naturaleza": 2, "sigilo": 1}},
+        {"id": "arboles", "texto": "Hablo con los árboles; me indican el camino.", "perfil": {"arcano": 2, "naturaleza": 1}},
+        {"id": "mapa", "texto": "Dibujo un mapa paso a paso.", "perfil": {"saber": 2}},
+        {"id": "hachazos", "texto": "Abro camino a hachazos.", "perfil": {"combate": 2, "aguante": 1}, "eje": {"orden": -1}},
+        {"id": "cantar", "texto": "Canto para que el bosque se calme y nos deje pasar.",
+         "perfil": {"carisma": 2, "arcano": 1}},
+        {"id": "diosa", "texto": "Rezo a la diosa del bosque.", "perfil": {"fe": 2, "naturaleza": 1}}
+      ]
+    },
+    {
+      "id": "f_mercenarios",
+      "nombre": "La ciudad sitiada",
+      "estilo": "fantasia",
+      "detalle": 1,
+      "texto": "Unos mercenarios te ofrecen unirte a ellos para defender una ciudad sitiada.",
+      "respuestas": [
+        {"id": "acepto", "texto": "Acepto: para eso sirvo.", "perfil": {"combate": 2, "proteccion": 1}},
+        {"id": "murallas", "texto": "Me pongo en las murallas, donde más falta hago.",
+         "perfil": {"proteccion": 2, "aguante": 1}, "eje": {"moral": 1}},
+        {"id": "infiltrarse", "texto": "Me infiltro en el campamento enemigo.", "perfil": {"sigilo": 2, "astucia": 1}},
+        {"id": "heridos", "texto": "Me quedo con los heridos.", "perfil": {"curacion": 2, "fe": 1}, "eje": {"moral": 1}},
+        {"id": "negociar", "texto": "Me ofrezco a negociar con los sitiadores.", "perfil": {"carisma": 2, "saber": 1}},
+        {"id": "precio", "texto": "Primero, hablemos del precio.",
+         "perfil": {"astucia": 2, "carisma": 1}, "eje": {"moral": -1}}
+      ]
+    },
+    {
+      "id": "f_unicornio",
+      "nombre": "El unicornio",
+      "estilo": "fantasia",
+      "detalle": 1,
+      "texto": "Un unicornio herido se acerca a ti en un claro del bosque.",
+      "respuestas": [
+        {"id": "curar", "texto": "Le curo con mis manos y mis hierbas.",
+         "perfil": {"curacion": 2, "naturaleza": 1}, "eje": {"moral": 1}},
+        {"id": "guardia", "texto": "Me quedo a protegerlo de los cazadores.",
+         "perfil": {"proteccion": 2, "naturaleza": 1}, "eje": {"moral": 1}},
+        {"id": "cuerno", "texto": "Le corto el cuerno: vale una fortuna.",
+         "perfil": {"astucia": 2, "combate": 1}, "eje": {"moral": -2}},
+        {"id": "senal", "texto": "Me arrodillo: es una señal de los dioses.", "perfil": {"fe": 2, "arcano": 1}},
+        {"id": "entender", "texto": "Le hablo bajito y entiendo lo que me cuenta.", "perfil": {"naturaleza": 2, "arcano": 1}},
+        {"id": "rastro", "texto": "Sigo el rastro de sangre hasta quien lo hirió.", "perfil": {"sigilo": 2, "combate": 1}}
+      ]
+    },
+    {
+      "id": "f_juramento",
+      "nombre": "El juramento",
+      "estilo": "fantasia",
+      "detalle": 1,
+      "texto": "Un caballero te pide que le acompañes a cumplir un juramento sagrado.",
+      "respuestas": [
+        {"id": "jurar", "texto": "Juro con él y le acompaño hasta el final.",
+         "perfil": {"fe": 2, "proteccion": 1}, "eje": {"orden": 1}},
+        {"id": "escudero", "texto": "Voy de escudero: alguien tiene que cubrirle la espalda.",
+         "perfil": {"proteccion": 2, "fe": 1}},
+        {"id": "letra", "texto": "Le pregunto antes qué dice exactamente ese juramento.", "perfil": {"saber": 2, "fe": 1}},
+        {"id": "improvisar", "texto": "Me río: los juramentos son para los que no saben improvisar.",
+         "perfil": {"astucia": 2, "carisma": 1}, "eje": {"orden": -1}},
+        {"id": "aventura", "texto": "Voy, pero por la aventura, no por el juramento.",
+         "perfil": {"agilidad": 2, "aguante": 1}, "eje": {"orden": -1}},
+        {"id": "gestas", "texto": "Le acompaño para cantar luego sus gestas.", "perfil": {"carisma": 2, "fe": 1}}
+      ]
+    },
+    {
+      "id": "f_don",
+      "nombre": "El don",
+      "estilo": "fantasia",
+      "detalle": 1,
+      "texto": "Descubres que puedes encender velas con la mirada.",
+      "respuestas": [
+        {"id": "practicar", "texto": "Practico a escondidas hasta dominarlo.", "perfil": {"arcano": 2, "aguante": 1}},
+        {"id": "taberna", "texto": "Lo enseño en la taberna y me invitan a todo.", "perfil": {"carisma": 2, "arcano": 1}},
+        {"id": "libros", "texto": "Busco libros que expliquen qué me pasa.", "perfil": {"saber": 2, "arcano": 1}},
+        {"id": "divino", "texto": "Voy al templo: tiene que ser un don divino.", "perfil": {"fe": 2, "curacion": 1}},
+        {"id": "ocultar", "texto": "Lo oculto: la gente teme lo que no entiende.", "perfil": {"sigilo": 2, "astucia": 1}},
+        {"id": "a_cambio", "texto": "Me pregunto quién me lo ha dado y qué querrá a cambio.",
+         "perfil": {"astucia": 2, "arcano": 1}}
+      ]
+    },
+    {
+      "id": "f_puerto",
+      "nombre": "El puerto pirata",
+      "estilo": "fantasia",
+      "detalle": 1,
+      "texto": "Llegáis a un puerto de piratas buscando un barco.",
+      "respuestas": [
+        {"id": "copas", "texto": "Me gano al capitán más temido a base de copas.", "perfil": {"carisma": 2, "aguante": 1}},
+        {"id": "polizon", "texto": "Me cuelo de polizón en el primer barco.",
+         "perfil": {"sigilo": 2, "agilidad": 1}, "eje": {"orden": -1}},
+        {"id": "grumete", "texto": "Me enrolo de grumete y me gano el pasaje trabajando.",
+         "perfil": {"aguante": 2, "agilidad": 1}},
+        {"id": "barca", "texto": "Esta noche robo una barca.", "perfil": {"astucia": 2, "sigilo": 1}, "eje": {"orden": -2}},
+        {"id": "mirada", "texto": "Al pirata que me mira mal, lo pongo en su sitio.", "perfil": {"combate": 2, "carisma": 1}},
+        {"id": "cartas", "texto": "Compro cartas de navegación y me las estudio.", "perfil": {"saber": 2, "naturaleza": 1}}
+      ]
+    },
+    {
+      "id": "f_templo_ruinas",
+      "nombre": "El templo profanado",
+      "estilo": "fantasia",
+      "detalle": 1,
+      "texto": "Unos bandidos han convertido un templo en ruinas en su guarida.",
+      "respuestas": [
+        {"id": "recuperar", "texto": "Lo recupero para los dioses, cueste lo que cueste.", "perfil": {"fe": 2, "combate": 1}},
+        {"id": "puerta", "texto": "Asalto la puerta principal.", "perfil": {"combate": 2, "aguante": 1}},
+        {"id": "criptas", "texto": "Entro por las criptas sin que me vean.", "perfil": {"sigilo": 2, "agilidad": 1}},
+        {"id": "maldito", "texto": "Les convenzo de que el templo está maldito.", "perfil": {"carisma": 2, "astucia": 1}},
+        {"id": "aldeanos", "texto": "Protejo antes a los aldeanos que viven cerca.",
+         "perfil": {"proteccion": 2, "curacion": 1}, "eje": {"moral": 1}},
+        {"id": "planos", "texto": "Estudio los planos del templo antes de nada.", "perfil": {"saber": 2, "fe": 1}}
+      ]
+    },
+    {
+      "id": "f_druidas",
+      "nombre": "El ritual de primavera",
+      "estilo": "fantasia",
+      "detalle": 1,
+      "texto": "Un círculo de druidas te invita a su ritual de primavera.",
+      "respuestas": [
+        {"id": "tierra", "texto": "Me uno al ritual y siento la tierra bajo los pies.",
+         "perfil": {"naturaleza": 2, "arcano": 1}},
+        {"id": "plantas", "texto": "Les pregunto por cada planta y cada canto.", "perfil": {"saber": 2, "naturaleza": 1}},
+        {"id": "vigilar", "texto": "Vigilo el claro mientras dura el ritual.", "perfil": {"proteccion": 2, "sigilo": 1}},
+        {"id": "musica", "texto": "Me encargo de la música y la bebida.", "perfil": {"carisma": 2, "aguante": 1}},
+        {"id": "mis_dioses", "texto": "Rezo a mis propios dioses, con todo respeto.", "perfil": {"fe": 2}},
+        {"id": "remedios", "texto": "Aprovecho para aprender sus remedios.", "perfil": {"curacion": 2, "naturaleza": 1}}
+      ]
+    },
+    {
+      "id": "f_cazador",
+      "nombre": "La bestia del valle",
+      "estilo": "fantasia",
+      "detalle": 1,
+      "texto": "Un cazador te propone ir juntos a por la bestia que aterroriza el valle.",
+      "respuestas": [
+        {"id": "rastrear", "texto": "Me encargo de rastrearla.", "perfil": {"naturaleza": 2, "sigilo": 1}},
+        {"id": "cebo", "texto": "Me ofrezco de cebo.", "perfil": {"aguante": 2, "proteccion": 1}},
+        {"id": "trampa", "texto": "Preparo una trampa con lo que sé de la bestia.", "perfil": {"astucia": 2, "saber": 1}},
+        {"id": "lanza", "texto": "La espero con la lanza.", "perfil": {"combate": 2, "aguante": 1}},
+        {"id": "enferma", "texto": "¿Y si está enferma? Intento curarla antes.",
+         "perfil": {"curacion": 2, "naturaleza": 1}, "eje": {"moral": 1}},
+        {"id": "arbol", "texto": "Desde un árbol, con el arco.", "perfil": {"agilidad": 2, "naturaleza": 1}}
+      ]
+    },
+    {
+      "id": "f_gigante",
+      "nombre": "El gigante",
+      "estilo": "fantasia",
+      "detalle": 1,
+      "texto": "Un gigante bloquea el paso de montaña y exige un tributo.",
+      "respuestas": [
+        {"id": "conversacion", "texto": "Pago y le doy conversación; acabamos de amigos.", "perfil": {"carisma": 2}},
+        {"id": "caer", "texto": "Le reto: cuanto más grandes, más fuerte caen.", "perfil": {"combate": 2, "aguante": 1}},
+        {"id": "piernas", "texto": "Le paso entre las piernas antes de que se dé cuenta.",
+         "perfil": {"agilidad": 2, "sigilo": 1}},
+        {"id": "acertijo", "texto": "Le engaño con un acertijo.", "perfil": {"astucia": 2, "saber": 1}},
+        {"id": "escudo", "texto": "Me pongo delante del grupo con el escudo.", "perfil": {"proteccion": 2, "combate": 1}},
+        {"id": "ilusion", "texto": "Con una ilusión, le hago creer que soy aún más grande.",
+         "perfil": {"arcano": 2, "astucia": 1}}
+      ]
+    },
+    {
+      "id": "f_tumba",
+      "nombre": "La tumba del rey",
+      "estilo": "fantasia",
+      "detalle": 1,
+      "texto": "Encontráis la tumba de un rey antiguo, con su corona dentro.",
+      "respuestas": [
+        {"id": "corona", "texto": "Me llevo la corona.", "perfil": {"astucia": 2, "sigilo": 1}, "eje": {"moral": -1}},
+        {"id": "respeto", "texto": "La dejo donde está y rezo por él.", "perfil": {"fe": 2, "proteccion": 1}},
+        {"id": "esquivar", "texto": "Esquivo las trampas una por una.", "perfil": {"agilidad": 2, "astucia": 1}},
+        {"id": "inscripciones", "texto": "Leo las inscripciones de las paredes.", "perfil": {"saber": 2, "arcano": 1}},
+        {"id": "momia", "texto": "Me preparo: algo va a salir de ahí.", "perfil": {"combate": 2, "proteccion": 1}},
+        {"id": "espiritu", "texto": "Invoco al espíritu del rey para preguntarle.", "perfil": {"arcano": 2, "fe": 1}}
+      ]
+    },
+    {
+      "id": "f_ovejas",
+      "nombre": "Las ovejas",
+      "estilo": "fantasia",
+      "detalle": 1,
+      "texto": "Los aldeanos dicen que algo se lleva sus ovejas por la noche.",
+      "respuestas": [
+        {"id": "redil", "texto": "Monto guardia toda la noche junto al redil.", "perfil": {"proteccion": 2, "aguante": 1}},
+        {"id": "huellas", "texto": "Examino las huellas y sé qué es antes del alba.",
+         "perfil": {"naturaleza": 2, "saber": 1}},
+        {"id": "cebo", "texto": "Dejo una oveja de cebo y me escondo.", "perfil": {"sigilo": 2, "astucia": 1}},
+        {"id": "cazarlo", "texto": "Lo cazo.", "perfil": {"combate": 2, "agilidad": 1}},
+        {"id": "sal", "texto": "Bendigo el redil con sal y oraciones.", "perfil": {"fe": 2, "proteccion": 1}},
+        {"id": "adelantado", "texto": "Cobro por adelantado: nadie trabaja gratis.", "perfil": {"astucia": 2, "carisma": 1}}
+      ]
+    },
+    {
+      "id": "f_libro_volador",
+      "nombre": "El libro que vuela",
+      "estilo": "fantasia",
+      "detalle": 2,
+      "texto": "En la biblioteca de una torre de magos, un libro sale volando y se te escapa.",
+      "respuestas": [
+        {"id": "estanterias", "texto": "Lo persigo saltando por las estanterías.", "perfil": {"agilidad": 2, "arcano": 1}},
+        {"id": "atraccion", "texto": "Lo detengo con un conjuro de atracción.", "perfil": {"arcano": 2, "saber": 1}},
+        {"id": "posarse", "texto": "Me quedo quieto y espero a que se pose, como un pájaro.",
+         "perfil": {"naturaleza": 2, "aguante": 1}},
+        {"id": "catalogo", "texto": "Consulto el catálogo para saber qué libro es.", "perfil": {"saber": 2}},
+        {"id": "bibliotecario", "texto": "Llamo al bibliotecario con mi mejor sonrisa.", "perfil": {"carisma": 2}},
+        {"id": "capa", "texto": "Le lanzo la capa como si fuera una red.", "perfil": {"astucia": 2, "agilidad": 1}}
+      ]
+    },
+    {
+      "id": "f_inundacion",
+      "nombre": "La inundación",
+      "estilo": "fantasia",
+      "detalle": 2,
+      "texto": "La ciudad baja se inunda tras días de lluvia.",
+      "respuestas": [
+        {"id": "rescatar", "texto": "Me meto en el agua a sacar a la gente de las casas.",
+         "perfil": {"proteccion": 2, "aguante": 1}, "eje": {"moral": 1}},
+        {"id": "balsa", "texto": "Construyo una balsa con puertas y cuerdas.", "perfil": {"saber": 2, "aguante": 1}},
+        {"id": "frio", "texto": "Atiendo a los que han pasado horas en el agua fría.", "perfil": {"curacion": 2, "fe": 1}},
+        {"id": "saqueo", "texto": "Aprovecho para entrar en las casas abandonadas.",
+         "perfil": {"sigilo": 2, "astucia": 1}, "eje": {"moral": -2}},
+        {"id": "rogativa", "texto": "Organizo una rogativa al dios de las aguas.", "perfil": {"fe": 2, "carisma": 1}},
+        {"id": "tejados", "texto": "Nado de tejado en tejado llevando mensajes.", "perfil": {"agilidad": 2, "aguante": 1}}
+      ]
+    },
+    {
+      "id": "f_juglar",
+      "nombre": "El banquete del rey",
+      "estilo": "fantasia",
+      "detalle": 2,
+      "texto": "En la corte buscan un juglar para el banquete del rey.",
+      "respuestas": [
+        {"id": "cantar", "texto": "Me presento: canto, toco y hago reír.", "perfil": {"carisma": 3}},
+        {"id": "velas", "texto": "Canto, y las velas brillan solas: es mi magia.", "perfil": {"arcano": 2, "carisma": 1}},
+        {"id": "nobles", "texto": "Me cuelo como juglar para escuchar lo que dicen los nobles.",
+         "perfil": {"sigilo": 2, "astucia": 1}},
+        {"id": "vigilar", "texto": "Prefiero vigilar el banquete.", "perfil": {"proteccion": 2, "combate": 1}},
+        {"id": "fogones", "texto": "Me ofrezco en las cocinas: aguanto el calor de los fogones.", "perfil": {"aguante": 2}},
+        {"id": "cronista", "texto": "Me ofrezco como cronista de la corte.", "perfil": {"saber": 2, "carisma": 1}}
+      ]
+    },
+    {
+      "id": "f_huevo",
+      "nombre": "El huevo de dragón",
+      "estilo": "fantasia",
+      "detalle": 2,
+      "texto": "Encuentras un huevo de dragón a punto de eclosionar.",
+      "respuestas": [
+        {"id": "criar", "texto": "Me lo quedo y lo crío como a un hijo.", "perfil": {"naturaleza": 2, "curacion": 1}},
+        {"id": "coleccionista", "texto": "Lo vendo a un coleccionista por una fortuna.",
+         "perfil": {"astucia": 2, "carisma": 1}, "eje": {"moral": -1}},
+        {"id": "madre", "texto": "Me juego el pellejo devolviéndoselo a su madre.",
+         "perfil": {"aguante": 2, "proteccion": 1}, "eje": {"moral": 1}},
+        {"id": "apuntar", "texto": "Lo estudio y apunto cada detalle.", "perfil": {"saber": 2, "naturaleza": 1}},
+        {"id": "vinculo", "texto": "Siento que me habla: nos une algo.", "perfil": {"arcano": 2, "carisma": 1}},
+        {"id": "destruir", "texto": "Lo destruyo antes de que sea un peligro.",
+         "perfil": {"combate": 2}, "eje": {"moral": -1}}
+      ]
+    },
+    {
+      "id": "f_duelo_magico",
+      "nombre": "El duelo de aprendices",
+      "estilo": "fantasia",
+      "detalle": 2,
+      "texto": "La academia de magia celebra un duelo de aprendices.",
+      "respuestas": [
+        {"id": "truco", "texto": "Participo y gano con un truco que nadie conoce.", "perfil": {"arcano": 2, "astucia": 1}},
+        {"id": "rivales", "texto": "Estudio a los rivales antes del duelo.", "perfil": {"saber": 2, "arcano": 1}},
+        {"id": "espectaculo", "texto": "Gano por espectáculo: fuegos de colores y una sonrisa.",
+         "perfil": {"carisma": 2, "arcano": 1}},
+        {"id": "varita", "texto": "Saboteo la varita del favorito.",
+         "perfil": {"sigilo": 2, "astucia": 1}, "eje": {"orden": -1}},
+        {"id": "curar", "texto": "Me ofrezco a curar a los que pierdan.", "perfil": {"curacion": 2}},
+        {"id": "agotarle", "texto": "Aguanto los hechizos del rival hasta que se agote.",
+         "perfil": {"aguante": 2, "arcano": 1}}
+      ]
+    },
+    {
+      "id": "f_dama_lago",
+      "nombre": "La dama del lago",
+      "estilo": "fantasia",
+      "detalle": 2,
+      "texto": "Una dama sale del lago y te ofrece una espada.",
+      "respuestas": [
+        {"id": "defender", "texto": "La acepto y juro defender el reino.",
+         "perfil": {"proteccion": 2, "fe": 1}, "eje": {"orden": 1}},
+        {"id": "cambio", "texto": "Le pregunto qué tengo que dar a cambio.", "perfil": {"astucia": 2, "saber": 1}},
+        {"id": "punos", "texto": "No necesito armas: me basto con mis puños.", "perfil": {"combate": 2, "agilidad": 1}},
+        {"id": "bucear", "texto": "Me lanzo al lago a ver de dónde sale.", "perfil": {"aguante": 2, "agilidad": 1}},
+        {"id": "arrodillarse", "texto": "Me arrodillo: es una señal sagrada.", "perfil": {"fe": 2, "carisma": 1}},
+        {"id": "runas", "texto": "Examino la espada: ¿qué runas lleva?", "perfil": {"saber": 2, "arcano": 1}}
+      ]
+    },
+    {
+      "id": "f_arena",
+      "nombre": "Tormenta de arena",
+      "estilo": "fantasia",
+      "detalle": 2,
+      "texto": "Una tormenta de arena os sorprende en el desierto.",
+      "respuestas": [
+        {"id": "refugio", "texto": "Hago un refugio con las mantas y los camellos.",
+         "perfil": {"naturaleza": 2, "proteccion": 1}},
+        {"id": "cuerda", "texto": "Guío al grupo con una cuerda atada a todos.", "perfil": {"proteccion": 2, "aguante": 1}},
+        {"id": "seguir", "texto": "Me tapo la cara y sigo andando.", "perfil": {"aguante": 2, "combate": 1}},
+        {"id": "hueco", "texto": "Abro un hueco en la tormenta con un conjuro.", "perfil": {"arcano": 2, "aguante": 1}},
+        {"id": "sol", "texto": "Rezo al dios del sol.", "perfil": {"fe": 2, "naturaleza": 1}},
+        {"id": "agua", "texto": "Después, cuido de los que se han quedado sin agua.",
+         "perfil": {"curacion": 2, "naturaleza": 1}}
+      ]
+    },
+    {
+      "id": "f_mago_loco",
+      "nombre": "El mago loco",
+      "estilo": "fantasia",
+      "detalle": 2,
+      "texto": "Un mago loco convierte en ranas a todo el que pasa.",
+      "respuestas": [
+        {"id": "contrarrestar", "texto": "Le contrarresto el hechizo y le doy una lección.",
+         "perfil": {"arcano": 2, "saber": 1}},
+        {"id": "golpe", "texto": "Le doy un golpe en la cabeza antes de que abra la boca.",
+         "perfil": {"combate": 2, "agilidad": 1}},
+        {"id": "ranas", "texto": "Recojo a las ranas para que nadie las pise.", "perfil": {"curacion": 2, "naturaleza": 1}},
+        {"id": "mas_loco", "texto": "Le hago creer que yo soy un mago aún más loco.", "perfil": {"carisma": 2, "astucia": 1}},
+        {"id": "esconderse", "texto": "Me escondo hasta que se le pase.", "perfil": {"sigilo": 2}},
+        {"id": "alma", "texto": "Rezo por su alma. Y por la mía.", "perfil": {"fe": 2}}
+      ]
+    },
+    {
+      "id": "f_feria",
+      "nombre": "La feria de la capital",
+      "estilo": "fantasia",
+      "detalle": 2,
+      "texto": "En la feria de la capital hay un concurso de fuerza, otro de puntería y otro de cuentos.",
+      "respuestas": [
+        {"id": "fuerza", "texto": "El de fuerza: levanto un carro con un buey dentro.",
+         "perfil": {"combate": 2, "aguante": 1}},
+        {"id": "punteria", "texto": "El de puntería.", "perfil": {"agilidad": 3}},
+        {"id": "cuentos", "texto": "El de cuentos.", "perfil": {"carisma": 2, "saber": 1}},
+        {"id": "apuestas", "texto": "Llevo las apuestas de los tres.",
+         "perfil": {"astucia": 2, "carisma": 1}, "eje": {"orden": -1}},
+        {"id": "trampas", "texto": "Me aseguro de que todo esté en orden y nadie haga trampas.",
+         "perfil": {"proteccion": 2, "saber": 1}, "eje": {"orden": 1}},
+        {"id": "suerte", "texto": "Me paseo leyendo la suerte a la gente.", "perfil": {"arcano": 2, "carisma": 1}}
+      ]
+    },
+    {
+      "id": "f_naufragio",
+      "nombre": "El naufragio",
+      "estilo": "fantasia",
+      "detalle": 2,
+      "texto": "Naufragas en una isla desierta.",
+      "respuestas": [
+        {"id": "cabana", "texto": "Construyo una cabaña y un huerto.", "perfil": {"naturaleza": 2, "aguante": 1}},
+        {"id": "balsa", "texto": "Construyo una balsa y me echo al mar.", "perfil": {"aguante": 2, "saber": 1}},
+        {"id": "lanza", "texto": "Pesco con lanza, de pie entre las olas.", "perfil": {"agilidad": 2, "combate": 1}},
+        {"id": "hogueras", "texto": "Hago hogueras de señales cada noche.", "perfil": {"saber": 2, "proteccion": 1}},
+        {"id": "milagro", "texto": "Rezo y espero un milagro.", "perfil": {"fe": 2, "aguante": 1}},
+        {"id": "explorar", "texto": "Exploro la isla: seguro que no estoy solo.", "perfil": {"sigilo": 2, "naturaleza": 1}}
+      ]
+    },
+    {
+      "id": "f_vampiro",
+      "nombre": "La cena en el castillo",
+      "estilo": "fantasia",
+      "detalle": 3,
+      "texto": "Un noble muy pálido te invita a cenar en su castillo.",
+      "respuestas": [
+        {"id": "ajo", "texto": "Acepto, pero llevo ajo y una estaca.", "perfil": {"astucia": 2, "proteccion": 1}},
+        {"id": "sacerdote", "texto": "Voy con un sacerdote y agua bendita.", "perfil": {"fe": 2, "proteccion": 1}},
+        {"id": "seducir", "texto": "Acepto, y le seduzco yo a él.", "perfil": {"carisma": 2, "arcano": 1}},
+        {"id": "averiguar", "texto": "Antes averiguo quién es y qué come.", "perfil": {"saber": 2, "sigilo": 1}},
+        {"id": "excusa", "texto": "Me excuso y no vuelvo a pasar por allí.", "perfil": {"sigilo": 2, "aguante": 1}},
+        {"id": "estaca", "texto": "Voy directamente con la estaca.", "perfil": {"combate": 2, "aguante": 1}}
+      ]
+    },
+    {
+      "id": "f_hada",
+      "nombre": "El baile del hada",
+      "estilo": "fantasia",
+      "detalle": 3,
+      "texto": "Un hada te ofrece bailar con ella toda la noche.",
+      "respuestas": [
+        {"id": "bailar", "texto": "Bailo hasta el amanecer.", "perfil": {"agilidad": 2, "carisma": 1}},
+        {"id": "juego", "texto": "Sé que es una trampa: le sigo el juego para engañarla a ella.",
+         "perfil": {"astucia": 2, "arcano": 1}},
+        {"id": "leyes", "texto": "La rechazo con educación: conozco las leyes de las hadas.",
+         "perfil": {"saber": 2, "fe": 1}},
+        {"id": "ensenar", "texto": "Le pido que me enseñe su magia.", "perfil": {"arcano": 2, "naturaleza": 1}},
+        {"id": "amigos", "texto": "Primero me aseguro de que mis amigos estén a salvo.",
+         "perfil": {"proteccion": 2, "curacion": 1}},
+        {"id": "flores", "texto": "Le hablo de las flores del bosque; nos entendemos.",
+         "perfil": {"naturaleza": 2, "carisma": 1}}
+      ]
+    },
+    {
+      "id": "f_asedio",
+      "nombre": "El asedio",
+      "estilo": "fantasia",
+      "detalle": 3,
+      "texto": "Tu castillo está asediado y se acaba la comida.",
+      "respuestas": [
+        {"id": "salida", "texto": "Lidero una salida nocturna contra el campamento enemigo.",
+         "perfil": {"combate": 2, "carisma": 1}},
+        {"id": "raciones", "texto": "Organizo las raciones para que lleguemos al final.",
+         "perfil": {"saber": 2, "proteccion": 1}, "eje": {"orden": 1}},
+        {"id": "tunel", "texto": "Busco un túnel para traer comida a escondidas.", "perfil": {"sigilo": 2, "astucia": 1}},
+        {"id": "muralla", "texto": "No me muevo de la muralla.", "perfil": {"proteccion": 2, "aguante": 1}},
+        {"id": "enfermos", "texto": "Atiendo a los enfermos y a los heridos.", "perfil": {"curacion": 2, "fe": 1}},
+        {"id": "ayuno", "texto": "Ayuno yo para que coman los niños.",
+         "perfil": {"aguante": 2, "fe": 1}, "eje": {"moral": 1}}
+      ]
+    },
+    {
+      "id": "f_estatua",
+      "nombre": "La estatua que llora",
+      "estilo": "fantasia",
+      "detalle": 3,
+      "texto": "Una estatua de la plaza llora sangre.",
+      "respuestas": [
+        {"id": "examinar", "texto": "La examino de cerca: ¿pintura, magia u otra cosa?", "perfil": {"saber": 2, "arcano": 1}},
+        {"id": "aviso", "texto": "Rezo: es un aviso de los dioses.", "perfil": {"fe": 3}},
+        {"id": "acordonar", "texto": "Acordono la plaza para que nadie se acerque.",
+         "perfil": {"proteccion": 2, "saber": 1}, "eje": {"orden": 1}},
+        {"id": "frasquitos", "texto": "Vendo frasquitos de «sangre milagrosa».",
+         "perfil": {"astucia": 2, "carisma": 1}, "eje": {"moral": -1}},
+        {"id": "canal", "texto": "Noto la magia: alguien la está usando como canal.", "perfil": {"arcano": 2, "sigilo": 1}},
+        {"id": "romperla", "texto": "La rompo antes de que haga algo peor.", "perfil": {"combate": 2, "aguante": 1}}
+      ]
+    },
+    {
+      "id": "f_ladron_noble",
+      "nombre": "El ladrón de los pobres",
+      "estilo": "fantasia",
+      "detalle": 3,
+      "texto": "Un ladrón roba a los ricos y lo reparte entre los pobres. Te piden que lo atrapes.",
+      "respuestas": [
+        {"id": "ley", "texto": "Lo atrapo: la ley es la ley.",
+         "perfil": {"proteccion": 2, "combate": 1}, "eje": {"orden": 2}},
+        {"id": "unirse", "texto": "Me uno a él.", "perfil": {"sigilo": 2, "agilidad": 1}, "eje": {"orden": -2, "moral": 1}},
+        {"id": "avisar", "texto": "Le aviso de que van a por él.",
+         "perfil": {"astucia": 2, "sigilo": 1}, "eje": {"orden": -1}},
+        {"id": "juez", "texto": "Lo atrapo y defiendo su causa ante el juez.",
+         "perfil": {"carisma": 2, "saber": 1}, "eje": {"moral": 1}},
+        {"id": "tejados", "texto": "Le persigo por los tejados.", "perfil": {"agilidad": 2, "combate": 1}},
+        {"id": "pobres", "texto": "Ayudo yo a los pobres para que no le necesiten.",
+         "perfil": {"curacion": 2, "fe": 1}, "eje": {"moral": 1}}
+      ]
+    },
+    {
+      "id": "f_caballo",
+      "nombre": "El caballo salvaje",
+      "estilo": "fantasia",
+      "detalle": 3,
+      "texto": "Te regalan un caballo salvaje que nadie ha podido montar.",
+      "respuestas": [
+        {"id": "cansarlo", "texto": "Me subo y aguanto hasta que se canse él.", "perfil": {"aguante": 2, "agilidad": 1}},
+        {"id": "confianza", "texto": "Paso semanas ganándome su confianza.", "perfil": {"naturaleza": 2, "curacion": 1}},
+        {"id": "domador", "texto": "Lo vendo a quien sea capaz de domarlo.", "perfil": {"astucia": 2}},
+        {"id": "equilibrio", "texto": "Salto a su lomo en marcha y hago equilibrios.",
+         "perfil": {"agilidad": 2, "combate": 1}},
+        {"id": "idioma", "texto": "Le susurro en un idioma antiguo y se calma.", "perfil": {"arcano": 2, "naturaleza": 1}},
+        {"id": "soltarlo", "texto": "Lo suelto en el bosque: no es de nadie.",
+         "perfil": {"fe": 2, "naturaleza": 1}, "eje": {"orden": -1}}
+      ]
+    },
+    {
+      "id": "f_mercado_negro",
+      "nombre": "El mercado negro",
+      "estilo": "fantasia",
+      "detalle": 3,
+      "texto": "En el mercado negro venden a un prisionero encadenado.",
+      "respuestas": [
+        {"id": "comprar", "texto": "Lo compro y lo libero.", "perfil": {"proteccion": 2, "curacion": 1}, "eje": {"moral": 2}},
+        {"id": "cadenas", "texto": "Rompo sus cadenas esa misma noche.",
+         "perfil": {"sigilo": 2, "combate": 1}, "eje": {"orden": -2, "moral": 1}},
+        {"id": "arder", "texto": "Prendo fuego al mercado entero.",
+         "perfil": {"combate": 2, "arcano": 1}, "eje": {"orden": -2}},
+        {"id": "absurdo", "texto": "Negocio un precio absurdo y me salgo con la mía.",
+         "perfil": {"carisma": 2, "astucia": 1}},
+        {"id": "templo", "texto": "Lo denuncio ante el templo.", "perfil": {"fe": 2, "carisma": 1}, "eje": {"orden": 1}},
+        {"id": "detras", "texto": "Averiguo de dónde viene y quién está detrás.", "perfil": {"saber": 2, "sigilo": 1}}
+      ]
+    },
+    {
+      "id": "f_tesoro",
+      "nombre": "El tesoro del dragón",
+      "estilo": "fantasia",
+      "detalle": 3,
+      "texto": "Un dragón duerme sobre su tesoro.",
+      "respuestas": [
+        {"id": "puntillas", "texto": "Me llevo lo que pueda sin despertarlo.", "perfil": {"sigilo": 2, "agilidad": 1}},
+        {"id": "atacar", "texto": "Lo ataco mientras duerme.", "perfil": {"combate": 2, "astucia": 1}, "eje": {"orden": -1}},
+        {"id": "trato", "texto": "Lo despierto con educación y le propongo un trato.", "perfil": {"carisma": 2, "arcano": 1}},
+        {"id": "escamas", "texto": "Estudio sus escamas y su respiración.", "perfil": {"saber": 2, "naturaleza": 1}},
+        {"id": "no_es_mio", "texto": "Me voy sin tocar nada: no todo tesoro es para mí.", "perfil": {"fe": 2, "aguante": 1}},
+        {"id": "sueno", "texto": "Le lanzo un hechizo para que duerma más profundo.", "perfil": {"arcano": 2, "sigilo": 1}}
+      ]
+    },
+    {
+      "id": "f_bosque_quemado",
+      "nombre": "El bosque en llamas",
+      "estilo": "fantasia",
+      "detalle": 3,
+      "texto": "Un incendio arrasa el bosque de los elfos.",
+      "respuestas": [
+        {"id": "apagar", "texto": "Corro a apagarlo con lo que haya.", "perfil": {"aguante": 2, "proteccion": 1}},
+        {"id": "animales", "texto": "Saco a los animales del bosque.", "perfil": {"naturaleza": 2, "curacion": 1}},
+        {"id": "lluvia", "texto": "Invoco la lluvia.", "perfil": {"arcano": 2, "naturaleza": 1}},
+        {"id": "culpable", "texto": "Busco al que lo ha provocado.", "perfil": {"sigilo": 2, "combate": 1}},
+        {"id": "elfos", "texto": "Ayudo a los elfos heridos.", "perfil": {"curacion": 2, "fe": 1}},
+        {"id": "cortafuegos", "texto": "Organizo un cortafuegos con los aldeanos.", "perfil": {"saber": 2, "carisma": 1}}
+      ]
+    },
+    {
+      "id": "f_torre",
+      "nombre": "La torre que apareció",
+      "estilo": "fantasia",
+      "detalle": 3,
+      "texto": "Una torre de mago abandonada aparece de la noche a la mañana en el valle.",
+      "respuestas": [
+        {"id": "primero", "texto": "Entro el primero.", "perfil": {"aguante": 2, "combate": 1}},
+        {"id": "runas", "texto": "La rodeo y apunto cada runa antes de entrar.", "perfil": {"saber": 2, "arcano": 1}},
+        {"id": "tesoro", "texto": "Busco el tesoro del mago.", "perfil": {"astucia": 2, "sigilo": 1}},
+        {"id": "escalar", "texto": "Escalo hasta la ventana más alta.", "perfil": {"agilidad": 2, "aguante": 1}},
+        {"id": "curiosos", "texto": "Alejo a los curiosos del pueblo, por si es peligrosa.",
+         "perfil": {"proteccion": 2, "carisma": 1}},
+        {"id": "me_llama", "texto": "Siento que la torre me llama a mí.", "perfil": {"arcano": 2, "fe": 1}}
+      ]
+    },
+    {
+      "id": "f_sacrificio",
+      "nombre": "El culto",
+      "estilo": "fantasia",
+      "detalle": 1,
+      "sensible": true,
+      "texto": "Un culto te ofrece riquezas a cambio de sacrificar a un desconocido.",
+      "respuestas": [
+        {"id": "destruir", "texto": "Destruyo el culto entero.",
+         "perfil": {"combate": 2, "proteccion": 1}, "eje": {"moral": 1}},
+        {"id": "fingir", "texto": "Finjo aceptar para conocer a sus líderes.", "perfil": {"sigilo": 2, "astucia": 1}},
+        {"id": "aceptar", "texto": "Acepto. No conozco a ese desconocido.",
+         "perfil": {"astucia": 2, "arcano": 1}, "eje": {"moral": -2}},
+        {"id": "liberar", "texto": "Libero al prisionero esa misma noche.",
+         "perfil": {"proteccion": 2, "sigilo": 1}, "eje": {"moral": 1}},
+        {"id": "templo", "texto": "Lo denuncio en el templo.", "perfil": {"fe": 2, "carisma": 1}, "eje": {"orden": 1}},
+        {"id": "curar", "texto": "Curo al prisionero y me lo llevo lejos.",
+         "perfil": {"curacion": 2, "proteccion": 1}, "eje": {"moral": 1}}
+      ]
+    },
+    {
+      "id": "f_zombi",
+      "nombre": "El amigo que volvió",
+      "estilo": "fantasia",
+      "detalle": 1,
+      "sensible": true,
+      "texto": "Tu mejor amigo vuelve de entre los muertos convertido en zombi, y aún te reconoce.",
+      "respuestas": [
+        {"id": "cuidar", "texto": "Le cuido como si nada: sigue siendo él.", "perfil": {"curacion": 2, "fe": 1}},
+        {"id": "descanso", "texto": "Le doy descanso, con todo el dolor de mi corazón.", "perfil": {"combate": 2, "fe": 1}},
+        {"id": "devolverle", "texto": "Busco la magia que le devuelva la vida de verdad.",
+         "perfil": {"arcano": 2, "saber": 1}},
+        {"id": "nigromante", "texto": "Juro no descansar hasta dar con el nigromante.",
+         "perfil": {"aguante": 2, "combate": 1}},
+        {"id": "sotano", "texto": "Lo escondo en el sótano y no se lo cuento a nadie.",
+         "perfil": {"astucia": 2, "sigilo": 1}},
+        {"id": "purificar", "texto": "Lo llevo al templo para que lo purifiquen.", "perfil": {"fe": 2, "proteccion": 1}}
+      ]
+    },
+    {
+      "id": "f_muerte",
+      "nombre": "El espejo de la muerte",
+      "estilo": "fantasia",
+      "detalle": 2,
+      "sensible": true,
+      "texto": "Un espejo te enseña cómo vas a morir.",
+      "respuestas": [
+        {"id": "romper", "texto": "Lo rompo. Prefiero no saberlo.", "perfil": {"combate": 2}},
+        {"id": "evitar", "texto": "Lo estudio con calma para evitarlo.", "perfil": {"saber": 2, "astucia": 1}},
+        {"id": "todos", "texto": "Lo acepto: todos morimos.", "perfil": {"fe": 2, "aguante": 1}},
+        {"id": "enemigo", "texto": "Se lo vendo a mi peor enemigo.",
+         "perfil": {"astucia": 2, "carisma": 1}, "eje": {"moral": -1}},
+        {"id": "los_demas", "texto": "Lo uso para ver la muerte de los demás y evitarla.",
+         "perfil": {"proteccion": 2, "arcano": 1}},
+        {"id": "correr", "texto": "Corro lejos de allí y no paro hasta la siguiente ciudad.",
+         "perfil": {"agilidad": 2, "aguante": 1}}
+      ]
+    },
+    {
+      "id": "f_sopa",
+      "nombre": "La sopa del trasgo",
+      "estilo": "fantasia",
+      "detalle": 2,
+      "sensible": true,
+      "texto": "Un trasgo te ofrece una sopa en la que flota un ojo que te mira.",
+      "respuestas": [
+        {"id": "comer", "texto": "Me la como. Con ojo y todo.", "perfil": {"aguante": 3}},
+        {"id": "receta", "texto": "Le pregunto por la receta con mucho interés.", "perfil": {"carisma": 2, "astucia": 1}},
+        {"id": "guino", "texto": "Le guiño al ojo, a ver si me responde.", "perfil": {"arcano": 2, "carisma": 1}},
+        {"id": "fuego", "texto": "Tiro la sopa al fuego sin que se dé cuenta.", "perfil": {"sigilo": 2, "astucia": 1}},
+        {"id": "cabeza", "texto": "Le tiro la sopa a la cabeza.", "perfil": {"combate": 2}},
+        {"id": "dueno", "texto": "Me pregunto si el dueño del ojo sigue vivo y voy a buscarlo.",
+         "perfil": {"curacion": 2, "proteccion": 1}}
+      ]
+    },
+    {
+      "id": "f_prisionero",
+      "nombre": "El niño secuestrado",
+      "estilo": "fantasia",
+      "detalle": 3,
+      "sensible": true,
+      "texto": "Un prisionero sabe dónde está un niño secuestrado, pero no quiere hablar.",
+      "respuestas": [
+        {"id": "apretar", "texto": "Le aprieto hasta que hable.",
+         "perfil": {"combate": 2, "astucia": 1}, "eje": {"moral": -2}},
+        {"id": "conviene", "texto": "Le convenzo de que le conviene hablar.", "perfil": {"carisma": 2, "astucia": 1}},
+        {"id": "mente", "texto": "Le leo la mente con un conjuro.", "perfil": {"arcano": 2, "saber": 1}},
+        {"id": "escapar", "texto": "Le dejo escapar y le sigo.", "perfil": {"sigilo": 2, "astucia": 1}},
+        {"id": "paz", "texto": "Rezo con él: quizá encuentre la paz y hable.", "perfil": {"fe": 2, "curacion": 1}},
+        {"id": "buscar", "texto": "No pierdo el tiempo con él: busco el rastro del niño yo mismo.",
+         "perfil": {"naturaleza": 2, "agilidad": 1}}
+      ]
+    },
+    {
+      "id": "f_gallina",
+      "nombre": "La gallina encantada",
+      "estilo": "fantasia",
+      "detalle": 3,
+      "sensible": true,
+      "texto": "Una gallina te dice que es un príncipe encantado y que, para romper el hechizo, hace falta un beso.",
+      "respuestas": [
+        {"id": "beso", "texto": "La beso. ¿Qué puede salir mal?", "perfil": {"carisma": 2, "fe": 1}},
+        {"id": "cocinar", "texto": "La cocino.", "perfil": {"aguante": 2}, "eje": {"moral": -1}},
+        {"id": "brujo", "texto": "Busco al brujo que le hechizó.", "perfil": {"saber": 2, "arcano": 1}},
+        {"id": "deshacer", "texto": "Intento deshacer el hechizo yo mismo.", "perfil": {"arcano": 2, "saber": 1}},
+        {"id": "llevarla", "texto": "La llevo conmigo para que no se la coma nadie.",
+         "perfil": {"proteccion": 2, "curacion": 1}},
+        {"id": "granja", "texto": "La dejo en una granja: estará bien con las demás gallinas.",
+         "perfil": {"naturaleza": 2, "curacion": 1}}
+      ]
     }
   ]
 }
